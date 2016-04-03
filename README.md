@@ -18,6 +18,8 @@ Yes, there is support! But the support is based on best effort.
 
 Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
 
+*There is no entitlement, claim, or right to get a request, problem or even a bug that is reported fixed or solved!*
+
 ## Feedback?
 Feedback is more then welcome! Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
 
@@ -26,6 +28,9 @@ If you find a problem or Bug, just let me know. Or even better: Pull it, fix it 
 
 ## No Warranty
 There is no Warranty of any kind! Everything is provided "as is"!
+
+## Default Copyright
+Copyright (C) 2011-2016 by [NET-Experts](http://net-experts.net/) - All rights reserved.
 
 ## License
 Unless otherwise noticed, this default license applies:
@@ -58,3 +63,41 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED O
 POSSIBILITY OF SUCH DAMAGE.
 
 By using the Software, you agree to the License, Terms and Conditions above!
+
+## Additional Information
+Please view the Header information of each file, it might contain other Licensing and/or Copyright information(s). As an Example, the PowerShell Base Module is licensed under other terms and has another Copyright informations.
+
+*Please Review each File/Directory for Licensing and/or Copyright information(s).*
+
+## Data protection
+At [NET-Experts](http://net-experts.net/) we always pay special attention to Security and Intellectual Property issues. We understand a truly effective security as a system that is followed by every employee, affiliate and Partner. We deeply respect our customer’s intellectual property rights and business data and take comprehensive measures to safeguard them. A whole range of security procedures and policies are established at different levels.
+
+The remote access to customer data and systems is restricted to the authorized personnel only. Every Remote Access via [NET-Experts](http://net-experts.net/) are logged, tracked and monitored.
+
+## General Repository Information
+The branching structure follows the git flow concept, defined by [Vincent Driessen](http://nvie.com/posts/a-successful-git-branching-model/)
+
+#### Master branch
+The main branch where the source code of HEAD always reflects a production-ready state.
+
+#### Develop branch
+Consider this to be the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release. Some would call this the "integration branch".
+
+#### Feature branches
+These are used to develop new features for the upcoming or a distant future release. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment).
+
+#### Release branches
+These branches support preparation of a new production release. By using this, the develop branch is cleared to receive features for the next big release.
+
+#### Hotfix branches
+Hotfix branches are very much like release branches in that they are also meant to prepare for a new production release, albeit unplanned.
+
+We use git-flow functions whenever possible to build patches, fixes or releases! That increases the number of branches, but it makes the tracking much easier and it is easier for us.
+
+## Trademarks
+Many (or nearly all) names of products and companies mentioned here are registered trademarks or trademarks of others.
+
+## Reservation of Rights
+Many parts, functions or source code fragments are based on the intellectual work, scripts and sources of others. Even if the source might not be a copy or direct clone, the function or even the idea might be inspired by the work of others. We deeply respect and acknowledge the intellectual work of others! Due to the nature of underlying scripting technology it’s hard and nearly impossible to track where ideas or even inspirations originally came from!
+
+Whenever it is possible to track the source or idea or find out where it comes from, we will put the author, copyright and license (if exist) to the script.
