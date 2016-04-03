@@ -1,0 +1,89 @@
+# .git* export-ignore
+
+# Encrypt the repository
+# Remove/modify this line if the repository is meant to be open-source
+*.* filter=git-crypt diff=git-crypt
+.gitattributes -filter !diff
+
+# Set default behaviour, in case users don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files we want to always be normalized and converted
+# to native line endings on checkout.
+*.md            text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.ps1    text  eol=crlf
+*.psm1   text  eol=crlf
+*.psd1   text  eol=crlf
+*.psc1   text  eol=crlf
+*.ps1xml text  eol=crlf
+*.clixml text  eol=crlf
+*.xml    text  eol=crlf
+*.txt    text  eol=crlf
+*.csv    text  eol=crlf
+*.sql    text  eol=crlf
+
+# Denote all files that are truly binary and should not be mergeable.
+*.dll binary
+*.exe binary
+
+# Explicitly declare text files we want to always be normalized and converted
+# to native line endings on checkout.
+*.gitattributes text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.sln     text eol=crlf
+*.csproj  text eol=crlf
+*.vbproj  text eol=crlf
+*.fsproj  text eol=crlf
+*.dbproj  text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxitems text eol=crlf
+*.props   text eol=crlf
+*.filters text eol=crlf
+*.cs      text
+*.php     text
+*.css     text
+*.js      text
+*.htm     text
+*.html    text
+*.xml     text
+*.txt     text
+*.ini     text
+*.inc     text
+*.json    text
+.htaccess text
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.mov     binary
+*.mp4     binary
+*.mp3     binary
+*.flv     binary
+*.fla     binary
+*.swf     binary
+*.gz      binary
+*.zip     binary
+*.7z      binary
+*.ttf     binary
+
+# Documents
+*.doc     binary  diff=astextplain
+*.DOC     binary  diff=astextplain
+*.docx    binary  diff=astextplain
+*.DOCX    binary  diff=astextplain
+*.dot     binary  diff=astextplain
+*.DOT     binary  diff=astextplain
+*.pdf     binary  diff=astextplain
+*.PDF     binary  diff=astextplain
+*.rtf     binary  diff=astextplain
+*.RTF     binary  diff=astextplain
+
+# compare .pbxproj files as binary and always merge as union
+*.pbxproj binary -merge=union
