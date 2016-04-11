@@ -41,7 +41,7 @@
 		NETX.Tools.psm1-Help.xml
 #>
 
-#.EXTERNALHELP NETX.Tools.psm1-Help.xml
+#.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 #region License
 
@@ -227,12 +227,6 @@ function Initialize-YouTrackConnection {
 			exit 1
 		}
 
-		# Try the new auto connect feature for your convenience
-		if (Get-Command tryAutoLogin -ErrorAction:SilentlyContinue) {
-			# Lets try the new command
-			(Get-tryAutoLogin)
-		}
-
 		# Does our default Auth variable exist?
 		if ($Credentials) {
 			# Read the User from the existing variable
@@ -249,6 +243,12 @@ function Initialize-YouTrackConnection {
 		} elseif ((Get-Command Invoke-AuthO365 -ErrorAction:SilentlyContinue)) {
 			# Get the credentials
 			try {
+				# Try the new auto connect feature for your convenience
+				if (Get-Command tryAutoLogin -ErrorAction:SilentlyContinue) {
+					# Lets try the new command
+					(Get-tryAutoLogin)
+				}
+
 				# Use our internal function to get the credentials
 				Invoke-AuthO365
 			} catch {
@@ -285,7 +285,7 @@ function Initialize-YouTrackConnection {
 				Remove-Variable -Name "YouTrackPassword" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 				# Fire it up!
-				$null = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackUri/rest/user/login" -Body $YouTrackWebBody -SessionVariable "YouTrackWebSessionTemp" -ContentType "application/x-www-form-urlencoded" -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$null = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackUri/rest/user/login" -Body $YouTrackWebBody -SessionVariable "YouTrackWebSessionTemp" -ContentType "application/x-www-form-urlencoded" -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 
 				# Save the Session as persistant info for all other calls
 				if ($YouTrackWebSessionTemp) {
@@ -623,7 +623,7 @@ function Approve-YouTrackItemExists {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Check if it exists")) {
 			try {
-				$null = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/exists" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				$null = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/exists" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 				Return $true
 			} catch {
 				Return $false
@@ -720,7 +720,7 @@ function Get-YouTrackItemList {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items")) {
 			try {
-				$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -869,9 +869,9 @@ function Get-YouTrackItemListInProject {
 		if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items in $YouTrackProject")) {
 			try {
 				if ($wikify) {
-					$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+					$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 				} else {
-					$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+					$YouTrackItemList = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 				}
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
@@ -1015,9 +1015,9 @@ function Get-YouTrackItem {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Get details")) {
 			try {
 				if ($wikify) {
-					$YouTrackItemDetails = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+					$YouTrackItemDetails = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 				} else {
-					$YouTrackItemDetails = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+					$YouTrackItemDetails = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 				}
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
@@ -1156,7 +1156,7 @@ function Get-YouTrackItemHistory {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Get history details")) {
 			try {
-				$YouTrackItemHistory = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/history" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemHistory = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/history" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -1293,7 +1293,7 @@ function Get-YouTrackItemChanges {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Get a list of changes")) {
 			try {
-				$YouTrackItemChanges = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/changes" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemChanges = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/changes" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -1433,7 +1433,7 @@ function Remove-YouTrackItem {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Delete")) {
 			try {
-				$YouTrackItemToDelete = (Invoke-RestMethod -Method "Delete" -Uri "$YouTrackURI/rest/issue/$YouTrackItem" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemToDelete = (Invoke-RestMethod -Method "Delete" -Uri "$YouTrackURI/rest/issue/$YouTrackItem" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 				return "$YouTrackItem deleted"
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
@@ -1628,7 +1628,7 @@ function Update-YouTrackItem {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Update")) {
 			try {
-				$YouTrackItemToUpdate = (Invoke-RestMethod -Method "Post" -Uri $YouTrackUpdateURI -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemToUpdate = (Invoke-RestMethod -Method "Post" -Uri $YouTrackUpdateURI -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -1766,7 +1766,7 @@ function Get-YouTrackItemCount {
 			try {
 				# Fire up the Rest Request, this time we use ab Bit XML
 				# Note: Convert this to  Json to get rid of XML soon - JH
-				$YouTrackItemCount = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackUri/rest/issue/counts" -ContentType "application/xml" -Body $YouTrackItemCountBody -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemCount = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackUri/rest/issue/counts" -ContentType "application/xml" -Body $YouTrackItemCountBody -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -1911,7 +1911,7 @@ function Get-YouTrackItemProjectCount {
 		if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items")) {
 			try {
 				# Fire up the Rest Request, this time we use ab Bit XML
-				$YouTrackItemCount = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue/count?filter=$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemCount = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue/count?filter=$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -2067,7 +2067,7 @@ function Get-YouTrackItemFiltered {
 		if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items")) {
 			try {
 				# Fire up the Rest Request, this time we use ab Bit XML
-				$YouTrackItemCount = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemCount = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -2228,7 +2228,7 @@ function Get-YouTrackItemIntellisense {
 		if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items")) {
 			try {
 				# Fire up the Rest Request, this time we use ab Bit XML
-				$YouTrackItemIntellisense = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue/intellisense?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemIntellisense = (Invoke-RestMethod -Method "GET" -Uri "$YouTrackUri/rest/issue/intellisense?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -2385,7 +2385,7 @@ function Set-YouTrackItemCommand {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Apply command $YouTrackCommand")) {
 			try {
-				$YouTrackItemCommand = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/execute" -Body $YouTrackWebBody -WebSession $YouTrackWebSession -ContentType "application/x-www-form-urlencoded" -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXCoreModuleVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				$YouTrackItemCommand = (Invoke-RestMethod -Method "Post" -Uri "$YouTrackURI/rest/issue/$YouTrackItem/execute" -Body $YouTrackWebBody -WebSession $YouTrackWebSession -ContentType "application/x-www-form-urlencoded" -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 			} catch [System.Management.Automation.PSArgumentException] {
 				# Something is wrong with the command-line
 				Write-Debug -Message "Caught a Argument Exception"
@@ -2430,6 +2430,190 @@ function Set-YouTrackItemCommand {
 }
 # Set a compatibility Alias
 (Set-Alias Set-YTItemCmd Set-YouTrackItemCommand -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
+function Get-YouTrackStatus {
+<#
+	.SYNOPSIS
+		Get telemetry parameters of YouTrack server
+
+	.DESCRIPTION
+		Get telemetry parameters of YouTrack server
+
+	.PARAMETER YouTrackURI
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.PARAMETER YouTrackSession
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.PARAMETER Info
+		Dump Info about Memory usage
+
+	.PARAMETER User
+		Dump Info about active users
+
+	.PARAMETER All
+		Dump all Infos
+
+	.EXAMPLE
+		PS C:\> Get-YouTrackStatus -YouTrackURI 'https://support.contoso.com:8443'
+		availableMemory : 910.5 MB
+		allocatedMemory : 345.0 MB
+		uptime          : 19 hours, 8 minutes, 5 seconds and 84 milliseconds
+		usedMemory      : 262.7 MB
+		databaseSize    : 7.9 MB
+
+		Get telemetry parameters of YouTrack server
+
+	.EXAMPLE
+		PS C:\> Get-YouTrackStatus -User
+		users    : 1
+		sessions : 1
+		windows  : 2
+
+		Get telemetry parameters of YouTrack server
+
+	.EXAMPLE
+		PS C:\> Get-YouTrackStatus -YouTrackURI 'https://support.contoso.com:8443'
+		availableMemory : 910.5 MB
+		allocatedMemory : 336.0 MB
+		uptime          : 20 hours, 27 minutes, 19 seconds and 738 milliseconds
+		usedMemory      : 251.2 MB
+		databaseSize    : 8.2 MB
+
+		users    : 1
+		sessions : 1
+		windows  : 2
+
+		Get telemetry parameters of YouTrack server
+
+	.NOTES
+		TDB
+
+	.LINK
+		https://confluence.jetbrains.com/display/YTD65/GET+Telemetry
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Position = 1,
+				   HelpMessage = 'Specify the web request session value to use for authentication against the JetBrains YouTrack API.')]
+		[Alias('URI')]
+		[System.String]$YouTrackURI,
+		[Parameter(Position = 2,
+				   HelpMessage = 'Specify the web request session value to use for authentication against the JetBrains YouTrack API.')]
+		[Alias('Session')]
+		$YouTrackSession = ($YouTrackWebSession),
+		[Parameter(HelpMessage = 'Dump Info about Memory usage')]
+		[switch]$Info,
+		[switch]$User,
+		[switch]$All
+	)
+
+	BEGIN {
+		# Does we have a URI set?
+		if ($YouTrackURIGlobal) {
+			Set-Variable -Name "YouTrackURI" -Value $($YouTrackURIGlobal)
+		} elseif (-not ($YouTrackURI)) {
+			Write-Error -Message "The URL is mandatory!" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+
+		# Are we authenticated?
+		if (-not ($YouTrackSession)) {
+			if ($pscmdlet.ShouldProcess("YouTrack API", "Login")) {
+				try {
+					Initialize-YouTrackConnection -YouTrackURI "$YouTrackURI"
+				} catch {
+					Write-Error -Message "Unable to Authenticate! Please call Initialize-YouTrackConnection to do so." -ErrorAction:Stop
+
+					# Still here? Make sure we are done!
+					break
+
+					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+					exit 1
+				}
+			}
+		}
+	}
+
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$YouTrackUri", "Telemetry")) {
+			try {
+				$YouTrackTelemetry = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackUri/rest/admin/statistics/telemetry" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+			} catch [System.Management.Automation.PSArgumentException] {
+				# Something is wrong with the command-line
+				Write-Debug -Message "Caught a Argument Exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch [system.exception] {
+				# This is a system exception
+				Write-Debug -Message "Caught a System exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch {
+				# Did not see this one coming!
+				Write-Debug -Message "Caught a Unknown exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			}
+		}
+
+		# Save the infos to new variables
+		$YouTrackTelemetry1 = (($YouTrackTelemetry).telemetry | Select-Object availableMemory, allocatedMemory, uptime, usedMemory, databaseSize)
+		$YouTrackTelemetry2 = (($YouTrackTelemetry).telemetry.onlineUsers | Format-List)
+	}
+
+	END {
+		# Dump The info
+		if (($Info) -and (-not ($All))) {
+			Write-Output -InputObject $YouTrackTelemetry1
+		}
+
+		if (($User) -and (-not ($All))) {
+			Write-Output -InputObject $YouTrackTelemetry2
+		}
+
+		if (($All)) {
+			Write-Output -InputObject $YouTrackTelemetry1
+			Write-Output -InputObject $YouTrackTelemetry2
+		}
+
+		if ((-not ($Info)) -and (-not ($User)) -and (-not ($All))) {
+			Write-Output -InputObject $YouTrackTelemetry1
+		}
+
+		# Cleanup
+		$YouTrackTelemetry1 = $null
+		$YouTrackTelemetry2 = $null
+	}
+}
+# Set a compatibility Alias
+(Set-Alias Get-YTStatus Get-YouTrackStatus -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion Functions
 

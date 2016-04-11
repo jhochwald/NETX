@@ -8,7 +8,6 @@
 	Description = 'NET-Experts PowerShell Support for JetBrains YouTrack Rest API'
 	PowerShellVersion = '4.0'
 	CLRVersion = '4.0'
-	RequiredModules = @('')
 	FunctionsToExport = '*'
 	CmdletsToExport = '*'
 	VariablesToExport = '*'
