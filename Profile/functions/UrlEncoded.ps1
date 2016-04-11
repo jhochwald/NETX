@@ -80,24 +80,24 @@
 	)
 
 	BEGIN {
-		$datBegin = [datetime]::Now;
-		[System.String]$fn = $MyInvocation.MyCommand.Name;
-		$OutputParameter = $null;
+		$datBegin = [datetime]::Now
+		[System.String]$fn = ($MyInvocation.MyCommand.Name)
+		$OutputParameter = $null
 	}
 
 	PROCESS {
 		foreach ($Object in $InputObject) {
-			$fReturn = $false;
-			$OutputParameter = $null;
+			$fReturn = $false
+			$OutputParameter = $null
 
-			$OutputParameter = [System.Web.HttpUtility]::UrlDecode($InputObject);
-			$OutputParameter;
+			$OutputParameter = [System.Web.HttpUtility]::UrlDecode($InputObject)
+			$OutputParameter
 		}
-		$fReturn = $true;
+		$fReturn = $true
 	}
 
 	END {
-		$datEnd = [datetime]::Now;
+		$datEnd = [datetime]::Now
 	}
 } # function
 
@@ -116,28 +116,28 @@ function global:ConvertTo-UrlEncoded {
 	)
 
 	BEGIN {
-		$datBegin = [datetime]::Now;
+		$datBegin = [datetime]::Now
 		[System.String]$fn = $MyInvocation.MyCommand.Name;
 	}
 
 	PROCESS {
-		$fReturn = $false;
-		$OutputParameter = $null;
+		$fReturn = $false
+		$OutputParameter = $null
 
-		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject);
-		Return $OutputParameter;
+		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject)
+		Return $OutputParameter
 	}
 
 	END {
-		$datEnd = [datetime]::Now;
+		$datEnd = [datetime]::Now
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU66Bnq62wG8yUxNC+hq/CANgT
-# 0aagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/n1pb8CGIjc+X8e1lNMCMWc7
+# OZWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +280,25 @@ function global:ConvertTo-UrlEncoded {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRrQnSnEUXyz001UxpagnUtbCGHQDANBgkqhkiG9w0B
-# AQEFAASCAQBemLdQI1RjH5gYHdzYHv4GuWXIfgRDdKVGUpkJRdrFmOwTe7GMvraF
-# gruJMsenZc3svhRGwYa58IzPUpcpDw6k5MQ3DBYjVaHZyZJuiyReDq58vQwtGebc
-# Muoeo06IqJUp2mcosPl17XlpIHMdPphik9lKaGl1k6Y+50OrC21TE2klqmvRF+lE
-# nnzcB5l+SP5sgN5OwgWGASFgyt5m0qr1iLirNMBWCxQmqziB0/KakDpXNJery2Nl
-# fvt9Qd1p8JO7XV6Yl9KQytaGRSJD1fVjYl1t7XvYpXh1W6j8qGrtGc3/b+5S4aP9
-# oFDctvGaxsUuBdnwxnj+1dcFdqhJzz/aoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRsAk1nov3bdGBwhbgpS8uAsUaZrTANBgkqhkiG9w0B
+# AQEFAASCAQBQA/nWTDYPBI3CWFKHsan0JD+BC0W6BoawEe4WhzJVX8qk0zzxpNlc
+# oA2l9EV7GkIf7cc5CsPJBNRjGXyrOpKOzzh964VUgnNgTkDCB4bA8Wjl/o4uw2qR
+# gt7MhuIEwlNOd78JO/DDuze8RF5HvjmTYCjKgWEVeMakTFZ6+kAAtAhQm6luZZX+
+# c6++flYdm4EH+8sI+FpUinTBqnmHOFN4AdFXK8+utJc3oNTEFZGbmTn86WKDR+Cc
+# jJo3GLyufD0PG3yafszlRikR00+B9LI0/52enhyXVeyec+Wq7DnxIe8TZ7hm6z7I
+# ANOU44M7uExgdWljKN7L21+gw8rVsihhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcyMlowIwYJKoZIhvcN
-# AQkEMRYEFNR3X6umc4In1OdGEf+y/wvsxAZRMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzNFowIwYJKoZIhvcN
+# AQkEMRYEFGflvHphEN21CiVSV8w0j+EZ18c1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBXimekteHJZwo3PswWTZYqtKx+GKucGQ+YuX3uSy2icN39
-# +ssifHruhsjCQQ+5ZnqrDvhRdXqF2mIiztyC7BmyvqZoUkO7DstueaUQpaK7Ggkg
-# NkeZaAEUaPWsxO0GYeHS18wuv/iwwwtsap0kbf1DiBG8Gl0mEA9ocKUSHiu8jC1T
-# lKgGTTQ1Iy7qAheTPuUrKyf6nYuUlXFHJfi9R4/2dHAGWa6EgWMZ2VTVLhAeopS5
-# sNJpGapnImUaoJez1aGC2bDfMIUywv8a6ZomzASLcCJG2heWWq+yg2wFgSvqhMxm
-# RxyKfFODGKSnL2gbrvBiUFXRA2uF+ZAlsChWiJbH
+# hkiG9w0BAQEFAASCAQB26TwTwgLnSlgdAFqkCaw9kxXfLsouMJKrF543rYcCpWJH
+# Sq1v28bucsqc5WnsPwyKHDWwVUMwtggftCkRYY5Pn2YSHOKbAP16NUQvcTuG6xTJ
+# jgOvgz9/b5SeWCzBOQ0TGMCxJnrVUPEXcQwNLTIYkuxIc6G2kCfuVZ6M3mCIrc6Z
+# JRJTwQTYjohn0eTetc3tWMhQUuvlRqRFfmyoahQhMqhjIfXmsJ+gyfO1ja3TwvVn
+# ZnUgyWXl8UNcTPwmIVnrvc/kUN9kCdcaNaBUZOhCS3B3GDaM4EFPPnpDJ7VbnK8G
+# 5LKnrHisxyR8uX5dGSZrQ985uWK8pk/lUZZXrZwz
 # SIG # End signature block

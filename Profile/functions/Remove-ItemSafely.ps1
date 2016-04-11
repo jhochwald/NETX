@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -55,7 +55,7 @@ function global:Remove-ItemSafely {
 		Deletes the file or folder as if it had been done via File Explorer.
 
 	.PARAMETER Path
-		The path to the file or folder
+		The path to the file/files or folder/folders
 
 	.PARAMETER DeletePermanently
 		Bypasses the recycle bin, deleting the file or folder permanently
@@ -81,33 +81,45 @@ function global:Remove-ItemSafely {
 				   ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'The path to the file or folder')]
-		$Path,
+		[System.String[]]$Path,
 		[Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
 		[switch]$DeletePermanently
 	)
 
 	PROCESS {
-		if ($DeletePermanently) {
-			Remove-Item -Path:$Path -Force
+		foreach ($SingleItem in $Path) {
+			try {
+				if ($DeletePermanently) {
+					try {
+						# Bypasses the recycle bin, deleting the file or folder permanently
+						(Remove-Item -Path:$SingleItem -Force)
+					} catch {
+						Write-Warning "Unable to Delete $SingleItem, please check!"
+					}
 
-			# Done!
-			return
+					# Done!
+					return
+				}
+
+				# Soft Delete
+				$item = (Get-Item $SingleItem)
+				$directoryPath = (Split-Path $item -Parent)
+				$shell = (New-Object -comobject "Shell.Application")
+				$shellFolder = ($shell.Namespace($directoryPath))
+				$shellItem = ($shellFolder.ParseName($item.Name))
+				$shellItem.InvokeVerb("delete")
+			} catch {
+				Write-Warning "Unable to Delete $SingleItem, please check!"
+			}
 		}
-
-		$item = (Get-Item $Path)
-		$directoryPath = (Split-Path $item -Parent)
-		$shell = (New-Object -comobject "Shell.Application")
-		$shellFolder = ($shell.Namespace($directoryPath))
-		$shellItem = ($shellFolder.ParseName($item.Name))
-		$shellItem.InvokeVerb("delete")
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUN+xxeH3GXYnp0tTmwHtkuCeE
-# QTGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5r7oFkBrqoyevF3iiHZJgOg/
+# gfWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -250,25 +262,25 @@ function global:Remove-ItemSafely {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR5u8q72OOvE27UcSfdCcL3M7WIijANBgkqhkiG9w0B
-# AQEFAASCAQAHdK0z0F2o9vz7lumHpaxBIXnwS8OTfnHGvgG6GHWwac39Um17l+H/
-# yiyAAwgA09cn/ytPLEQA2dlgzTF/3WflZRVSDoaK6dHhC9BWGXh/llz7Rcdw+5Tv
-# XZwHTrhGBtxkUifmhD+ElEIzXsf53df59M/5/bMUNrt7vXx14J4sOhIIlHMxgujc
-# 8R981ako+Qz1wWovEvzPHAQQlas6g36eHVaD4wAj/D5ovLh8xFGZdoKl+rD0/G9R
-# G508oL8lKDF3FrPw2b6hetBSC0SJpaF0uHVth7le1JaKl+tsF+6egEI5fMwg9Zrr
-# DxTQmFx1fvC5WvI9Z9j5YT+LeduZCMHXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR/HD22zqh5KZEZmOxY4KRXvbK5lTANBgkqhkiG9w0B
+# AQEFAASCAQAKHUlGG92SgyxK1nJM3Hr8tf8deaE6v8IZQ3rFKAOnKWXhzmjU8KOQ
+# 350KbhQ7FY0q/WfenwS8eX7I/qXz8M/2SRU1HdGGHoYNPUlN73capBXp1FjQ9drS
+# 9mAUOPqzxFnP/cUDhcR3RnjgNn3HHmFmrM1vtOaiB8yqeRjECg7QYf915mFOAqbz
+# 2MApjWNIhLlrWWQ4cLCRuM3k+PmECXCzTWJwT51iDJdyh9fzwEcPy9BjRcdjHnO1
+# QwKsopDgVFENtRvE8i9pWj9r41xvgeqrlYuP4J9Hve6JSwNBePnnB3DRxj++W4kX
+# LX3hmULtOoGISubEU/vCvmetaOrpaZxFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxNFowIwYJKoZIhvcN
-# AQkEMRYEFLTqz5JEBHU7ucZwdTRpoaVqfdSXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIwMlowIwYJKoZIhvcN
+# AQkEMRYEFLNzs2fQT66RFaRG28zHOPI1lXlLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBdvLOWQSMU9qgljlgI6VNvmA3acWz10PD3meEL/NJwb2r4
-# ON1+aHulh0jvgRikNhxC5KFKp9xtm5jyHFMVAbPfj0FfdcPYigi6FtsAhtU0MqQm
-# 1t9CK0pyMbRhoP/mt23Qjx+e4/Wk/15qPKHFjGUkfAc4M8JyeRfQIwKYtVYf0ctt
-# MI0deCXHj+f6mOIrn11z6Ne96t6HnRTaHr4YcsD8HpnNJPIv3VKVCSsyPfRYRNWD
-# yKKQoq6PGfccLukTlQ6A1EkAVrcNrS+/C/+B7JW3SnwLTBF3vHktR9CtkKhUElQ5
-# SblbLbrpUs3kvmygAUQoibIT6lZVehV0KhGOfqIQ
+# hkiG9w0BAQEFAASCAQBSoCfl1mxQ0/1G9znHMaucHaY6c2WUWPSk+L3dK5NGnrk7
+# VHSjmGNbtaM2obMD022TljDmAhDMEaiv5mDQkRhGTa/NN4RanyT1BQrWs82wnISj
+# aIrQvQ8Zr2Wk+Gw6bIw+2KiseG27hdQ5Y5yi7CTXd40VOuwkD0R5Resey69f6q4i
+# fQ7LefCd6et3f2vbngPkFB92A1N3NN9LpuBfyqJGq/r2YmP++zrwhdcqcC0M88LD
+# ePFhopAHxjxXY6ukC+Q5H0sXFGSh6ABNckAeqFSQSd22WWfnOVHyVGb5RQTU//I4
+# 1GoGooOH1vOb18rX43Oj9ptmlGTT1YFQMgSGo/z4
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,13 +64,13 @@ function global:Get-Hash {
 		PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
 		069DF9587DB0A8D3BA6D8E840099A2D9
 
-		Dumps the MD5 hash for the given File
+		# Dumps the MD5 hash for the given File
 
 	.EXAMPLE
 		PS C:\> Get-Hash -File 'C:\scripts\PowerShell\PesterDocs.ps1' -Hash SHA1
 		BC6B28A939CB3DBB82C9A7BDA5D80A191E8F06AE
 
-		Dumps the SHA1 hash for the given File
+		# Dumps the SHA1 hash for the given File
 
 	.NOTES
 		Re-factored to make it more flexible (cryptographic hash is now a parameter)
@@ -113,8 +113,8 @@ function global:Get-Hash {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfCpuvLQGIFU9MVPFX1WeX6vi
-# veSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUezrB4CvjmFBpA4UvP7faBU9I
+# TwGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -257,25 +257,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT4jzj1ppPqGKvTUvwpnNAujmYRpDANBgkqhkiG9w0B
-# AQEFAASCAQCVSJQ5IwHiiebajEccQHGrJi5t5pyn8hprA70wz6mjD1JWJmV+epbb
-# Cm4fmhXoPy/azk06h3pj3aSPG06cjGYkqVXiK1zCL0sfVH90YkUBcL53leLOxKwb
-# XMZPfeQ4oASyervtY3KxUPToUIZSJNeTwvcUVlaO1bd23tPG4Pfs7ygvU4AomH+i
-# pwduyH9f5D+B13jTxo8zqIFOViB6jUiqaSbPrDkq4Q+n6k+ao1CGspij5Kuxnlv2
-# bytHwPcwbn52YiQkUxj3dHSyd6371D7H9Gc3T0VpsISUTnLUDnqp0/jXu1PdQU6h
-# WpBYyMswv1946+0+lTPlFs13gGyOl/EtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS8u4/6PS/qDyePcRtasGoyvnmZejANBgkqhkiG9w0B
+# AQEFAASCAQByVQetWEuTE8J9T50IEAR+bj7mvYA/YnHHWd1ri3xTk4wTwODhH1bp
+# 2xCY7EOweuTMnr/AOzVJeKyEqMLjbAmBlZVXWty1tEMCie+Ndk9qsJ3D+rVgaSXS
+# +BqkFicxxET27Wqwiydh8hHeKvh544i/Ddckv4L4GI7VAnpmIq+xzPbyViwiticm
+# Q+hCyhdyStNXIemztv8nZNJhjNNcDVqzA/R/4ZFHRFHD+pHlslkDp6S61aZdHP07
+# oPsrYxXaTAL3TeIvI2eaoPK+8ghY246FGEpVxg3KMNfkMRY5b7KqF7m4w/gli+0T
+# jKJ+z3AM5QRXJP0hybH+17P3A86VJISfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1NVowIwYJKoZIhvcN
-# AQkEMRYEFC4d3PpudQ36YG32B4OLZiTaM/EHMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwMVowIwYJKoZIhvcN
+# AQkEMRYEFBJiw4c0kEQ+Z8lSUpDHlohK3ZF9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAWb5nv2F2ZLJEfhubWYY0tsbiGhWIz0OoM1eMjN2yCe3Wl
-# AFRDdyl/udNp4ytFdqihMQcc9GcDbxTpY2zAN0RURdN3B4cILs8SBqzE/1+06ICY
-# mOd8bBoLsShRJIkuf+iI+Tc3zf6FBmeUDgDh7UEmlxtB8e6wEhV8HeyxEXpL8qr8
-# gZx+K04AEO7uxuRbqSu5xRRjADC1k0unsAcUkKGsjZO2HJuxRo+MOv3aPeZj4Lmv
-# 9gpLVStzyZU0CxjLxIfWQ4Zm7F0VOO2t8cQ1+yFd3VhhXZUrSQ7Dt4Ke/kXqb0dS
-# rarJ0nCeH+VpaYmtd37t87CnwBBQu0syBaNFgTvC
+# hkiG9w0BAQEFAASCAQCqSu8bvOKNIPPsOF+EVLjR5jCHx+T55Mp8x6zot0tOo/4p
+# 3dJNPXdetKOnPe8LRJ14wTgrTnAUedNZ+nkK0cEn3iIA4xE3tfLpc4QAg0dc4ymc
+# nfQ1tCjDHXzqokqtUp6uDB4jH/e9w+rojWL1qFNb4ZwrhoOyuMDmd5mc4T0TrBlT
+# CW/eUlhdwhScznpD4HYgB7KyVT+f6VLWALuecnLa51shJC1MhrU+kEYyDk4hcnDN
+# 42oVsUnzIggV9D6TcasVmOB+HK4r9mBHSNOkaevWrQBq86DhwGU41YpEVEeMqgHT
+# zm7SwZFpCemN0IkV6urvrhTxcxx9H8qqHoxrdr9m
 # SIG # End signature block

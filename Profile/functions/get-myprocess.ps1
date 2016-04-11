@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,6 +61,8 @@ function global:Get-myProcess {
 		-------  ------    -----      ----- -----   ------     -- -----------
 		    511      44    79252      93428   664   11,653   3932 powershell
 
+		# Get our own process information
+
 	.NOTES
 		Just a little helper function that might be useful if you have a long running shell session
 
@@ -81,6 +83,7 @@ function global:Get-myProcess {
 			Invoke-GC
 		}
 	}
+
 	PROCESS {
 		# Get the info
 		[diagnostics.process]::GetCurrentProcess()
@@ -90,8 +93,8 @@ function global:Get-myProcess {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqHMP6gYtKBJFaAzvY8ye60R6
-# UVmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULhCQw32mw5bjTJ5yA0xnKVtC
+# T7mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -234,25 +237,25 @@ function global:Get-myProcess {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRC1XpPunN+Xqc5v+6H2GUCBWgTHDANBgkqhkiG9w0B
-# AQEFAASCAQCkompSaCWpmjKAr7tutJYHcxsYYv9txmeXfNjktGIxQRT+Sc/pN2hj
-# PSpVuBn4LZ0N7kxBO5iwHHTMW5mWbPTyiA1bJNqOsC1i8OOKInmDttcdK6pUris6
-# dyf+v2+WCccMHJrfS4DEqBiFirjRp2qcDPAXkAQdd2Z+xPb50EZxp9VB7jpSmefh
-# /JUPbGQG2dy5I9zhMYEZGdx9zPzqX4Aa9Nwt+i7a7FlFI/f5PKLTEzAco4TrF6/8
-# XhjciVJVmRgeMW7Nn8HUIG5cZ+9zJLyMcUPW3NPgiIl1aAYbJP0P1JhWCdSWcT0C
-# g8opKffJ1fzd9j/0LAjq4BJAy/EwZAI9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBROp9p5Gns5Tu9M3sKMjqGrdFTwdDANBgkqhkiG9w0B
+# AQEFAASCAQBoq+HBdxazRlYu6oxQ0tF2IrlVr2mbBTWlLI+ypiIS7vp77xFtGQHJ
+# LyiOAaGwTEEnyZFuVQ59ZlRpJMfrwFM7HTF7R5h11r+qCyKbHhy2gAiXw2yPhtsh
+# KV3s0+A1ndsjy3xOojZyhqPow8u5UtOdsi/cKo75tVzF9c7XggfKG73qj+BM4Zjn
+# /7V8yc1D33bj+v2quP6RGWOfcQWyBRPXvxcrey9tyhKXdwVn4Pzcb3xvBSSTOvx2
+# WNEDWs/q6xBh+is8uaqDoXNKUbZPV9KzRcXdaq7LD30aJLJBC3rzOE06KJ+RXAK+
+# /4dqEqHPhIkcF9e36tfIbpWg8yfaOq2noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1N1owIwYJKoZIhvcN
-# AQkEMRYEFI9n3Fxo+gbDVXJEpnHs8iXxFwu/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNVowIwYJKoZIhvcN
+# AQkEMRYEFBX1XwWL1WRVEmYw+f9zHbDa49TNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAfw3rnA+MnJzR7piPbDgI7VYh81DSiY0hQ8XuLVtkfEEVK
-# bINhpYyAfHQL9GD7Y99txPwG+hqudceJCf7tan14rjqKFVPgh422ZU2p3xmYMOnX
-# EI5Rb0JR0p+wJqx1KMGUQGicP7/A7bhKOEcwYuLwIRcYQN7M7R7HThkRcBkuQEzr
-# 2z8OniZND3luj9c5Kg2MjFPrnhzmGTeI60u6JoPnxSi45+cEmO6cupsv/ZmhajRR
-# 5db4RZp8KT4EX9pjQm4TxSrhYG61pk8gHyJonsXNcQ/nBnE18MdGhN5V1Yz+dClw
-# SJ0ok7JX0UKVCACTjjfZ4IEFh0Cy1rxGcpdN2HRT
+# hkiG9w0BAQEFAASCAQALrImeoJyjGD6EiZ6ScHq4OBxHp1WrR32GNeER/clqdDQ8
+# Nj6NHcCBF1PsvVraG6BhHlIkSt4O6WzWaliTzoEJnLmb0o0HVMuHFhWxC+nrGKwA
+# 9+ngWhv4s67QWH+hWLO48OEWDgG282C0Kx57Se6r40xNM6A7V8kOi2wV68Ts9Vpe
+# LAD/LCBaRjpU6h+PQB/kfvYLtmPLqSjFLVGbvBEveAnlamXapqlSChwNKELZGDo5
+# gqDlMlpFP7HaAkpT2ZRDzJTAmoqrvS16mtcnuaRpFMFUH8Weo4Ey/u50I+M48Vfh
+# pj40bWzMELemuGaXrbJTOznUpS8dCEgxeD6sI/vy
 # SIG # End signature block

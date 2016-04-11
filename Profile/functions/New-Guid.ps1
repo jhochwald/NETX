@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -59,7 +59,7 @@ function global:New-Guid {
 		PS C:\> New-Guid
 		fd6bd476-db80-44e7-ab34-47437adeb8e3
 
-		Creates a new Guid object and displays its GUI to the screen
+		# Creates a new Guid object and displays its GUI to the screen
 
 	.NOTES
 		This is just a quick & dirty helper function to generate GUID's
@@ -86,15 +86,15 @@ function global:New-Guid {
 
 	PROCESS {
 		# Dump the new Object
-		Write-Host $guidObject.Guid
+		Return $guidObject.Guid
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiuMHkOeE+VVCrfvK67YC0SDu
-# jjqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpt0O5MioR9VSeHp9Oy19Z+US
+# s/igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -237,25 +237,25 @@ function global:New-Guid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS4ZdvkRC5oPYSBSciwrIdzSomlnDANBgkqhkiG9w0B
-# AQEFAASCAQAdg9ekMVo5gzWVErMFqEzbJHQZkK/ZhqjIqNS9THdzJDL3zckAnSCH
-# fIZz1xXAJkJpBG2bJTpObBXI2liOMGAtLDGZpwo6P9aLO13YYm9B4jxrDZODidzQ
-# 8hygEMQDyLxDbRjv7miY25OMxZJEn/FqGcFmu7Ug/9qZe4n61BOnfpAoB1JF9P3y
-# PBCywmUoRCK1f6d0FXkqQq/7g9YnHmB55zF73bJeKqgvSyx+v4aFZVntkfmLiQ29
-# z1xrBOGsSBYl29BM0kMuGHF3HE+B8/RrTh7HhuOi8AbB6Lx68k8nxJjKsGmGTXFq
-# TWXbUAjFDlCwEywmukRRzvHYnTJjqjIVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTtcdHryrVdNJ8/rdQ+zfSxrVgJnzANBgkqhkiG9w0B
+# AQEFAASCAQCuon/tmFVc5nYg5M0K0/uJIncZSIIIcn+j50Wu6fb2uwFE5snhHvPD
+# /2ovq0fTQf9+GXybzUWKor755aEpLnkS7qSHDU3URwLhK2ugqCVrLd65Tf7TN2Vu
+# oT6SUH4WmKHlBzI87wvXH1VJgln3uO4RYAoY35PHTyWFeN43EzDeA6o6J27HU/4T
+# EeBPzkL3CrsV4yPd+PSzWyd65Rncp/UpO/q37MpYCHDOPaiafluFoIpZGc/gej/U
+# ldK9udJ6+XmXGr/N4tN7g4SpwVJooUaoWuwxbaXKCeu1XIQyLyNSheoPLMAGVyb8
+# oGMhGPxOy3Snp2jVlLqwh6Duo33acyJtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxMVowIwYJKoZIhvcN
-# AQkEMRYEFFkIgx5Ri9lNVFGbWSo38k2SnsqaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1MVowIwYJKoZIhvcN
+# AQkEMRYEFOHVM+hfiOpQJJbjivuR0faDZvguMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCvwPP3Mm1a7GRTGzqe2GsKMpreXB8miJfw5v4lEOvRINEg
-# jx4ovr/CsCbbblByHpaij04pQJuwe6FpMoUAIJpY/772o983h+MC+VH3rUk4MD52
-# rPGXuSWOTy934bzbpsWGmBh+AcxchhEK/XlWvLiQDQVfCCT8JLN7i3mst7WpCis2
-# FZ3EXlD7Pip5cVWiaj+DWWmsL26lEs5dn+RiJdD8M7tlIjeq0QViitWwIH8FIym6
-# 9teIUcI3THZh/WDOlwb4blILbk1v76LBJsiidowuRiLNKQ8wu10diItObrG+hkOI
-# SjAjC/mV9VFVmPVdJjY75ijgiF7OcCbhBXpLbTZP
+# hkiG9w0BAQEFAASCAQCl1DFxvU5jGyVF7su7f9cBKIeGMVHoKJ7V8C7uhNwOiQY/
+# sNpjHpQzx5uRWhTw7EZabNJX7y6F8H4S/azpm2iuJWMCxU1b2qf4dn1amX92QIxU
+# D4sidIP/w0kcCFnmYKHK9Z9HSRchzzY6aH4ZHLGFwbjb0nJq+dmH/uMNngBeq6ZA
+# +yhNlnukkW5Ocj4U/uW9XmeerS1EVjHasn535GBNUiaGe4CO7afMQh/a/WGWoxV/
+# 2BnqtpDhJ6EA9IkBFok5R5oGqzYXPnOuwVbz3pyJ4bdxrDxApuHs52slImgtA3OG
+# PuV/mxeyRHrQScT3IpjxEpcTt8kIEa6eilYw6PxL
 # SIG # End signature block

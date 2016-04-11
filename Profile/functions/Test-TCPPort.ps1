@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -67,10 +67,16 @@ function Global:Test-TCPPort {
 		Test-TCPPort -target '127.0.0.1' -Port '445'
 		False
 
-		This function is used to see if a TCP Port is answering
+		# This function is used to see if a TCP Port is answering
+
+	.EXAMPLE
+		Test-TCPPort -target '110.10..16.10' -Port '445'
+		True
+
+		# This function is used to see if a TCP Port is answering
 
 	.NOTES
-		This function is used to see if a TCP Port is answering
+		This function will be replaced soon: We will build a new one soon that supports other protocols to (Not only TCP)
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -124,10 +130,10 @@ function Global:Test-TCPPort {
 		# Wait a few ticks (Just a few!!!)
 		Start-Sleep -m 10
 
-		if (($Connect.IsCompleted) -eq $True) {
+		if ($Connect.IsCompleted) {
 			$Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $false))
 
-			if ($Wait -eq $true) {
+			if ($Wait) {
 				$Socket.EndConnect($Connect)
 				$Socket.Close()
 				Return $true
@@ -152,8 +158,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVT/6//ZQhqYTlLaf+pcDnM5i
-# 8VKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeaiiW3ZHXbpuRJ89lPAogPhG
+# FhOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +302,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRx+CF12aqBZekuu6SH1REowNLAKDANBgkqhkiG9w0B
-# AQEFAASCAQBaDD6n20lgDjtYTcYO9LzfQL741c2d3KwYiP3BOTGu68wJc6nMf2Wb
-# AscNJ03M4i1wOQ/hgR0IZwk0QPpuIzA97Eer3WuH17OqmBDDHHP96dJcHF/swC/6
-# KATzodBchlu45PK6r8orjoIYHJw2cGKd92CY69hTAFGttkxZ9TDyXrAehsIiAU8z
-# 3tFy19JAPHXiCJRedd3bGI1Z3jMRfsQDSFf0kyVJAZFV03ayY5SmPFz83jSg5gRo
-# gmcdxact2oFTWVc8CGnmVOEJZnplg2qk12UNy6r+CXfF0j09TwlX1WvcSC9AqdU7
-# 9Dyk/4sIjiyKUInaJPkVeOErKBtvHfpYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSKTxcT6R1CHjUSLwv4VoEc9TeMxTANBgkqhkiG9w0B
+# AQEFAASCAQA8u5RNCt6ptdlEWpjutAQ2zamDIcUE4bPP5ANCDgfq797q6OJxvJb0
+# iuAIhK5o+UmvACB5v0EJmQEGqbmx+CC+Hnt9rHi5kRJ9rJi0IQkE5tL05GZrezZt
+# 3hiF47DHhsJbEC9sOFJKI+ZdukHTYtqvAMy9Xc+isFeOiTXzy2NIDZ//K7j9xUpC
+# fLJBFL/evUOfQhkmp7NaLusnMuVL8PvuQ9FEtYFUc7RqsJaKZmHIbslcRusI55dL
+# 0sJGE9PUKmqZ1m6A2Zt4b36Ro2fOMLCUdsQipd5zEW68FxY7Kiy9p76kzliQHLWR
+# PGqJak9QPlofmNp+LJ8DzxWii8dBpJjAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcyMFowIwYJKoZIhvcN
-# AQkEMRYEFHOB+sqY3DE6megvCKoN17rsdmloMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyOFowIwYJKoZIhvcN
+# AQkEMRYEFKGcy5PIn6LtfgyvuvDMhpWXSjDLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCK1neqs5UvpZ0eaFRb6DVo/wYich6o7XDehHaTDbj71GX1
-# bhZmVw7rswk/n8Nz0Jvpy69oc8CMTkW0ila9F+K/Y02dKdnVf/8fhgat5QN9+YyD
-# xEsj0Bt83bckZrFk+I8LVSWCYAXv70W3l0+yLxmNCT+DvUAUmybbZ6oPT6ZgKrfz
-# ZRfJXgRQ39FmtpvVVHxMHUSSKpE7fFcsS+KHB0Es4svJpYooug4YQYnFPMHU+xaD
-# YlM6GqHJbsOFsI70v4frN2L5Mtqpmw7eEB1Sd2aYG6gNetKBzCcYWHfY08qDRQNC
-# jRwXaaKNr7Z3xUmmKlxevMSxu0Hxn3bl9aaPCE7s
+# hkiG9w0BAQEFAASCAQA2U31SW6QBav1eNCLsVLKHa66RXiH4QUtQjX28U8Mxf6po
+# 2zK6qAyzVo3McAqcB0GI1AD3CR85p6eSr8atIrYvi4gZs+M8PWqWVp1QCPqm2h+m
+# kl56PmRqQj8ePsdGrREZh4pfrJWP7m9nicX14q6oatsfK4H/N5MceUTk3B1nTmcw
+# 5LHSaGhHY81txDfn5SZxdqv2qdwbZI2LwFwts4L7JoTCMK45yTgWGXQphCRj+wnC
+# quk+rfCWjdeLZ7/oVJB3xYNS9COMXp+igcuwlmJXPgj41DeA857Lu8ocSMibhJCd
+# Pn5tM0b9t8vgVO9wI30h2SMvcLnrTaWrIrAuyEoP
 # SIG # End signature block

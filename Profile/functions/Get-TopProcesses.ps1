@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -54,6 +54,11 @@ function global:Get-TopProcesses {
 	.DESCRIPTION
 		This is a PowerShell Version of the well known *NIX like TOP
 
+	.EXAMPLE
+		PS C:\> top
+
+		# Shows the top CPU consuming processes
+
 	.NOTES
 		Make PowerShell a bit more like *NIX!
 
@@ -78,7 +83,7 @@ function global:Get-TopProcesses {
 		# figure out what uses the most CPU Time
 		While ($true) {
 			# Get the fist 30 items
-			Get-Process | Sort-Object -Descending CPU | Select-Object -First 30
+			(Get-Process | Sort-Object -Descending CPU | Select-Object -First 30)
 
 			# Wait 2 seconds
 			Start-Sleep -Seconds 2
@@ -94,8 +99,8 @@ function global:Get-TopProcesses {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfsa61dBbXtt8UhWA7A7jgX8v
-# rJGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdnmzalW7GiQsUakmcKuHnYDa
+# JmagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -238,25 +243,25 @@ function global:Get-TopProcesses {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRyo86yryw3n/696PLZTO1uIZMLQjANBgkqhkiG9w0B
-# AQEFAASCAQApdBi3cF5hz3uPPtLJQr8goCknpvACDHTHAW8ei8zbLeEht68Qvj6y
-# 3o5ctaqip/fQuWd5zhybU8qrmQ1YNUmBcu4dGlj4plvcqAPb32TR5OGc1F5JAHAH
-# aEVNjpASjUGRrye0WiwESH9jKaokRqqo5es4lT6uGROD/flAFZ8i8h39vod/AfFi
-# 81txjoTxW0wP4xTzYogge1rUSxQliAXQqw5nbCJYRQpOFlI1HPn5a3kFS91Z3sni
-# 7/A5x3dhNPUhvyi1hB599jnN2Mgv62Xgtm63HEFXoEE94CDurMHStksvZvet9Tie
-# kLHYGBw52y7S5kDKVtwEveddOXJMz3zWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTFsHETlpoip91yA27j4bmPYMuNjTANBgkqhkiG9w0B
+# AQEFAASCAQAnJobbxsxmWj0vAU2tP2ix2CqbfPi5h5abuLbC0dpk7olZlMLx5LgT
+# mtaD5+ouTiUGcm1itW3KK1oXW4qR+XbybDlwdigME2zcSqvVGB/h8PHSmF6wR/CM
+# b9XamMPsOZZ2pWCjliYMUlTRS1xzSXgS5pN1+9GVrIicx3+kpycYbq3b3lMCO1OI
+# QBbjX6TtwQmcKK+j29qUP/QjfMxpIKrsIJncXqy14woDyAqrmO3Hg/1hcqjjM14W
+# w8ZKMurPhEpMljxWdeKx32W0APvMozeqtPRwmIqfgEgpjNJccr8Yw+MdA+kb8unv
+# XkZ7Imcu6nAduj9ccYI6ImUN7fZUybD8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwMlowIwYJKoZIhvcN
-# AQkEMRYEFKOokax9ybIw+ZBtVuzaQMPlXAp/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExOFowIwYJKoZIhvcN
+# AQkEMRYEFHBU+VjNJv2WhehNettULng3zS/RMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBeGMofIOR5xBMESot0E0zMiBByGchvy0Qr9Pk5mcjwvF6z
-# KlbsdDd/g18s3UlqROpfXn5wF5OdvjNP2EV2Y9Hqcs2x81k73Y4B73x7cwEutUa7
-# E5r9HIwWdvvN1ZtlX68kaiKZkIoRtI3YN2b13DY+7Dx1PP/VSmx4KcWfCaHMhfzt
-# TIY6fRNU4DZZXwyzlEZ8SG7EI/PDqMGa+gQBbkZzl9kFEbT0cAspQRk0PsXdiCXw
-# +wvCy9XKG9rPv5NLBUzHzI+PbT/aclFQPh1o59urwpKjxKcvGtPso9bIrJJ5XGWb
-# KC41iiUcmX7sh/F2SLCkGrdXgZWFH49rnbpiOwIV
+# hkiG9w0BAQEFAASCAQCWFfYg8bJcvO17LiWzeiPaahXSGg5Z+GB6/HuTJ8xHlC62
+# DT1JQCb4mZzbUlX0P8L7o908wB/xTctH6zdg7z7EltDwGgSbJQkMhSqHmjAqh1uO
+# QX7PFlkNZBw4W0BYEFawDI5ut4ctSvEztw+f+mVT9CWjYZiRmDoxrPNtNawAp4uR
+# WitTXlM2faposmFdwQWwv+6kFtZBJg+Jbh4hKVt3bL1F5rvnqo/isLI86VZ8pckI
+# ZazsVDuhE3eWYuuP2g4MpUXCXvD5pYsoxhUb9nqgnXjxf+QLtWjlwcu+PNMmJHDd
+# PGraZuEoFhB4mYOktcs3Rf+wlkcksnRsZuhXwWuU
 # SIG # End signature block

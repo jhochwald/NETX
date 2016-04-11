@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -80,30 +80,26 @@ function global:Create-ZIP {
 	.EXAMPLE
 		PS C:\> Create-ZIP -InputFile "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv"
 
-		This will create the archive "ClutterReport-20150617171648.zip" from the given input file
-		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\scripts\PowerShell\export\"!
+		# This will create the archive "ClutterReport-20150617171648.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		# The new archive will be located in "C:\scripts\PowerShell\export\"!
 
 	.EXAMPLE
 		PS C:\> Create-ZIP -InputFile "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv" -OutputFile "NewClutterReport"
 
-		This will create the archive "NewClutterReport.zip" from the given input file
-		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\scripts\PowerShell\export\"!
+		# This will create the archive "NewClutterReport.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		# The new archive will be located in "C:\scripts\PowerShell\export\"!
 
 	.EXAMPLE
 		PS C:\> Create-ZIP -InputFile "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv" -OutputPath "C:\temp\"
 
-		This will create the archive "ClutterReport-20150617171648.zip" from the given input file
-		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\temp\"! The directory must exist!
+		# This will create the archive "ClutterReport-20150617171648.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		# The new archive will be located in "C:\temp\"! The directory must exist!
 
 	.EXAMPLE
 		PS C:\> Create-ZIP -InputFile "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv" -OutputFile "NewClutterReport" -OutputPath "C:\temp\"
 
-		This will create the archive "NewClutterReport.zip" from the given input file
-		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\temp\"! The directory must exist!
+		# This will create the archive "NewClutterReport.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		# The new archive will be located in "C:\temp\"! The directory must exist!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -197,7 +193,7 @@ function global:Create-ZIP {
 		} while (($zip.Entries.count) -ne 0)
 
 		# Extended Support for unattended mode
-		if (($RunUnattended) -eq $true) {
+		if ($RunUnattended) {
 			# Inform the Robot (Just pass the Archive Filename)
 			Write-Output "$OutArchiv"
 		} else {
@@ -225,8 +221,8 @@ function global:Create-ZIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIjQDOfibiGAW5MUfcg/oq1mA
-# q/ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3OLgf42OIYX37MRpO98ABVF5
+# vrWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -369,25 +365,25 @@ function global:Create-ZIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTD/7MUsWvrD/aDyBTKwuzIn6q+VTANBgkqhkiG9w0B
-# AQEFAASCAQBLUlaOk+GMa8McnOXnfUwm4lZ0UeyYGFbbqm8Iar7BiyjKguc7fm8d
-# TN4ZZN32gVJOtP5G/K6nijTNpMOV5wCMAG+fvda4fgaYAAQx2PYJ3fttvjnh15zy
-# QbQ0/uCfpG08au1ocujtXxL5gTRot0rLqFwT1s3hBYKHSofAp/pnsI1WkJ8gqjSH
-# Du8/ht/5Xd2jyDuEkSGnXxlWTvELjOIZTeHCT7wwZodhzcxXeqo5/KmjrB266GXh
-# xx5SAJmB0e9CpViAb+Tkv7YUElUASJ5e0OD3v+05ILNbdBI5b8CedckVGhaL4UoV
-# hzquDEw5fj44eDhJtk+KGhxEsaMlRGnfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRLCjElQ9mVsNNFh/dGfaVSt16/ozANBgkqhkiG9w0B
+# AQEFAASCAQAQKtLeakF2JpI1COyjl5CEujkdP7eTeyHaT2M9gkkFW2AEvIQ50wI7
+# rmbDRyJxhsWYyfsS5lZdY1AO92eGLJW1g98I2ihFzVrsdbkMMnTn+naEqS4xmr3B
+# IWR1Z2qUky5bTLBDldAjmJZzcrmk1TBy6X8YXPhjOXjQIgc5YVX+VsQ9IGtiVlNj
+# owR+okERHY93VsA0M6ds62avYP4ldgdKMm7BiiLvPDgj1lrwIc+emcHl56TRgwG9
+# hPnv86aJaCaMpyrR6yrWnR9D9tx8ny+MZAgS+CHWz6EKng40v0zvVW6JgxWc2Tie
+# brjWDwiXL6fcPpN4S/ps9W/PBjpdoSNuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1MFowIwYJKoZIhvcN
-# AQkEMRYEFFnLhTH9psyYFIWn2C5MCjgSQXrSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1MlowIwYJKoZIhvcN
+# AQkEMRYEFPVBBxm4S4Buip6SE8VTV3y4GnpbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAxVph+WtNOXlt0tnzF24NfF7fdtlafoWuuQ//+DhmXE4lR
-# xlIeRkIyMc7oXkGIJYkiCtrmZg5OLM7wjLnrpP1WyqdpBvNUqb75/1qy7hqMtied
-# 0/JNLA2AahXMvGxKyc24lKfUTKU6wLOp1M+eI6JMldNUWFdxmCbeUHsADEY8S49L
-# 7XXgFQ8LCp785lQpra1GZVRWn517+AKOwPw2wCo/85Op0ZwLwbKipPGFq8dQIksX
-# a2/Nj8IsRjP3AxgVobrV3U50+NAJX1d/MpCIcsmZtL0oJ6k12NxkKiOgFM+9Gr7y
-# utLJab0fZX0PZ7Mn/QY0TArnQBbxvsTAgoWvRei3
+# hkiG9w0BAQEFAASCAQBOlxjKCfCH9uFgPYG27J99k5VHNUVyzG5QmcS3Kw4EayqS
+# 7+sz/bZwrllTflBEECevI38K4lllJt4Dih40TjYTx0W2Q9HVrrtcxvBq6Jc6Xql3
+# H8VC6LOSY2x045cE1+GDYO2anF41ODw61tyxrSHI3+6HBZ4DbV3qTj0x9deZitH8
+# kDb/b++zrjgtoZSxYTRgiJ4dtqJmpMCqIFJTBzrQKxIKlJG1jxEqUszQSYcUm1K2
+# 98mQreDb65ZiYrpwkSEXXgFkkQKU7qREqxltQQKkdS4AORsNp7XIGaw3oo0CaeoH
+# rbV0Q6X/JZksXf3Hqe3rv0gcvoF7w2ffDq1wc6x8
 # SIG # End signature block

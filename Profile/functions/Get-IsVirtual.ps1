@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,13 +58,13 @@ function global:Get-IsVirtual {
 		PS C:\> Get-IsVirtual
 		True
 
-		If this is a virtual System the Boolean is True, if not it is False
+		# If this is a virtual System the Boolean is True, if not it is False
 
 	.EXAMPLE
 		PS C:\> Get-IsVirtual
 		False
 
-		If this is not a virtual System the Boolean is False, if so it is True
+		# If this is not a virtual System the Boolean is False, if so it is True
 
 	.NOTES
 		The Function name is changed!
@@ -78,7 +78,7 @@ function global:Get-IsVirtual {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
-	[OutputType([bool])]
+	[OutputType([System.Boolean])]
 	param ()
 
 	BEGIN {
@@ -115,7 +115,7 @@ function global:Get-IsVirtual {
 
 		# Looks like this is not a Virtual Machine, but to make sure that figure it out!
 		# So we try some other information that we have via WMI :-)
-		if (-not ($SysInfo_IsVirtual) -eq $true) {
+		if (-not ($SysInfo_IsVirtual)) {
 			if ($WMI_ComputerSystem.Manufacturer -like "*Microsoft*") {
 				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
 				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Hyper-V")
@@ -135,7 +135,7 @@ function global:Get-IsVirtual {
 		}
 
 		# OK, this does not look like a Virtual Machine to us!
-		if (-not ($SysInfo_IsVirtual) -eq $true) {
+		if (-not ($SysInfo_IsVirtual)) {
 			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($false)
 			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Not a Virtual Machine")
 		}
@@ -159,8 +159,8 @@ function global:Get-IsVirtual {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3JA2YABb+Pl1R0ZlLC5evomC
-# aoigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBdGTyLXsYC/WXiICffuwnD5n
+# PY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -303,25 +303,25 @@ function global:Get-IsVirtual {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTH75itQdQEpsbwZTBiJccvA2gBazANBgkqhkiG9w0B
-# AQEFAASCAQCc+E03xOj0e11hFlVsz0V8qIdyj3eefWfMKgcDROpjISo3iC4x5Ke9
-# iYCS5bmIw72KiO068RC8vUr/8NJuHMID8CCeoUsL+BcYL+I4gjiEsyvNb7ShMomv
-# uxhBOWTwQ1c5arIjvjmwvr20Vv80fER3Rtv0fS+ySYCq5x6AGtBSBB7EzYOwRwU6
-# BZSyCmJeRP+wx5Cj5NukbJoxY09S+nTrON+D2OIudQUiq+/QPxz6RPQrobXDZ3xh
-# bZk1UhfGWdXci1H+xGjHBqB0jQ5qefq5lk+6tUrzwHaHXWuy5zXrjn1j7HCSRTx9
-# HsBmXOvUVaFaFid82lBvPWOHbI3oVimtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS+yTO8y3A40MNFbsaEawAAWupYHzANBgkqhkiG9w0B
+# AQEFAASCAQAwAM+uZy3Gg3zon1cnYWyGQ3Wj2bfYbfMTY6Ean8LbNk3tuIexqL31
+# 2kvjIvcOLDCC+9kIf/9531ROOP+f8HzNCCIe/eXedoIQx1oQqV9ici63nBfeSrB3
+# VD96JrBhJtrwsr2vLQddfxCwoviLTFNo7HWoKWBOYrWV/2qk9UbBqRLQkEO04Nai
+# UQuDaUWI7xjWXMxFPVhl7D5xK2MXTf+Yw4W9W8X8l8CMyFejGf/Dp5y1EJkekyyX
+# ot5lsvIcfxIErlf45jOCOMWudFbfUeOW716XcmkcM9A9bkujVQYYQwd/Nkv05Zh1
+# MuDkqgyWrl0fpz1a4E0ir5Ueh09Tu5COoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1NlowIwYJKoZIhvcN
-# AQkEMRYEFI4isp0rJqyaTn4F7VFgyNiGU9T3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNFowIwYJKoZIhvcN
+# AQkEMRYEFAJp6mSUnn7frD+qXnUU2c38cfUsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAzJGPyP3p122fU/1qZLMJLNSuEvsAZ0Doz3vcGd41UJIf7
-# bbYYmeQ3VC7aHJfbqbGbV2InR1bEeb0+dOWfTSLgNvU+2FxmzTwQPHHH+1PxymAi
-# QPteXcHU9xQAnIwSR6L/lgWhzrbtUaWcfoG+ZeVXg5jy8mnkt88TeXZMYoJLNH1w
-# r1hez9QQkNSDUnE0PACHNqrRldqCOiq2ZCptTcD0TWKVgWYpC5AuqWEBaxsTmOYd
-# Ce3Zlx1BCJH+qii5zSlzOz7QILK3jTGfeIyCLkwxSZMKUy8zI3J6SQ9G054i0ZTP
-# uYPg2/rYDX8MIWfSY6wNO6i1+PWFifsEkotLAVqW
+# hkiG9w0BAQEFAASCAQCES5HkFfuP1xSWXdfZKQVE0ygW1ye9ceHaoCvVMRKNAq+9
+# /l0dIrpzOK1NgJqBiohtT+VoCkNTIDoN4E+LeQdPDbvUahGf2R0MdqEh/HXNX2if
+# 3oE1q1l46PxZuahjRxqs4eKGkAEhLtcfI68yF0+eRa/F6ingLQT7Zv7kgvQudN1c
+# sOS5DXCEGg1VrqGNGToOv5zshqoePz+pTZ3i/ATmeWUchfjiRkIRK/Lja7gOCY7P
+# BpR5jUGnsDqG19bKPPR+KbGVKU6t0j8i9nXUpSxcm+1YaJTHt8HkcF4cEVvIME9M
+# /ww3/jaOrW2gl7eF6ufz/casoxVfzHs80thnFL3q
 # SIG # End signature block

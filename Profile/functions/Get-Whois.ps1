@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -81,12 +81,12 @@ function global:Get-Whois {
 	.EXAMPLE
 		PS C:\> Get-Whois -Domain "NET-Experts.net","timberforest.com"
 
-		Will create object Whois output of the domain registration data.
+		# Will create object Whois output of the domain registration data.
 
 	.EXAMPLE
 		PS C:\> Get-Whois -Domain "NET-Experts.net" -OutputType json
 
-		Will create Json Whois Report of the domain registration data.
+		# Will create Json Whois Report of the domain registration data.
 
 	.NOTES
 		Based on an idea of Martin Pugh (Martin Pugh)
@@ -147,7 +147,7 @@ function global:Get-Whois {
 				exit 1
 			}
 		} Else {
-			$Path = Split-Path $MyInvocation.MyCommand.Path
+			$Path = (Split-Path $MyInvocation.MyCommand.Path)
 		}
 
 		# Create the Web Proxy instance
@@ -205,15 +205,15 @@ function global:Get-Whois {
 				#Parse out the rest of the data
 				[PSCustomObject]@{
 					# Real Objects
-					DomainName = ($Raw | Select-String -Pattern "Domain Name: (.*)").Matches.Groups[1].Value
-					Registrar = ($Raw | Select-String -Pattern "Registrar: (.*)").Matches.Groups[1].Value
-					WhoIsServer = ($Raw | Select-String -Pattern "WhoIs Server: (.*)").Matches.Groups[1].Value
-					NameServers = $NS -join ", "
-					DomainLock = ($Raw | Select-String -Pattern "Status: (.*)").Matches.Groups[1].Value
+					DomainName = (($Raw | Select-String -Pattern "Domain Name: (.*)").Matches.Groups[1].Value)
+					Registrar = (($Raw | Select-String -Pattern "Registrar: (.*)").Matches.Groups[1].Value)
+					WhoIsServer = (($Raw | Select-String -Pattern "WhoIs Server: (.*)").Matches.Groups[1].Value)
+					NameServers = ($NS -join ", ")
+					DomainLock = (($Raw | Select-String -Pattern "Status: (.*)").Matches.Groups[1].Value)
 					LastUpdated = [datetime]($Raw | Select-String -Pattern "Updated Date: (.*)").Matches.Groups[1].Value
 					Created = [datetime]($Raw | Select-String -Pattern "Creation Date: (.*)").Matches.Groups[1].Value
 					Expiration = [datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value
-					DaysLeft = (New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value)).Days
+					DaysLeft = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value)).Days)
 				}
 			}
 		}
@@ -234,24 +234,24 @@ function global:Get-Whois {
 			"object"
 			{
 				# Dump to Console
-				Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } }
+				(Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } })
 			}
 			"csv"
 			{
 				# Export a CSV
-				$ReportPath = Join-Path -Path $Path -ChildPath "WhoIs.CSV"
-				$Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation
+				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.CSV")
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation)
 			}
 			"xml"
 			{
 				# Still like XML?
-				$ReportPath = Join-Path -Path $Path -ChildPath "WhoIs.XML"
-				$Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath
+				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.XML")
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath)
 			}
 			"json"
 			{
 				# I must admin: I like Json...
-				$ReportPath = Join-Path -Path $Path -ChildPath "WhoIs.json"
+				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.json")
 				$JsonData = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft)
 				ConvertTo-Json -InputObject $JsonData -Depth 10 > $ReportPath
 			}
@@ -314,7 +314,7 @@ WhoIS Report
 				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.html")
 
 				# Dump the HTML
-				$HTML | Out-File $ReportPath -Encoding ASCII
+				($HTML | Out-File $ReportPath -Encoding ASCII)
 
 				# Immediately display the html if in debug mode
 				if ($PSCmdlet.MyInvocation.BoundParameters["Debug"].IsPresent) {
@@ -331,8 +331,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEIxl2cWB9u92k7QsLduXzca4
-# h9ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9jWLBmz20jstuKwbLUvGoIze
+# d0igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -475,25 +475,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRiGDOTpU932pqyHjMVX3AZ4YgZSTANBgkqhkiG9w0B
-# AQEFAASCAQA8VFxR/ChmHbVYtbuUXM0KtjIN4nlkt/SLoGzIXYOlN+7UPCBh6rXQ
-# +DTBVhspydBOyZRpYxeP23U8vy9ekgXdrH53cl1FAEpdF8vKi3ovjuAT/7Vsnflc
-# IYtzO2+DCrvFVFK+6SJHrir6HxlFtgcL1Q/VHoU8Gwl00TpZVst9SZpwzDqQG346
-# 9lQ43IalH/H8Qqtq7kPSThD0fnb0n0uq+tbOa49kAawBiOaxxSlR5brzunuy3HHm
-# 7UtidSxTy6GGUSHaPJpNhsYcOdjVQ6gc8nkIYgkT1ZTkcgKjvZpMOD8rwEzC1GGM
-# /1nXJ+3AbBZQEAT2kfAun0WAMsDpRU0ToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR6okmDrjj0h6Jp4Ub8DFr6BNJokTANBgkqhkiG9w0B
+# AQEFAASCAQAGsLe1v9rCg+sRlOhtNsduU/8bGt5z6QFzV8x6hVXNndqrVBkVdYka
+# 9Co73YorGkoW7A67wp70u0GDF+X05OOud6R5B+YcM0Ue40Xl/SF+1M71VWI4ueUD
+# WODrJD8opaaxDzslXPHFh7+lFLf+q+gJL7VfYV5VAsYLSpf0iePt0N0ABXzImCio
+# uTEswOUu+AcPSpm0/Y1e9MWy82JYwQTH2eSTl0Czmucf6mXLjmk2S+5608WHg0tv
+# 3oLcTv6jeGXKE+l4ZmXz+STjeJFSGN8rYBNDLnSmi465vxFlylxofOIkSCr5ZmYr
+# zdZRd5oPLq1HEKHHUtm4AFUudUx21JRjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwM1owIwYJKoZIhvcN
-# AQkEMRYEFLrhUBdF7pOyJgEHr5l/ZQ1fGNTiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyMlowIwYJKoZIhvcN
+# AQkEMRYEFEewfvV9auHC7ywWqcJnPiQLwY2iMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAAF+7rq97Mj0N5cjG99Y9nDMXvBeLcSloxU3tvXBxyH/wL
-# riKTm1+F04kKXbIGzneXcs12vZKv5JMdoqeWZCn5iIdUbTdOqODhcQv97KMYLLQT
-# 4m3+hC8bu8izkBfeYCqLXlSuXzvDDirQzMAta05MnprieWNEn6jKWzh8BZdYkdH+
-# nUC1d0tn+mxonMkjKoqu9/BiXRlf1tpsNmHZCoCLtt2zhkPozXUbYG98KK/E4lDu
-# bgfmTdeVFWmxZRCBUHfdNJrXKIAPK21ClIhlfx0zcTb28pqOgkIA1O72mrNWgGB2
-# Z5IeOQmsPrCDuuA2KfWkbAwUICcOHXO7LPzMp53l
+# hkiG9w0BAQEFAASCAQBwiOXGwosL5dDsxn3HdpjppefwUBTmh1057FgWEcMROtA9
+# x1+bjWRMiWdJBTcgCgouyQqBe0I3sAZ7bEJHwmOAkQNLR2sVyefdvehYq2QEHfYq
+# jEFZwqjec4EPEBMJAMhNxrYUo6DLZVi9/Bw05dfYmQEDzI/4ddhbeaj1l68v2YXP
+# DXiCFE2As7jWLEv/HQBbQomBM59xiH+VwaIQMrQBvrxjdozJTTeieqULtC14Kej2
+# rrs78ndfxen1m2K618wYndXyDtmMXroAAbqUMDiVf2I41TsczyD9lK4ib9b/4BAj
+# FnmwQVbQoIrSHwjtbA1EsU9X3QJdCKukwLnPjjuA
 # SIG # End signature block

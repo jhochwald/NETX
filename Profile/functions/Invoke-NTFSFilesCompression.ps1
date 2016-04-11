@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,18 +66,18 @@ function Global:Invoke-NTFSFilesCompression {
 	.PARAMETER Extension
 		The extension of files that will be processed. The default file extension is log.
 
-	.PARAMETER $OlderThan
+	.PARAMETER OlderThan
 		The count of units that are base to comparison file age.
 
 	.EXAMPLE
 		Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "20"
 
-		Compress files with extension log in folder c:\test that are older than 20 minutes
+		# Compress files with extension log in folder 'c:\test' that are older than 20 minutes
 
 	.EXAMPLE
 		Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "1" -TimeUnit "hours" -Extension "txt"
 
-		Compress files with extension txt in folder c:\test that are older than 1 hour
+		# Compress files with extension txt in folder 'c:\test' that are older than 1 hour
 
 	.NOTES
 		Based on an idea of  Wojciech Sciesinski
@@ -136,7 +136,7 @@ function Global:Invoke-NTFSFilesCompression {
 				$filepathforquery = $($i.FullName).Replace("\", "\\")
 				$file = (Get-WmiObject -Query "SELECT * FROM CIM_DataFile Where-Object Name='$filepathforquery'")
 
-				if ($file.compressed -eq $false -and $i.LastWriteTime -lt $compressolder) {
+				if ((-not ($file.compressed)) -and $i.LastWriteTime -lt $compressolder) {
 					Write-Verbose "Start compressing file $i.name"
 
 					#Invoke compression
@@ -150,8 +150,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU40VKpNgrBb0uWxgWZWB4zFhA
-# rtGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfZYlHe5VyYu6xaZI6fFk+tmn
+# BY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3LADVVPe8nqkx3M3vblRF0ro0RjANBgkqhkiG9w0B
-# AQEFAASCAQANf1jbB3PnKJchu593X91RxSWKkGZhLCz6vfYwNRImZzkGlXIkfr37
-# 9Bc709GFyOLPhgW/i4I+SzSh4nFdTBiHY/VhrTYDB7fYOMibGBhOKRbHv6PtCHCK
-# 6wc0QSg0GG4YFNDxw1ir+bA+wTycnU0G1PuQun+4DkozDqh6rxI7aARtSSQ8EMbM
-# 7Ixzw+noHC0MmK9WmjcwRaIydm3J796C4txUPmXF3bVUkfXx+Hhk99/oSe8aS+PG
-# e7IHtkxOxT4BlWNwb1JEO/J3UlFAXiZ7RXCX2XswNHuyl0dcEVX5FKFAdUwtH13b
-# wh5fjTj9SOF5jvzUO4TC0rKfONLgn70DoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTI0HKkq/PGRjL81JDH3ZzY8nPLNjANBgkqhkiG9w0B
+# AQEFAASCAQChIXfAN+RoN2BowcmjBt+UUs18IWJhfH9k+LohCS0P7+r2D2UT1Fc+
+# 1GR5oQEZxwxJy/gEBPLc4VIZhbmy42DCPsPWSEP7+n2Xyq3KHJkW92OEl3vFw6Ux
+# UerRXw5UDGXV8V7b6mjBqcGcUfTuC0QR4k7q/C5YFQfZJcAx/NlT147Mz92jSpiZ
+# GWMSsUX+at5Kfhbj5tqzqYfz4NZeWrvOiDdRjQbWCqmTFIYXrPgSpqQoIKY0DI6M
+# 8C0Ht5WFelbdUToLq5oLtXedVJT5lATvn0FEHKfHvINZt54L+KEEiUeKTAee/J8Q
+# oCTnWUpYj9ocQHIPAfb0qnyJY1xOXMnhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwN1owIwYJKoZIhvcN
-# AQkEMRYEFCvJUHrb4Yfm1Lbt7OCuayUA2I89MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEzOVowIwYJKoZIhvcN
+# AQkEMRYEFKwsdA30rVMZpgSNzSAcyoe5hXCEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBkLQwRfzqpD6bw/C6yzluw405CBjuJKEVH09IoKAyTv4JT
-# qMzZWjZJcDZqEwDEclvywIvCD1wWYFVaqqkx6wJeKO05ua3jWpMs+fyr1bYM3CTw
-# kmJsn7MPUXkkAKuwVHwq+Ti7yH3qQIG3WyqbzDVya9PR0Oy3R/iSRKXZsFlILFKw
-# wGkt9tSREP4BrOKiHwONev7OO04qWJBIyItAvFvwA+3ABm2k4czOFuong7ihwjT6
-# qpJ4FD8wQELdXvy7zwjK+uksX24MWLMO54Ie2L6mCpE21HKoD+bhSL9kf8GG/GkK
-# mUAITQaiCHoncDc/2d5qwd4iW+7BjUWakfTY/rhL
+# hkiG9w0BAQEFAASCAQAaAkn4wdoaO16UxAlPrqve2wfGg6czKC8RFL8QyjfoINmW
+# Ke6o6r6c/HRA0JRHoREFtiVGQpxJHXjvm5cn8oncEAOCqVVIF7DA1PIRlZ06lrA5
+# hahWtKVFNQxbgMioGAz+dnPWEZ60tb3GPDhvTpcTt2zHGp0QFM68Vada/1x8+hZu
+# Hpl0WdWoBtQ4jkuXqWZZJJ+EhoqqZ9K71HCLl4r7VIx+JlILTGrlYKXfHA/FeZ8+
+# 4gwwuZy5R0A0rgxI6Pe8PfmqYgede+5eS/ZblMt1U/qk9ldIjZM+8Nfjp42W2y5U
+# S2dM0i8RBxUcNMB0zvCJ02XbqrGO0MIvUG/uXE0s
 # SIG # End signature block

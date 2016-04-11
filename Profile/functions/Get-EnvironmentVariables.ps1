@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -52,13 +52,13 @@ function global:Get-EnvironmentVariables {
 		Get and list all Environment Variables
 
 	.DESCRIPTION
-		Dum all existing Environment Variables.
+		Dump all existing Environment Variables.
 		Sometimes this comes handy if you do something that changes them an you want to compare the before and after values (See examples)
 
 	.EXAMPLE
 		PS C:\> Get-EnvironmentVariables
 
-		Get and list all Environment Variables
+		# Get and list all Environment Variables
 
 	.EXAMPLE
 		PS C:\> $before = (Get-EnvironmentVariables)
@@ -66,10 +66,10 @@ function global:Get-EnvironmentVariables {
 		PS C:\> $after = (Get-EnvironmentVariables)
 		PS C:\> Compare-Object -ReferenceObject $before -DifferenceObject $after
 
-		Get and list all Environment Variables and save them to a variable.
-		Install, or do whatever you want to do... Something that might change the Environment Variables.
-		Get and list all Environment Variables again and save them to a variable.
-		Compare the 2 results...
+		# Get and list all Environment Variables and save them to a variable.
+		# Install, or do whatever you want to do... Something that might change the Environment Variables.
+		# Get and list all Environment Variables again and save them to a variable.
+		# Compare the 2 results...
 
 	.EXAMPLE
 		PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\before.txt
@@ -78,10 +78,10 @@ function global:Get-EnvironmentVariables {
 		PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\after.txt
 		PS C:\> Compare-Object -ReferenceObject 'C:\scripts\PowerShell\export\before.txt' -DifferenceObject 'C:\scripts\PowerShell\export\after.txt'
 
-		Get and list all Environment Variables and save them to a file.
-		Install, or do whatever you want to do... Something that might change the Environment Variables.
-		Get and list all Environment Variables again and save them to another file.
-		Compare the 2 results...
+		# Get and list all Environment Variables and save them to a file.
+		# Install, or do whatever you want to do... Something that might change the Environment Variables.
+		# Get and list all Environment Variables again and save them to another file.
+		# Compare the 2 results...
 
 	.NOTES
 		Initial Version...
@@ -92,14 +92,14 @@ function global:Get-EnvironmentVariables {
 	[OutputType([System.String])]
 	param ()
 
-	Get-Childitem env: | Sort-Object name
+	(Get-Childitem env: | Sort-Object name)
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKxMho3aqvVnyTpeXwupYsvRH
-# PPegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURDDlOaHBQXdF0+dDT0Dy1+ek
+# udmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +242,25 @@ function global:Get-EnvironmentVariables {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQvTWSYj6/QsaDiwflEBvseYgO34TANBgkqhkiG9w0B
-# AQEFAASCAQAcaue+WJrvTSjfI/DnT+ZkCCzDEV0al1IPztX9PDOnQheL9G8dYiqp
-# M1DNkrjZxIZmYdwOrnPox4NaKBsoBT3BJIkPVKdxVb1ZhoYPDtY3z09A2kwxOMKB
-# ef55i72MtiOyMN8Q37yvAMP4jsGxl2Z6ra/qDtT20Wo0gKGW3tjl8eScfqxkK89y
-# 6keciE7RI2l9a/QfG1Cgu/oqAZOU1W6pa/h8HAHINrcYkUsQF9xy2Pg5uLiBALgg
-# fSUFiH/Y+JvByz/1hcPN9Z/purUW/dvH/tatFsUW0bX614bbbvGBHaadf9rEpYfJ
-# K/GZvl94pWBty3knkJMt/krMV8zumSWgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTzPQOk6GfSvEcfy9ghPY9kVu/9BzANBgkqhkiG9w0B
+# AQEFAASCAQBs1HsY7o6ndyUBE8innoiT88Mts+tDX6WaKe56Ys8Qo6h/N8qQnNES
+# sbBNK3v6F4ZuuGG2LOS2Y3ACKZ3mw1VaS8+kf01UpZSRIxJCorw1A/mhAaGwjUnG
+# 2Tv0fwX6myzZiyuQn9CtNuravgDokm/vcUAYvvoN3C3HOvP5SwYkM9mFIbsMIJ5u
+# QJxLx/mBIY0oZz3zNCauv/U4tcrCYg4ZavzRazXspyKsrUxuRc3PMwFuvtD8bK0o
+# V1loIBflxjvIATFgSZDk+/ZnxCyggSNnCiVott+00nw7TVbu0TZ06Dqnm6xZ6qwF
+# eGguxjOysa/Anwk59ZuRWsWmBKqvE+ZpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1NFowIwYJKoZIhvcN
-# AQkEMRYEFKuxI1TA/uggLA888CPnciVvol2PMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1OFowIwYJKoZIhvcN
+# AQkEMRYEFN1xuYNO2tdL3pch9avZKaqZv5+dMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBlYEAWVBm5RRPYCmgM8xIWkDHR7QwWRkLmJSeviNTe4akx
-# BCArhBlQCy9czreSgUkbLRWWphuHJ3FH59zDjQ5f3QiJLerBp6b7mYiYzd6ugw2r
-# Ryq/RLVSeYSnf4UQQqNe+Atcb4n1WYESgjrE2Bb4ANOSlI8ySYhPOzpy9CmGqF58
-# J1JcIbHIKkNLvdfmalPyFI5CcKDlDN06XuLchwkvQRR+oQMa4p8GD7/InMUYqmMB
-# OGDM1lRw5mIi8ENE/EGmFa+tdirvjfcHFYY+ONXvihogm8IpJj/Y7M7FkGMNRMA9
-# +7jKk8KpOu6aDRinukAp5hKiZ5I24tAjbp67mjFO
+# hkiG9w0BAQEFAASCAQB1Suv7Utw8BBEuGoaPsCbrSvD4jSliyPoPVft/KS4Ut5z5
+# vO9L25jRvxqufJ4GZ2JxJI5fLznFJwtcMdQE0C3emEJLj0sAy4o7bsuci8tWH+rM
+# xcNJBm/SmVaI/XVnPj9hiFOE/AcdMX3cYmomCVWC/gye8xTEyThlpF5oJM1nWHJh
+# QO/jLcVbLvA7zqVKBCDlyk/Ajuts+/c8XTMQE54UAcGEk1c1HaXWyo3Oe7UF3k4K
+# jhUilm4Fpxs0NoiT/c+NtW9k6JpNCFYmplX3x8uYkH9LS7w5IT9uGbvf00Wt2E7i
+# PWg1uabwz7wJZiPf1LPO70d4KWjKnJuvzVHgFC4h
 # SIG # End signature block

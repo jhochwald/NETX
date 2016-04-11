@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,7 +57,7 @@ function global:Set-FirewallExceptionRDP {
 	.EXAMPLE
 		PS C:\> Set-FirewallExceptionRDP
 
-		Enable RDP via Windows Firewall
+		# Enable RDP via Windows Firewall
 
 	.NOTES
 
@@ -83,7 +83,7 @@ function global:Set-FirewallExceptionFileSharing {
 	.EXAMPLE
 		PS C:\> Set-FirewallExceptionFileSharing
 
-		Enable File Sharing via Windows Firewall
+		# Enable File Sharing via Windows Firewall
 
 	.NOTES
 
@@ -101,8 +101,8 @@ function global:Set-FirewallExceptionFileSharing {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjq5BD4esPJE4Bc7Z4OjZapEY
-# hlCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFxCi0JkWsPE5A9I+oJGgIkTK
+# udOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +245,25 @@ function global:Set-FirewallExceptionFileSharing {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRqintOYouxb1/VqXwsRGUCAv0lzjANBgkqhkiG9w0B
-# AQEFAASCAQBpRGmIm1V3OsFKSsLRvFghNPHq35CXlrr/G+92MjX3497bDrsF7Bnm
-# bIrEYb9odLP6Q2/RTDUcU0twUg++p1xFx96kJkeMDU/R5aG5luBC7Z+qbPU3m6m2
-# tXY9KiuXbgFdFRVqYhDFkQFGeGO298M5RjqSQbeKcYYRokRvVsGEMr+fbx7dnKh3
-# QCM1tAko/p0pdS2NtVYC697itHa9jLsu0zgmZjGOTkpW/Z4jQj0cT3qm3lZ6ZabJ
-# NyWpTGWunhfybINsmAEoIOvqcdcStFYmmM51znYQnwpvR8WsSCzoXuz5DshpZRtz
-# O0ucgXpWbnFHNVW6KSxJHGBvcO/gc/Q4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTJugs4B/Fh7qZ72743lFWHrs9HPzANBgkqhkiG9w0B
+# AQEFAASCAQCkogYgxnb91XYCLQHxubXCVwcJHbt9UDKTmT124AjG1yhVMJm0vkac
+# XPwfEwNbQ9eYr0ktKC6e34yF+u4/niu38ZNeg/HI3taZI/n0duKlCIhZpeRSqagt
+# 0jesa2w1rh9pI1qb531alCUbzgmgk2kszg/S+jCYLklQYxquF/GZFyjRRtipTjsV
+# qbTxgmswNs0+qOO8X6uVz2q9RuwX5HBTNdzgkOktFrMJ76s73R/QVZMzA8PFMdXu
+# hBOiUYXP/7mJUokD92npM3YrRciZyjrCrw/QqpwAk4M8mMGG8FDpnpwJws8YQHWe
+# HrQHpDKUEdrKhkpGsaANC1+lLG39PMGCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1MlowIwYJKoZIhvcN
-# AQkEMRYEFHBNRM06oxuh7r0mwrzVtsLy5pgaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NVowIwYJKoZIhvcN
+# AQkEMRYEFFF/3Qvb1bHLTRWx0bag+0sBV0d5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCbCS7dC0bN+FeM0mdQ/zQMsRoFDqQua9aFoytKxJ7HUoqf
-# xWF4cNBlDXQLWNMj/4CtRVVJo7DJYGdrTvcBAbCrOdamuj9KgIAh4kfX6HbfjCqC
-# Fu8zCwLsMdoByEys4N68iNVxzVnEIGmmmKctM3wZVpQTQDch53+FIgEIoto3T0F1
-# neLejq6qXYpCx8K6x2TuhSmCATxGkiO1uOiH0bJMLQm8HdoaL5aYAMs1mzGCIicR
-# ufLdCp0B6mY81/Kid22hqXYbPm9938GAsaQd+4yMDkmG2QsYgAqbxxFVA9wQGYQd
-# lSDwHxPDV98gakMvtyznAGfsL6h9pq743SDzxgYv
+# hkiG9w0BAQEFAASCAQCjXRVPDTf8PO0igcIeV5Lv/5YrzZQal+FZsNUMwb3F4fTJ
+# VYNEMc9RtqUtvqIBZ2TfkZeinTMTZSdQ5JCp4CvhoCYkkrGouCo5WIb17qntwCvz
+# 4Lxwo2ukawBDrKodIWkRX+O2nJu0wYEtTQTgIyJkUmMzsjh0dta4ckeMiTTS5anq
+# C48u1a+klV1BcUac5pjq4APzHdbJiBxBTG3jbWXkWO4X3Efzt/B1iK1Mj8m9UXa6
+# YCQtVhq+Tmjgavr3fFgIzOG1asQXdMm9ae/Qj+qgPc0/3JPZ7ZGUkGeFKCaz+8CK
+# 72T3Lxnxop5ogifgtMXC26MeYBWPkggck6qUYtsI
 # SIG # End signature block

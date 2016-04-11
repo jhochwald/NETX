@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -95,7 +95,7 @@ function global:Get-sessionfile {
 
 	PROCESS {
 		# DUMP
-		Return "$([io.path]::GetTempPath())$sessionName";
+		Return "$([io.path]::GetTempPath())$sessionName"
 	}
 }
 
@@ -109,7 +109,7 @@ function global:export-session {
 
 		Our concept of session is simple and only considers:
 		- history
-		- The current directory
+		- The export-session
 
 		But still can be very handy and useful. If you type in some sneaky commands,
 		or some very complex things and you did not copied these to another file or script
@@ -117,6 +117,16 @@ function global:export-session {
 
 		Even if you just want to dump it quick to copy it some when later to a documentation or
 		script this might be useful.
+
+	.EXAMPLE
+		PS C:\> export-session
+
+		# Export the history and the export-session to a default File like 'session-2016040512.ps1session', dynamically generated based on Time/date
+
+	.EXAMPLE
+		PS C:\> export-session -sessionName 'C:\scripts\mySession'
+
+		# Export the history and the export-session to the File 'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -130,7 +140,14 @@ function global:export-session {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
-	param ([System.String]$sessionName = "session-$(Get-date -f yyyyMMddhh)")
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'Name of the Session File')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$sessionName = "session-$(Get-date -f yyyyMMddhh)"
+	)
 
 	BEGIN {
 		# Define object
@@ -159,7 +176,7 @@ function global:import-session {
 	.DESCRIPTION
 		This is a (very) poor man approach to restore some session infos
 
-	Our concept of session is simple and only considers:
+		Our concept of session is simple and only considers:
 		- history
 		- The current directory
 
@@ -169,6 +186,11 @@ function global:import-session {
 
 		Even if you just want to dump it quick to copy it some when later to a documentation or
 		script this might be useful.
+
+	.EXAMPLE
+		PS C:\> import-session -sessionName 'C:\scripts\mySession'
+
+		# Import the history and the export-session from the File 'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -210,8 +232,8 @@ function global:import-session {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzkQVbqADSRBy3Lq0pP9XfaHK
-# tv6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3jPGBl9BzUgtZs0TMzCBorfG
+# 6OegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -354,25 +376,25 @@ function global:import-session {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRmxPh1/091eHFKFBfL2RaXJ90kUTANBgkqhkiG9w0B
-# AQEFAASCAQCIhdLe51jGka0mnTrjFUC7Wo5B4I5uqB6mXED2ncz4Qh3t2JYR1aJO
-# eC9poYLjEKS9mGnhQBPWMC74pQqnm3ZIk+hVO2AW4M3gHEl8jxev2bhvw3kv7o+c
-# uUtCmSM3ML6JPDUZ5i+qNgZC3qF06hmjkBDtchneB8YAgd4b6JG1XyfjI3nFmY/a
-# reoiADsJjUjJ+TWw6LaLG2oUy2HHO64dN2BNlXrBwaqZ+/3oGmHIkLNAnHGGibNE
-# ETcxwHPV75uUh6VmAQRWINxccr1hYKAKu7hk20bVZIQnIfQ4WAmxsUqAy/VfzEuF
-# Di3koLV3kM5Qz+pYFyX5lRJI49fTAoECoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTqSFgxwYJNERsg8dFU4/c11jXWtDANBgkqhkiG9w0B
+# AQEFAASCAQCKPXsCaAiOg6iE0R+6685ndR8E2zgCl2TlpvLw/+aSFFK91mREOsfa
+# IvMQ5lF+HuNjqGmx7XXO88kOibHcoczp0RyrSCmLKpFFxgDQoImC3GIszNxdObow
+# tF6lEtm6VeXH2zDyCzdrCjUO3G1lyU8ghfvfZ+Rzj5urGKIZAxd1xy84P4J2kbso
+# bFu/nXhkuwq4ZMStCFWHkhy0Iu/6BZh5SzABnUeKd5tLpan3sUbuiSfYYnfchpY5
+# hVrqgyxBVwU8CBfGoMfhS5uxuZmXy4kCtLJnKoA9t4RyLxISsbBx/RjoIFV4JFub
+# zOYi3V07FknH0WEAI8pLrSVKMNNNn9StoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxMlowIwYJKoZIhvcN
-# AQkEMRYEFDXRM7cyYIHqcfNT7utShzuq8DrNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1NFowIwYJKoZIhvcN
+# AQkEMRYEFK3pTDn1E6NuU3+VdwDqx7VHIfpNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCQPT2Km3U4H8NRvIex5K5hEs1qydruX7mA5AWQCveuoYEN
-# bR60e0h7PVkMQGiLw354hWI93NVQd5hnywSMCQr9AGbgDFri2XCO98X6QUJHAOwN
-# ofNCmNwLhnLQxl0QMg5qclIBza9LjVkugLKF3cjrEb2cFQHLiTWnFl8q+r7SUJn4
-# Yk+2IbXebZ2ATFXAvFMcHvEPQyU4vnLiMv38clBr5ITnFVWydLNAt+5e6gmfPjUb
-# PLTXXqvydW2wus7R6Zl4iRuAxAxzM/A86kIba0jnSL3691ohT2vtzVBHPE5uth49
-# QPq/vDpEULQr/t5Kp0aUwIlnbRlZMHAuEL6EK2cH
+# hkiG9w0BAQEFAASCAQB3HfbMTA3YL7PUJ35fcKgZTQYesLl2pvdribvZpVGi+93P
+# dwt8fSmRPCIfXrseD0gw6fGfhemqhO/wMwmbHmG1ZVZxchOX/BPW35js9dK9XsE0
+# R1TOczXQ6L8T+ECYYqgEdmh/+Urtv9IYJ4VxfpfHmXhSLUP8QldQymSMOIYb3Xt5
+# V5cxnNZWuqp/NXJTW2EXHhNMRjs4jFR0vMiwUgyDy4eejqo8sLsAX/4PRY2R3wEi
+# zTZLA4JlBhBTsuy6oTkE1nfe6ief057iVHix1R097LKGeOJKRrJu5vNpedaIVGS6
+# atdsV01oDAAUWcDSkQLVOU0WO3TXDEyGBrJDXtIt
 # SIG # End signature block

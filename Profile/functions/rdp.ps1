@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,7 +46,7 @@
 
 #endregion License
 
-function global:rdp {
+function global:Invoke-RDPSession {
 <#
 	.SYNOPSIS
 		Wrapper for the Windows RDP Client
@@ -55,27 +55,25 @@ function global:rdp {
 		Just a wrapper for the Windows Remote Desktop Protocol (RDP) Client.
 
 	.PARAMETER rdphost
-		String
-
 		The Host could be a host name or an IP address
 
 	.EXAMPLE
-		PS C:\> rdp SNOOPY
+		PS C:\> Invoke-RDPSession SNOOPY
 
-		Opens a Remote Desktop Session to the system with the Name SNOOPY
-
-	.EXAMPLE
-		PS C:\> rdp -host:"deepblue.fra01.kreativsign.net"
-
-		Opens a Remote Desktop Session to the system deepblue.fra01.kreativsign.net
+		# Opens a Remote Desktop Session to the system with the Name SNOOPY
 
 	.EXAMPLE
-		PS C:\> rdp -host:10.10.16.10
+		PS C:\> Invoke-RDPSession -rdphost "deepblue.fra01.kreativsign.net"
 
-		Opens a Remote Desktop Session to the system with the IPv4 address 10.10.16.10
+		# Opens a Remote Desktop Session to the system "deepblue.fra01.kreativsign.net"
+
+	.EXAMPLE
+		PS C:\> Invoke-RDPSession -host '10.10.16.10'
+
+		# Opens a Remote Desktop Session to the system with the IPv4 address 10.10.16.10
 
 	.NOTES
-		Additional information about the function.
+		We use the follwing defaults: /admin /w:1024 /h:768
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -104,12 +102,14 @@ function global:rdp {
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias rdp Invoke-RDPSession -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKH2OZ+GBgpNhu6t0qmmYDP0u
-# CIagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl5ygtvLK8C6qytyvLlU3YLtf
+# MsKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +252,25 @@ function global:rdp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTD9cV+prB3v4LPUnlOfh+tuT6s4DANBgkqhkiG9w0B
-# AQEFAASCAQCgVqaHxZiWrNtuCdLfwdFYUC1oxa0r/HuN3AE+M+KJEdE3DwbFnx1V
-# +Z5O5t9Q75Yc4VHMN3YeVsvBiU7ksSwxBolXx7sC58uOU0jw/QTbJJmlNLVyf27E
-# 57f+l2lFDHQ4ulLpKcO9ocsUIZ+1vKHlV8OVRHZNmCl8bMsThZ6EyujqMuPsSmrK
-# QLKFr4b6ysKjbj+W2yd3k8XpxdgIY8dipO1vnjnxouUCxOfORA9kPxdMQHkg/2vr
-# ulK8jhV8YUHeIJE2tPi8kqE7mqeZlBCfqwx1cNqqkm94/QCftZzH57CDkHXVNNr0
-# LU5JIj9yfRc1KJYAKdWb4ixshVq6UUBaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSNyaThX5guMrGbcJ7WiDw0idACuTANBgkqhkiG9w0B
+# AQEFAASCAQCO9A0TQlnw7uXSNp6NJyUQ+cS8+8CfMw4+5UGRq5TkC1/hphpuSnNI
+# WoTPDRgXSOEDQzSpOqHDfFUK49w2bjmW2kyMACAgoChzBFCtyCKfWZMWW4koNchp
+# 3IT+1cwLEM/Fl/7RG6z99Qun5gwGQYLhotFkuNasKGbTSgpMnTBXgMwrJbaU9hJH
+# fegwn04sn3M/BBrUhKfPzQxxO+HGPzdS/zG4Z0itsOK4L6mykewAdb/4ARDFzpbN
+# 0cV8XhevxY0u4t4clUwqEikLRxJNd8kX7UdHEQnHWQf59q9ULL6i3AXHgfjIPDVd
+# 2pWacchJUtDNAEZMqxZwCvPM+HqIpl4yoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxM1owIwYJKoZIhvcN
-# AQkEMRYEFKfXx6U7J5VKtU4OhEA0nNQqLpqCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1OFowIwYJKoZIhvcN
+# AQkEMRYEFL26EnumTfPSzssLRU8qO2ubFI86MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBwdo442ebNnnXCwM8qKAkjzckG9waEqpczkaHhdnzKmF5i
-# 7Z39N4fMsJr3q/70oSkCeUsWHqE+hiiihsbuH8sGHzHX/aQuHodKUEraSMPpQpyD
-# 0E4EF0adSj9Er3Jf4Rn/yaGgQXJElNXzWVmHZoSaZ5uw8JTBxXNHpDliG/dkbGyS
-# Lgk4OtZI1huWCBKh9DQGTMMSy8IqmfRSut2Owx/gQt6OVl/NCDCxwWbBpULkzQfL
-# dsF5UlYR8T2mvp36GP7RM/fgLgnOic1is30b69r3b5L7GTz2u36dL60XQfA8IRMO
-# DTNut916ACTiYcTCrKffui0grnBp2zPujv0e1Obk
+# hkiG9w0BAQEFAASCAQA57gVmMbTy+WeUXqUSH1uqb4WHzgPUY65jEXhAxPJN5iAJ
+# sXnIFnRxtO+9dMZSiYUbXJKl2XHzIlDMFTe875g+V6VCuPQXqFSwysXbzOilvwYK
+# 6rj8GzSDWrEnC9017c8VNDRaKVh7AB1pQ9J8sRotRu9r26Ne4mB4NYYSqG9F6XhE
+# M4EVxd3FmkZBI2RIDt0eKuMzBaviRpR55y4t8DUqrqlwJC3JbCfnvU/2b2uFXTNP
+# N2o24PRdFHnb14vEKNZew23sMyexDAepDLc6gRThhvqnZTUeJfhItDyHhSa9PtOo
+# 9mecGuo+ARwDrrRDM1npY395NSmNNRiPfjhrow65
 # SIG # End signature block

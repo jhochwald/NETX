@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,7 +46,7 @@
 
 #endregion License
 
-function global:ConvertFrom-binhex {
+function global:ConvertFrom-BinHex {
 <#
 	.SYNOPSIS
 		Convert a HEX Value to a String
@@ -58,7 +58,7 @@ function global:ConvertFrom-binhex {
 		HEX String that you like to convert
 
 	.EXAMPLE
-		PS C:\> ConvertFrom-binhex 0c
+		PS C:\> ConvertFrom-BinHex 0c
 
 		# Return the regular Value (12) of the given HEX 0c
 
@@ -66,7 +66,7 @@ function global:ConvertFrom-binhex {
 		This is just a little helper function to make the shell more flexible
 
 	.LINK
-		ConvertTo-binhex
+		ConvertTo-BinHex
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -103,9 +103,9 @@ function global:ConvertFrom-binhex {
 }
 
 # Set a compatibility Alias
-(Set-Alias convert-frombinhex ConvertFrom-binhex -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias convert-fromBinHex ConvertFrom-BinHex -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
-function global:ConvertTo-binhex {
+function global:ConvertTo-BinHex {
 <#
 	.SYNOPSIS
 		Convert a String to HEX
@@ -117,7 +117,7 @@ function global:ConvertTo-binhex {
 		Array that should be converted to HEX
 
 	.EXAMPLE
-		PS C:\> ConvertTo-binhex 1234
+		PS C:\> ConvertTo-BinHex 1234
 
 		# Return the HEX Value (4d2) of the String 1234
 
@@ -125,7 +125,7 @@ function global:ConvertTo-binhex {
 		This is just a little helper function to make the shell more flexible
 
 	.LINK
-		ConvertFrom-binhex
+		ConvertFrom-BinHex
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -162,13 +162,13 @@ function global:ConvertTo-binhex {
 }
 
 # Set a compatibility Alias
-(Set-Alias convert-tobinhex ConvertTo-binhex -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias convert-toBinHex ConvertTo-BinHex -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJxgx4a6jcARBwX51TY60m4xF
-# ceygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhl2xqwM8c4JT1HR6gObacJ8X
+# q4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -311,25 +311,25 @@ function global:ConvertTo-binhex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQNlSat0KQdmId9A9b9h4KUfPQljDANBgkqhkiG9w0B
-# AQEFAASCAQCOoPVZJihn0+L4bybYmN7weytjsfkMzyN34tCRVlcbE1KdjOPglXQ7
-# LWOMh/Kt1YhhwFLJg6iJ+WiyQ4O2M/dJ2w/fSCELHT18hkjWADZRMhhfMBkaCe3q
-# 5DfvR+Kh/c5ABztkEH7/Aq4UTX0LXrp4dtXiYikb8+YsAFwKZ9Wx6zpdERIzU+c/
-# GMe5H7sO3RIH55ZbEU+/A7gW+1KPnS4xzmpIbbIq7lfXKA9vzBPSKxA4qowun3AN
-# ggaBLtuaz1GKfwokgH+G2TFtUf42riOEaFqSUn8aKHKixSX0FFzwtSjWYr4NPRQ5
-# vm20E/jY6X6hA+0b6FHGPm/dX3SP1VUroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ48AOVRgxOSLrWW6NbwPDIxqxqeTANBgkqhkiG9w0B
+# AQEFAASCAQBjHITV7kmZQl6CFfH4ZuoQ5jSNTZzqnQiRvI2UWRm6m9m3Le2llCPV
+# bxxFgOz6LCrF0EV2N48A3mGsFS1glTqV/FLsc590dxlyZq9INOoLWsIR3cENBRzh
+# j+kpjDXmsViyBQmaGl+pn61QVuKueDPCf0anz/zoLMQdQgN5CEwK63mIzU289aQT
+# EppfFWkhCfU5481meQQQ0iZ7ej6fXe7Hg0ZMiEbcLb0O05TdlPQXbJaaRp7AVkUy
+# am7DJFQccY943IzHJb7ZiNE0nJYBxwVfGHe9G6SqCdWtd9O9Sd7+rezDy9eDeH2i
+# ZEL01jgj8UWmCJLl12shGOMA+6nmmnePoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY0NVowIwYJKoZIhvcN
-# AQkEMRYEFGCNKNuMasOYcRKvHQK0fqO3iZ30MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0M1owIwYJKoZIhvcN
+# AQkEMRYEFGr8QDaKJ9i9mlBFylAI/xkp+mOMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCMLkWOGQROWpC+zAij/uy04475y4/x4ZXGXhhDgNMBpr16
-# lKn8kU1izcxVaWDElv5FxCjXTbGteg9EErM47j5WhTTuIhEMdGjys/YFAbWwYHkg
-# VzoEyHqqFi4bfCC6IohuG81jiE1lTEhPAfUtFjAuQWGIePLZN6VIsHym+M12uwTG
-# KnIwLZ9iZkiHv9CzCADo5R7qtU+UhocNKjDwYa1pWzAqSQTiVTO6grGzVtL7DVfb
-# BhJviLOelWRwRoV06n2qxhvzhz7PegXqYD7EySij0OKrIA7JhTtcQRN97cP3k7Pt
-# 32MHlTqN0xWnxgoU1HS9u4baDGHS0NkapgplS2gk
+# hkiG9w0BAQEFAASCAQCvn8joMQ2uvQFggrlCExepoh3LLCvFzV+nJ+sim4SXLmgU
+# Kfl66rgcOmx9bvvOy81orfiioOgTJl5bYdGUKLlXnfdumOoCvxSy4vEKz+G/JA1Z
+# WN45gASaWvI/twLsgr0jaUlJ3iV3PmAT6/pWGeBn9RckgwFelmjTCa53i0BnmpTd
+# hx0XEc4anKHn00y8Ut2AERub5vGGfNQuNCnm85taHATkL9enyBbr0YR3PceMJWy9
+# UZZc5FIfY2/BD20EziE3mdXMUXFM3EQhVki9D2UHm2au/0s2mtc0gVYvH1Nw2MjN
+# XN7BMTp2Kw10b9PdkCrstRL3sFK5NDMlHY7RoAfG
 # SIG # End signature block

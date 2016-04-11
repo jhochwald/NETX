@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -48,7 +48,7 @@
 
 # Old implementation of the above GREP tool
 # More complex but even more UNI* like
-function global:GnuGrep {
+function global:Invoke-GnuGrep {
 <#
 	.SYNOPSIS
 		File pattern searcher
@@ -70,6 +70,12 @@ function global:GnuGrep {
 
 	.PARAMETER l
 		List filenames
+
+	.EXAMPLE
+		Invoke-GnuGrep
+
+	.EXAMPLE
+		Invoke-GnuGrep
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -133,11 +139,13 @@ function global:GnuGrep {
 	}
 }
 
+(Set-Alias GnuGrep Invoke-GnuGrep -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURcw27kJmf0I0H8u276/NF3U0
-# lFygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4eHhNi+3qRDk4gGH5/lEUXen
+# /02gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +288,25 @@ function global:GnuGrep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQIEKYJuU8DVWaZJGYRVli4yD06eDANBgkqhkiG9w0B
-# AQEFAASCAQBoFQ9xcjuXPEwJW78NfsM2ebPOWlV0x7kiIw3X89huF/LWTA1nrLR7
-# 4JQp2rxo4rHL0wkq+bbz6cW9ytihsTyEFDLZF71/o0dFhiW5l4iX0QLeEuUqSSeg
-# hLpgK6w2jnnPxyI8M9TI0Dg98I+TC1OfY1PQlLhWePa5RJcoawodvw4urB9Hv+qR
-# hkD1bg5qKHz8UgxgWfflmhTsJHQaJJ8tEyv50ftw9K/zrEAsNk6lvQ5a/7yXs8t/
-# 5d7f5c+aZNnTwkeslLtOgQ9Qtmzq3cTAsx1z/fbRxu1YAEQz5pSGeU6JeYE9TwcI
-# vRxzrah54e/ncRn9WMbUfTF5KeiP2J/MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRB7FYgNYwXMJOTc/0VMmfAjurXPjANBgkqhkiG9w0B
+# AQEFAASCAQAA1J336X1ao1b+rxf12mNefDSde+iREwr0pHst5pgaH9ScZD6T7vtN
+# OjedzO7QHzQTVgHrVTt1PypFuUJ+pJArlmbpz8ha46xJxGXZdRgcsEto735FsEL9
+# VwzyGYWOzK1RpwMnhjhlS6J8BM4ISddtVwhk6GafDlL0h2An/UoWHxYBwrImVJIZ
+# B3XsB0isUH1RhO6jhVCc1rXcr/xa2dkyNlei4yTBlWK8L2OKOV4alxtb5jCSO9d6
+# 3931EpiJdX0uEmbbBwxmSF0/b5Lso8EM3Hr2OkrXa9egr3gSx9e0loep1UE5VxOu
+# 1vIhO90k2JRDpv2LrHRFcvBzAp0irvR5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwM1owIwYJKoZIhvcN
-# AQkEMRYEFErIPuyf8p6KIpqyVHsGE4P3y0e3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyMlowIwYJKoZIhvcN
+# AQkEMRYEFNoQ02mApDy6pQ8vKkGc0oVW5AWdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB8ZNvuv+FplPIbI3KZwc1KbFSPoHsBFaiXMFlp1xrSI11P
-# ZIUT9ilM1Hs+uzlYiq3lhUUVrcT9ToszIma8Obw0GcuGK3fS0Zg2nCHagveQ/U1W
-# fqxTCR7H280VX3/BDhfW7s35Ec1VMv4jcJw6/8sPTwjmxxcqdV7zBgc9UDNmLsCo
-# gzQsPhjRlmJJGTJkIIUrfIQ8HXThjrYXDQapwtmRzgnthqDRUoJQb7eBanYEnc8T
-# dvsmZuBx4UYSyCvxfQf36ug4QRiWdfNrLOxm/blo9NkA/8+9QgHUyr/mopecmHP9
-# KPCNvApqEy3fWmdKyVZz9IghdP0Sn5CxG/XUvORQ
+# hkiG9w0BAQEFAASCAQAHeK/KXNZMdcIGdO1uA8S7UVPuLWikWq9KFlp6KooDSL7x
+# Ta9gYdo6c4luQ2eiPmVlLwlHG9DDXhcywzv3LjmAozpw6EQH1DDCJjg88wdN1eyS
+# bQ4evwQWq5Bz/tTVRqU8iJIpLXCTj6L59yYh0LXVqr4ENB6rb309Wll4xAxhVd2t
+# XqYyc0ud++Y3Mf/F2aGVbkqN0lnUKiWx06MQDt/zo+BDa8RG+pCHHQgbTGyjZdxa
+# hJjhGnwsVaWp8CDBRxxUEPNutT7y2zbDfW7nMOVK52qfinXK3+Pc0H2PEavaFjiO
+# eDW7x4m9nPlgICFeonCu/D2InEg/575oJFCpjcdz
 # SIG # End signature block

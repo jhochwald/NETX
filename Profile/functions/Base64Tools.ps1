@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -55,22 +55,22 @@ function Global:ConvertTo-Base64 {
 		Convert a String to a Base 64 encoded String
 
 	.PARAMETER plain
-		Unencodes Input String
+		Un-Encodes Input String
 
 	.EXAMPLE
 		PS C:\> ConvertTo-Base64 -plain "Hello World"
 		SABlAGwAbABvACAAVwBvAHIAbABkAA==
 
-		Convert a String to a Base 64 encoded String
+		# Convert a String to a Base 64 encoded String
 
 	.EXAMPLE
 		PS C:\> "Just a String" | ConvertTo-Base64
 		SgB1AHMAdAAgAGEAIABTAHQAcgBpAG4AZwA=
 
-		Convert a String to a Base 64 encoded String via Pipe(line)
+		# Convert a String to a Base 64 encoded String via Pipe(line)
 
 	.NOTES
-		N.N.
+		Companion function
 
 	.LINK
 		ConvertFrom-Base64
@@ -125,16 +125,16 @@ function Global:ConvertFrom-Base64 {
 		PS C:\> ConvertFrom-Base64 -encoded "SABlAGwAbABvACAAVwBvAHIAbABkAA=="
 		Hello World
 
-		Decode a Base64 encoded String back to a plain String
+		# Decode a Base64 encoded String back to a plain String
 
 	.EXAMPLE
 		PS C:\> "SABlAGwAbABvACAAVwBvAHIAbABkAA==" | ConvertFrom-Base64
 		Hello World
 
-		Decode a Base64 encoded String back to a plain String via Pipe(line)
+		# Decode a Base64 encoded String back to a plain String via Pipe(line)
 
 	.NOTES
-		N.N.
+		Companion function
 
 	.LINK
 		ConvertTo-Base64
@@ -174,8 +174,8 @@ function Global:ConvertFrom-Base64 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgQDq5989L5MC9+N79qFBm0YY
-# OYOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKuMaVFwJI1oYFbvtDqPpB5jU
+# yMqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -318,25 +318,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSjAv9rAUIMZEbWSUz+RaRqclfsmDANBgkqhkiG9w0B
-# AQEFAASCAQBfatZ98jT6YcUygwOSd2lqurx640T7GZPuy/ueKaRpegJOLt//4weE
-# F7cz66o9L6WVhJ87nAJz0aYd6ld3RNrqrz4x6ORonY5wbGJ3QzA0KN1kEaPGaJid
-# Zzrnz4zJGicJXkIWahdoDbOeFX4b4KICmyLoqGM9GN8MYc3+4tgb+h0ulDGzrrLu
-# ejZQdLkD7eQoZ/o/N4rZLh8j5NdbYLK/5MbcqrKgFIr4TENGa/ToqK9oi6RY6+Jc
-# /HmavLWb3m0J93DvCqVsA4ccCdlMn7gi0wepx7eL98PKrbcwqtguZQ51VArID1HC
-# o/WX3uLR3gsC/PNOredbG5gacSKjWVWqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTxhD70BJF6pF/ylAcXx576Zdp5RTANBgkqhkiG9w0B
+# AQEFAASCAQCjn8o2kIUthSO2RG+7njkVz2FmWGTtHKgp08qDcGYKz1BaN3zp/xLZ
+# WNl3LfCalSA52dexUoTFQqoXEiguBoqVCCDtSm0Vcbu85D483621jb//UAkDqycM
+# IBqiIIuxYt/3LiCDB2CkVr02ETC2HmOhp754K6qncwnBUdWmi5alHtexKdPxv99I
+# r0v4JMUKcZuoEXLU21rYzAB5ds4llcrFJDO1lQ+HNsQFUysQNJLymsTcuXa01mLf
+# 1/tKFkg01VT9VYOFg7JEM4erxIt5O42pt+KxOWo4sPQjnAFs6V3xipMLniYj9qdm
+# SbcNWnKJkH5l312TlCbIqZrn6hbPFoydoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY0NVowIwYJKoZIhvcN
-# AQkEMRYEFPFTXaleJ9efDDgJC04evJFRTvBDMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0M1owIwYJKoZIhvcN
+# AQkEMRYEFETULsKkvhR6kUowAJfXRulU3y/oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAy0FlOhvrAfGDSQQFaMP31un+LRbaK73YN7bbTSjwVAGXo
-# 5txvbN8sTO67ebcR3KRXDZ0rabZRIm6zt3FguqS32AAafBKdJxAd1iws1LRD2OgJ
-# FVTSNXG7diBuA6t3zwiYPiM2hSPP5MPrKpHV0DKlgg8Q+MbgjrkN1I1BJMNwfx7A
-# YlqqNKjkoDqzQ8l9+plEvDw0rFdFbxRdN0jCS/E1thGePTbMuw3hiiLZngVHCgiW
-# rymWGSbBCUkty+V0C5re6Oy6sIg6yy/L6e8KeSbz5weGg4gk/o0djYz/xftAzaXA
-# bp6clE2TR9Ctk1y4rBbqxkPX6vbR+NJOD+ZCxu9N
+# hkiG9w0BAQEFAASCAQA+1Ujqw1noh9692IieMQRszxT0xLMa58NZRaEteqIsVYA1
+# x4kTyp5yreYfl6QdtN5F2UrhLsHspPSSR2Lc79AS5M9dZ9+BjvhgruLZ48eLdVnw
+# 47FRRJJ7xzYapWdWd0mp3+D1s0kej/uyDOnIv/e16k3kB7OhwC2oOtevE+9kSclE
+# Mj8oLiB8A9HXD6mYff8m1jkA1RVNAKhn5jZckO3at5x46rtLlNqOyCnZwMmNgPCe
+# 9bR4zgjT9hx8NvCTnBMFTkQMCWJhOf34vKOiG6bY/hVKMju9VARIwfpNpFdpS9RV
+# SwNooAG5XwgwoUxnf4PQK/jcF5ajmJjpULojQm5C
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -47,7 +47,7 @@
 #endregion License
 
 # Make Powershell more Uni* like
-function global:myls {
+function global:Get-MyLS {
 <#
 	.SYNOPSIS
 		Wrapper for Get-ChildItem
@@ -64,12 +64,12 @@ function global:myls {
 	.EXAMPLE
 		PS C:\> myls
 
-		Show the content of the directory Where-Object you are
+		# Show the content of the directory Where-Object you are
 
 	.EXAMPLE
 		PS C:\> myls c:\
 
-		Show the content of "c:\"
+		# Show the content of "c:\"
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -97,13 +97,14 @@ function global:myls {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias ls myls -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias ls Get-MyLS -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias myls Get-MyLS -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhrVjSIBDwS06K17YybuR5gOa
-# 4lSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5UgUdL+5CGKhEGb2PSOBZNu4
+# rtugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -246,25 +247,25 @@ function global:myls {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTQG8GpjxLRveOeSkJKXGGGyRZDkDANBgkqhkiG9w0B
-# AQEFAASCAQAoY4P3b6vP/HitCWypPiluHi5hNCYS25uI1vpJraI/v0q7Eil2sy5S
-# MagK/zZRW09XZY1i5XmSXQL3eoz0AZjR7pNnZ/CxrOOXxyahf6InbN78gfru/wns
-# knLQMHbcraKONioj+7iwKRybhMPImwXOJLP9cnLnYHTSAmMF/9NJ0OvrcYUrojUU
-# ZFZOVmUiY5aOPdeUURBsXlakmB1+5LKtxZY4rXSsCWHir3OuLkTLWKrP1lmTp2FD
-# eiekbccXB7IgpsfmY60hy6TfOsVloXkrxF9kTr1zaQfRbxiLVzixDuBD2R5h49yO
-# P7Pq46KJe7IphDBGd+BYfxT+Vf5nIRtJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTPDmoEyM227PD3VfLymIwGBkfMKjANBgkqhkiG9w0B
+# AQEFAASCAQBFBfcpjTIkjkBXNjVycNN+mggRn5wjsILqwASKEk3qsguZy2spCjqa
+# kbsScX4gQJQ8X91RPg4ulTcVkRxd5FLoCeQR9iVAl2sL4mF8V6/ulKnbdvEw0Ykz
+# /cJCwh+BX+Wca5BwVOVbJppX8G5Hy1+AMTzuiuGg3aq+1QG7wwGQ3p7Kmgmj0VXS
+# N+6CGF2pRCxgadg+y8+uZIifF8DfeI7UpKOBsBD2po8wukakKll6TjuVrzM2uyVd
+# hHjwdj7vYp8sKumONda2Cv9/nU0KgDJOBl95jyrizoAnQCCc7PBnwLhulVLxum/U
+# sJTNq7w8lbSpHgtKVZ8AQJTPcoRirCkhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxMFowIwYJKoZIhvcN
-# AQkEMRYEFC0RnuZpeqFaa+9qK/4jI6+zfRmiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1MFowIwYJKoZIhvcN
+# AQkEMRYEFPaOUKW9G+dMj26WB1hxozIdc70hMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAGO9DF/5p/c6tdJAOu6hcSu9F/O1UjVQbpJsPVDgodVn9F
-# Uy9FFZFBBPJxW6K63DBwxDp/J9VGhaKoVPXN7sBSKtQC3ODVWjBl6ddbDDZ9SG0R
-# /L3P4GsB5X+DpOtsBE3rypocraZas26SsVsi/0Blvo9bp3f/4Fi/ys/kGFRFpBGV
-# KyzZxGTLrShOWOpJ+j5tF1lcFj48TOIov4JmLslN9ORPJbU+VhDXVOEhyWGd6d5E
-# RW6PeivxeE7yFvervrqMMf8JAl014cY3GeW4u9qpcBvQy2jbUMQN781ZQTThNWVh
-# 6tOQNeb+yws0ErQpoBb7XPgGwi+j3GyOoDvjnS0z
+# hkiG9w0BAQEFAASCAQAUIsaFqaG8m9BAon4obXgy7PEiwdWJRm2vIsB8oL8ao3yT
+# jeBERKOp4H0e3MmX9qlCd7v0k9R5/27B4L48exnK7LFlRtfiSK70ni4mgRI9M1Om
+# 5N9Kk6MYOlz1xocY3aEQx1+GPsrIizhCQlgBloHTlgQoCo3IYDxmkeFYbNphN8jv
+# JFdKBGa+0eJqC4R1nmcaCdWy5/EH+DC99XzilOovI3btaD+za3AtfUfA6FKFUVgP
+# Sb0YqX4WpPCAO/rki1k2wTUCWYUSw6bH8GcRoGYM77VemilgQNRQcBE6WE+KPwhl
+# QRf3C2EOA7cjMi1uYSqrRWC+HenlB1uYCXwzHaI6
 # SIG # End signature block

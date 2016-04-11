@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -69,14 +69,14 @@ function global:Get-Pause {
 	.EXAMPLE
 		PS C:\> pause "Please press any key"
 
-		Display a console message and wait for user to press any key.
-		It shows the Text "Please press any key"
+		# Display a console message and wait for user to press any key.
+		# It shows the Text "Please press any key"
 
 	.EXAMPLE
 		PS C:\> pause -PauseMessage "Please press any key"
 
-		Display a console message and wait for user to press any key.
-		It shows the Text "Please press any key"
+		# Display a console message and wait for user to press any key.
+		# It shows the Text "Please press any key"
 
 	.NOTES
 		PowerShell have no build in function like this
@@ -128,8 +128,8 @@ function global:Get-Pause {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/Pg8W7CWSyL70XWwZnyvzOOZ
-# z9SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKCs9r+8MfM3b06I+5qFGH/nH
+# voygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +272,25 @@ function global:Get-Pause {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRBGS1zaDuku0cvTbmAffOBU2GWBjANBgkqhkiG9w0B
-# AQEFAASCAQAK0PaBWy2sBpcLrMEHydo6bbUYlw37kxp22dhDGhoaT/NCojkOqpxS
-# I560bUqNlv0lhJFCarRsfS6uSHaEwT7+hneHpUGklTKmChRUVasDhJBIJzaL+80G
-# YiugMLI5IgH048TlfUf4XM86fmkiiNEX1CzWzzDAmSlt+XiwxNeRZ2ce0I03Ko9l
-# Dw7fQj4iLAhrhMAOc7pZnIgRkZ0TJDOYH2GcE9UND7/uX3FuOxP558IN6RBbPMGK
-# dLIJxsJUM2xuiq/CXpiaZ5tz1BIGOr9KI7SuY+KbDIAfoRDAJARxen18eDzh9K+H
-# Apukgclc2sd1glXBGj3AZBES5+AGINwgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQQq6UUylVv+PJifaRGy5qf8ebTXDANBgkqhkiG9w0B
+# AQEFAASCAQCb3a/7uqpNzaLsm8fEY73p8SCrhaSd0/zEn3PhPSVy7RQt2jt1vVpO
+# Vw2YQ6om1xDyRJnPRjKxAuyT8sH5mP2l2h0uvFzE1Ur54ve53luDvsbKCwCjvVMH
+# yKOVOzdh9V4pn5sNRiCYZu9rpl+V5z6VfyFKsZNEjFzNiLv/LDEVClG91yavlBQx
+# Ms5KpUlFLNJ3IOQKK9nFyff/3Nj+7oEmyXG05H+aVqiYsTVWqZDLQTtwg4HQ0c1q
+# +CxbBTfbmTlfqHOrNtj3hekj5JyosSZJKWQhJ57wiu5yqr7VqXwaiTIMjTNYXGNK
+# I/1F8npu+yw3E4/Qw6ktaJWB4XdR7ZyxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1OFowIwYJKoZIhvcN
-# AQkEMRYEFONEfh5bPvalX2n6AyZknpadJigfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwOVowIwYJKoZIhvcN
+# AQkEMRYEFMvLLL1eltiBBWGg93qxXwHw5PGiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBWMR7E8rxVvbBzUAwHE67KnS9YN5q0Rm25x/I3E316r9Sz
-# cfhYw+m1IuazfyOqeLiAojza8sMFcSxC4mNAKIKnKeZdm63+ohGRl+zutqZ9Vvgg
-# zJ8wP+7qL/zdhL96I3yz9n0RR7UKU2Ua3MCOh3DCeL6hmXMig4BL9jwTDTFIbsKC
-# uW5/XL9jhSA6SGVZCRQhiO0veoapDDMQZJnHHneLqXeY+3iV65jtIIGHHAFmB9JZ
-# f6SturhzxueSCOc/BY3qGatkJm3EpMou6FWZCNr1lZLXo/kj75WHo7JGUbk11LYi
-# ccjH/ibTGs+MTiSazDQBe1UQx1HYPOhK/UypA8UX
+# hkiG9w0BAQEFAASCAQBTliR6/pOPsjd3uGRsn1iRo62cq0qfdV4JPVh0GvEioCIA
+# /Oq/7RVGE2FuUl8lY1oIIP5IbuHim41wN/NRmJIcGW3prh40VKl3usojD1GsKXVU
+# SEzfMNOmmfkWBFYKT/qt7gjVw7sXoyIHrGo1ZgDUkfVYbPnIh5iluL/cARYGOYrn
+# yd12Lnk7QwEBRoxC1F0rkL18gBWicCRrrVO1i6v51lqoDnXtOdqKBTyV5GJ77Cg1
+# mCqSmCPqrMJoXdTT0cM657wc6CissM1hCgZ+0MTfXo6K9YYRwOx2raYi3Ns0Gq4E
+# j+CjaWTZ7G6ZN3dDzzDZf1xNsMTuGjxVCQIcy+QD
 # SIG # End signature block

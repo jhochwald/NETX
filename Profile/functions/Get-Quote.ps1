@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,6 +58,12 @@ function global:Get-Quote {
 
 	.EXAMPLE
 		PS C:\> Get-Quote
+		*******************************************************************
+		*  The only real mistake is the one from which we learn nothing.  *
+		*                                                     Henry Ford  *
+		*******************************************************************
+
+		# Get a random Quote from an Array
 
 	.NOTES
 		Based on an idea of Jeff Hicks
@@ -247,8 +253,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8gvloxsoqLGec74QzyDJ+q7X
-# F7ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAcwfQdqSOhIqRQRa4K3OO1bf
+# zASgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -391,25 +397,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSoBJPmbaQiGR18+hZHsZvShDGFDDANBgkqhkiG9w0B
-# AQEFAASCAQBUoqCF8Au4GoQAM+XLgP+e/L+2sOuxYXNNAD1p4z3SSJTEkWn3HCdU
-# rm0xg/uCDNJkoxudDuoPjGYoYZMwpwTqM7bPbZrJ53nabuTAD2Ss4U6Hxxs82quJ
-# MWLXf69bZ+UTDNkZKOYp4A5wXHEEK5713K5pJ8ZMKv66m5V7Zi9a8SjngTzI2PKV
-# jYGyMTJ6TZBJB3Gxt/rI4AZX/jEaN69pmpRC/4MKJslL2AHHgoM4KnbBGNGcvzfp
-# P6lGmjBdRmALKY8aVTzabLfnv2C2Hl+83Yk9uhpqr8ssb3pZr4lXUsOvpzkMhjxp
-# sD/5lQsOJST4wDrxUKmB9dSIGVs9Tib/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSS1wBB29PBIW+A4FXT4xVQuoDbWDANBgkqhkiG9w0B
+# AQEFAASCAQCMLTaYsT1B6J0rHI0VAGm1FmIqgPAcR0nMMGWwjnG+/+xUjxdF3AoR
+# 5Iw2I6FJzA1f5dEpVGdlvmPXtbqfNpE00d2lGeAsUzKjyncEVUyQpwd6tTZD/yoS
+# 6dvZshXomY8dcr2wZWJSDbnjWgBhuwOFdFhV58GOEvvS46153bBQdIv/BlLDPxIz
+# b08SaEOtt/T4iapzjeh9GUxwq03qfjcAXgC6u2uBNQfv+EOkPqkuapzeWxIDoxlI
+# 3sTNv1b9+KAr4F4ANuuQSFoGwC4MuXuEcsjoVCMom+IqUVR6ZV1/gFFZkNa3qXkK
+# g0EM+JTc8ntjrOgClo2EP2GCLxBLd2M8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1OVowIwYJKoZIhvcN
-# AQkEMRYEFJK7c44/FDpvFdornLekM5LTnXNNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMVowIwYJKoZIhvcN
+# AQkEMRYEFB4+kDEm1zR+5vSFXwbncgpn9030MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAl2nji47G+5tEt14Nf1ruh+dTKVeXisWwO1LC71VvRtu15
-# 4fcdKfnSNXl0o/2qJ+ypp/MBW6IjHiDUKPJ0Ko2uXuf9310D6CttV2Rkurm7X5XH
-# TwHOLoW3ajAi+E+Iefe6jkkhb26LCzYrKOper0kdmTa9CSG3nWbaLF7WGTBQIEXN
-# jscQfT2z4azz2MAjJXKYRsApsRqfWuPR/7gMEXLwm31tLmUCnjmxQudkB3QuD4C4
-# T/j+r++EPvpfQTdkOvvwidVkwjYdwG6Kpil26gFIHj30wt+tF3rNykRfORctIAV2
-# R1Usi8kZXib1uYHZHNwfykXHGq5USSQSIbvuMwYQ
+# hkiG9w0BAQEFAASCAQAFx/9TqsuaoXG848uU11zmgLIDxYgmZteidQH4ZV7L6Z9z
+# ak8Dy1reD5Y7dRG6ZGvr3wFiKyKOf7J3X/QPS+mS8A0oS3yyfaJo/1WYiejyvLP7
+# +wqWisFpUmQsgexqIYnTeueMhTB7ZCb0oiKtbG3iKXSftziQ+HsZUEaAuZ5soZpa
+# jw/uR2Tw3GG40HEG3e2iCts3G/di7kmeFwFixE/P47cB8ZMpXwxE96bF6/7ur6K7
+# 7pmaFqP5557xJq6utrj4H7lYTDKvZWBcQSxV0SHGhM2wxtaBmVVySjJZR3eLlNnN
+# kdbKwjj/nBM8atry1OqhufVKRR1qMvz/mNbGYGSD
 # SIG # End signature block

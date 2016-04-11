@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,7 +64,7 @@ function Global:Get-ServiceStatusInfo {
 	 3. Multimedia Class Scheduler .
 	 4. Software Protection .
 
-	This function identifies all services that are configured to auto start with system but are in stopped state
+	# This function identifies all services that are configured to auto start with system but are in stopped state
 
 	.NOTES
 		Internal Helper
@@ -90,8 +90,8 @@ function Global:Get-ServiceStatusInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUE7x1+KVbXdK+hH05T7anbJEY
-# +G2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKyshcWtnBuUsBNYUkziw8nR5
+# H5GgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -234,25 +234,25 @@ function Global:Get-ServiceStatusInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTUgSabgo/Z0m8CPlN7CVA57V9K6jANBgkqhkiG9w0B
-# AQEFAASCAQCk9ih2olKW7IHx37zfvHV+mRg9NbquQKdMp6REjpD+waUFicqKkIjw
-# 96BTD30FsfINusJj3kRBzO+Sai4Kd00CoFN/AlwvpQQb6JBfUZXPsh99+e3Obudy
-# zuZnTTKMZ2YwCYOE0r0aEpUAj79uQeztC3gb8oqqu0vdXD31eM9yzLvvO3slv12y
-# ISTUziiPqpySRRdl4YTpqnaplVh3A3KAMlqnoLJBmNkDcwPdDX7SXXavuYrCfbBr
-# rBs+YxouuS2gB2sdmdjnDKOvbNS9LA0tYzzo25h3hfDKfwyc6upMcEGDseWUwpMj
-# DXJ7uh6eAvrm0C5K9ZMkRZ6VK2hagB6LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBShGMIsDtJasHlhj+cPuRlnzZiRrDANBgkqhkiG9w0B
+# AQEFAASCAQCPKEAnlt04m4M6azxlfJdMS/U+YK54H369pobXGGh47sLBE/oBH+tj
+# W6dISiOQx4IslwnzLx4GLJQz7oA9PXy3Up+pWuMYteWLnbvxwltjW26gpPa3b07p
+# mMDB6nWQDmG/Y3Llw0BsRBjoPWObecRf8qNdHbc06f3HZ7jtuE/ATSOazfNG+BQK
+# AWIF97mP3uHDwFBYu+83TN1Cn9sYvLnp9KGIC61JKdkBXsBHvWWy7mGTZybRkzlK
+# 2Se41m+Xiri6qA1B/oFJjufVbJVhqDaHAkQaxFtwuAG2WoDnufJDFkHT6+GQ+vJN
+# B/tH0MGMB6ykpthys3eSLOH3Qp7OMyKnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwMFowIwYJKoZIhvcN
-# AQkEMRYEFE5e0G1AKUahmt7j2N9dieQTG2jNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExM1owIwYJKoZIhvcN
+# AQkEMRYEFNGhXu7/eSwCwPrnW0VB27kmpqJIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA5xCuquMgWROFYYS4I+w3WQ/YfT6/TrQuZRUYHswU/l3Gw
-# gV7WMHA8bQfqhltExWzshnzdJI/ADOe9jJM/VwcpZ63WLP/RZBbmh2inS4wSZ0Xm
-# kdJLUVg9opqpik48VwG8JWpFGUahW9DBboTDsm/AtDNmDmpPH2G2pGf+CpGtVENp
-# nmrJGdWKpvCPRqd4fSnvhI8nstm+gH/DgU8s1tD7PsRDaPOQopDL8XZ2cWQNmdAF
-# OjtXPqH5rSuu5/rfQWVEhYlyv3HCZUVBPqzPuwMJz1GweygaWpC+2cKjbQAYbCOA
-# BRx1Ja5iuEmprcnzyESH1r1IMNKSMd9Fw7oug3ua
+# hkiG9w0BAQEFAASCAQCcabirjDO0yXmuJ//VNDjBQabxlvOhZShCwOSATI9oSXaN
+# u/xBaTde1zikFWA24onHElX1B1wnNPx6zT8tgq0OXNwwg927VwEUzlSjYBixm3oD
+# Ol45Irr8HWTM2q4qM0bx+WMSZsA4Pjuoeq9s42Qe5HzD4c35fHCqa5lxB5yYy4aY
+# L5PsSCTjSHaNZeI3Cx1iz8r2319uzAFtAvw7tpNJbjiARsCxgBvafsZ7jAaIXI4H
+# yaE8Y7fqjYsb22Jmx0eqOGmHqr00FQo9IPeW6zjCWWkQnXRjgg/W/6ALD5st3sYF
+# awsP6G38yAitvqPzAyTlWrls9wOoosZf84Y2rXvb
 # SIG # End signature block

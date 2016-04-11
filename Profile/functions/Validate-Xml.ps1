@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,44 +46,106 @@
 
 #endregion License
 
-function global:Validate-Xml {
-	param ([string]$XmlFilePath)
-	try {
-		# Get the file
-		$XmlFile = (Get-Item($XmlFilePath))
+function global:Confirm-XMLisValid {
+<#
+	.SYNOPSIS
+		Checks if one, or more, given files looks like valid XML formated
 
-		# Keep count of how many errors there are in the XML file
-		$script:ErrorCount = 0
+	.DESCRIPTION
+		This function do some basic checks to see if one, or more, given files looks valid XML formated.
+		If you use multiple files at once, the answer is False (Boolean) even if just one is not valid!
 
-		# Perform the XSD Validation
-		$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
-		$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
-		$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
-		$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
-		$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
+	.PARAMETER XmlFilePath
+		One or more Files to check
 
-		while ($Reader.Read()) { }
+	.EXAMPLE
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\conf\settings.xml'
+		True
 
-		$Reader.Close()
+		# This will check if the file 'D:\apache-maven-3.3.9\conf\settings.xml' looks like a valis XML file, what is does.
 
-		# Verify the results of the XSD validation
-		if ($script:ErrorCount -gt 0) {
-			# XML is NOT valid
-			Return $false
-		} else {
-			# XML is valid
-			Return $true
+	.EXAMPLE
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt'
+		False
+
+		# Looks like the File 'D:\apache-maven-3.3.9\README.txt' is not a valid XML formated file.
+
+	.EXAMPLE
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt', 'D:\apache-maven-3.3.9\conf\settings.xml'
+		False
+
+		# Checks multiple Files to see if they are valid XML files. If one is not, "False" is returned!
+
+	.NOTES
+		The return is Boolean. The function should never throw an error, maximum is a warning! So if you want to catch a problem be aware of that!
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				   ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'One or more Files to check')]
+		[System.String[]]$XmlFilePath
+	)
+
+	PROCESS {
+		foreach ($XmlFileItem in $XmlFilePath) {
+
+			if (Test-Path -Path $XmlFileItem -ErrorAction:SilentlyContinue) {
+				try {
+					# Get the file
+					$XmlFile = (Get-Item -Path $XmlFileItem)
+
+					# Keep count of how many errors there are in the XML file
+					$script:ErrorCount = 0
+
+					# Perform the XML Validation
+					$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
+					$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
+					$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
+					$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
+					$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
+
+					# Now we try to figure out if this is a valid XML file
+					try {
+						while ($Reader.Read()) { }
+					} catch {
+						$script:ErrorCount++
+					}
+
+					# Close the open file
+					$Reader.Close()
+
+					# Verify the results of the XSD validation
+					if ($script:ErrorCount -gt 0) {
+						# XML is NOT valid
+						Return $false
+					} else {
+						# XML is valid
+						Return $true
+					}
+				} catch {
+					Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+				}
+			} else {
+				Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			}
 		}
-	} catch {
-		Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 	}
 }
+
+# Set Alias for the old function name
+(Set-Alias Validate-Xml Confirm-XMLisValid -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwhwSDPDS/XsOOr65KXdXdAWy
-# qSegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiMTe42dK7HAqI/cvNWxndN3x
+# BzegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -226,25 +288,25 @@ function global:Validate-Xml {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRl26caQQ/QWrxJ8sxoO9U6dIQ+5DANBgkqhkiG9w0B
-# AQEFAASCAQCjSG416hSs4QTzmyh6RH6OI81K2Qj3kJoJFILFHiP5Af0oFB2o5T2D
-# lvJ8gatZ3Ewn3f38nu5MsydObyRvcgD6/i4+sN+iTy7oprrEmHoyg/JpLeWHDZxK
-# umLhOZ9XJdz3HbjDxNNVsjB8Wdrph0lKTLXQVgsEYyUajWf3rXGrP9lV9rnCZmCX
-# JdFYYUVPxGisxz9qqD7jtPGMakzAASXl7CwR5LFYhLllNGGfKAlUH7CnjuRi9Vi/
-# MK5lQ4GOa6VSzuDqYqd+kIl4MWV3iKDGi3CDiJZXWrVGa78/bBK9hwnuIXpCkqcD
-# N+BHfRJYXrDzbe8MBI9JvxApLaxrAvaKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBROBhDgGqXmRtiZUmVNQqfuurwUlzANBgkqhkiG9w0B
+# AQEFAASCAQA8vzu8vO3Rn7i1fPGtRDt7g6yA9CtU997Yn4B9N56xWOLE9ZqVKUjx
+# Ip3F88CbIautuCtPPXZFaN2DvJsYUNQ3jeM0RaNBqJCHr8UaLqEMy8u/caHDA7yl
+# kv5sZHHXJ6cVLREalvIpOv7F5X08qdKGvpB8v+X9u5EhM1SYpf/+u9ERwk7usFOJ
+# xOv4aIK7MvitDX14PkUbbg1ULnytCrya82aTpag69gkvrYjwI6vTW2j09Qqs9Wff
+# ZnNDiH6FRl2vEbpwlcjdCrEOLU6/Bii9f/Gzpv6V1nGNAYaVySFGplgJLOuK0J+O
+# RGvosDS3zBmzXZUb7zCnrBIvD1/ZUfiMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcyMlowIwYJKoZIhvcN
-# AQkEMRYEFEMq8lpIFOeRSHXikvgcCPMMBVxgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzOVowIwYJKoZIhvcN
+# AQkEMRYEFJH+bz/Evha2pZK9nqnT2jC2j6JiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQByRWH4z/CTUWqq+PGkXyPp25n6qraErCdm4l641qL2ASu+
-# Lc6zjb+8Tjue0TydJ2nZ5lhu9M2LpYTkGJnvBTjP620IXK4QH362Hpa7+MLEhBHi
-# zNvf7hpRefpsYDFiT4ATqgkZ9qlhErN7DRSJgJ7ReWwaSroxMcZq1t9ln+Tsm9lv
-# GKaI8ZlKSwr4JZn1kViYmNSRzzhELI6WF1PWGNvLGyHVlUpdb3qG0qj7Pneau4bC
-# mU87KZRG+LEe+hHC82czGEkY2kkls1J2073/lZdclysROvS27IJQSs78XlACdYsU
-# CnuMxrS+EX80NMsQFb+Q3TCuEjQnpC7RtYDLDR/o
+# hkiG9w0BAQEFAASCAQApq78uqUOd0ykM2VdqEHBVMDxBraxBhAqvN+sS4fq9zvJg
+# tBWLHI8QwdSD+yQ70hffVahgfki/GA4FNV2s2HPx2BUkpK//xs7MsO5Dbu8WNDGg
+# BL3SIE2Zp+5ipbCtOiRvlj16OhITuzfhDWCP8TWVSkm5q7yXi7VtRtzApHVJVDEw
+# NDwcRMnqPVuAP4psJsM9tKZNvKlSOmQa1BVW44wnDYSuucO0oiqbRrRQH26LFA6Y
+# f7/7GhLA/vmTo/w6Ov+5yT7cq+LZkt9ONX090Vc5k91Qr5GYJmj+x2noQutkg7ab
+# PDSDhLz1hZlh+hmx0Z+IJ72tmwcxLAhoJAAtRO4Y
 # SIG # End signature block

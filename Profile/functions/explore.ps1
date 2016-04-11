@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -54,13 +54,18 @@ function global:Explore {
 	.DESCRIPTION
 		Open the Windows Explorer in this directory
 
-	.PARAMETER loc
-		A description of the loc parameter.
+	.PARAMETER Location
+		Where to open the Windows Explorer, default is where the command is called
 
 	.EXAMPLE
-		PS C:\> explore
+		PS C:\> Explore
 
 		# Open the Windows Explorer in this directory
+
+	.EXAMPLE
+		PS C:\> Explore 'C:\scripts'
+
+		# Open the Windows Explorer in 'C:\scripts'
 
 	.NOTES
 		Just a little helper function
@@ -77,21 +82,21 @@ function global:Explore {
 	[OutputType([System.String])]
 	param
 	(
-		[Alias('Location')]
-		[System.String]$loc = '.'
+		[Alias('loc')]
+		[System.String]$Location = '.'
 	)
 
 	PROCESS {
 		# That is easy!
-		explorer "/e,"$loc""
+		explorer "/e,"$Location""
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmwE7N1Qm5aM+hMggoROxu01z
-# ruCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeDdu2g+7H3xe+L7E4rmar37T
+# 93SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -234,25 +239,25 @@ function global:Explore {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRh9YLqxHO7clFJryrbyL8RoNoqNTANBgkqhkiG9w0B
-# AQEFAASCAQB/L1Z62tjJ1lXnZyWvtv+IP9P28lpLHCiavOG2g4fq8RZpR086EZJF
-# pJEDtO3lpbzU5Z/6VeDLHIqLxKQgxpbG2VU70QlLylmW29ovB+p8os/fuZKcnnm8
-# J4xwiwfXuxOOQcEbqd2p1eUTMb7qEKySV+qFIZeEevBv4+rlw+20234/HxF6L+uH
-# WpDaLd0swLWInXXrA3LBsOXd0yIDXbtUEE6TZPta1LmBK6PAkvDgQG1YdN7jkRQ0
-# mChT4iBbYKVwRMNvTwu5Tt4ekYH1B+Qul5uzsrkt8rugYvGWGWB6poBNQ1zjoqCh
-# 1xc7uBC0GbCbw636noDl7RiOHDMqyPKloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTJGadw1i05XujZ83WY+GDJthraIjANBgkqhkiG9w0B
+# AQEFAASCAQBwBlUss9qUjojo0qsLqV/P20CSyFY7K7cMjxGBYHsS8l0hBDu+594M
+# T0EwUHjciJ7mHGOrcNwRx/GYJO6cgji6yLapGptkn3TVc4IVUuehDfj8AP9bPNjF
+# G8H/eNspi7Q8iahjHJgwkDswYYLVEetGO9Ux9PWelakARuzw6/8zm87s5x5JkHqt
+# BP/RhTJVlymnFz430mf+y7M6fn2eIX6jHn4N6O01oPbgx3g2LjBLSCRBauie8aO7
+# SgOqCJFYf5mZxgsTyqcVZ4UG+RYCCXEsrLHWikR8g2VF5RBN5y/EP6pIAXPOEPFJ
+# rtMmcauId48PXhMC0W+2B82Y/7gHIML+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1MVowIwYJKoZIhvcN
-# AQkEMRYEFJk3UaKtRGf6Eh6RKcJIGzk7HVzsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NVowIwYJKoZIhvcN
+# AQkEMRYEFPW7AUjaMwbWsWvexJsrVEPbFD5pMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBbmBVphLe+YtCppBTYZWLBzkuAXamucaUH2J7e1kIMChzi
-# RvMF9W/yp30RZjF0y7PTy/CPQbZFR0zdzVbgUONDRuxzBlSMuK4YTVt4j6EMvVdb
-# fKmXz0pJe+p/CnvbyypgSt1XQBUK92pqo1ftUcLvCSWCzImQoOXUhh1C+ob6Yq57
-# 7L9TEuieU3tnz0A/FZexny8Lv2c3Q01sZhtGIHjnXFp7o0JR52u5n03v6FnhjIBm
-# nBZmBH4bmY8vKkpXhrFGnXybP5UNoxATGVwDrfKnSIqLAryWSdlJ3B8H7vHpTIoq
-# ktcSblGwZWjTduRusMFq6VMbm4KZHboK4OEeDEYK
+# hkiG9w0BAQEFAASCAQAy9X6QWeuYyVmqyZr+roPSlJ3Akub43vox53kL3Mu9ph0i
+# xRcFDaPrnBbmo/dDWZpcQzUBBP5c5kPQBF5dQnbMUYmGXMB69xlD5SAYN6CK3IDw
+# c4AurV4xK0VmQET7XUZD3b9HB8sT13Xo41+iZpIygtaVnEZC28Aerf+Ez+B1n0EV
+# ALvBRWmIFDYEV+zoB0PJ+Jjjo9pHLHhacdaRSDd0o0tLDUG9Pc7tFXYPTKPDemn4
+# QhxwDkWTdvTMBb/RSYBuQ2j+GJfg42+/SYKkWIVn6ZWkhpeZGCyak2qVER5J1jRX
+# VwYYoi/pc9TZFst/kLgGfUAzvNOhsFdV6nPSXBXK
 # SIG # End signature block

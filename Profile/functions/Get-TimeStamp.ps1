@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -49,16 +49,17 @@
 function global:Get-TimeStamp {
 <#
 	.SYNOPSIS
-		Get-TimeStamp
+		Get-TimeStamp dumps a default Time-Stamp
 
 	.DESCRIPTION
-		Get-TimeStamp
+		Get-TimeStamp dumps a default Time-Stamp in the following format:
+		yyyy-MM-dd HH:mm:ss
 
 	.EXAMPLE
 		PS C:\> Get-TimeStamp
 		2015-12-13 18:05:18
 
-		Get a Timestamp as i would like it.
+		# Get a Time-Stamp as i would like it.
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -79,8 +80,8 @@ function global:Get-TimeStamp {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUisbv9ZQfK8EirzRo/CDZqVaN
-# FiSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlXw3wMw2q3nPuufad3r8CvRk
+# 9+WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -223,25 +224,25 @@ function global:Get-TimeStamp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQrBfxxFzOauplV+FqXPjmXJTx5CjANBgkqhkiG9w0B
-# AQEFAASCAQBmOPKpiErBfiSBLoXZ7pmxsWwe8d56G1aARgKbcJQD0bj8qBXvrbua
-# /mmyMlhw0OWoOtasqebHOIjQ80XaWCyLG7GE+GBSW+IWutUFvwd3zxbRF8x6I7dv
-# +S6maCRxccLRnKRS//BVKbLjW8tWHLbo74jLwMr+oYOrfNZfnekELM6utQ/EVnS7
-# KMzGkgLyXbgSQSYJ9ACVOfCY1FRALzr2DF/3kTAkG28XQFHjdO4QBoiCIdXLe8UD
-# HDWGfPSQNBTjDNpPn5YwF8HL9USBDY4gjMkv7tTnQQhiNvHgnYugim+f6noN6oM9
-# mYthRjIdDM6if5n/BrD4o6DyX4HI+DVcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSDM6GGvTEYtCRYKUkSb+MeEp0oljANBgkqhkiG9w0B
+# AQEFAASCAQAVlSpiMLi8fVgf+UhDcvSjOmbhLS0afKqfZdkm+zI2TGk0K/B5QeY0
+# VdYit3Nk4qNapPGBfxYdqsRMPKcbTqxPvsJSACS3Epl00rzdvegy+j/MfqnyE1+U
+# 8N8ma6niaubtc0ZkLdAQmR6bXHPHiRbuwcNkyRN8/oYv5EHZKQVzlseBj2HWwsrt
+# fXB0cU0T+d5WH1pyR9GIMmrR+cpHBQVn9TveUU4RcMCRCbfoy9yk4R44NfALcRmh
+# HzdPbdqtSBp9tuNHLv42R/15nxAcq8a3sImfdCooz33xWzRorI19Pjgor1Uu+Rfv
+# 5TQbWyyNOwBhT0+zyyvkMIC0jCzFL6HpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwMlowIwYJKoZIhvcN
-# AQkEMRYEFJaBLDUHrJIlhxcWAQcSLQqKmIo4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExOFowIwYJKoZIhvcN
+# AQkEMRYEFPOUmahj6GDYoFRhb/Si/YZmrk1DMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB+JHcLfjc1MOLKal0/ZJqK0AMpswtHu52pHgXY0iwf9koZ
-# SEEzdyECLcTXXeKlOcGmX/01PK2wnPf6uFkh5ekdeYpQFlltiRv9UPciT1tthUlx
-# L/5f2nT3flfK/VYhDzmQHrec7F88w2MJf7K/1AlMtSyirnamjssLE2qoxuk057kD
-# 6DCFpvP5rku2SBgZUAynEIqS8lU+gOply/dRUW4CgYwmnXqlWfI5XznEq4AzBbur
-# q7C/gOjf2o/S75ACtTWaZuSGnp3nen6BXUCswURZl3KeaxfKuvudAt0qQNkmg4tu
-# qYFeWJ7pe5Hz5cBDpsztOWnMju0cdKREDmKCH54e
+# hkiG9w0BAQEFAASCAQBtj90WUENtbVxVWdpkzCdUE3Is7otwMdERzuF2YzChcGmy
+# ASYfvpVl2uWe6orwMrIHk08mDBAR9w6Mml7EAqZHOCOfG/8LjfSiV3H8YyOkRH5B
+# y7Q4fiI5qNilrjoIQYRxgx7ezfpHpyrGO3svgqCNfAfX+HSezCzoIZWk2ibC8vnL
+# gw+E3ZRZIfkvGmIWWVulZh2epwLzmKvrodSyLWtEenbqeX0zZhRW/TRe7OVRylC/
+# 1BrRp0ph5qU5hc68hUcwZ+VbAGydiqeBVxieJxiKWBn2GMNWZirWxcLjxJchl4oM
+# tI3EPWN8vQU0an3n39y6IQ9nM7tNAJRGI3S4kPLh
 # SIG # End signature block

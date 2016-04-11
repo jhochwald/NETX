@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,13 +62,13 @@ function global:Get-TempFile {
 		PS C:\> New-TempFile
 		C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.tmp
 
-		Returns a String of the Temp File with the extension TMP.
+		# Returns a String of the Temp File with the extension TMP.
 
 	.EXAMPLE
 		PS C:\> New-TempFile -Extension txt
 		C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.txt
 
-		Returns a String of the Temp File with the extension TXT
+		# Returns a String of the Temp File with the extension TXT
 
 	.EXAMPLE
 		PS C:\> $foo = (New-TempFile)
@@ -76,8 +76,8 @@ function global:Get-TempFile {
 		PS C:\> Add-Content -Path:$LogPath -Value:"Test" -Encoding UTF8 -Force
 		C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
 
-		Creates a temp File: C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
-		And fill the newly created file with the String "Test"
+		# Creates a temp File: C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
+		# And fill the newly created file with the String "Test"
 
 	.NOTES
 		Helper to avoid "System.IO.Path]::GetTempFileName()" usage.
@@ -122,8 +122,8 @@ function global:Get-TempFile {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAA+PF9IhdOSmXJifVAjMR/G3
-# DjGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBmdHi3amrQMVOgP3zsYNnnqN
+# YyWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +266,25 @@ function global:Get-TempFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSx3HnOHBefMaawGBvpW5xhkL9EEjANBgkqhkiG9w0B
-# AQEFAASCAQADTBWP6j8o5epso1bUWX4mwMyEN+b9zjvWbvfGI5peWjDzvtmrcGOD
-# F4ewVGnZgBL8yZiBEJ4UFAK/i2TegAnVom1wDVdSZm/qGey1QQeE+bKZ2CROzolE
-# SOvtwo7ZY9xcu/HG8zT4g8HrQ2R2LvSFNFFpS2YfI1IEfvvaQl9dMLRQ7O6q7f0T
-# eMghPQcZyTuyAdojlzwkQEIVGkK11jaa1PfekqJ0cbnl8kebto38xuxihnFalOwC
-# 9JX9yXVL+3D01DA5/4EwHLBWNPq7CVBZD0pkln15mZ3l9UeyFHeFUJhn4Ck1I2Md
-# ZYY5PyTC49SX62z2qsekUv3Iev6zAeFXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT4luW2eXG3MJT9sUU0fZYWupkJnzANBgkqhkiG9w0B
+# AQEFAASCAQA/Wv1r+pqbjKwLHXKVCVScNztLt3T6h6w2hVextzkyoQDOBNgDtYPM
+# PIQ+oTnjkTNRqVJfp3ZUKLzAXT7mbm7yw3tbZaZTcz7kuj/82dXsLb3/04zEbqGX
+# GEy+4rjRRCNye0GRr/dm5ANybdFIFDXFhmlRNSkl8UcTKksbddwGQkCdHYn/7i3T
+# aQZ09pI/GInmRGVUYrHEeNzSUDU73HhFyjMQ7qKa6os7GXBMyyN6+mDTv0TsxbYR
+# ygfe5/EhPvsTc1iJ1oWrn3q/5iwY6CE7XHxG9sAsmAMmIn5wf5mWcDUrMW9lYgfj
+# GcmLDqNuL3Wxxyxn3BmfVW0NlKMeUFWpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwMlowIwYJKoZIhvcN
-# AQkEMRYEFOZEr7gIE81adkLVDNVdDFUPzepbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExN1owIwYJKoZIhvcN
+# AQkEMRYEFPllK0t6C3NQHyCby3LT7nZJgCsLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBBwi1MpveRyuYC7+eae0JfhJrT5QHQsqbS/TuAQfyYyGUK
-# uzPAiVrD2BQkceP1reYZcI0AcUyAGNn4MjINuvYP36HTaa3yiP98RICl76ZOVxZo
-# etIgw4W0a75D4CHUHZe23IaUvjYoyUVVXn4KFA8mr7RsLJewDp3lCd7U3k2jXyci
-# yWH8Tm1mUaMq2GS5e8MZVMcThJWDTlKP3VLlQPauuvR41uf2cIja1xRPPx91uQi3
-# hbmcELaDVYLoaTejNzLrXsO/8UTxuaTrNJrZk/wc+tiDzzdLZx9lggA8reFLIokb
-# 9/Or5QY109VMCZWBduUE65fxGk8di7c5VRC0KD05
+# hkiG9w0BAQEFAASCAQAGawUWQ72baGYP4PeSCCpMOADds5w0DOVlgrWijffTpnAo
+# IKw1RqFyy3TE1iCRJPZi2dF02n+gnNviK6975D5yIfkeDn6Tc5AtD+OuZT9zKxaI
+# koMr5WxZwX5sFXzZvkNES8FwNNEHQx6A1dZ65eFgfzQte5lng1SWZC6BrkQ75ppM
+# up4eC0f3hEn+5lkwXL7DKcKsU/mpl7AtZRRVyS2CL5viV2ceuu2k/+yQDAC55hMx
+# bxKrrTcL4RIfx44Ic2xJD2qyJFIUTZyupzYk048Vc0/7D+fX8BY3QVDdwf2dwRra
+# wTZzJ7nrvYh6BwHvzyJUvOPcITQTmMWkSe882Nr4
 # SIG # End signature block

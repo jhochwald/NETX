@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,7 +58,17 @@ function global:Test-ProxyBypass {
 		URL to check for Proxy Bypass
 
 	.EXAMPLE
-		PS C:\> Test-ProxyBypass -url 'Value1'
+		PS C:\> Test-ProxyBypass -url 'https://outlook.office.com'
+		True
+
+		# Check if the given URL 'https://outlook.office.com' is directly accessible, what it IS!
+
+	.EXAMPLE
+		PS C:\> Test-ProxyBypass -url 'http://technet.microsoft.com'
+		False
+
+		# Check if the given URL 'http://technet.microsoft.com' is directly accessible, what it is NOT!
+
 
 	.NOTES
 		Initial version of the function
@@ -92,7 +102,7 @@ function global:Test-ProxyBypass {
 	}
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Target", "Operation")) {
+		if ($pscmdlet.ShouldProcess("$url", "Check if direct access is possible")) {
 			$webclient = (New-Object System.Net.WebClient)
 
 			Return $webclient.Proxy.IsBypassed($url)
@@ -108,8 +118,8 @@ function global:Test-ProxyBypass {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUwPrDTqA3PoSwFcU/RF2EGcl
-# CW2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuOhgurzilxm9CDIGu+Pk+2Un
+# kSegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +262,25 @@ function global:Test-ProxyBypass {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBROH8xU9erok4WTvkpfqC1WDHLeFTANBgkqhkiG9w0B
-# AQEFAASCAQBHjKpdCW2KgbDx3Q7oorPldcpD/0SYyE+ATn9rEWAZ0CcPG/ydxVXu
-# B+yAdBZa6InKu8ML21ayFzgvQpk+tYPYFSX2Y4FnMSvFB3FSrMTq516abrD71yZX
-# F07OySSpaAqVtMObD8gD6GiNwqRYDyxxXlcKb+xYsfQ4g9vTTo5PUnKQog8JbBC9
-# v+i/GOAyfWiv8se5sOZvvUogrgDAtBT+HRGLs9tsMHTgDn7NfKxwAIu60Y2YmnQm
-# K9hiONSVrN7ttKV7H0ncWBUsKCl6dOfHym0NWvYgEDJADQczmAKfaVCUJFj5Bkr1
-# hHtYxI8SEUhrtEOPLmzXPMA00YbU73IKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTvNpfBGEcXIAbajueo3kl6BcFw0zANBgkqhkiG9w0B
+# AQEFAASCAQA3gQlP/xrsQeUddASzWDbQHt3pohB4UICl+PbplxQr827WrbqMCULP
+# 3fiTew2/vKYXvDaZKc8y6icunHmrIYExXY1iPevNbj/tZM19heAlyFLk+UL/FHl/
+# LgFchSb92pJAMJr5ukcNct44ERcBUze7UixFe5Uef1+QI/JWqgBujKM43cK6uh5x
+# W8PN2YO99MgfqeMkKiwWOz0cyp9DbYDyX3g5O6CHkKUvfp6ME5gM3dmyxhtxRmJn
+# DADPY9XRC9yGNICWY+fckjpJwWZShtQRJ9wtmC5C4HbnAux+zDaurAy+gcEadht8
+# lL9LF/afWZZ8KJmsHrACJ5bRKrs+xrIvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcyMFowIwYJKoZIhvcN
-# AQkEMRYEFClwkNbsbghyGuHN3F27DAbE+rm7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyNVowIwYJKoZIhvcN
+# AQkEMRYEFNc53hcvA0XromicMA5SH/CkXdBdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCRN3KFlJqWxxCF2Z4YeQW6qh/HHDTu3CfPxf8Sgg0tN1Nn
-# 34y/vAmS0W723fW9AQuHgAscSpSTLdiWILqycfgiFnkc07NuhUrYDuVh6qckKt+w
-# Qp4luRyh6F4AAwAPjL02ZFX2TpbdIwbdWjsMCzj7+y68ZxsYa9nMArRHU3zV0xT4
-# 7njb52l9g08b9BiqjTUZaz6CzTVoz9d3qsjdq8pmMmAYI35cVIPCYXi/0eJep/CF
-# /mqZvo91WhVB3BwyLcN9+vUbiASMZjMkbT4mCQaNt8E+DI5PDWaHyKgeXTr7F9x8
-# RIvZNjC+tz8ivY/PgoXBIca4AoVFQhnXL+TKTLOY
+# hkiG9w0BAQEFAASCAQCYlyThMgkuglS1XA/KQrYMqAHSeQBhgscvnUiPoR66di6l
+# zcxX7dvyRcTxKXSnLShtkS0M87D1xP9knTZnfsMqrq7oujceu0NMwJUqEQI4FnNA
+# sFaqvxRDhAsBR+wP/ZLwMDlyNH4HgIBwfH+STl5YQ31UN0D58ot2+IgfbYrhg4th
+# mFrTKLZLrIXPkj0tZ2safJKDeWrFFsu26mfLZT85nhXorcKox1Hhs1bFM6ZPhA50
+# crimz35R4/vo2G8j6jvECiOD4W5X0ReIfAKxwoyW7iWJjIAfZZ7dvctqldnGk160
+# Ku9SO2yS8ErM6+NRAMle/yH4CcqP1EuBQwUHxcJA
 # SIG # End signature block

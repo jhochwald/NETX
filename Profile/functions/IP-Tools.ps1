@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,13 +58,12 @@ Function Global:Convert-IPToBinary {
 		The IP address which will be converted to a binary string
 
 	.EXAMPLE
-				PS C:\> Convert-IPToBinary -IP '10.211.55.1'
+		PS C:\> Convert-IPToBinary -IP '10.211.55.1'
+		Binary                                                          IPAddress
+		------                                                          ---------
+		00001010110100110011011100000001                                10.211.55.1
 
-				Binary                                                          IPAddress
-				------                                                          ---------
-				00001010110100110011011100000001                                10.211.55.1
-
-		Converts 10.211.55.1 to it's binary string equivalent 00001010110100110011011100000001
+		# Converts 10.211.55.1 to it's binary string equivalent 00001010110100110011011100000001
 
 	.NOTES
 		Works with IPv4 addresses only!
@@ -144,6 +143,8 @@ function global:Convert-IPtoDecimal {
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
 
+		# Converts an IP address to decimal.
+
 	.EXAMPLE
 		PS C:\> Convert-IPtoDecimal '127.0.0.1','192.168.0.1','10.0.0.1'
 
@@ -153,6 +154,8 @@ function global:Convert-IPtoDecimal {
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
 
+		# Converts an IP address to decimal.
+
 	.EXAMPLE
 		PS C:\> '127.0.0.1','192.168.0.1','10.0.0.1' |  Convert-IPtoDecimal
 
@@ -161,6 +164,8 @@ function global:Convert-IPtoDecimal {
 		2130706433	127.0.0.1
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
+
+		# Converts an IP address to decimal.
 
 	.NOTES
 		Sometimes I need to have that info, so I decided it would be great to have a functions who do the job!
@@ -195,7 +200,7 @@ function global:Convert-IPtoDecimal {
 
 		# Create a new object and transform it to Decimal
 		$Object = New-Object -TypeName psobject -Property (@{
-			'IPAddress' = $($IPAddress);
+			'IPAddress' = $($IPAddress)
 			'Decimal' = [Int64](
 			([Int32]::Parse($IP[0]) * [Math]::Pow(2, 24) +
 			([Int32]::Parse($IP[1]) * [Math]::Pow(2, 16) +
@@ -229,7 +234,22 @@ function global:Check-IPaddress {
 		An IP Address you want to check
 
 	.EXAMPLE
-		PS C:\> Check-IPaddress
+		PS C:\> Check-IPaddress -IPAddress '10.10.16.10'
+		True
+
+		# Check if a given IP Address seems to be valid
+
+	.EXAMPLE
+		PS C:\> Check-IPaddress -IPAddress '010.010.016.010'
+		True
+
+		# Check if a given IP Address seems to be valid
+
+	.EXAMPLE
+		PS C:\> Check-IPaddress -IPAddress '10.10.16.01O'
+		False
+
+		# Check if a given IP Address seems to be valid
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -279,6 +299,12 @@ function global:Get-NtpTime {
 
 	.PARAMETER Server
 		NTP Server to use. The default is de.pool.ntp.org
+
+	.EXAMPLE
+		PS C:\scripts\PowerShell> Get-NtpTime -Server 'de.pool.ntp.org'
+		5. April 2016 00:58:59
+
+		# Get the NTP Time from a given Server
 
 	.NOTES
 		This sends an NTP time packet to the specified NTP server and reads back the response.
@@ -364,8 +390,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlmQNBDinCqKbH9LzkoGP1jO7
-# /wugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0NjzzcF9DkuVf2TS8Yyo/lRB
+# 6vOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -508,25 +534,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQnWxMOf2fwrXNflb26R+RPDGYH7TANBgkqhkiG9w0B
-# AQEFAASCAQAbPJlxsr7qgzm9GBgqOKSwmdLlidt1kXx6Zsbsi/XG0UxFHmUQBQqq
-# kffOOk4eiIMDi7TtD00aB/EBtYHPH2n3eRGA7FPq6uBpWLADSxnoWDxZE9PZjtAF
-# H8jalugtLF4nx39dGpLX51gh62rX1BkobA5nxLX0ocvdnohZRRWZrBHA6ReTey3Y
-# CIym4cm7lH2sK9U2YmmAU5U/N5NBG4/DFCRgTKNQ6uSYyFIV59droUHUS1EMGgJg
-# wfVmyfJk9xV43zgx92X/XE+WSmlO4MojZ/AiQYWFATIK0lCVXLBNk6r68bYGw7Jd
-# ZB0w9wcIE1gzViU61eL91zlcRPYZdk4goYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQbEEMFYAIILsWm5xBLmVs5BLFg2TANBgkqhkiG9w0B
+# AQEFAASCAQBpP6MRZuy93fll+R4+w/89q5iY34u5FxF7FjxeNqxbbXCtpW4YrXhz
+# PeZyCZ72fwnSzM0QfjO6iTBDGbhAc9B1L5Pk5jmO/ZlYtEL7imi66PmMu1PN5+Ml
+# qlxgvEEBoybqlV/vWaYyQ0wRRksrFY3ntHo/55VmSPJzjligl7v8HMzP3tPmY9pt
+# WMOwsC1Hm25Slb1f0j/SwM+DK2/LQcAxVHNzhaL0DcvYoX7gn8Bt1ntpcMkTXyo2
+# ek5KF+36x3R7+AlwgzC+edxCH3B+d0fNmbMOBVWRE1B5hySqnFZgB684U4YXNGw0
+# i08sN4AT/luHozy/S7rVsq6Hq/Qh95ipoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwOFowIwYJKoZIhvcN
-# AQkEMRYEFDUqq+watWICapUgd5LZ91YIFwRjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE0MlowIwYJKoZIhvcN
+# AQkEMRYEFDAHiLyzkRCw6fCjRtkdLtqbPqLZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAxZ8I9bytpSw3VYFR67J/0FYUFoxeJxrMw84SySN9BnaCw
-# 6gN2V9odcrlzqjyynIlt5CY20D1BgRwaMhBY9IQlyLeiwUoilByy49uLdOPv6Ml3
-# ZRcleKQnpT50YmVc5c9xO2dV/Skr8MeLOsrPDg+vHgZ6qlZUf5lgwTm3aHNuUJA7
-# EF6RLLRD42lBxo7jMk3wnvS77elNcOAOEhXtPtN/zTod2pj4muP0BmuOfwzoKv57
-# YaTq0Xr+zugBB+i+QK+T1L73r4UjJrvEAO0TBvD54Dg7uonEtk8wtzc48/q03gW2
-# JKmQMYlBAWzyuWszG5c9jsWT+g2FiaQddNx9+Y4O
+# hkiG9w0BAQEFAASCAQCBTqdSjHN0zLLOKdaZTLZN9P1svUsgUweyNR5FihC5Ho/T
+# g/K8j4/g9YT5NOPVKl/vBST4WnMTl8FlQ6CH1pOT97UuL+d1nk+8r4PHsqcExMxq
+# UXJ4+2vF1bTXQTz0aE6gegfWHvEaYkHV36fyBdRcpW9Txx0KnSe71D2NDp2Vunnm
+# SPyn1yo8tM5GHUc043a5SB4ppK5qHia1IstqIdsxB1/e9daUGp4hMgR5JY9XIZ7M
+# OjhbaNAZFV1WPy92Kx44ro0ZNsa0LljcdlyigR88TdLsU5fz03cw/gX1slpcN3dc
+# 9ziCU+uOkHROX2of5tfgqeMSKCBXlqwdtdpW0dH9
 # SIG # End signature block

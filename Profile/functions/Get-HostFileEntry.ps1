@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,14 +57,13 @@ function Get-HostFileEntry {
 
 	.EXAMPLE
 		PS C:\> Get-HostFileEntry
-
 		IP                                                              Hostname
 		--                                                              --------
 		10.211.55.123                                                   GOV13714W7
 		10.211.55.10                                                    jhwsrv08R2
 		10.211.55.125                                                   KSWIN07DEV
 
-		Dumps the HOSTS File to the Console
+		# Dumps the HOSTS File to the Console
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -109,8 +108,8 @@ function Get-HostFileEntry {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjjS0jlXqYdqrrCHByFKDWaF4
-# 6BugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1XwVKV6hXFP+9XDHCU/o3+GD
+# ExKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -253,25 +252,25 @@ function Get-HostFileEntry {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRu6TJUVEFyuuzwwqQBKfhTEfNVqDANBgkqhkiG9w0B
-# AQEFAASCAQBYHUy2EfdEhCwmUMYCFXbeFN6xBthzkqx0zccrjr0YSqCfsk2HDKSx
-# vmpVp08maI18JQMDlui58NcXzgGIFo7bXZGMJABhS/Qav8x8Qg6vY8ujI8uvRtSa
-# NCJJvvRs+CxD6Pmk6+U7ERssE/HcarYH3fDHDEK/G4bU/t+4ngHl2j9d5HQpYF8P
-# XQVLUVJgMcY8KTptptWJ1nLWYw8f32RYw3R7MpDHT4DErNy8QGIC6GClgDWBYrUd
-# ZIxo6yJJtKDWUoNAaCfSDu7UvOTsH3Jt/6CaFN02TL4isr289LerualAg1ZjzAqV
-# OWzd+gKOqTCzz6i8cJijjZBlg1hjVtwHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTdJeykLqgHRU84BZHVgg99xhsA3jANBgkqhkiG9w0B
+# AQEFAASCAQAxvUHZa8ButX2kjYZxqeaGRb37GI9MmePcPohKxRjXQIc/BOUv/ta4
+# OHZOLNfKDC+00ddEG/9xHHGB4Gh6vYeY3mNTy0qg6TdxLlUY3Gu5NKCcxXPzlJcQ
+# zCIF+ULYMCVue3cbwap8SRrtNf/Tvpg+wegQ7BzbRe70suV9+DOKmFDImyGs6ZY2
+# RIvlLlKNTF63yB63Wa3lFgL+bgiDdACKyWf1CO0QtPQnLgwXeFcyhrg67gopAr5v
+# BMISyWvTlnxlOSPnnmkq7jFAJsXXbVv+Vd1ftVqDFSkL6lH+6Vp6XrK8TX9CNwxG
+# 70q7kjUYf5c/pwZJ8NEYYPurmQAWiJWEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1NVowIwYJKoZIhvcN
-# AQkEMRYEFMtRbgpP0bswfUtLDZ8CXGFEhHq0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwMVowIwYJKoZIhvcN
+# AQkEMRYEFEmqf9RxNeFNYkCpKEJBm43Mab5uMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCovCwtesuB3Bxja0xGg8bCUUdZ9mHUabE7J9zFXGSDs8mF
-# zXPxUxKS0JaAg4bgJXUe0m4W5SbOWat5U4uvZywNgqzTPq9AjvQCpFUhYPNgPyU6
-# v0iuyH0+3nJUA5Cj/obipdoAHJUeXFqCrIj6r0OvamJzZ9ZyhM2mZRUwdnEDHyVf
-# /M6kUQwO82ue4kCPJA15Q7bs4f/L4PfS2f2pSp4hwYM5hGtGKyFUE4vnuQfYkhUa
-# UyBTrmHnhMA5hsNlr+7uD6dwczYm4Gc9ilaA/XOexHZNFHnf/snv/RUD68wL0CDb
-# pKrPS02qs/gvdv8yl+gevj3H30cLgTWDqbl2goOO
+# hkiG9w0BAQEFAASCAQCGajBVFl8Vi+KpguKjwB7MatfNp4hzBjiJq4wUL34UUQmw
+# lTfNHidHZChJWB7Co9F1M7lz19FKviK0/Q7+P3Q9nGt1dn4SRN4BrDUo4FAwvA5r
+# 1tUEkHU+voRRH3zRUcIbDTSBZDtfbM8D2EHroEswYkivp697DxheVVVGCuBaGapt
+# 6Q4wS0FMcmLuD8XS9DyOAMNOi5BEX2xD6z6oSQihtsMjqScZ4fsSWQBahxAM2eV3
+# ok0PTwb3Gf8m6bISRuEkZrNe+Qd5WdhJPQb+SW6CFOPWyiNcC3G+h9oEa4mLvd++
+# 3jsOsfKb9SyIqkvHX78BeBqhpyqycv3pPGydCNq6
 # SIG # End signature block

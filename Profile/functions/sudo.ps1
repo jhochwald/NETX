@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -47,22 +47,32 @@
 #endregion License
 
 # Uni* like SuDo
-function global:SuDo {
+function global:Invoke-WithElevation {
 <#
 	.SYNOPSIS
 		Uni* like Superuser Do (Sudo)
 
 	.DESCRIPTION
-		Uni* like Superuser Do (Sudo)
+		This is not a hack or something:
+		You still to have the proper access rights (permission) to execute something with elevated rights (permission)!
+		Windows will tell you (and ask for confirmation) that the given command is executes with administrative rights.
+
+		The command opens another window and you can still use your existing shell with you regular permissions.
+		Keep that in mind when you execute it...
 
 	.PARAMETER file
 		Script/Program to run
 
 	.EXAMPLE
-		PS C:\> SuDo C:\scripts\PowerShell\profile.ps1
+		PS C:\> sudo 'C:\scripts\PowerShell\profile.ps1'
+
+		# Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
+		# We use the Uni* like alias here
 
 	.EXAMPLE
-		SuDo
+		PS C:\> Invoke-WithElevation 'C:\scripts\PowerShell\profile.ps1'
+
+		# Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
 
 	.NOTES
 		Still a internal Beta function!
@@ -75,13 +85,13 @@ function global:SuDo {
 		Support https://github.com/jhochwald/NETX/issues
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
+	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
 				   HelpMessage = ' Script/Program to run')]
-		[ValidateNotNullOrEmpty()]
 		[Alias('FileName')]
 		[System.String]$file
 	)
@@ -89,35 +99,39 @@ function global:SuDo {
 	PROCESS {
 		# Define some defaults
 		$sudo = (New-Object System.Diagnostics.ProcessStartInfo)
-		$sudo.Verb = "runas";
+		$sudo.Verb = "runas"
 		$sudo.FileName = "$pshome\PowerShell.exe"
 		$sudo.windowStyle = "Normal"
 		$sudo.WorkingDirectory = (Get-Location)
 
 		# What to execute?
 		if ($file) {
-			if ((Test-Path $file) -eq $True) {
+			if (Test-Path $file) {
 				$sudo.Arguments = "-executionpolicy unrestricted -NoExit -noprofile -Command $file"
 			} else {
 				Write-Error -Message:"Error: File does not exist - $file" -ErrorAction:Stop
 			}
 		} else {
-			# No file given, so we open a Shell (Console)
+			# No file given, so we open a plain Shell (Console window)
 			$sudo.Arguments = "-executionpolicy unrestricted -NoExit -Command  &{Set-Location '" + (Get-location).Path + "'}"
 		}
 	}
 
 	END {
 		# NET call to execute SuDo
-		[System.Diagnostics.Process]::Start($sudo) | out-null
+		if ($pscmdlet.ShouldProcess("$sudo", "Execute elevated")) {
+			[System.Diagnostics.Process]::Start($sudo) | out-null
+		}
 	}
 }
+# More Uni* like alias
+(Set-Alias sudo Invoke-WithElevation -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTPzau7sEF8AcGadqiKEOvTad
-# nDagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIY/m0OCX+j+Sxo2I/LwmOyXN
+# u6igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +274,25 @@ function global:SuDo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSiuo+2CZwyLp0fvr2PdnI43Kj5AzANBgkqhkiG9w0B
-# AQEFAASCAQBuIkGVEEr+9OpIck/A7ZTgcOIUwcWdQnjjsn0cZCYFdNBEZ/h3FDVU
-# BcGIvnGJh2Rg/21/DZJoBoUB4fszkS5w+3qdy8KBbEgV+PCz7TpD3RDB1nJVXYwB
-# e8TROWekcMYLDaCBUR5uBTSkU5KJQ0IZ3sZnY9dZb8XcxRam/J7ru+uY+8mol3iL
-# 8KRe0IQihccTWz/oOmgf5QsIJFBydFOr0uUdSQAdUv1ZwEsl3p8ps2HpRGjZDBm7
-# LLM3el5T3wJGPbma6PX3xF3wspzbCo/e/oj/CKqhFsLZCiFpTdv03bhLuQYQcbiW
-# hkoXsRYfimxiZne5fCG0LfLGR9yiVdtYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTdUWcAPsQoESeUJB2EFPf/c5FdcTANBgkqhkiG9w0B
+# AQEFAASCAQAaGUW5z+CQPUOrbQQpsEqFwdPrrbeXvcH3CNaErgAxG08fP9YZkr53
+# HPOBlDV/PdTd9BzNosCPxuhoeC8eEfOb9DfzmBJsSf8apmxCNIoEgQWByNtk/nV2
+# 9KE/u5/TUgErBAxvXxXUFQfozepfH6n7s0y5crbexnId4CydVN3VjcpA8Dqx4df9
+# Tip4eI1j5R6X42seuQ+M3i8x131LWKhT1FVlkDgrk9x9o/GqxdiJz4Xl8u2vYDQd
+# K8kR1uV/jhKhJOxEwkWtG9vcN9ADBS0AObnmg+EkIXTSlLRGXZD2ivWnr5MzmCFY
+# 1ycVWqTSMqfN/cV1ficdaIkFoF/sps/2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxOFowIwYJKoZIhvcN
-# AQkEMRYEFLFAsxkO4RaxKCyXk6j3zh8eYPcOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyMFowIwYJKoZIhvcN
+# AQkEMRYEFKWQurFxazbULPKYdeoPOzoaTbGsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAYVCU/YBjevmLB/xgbwlZvneUGZu0FLZo5VWh98D0myWZL
-# Hm/woiEzNHh5aruaeYdHqqnjD65jQG74r9U4Qh2rvfbbyKp02GQzGOTSJd+SCwoX
-# YVsMyHCAQBeheganNV31HT3NWxSL8qfcE9z93GpRmCT2WO0p7HffXjGIn93OQvBg
-# Gt9eU80P5wdJ7Zee0wx3bAmd0iGvrhYwMkI6ezGQAuU1ASqQVURBnb3Nx8ElOHjc
-# 89KE/weSFZzDkZFiGC1n/LtIatIXi4JJmVE/PoaRupGHE88MsJNzuYnqWRk7ivtR
-# 4OBAx/p4lQGH93JhKe2zoB7MNwwdQfcJPPPLb2nf
+# hkiG9w0BAQEFAASCAQAi3Y6TKaqynkBZrA32ae4ONsI3M6w6Clh/tzmlkMJTWewv
+# nvLcT/CVfhxP7+quXwOO0YsxYu5dsJmdN8J5MKlGaAVKnN1TDpNPD2zngTkTeuUr
+# eK9m52t8+VW8j4d1Q+mu6EHTUks/JwLsZGey+VfvcEw4IP2aOz/4OBYjB2quYljB
+# jrM8OloVRwg9z+k9lLYdVb36znFFQ+AOvpow7xbRv2ueQGW5FMsKi5x5FhE3TuNQ
+# HFUDmwQ+7EqnoQTThxCqtZlxlRl1p0ViaxBSVVWf+2r+2nipw/szExAjgVP4SnlE
+# iaHKIdFEuz637DsGFGSsPEqnYRgtXK5rZb/s9B8e
 # SIG # End signature block

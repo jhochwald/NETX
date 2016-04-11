@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,6 +57,17 @@ function Global:Get-NetStat {
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
 
+	.EXAMPLE
+		PS C:\> Get-NetStat
+		LocalAddressIP     : 10.211.59.125
+		LocalAddressPort   : 1321
+		State              : ESTABLISHED
+		ForeignAddressIP   : 10.211.16.2
+		ForeignAddressPort : 10943
+		Protocole          : TCP
+
+		# This function will get the output of netstat -n and parse the output
+
 	.LINK
 		Idea: http://www.lazywinadmin.com/2014/08/powershell-parse-this-netstatexe.html
 
@@ -78,12 +89,12 @@ function Global:Get-NetStat {
 		# Keep only the line with the data (we remove the first lines)
 		Set-Variable -Name "data" -Value $($data[4..$data.count])
 
-		# Each line need to be splitted and get rid of unnecessary spaces
+		# Each line need to be spitted and get rid of unnecessary spaces
 		foreach ($line in $data) {
-			# Get rid of the first whitespaces, at the beginning of the line
+			# Get rid of the first whitespace, at the beginning of the line
 			Set-Variable -Name "line" -Value $($line -replace '^\s+', '')
 
-			# Split each property on whitespaces block
+			# Split each property on whitespace block
 			Set-Variable -Name "line" -Value $($line -split '\s+')
 
 			# Define the properties
@@ -105,8 +116,8 @@ function Global:Get-NetStat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWHo0kGXwqHhTkU/4YGhRIFUA
-# roqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCWleGJI7ra3rak+bvkeFP70y
+# 21ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,25 +260,25 @@ function Global:Get-NetStat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSxUyNmWJox5g3RMbLdplPjcG3ptTANBgkqhkiG9w0B
-# AQEFAASCAQBNhLHJRLnJAYP4s3Xur7DQ2WdILblmB6Tw+wHG/MIuzrn7DRuWrScO
-# khjmf8+j60zz/C8LN1sbaZUIaompevUtla8xmwROq787RIenJyrV3wSMFwnClgeF
-# VxMr6MNXUHdZW7iB7LlwN2pmq9cQgbpCSIOmtTlaBz/i5o/XCcwVA0B3x+CQCxJk
-# JAN/++AwLHqoBr9JK0i9IWBevmdZDLlGiXvySGdirv6OWQylv6L/03qAp4hf2F0j
-# x1ixYznaJIdrNt4hFWdlEj2kteZVlSVtooojhiQn/NZaXkRXc9xEwguHs7CTv+HG
-# mFWvsk9ws4SNOn6Pr1BgCJL2JpwxN8C8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR/B3In0oyjBxHwDSnoy0IIgb8ASzANBgkqhkiG9w0B
+# AQEFAASCAQCGBLa5kMKckNSeHa0/ReDv+ITXj1DTnVhQyL1yy9puGTgWAVg10Y6r
+# Ez55zFoakZ0Ney9EtGUvorupa3U1zKH8RYPz0jubTWaD0OKwi9VdB5i+vm2KuDLQ
+# 75AFhK56fCrvzuWO8LOUh04+b9IOXkbaWtpcHXI3BpHUD8FhFq5XqPMCKJgkwsi0
+# Y0Zz/B8TXP8/RMoA8m+9p5RWkvnxI+iwaSBOsCS4gcJ/N57Yc0jgh/L4Pn44zXz1
+# olnMuHGfYUH8pslUeFzwIwaJw+/BfYRutni8heG2vKecDOK7unRSsmwToOM8ESe9
+# xoJN/tIO0GcV4pFFwqN0HSTRt9Rt3+21oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1N1owIwYJKoZIhvcN
-# AQkEMRYEFNyj/uv7Pg+Wr0S3knG0JV8yuIJxMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwN1owIwYJKoZIhvcN
+# AQkEMRYEFL6OBmMJpQ88ENfL9OUtQpbA601pMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCZ9r8h7emYwo4BCDPdnE68Gex1C4NyHnC4mg1+eC9uzxBb
-# mGDGevitOQqN9NhHp+Cv8GMJcQ3k+z+Uxx72awTowbm1kS2NrJ2CSdTW32rdzWqj
-# Vzv4aThqrcZciu17/qvKYwyPStec9FSPZ534hA7cbpiE3cTeYN3B5DQHRJdpjRkm
-# c3mxb2CRoxiHcXMGJWCi2QXZy1Ym9+9bc6F6u3ElooaBcsANXoVMJICY7XH8j26s
-# 050+VSY7qVtAZVUXk8k2wZUMEJyWyyOd8ngPnQiMb+PLNR8PA0iIhcCOgkmUTZ1M
-# f734iAV8x/qmRFIGR1yRSOvYr8L61BawDo1BaXI5
+# hkiG9w0BAQEFAASCAQCiyUHTHJnf90psmVLXaorCfLXgv6yDJseHYf+kmV+gNs5h
+# TxF3TsxxQtVtIUbEFpgmF9opOYiwW9GohmbDCX8hc+GwlRccCot/BYBn4U9Q/ob1
+# mi9WGyxEWzVNjj+a4lz3z3zBfxh89F5znhi+eY2lDT0xf8DVitPB+LhHc6YNfEun
+# 1Rv0ZEfB2oCpieWEYB09QwpKPqexwM2/TqMaV+qNs0s7bRReP9bMc6QSvDihTvtC
+# OVOPhoigyLb1Vv7x1Dxbgf7J9H6INxzdExiFJSqg9Jbvclbo3ocutJyDV+gmYLSt
+# xtZPH2PELFYIVpwC2Vsy2gKNRA//UZgtCkp0SOne
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,6 +64,19 @@ function global:Get-PreReqModules {
 	.PARAMETER Path
 		Where to Download
 
+	.EXAMPLE
+		PS C:\> Get-PreReqModules
+
+		# Get all required Office 365 Modules and Software from Microsoft.
+		# Downloads them to: "c:\scripts\powershell\prereq" (Will be created if it doe not exist)
+
+	.EXAMPLE
+		PS C:\> Get-PreReqModules -Path 'c:\scripts\download'
+
+		# Get all required Office 365 Modules and Software from Microsoft.
+		# Downloads them to: "c:\scripts\download" (Will be created if it doe not exist)
+
+
 	.NOTES
 		Just a helper function based on an idea of En Pointe Technologies
 
@@ -117,12 +130,12 @@ function global:Get-PreReqModules {
 				Write-Output "$dlPath exists..."
 			} else {
 				# Download it
-				Write-Output "Processing: .NET Framework 4.5.2 Offline Installer"
+				Write-Output "Processing: .NET Framework 4.5.2 Off-line Installer"
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
 			}
 		} catch {
 			# Aw Snap!
-			Write-Warning -Message "Unable to download: .NET Framework 4.5.2 Offline Installer"
+			Write-Warning -Message "Unable to download: .NET Framework 4.5.2 Off-line Installer"
 		}
 
 		try {
@@ -157,11 +170,11 @@ function global:Get-PreReqModules {
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Sharepoint Online Management Shell"
+				Write-Output "Processing: SharePoint Online Management Shell"
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Sharepoint Online Management Shell"
+			Write-Warning -Message "Unable to download: SharePoint Online Management Shell"
 		}
 
 		try {
@@ -179,7 +192,7 @@ function global:Get-PreReqModules {
 	}
 
 	END {
-		Write-Output "Prerequesites downloaded to $Path"
+		Write-Output "Prerequisites downloaded to $Path"
 
 		Invoke-Item $Path
 	}
@@ -188,8 +201,8 @@ function global:Get-PreReqModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfxVKX+Vtqe1Che5jpqfq3Kn+
-# aF6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyFrugDtFkfe84p2XxNLJJ3K9
+# yGKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -332,25 +345,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQAYL8wTeS4EoAsITBftWs4PIf4CTANBgkqhkiG9w0B
-# AQEFAASCAQBi3fHvGV35xYjkzeoepj16xR9g0GAH7pCs0pp1/iwzKsH9WXor35gB
-# jIvC9rN8iPDIbsfRzHyss6MuxbJLS8XC3zXj4ShzC3IDiUuu0xm+fDbJFo4yh9dA
-# szwcNKhSSEq1kQ8ROaaxrvyXOdGURJksvbaiHDpaaVOIqU2c6bFK6/UibsNq+ySY
-# TYpagLKJM+Z9Epa1ipUAkwNywGb0UJWF/wJch/O6aU3klCsyyzC7qzH2eVmaYGdt
-# 7EumPaWek35SJe5csg84k2c5cFfDujUt12HoFxUDcJVHXaSMncdEGFExQhyO+7b5
-# OabcJdgm3Zglnw7MFtT5dSsAShCQ6dOJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSBQB2RCTG58QkXnutTOBw5eBDMwDANBgkqhkiG9w0B
+# AQEFAASCAQCqIRY73oZ69O56ZTU+Gm12NY1CttqMzWpumFS0l2NAT4pVjntNeCPn
+# poBoR5Z7/5EbWBmCUXgMIdK5mct2WkYQmye6m1ich2qnV3lD/RZj6P/V0d2d9/KF
+# c0NEML+MqQWnxGDi0QYqTJ0o1mfB35So7FVPGg3j/Xo4uBDRQAScy5UvVv73cPrw
+# 9sjA3F0b6gBHRbX3EM1KeK7CqSTeUAIORy21C5x1fdDZt2HFoDmOoWXCiVVDZuov
+# IF96Hjwfx7kFcPBnep0XROVI9KnS0ey3chQdecgErMWr6LAhmyzJPpENEJ+E7HcI
+# bKkNJFLS8fyzqMProVKA89mWAlqFbJGpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1OVowIwYJKoZIhvcN
-# AQkEMRYEFGmlKj7CN6l0RNEPSpiPUc8cDDO7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMVowIwYJKoZIhvcN
+# AQkEMRYEFFO1BzASe7Tofp3SDIonVuQlkHk9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAL7evMPboLROFxmfAbbCAk6jgYzZaGeNZVgIBBdFsS6Tbc
-# DTpGJITA2MWqfXQWn6ap/Y+gIgGNwLJFVgI4hvfQz+e3Bqrmn6OJkhxc/65/9QAb
-# lrOZCc8edsUiKXPvJooGoR+bXgAWspykolto+rhGOP1wigt4bneYkVeLRhY1zir+
-# bQ54cEFG6lMr5aQR1y+wmLFb3wJTyL8qFLASWBjWLXc4zrLi82j+PNQBIb0fTGmX
-# h6G6fMJ7ojlnma3y007pouD4Irnj/Hbi+sMkgREQx1ftSlh8yjuKPezqiwZyHF3m
-# r/BJpyM4cO7iQt+Gt0+pgBf8UUFbbq7pEMlDJWEl
+# hkiG9w0BAQEFAASCAQAt31dQWCviyqFDfJTgg0ojTeVVdg+6okbtvd76jHyNutP5
+# WWqu5afJOeCsTu1m3ZrlvNDVJlRAXQIpT6NpN+oz4aY74J6SOQukvrvgKUKx/bvi
+# 4+HgIeHbdoz5B+Gc8is+81iAc4R64ZwvOIcRaERfXBGxUxcvUVOOiBZ90F1HkPE8
+# zAj2N1OTrkIAzqsBCDNbaGGtKOLklSkp4RVbrzFVzYQb42GSO35KQnibnV3AyEuK
+# 74tOcQP4EiJtg6ibjW1JFjpiyGlEoIhpQ2o2YS4F/Bu1SsUY0dECn5c7Eo2Duwad
+# BTgzirpOqtKb0ePm46MZD81fHb5fb4DlRF+557xy
 # SIG # End signature block

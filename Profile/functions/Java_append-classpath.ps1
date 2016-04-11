@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,26 +46,26 @@
 
 #endregion License
 
-function global:append-classpath {
+function global:Invoke-AppendClassPath {
 <#
 	.SYNOPSIS
-		Append a given path to the Classpath
+		Append a given path to the Class Path
 
 	.DESCRIPTION
-		Appends a given path to the Java Classpath. Useful if you still need that old java crap!
+		Appends a given path to the Java Class Path. Useful if you still need that old Java crap!
 
 		By the way: I hate Java!
 
 	.EXAMPLE
 		PS C:\> append-classpath "."
 
-		Include the directory Where-Object you are to the Java Classpath
+		# Include the directory Where-Object you are to the Java Class Path
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
 
 	.PARAMETER path
-		Path to include in the Java Classpath
+		Path to include in the Java Class Path
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -87,12 +87,13 @@ function global:append-classpath {
 		}
 	}
 }
+(Set-Alias append-classpath Invoke-AppendClassPath -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAqX+/uXmOGni5Ewao/rUgPsP
-# 1aygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU571Eym084xDiy+QQCEshDMrc
+# t1egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -235,25 +236,25 @@ function global:append-classpath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBStRpXV7WotH6c5kNE30BkmEhcXnTANBgkqhkiG9w0B
-# AQEFAASCAQAtKEivtWG2iA8GeLT8scV1D9zF+7gVQT4oceN5gntSR/tQNbVS+WT1
-# JciKsSTRtKC3BI77TyOZJdDPeRz8UmHj+AdNACbpAX4WUwQ6yNsPxOtV+QJgzsOE
-# VOux9HgrL8+SxTbr5D9w3XjMJ24MwoGhd685v2/m9uGgLub25jj7uo2zbNnDyl/E
-# 2pCi1qjLys7nf0Y5lECu2S3EZKImXSp+hX+Y1f/KRUS+B7bnOgZY67L4d9NiYJo4
-# UxVpx0GVuDrUfm7BOTzhIPCtOkSaocHqE6NgwLZ3qInU2kcWHFQBU2t7EEhNHlDs
-# a5cJw71GwSHejIyASoCsPOPVif211zxDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSkZJXmqyAnTxkZsKY600Kr3cpPqzANBgkqhkiG9w0B
+# AQEFAASCAQCidIKmRaGHwx7v9L4ULIHNEMQqMYG5HhCTkhRITQDomQVrWeva8/Fe
+# woC68tOy7A0OlxPq1NV4FvYtJhdOXeezyHbbX32UNg6t0P7fSbxHETJgmLe4Tzqh
+# pNmfGN8K4cqBx+kN1WrFeVIOJVsIXue4dVfdwgbsNGyhFQvYwTJ+Cgo8PxtbCXIs
+# j2y4OrpwFI3E/AglSeUXAdx1xWqzpIFe9JUK2nc6tIW3eYRTQwIqh2Q8lviDpeud
+# A1/6o3YC023NWjye7jzI862gsYR0Dv66oMvOga4RjbgXF862j84WW1/Ps4G5ABJI
+# Jkm9xZBEtOvHtKo6PqG7TEUrktP0CcNJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwOFowIwYJKoZIhvcN
-# AQkEMRYEFONgwbkPobk0j9rY8OothO5rUN4kMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE0NVowIwYJKoZIhvcN
+# AQkEMRYEFEi/O4hAOgN3OHgmFEX5Lugwvy3PMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQABgL9PrCZdTHRLyX1YrduDXlPGz6rwkKmTCoIDWrG3I/YO
-# wua2Q5n6oKuz+TLxskz18LLr2z07f9qbRUfq8sY+GjGWyp/WYUYXG4IF9z6eOtDN
-# sXhqS1eOvuKsBlwoAaS9Q0LPU7g/rGbk5Y0NkNP4pdn6VtapZXk53gF1Xwh6Wn9s
-# NZuRCDu9MjTY1K6GDV44QLkJwfHt1z9139esLkBr4THDwpPiVjYrCVMFwP6cozHh
-# wGbwYYKSJe5f9FBV7TisKfqzxp1GbSaozVwWCmZuAsOqulcn3c4NfnHkbuMhIBW9
-# nywtL1GdA1Itj6TUGe9aloV6TFz52nZ2OflRX5c2
+# hkiG9w0BAQEFAASCAQCSeV3qltYXb9WmCnAjx2UoZLrBv7ogFKUy4cl0WlUD4a6f
+# YHGI9t34Tmca080eICEr1VN5sppJ35d1vs7dWLrzubDx582uXQ0Hr3PikifYQ4Q1
+# Nh7z11HnonzfyC2kSbGCGOmLImlTpqCUrNDulq49zP5D+EaF8Y9bL+NojAAl+cd/
+# FAejGDL/tkchKMZELJ43r5mcC7qdhDmXwLO04B4VWGksBDlmgOrQ6vzpEJbrS1Vi
+# TvpPRsj8ZRvSLfvgmPq9JfknrpgYaYayEa8gh0STAyz+M0EHw3+FNDE6304t3MGD
+# BIzrEI08hou1OGyg2ea+juLe3o18VgI22kv4X+LD
 # SIG # End signature block

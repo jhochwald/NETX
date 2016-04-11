@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,7 +46,7 @@
 
 #endregion License
 
-function global:time {
+function global:Get-Time {
 <#
 	.SYNOPSIS
 		Timing How Long it Takes a Script or Command to Run
@@ -65,12 +65,20 @@ function global:time {
 		PS C:\> time new-Bulk-devices.ps1
 
 		# Runs the script new-Bulk-devices.ps1 and shows how log it takes to execute
+		# We use the well known Uni* alias here!
 
 	.EXAMPLE
 		PS C:\> time Get-Service | Export-Clixml c:\scripts\test.xml
 
-		When you run this command, service information will be saved to the file Test.xml
-		It also shows how log it takes to execute
+		# When you run this command, service information will be saved to the file Test.xml
+		# It also shows how log it takes to execute
+		# We use the well known Uni* alias here!
+
+	.EXAMPLE
+		PS C:\> Get-Time new-Bulk-devices.ps1
+
+		# Runs the script new-Bulk-devices.ps1 and shows how log it takes to execute
+		# Makes no sense, instead of Measure-Command we use Get-Time, but we need to use this name to make it right ;-)
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -97,7 +105,7 @@ function global:time {
 		# Does the file exist?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:"Error: File to tail is missing..." -ErrorAction:Stop
+			Write-Error -Message:"Error: Input is missing but mandatory..." -ErrorAction:Stop
 		} else {
 			# Measure the execution for you, Sir! ;-)
 			Measure-Command { $file }
@@ -105,11 +113,19 @@ function global:time {
 	}
 }
 
+# Set a compatibility Alias
+(Set-Alias time Get-Time -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
+<#
+	Another Option:
+	(Set-Alias time Measure-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+#>
+
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULpC4cpMB0Y4kaXiTj5N/nj9H
-# DzSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURc7NcI7hKN+h7ZRIBj8Ppmo+
+# TMqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +268,25 @@ function global:time {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS4R6TOe3YuKNZQCTtti6s+eRJqBTANBgkqhkiG9w0B
-# AQEFAASCAQBl2CdSzilkC1NcoowPLip6sljN7fPzFI7Xtmx3XfqX3PxDJws1KTvB
-# o109NA/opspxzfsgPqEeXD8P+OKZyfapLjA3LbfT/hGso515SnxbOeVY+B6ZMtFa
-# aCzD39nrizileAqJo5KEoqwKY9fHpAsmRw1AW7Y+QWGbM6b0rATXdkbVhc7gyc1q
-# dprSfGcC+HOi2nZDXElCrArroBtD5LADGFiKY/DuDp0OxaWTkBUX6g4kFKWWZdy1
-# MzNCeIoNhfAjePcshxRMt5cJmtct1aDLNWL/cUSzWP9ZRvpMG8yaXjadkrIribbU
-# hhAN5bAXY34G2y1vrwi0DWufP9yLWOxFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQv78NvNqSD9AwsPVBt52DlExBkVzANBgkqhkiG9w0B
+# AQEFAASCAQCHkVuR5jR1b0t73duRfa4SK9JRdssrKUE5ZJ6VOWPxfjIRJgkfEm/y
+# sGdFXovL4litc0mxXsZXN83vyNuRovMJRCw4pzFuQSjb5ZTdY8gJfPJdimICOUN5
+# inGepCZzmc/uWB1+gENcpGyl7X2/4e5458fml0irTQtqJEy4RtwSgWaRWnvVyVkR
+# MKTTr/TJi3uphrExX+qj/Lh+0gabE16xGdwDphEUvPgBXBZzxprkj02QbSo4U3Bc
+# uvmpIkLQhobzA7Mw/UwfxrCse5Gepu9t9yZhtiL5C3NGmXYtskGFWB94fN/d+Ai3
+# WpP9oJ05+crobog31oSSdguE+WXgYIt3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcyMFowIwYJKoZIhvcN
-# AQkEMRYEFOXtN2WBUf+RrGBYzMCFTrltI16GMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyOFowIwYJKoZIhvcN
+# AQkEMRYEFFFNgc4xedsCffDVNAs+KjaALp1PMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBeLFkfuHmuC05CDprjiyGkfmGFHaeBCHPz4oliEXJ+iENG
-# i4ZatDCJY8XfA+eITKn+mZUQ4OPtiK1hZxoFWq00nzFxSKXpaOwD2iv3iZZ6lvVE
-# 6eiDQdiBANgyrl2rk+u2Sna+R0Ese72PmWBRPq+xKiPh6ew19VwRlYmuTThAOZ5G
-# hOqb05mTOCrvTwz7zDWyPr9sfhL1PrVGkg5q4o7HaFaRIXjLHQOlAbyXDlBDZ8Ia
-# 355/EgBc2O0Ncw8lAIUZ2ywrDMxWF/gc7KtgrLgnUJoNpre/aa9dGKqDpESk0ns0
-# Hdx0szv5C1UXNrErxMS5XhB+xNN1D3EkwjhKkWWf
+# hkiG9w0BAQEFAASCAQBIKGjRyQ0n4rKKGbdPST8IRzZdKCPeQv0Ln9nUSR+LtJJg
+# DJoR5garv9ivdbOYqbSYnAS9fXjun6hxs9dQsszbh79L+tvrzKXfjkMD6xG6gqGg
+# /EoQfwFvzAaVEuYdUh+DnSE2erzgDHH8fk4egn6oEQCN4F6Tp3/LLmqWhlz0BN1y
+# bB5RbsDDXKlhq83S60pJxSwacofmtTDAn7gxMdNt1VrMZe4nUVVGl0wyBZU/ljfJ
+# jHAgAXhMdT4tZiU2huWjXElhw397HM/Ep5T08bhqA7hs33XrujoRhy+2VhDCkq2o
+# Bo3M5wIx1E0SLxSdeU82lWYVZvfOn2GS2N6TOfBa
 # SIG # End signature block

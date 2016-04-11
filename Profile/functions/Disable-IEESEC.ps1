@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,23 +66,23 @@ function global:Disable-IEESEC {
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -Admins
 
-		Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
+		# Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -Users
 
-		Remove the IE Enhanced Security Configuration (IE ESC) for regular Users
+		# Remove the IE Enhanced Security Configuration (IE ESC) for regular Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -All
 
-		Remove the IE Enhanced Security Configuration (IE ESC) for Admin and regular Users
+		# Remove the IE Enhanced Security Configuration (IE ESC) for Admin and regular Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -WhatIf
 		What if: Performing the operation "Set the new value: Disable" on target "IE Enhanced Security Configuration".
 
-		Show what would be changed without doing it!
+		# Show what would be changed without doing it!
 
 	.NOTES
 		Additional information about the function.
@@ -101,7 +101,7 @@ function global:Disable-IEESEC {
 	)
 
 	BEGIN {
-		if ($All -eq $true) {
+		if ($All) {
 			$Admins = ($true)
 			$Users = ($true)
 		}
@@ -110,7 +110,7 @@ function global:Disable-IEESEC {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("IE Enhanced Security Configuration", "Set the new value: Disable")) {
 			# Set the new value for Admins
-			if ($Admins -eq $true) {
+			if ($Admins) {
 				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
 				try {
 					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -121,7 +121,7 @@ function global:Disable-IEESEC {
 			}
 
 			# Set the new value for Users
-			if ($Users -eq $true) {
+			if ($Users) {
 				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
 				try {
 					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -140,8 +140,8 @@ function global:Disable-IEESEC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUooH9TpxjQlCB0Bik0x5pEGHq
-# auqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUg0JwyXalbFoJhwmbD2Lg3+eJ
+# vpCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +284,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSdF7YddgqJFIrpAmUmeE8WvyFQgjANBgkqhkiG9w0B
-# AQEFAASCAQA0/iK+91TjuvlDRDWzDiS8l8vFnnK0PBfNkObeb3csh/qa2T1O3LVi
-# VkSjFpyxGnXoq42xSrFY3x9F6lf+olCFwnuIVbZg+VBTDsE1yIQg8e3/rPZNKHuM
-# lZibHs59V7AMEnNR5mmCjOOd/hqxtscK6Ht1pEbxOmz6/pW8TPJXoKHu6j72lDdQ
-# VDLiI04ik2MN7wzsV9wsYnFEjMKuFh1Fy8sTyJjczl3thPH81vjv2HPIC8ongyNz
-# ytvSzHOcL4MngYQNUF00HoSbxNH0z25EpPGOS3dvTaU5Mou75Yu6n0TRc4pVQLCR
-# wubY/L6nPT4m4iY4wkgyGBouS8gFQt9loYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSXl4kiAjjE4rZ8qH4ihZk8IxFitDANBgkqhkiG9w0B
+# AQEFAASCAQCOAn+X0oIwGmCiEe8EH+R2Sm8xZ1/D9yJqpAQM0H4n4UHOxFn1T8ws
+# w37n6zg1nhpSG7Ha2GouCyFUE4LI1PU1jl1n1R4ducLcfMmKNfmD0HA0Yorh+qzp
+# And0Sy6tO0X+TUklmasAY62StkWvj9nqVB0URkzKfMHpwG/VEKELzjmE2YP9Gs2y
+# ptuIdjSJJRoD2zIa8VJjCigvOaeEmp3sLe+ID4R9SVh+y3jsDQJ9HEaYtN8jMv6y
+# 55TRgwNYBdDleRqkdA323IbbnNTJbNKWeSusQTSkUmAvCGbHnN+C5hdZDrcWy2Nf
+# FzlW4OwM/gALywLO2VQ9R3rD/awVtI1/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1MFowIwYJKoZIhvcN
-# AQkEMRYEFCdfIGuAZKbAcJkFN4IPljRQCWMWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1M1owIwYJKoZIhvcN
+# AQkEMRYEFKFSOSpFw7f6fPJ+pgGtjqBaeqIPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAlwCbWOKXyRAwIBXXMdxMuuQ27np3BpMndg1RK2A1bWOgu
-# bzcQpukQmotjJblc1wA2PThrhEfelIvK2p5N/KPeBSW5WrnU876+JJTBsS0w0K/Y
-# 87c6zwWKz+cSuaoYUUMZB4QI6Sv0MYY56BgxcPZCFSFOo07DPKe7zAwxBBwNAaap
-# C9GPwz8gp+YdZA9JVDEbDCYoM3KvuLrJmltdGgsSzWqeHoDi4ooNNOmygT5YzTqm
-# Rw2fTd6sdnl3EvvFDVM1uBZdbrJcCzrHxxZ5tuMfw6sb5OmG6OSoOGvq5WJPbkTd
-# FXpO8CikmoQ6twQOIgtr6N8MwzxbJj3ghLQLsQTz
+# hkiG9w0BAQEFAASCAQB11NyPyu0rOUDQAHynKKWqXTyKCv9btXnbaBWkBUkb2dKF
+# 4uh7Ty/n+K1vxwdRQ3OJ+vaqKrFjazn2v8BXMLlOCu53QNme6fOLcz33XjDmRV7U
+# DByCDnllP5RCiv055yHkAuR6ZW8fEWmU6HAuvAmne16MfxXal5AJTdUAShLmVmvk
+# LtztwTZNoPyvcf3T2oFogFdlY+lm38MfkEjYeS/PMXGEJM6pokjvhf1oy5qlX07d
+# YgI3P0NVDONWFHsSEjgFz6vma0Vbxn6lzKoTEevvrBJ3wNwKdrReUWq7TQ9wOL0O
+# WeX5CU2pO6pHHWsmcG0usmD6xNjDvvDfvJNdcj95
 # SIG # End signature block

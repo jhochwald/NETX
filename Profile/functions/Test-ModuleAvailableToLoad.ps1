@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-04
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -55,23 +55,25 @@ function global:Test-ModuleAvailableToLoad {
 		Test if the given Module exists
 
 	.PARAMETER modname
-		Name of the Module
+		Name of the Module to check
 
 	.EXAMPLE
 		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
 		True
 
-		This module exists
+		# This module exists
 
 	.EXAMPLE
 		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
 		False
 
-		This Module does not esist
+		# This Module does not esist
 
 	.EXAMPLE
 		$MSOLModname = "MSOnline"
 		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
+
+		# Bit more complex example that put the Boolean in a variable for later use.
 
 	.NOTES
 		Quick helper function
@@ -89,6 +91,7 @@ function global:Test-ModuleAvailableToLoad {
 	)
 
 	BEGIN {
+		# Easy, gust check if it exists
 		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 	}
 
@@ -104,8 +107,8 @@ function global:Test-ModuleAvailableToLoad {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGr6Xo/VnLh1PmwoTA/o9JFfV
-# ZYagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZupxFk5Ta7ndKvjbGpfncTLF
+# RQygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -248,25 +251,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTVuHpOV2icnscvnjg7ASFGjMJC5DANBgkqhkiG9w0B
-# AQEFAASCAQCYvgXpPtaDO/0KRG5/CD2dsY9luBDZjU0eMhCuyAs+8bljbNAOZHk+
-# brp+nZ6lK38+r3uOxhbVV/2KhRIzbmicE3iS8VVs1U8R65SqG1YLYk5CXX29PPjS
-# 1iCF5mhvCFxCrW+BvRa8WxkAAWowWRBJIEs8vAHIV4nx/04HPP1FoITcZBYhxwRi
-# Sp3aLv4++o66zxuCVsTjQyeIZSYzkbNTDs0Xn8yH1ZKBddg36hAeIK3oDmy7TQ5i
-# dZ5O9CXbJiVbHo9szctKMlqqTNACgJLG5p60zTLOi8s7z6AMquqePBnZGHSy/K1n
-# anLao24exsuXCRprtP1Xvb/VX/E1M2c8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRDkT/hDv0LtRdCxK2hW8MQ075l/TANBgkqhkiG9w0B
+# AQEFAASCAQAE8J2h9nCmN9FweezQ0fPJ3BdJy86im+sevWjcvHarjWSfrEOyhGET
+# 3FNaKD50YWSG4aS2ENEwHvFF1sSiZRGtwTC/y+LVpI5UKQ092pFso+KN+EyZaOJz
+# CzXbhvV7BKqAlUJqSbxb3krLklMMsTrV72BQ715hVgRYTfZMgXsB7WTqPmxsX430
+# QrXtwRDT6fQ6+VB0Te8eGDyluII0grzoXNsECsw0k3bRXJry/StIjsQFBg8bgFCD
+# fivt2cpFu/+ohInXIG/+2ftro9QxK6CfPhL/ndIXj1+83m/n1ihrK8V5YYfJxmHc
+# qBntdWSFilDw5fQD2m7O1KCFmnd5I2tZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcxOVowIwYJKoZIhvcN
-# AQkEMRYEFDXykmCQwQLk7vUcJwFCiS0WXoSLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyMlowIwYJKoZIhvcN
+# AQkEMRYEFNZ6Zs7zaSeSq/S0GHPns9bia8kIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAXUyOYTrtsluCWlbwUSGjaebCv71Mup4viYyODxcdEzAEt
-# 34oM6Ll2HGBWU2hsJjrOzfLL9CSZa85cj6i/Mi0Bae+A3Ci5N2BQ123CEdlbyTG0
-# r5iQKvx+vB0YTXAisn5neTE0E4gAFFkfAhnMRPuz8HRLJbmuRb+RQJNBcuXQ/Qns
-# M2h8lQp01dldGGzQd8f3P5eIz3kEFk+LdYlv2lg3aICCVXtBHJ+HWKhurI9fhOpy
-# LezlVcXBPnL0LpN/DfSWbBFiz76PqTvflsYR4+5r342/DNcn3ogmTEe9tXNOkp6H
-# lz63huXSbZyWZvFSrnolZHtes9xoI4kRRykfRCbf
+# hkiG9w0BAQEFAASCAQCoDUgAytkWHqKqvG8lK8NHOqrEXTlIESXyU6Pn0yTTTVfL
+# 0xL7FbFf05hwxHLytswo619m+QkKHfa8Khue5sJzVEL5w/eGkm/A5B8fNhl2fvT3
+# Pd1YRYVo/FT1bqp4SSJdmpOSYdiPSXpP3l2EktjqnbNfxi9hJlBV9KhBGGoxcXWi
+# AdaYO8oFQnDlWo5alPN3wLSoIk0DZNEooMB1c23Bx/AsGJU7uATwM2iJBUKiTSc6
+# S3aFALbwsa7+TOXBp8BtFaUdpjm0r9QlI76sckO1blYO+dssRmmnd2bL+nYNH6uB
+# 6/Ef7MzAjGMxLfJEAvOx58ESJA+IdB+fmxVeKu/y
 # SIG # End signature block

@@ -25,10 +25,23 @@ function Global:Compress-GZip {
 		Enforce it?
 
 	.Example
-		Get-ChildItem .\NotCompressFile.xml | Compress-GZip -Verbose -WhatIf
+		Get-ChildItem .\locations.txt | Compress-GZip -Verbose -WhatIf
+		VERBOSE: Reading from: C:\scripts\PowerShell\locations.txt
+		VERBOSE: Compressing to: C:\scripts\PowerShell\locations.txt.gz
+		What if: Performing the operation "Compress-GZip" on target "Create new Compressed File @ C:\scripts\PowerShell\locations.txt.gz".
+		What if: Performing the operation "Compress-GZip" on target "Creating Compress File @ C:\scripts\PowerShell\locations.txt.gz".
+
+		# Simulate GZip Compress '.\locations.txt'
 
 	.Example
-		Compress-GZip -FullName NotCompressFile.xml -NewName Compressed.xml.funkyextension
+		Get-ChildItem .\NotCompressFile.xml | Compress-GZip
+
+		# GZip Compress '.\NotCompressFile.xml' to '.\NotCompressFile.xml.gz'
+
+	.Example
+		Compress-GZip -FullName "C:\scripts\NotCompressFile.xml" -NewName "Compressed.xml.funkyextension"
+
+		# GZip Compress "C:\scripts\NotCompressFile.xml" and generates the archive "Compressed.xml.funkyextension" instead of the default '.gz'
 
 	.NOTES
 		Copyright 2013 Robert Nees
@@ -114,9 +127,9 @@ function Global:Compress-GZip {
 				# Be Verbose
 				Write-Verbose "Closing streams and newly compressed file"
 
-				$gzipStream.Close();
-				$output.Close();
-				$input.Close();
+				$gzipStream.Close()
+				$output.Close()
+				$input.Close()
 			}
 		}
 	}
@@ -140,10 +153,22 @@ function Global:Expand-GZip {
 		Enforce it?
 
 	.Example
-		Get-ChildItem .\RegionName.cs.gz | Expand-GZip -Verbose -WhatIf
+		Get-ChildItem .\locations.txt.gz | Expand-GZip -Verbose -WhatIf
+		VERBOSE: Reading from: C:\scripts\PowerShell\locations.txt.gz
+		VERBOSE: Decompressing to: C:\scripts\PowerShell\locations.txt
+		What if: Performing the operation "Expand-GZip" on target "Creating Decompressed File @ C:\scripts\PowerShell\locations.txt".
+
+		# Simulate GZip Decompress of archive 'locations.txt.gz'
 
 	.Example
-		Expand-GZip -FullName CompressFile.xml.gz -NewName NotCompressed.xml
+		Get-ChildItem .\locations.txt.gz | Expand-GZip
+
+		# GZip Decompress 'locations.txt.gz' to 'locations.txt'
+
+	.Example
+		Expand-GZip -FullName 'locations.txt.gz' -NewName 'NewLocations.txt' instead of the default 'locations.txt'
+
+		# GZip Decompress 'locations.txt.gz' to 'NewLocations.txt
 
 	.NOTES
 		Copyright 2013 Robert Nees
@@ -226,9 +251,9 @@ function Global:Expand-GZip {
 				# Be Verbose
 				Write-Verbose "Closing streams and newly decompressed file"
 
-				$gzipStream.Close();
-				$output.Close();
-				$input.Close();
+				$gzipStream.Close()
+				$output.Close()
+				$input.Close()
 			}
 		}
 	}
@@ -237,8 +262,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUp3O0FIQG1gEyF8DL3CChERlv
-# 6RagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6pBcj0KlViFSCvtgOzxwmz9+
+# tA6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -381,25 +406,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQa5pBupWCFht//4Rag5fjlrSL9UTANBgkqhkiG9w0B
-# AQEFAASCAQADC+FZGsmguQSPR12TTqmUWPe7tJhtNiavzAEivE7PTvPX16C+DW/h
-# dI4r0YOXfRs2CtD22tRTWNtnIrrxWWEbiwmQqxIaXhHpreNsKCma6ynJvTRg1evS
-# 3CnoOp6gembBIhC/+v1uBhUR+SZD5Q84t14/xajzxrlgKRR+RWcGqD+KNBPMPkDK
-# H8442lC00ofaKP37EqnKqFqtte093+vsGM5jsSw+qTe4qXIxUVUbamJCP87QnzCW
-# UOvnA90/MKSLYyU3aQ7l4qANwfPxB3yncYZGosz0VnYF71XrNQUHRAFwNU/izNMM
-# ogS4C5+8YvJvObVBE7Hw4p0KqvhkXy7GoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTk0OGziyE3HzB3vXsfPbnpQ1NyMTANBgkqhkiG9w0B
+# AQEFAASCAQB8ZZVxTCEPccFJYx3kvuO1cCS6orYoJfzJazbyDRCjWp7m8qQLTa5N
+# LTXm7IntF4exeumbNBLU+trSn+Tsi8EBwCKojTMFJd89WtyytpZeYY4EL34NU6xA
+# RP2cGltYNXIMUntaM0LVHnDNutg069ZcSU5lX+ZviijOL06DOwLNjtzLDTMI0YQh
+# yzPabDvLSmCJ51pYUorMFAx/I8ulh97uRsV5ha+cL+tNL7QdbbIANJrIx4p+pXAM
+# HORST+KoT2bmwATNj0OPRChjWTW0Idtmqta9qhcadBK5B2bIWKrzEgHptTV2OMPE
+# 4V3jNMkY9ujCc6mfavufpheATj8e8QIioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzcwNFowIwYJKoZIhvcN
-# AQkEMRYEFCSlyOsb8858r9e5ehLKtGytyhWaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyNFowIwYJKoZIhvcN
+# AQkEMRYEFDgQG8BFLR+2uQiuU8/D0HBCdILEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBZGGj3/3w2Fpj9Tt4Eitb7TiBFfk4xksL611Cww2py44pZ
-# gW8joBaIDSmLP/PsjwHweHEBPjI9YdpqFITAZqDj+GubIvquodAXpjPncCrylB6v
-# JXYwXmv34KP2n6lxV6sqWFaDAFt2pAW1hMVLmTE55DmOzvizI9JaAqIgm+OzZR4C
-# sBTVirUTHCxevSxsrtRgD1x1lYAFOKsxrEe6ewNGsBjJSzJ2P+bi115Ynkvqx+el
-# 6JrHbh9Aco1GTwSeXTKBbbn7I//4zeWqGDBKtumq34yDXuZiNNJlhDkWWUtheYET
-# LEB/QPi+H9GupYfwbicsk0dSPLGNm+USDxwMQXgB
+# hkiG9w0BAQEFAASCAQBdvLF5TrMyhFoSGdQ4oVXf+3RryDMtdid5Dzj81G/YqO3I
+# PbN2+BQmFOnMRpL++nBCYLblqICrRZKoyVg1A4oX/9cEFkEB5zpp1COQFJORKNd+
+# NnOgyThJqI53lS7cMi8vIMEbKeCBLBAY481fm3A2Iy9AJCRTzz33ZPu22FmkUm/g
+# zZjqbGS2R661wH3bwYSGSWUWpbTMuNriAKtan8Q6IG37BEg7p2vPmIZB/4+5EWgH
+# JaX7uRYKgqezpkikjQMyf8wJoCPHjtZn1IENRBNyORqsfu/KOcuPgK/AVG7ocRNj
+# rSqNT7+h9q6MJycD1W6UGr+T9XeIMhYBZtP6dKQz
 # SIG # End signature block

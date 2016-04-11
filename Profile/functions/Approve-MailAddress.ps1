@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,33 +64,28 @@ function global:Approve-MailAddress {
 		PS C:\> Approve-MailAddress -Email:"No.Reply@bewoelkt.net"
 		True
 
-		Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX Filter to see if
-		it is RfC822 complaint
+		# Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX Filter to see if it is RfC822 complaint
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Jörg.hochwald@gmail.com"
 		False
 
-		Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a REGEX Filter to see if
-		it is RfC822 complaint, and it is NOT
+		# Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Joerg hochwald@gmail.com"
 		False
 
-		Checks a given Mail Address (Joerg hochwald@gmail.com) against a REGEX Filter to see
-		if it is RfC822 complaint, and it is NOT
+		# Checks a given Mail Address (Joerg hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Joerg.hochwald@gmail"
 		False
 
-		Checks a given Mail Address (Joerg.hochwald@gmail) against a REGEX Filter to see
-		if it is RfC822 complaint, and it is NOT
+		# Checks a given Mail Address (Joerg.hochwald@gmail) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.NOTES
-		Internal Helper function to check Mail addresses via REGEX to see if they are
-		RfC822 complaint before use them.
+		Internal Helper function to check Mail addresses via REGEX to see if they are RfC822 complaint before use them.
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -139,8 +134,8 @@ function global:Approve-MailAddress {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUkJgt/r4LlKE/n2G8TOYJJj6
-# 9e6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4F8uIpi29DUowf6pqZ+6r2MS
+# j+ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -283,25 +278,25 @@ function global:Approve-MailAddress {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSAOcHhUiIPP0166GEACiniW+QiEjANBgkqhkiG9w0B
-# AQEFAASCAQAfw07CaTQ7LtLyeHiBw7qVmxHhBc1iu2rQweR7uL1UucyhEg3lV6vX
-# NjgCnhSEI7tZhLjbv6+2duKE0ZDP5ecKyQQGbgf6t4m2EO7UQxhda96al+EaDDgd
-# 1UsFf1ULRL6eXJROqTNap4nwycH0Ab9ELpc1QBokgbJfPI5JGUXHSZbp4stQGXy7
-# V/lCKNGsF+Bc8AkNd19V1Bg/XZjs5eDJo5FnEQdbFAB0CCVLoafqToHA66EHN7IR
-# Hzyed0SiX6qXT3EHSidu6iwEmFiAejUyhvOpeLrDN7x3NRYGpKedMmc2h0UGB/7k
-# wZDKBtzXdxV7qmUD9kgRlNLI2GYDyQW1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSSjvG/x1Lqmuiztp58RZXe0OotljANBgkqhkiG9w0B
+# AQEFAASCAQBeRhsdV+hnv/O5gke3qMgmBbyOQ1mXn4Yc7jmI/04Rl5epRimrkLQ7
+# GtlF8pRUG01wj8zV6QejgJI2nuHKohnAMEmBcipuPLQ32EwhOdsIpmqCMEEECLwB
+# Mik5o4SF5/Klkf8GiJRbSqHCDH4nbrrJZP5VKWkfDJjjys/cF1BGuH7BdRlj3K/y
+# lhvicw6HTbFBQQt6bE387zA/NI6vUWrX3OQjhDU2FJerJ/jPCVW/Q65VTeWZI1wr
+# kBL0PWpFp1Pcb8+qTboctAySmyOFXdjrmO7oPjxblSevxml4TEvaOHI6Q2Br8j/E
+# 5MArs6WNFdJC/oJ1s/X6jFfSoDSCtVH7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY0NVowIwYJKoZIhvcN
-# AQkEMRYEFKSskueiR8NUKUKBmm+k91Y+HnfIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0MlowIwYJKoZIhvcN
+# AQkEMRYEFGcOH3xdJGglJxQuJdIwH6dJTwlcMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAsvRgLGEYhxClO7ZiQDibYjVtDQbzIUUwRMR2IqD0jlLRc
-# NElZzumRuYc5a8svJqeWfTAjMi+AHOUeDhpR8Tsu30xU9+XNL4qkobZ6hItq1bes
-# tlrqvxcNQsjPkUJX8xWmQ1znpDkzzttk+jQw/iKZP3p6eJcsTe4qgfwsna+fTiSq
-# RbL+Cx5zP3eAkFh6Kds8f1leBQm/IVaD7b54Vxkwaz8Jo+4DSytZ+3sGnXI7ZHxG
-# AbZq5rRdBVq0gxyxiErfJg/CJu1sNZiPm4yR/Ti0G+1ukC9UdzuxuTDjAOKKx3aY
-# i2Nt/ynVngP02j2OAplzf3kfgwsOqmw/D4kiwR/B
+# hkiG9w0BAQEFAASCAQADE7E5fMAOiU3lEruJdGWyqbqaARC/eiwkZ8gyQXjyfjRE
+# mQa8tLdwezkKbt5uV1ct+IgiCCc/FCvNLPepaAvvxOHl2L2+GLYeB6gC3Jf/HJsu
+# lbHJTTxTC0qSryNyiI/Y3MToo4ufIcPH2y7HwBEyrasd4gELRPuRntGoHjvxl2tw
+# F5AvGvMKT/1Hp+Zfn8P2wmBSa++FfMIfEgH69122QYbqmyguQWfaXSU02U8lcPSP
+# vCeco6DeOb8Yo3PVeXSrtwLBY4y8/gxX5TraDxh3q+SZvFX/M1mynUZGU1G8VyVJ
+# PMGMHZwtxaJdGMuLrNH1oynOX5H+bBcZoe/+dgc3
 # SIG # End signature block

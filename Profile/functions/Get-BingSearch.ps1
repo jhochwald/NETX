@@ -19,12 +19,12 @@ function global:Get-BingSearch {
 	.EXAMPLE
 		PS C:\> Get-BingSearch -searchstring:"Joerg Hochwald"
 
-		Return the Bing Search Results for "Joerg Hochwald"
+		# Return the Bing Search Results for "Joerg Hochwald"
 
 	.EXAMPLE
 		PS C:\> Get-BingSearch -searchstring:"KreativSign GmbH"
 
-		Return the Bing Search Results for "KreativSign GmbH" as a formated List (fl = Format-List)
+		# Return the Bing Search Results for "KreativSign GmbH" as a formated List (fl = Format-List)
 
 	.NOTES
 		This is a function that Michael found useful, so we adopted and tweaked it a bit.
@@ -91,8 +91,8 @@ function global:Get-BingSearch {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjf3dWxcwp/oW0tgF0vBgVsVK
-# ywugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpszswIj3UMDl1EjeV8nl1h6+
+# YcigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -235,25 +235,25 @@ function global:Get-BingSearch {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTmoWW+409RLSX2THAST9/uusMfAzANBgkqhkiG9w0B
-# AQEFAASCAQAzHMqGNGFmbTrkyS71DiTdnZmhdR1DmLZcdpCmLTHv7RAkCrC7Jd0c
-# dHulaUsWPGBi0G8PRRm+HK0wyLVhCAXyZj43OgoHl4tNfU2bzV4UU0HHStMTaFZJ
-# OfwOqqqgi+dOLsG1L9gRoU8Mp7oocceoOfzLdlnKy4CUYquI3Wj/BGzKJSjx+IiH
-# ZrNJIDadXsp0hLylxsni2DHGeiF5nJfGek3LOaf3rN5kYfI6FmpaYehqrgNnGVnO
-# REGcUAkGkYmbRKf1qbgXfmrLxCm5ocW+x7GGFQ5DiS8WeeZGHeU5hEarsoqCatRX
-# RxmAn4Xp5Dj6PdGklV8303kXRyPru6AKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ4xBw6dpaLC+amhbKEXQLoUNFKTzANBgkqhkiG9w0B
+# AQEFAASCAQBBfWe3iSi55Vf33eWXUYzCp6A8QlQmGjNzrmhcNhljXr6J1suLtdhK
+# 0o32b1pZg+XhHp0lQIxJra3giXzYLQwq54dpPy92ne1q5RyPlGRiopHQg8HqI9Y3
+# JE2xtGXlZDKPs/SqyVaPEcAYa7xtQI0Cmog4PbAl7hnhRsyQ3rjeQ11ujgqRA0ST
+# kcSqsbe3V5lhGr/tiPpioFsIa1024F2CwpItcQ+XQE4i6/CkiIryF/dhry2h9XRt
+# G1d+S8+YA40UVVoVd0JioIHh/NP+A6vW1eKSHhyVE3ktjgpXqPT2G4qFsDhm3q5b
+# 30zyGObEdIoQI7kU5l9BSb0+vXz0XrxwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1M1owIwYJKoZIhvcN
-# AQkEMRYEFGsUgFpuOJYnwNFcx/C9P/H5LCSVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1N1owIwYJKoZIhvcN
+# AQkEMRYEFJ7XiugFzuAU2RywkCXUP0ApJJoiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBz1iklRF4/poZsISZcNTChOvG7GvarCt7Uhpg1d43yW96C
-# NYyZNvJK+Hop8Fy1RxMhR4m8LzzvkvuwXp7JUEAmvYmyJIGbRc4vwhwxVpGrHic5
-# qqdOtASoOBW5zyds/475mxHnO93P/Ip6MfvWhg/xC0/1mAbvnkpyeU8wkmApQfe7
-# UvHRvURSRlrdLYrCttElD5Lz3wtvYhf5HNrpVDKjcwkuXw9/3jeKf3oglws2zTQn
-# EmnM1lDNk6Og/9Ib6l4hZMLHttg+6zB+ooT7oNCxiafnz6XJhck4kW0+fs6u075T
-# gDHTu2wHJUJayapsMntML7iGkhNuzHbhxZl0E07e
+# hkiG9w0BAQEFAASCAQAWmrxwMa7qgzwDxBk7MC4InVq8N3mzrJEcKDYR7OYtjL07
+# Z8X3G1jTUWjPPIFUjNa3rW3WC3NwFDtFlc5n4Ulv6e9x1BF1JnwctHukXJdirxBR
+# mOMQrZugEZYqlISHjyvIcFXRg2ALChw+Ly4YkU+w9ZcY2FNCS1cmpqdONFSdQu4a
+# h81UxSm8ZcwOsbK0byW1XrUnMpxaHLrwejlh2U87A6kG5Xq/G3N8+MOEkj2yKzFI
+# futLweXbQRvLhSyDQmfwW97zBvOd5T0aQbhrqNtClaYDnmz4bXBh/bPhZVD2YhGX
+# 8+9Mq4QR4v8lVzgUQyy4uikHkSppgLQIH4cRpfFQ
 # SIG # End signature block

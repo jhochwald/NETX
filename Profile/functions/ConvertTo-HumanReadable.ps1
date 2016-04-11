@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -52,7 +52,7 @@ Function Global:ConvertTo-HumanReadable {
 		Converts a given number to a more human readable format
 
 	.DESCRIPTION
-		Converts a given number to a more human readable format, it conerts 1024 to 1KB as example.
+		Converts a given number to a more human readable format, it coverts 1024 to 1KB as example.
 
 	.PARAMETER num
 		Input Number
@@ -61,11 +61,13 @@ Function Global:ConvertTo-HumanReadable {
 		PS C:\> ConvertTo-HumanReadable -num '1024'
  		1,0 KB
 
+ 		# Converts a given number to a more human readable format
+
 	.EXAMPLE
 		PS C:\> (Get-Item 'C:\scripts\PowerShell\profile.ps1').Length | ConvertTo-HumanReadable
   		25 KB
 
-		Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case) and make it human understanable
+		Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case) and make it human understandable
 
 	.NOTES
 		Additional information about the function.
@@ -100,8 +102,8 @@ Function Global:ConvertTo-HumanReadable {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3LFjfWeWtpy7zHpyYh2Wyndd
-# zkygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1s4rg9WEZe3pTBV/58HqpvT1
+# evugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -244,25 +246,25 @@ Function Global:ConvertTo-HumanReadable {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRqQwCoiWFvnZOY7uiokQ/FEsQ1BDANBgkqhkiG9w0B
-# AQEFAASCAQB39YD15I4RRrBoH/CA+128X3nLHd+iwzZ+fI9q++nja8+a4uImoicx
-# Llgu2PRl4FFJEnCknZuqjPrmN+579vgJuxk3uYE7QiJ8caID+6qr+EsoXIjo0kSk
-# MRqOmTO5JFlbcHSfCPIamaZ/AhgOJytdEPEdUyrwk/aXCqLeLD5dRO5M3svL1HGX
-# MnRf4dRMm/IYMp2Rq6sBOytx0lQIlOoyw1HeRZBGBlfQAsU1j1eDKpQ5p5XU2kmD
-# gQIDmnWvNquP+vtJd2aTrOM96+Dqu1z3ZDxX2FMHwmZDWmpHBgbLIn9qZKIRORR1
-# oogpnBFe5menihx+f4hHeCE9kU4/VO7IoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT8SjDWnGOv5l8fs/Zfw2UFyHraJjANBgkqhkiG9w0B
+# AQEFAASCAQAAnmVrI0foBYnXviqHvxMmXg5rneBd8CvV+OEoRIk5E5VP0KUehWNt
+# COod1Ep2XIc+sNXJWDvJTZpTgAM+u9lRaHCBaz6wrza96XS0A5tFOPisoORJW9BA
+# Tma9vG2StmN5Kz5QxEEHGWnTdNJmdEIT3RDRpGb9KMun/vDkQTqw5svivxwFFoM1
+# hVM7Dnsa5xLDuzbcNsEhNV2sNMYFee2oIdnnjgLauqpQhPZViqWsFcT9WqPFLrUx
+# nqCnuZIt1Aq4/ZVOYLzlP1+J7EAEWGadJfd9fGXepKCcQia+mC0xqa3cBIjUQVrn
+# LMlheCD/xNl/vqH9OX9iKnDQHlx5UxYqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY0OVowIwYJKoZIhvcN
-# AQkEMRYEFEor++u8Thd9r5zjTxv41vucwJTtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0OVowIwYJKoZIhvcN
+# AQkEMRYEFCqqJDhT1qyaN60CrjcyALivR8ZaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA+kgOvglym12uknJwOXwuhPvBJyzML5d8ZiE72+ilnVqu6
-# kwO0kTZJsh6Ke2fCbe6xypwzxgcOukRwBgM3Yxv2r+W2PNKgvUHCAAymGsEC7uDv
-# cj+gDyR2d+Z6D1sPsXJWRhm8LMiOaRB6mrXqOrsgJkBVkc24x5LMyldvv3+sebFr
-# kq77fi1aAg6Zp7QX/quiHX/41F/eDVR4NePUEUP80VMVFcEpx+i/9ycUUxrafLX7
-# U4NUV7Ai2seI2DdvN1ZBMk1+pn4Ecfrjym95DeHUqkfLC0qIGlv3AwtYWbEnvCs8
-# YwUWFmD3SgStjF3kYJKA5ySMdHyIzdhsV4v625kr
+# hkiG9w0BAQEFAASCAQBB4ojRPYbuXLaD+8jtT87wawT/M4y3avId0AvEotBTiuNa
+# bwt9mzM+MyaJSKZAuhQl19ZQRrOoIZYdRmFGrFWVreuiw/tBaAlTkWquPaNK9dyL
+# wjeQ1RBWkrDnLCvH+qT7lhVxUuHRxoK3/+QBvQPiF6GVq4K3bllU6SMbF89I2Pr7
+# ligs5YbSsvkkhTBiIixRMiQjJd3tax+TFkNDNRSKaJfSaQottYuerDjMu+bW3eR3
+# hsiW8DVQBSZh3aKGpbBd4C7Te/g0/BsaNILcSZ6LPfXCBlnknCjUjX1/G2kZYEP9
+# MkKZ5SfPzD2eQ/iXIRS/f9aUjglnhOpvD4A8lZ/o
 # SIG # End signature block

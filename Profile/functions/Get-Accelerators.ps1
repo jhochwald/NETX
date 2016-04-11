@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -56,6 +56,21 @@ function global:Get-Accelerators {
 
 	.EXAMPLE
 		PS C:\> Get-Accelerators
+		Key                                                             Value
+		---                                                             -----
+		Alias                                                           System.Management.Automation.AliasAttribute
+
+		# Get a list of all .NET functions
+
+		.EXAMPLE
+		PS C:\> Get-Accelerators | Format-List
+		Key   : Alias
+		Value : System.Management.Automation.AliasAttribute
+
+		Key   : AllowEmptyCollection
+		Value : System.Management.Automation.AllowEmptyCollectionAttribute
+
+		# Get a list of all .NET functions
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -75,8 +90,8 @@ function global:Get-Accelerators {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFLn3+FZcnwhThY3DaCh4aL0s
-# wFGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrksoKDihDBTGugtQ6ZgLFBRF
+# 3IGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -219,25 +234,25 @@ function global:Get-Accelerators {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTjiiz/yuQlL5BsvDqZktoeQnLaaTANBgkqhkiG9w0B
-# AQEFAASCAQARzdI6qZlECWGp4nQKzKFOy4glqxm9CNisw74sFasexXIqBsQUWHkK
-# HsN1/kRgGcopOowBo08m7KyjUQSQNi7xt+Wr21X6+mw91jwuo7ZPAS+etvAs54wK
-# yTmUDGPzbKv0YN5GrEMdXe3M1n970p+QjUkGDnRW7K+SE3m++4zIQ1sMdKt8VvVX
-# f8EAJS4Q83Zo2VPDD69vGPKF/YS4YCkwhtNo1wsaqKHsOFI+jWwBMi1vCifwHvda
-# M5zEGiyWRF32CqUb4cvx2NqbPZkc2h0WRG4t6AOzlzBbEG1rBG6R35FABdVkYJ2f
-# KvxhDLiDcAyTHfCrsXuTiEfEjd8GXo8poYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT16XK8MlUc3Lvj/AiMiN1NUI3uZTANBgkqhkiG9w0B
+# AQEFAASCAQClcTAMKouDG0DfZH28UywKaVO5FDsqazvw7bfcZxdYVivNhh+UV57e
+# q3/VXFD3K6/i3+tyxU0Hua5AnSkw6HpA+pNiBC0Gq5M2P9z6BqSAPKlaEiO8z5Rj
+# 0yeoTEv+P1fK74MwHSKp7RoIlmdYaddlSFgxofj4yImckz0AIvBF+dE4uc7R+DqV
+# qJUtwhy4XFc+2TG3tLkpP9sCFiUdeUWygcgLMDQMymXaJNOYAuLq0Nb+Pi8cCgmK
+# 8uZsixtbS+uU9tzN0k5UE+1+rPJR0TnAGQbUixwkBwExURrzLXMQWM2GqLBz37zp
+# XHNUwRIziwS/V/J+OVusfN0FUYUW6LIeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQwMzIxMzY1MlowIwYJKoZIhvcN
-# AQkEMRYEFM2KajH9Vuc0tW1oR+NaTdapk7oWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NlowIwYJKoZIhvcN
+# AQkEMRYEFGUWH/U/hgBHE8I+JKXlntC1DPJsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQADdwlU02HpBysGWcqVlibTJdXnphvyQClpLKYAvmOypIcG
-# fkTP+lyR+oEnSZ/TdpxZFuaihn3WBuC1CMH0SV+x5K5VbXSve8I7KZHdaobWlJkc
-# ukBCsAxo0apQtXygUXg0DHtPeQEUfKnxbyrCGqUhf5S6cqOUG0+By/0JzlwWWY8V
-# LR1VXiZKEsrsPSSXujh0i9BulvIStEN7tYp3wb/Es3VmTvlwr3OY97yd+gQLwATT
-# 4r/JZ8z9WCXpzGIMLqh/Ngc+eI2caSWDrLPUsyZtmsCXu3d/e0ntayK+eaKOSGmy
-# Kx9kRc3ZTstUJKkbsbSs47NyCKCiq0RwpejtR9xj
+# hkiG9w0BAQEFAASCAQAwS3Agq7lELXqgQPAEVq25UR/xSuKCt38yQuCSRrTjwJ94
+# Q3UFXaA4K0ZG5ok7I8N5XVpGeHwNNr76BhfMEFaL0eGiuEjsNJy+5iI9N0fwCYyh
+# FHxA+v/KLuB0CzTIW9TitZ1F0ems0+wEH9fS+6teFsZd4SeDBl/BajpdsK8F9DO1
+# E2u1n9NaEGEN5s47kP5YdR4wHXhwAohDJw4JwCizhjt3F6ougIM1SJ6/Zm2f9jqD
+# CUFg1oZQYl9dmLLGdqgEp1M4Yt8rMdxLVj1ueizgT3/9Ewmdel91gYit4J7UV/TY
+# XWjTJ71/Da27NiKtfb/D7aqDoPpmnmtgwJmdNe4H
 # SIG # End signature block
