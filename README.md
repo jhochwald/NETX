@@ -108,4 +108,3 @@ Many (or nearly all) names of products and companies mentioned here are register
 Many parts, functions or source code fragments are based on the intellectual work, scripts and sources of others. Even if the source might not be a copy or direct clone, the function or even the idea might be inspired by the work of others. We deeply respect and acknowledge the intellectual work of others! Due to the nature of underlying scripting technology it’s hard and nearly impossible to track where ideas or even inspirations originally came from!
 
 Whenever it is possible to track the source or idea or find out where it comes from, we will put the author, copyright and license (if exist) to the script.
-I
