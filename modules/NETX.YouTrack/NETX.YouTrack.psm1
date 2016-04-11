@@ -2782,6 +2782,274 @@ function New-YouTrackSubsystem {
 # Set a compatibility Alias
 (Set-Alias New-YTSubsystem New-YouTrackSubsystem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
+function Approve-YouTrackProjectExists {
+<#
+	.SYNOPSIS
+		Check if the Item exists in YouTrack
+
+	.DESCRIPTION
+		Helper function to do a basic check if a given issue exists in YouTrack or not.
+		It return a simple Boolean as indicator.
+
+	.PARAMETER YouTrackProject
+		YouTrack item that should be checked
+
+	.PARAMETER YouTrackURI
+		Specify the Uri of the JetBrains YouTrack API.
+
+	.PARAMETER YouTrackSession
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.EXAMPLE
+		PS C:\> Approve-YouTrackProjectExists -YouTrackProject 'SUPPORT' -YouTrackURI 'https://support.contoso.com:8443'
+		True
+
+		Check if the Item "SUPPORT" exists. The Return (True) indicates that this item exists.
+
+	.EXAMPLE
+		PS C:\> Approve-YouTrackProjectExists -YouTrackProject 'SUPPORT'
+		False
+
+		Check if the Item "SUPPORT-4711" exists. The Return (False) indicates that this item doesn't exists.
+		We leave the URI and YouTrackSession variables empty, that indicates that the defaults are used and the URI is set via the Initialize-YouTrackConnection command
+
+	.EXAMPLE
+		$MyIssue = 'SUPPORT-4711'
+		if ((Approve-YouTrackProjectExists -YouTrackProject $MyIssue) -eq $true) {
+			# So something with this issue
+		} else {
+			Write-Error "Sorry, but $MyIssue was not found"
+		}
+
+		Simple example that checks if a given Issue exists. If not it drops an Error. Within the IF you can do something useful.
+
+	.NOTES
+		Simple Call that I use within my other calls. So I make sure that the issue exists before I go any further and try to do something with it.
+
+	.LINK
+		API https://confluence.jetbrains.com/display/YTD65/Check+that+an+Issue+Exists
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'YouTrack Project that should be checked')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Project')]
+		[System.String]$YouTrackProject,
+		[Parameter(Position = 2,
+				   HelpMessage = 'Specify the Uri of the JetBrains YouTrack API.')]
+		[Alias('URI')]
+		[System.String]$YouTrackURI,
+		[Parameter(Position = 3,
+				   HelpMessage = 'Specify the web request session value to use for authentication against the JetBrains YouTrack API.')]
+		[Alias('Session')]
+		$YouTrackSession = ($YouTrackWebSession)
+	)
+
+	BEGIN {
+		# Does we have a URI set?
+		if ($YouTrackURIGlobal) {
+			Set-Variable -Name "YouTrackURI" -Value $($YouTrackURIGlobal)
+		} elseif (-not ($YouTrackURI)) {
+			Write-Error -Message "The URL is mandatory!" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+
+		# Are we authenticated?
+		if (-not ($YouTrackSession)) {
+			if ($pscmdlet.ShouldProcess("YouTrack API", "Login")) {
+				try {
+					Initialize-YouTrackConnection -YouTrackURI "$YouTrackURI"
+				} catch {
+					Write-Error -Message "Unable to Authenticate! Please call Initialize-YouTrackConnection to do so." -ErrorAction:Stop
+
+					# Still here? Make sure we are done!
+					break
+
+					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+					exit 1
+				}
+			}
+		}
+	}
+
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$YouTrackProject", "Check if it exists")) {
+			try {
+				$null = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/admin/project/$YouTrackProject" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				Return $true
+			} catch {
+				Return $false
+			}
+		}
+	}
+
+	END {
+		# Cleanup
+		Remove-Variable -Name "YouTrackItem" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
+}
+# Set a compatibility Alias
+(Set-Alias Approve-YTProjectExists Approve-YouTrackProjectExists -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
+function Get-YouTrackProject {
+<#
+	.SYNOPSIS
+		Get details about a given YouTrack Project
+
+	.DESCRIPTION
+		Get details about a given YouTrack Project
+
+	.PARAMETER YouTrackProject
+		The YouTrack project to search for.
+
+	.PARAMETER YouTrackURI
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.PARAMETER YouTrackSession
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.EXAMPLE
+		PS C:\> Get-YouTrackProject YouTrackProject 'dummy' -YouTrackURI 'https://support.contoso.com:8443'
+
+		name        : dummy
+		id          : DUMMY
+		description : Dummy Project
+		archived    : false
+		lead        : john
+
+		Get details about a given YouTrack Project
+
+	.NOTES
+		You need to Filter it in PowerShell to make this useful!
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'The YouTrack project to search for.')]
+		[Alias('Project')]
+		[System.String]$YouTrackProject,
+		[Parameter(Position = 2,
+				   HelpMessage = 'Specify the web request session value to use for authentication against the JetBrains YouTrack API.')]
+		[Alias('URI')]
+		[System.String]$YouTrackURI,
+		[Parameter(Position = 3,
+				   HelpMessage = 'Specify the web request session value to use for authentication against the JetBrains YouTrack API.')]
+		[Alias('Session')]
+		$YouTrackSession
+	)
+
+	BEGIN {
+		# Does we have a URI set?
+		if ($YouTrackURIGlobal) {
+			Set-Variable -Name "YouTrackURI" -Value $($YouTrackURIGlobal)
+		} elseif (-not ($YouTrackURI)) {
+			Write-Error -Message "The URL is mandatory!" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+
+		# Are we authenticated?
+		if (-not ($YouTrackSession)) {
+			if ($pscmdlet.ShouldProcess("YouTrack API", "Login")) {
+				try {
+					Initialize-YouTrackConnection -YouTrackURI "$YouTrackURI"
+				} catch {
+					Write-Error -Message "Unable to Authenticate! Please call Initialize-YouTrackConnection to do so." -ErrorAction:Stop
+
+					# Still here? Make sure we are done!
+					break
+
+					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+					exit 1
+				}
+			}
+		}
+
+		# Now we check that the given item exists in YouTrack
+		if ($pscmdlet.ShouldProcess("$YouTrackItem", "Check if exists")) {
+			if ((Approve-YouTrackProjectExists -YouTrackProject $YouTrackProject) -eq $false) {
+				Write-Error -Message "Looks like $YouTrackProject does not exist" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			}
+		}
+	}
+
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$YouTrackProject", "Get details")) {
+			try {
+				$YouTrackProjectDetails = (Invoke-RestMethod -Method "Get" -Uri "$YouTrackURI/rest/admin/project/$YouTrackProject" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+			} catch [System.Management.Automation.PSArgumentException] {
+				# Something is wrong with the command-line
+				Write-Debug -Message "Caught a Argument Exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch [system.exception] {
+				# This is a system exception
+				Write-Debug -Message "Caught a System exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch {
+				# Did not see this one coming!
+				Write-Debug -Message "Caught a Unknown exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			}
+		}
+
+		$YouTrackProjectDetailsPrint = (($YouTrackProjectDetails).project | Select-Object name, id, description, archived, lead)
+	}
+
+	END {
+		$Global:Bla = ($YouTrackProjectDetails)
+		# Dump the info
+		Return ($YouTrackProjectDetailsPrint)
+	}
+}
+# Set a compatibility Alias
+(Set-Alias Get-YTProject Get-YouTrackProject -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
 #endregion Functions
 
 #region ExportModuleStuff
