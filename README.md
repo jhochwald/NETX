@@ -7,8 +7,21 @@ A while ago we decided to publish some of our stuff as Open Source under the ter
 This Repository contains the stuff that we think it's useful for the community.
 
 ## Content
-Profile: A sample Profile and some neat Tools and Functions
-NETX.YouTrack: NET-Experts PowerShell Support for JetBrains YouTrack Rest API
+You will find the following here:
+
+### Profile
+A sample Profile and some neat Tools and Functions
+
+### NETX.YouTrack
+NET-Experts PowerShell Support for JetBrains YouTrack Rest API
+
+### docs
+Documentation in the following format:
+- Markdown
+- HTML (HTML5)
+- TXT
+- XML (not for everything)
+This content is generated and updated by our Build Server.
 
 ## Why Free?
 Why should charge for everything? Our focus is to optimize customer businesses by helping them to automate as much as possible.
@@ -48,31 +61,18 @@ All rights reserved.
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this list of
-   conditions and the following disclaimer.
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation and/or
-   other materials provided with the distribution.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its contributors may
-   be used to endorse or promote products derived from this software without
-   specific prior written permission.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 By using the Software, you agree to the License, Terms and Conditions above!
 
 ## Additional Information
-Please view the Header information of each file, it might contain other Licensing and/or Copyright information(s). As an Example, the PowerShell Base Module is licensed under other terms and has another Copyright informations.
+Please view the Header information of each file, it might contain other Licensing and/or Copyright information(s).
 
 *Please Review each File/Directory for Licensing and/or Copyright information(s).*
 
@@ -108,3 +108,4 @@ Many (or nearly all) names of products and companies mentioned here are register
 Many parts, functions or source code fragments are based on the intellectual work, scripts and sources of others. Even if the source might not be a copy or direct clone, the function or even the idea might be inspired by the work of others. We deeply respect and acknowledge the intellectual work of others! Due to the nature of underlying scripting technology it’s hard and nearly impossible to track where ideas or even inspirations originally came from!
 
 Whenever it is possible to track the source or idea or find out where it comes from, we will put the author, copyright and license (if exist) to the script.
+I
