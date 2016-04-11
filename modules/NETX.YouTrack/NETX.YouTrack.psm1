@@ -142,11 +142,15 @@ function Get-NETXYouTrackVersion {
 	PROCESS {
 		# Long or short output?
 		if ($s) {
-			# This is just the Build/Version
-			Write-Output "$BuildNumber"
+			if ($pscmdlet.ShouldProcess("Version", "Get Version Number")) {
+				# This is just the Build/Version
+				Write-Output "$BuildNumber"
+			}
 		} else {
-			# This is the full String
-			Write-Output "NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version $BuildNumber"
+			if ($pscmdlet.ShouldProcess("Version", "Get Version Number and details")) {
+				# This is the full String
+				Write-Output "NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version $BuildNumber"
+			}
 		}
 	}
 }
@@ -1368,6 +1372,7 @@ function Remove-YouTrackItem {
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
+	[OutputType([System.String])]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
@@ -2785,10 +2790,10 @@ function New-YouTrackSubsystem {
 function Approve-YouTrackProjectExists {
 <#
 	.SYNOPSIS
-		Check if the Item exists in YouTrack
+		Check if the Project exists in YouTrack
 
 	.DESCRIPTION
-		Helper function to do a basic check if a given issue exists in YouTrack or not.
+		Helper function to do a basic check if a Project issue exists in YouTrack or not.
 		It return a simple Boolean as indicator.
 
 	.PARAMETER YouTrackProject
@@ -3042,7 +3047,6 @@ function Get-YouTrackProject {
 	}
 
 	END {
-		$Global:Bla = ($YouTrackProjectDetails)
 		# Dump the info
 		Return ($YouTrackProjectDetailsPrint)
 	}
