@@ -1,17 +1,24 @@
 # NETX
-**NET-Experts Freeware and Open Source**
+**NET-Experts Free-ware and Open Source**
 
-Mostly PowerShell related Freeware and Open Source stuff will be published here.
+Mostly PowerShell related Free-ware and Open Source stuff will be published here.
 
-A while ago we decided to publish some of our wok as Freeware under the terms of the BSD License (Cause it is very flexible for all of us).
+A while ago we decided to publish some of our stuff as Open Source under the terms of the BSD License (Cause it is very flexible for all of us).
 This Repository contains the stuff that we think it's useful for the community.
 
-## Why Free?
-That is very easy to answer: Cause we think that the community might find the stuff useful!
+## Content
+Profile: A sample Profile and some neat Tools and Functions
+NETX.YouTrack: NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
-And why should charge for everything? Our focus is to optimize customer businesses by helping them to automate as much as possible.
+## Why Free?
+Why should charge for everything? Our focus is to optimize customer businesses by helping them to automate as much as possible.
 
 But we need to automate our own stuff to. Most of the thing we will publish here is that kind of stuff that we invented, adopted or developed to run our or automate our own processes.
+
+## Why Open Source
+That is very easy to answer: Cause we think that the community might find some of our stuff useful!
+
+The more people have the code, the more they learn PowerShell!
 
 ## Support?
 Yes, there is support! But the support is based on best effort.
