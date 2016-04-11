@@ -1,6 +1,6 @@
 ﻿<#
 	.SYNOPSIS
-		NET-Experts PowerShell Support for JetBrains YouTrack API
+		NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
 	.DESCRIPTION
 		Easy way to access the JetBrains YouTrack API from PowerShell
@@ -23,10 +23,10 @@
 
 		Feel free to contribute by give some feedback :-)
 
-		BuildNumber = "1.2.2.0"
+		BuildNumber = "1.2.3.0"
 
 		modified by     : Joerg Hochwald
-		last modified   : 2016-04-03
+		last modified   : 2016-04-11
 
 	.LINK
 		NET-Experts http:/www.net-experts.net
@@ -107,18 +107,19 @@ function Get-NETXYouTrackVersion {
 
 	.EXAMPLE
 		PS C:\> Get-NETXYouTrackVersion
-		NET-Experts PowerShell Support for JetBrains YouTrack API Version 1.2.2.0
+		NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version 1.2.3.0
 
 		Internal function to display the version string of the Tools Module
 
 	.EXAMPLE
 		PS C:\> Get-NETXYouTrackVersion -s
-		1.2.2.0
+		1.2.3.0
 
 		Displays the Version Number
 
 	.NOTES
 		For internal Support
+		Version/Build will be updated by the NETX Build Server!
 #>
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
@@ -135,7 +136,7 @@ function Get-NETXYouTrackVersion {
 	BEGIN {
 		# Module Build number
 		# DO NOT EDIT THIS FIELD!!!
-		$BuildNumber = "1.2.2.0"
+		$BuildNumber = "1.2.3.0"
 	}
 
 	PROCESS {
@@ -145,12 +146,8 @@ function Get-NETXYouTrackVersion {
 			Write-Output "$BuildNumber"
 		} else {
 			# This is the full String
-			Write-Output "NET-Experts PowerShell Support for JetBrains YouTrack API Version $BuildNumber"
+			Write-Output "NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version $BuildNumber"
 		}
-	}
-
-	END {
-		#
 	}
 }
 
@@ -187,6 +184,8 @@ function Initialize-YouTrackConnection {
 
 	.LINK
 		LoginInfo https://confluence.jetbrains.com/display/YTD65/Log+in+to+YouTrack
+
+	.LINK
 		OAuthInfo https://www.jetbrains.com/help/hub/1.0/OAuth-2.0-Authorization.html?origin=old_help
 
 	.LINK
@@ -355,6 +354,8 @@ function Initialize-YouTrackConnection {
 		Set-Variable -Name "YouTrackURIGlobal" -Scope:Global -Value $($YouTrackURI)
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Initialize-YTCon Initialize-YouTrackConnection -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function New-YouTrackItem {
 <#
@@ -362,7 +363,8 @@ function New-YouTrackItem {
 		Creates a new item in a given JetBrains YouTrack project.
 
 	.DESCRIPTION
-		Opens
+		Creates a new item in a given JetBrains YouTrack project.
+		Open an Issue, Bug Report or whatever you like to do with it.
 
 	.PARAMETER YouTrackProject
 		Specify the name of the project to create the item.
@@ -514,6 +516,8 @@ function New-YouTrackItem {
 		Return $YouTrackNewItem
 	}
 }
+# Set a compatibility Alias
+(Set-Alias New-YTItem New-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Approve-YouTrackItemExists {
 <#
@@ -632,6 +636,8 @@ function Approve-YouTrackItemExists {
 		Remove-Variable -Name "YouTrackItem" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Approve-YTItem Approve-YouTrackItemExists -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemList {
 <#
@@ -753,9 +759,12 @@ function Get-YouTrackItemList {
 	}
 
 	END {
+		# Dump The info
 		Return ($YouTrackItemList).issueCompacts.issue
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItemList Get-YouTrackItemList -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemListInProject {
 <#
@@ -902,9 +911,12 @@ function Get-YouTrackItemListInProject {
 	}
 
 	END {
+		# Dump the info
 		Return ($YouTrackItemList).issues.issue
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTProjectItems Get-YouTrackItemListInProject -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItem {
 <#
@@ -1045,9 +1057,13 @@ function Get-YouTrackItem {
 	}
 
 	END {
+		# Dump the info
 		Return ($YouTrackItemDetails).issue
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItem Get-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
 
 function Get-YouTrackItemHistory {
 <#
@@ -1179,9 +1195,12 @@ function Get-YouTrackItemHistory {
 	}
 
 	END {
+		# Dump the info
 		Return ($YouTrackItemHistory).issues.issue
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItemHistory Get-YouTrackItemHistory -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemChanges {
 <#
@@ -1313,9 +1332,12 @@ function Get-YouTrackItemChanges {
 	}
 
 	END {
+		# Dump the info
 		Return ($YouTrackItemChanges).changes.change
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItemChanges Get-YouTrackItemChanges -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Remove-YouTrackItem {
 <#
@@ -1450,6 +1472,8 @@ function Remove-YouTrackItem {
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Remove-YTItem Remove-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Update-YouTrackItem {
 <#
@@ -1563,10 +1587,13 @@ function Update-YouTrackItem {
 			}
 		}
 
+		# What to call
 		$YouTrackUpdateURIInitial = "$YouTrackURI/rest/issue/$YouTrackItem"
 
+		# Set a new variable with the original value
 		$YouTrackUpdateURI = ($YouTrackUpdateURIInitial)
 
+		# Do we have the info?
 		if ($YouTrackSummary) {
 			$YouTrackUpdateURI = ($YouTrackUpdateURI + "?summary=$YouTrackSummary")
 		} else {
@@ -1579,11 +1606,13 @@ function Update-YouTrackItem {
 			exit 1
 		}
 
+		# Do we have a description?
 		if ($YouTrackDescription) {
 			$YouTrackUpdateURI = ($YouTrackUpdateURI + "&description=$YouTrackDescription")
 
 		}
 
+		# Check the URI by comparing it with the original
 		if ($YouTrackUpdateURI -eq $YouTrackUpdateURIInitial) {
 			Write-Warning -Message "Nothing to Update"
 
@@ -1637,6 +1666,8 @@ function Update-YouTrackItem {
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Update-YTItem Update-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemCount {
 <#
@@ -1775,13 +1806,17 @@ function Get-YouTrackItemCount {
 
 	END {
 		if ($ReturnObject) {
+			# Dump the info
 			Return ($YouTrackItemCount).counts
 		} else {
+			# Dump the info human readable
 			Write-Output "Resolved: $(($YouTrackItemCount).counts.count[0])"
 			Write-Output "Open: $(($YouTrackItemCount).counts.count[1])"
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItemCount Get-YouTrackItemCount -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemProjectCount {
 <#
@@ -1915,9 +1950,12 @@ function Get-YouTrackItemProjectCount {
 	}
 
 	END {
+		# Dump the info
 		Return ($YouTrackItemCount)
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTProjectCount Get-YouTrackItemProjectCount -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemFiltered {
 <#
@@ -2069,12 +2107,16 @@ function Get-YouTrackItemFiltered {
 
 	END {
 		if ($YouTrackCount) {
+			# Dump the info (Counter)
 			Return ($YouTrackItemCount).issueCompacts.issue.Count
 		} else {
+			# Dump the info
 			Return ($YouTrackItemCount).issueCompacts.issue
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTFilterItem Get-YouTrackItemFiltered -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemIntellisense {
 <#
@@ -2226,12 +2268,16 @@ function Get-YouTrackItemIntellisense {
 
 	END {
 		if ($YouTrackCount) {
+			# Dump the info (Counter)
 			Return ($YouTrackItemIntellisense).IntelliSense.suggest.ChildNodes.Count
 		} else {
+			# Dump the info
 			Return ($YouTrackItemIntellisense).IntelliSense.suggest
 		}
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Get-YTItemIntelli Get-YouTrackItemIntellisense -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Set-YouTrackItemCommand {
 <#
@@ -2378,9 +2424,12 @@ function Set-YouTrackItemCommand {
 	}
 
 	END {
+		# Return Boolean (True)
 		Return $true
 	}
 }
+# Set a compatibility Alias
+(Set-Alias Set-YTItemCmd Set-YouTrackItemCommand -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion Functions
 
