@@ -2615,6 +2615,173 @@ function Get-YouTrackStatus {
 # Set a compatibility Alias
 (Set-Alias Get-YTStatus Get-YouTrackStatus -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
+function New-YouTrackSubsystem {
+<#
+	.SYNOPSIS
+		Add a Subsystem to a given JetBrains YouTrack project.
+
+	.DESCRIPTION
+		Add a Subsystem to a given JetBrains YouTrack project.
+
+	.PARAMETER YouTrackProject
+		Specify the name of the project to create the Subsystem.
+
+	.PARAMETER YouTrackSubsystem
+		Specify the Subsystem to add.
+
+	.PARAMETER YouTrackDefaultAssignee
+		Specify the default assignee for the new Subsystem.
+
+	.PARAMETER YouTrackSession
+		Specify the web request session value to use for authentication against the JetBrains YouTrack API.
+
+	.PARAMETER YouTrackURI
+		Specify the Uri of the JetBrains YouTrack API.
+
+	.EXAMPLE
+		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1'
+		True
+
+		Generates the Subsystem 'Test1' in the YouTrack Project 'dummy'
+
+	.EXAMPLE
+		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1'
+		New-YouTrackSubsystem : Error: The remote server returned an error: (409) Conflict. - Line Number: 86
+
+		Subsystem 'Test1' in the YouTrack Project 'dummy' exists!
+
+	.EXAMPLE
+		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1' -YouTrackDefaultAssignee 'John'
+
+		Generates the Subsystem 'Test1' in the YouTrack Project 'dummy' and use 'John' as default assignee
+
+	.NOTES
+		If the "-YouTrackDefaultAssignee" parameters is used, we use a x-www-form-urlencoded call
+
+	.Link
+		Source https://confluence.jetbrains.com/display/YTD65/REST+Import+Sample#RESTImportSample-Addfirstsubsystem
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'Specify the name of the project to create the item.')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Project')]
+		[System.String]$YouTrackProject,
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 2,
+				   HelpMessage = 'Specify the name of the project to create the Subsystem.')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Subsystem')]
+		[System.String]$YouTrackSubsystem,
+		[Parameter(Position = 3,
+				   HelpMessage = 'Specify the Subsystem to add.')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('DefaultAssignee')]
+		[System.String]$YouTrackDefaultAssignee,
+		[Parameter(Position = 4,
+				   HelpMessage = 'Specify the default assignee for the new Subsystem.')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Session')]
+		$YouTrackSession = ($YouTrackWebSession),
+		[Parameter(HelpMessage = 'Specify the Uri of the JetBrains YouTrack API.')]
+		[Alias('URI')]
+		[System.String]$YouTrackURI
+	)
+
+	BEGIN {
+		# Does we have a URI set?
+		if ($YouTrackURIGlobal) {
+			Set-Variable -Name "YouTrackURI" -Value $($YouTrackURIGlobal)
+		} elseif (-not ($YouTrackURI)) {
+			Write-Error -Message "The URL is mandatory!" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+
+		# Are we authenticated?
+		if (-not ($YouTrackSession)) {
+			if ($pscmdlet.ShouldProcess("YouTrack API", "Login")) {
+				try {
+					Initialize-YouTrackConnection -YouTrackURI "$YouTrackURI"
+				} catch {
+					Write-Error -Message "Unable to Authenticate! Please call Initialize-YouTrackConnection to do so." -ErrorAction:Stop
+
+					# Still here? Make sure we are done!
+					break
+
+					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+					exit 1
+				}
+			}
+		}
+	}
+
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$YouTrackURI", "Create Subsystem $YouTrackSubsystem in $YouTrackProject")) {
+			try {
+				if ($YouTrackDefaultAssignee) {
+					# Create the body for the x-www-form-urlencoded call
+					$YouTrackWebBody = "defaultAssignee=$YouTrackDefaultAssignee"
+
+					# Fire up!
+					$YouTrackNewItemCall = (Invoke-RestMethod -Method "Put" -Uri "$YouTrackURI/rest/admin/project/$YouTrackProject/subsystem/$YouTrackSubsystem" -Body $YouTrackWebBody -WebSession $YouTrackWebSession -ContentType "application/x-www-form-urlencoded" -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				} else {
+					# Fire up!
+					$YouTrackNewItemCall = (Invoke-RestMethod -Method "Put" -Uri "$YouTrackURI/rest/admin/project/$YouTrackProject/subsystem/$YouTrackSubsystem" -WebSession $YouTrackSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+				}
+
+				# Return
+				Return $true
+			} catch [System.Management.Automation.PSArgumentException] {
+				# Something is wrong with the command-line
+				Write-Debug -Message "Caught a Argument Exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch [system.exception] {
+				# This is a system exception
+				Write-Debug -Message "Caught a System exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			} catch {
+				# Did not see this one coming!
+				Write-Debug -Message "Caught a Unknown exception"
+
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+				# Still here? Make sure we are done!
+				break
+
+				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+				exit 1
+			}
+		}
+	}
+}
+# Set a compatibility Alias
+(Set-Alias New-YTSubsystem New-YouTrackSubsystem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
 #endregion Functions
 
 #region ExportModuleStuff
