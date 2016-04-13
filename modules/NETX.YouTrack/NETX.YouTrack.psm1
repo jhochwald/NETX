@@ -26,7 +26,7 @@
 		BuildNumber = "1.2.3.0"
 
 		modified by     : Joerg Hochwald
-		last modified   : 2016-04-11
+		last modified   : 2016-04-13
 
 	.LINK
 		NET-Experts http:/www.net-experts.net
@@ -109,12 +109,16 @@ function Get-NETXYouTrackVersion {
 		PS C:\> Get-NETXYouTrackVersion
 		NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version 1.2.3.0
 
+		Description
+		-----------
 		Internal function to display the version string of the Tools Module
 
 	.EXAMPLE
 		PS C:\> Get-NETXYouTrackVersion -s
 		1.2.3.0
 
+		Description
+		-----------
 		Displays the Version Number
 
 	.NOTES
@@ -175,6 +179,8 @@ function Initialize-YouTrackConnection {
 	.EXAMPLE
 		PS C:\> Initialize-YouTrackConnection -YouTrackUser 'john.doe' -YouTrackPassword 'P@55Word!' -YouTrackURI 'https://issues.contoso.com:8443'
 
+		Description
+		-----------
 		This will establish a connection to the JetBrains YouTrack API 'https://issues.contoso.com:8443' and connects with the login credentials of the given account.
 		It will save the authorization inf o in the Variable 'YouTrackWebSession'. You can re-Use this by '$YouTrackWebSession' as long as the session is active.
 		If you close the session, or the Timeout hits, just run this function again!
@@ -389,6 +395,8 @@ function New-YouTrackItem {
 		PS C:\> New-YouTrackItem -YouTrackProject "WEBSUPPORT" -YouTrackSummary "CSS Problem" -YouTrackDescription "Some Styles are wrong when I access the site via my Edge browser. Works fine in IE."
 		WEBSUPPORT-4711
 
+		Description
+		-----------
 		Generates an Issue in the YouTrack Project 'WEBSUPPORT'. The Issue has the Title 'CSS Problem' and the Description 'Some Styles are wrong when I access the site via my Edge browser. Works fine in IE.'.
 		The Issue generated is 'WEBSUPPORT-4711'
 
@@ -396,6 +404,8 @@ function New-YouTrackItem {
 		PS C:\> $MyNewTicket = (New-YouTrackItem -YouTrackProject "WEBSUPPORT" -YouTrackSummary "CSS Problem" -YouTrackDescription "Some Styles are wrong when I access the site via my Edge browser. Works fine in IE.")
 		WEBSUPPORT-4711
 
+		Description
+		-----------
 		Generates an Issue in the YouTrack Project 'WEBSUPPORT'. The Issue has the Title 'CSS Problem' and the Description 'Some Styles are wrong when I access the site via my Edge browser. Works fine in IE.'.
 		The Issue number is saved in the variable '$MyNewTicket' (e.g. something like WEBSUPPORT-4711), so you can reuse it to modify the new issue right after it is created!
 
@@ -545,12 +555,16 @@ function Approve-YouTrackItemExists {
 		PS C:\> Approve-YouTrackItemExists -YouTrackItem 'SUPPORT-4711' -YouTrackURI 'https://support.contoso.com:8443'
 		True
 
+		Description
+		-----------
 		Check if the Item "SUPPORT-4711" exists. The Return (True) indicates that this item exists.
 
 	.EXAMPLE
 		PS C:\> Approve-YouTrackItemExists -YouTrackItem 'SUPPORT-4711'
 		False
 
+		Description
+		-----------
 		Check if the Item "SUPPORT-4711" exists. The Return (False) indicates that this item doesn't exists.
 		We leave the URI and YouTrackSession variables empty, that indicates that the defaults are used and the URI is set via the Initialize-YouTrackConnection command
 
@@ -562,6 +576,8 @@ function Approve-YouTrackItemExists {
 			Write-Error "Sorry, but $MyIssue was not found"
 		}
 
+		Description
+		-----------
 		Simple example that checks if a given Issue exists. If not it drops an Error. Within the IF you can do something useful.
 
 	.NOTES
@@ -660,11 +676,15 @@ function Get-YouTrackItemList {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemList -YouTrackURI 'https://support.contoso.com:8443'
 
+		Description
+		-----------
 		Get a list of all existing items in YouTrack and dumps it to the console.
 
 	.EXAMPLE
 		PS C:\> $YTReport = @(Get-YouTrackItemList -YouTrackURI 'https://support.contoso.com:8443')
 
+		Description
+		-----------
 		Get a list of all existing items in YouTrack and put it to the '$YTReport' object, so you can re use it within other functions, scripts, whatever.
 
 	.NOTES
@@ -793,16 +813,22 @@ function Get-YouTrackItemListInProject {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemListInProject -YouTrackProject 'SUPPORT' -YouTrackURI 'https://support.contoso.com:8443'
 
+		Description
+		-----------
 		Get a list of all existing items in YouTrack Project 'SUPPORT' and dumps it to the console.
 
 	.EXAMPLE
 		PS C:\> $YTReport = @(Get-YouTrackItemListInProject -YouTrackProject 'SUPPORT' -YouTrackURI 'https://support.contoso.com:8443')
 
+		Description
+		-----------
 		Get a list of all existing items in YouTrack Project 'SUPPORT' and put it to the '$YTReport' object, so you can re use it within other functions, scripts, whatever.
 
-	EXAMPLE
+	.EXAMPLE
 		PS C:\> $YTReport = @(Get-YouTrackItemListInProject -YouTrackProject 'SUPPORT' -YouTrackURI 'https://support.contoso.com:8443' -wikify)
 
+		Description
+		-----------
 		Get a list of all existing items in YouTrack Project 'SUPPORT' and puty it to the '$YTReport' object, so you can re use it within other functions, scripts, whatever.
 		Issue description in the response should be formatted while the 'wikify' switch is used.
 
@@ -944,6 +970,10 @@ function Get-YouTrackItem {
 
 	.EXAMPLE
 		PS C:\> Get-YouTrackItem -YouTrackItem 'Value1' -YouTrackURI 'Value2'
+
+		Description
+		-----------
+		Get details about a given YouTrackItem
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
@@ -1089,6 +1119,10 @@ function Get-YouTrackItemHistory {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemHistory -YouTrackItem 'Value1' -YouTrackURI 'Value2'
 
+		Description
+		-----------
+		Get history details about a given YouTrackItem
+
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
 #>
@@ -1226,6 +1260,10 @@ function Get-YouTrackItemChanges {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemChanges -YouTrackItem 'Value1' -YouTrackURI 'Value2'
 
+		Description
+		-----------
+		Get historical changes of an YouTrack Item
+
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
 #>
@@ -1362,6 +1400,10 @@ function Remove-YouTrackItem {
 
 	.EXAMPLE
 		PS C:\> Remove-YouTrackItem -YouTrackItem $value1 -YouTrackURI $value2
+
+		Description
+		-----------
+		Delete a specified YouTrack Item
 
 	.NOTES
 		Mind the Gap! Delete an Item is dangerous... And it might be something you should avoid doing!
@@ -1506,11 +1548,15 @@ function Update-YouTrackItem {
 	.EXAMPLE
 		PS C:\> Update-YouTrackItem -YouTrackItem 'SUPPORT-4711' -YouTrackSummary 'New Summary' -YouTrackURI 'https://support.contoso.com:8443'
 
+		Description
+		-----------
 		Will update the Item 'SUPPORT-4711' and change the summary/title to 'New Summary'
 
 	.EXAMPLE
 		PS C:\> Update-YouTrackItem -YouTrackItem 'SUPPORT-4711' -YouTrackSummary 'Not working on PowerShell 5' -YouTrackDescription 'Tried the function on Windows 10 (PowerShell 5) and it soe nothing. There is no error message, just did nothing.'
 
+		Description
+		-----------
 		Will update the Item 'SUPPORT-4711' and change the summary/title to 'Not working on PowerShell 5' and it also updates the description field of the item.
 
 	.NOTES
@@ -1696,11 +1742,15 @@ function Get-YouTrackItemCount {
 		Resolved: 56
 		Open: 24
 
+		Description
+		-----------
 		Get a list of all Items in YouTrack, in this case 56 where solved/closed and 24 are open
 
 	.EXAMPLE
 		PS C:\> $YTItemStatus = @(Get-YouTrackItemCount -YouTrackURI 'https://support.contoso.com:8443' -ReturnObject)
 
+		Description
+		-----------
 		Get a list of all Items in YouTrack and put the Object(!) to a Variable
 
 	.NOTES
@@ -1844,11 +1894,15 @@ function Get-YouTrackItemProjectCount {
 		PS C:\> Get-YouTrackItemProjectCount -YouTrackProject 'SUPPORTWEB' -YouTrackURI 'https://support.contoso.com:8443'
 		callback({"value":4})
 
+		Description
+		-----------
 		Get a list of all Items in YouTrack project 'SUPPORTWEB', in this case 56 where solved/closed and 24 are open
 
 	.EXAMPLE
 		PS C:\> $YTItemStatus = @(Get-YouTrackItemProjectCount -YouTrackProject 'SUPPORTWEB' -YouTrackURI 'https://support.contoso.com:8443' -ReturnObject)
 
+		Description
+		-----------
 		Get a list of all Items in YouTrack project 'SUPPORTWEB' and put the Object(!) to a Variable
 
 	.NOTES
@@ -1987,23 +2041,31 @@ function Get-YouTrackItemFiltered {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemFiltered -YouTrackFilter 'project: SUPPORTWEB by: me'
 
+		Description
+		-----------
 		Get a list of all Items in YouTrack project 'SUPPORTWEB' that you created
 
 	.EXAMPLE
 		PS C:\> $myTickets = (Get-YouTrackItemFiltered -YouTrackFilter 'project: SUPPORTWEB by: me')
 
+		Description
+		-----------
 		Save a list of all Items in YouTrack project 'SUPPORTWEB' that you created in the variable "myTickets"
 
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemFiltered -YouTrackFilter 'by: me' -YouTrackCount
 		103
 
+		Description
+		-----------
 		Get a number of all Items in YouTrack that you created
 
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemFiltered -YouTrackFilter 'Subsystem: Deployment' -YouTrackCount
 		16
 
+		Description
+		-----------
 		Get a number of all Items in the YouTrack Subsystem "Deployment"
 
 	.NOTES
@@ -2148,23 +2210,31 @@ function Get-YouTrackItemIntellisense {
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemIntellisense -YouTrackFilter 'project: SUPPORTWEB by: me'
 
+		Description
+		-----------
 		Get highlight and suggestions for items filter query in YouTrack project 'SUPPORTWEB' that you created
 
 	.EXAMPLE
 		PS C:\> $myTickets = (Get-YouTrackItemIntellisense -YouTrackFilter 'project: SUPPORTWEB by: me')
 
+		Description
+		-----------
 		Save highlight and suggestions of all Items in YouTrack project 'SUPPORTWEB' that you created in the variable "myTickets"
 
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemIntellisense -YouTrackFilter 'by: me' -YouTrackCount
 		103
 
+		Description
+		-----------
 		Get a number of highlight and suggestions for all Items in YouTrack that you created
 
 	.EXAMPLE
 		PS C:\> Get-YouTrackItemIntellisense -YouTrackFilter 'Subsystem: Deployment' -YouTrackCount
 		16
 
+		Description
+		-----------
 		Get a number of highlight and suggestions for all Items in the YouTrack Subsystem "Deployment"
 
 	.NOTES
@@ -2307,6 +2377,8 @@ function Set-YouTrackItemCommand {
 	.EXAMPLE
 		PS C:\> Set-YouTrackItemCommand -YouTrackItem 'ISUP-28' -YouTrackCommand 'Priority Minor Type Task'
 
+		Description
+		-----------
 		Set the Priority of the Item 'ISUP-28' to minor and set the Type to 'Task'.
 
 	.NOTES
@@ -2467,6 +2539,8 @@ function Get-YouTrackStatus {
 		usedMemory      : 262.7 MB
 		databaseSize    : 7.9 MB
 
+		Description
+		-----------
 		Get telemetry parameters of YouTrack server
 
 	.EXAMPLE
@@ -2475,6 +2549,8 @@ function Get-YouTrackStatus {
 		sessions : 1
 		windows  : 2
 
+		Description
+		-----------
 		Get telemetry parameters of YouTrack server
 
 	.EXAMPLE
@@ -2489,6 +2565,8 @@ function Get-YouTrackStatus {
 		sessions : 1
 		windows  : 2
 
+		Description
+		-----------
 		Get telemetry parameters of YouTrack server
 
 	.NOTES
@@ -2647,17 +2725,23 @@ function New-YouTrackSubsystem {
 		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1'
 		True
 
+		Description
+		-----------
 		Generates the Subsystem 'Test1' in the YouTrack Project 'dummy'
 
 	.EXAMPLE
 		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1'
 		New-YouTrackSubsystem : Error: The remote server returned an error: (409) Conflict. - Line Number: 86
 
+		Description
+		-----------
 		Subsystem 'Test1' in the YouTrack Project 'dummy' exists!
 
 	.EXAMPLE
 		New-YouTrackSubsystem -YouTrackProject 'dummy' -YouTrackSubsystem 'Test1' -YouTrackDefaultAssignee 'John'
 
+		Description
+		-----------
 		Generates the Subsystem 'Test1' in the YouTrack Project 'dummy' and use 'John' as default assignee
 
 	.NOTES
@@ -2809,12 +2893,16 @@ function Approve-YouTrackProjectExists {
 		PS C:\> Approve-YouTrackProjectExists -YouTrackProject 'SUPPORT' -YouTrackURI 'https://support.contoso.com:8443'
 		True
 
+		Description
+		-----------
 		Check if the Item "SUPPORT" exists. The Return (True) indicates that this item exists.
 
 	.EXAMPLE
 		PS C:\> Approve-YouTrackProjectExists -YouTrackProject 'SUPPORT'
 		False
 
+		Description
+		-----------
 		Check if the Item "SUPPORT-4711" exists. The Return (False) indicates that this item doesn't exists.
 		We leave the URI and YouTrackSession variables empty, that indicates that the defaults are used and the URI is set via the Initialize-YouTrackConnection command
 
@@ -2826,6 +2914,8 @@ function Approve-YouTrackProjectExists {
 			Write-Error "Sorry, but $MyIssue was not found"
 		}
 
+		Description
+		-----------
 		Simple example that checks if a given Issue exists. If not it drops an Error. Within the IF you can do something useful.
 
 	.NOTES
@@ -2933,6 +3023,8 @@ function Get-YouTrackProject {
 		archived    : false
 		lead        : john
 
+		Description
+		-----------
 		Get details about a given YouTrack Project
 
 	.NOTES
