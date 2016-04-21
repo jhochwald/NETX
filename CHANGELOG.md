@@ -1,4 +1,14 @@
-### Add a better note (Prevent overwrite of the EXAMPLE Profile) (HEAD -> master)
+### Cleanup (Reduce active Quotes) (HEAD -> master)
+>Thu, 21 Apr 2016 16:56:58 +0200
+
+>Author: Joerg Hochwald (joerg@hochwald.net)
+
+>Commiter: Joerg Hochwald (joerg@hochwald.net)
+
+
+
+
+### Add a better note (Prevent overwrite of the EXAMPLE Profile)
 >Thu, 21 Apr 2016 16:56:18 +0200
 
 >Author: Joerg Hochwald (joerg@hochwald.net)
