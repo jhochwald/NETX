@@ -1,4 +1,14 @@
-### Transfer the latest changes from the Distribution (HEAD -> master)
+### Add a better note (Prevent overwrite of the EXAMPLE Profile) (HEAD -> master)
+>Thu, 21 Apr 2016 16:56:18 +0200
+
+>Author: Joerg Hochwald (joerg@hochwald.net)
+
+>Commiter: Joerg Hochwald (joerg@hochwald.net)
+
+
+
+
+### Transfer the latest changes from the Distribution (origin/master, origin/HEAD)
 >Thu, 21 Apr 2016 16:52:05 +0200
 
 >Author: Joerg Hochwald (joerg@hochwald.net)
@@ -8,7 +18,7 @@
 
 
 
-### Minor Update: New format for the Examples (origin/master, origin/HEAD)
+### Minor Update: New format for the Examples
 >Thu, 14 Apr 2016 00:01:58 +0200
 
 >Author: Joerg Hochwald (joerg@hochwald.net)
