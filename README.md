@@ -26,7 +26,7 @@ This content is generated and updated by our Build Server.
 ## Why Free?
 Why should charge for everything? Our focus is to optimize customer businesses by helping them to automate as much as possible.
 
-But we need to automate our own stuff to. Most of the thing we will publish here is that kind of stuff that we invented, adopted or developed to run our or automate our own processes.
+We believe in Open Source! We try to release as many open source as possible.
 
 ## Why Open Source
 That is very easy to answer: Cause we think that the community might find some of our stuff useful!
