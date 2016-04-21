@@ -1,4 +1,14 @@
-### Cleanup (Reduce active Quotes) (HEAD -> master)
+### New Signature (HEAD -> master)
+>Thu, 21 Apr 2016 16:57:17 +0200
+
+>Author: Joerg Hochwald (joerg@hochwald.net)
+
+>Commiter: Joerg Hochwald (joerg@hochwald.net)
+
+
+
+
+### Cleanup (Reduce active Quotes)
 >Thu, 21 Apr 2016 16:56:58 +0200
 
 >Author: Joerg Hochwald (joerg@hochwald.net)
