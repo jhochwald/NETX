@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,7 +58,9 @@ function global:Invoke-PowerHelp {
 	.EXAMPLE
 		PS C:\> man Get-item
 
-		# Shows the complete help text of the cmdlet "Get-item", page by page
+		Description
+		-----------
+		Shows the complete help text of the cmdlet "Get-item", page by page
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -92,8 +94,8 @@ function global:Invoke-PowerHelp {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULnfYe8au7FJy7POHs3tN+56V
-# rMygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5Tzl1DfzWs2NiJG8XqiOz23m
+# p+SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -236,25 +238,25 @@ function global:Invoke-PowerHelp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS+emHSDr1ANf7zFPOU33I3ZO1sETANBgkqhkiG9w0B
-# AQEFAASCAQCAm6Ra/bvKbFclvPoEWD0SVYex/fuzvL17wDY/su+STvcY0t5MCNIJ
-# 15TXFM2s/VcaMs41HcQIlppfg4iwaX9f3eCFP1rJlyja2azI4CI+b1YsBXovdP5z
-# haFoofYSdczinaH1IGhyhRka0sQ1cOeugy8gJ2gfdm4qoSCJTOJYvHU2afVH2hTz
-# ekHiAWliqLF2CIA8B2taDy2+o3JgbkJuJRB1YJEinRN+WNgmFkNKRq6/fyHSK4c2
-# g4dGmCQPa28zBZlk1og3qkda1CUnmjXujLotixyIz4GLD6PsBEBdnCtq/FZru74x
-# pzMytnybCJzmQJqiPW2ueFziBYPYToADoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTXodCqLQ6AaXL6+0mbeMTXXofVdjANBgkqhkiG9w0B
+# AQEFAASCAQCGfYgl1oKCZSAy2gm5an7Rmf5C4qrGHrnfXM6c3QPIR2VYnBZaFQXm
+# 4PYciFgpcifUoj3Jjw0+MjAlm+z1NU3gs5KeyKz+opjtwxsReHUUMy9VmWQ5rRkG
+# bcDkUyv2uMc/Kr/JsqIkN9dfqbn3+fligOtPwN3998E2vLPhDpH/S8mMlMUeHA2c
+# FOBj5X5Pco+f9gugmWBO3fbL2W8nkNcIDVnBNfHFDhJKJL2iiDRiMKZ5/ElZmsbx
+# tMG+giX4DjZMUnhOKBe03SjnnmSc5V4fNUzBnGg5VDNUc0cArZ8CXifMTVrQHEYk
+# e684zT9XOseOZm8IxROcNmFlPZQk487doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE0N1owIwYJKoZIhvcN
-# AQkEMRYEFH2uonTDZxU3qp006uBK1Y0LtIz4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyM1owIwYJKoZIhvcN
+# AQkEMRYEFMxEzMl08lwYBoB9+0oo1Ha4ixKAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAoJIn3SHcw1QNgwaRVcUcW6PDnKlplUVBTK1NPCHauqJ5N
-# CGKVxS4ggEkOo85Mu6wJOrhWzBv9upalaKPHc9ZBdlL8omMDrtpJzjhM6/3WtE7e
-# fvWmJiCk/L40JWDtbEmsPuuuOyI12V59c0ooF/yDXedHr8O/jLr99MDPAUKlaj+/
-# kS3LlrW4lsaevntM7bscEerMXa64LAzCywNFmLlMxqcsPP3EeYosqSq++Wet32vd
-# jpeSTLCbmo3dMKixTweUN/Rmli3qVFKQf49jp1qR43h+ikyzm3bAooQL/WDfnvkM
-# STnTjwvJXn6HyH6v/Z/nryBdIO4fBroMNmmxMI8B
+# hkiG9w0BAQEFAASCAQBd8pj/3UEQ+kEXZi17dgrQHv9trfiaLLPVHKTG1fN9dsPm
+# ivrUW0zVSFV3dRyfpvAR2SU8bFbcUv2cxTr5FqtF45ePKyhKGs0wk9RWhCfJ5pWm
+# LjVGvC0kjVGYNGgGO3uJtAEQ5CLa/ShfEFGdJUScU5lLyxzJZ2FtRY1+UOBgmXbU
+# novkBnDyO5Ywgt3DLa/zgYigxjRFFL1XHa58ykDr0yC88XSCukKRBRufGiPsBTlH
+# 4iFE2UnFheKKml03tfJ/7LZSWEj5U3dOSQfq/mBniRoSbxVRkBLQrfT987Mk5moq
+# XCDD0VPmN1QLi+tFv48GZWK9zWg1XtAHLW+rDNoK
 # SIG # End signature block

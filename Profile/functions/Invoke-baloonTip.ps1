@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -49,35 +49,41 @@
 function global:Invoke-baloonTip {
 <#
 	.SYNOPSIS
-		Shows a Windows Ballon notification
+		Shows a Windows Balloon notification
 
 	.DESCRIPTION
-		Shows a Windows Ballon notification
+		Shows a Windows Balloon notification
 
 	.PARAMETER Title
-		Title of the Baloon Tip
+		Title of the Balloon Tip
 
 	.PARAMETER Message
-		Message of the Baloon Tip
+		Message of the Balloon Tip
 
 	.PARAMETER Icon
-		Type for the Ballon
+		Type for the Balloon
 
 	.EXAMPLE
 		PS C:\> Invoke-baloonTip
 
-		# Show a windows Baloon with the Title "Title" and the Text "Message..." as "Information".
-		# This is the default values for everything.
+		Description
+		-----------
+		Show a windows Balloon with the Title "Title" and the Text "Message..." as "Information".
+		This is the default values for everything.
 
 	.EXAMPLE
 		PS C:\> Invoke-baloonTip -Title 'Diskspace!!!' -Message 'Diskspace on c: is low' -Icon 'Exclamation'
 
-		# This shows an Ballon with the Title "Diskspace!!!", the message is "Diskspace on c: is low" as "Exclamation"
+		Description
+		-----------
+		This shows an Balloon with the Title "Diskspace!!!", the message is "Diskspace on c: is low" as "Exclamation"
 
 	.EXAMPLE
 		PS C:\> Invoke-baloonTip -Title 'Reconnect?' -Message 'Should is reconnect to Office 365???' -Icon 'Question'
 
-		# This shows an Ballon with the Title "Reconnect?", the message is "Should is reconnect to Office 365???" as "Question"
+		Description
+		-----------
+		This shows an Balloon with the Title "Reconnect?", the message is "Should is reconnect to Office 365???" as "Question"
 
 	.NOTES
 		Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
@@ -140,8 +146,8 @@ function global:Invoke-baloonTip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYSHqoTBjf3RXPB7eW3MjSJi9
-# ENGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWL62SYj/ZDM25y+9bS8bE03U
+# oyqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +290,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQPh217KAareLQUC9oT5dco15+YXTANBgkqhkiG9w0B
-# AQEFAASCAQBMBHK7dLkYiS7E/Epb4dGQxA0ivt/5JQ5xigFqPqXC8Sd5Rb1M4v2u
-# dn1qn5cM8CZSp4Cm5SigmpbsncAyBK2J6yg7jUfV9VtDx19y2hNwwnmpYPkQB9lR
-# IyNUbaKla8mvdWyq4fNXSZrbdH5K347YhexMcu6MBTDIfHZxl9KjCEsQLCiJFAZ5
-# rJ6VJNPsYw1z6nNKKcaZL7aCCfSp4yqiNaLEiS5GLXTrWx2kQK+svgVA93RTKu80
-# ChcZjgs5PokEYQfNZ06vKk863ZfJzYedDSOacjPvGNEUcznmEFA+lxfZYI0t0rdC
-# hSjhhiJHxhgjs1IGHFSlrVhsFM6+m2OKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ6ChP0/rSvrQOl/zKfKEOl/KiWtjANBgkqhkiG9w0B
+# AQEFAASCAQAqDxUicLWUgV9vVuiPLpSnEnqwx63IZQN78aWZPCO7v6K9YIwMSde8
+# ZQ99+Bh3gHeqs29IvfpMQu261CUoMRpg0GzX/jHrFYYemnL2A8q5Tts3Ul5IWTWN
+# H4eyg0+2zVwlHebrJKQ0AKMW9gvFY+3cA2bA1GZqO/1bA8+DvmK95d2sYKOT8SVU
+# AKcWIFeq7IGVKsn21i9iBtVNaLSWmdqgpQBNG6D5TZ2irmRM9Tlpkb9PYYYYcBJ3
+# V8xCvbGaiFFu6Q2GQ8U7HPSSoOIeN/x+s4nNGNZJ21010FvFwEh1h/9K7Z3OYTLG
+# fMkrPX5eDoUCyxstaq5hre+lXcbLpRQ1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEzNlowIwYJKoZIhvcN
-# AQkEMRYEFGPPmihtClo3+k1ZH+/RpZOQy8gzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxOVowIwYJKoZIhvcN
+# AQkEMRYEFPUVw7J7F2mnlXYNTQxdejhOuJG7MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCrohQE8tijnkCSuGsIoyfkMlpnAu5xq3uQEilNy+3ZPHJL
-# YdVTBWjRLHnD/5rwLQ00D89VBvVkm1Er7oQnVUjJIDrFPk7lY3Ol2xSfPdvmScrY
-# 4AZevfN/7Zf9uschvmQlf+DRcf2glFca9R/TR03NTFnHuDf2d+M0tYBE85iCPku1
-# g08s9XNBiw3xzOGzTBARdSjjdNwWcxdXXhnO7CEKdSNd9p21bYkaAm+yxCq2r6F3
-# uPbVa++Jc3a5M4iK/4MHb8KgGjBF3Qk3FDUW+yXJcdpUFmOkKhc+9Aq3Fjph/pko
-# 0ehfVMIFSESKanPFTEB8M6nXAhoRrjv8ln6uLKrb
+# hkiG9w0BAQEFAASCAQAcuvmfiMIp1c+A85IH01YLfbt/Yfw4fpOibDGnLiLN1Dp0
+# MZKzwhkO7l+yQLSgsrFwQ6fmAwQCozduUM8MylUx99/8IlSRacLoxW1vJ126NMK8
+# VUBC7W7GfXJX8pkHSGNQUX5pZrVPgyb0Nr9fZDDlvS+UcUaz8MgRIzZ1Fd/u4zyS
+# Oj/fRWbguiHoW1psY9sqDqSkDB7HftwgFhmzeAdoCbwfofeE81PUuSaJn4UJq/Q+
+# nN18qpF5cjp61AnVroPHdhAHrtYBY16skeB3/jvQGjgW+MJcFHwkX2bsuMFT5sDA
+# 2gXgNHkYFZXmd6P04MJwKJ5hfzlQBwV5ZAI4LJVz
 # SIG # End signature block

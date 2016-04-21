@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,21 +58,27 @@ function global:Set-VisualEditor {
 	.EXAMPLE
 		PS C:\> Set-VisualEditor
 
-		# Set the VisualEditor variable. Nothing is returned, no parameter, no nothing ;-)
+		Description
+		-----------
+		Set the VisualEditor variable. Nothing is returned, no parameter, no nothing ;-)
 
 	.EXAMPLE
 		PS C:\> $VisualEditor
 		C:\Program Files (x86)\Notepad++\notepad++.exe
 
-		# Show the variable (Notepad++ in this case)
+		Description
+		-----------
+		Show the variable (Notepad++ in this case)
 
 	.EXAMPLE
 		PS C:\> $VisualEditor
 		PowerShell_ISE.exe
 
-		# Show the variable (PowerShell ISE in this case)
-		# So no Sublime (our favorite) or Notepad++ (Fallback) installed. looks like a plain vanilla PowerShell box.
-		# But hey, since PowerShell 4, ISE is great!
+		Description
+		-----------
+		Show the variable (PowerShell ISE in this case)
+		So no Sublime (our favorite) or Notepad++ (Fallback) installed. looks like a plain vanilla PowerShell box.
+		But hey, since PowerShell 4, ISE is great!
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -123,8 +129,8 @@ Set-VisualEditor
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfXHIjEi1dnSYO56EXB4cFMwr
-# ZamgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXCq6s+Mr+LH+5DmacMLoWEHd
+# 81SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -267,25 +273,25 @@ Set-VisualEditor
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSgSVivvwFA47QN697GogUWPJ1E/jANBgkqhkiG9w0B
-# AQEFAASCAQCUy1QcpM17Y4E8L9R/cIYAY1mh60/EJ11yIynAJC7MoD1p3ScqCiC4
-# scMOV/91OcadnZ42jiJEje8qYXEupm+aHPIbsNifVes7BraAiqXM823lW+buEKM4
-# ZMhBV0cD3q5TF0UYrUW7HLIQgsxlMhv5DGDnBwOVRgGfwRPJnvVS0JM0tdo2lmvF
-# xlyGdfkPbUsXfAU7c5FgnINqR2MMH1chemwuVAM/ejU4OStG157cSLe2sIjzzbp0
-# pIgxBJb+s9hmaNM4h8DxCJ/KKR5fQknpZae/9Lc5wkeE4IQrLo5xtdMzcYZe/fOX
-# ZBoHi6gm7V8JuEBb/PHOxTggwaZdcAwhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTIJB5vCI4YRP0k54YLmPPVv4xhCTANBgkqhkiG9w0B
+# AQEFAASCAQBeAV2Zukzsj6JpeADLM35Dbm7EfT0EU/eoVE5eAu0HEjdDLnPhuNyO
+# oqPUl3xRnePK4CGTyMi8rgv1McDWnXOHqa0HarzFpdGWJAWRtTT0OMTGGWRt8sb1
+# x9FO59Td7wRk3/TquB5aNZSAjpcuCyY3e3IHtTcbNsg6fjQB27fWAjWR3Y1onl9k
+# wMcG+9s0NtQ7ZVsyRUL1mlCUeDFkR584/i70ZLs0EawjPhUhMXToM1kF5YOijLV6
+# ndoHPNJslzGqbl7NzgZdyOVppBR2o4LGsXFCsHrTSmJcDq0S6Wwgm3UHt6eBc7Lh
+# wrcVQPOBmH59V+KAiKU9i+38/WONEQugoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxOFowIwYJKoZIhvcN
-# AQkEMRYEFO3Uhl4azULrlrtpAbF+ZkAqUENmMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzM1owIwYJKoZIhvcN
+# AQkEMRYEFEcxVn8Y5dUsn9pEOTcxkTyvaORqMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAo6NHToboUQGiXpjxkUn552Givzlb479HsOJ843OAroFlg
-# xiT8HTQRlBT6byB0Q6DkMlXqf8AmQ9T8htu/XymUF0k3p6BpkFgRM4DU8nJtf8Cl
-# 2/hE7w/B+xekHlqqD0ar1XPvn6PDko1VQGolWqYuRF9CxW5oXM6KmpIZ8s/rdEHx
-# ZMl+wcwc1Af2G3gfO176IrBGrHwSdCmt6ZXoGnQGdtnSawdelBJW2VYcz4m3ZH9m
-# Ah421SEUjYYkDHwMJ99ANLBGWU4X1VtwNR2g97tt+FsxLRk8jZTpLS1wSDPuLgeD
-# KHVTVfsHQvHp+iblUvWvh79y9291O9CtItt/o1+V
+# hkiG9w0BAQEFAASCAQAg7uaVGNAZe3h5bBhZ1qX8+DN/OcTXKWIL0ziKN0o8R/o/
+# Z3dNspNilnyMrv3fwGpzt370YgRGJyjIjxYt7hS2zzvq30n72HbJDdNUNepN8TSQ
+# CpRcOXZf8cwkJGHkEPwjJAgqqj1iBQKQKD4dI3+iq9hwe+PKV6Qlg+AeLI/oJlzE
+# 8IKHxYwWWkQH7QcYbkT7g1uM+AMCLN/P2HwbHIYF+Ni+CeqK9RCgwm/I8hZUeWL/
+# rVjWF5S9axKIVde4RJHHUpeYWc/9cFEE1BLsKGrQ7mOWX9NCA/mQhiYXQhgRmda/
+# oD5IwZ3WSWSC9gtHQpn9HJkahzE52rNxS1Rd2IUR
 # SIG # End signature block

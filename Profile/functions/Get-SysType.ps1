@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,13 +62,17 @@ function Global:Get-SysType {
 		PS C:\> Get-SysType
 		Workstation
 
-		# The system is a Workstation (with or without Domain membership)
+		Description
+		-----------
+		The system is a Workstation (with or without Domain membership)
 
 	.EXAMPLE
 		PS C:\>  Get-SysType -d
 		Standalone Server
 
-		# The system is a non domain joined server.
+		Description
+		-----------
+		The system is a non domain joined server.
 
 	.NOTES
 		Wrote this for myself to see what system I was connected to via Remote PowerShell
@@ -130,8 +134,8 @@ function Global:Get-SysType {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9/bAE4063DcYSZuXP7kB+CJ1
-# Q4WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSBzr++0DknkT38ToFDaAhwiS
+# YDqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +278,25 @@ function Global:Get-SysType {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTFbriL6nRg5hweiL+8uETe7u6BNDANBgkqhkiG9w0B
-# AQEFAASCAQAWQKBYX33CU+Fap5H8x9i8Jg/PpLX4MFgYUJAUXBUswgskBCSnm7i+
-# 3VsKaDegd7tLy7Pyk9f0uCvo8kHaD2E4n3pSG7mInrJttR3gjr68i435r+VGrglj
-# 43hvIcKhU7qEGjngiBnGACK95QNbCbQO3khnTluavSAXxKgwAglxTEAYPdkILHcG
-# 2m6Wccm+QKpFzpWOYgUs3VnQgTvZM9TF/npsYGUNxTSfOqLE1SbOqBiCPbBcau7I
-# Q3GyuB9wCyKwwE0WZIOdoRZCmu3nAzFZWhSczOGweGwIDGSi45TKUZ0YOefbv+xp
-# U47if6IWcPsCsit+kCmwKSs4gqKt7To1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTS/UCoSDqPJ75MUZQnDtV82wRr3DANBgkqhkiG9w0B
+# AQEFAASCAQAX7sHPIoR87/TbKhw77P6kR1fTugyEa/oUcomuE79lT5hI1qbC13aV
+# alrJhIGhrmqh18qu9EkYAOXKts98JdNmz7qDkyHOTAtyzSbzMg0wyAvpj3cI4H8c
+# 7NYTHwE4+a4TRpR+TzJCEQkhp+xoWygU4LKVTGafReJis53mmFugoP6IhClutunE
+# +ZUNeeeFQcpc2LsCKWQ3ph1qKaG+KVtKSeFYx1mHpg3nlsO33HgEKB+Ik2LfdkYY
+# 8tTWNa1SmWtSmFI51QfFSlPP7RM1mfQlYJXihwTCb1S47X4YbJnc/FaHsdQfo1ww
+# peTBTx/5qcrw9H+cQOS0iA3i7DI9pt3NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExNlowIwYJKoZIhvcN
-# AQkEMRYEFLjtoqRwsY84X9hqqO20f3iuxttjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxNFowIwYJKoZIhvcN
+# AQkEMRYEFKWTeqcLb6s8d4zoTs+/AElLIOfDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAFoJDyDgsD+kWF/IhxJwAsUXuvavJJG0g5E0h02gfTAXKW
-# n/stTc7HMPjkMLwwF9rfMmfN0PaRm0r6Ipq0wWbSvuZG4VRogo0ismaAIVc3GwIC
-# MKNDMrYwpnasmrrdUKmZawfwR41F5CrnJI6UbvGE+2UzdQvX1bN6pNddAn2NB630
-# 86FL07nIFFQ2HZVv9pp1w+IP47iAu/eATMfMCZLvJLFDvdWVsjKdLRf1+TPv30Rs
-# VphbibFEttxQlPszJATK4aXEwBa55dHHqUj29WwvlP4k94HYVGo4+pkNJQYtYt21
-# PoWZrOV1BSc29t2hztOKd9CggoQRSGHt5BcJdSsn
+# hkiG9w0BAQEFAASCAQCia3gETolar0iP9SIVRHttLaPjp1YOK7a8V2f5N4snth6c
+# DDU0KalJC+CtIWepm9O6JSoZ+wdAImfD76dQGz9W9QMW21kFPWP6WpyiSZNNf1Vn
+# 992W4rMVRTHfDRO9M5telAh0KgzUIO6ofBml0e8pi57dRafCySKsETajEsa358Tg
+# Sak5jfhixifiN8p7ZyipKL9TRrqTByh6Wx5Btd+PoI5nQehbiyjGjDcOwde9EJe/
+# gE1j/l+1JNGM82vMkJUp2kF6hXe3FNcN6Yo6zO0VOXjxwkcXu6cd/esVsWgYt7ex
+# YWERXnx2h/8LdAMvExG4RAGaW468YtwzHspHXl2c
 # SIG # End signature block

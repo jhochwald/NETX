@@ -31,17 +31,23 @@ function Global:Compress-GZip {
 		What if: Performing the operation "Compress-GZip" on target "Create new Compressed File @ C:\scripts\PowerShell\locations.txt.gz".
 		What if: Performing the operation "Compress-GZip" on target "Creating Compress File @ C:\scripts\PowerShell\locations.txt.gz".
 
-		# Simulate GZip Compress '.\locations.txt'
+		Description
+		-----------
+		Simulate GZip Compress '.\locations.txt'
 
 	.Example
 		Get-ChildItem .\NotCompressFile.xml | Compress-GZip
 
-		# GZip Compress '.\NotCompressFile.xml' to '.\NotCompressFile.xml.gz'
+		Description
+		-----------
+		GZip Compress '.\NotCompressFile.xml' to '.\NotCompressFile.xml.gz'
 
 	.Example
 		Compress-GZip -FullName "C:\scripts\NotCompressFile.xml" -NewName "Compressed.xml.funkyextension"
 
-		# GZip Compress "C:\scripts\NotCompressFile.xml" and generates the archive "Compressed.xml.funkyextension" instead of the default '.gz'
+		Description
+		-----------
+		GZip Compress "C:\scripts\NotCompressFile.xml" and generates the archive "Compressed.xml.funkyextension" instead of the default '.gz'
 
 	.NOTES
 		Copyright 2013 Robert Nees
@@ -158,17 +164,23 @@ function Global:Expand-GZip {
 		VERBOSE: Decompressing to: C:\scripts\PowerShell\locations.txt
 		What if: Performing the operation "Expand-GZip" on target "Creating Decompressed File @ C:\scripts\PowerShell\locations.txt".
 
-		# Simulate GZip Decompress of archive 'locations.txt.gz'
+		Description
+		-----------
+		Simulate GZip Decompress of archive 'locations.txt.gz'
 
 	.Example
 		Get-ChildItem .\locations.txt.gz | Expand-GZip
 
-		# GZip Decompress 'locations.txt.gz' to 'locations.txt'
+		Description
+		-----------
+		GZip Decompress 'locations.txt.gz' to 'locations.txt'
 
 	.Example
 		Expand-GZip -FullName 'locations.txt.gz' -NewName 'NewLocations.txt' instead of the default 'locations.txt'
 
-		# GZip Decompress 'locations.txt.gz' to 'NewLocations.txt
+		Description
+		-----------
+		GZip Decompress 'locations.txt.gz' to 'NewLocations.txt
 
 	.NOTES
 		Copyright 2013 Robert Nees
@@ -262,8 +274,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6pBcj0KlViFSCvtgOzxwmz9+
-# tA6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcYROCDj0qhpt4CMdkNr7197b
+# UeegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -406,25 +418,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTk0OGziyE3HzB3vXsfPbnpQ1NyMTANBgkqhkiG9w0B
-# AQEFAASCAQB8ZZVxTCEPccFJYx3kvuO1cCS6orYoJfzJazbyDRCjWp7m8qQLTa5N
-# LTXm7IntF4exeumbNBLU+trSn+Tsi8EBwCKojTMFJd89WtyytpZeYY4EL34NU6xA
-# RP2cGltYNXIMUntaM0LVHnDNutg069ZcSU5lX+ZviijOL06DOwLNjtzLDTMI0YQh
-# yzPabDvLSmCJ51pYUorMFAx/I8ulh97uRsV5ha+cL+tNL7QdbbIANJrIx4p+pXAM
-# HORST+KoT2bmwATNj0OPRChjWTW0Idtmqta9qhcadBK5B2bIWKrzEgHptTV2OMPE
-# 4V3jNMkY9ujCc6mfavufpheATj8e8QIioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT/qK/BG/i56HxwqvAwlHAAy2MCfjANBgkqhkiG9w0B
+# AQEFAASCAQCFFcb+jh7eWlpeVqAMj2MG17Kt3waO6XMcXiwm/1bEcqmOVPLErXAi
+# 1SedUuurzo5wlGYIPg0QH4bnlmnH9rdjSupLdvAn2k616HGDy9ktMVxC5uZ9u/mo
+# ioTn6Q3E5xVC08jWwiCRWsexUZSJ2fK2Dmzb8+MpFkJiFehXdtkgsIV7+7HxiWdn
+# fi86bWsHC0aVd66Z6bMML03rgZ61WgbVcwP6nD2NUtrVuOFicBLB0kfx55EqEGkn
+# NqpeQ+dhe9ZHJVp2qnyz1c0D02tL6i6/UY4kfdvxTMD4iEABGyAM8JiX6onpxNP/
+# 9goYY7THrvsNjVpQutc78gDn1wclUYwCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyNFowIwYJKoZIhvcN
-# AQkEMRYEFDgQG8BFLR+2uQiuU8/D0HBCdILEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxN1owIwYJKoZIhvcN
+# AQkEMRYEFP1yc0L6J/Cn6NwdawRHVnKmRNaUMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBdvLF5TrMyhFoSGdQ4oVXf+3RryDMtdid5Dzj81G/YqO3I
-# PbN2+BQmFOnMRpL++nBCYLblqICrRZKoyVg1A4oX/9cEFkEB5zpp1COQFJORKNd+
-# NnOgyThJqI53lS7cMi8vIMEbKeCBLBAY481fm3A2Iy9AJCRTzz33ZPu22FmkUm/g
-# zZjqbGS2R661wH3bwYSGSWUWpbTMuNriAKtan8Q6IG37BEg7p2vPmIZB/4+5EWgH
-# JaX7uRYKgqezpkikjQMyf8wJoCPHjtZn1IENRBNyORqsfu/KOcuPgK/AVG7ocRNj
-# rSqNT7+h9q6MJycD1W6UGr+T9XeIMhYBZtP6dKQz
+# hkiG9w0BAQEFAASCAQAo0NeIM14dTLF9pHHU5lHtxhCQVzUEjd7weLXUXajrm8pp
+# FXM6s8Lmr1moLLtcV7NpdpVw0/AqR48Sk/JxnUuW0SzxnG1LBe0ocpe9LxRrv067
+# cpqvBDMut6i8dPiCAdq5z5wUf6eRR6M1uLdRamadzFj4T1GfajJy24DWEihIghjG
+# KIBSfhxJuQmJvenEcEVGleA1QDz3uwYT/u9ZYyv7ACd7Lig472lExJf6e3pH7c0f
+# ICLW9cjal2HJkyI+O1rQllQ/aUUZonfbGoeXxD7+TtEbURZ/FnU+NFTIdyMjBA0I
+# nNnK4YlQ9EHw7B5+gA4OlhZwXY5suWA7mSAAxm8T
 # SIG # End signature block

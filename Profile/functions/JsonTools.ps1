@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,7 +62,9 @@ function Global:Get-MaskedJson {
 		Get-MaskedJson '{"name":"John", "Age":"21"}'
 		{\"name\":\"John\", \"Age\":\"21\"}
 
-		# Masks all special characters within a JSON File
+		Description
+		-----------
+		Masks all special characters within a JSON File
 
 	.NOTES
 		Additional information about the function.
@@ -100,7 +102,9 @@ function Global:Get-RegularJson {
 		Get-RegularJson '{\"name\":\"John\", \"Age\":\"21\"}'
 		{"name":"John", "Age":"21"}
 
-		# Converts a C# dumped JSON to regular JSON
+		Description
+		-----------
+		Converts a C# dumped JSON to regular JSON
 
 	.NOTES
 		Additional information about the function.
@@ -126,8 +130,8 @@ function Global:Get-RegularJson {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVa7P7nGGX8Kwr7dCpSVxl4xs
-# v+ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURjmjmFgnTYT7llxpIxMdEH00
+# quSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -270,25 +274,25 @@ function Global:Get-RegularJson {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQNgoJ3pWmvRxVNMMD1jfARjEGiRjANBgkqhkiG9w0B
-# AQEFAASCAQAuMIgNt0brLWVaJp8HVoiN2VM71VXCOrjmT49bP1EHmp+y5iRkRzoT
-# NJ+TVxMFq+BQWYkF5l/EOT2D/jqResmB9x/L48VGk5kWqNmgeT8TZ+INFBs7fIxG
-# E1Vcsg78bqNpBHo5z0oW+4FMWyZeQjXSsZdirwemQrMBErZLKAwW6pvtg/vcTjfS
-# X4iVlVhnLJv6yR9Ier6MFTBhOR9BSHnsYx6gIFusCg9PhmA6/aEsAFH/euWZzeDv
-# 0fn2uGYqQCj0PIiy4paevt/O3iT6EIE+vJuWu9zsdYiYs5aLpgRs+SH0S6pr245T
-# fQUdLJWYJD8r9etY1LcYLqKFwvDUnKuNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRMydRI+7mDTkfsqZ9RNAhC/rCQUDANBgkqhkiG9w0B
+# AQEFAASCAQAO8MsDnh6DLhuOr649eGn8kILxXwZlj2wOTlGVIqxZ5a1PP/uC/476
+# 1/umunv00GebwGeuK4ovV8U4IJf7DUf9jkgrRwFGX0sFNsHQIxnR0dor9kbVMh0t
+# Q40rM9Ls6ajLq9ix+3rr7ODjgqhlqpH0OjuuzRTHRFEhHIMvYh/b2FjKYWJUIZG1
+# HRSPXtWKcUCYtfQF15t09IzAyk55BRZw/uy6AXGvtpVFZAnX/RkfkJEkkGWZOcvE
+# tTBmFiSmodvEOwHJaa1Sis3kMJp+jDDU30B5QdVj9mIBfbDOqcNJjNrgXCEZsizv
+# U8hWJaPS+KKeHQwZ0Xr10FEHjrZWsbEuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE0NlowIwYJKoZIhvcN
-# AQkEMRYEFP1KrBb64JSTXeQ1PRsq0jbFQCKWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyMlowIwYJKoZIhvcN
+# AQkEMRYEFPx1+93p2YheTHTq7CDBg7FRe5liMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQATwCbUM/9YNmMVf2m4CIAgM1sW6fXQMwNwFutF+kvxLOyJ
-# XFrkfpQMYIj1q/0phHQSM0dvFzAiQcegLlolzm4nyVUaIMHn8feVi5VgJNRn6OGm
-# oTOs6zVkrH+eZS2VKgQnfOYv3HcpbZQ11YFud7Ytl7DEaeU3VJWXRBym1s04K3zM
-# YdzjxQJUZEHeWvVt35ivQuDqHb2arrx/rryfeCxymZtoY9ret0NtvKwwLumDQYQY
-# ZrOSFyxECQ+JUFAvkD65FBiIZuPAm9sEZdrXdycLRtq8h3NqevnXmHNW3RxLV61r
-# QNKOkVweF9N9couamtTjDnmP2SCyUWzVv5eafKXO
+# hkiG9w0BAQEFAASCAQAP7MTTo8d8JRNcrvk62a6C2QcOi9O9c2w0L4HDPrKyDeMi
+# 0IpvpSwsXJAk5R73ZbTFTiZ/FkgJgObP1iIUgFfk8pv8cD05aMgphcXr2xdo6524
+# jW+ncWVBc8fPZpR3yx0taaRwGznO7w+D91q5T2ms6QNOfSwkuK1b6fiJsjew73b6
+# evfXi/B9fRBH7gljU+Swl4aVFaGjuQHpGqUq0uQZRaHTRKQchsGxRyEXQiLh1hMc
+# HpnFENMKLNofqD6KoeY0ehmu77Jq0CNEg2Yt9ndFBL0GxXjJb1AqxJE4kvzALiLM
+# bSDDupJea2o3p8JhDqTyFPqxa4AswhxAaQd8CeDb
 # SIG # End signature block

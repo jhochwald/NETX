@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,12 +64,16 @@ function global:Get-MyLS {
 	.EXAMPLE
 		PS C:\> myls
 
-		# Show the content of the directory Where-Object you are
+		Description
+		-----------
+		Show the content of the directory Where-Object you are
 
 	.EXAMPLE
 		PS C:\> myls c:\
 
-		# Show the content of "c:\"
+		Description
+		-----------
+		Show the content of "c:\"
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -103,8 +107,8 @@ function global:Get-MyLS {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5UgUdL+5CGKhEGb2PSOBZNu4
-# rtugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUObSvE3lVIjtiHyBN0t3EgBY8
+# MPKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -247,25 +251,25 @@ function global:Get-MyLS {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTPDmoEyM227PD3VfLymIwGBkfMKjANBgkqhkiG9w0B
-# AQEFAASCAQBFBfcpjTIkjkBXNjVycNN+mggRn5wjsILqwASKEk3qsguZy2spCjqa
-# kbsScX4gQJQ8X91RPg4ulTcVkRxd5FLoCeQR9iVAl2sL4mF8V6/ulKnbdvEw0Ykz
-# /cJCwh+BX+Wca5BwVOVbJppX8G5Hy1+AMTzuiuGg3aq+1QG7wwGQ3p7Kmgmj0VXS
-# N+6CGF2pRCxgadg+y8+uZIifF8DfeI7UpKOBsBD2po8wukakKll6TjuVrzM2uyVd
-# hHjwdj7vYp8sKumONda2Cv9/nU0KgDJOBl95jyrizoAnQCCc7PBnwLhulVLxum/U
-# sJTNq7w8lbSpHgtKVZ8AQJTPcoRirCkhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRRR2ZbHYrwFU9pgmkBNgF+3cOUMTANBgkqhkiG9w0B
+# AQEFAASCAQBj7iPM9yFXE8ubN5pVsUCv70a94eOepKiNhXjKagcUR1kmd4+GGgQk
+# qlWSEALh/CQQtNm7VhbfZyLDhC/GrjhMj9xDJ66hTxcX6K90lmMnvI6ePNv6b9QL
+# BWoB4O45mvAMjn7TwyMaPFVPPwMvTE1ZzYfGixpRxzkN04uI8H/vZhXqvsDYqEjx
+# w6i0vTFLDWXZMt7rR+HWKeYb64xNwgLznPws9f43hEFPHRPAUGNyhERsajdEimgL
+# cy5ezqQMrBnrMu9rDAFNHizXjuXRWvfdOXoN8QZ0rAfBovDbJvPQLembMNbaIh6+
+# gYLsyvXL3loQrijr3x12z/mE5kxkoaxjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1MFowIwYJKoZIhvcN
-# AQkEMRYEFPaOUKW9G+dMj26WB1hxozIdc70hMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyM1owIwYJKoZIhvcN
+# AQkEMRYEFBEs2bJUJVHNtRoesy6ANBecNz+FMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAUIsaFqaG8m9BAon4obXgy7PEiwdWJRm2vIsB8oL8ao3yT
-# jeBERKOp4H0e3MmX9qlCd7v0k9R5/27B4L48exnK7LFlRtfiSK70ni4mgRI9M1Om
-# 5N9Kk6MYOlz1xocY3aEQx1+GPsrIizhCQlgBloHTlgQoCo3IYDxmkeFYbNphN8jv
-# JFdKBGa+0eJqC4R1nmcaCdWy5/EH+DC99XzilOovI3btaD+za3AtfUfA6FKFUVgP
-# Sb0YqX4WpPCAO/rki1k2wTUCWYUSw6bH8GcRoGYM77VemilgQNRQcBE6WE+KPwhl
-# QRf3C2EOA7cjMi1uYSqrRWC+HenlB1uYCXwzHaI6
+# hkiG9w0BAQEFAASCAQApTXHL+do4uYN4gBZ5fP6Xzy2b5Fq6dkfnoDVcRYgqHh63
+# LRCIxmVh/7V2cb/r9CZWu/v4Xm9IuEZdUicBIGDqpgkRobp9t8RGrVKlxWjTOnee
+# 5CYdCfnK/T2tVEUyc8vHGn9+bIDID0cHek62vGOSpzaC8bwYjkO5lZWTfCr3/sUt
+# 1RGTr27Aula4nqnyrVSvDSfH78J+GNGwAlC7OskJdFq37Oe34BC1Yt6NletoFCya
+# 9L2dEUmPUepsivp86K0OyopthgBkoLkNvnvxemgWc5+1BRPmdu1K7ICLL6Z5NsiP
+# v8oAcT2bixGtKxi07fCyYPEXSpc7M2XF5hXNC5Ug
 # SIG # End signature block

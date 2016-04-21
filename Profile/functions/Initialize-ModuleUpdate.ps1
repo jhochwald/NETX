@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,12 +61,16 @@ function Global:Initialize-ModuleUpdate {
 	.EXAMPLE
 		PS C:\> Initialize-ModuleUpdate -Verbose
 
-		# Refresh the PowerShell Module Information
+		Description
+		-----------
+		Refresh the PowerShell Module Information
 
 	.EXAMPLE
 		PS C:\> Initialize-ModuleUpdate -Verbose
 
-		# Refresh the PowerShell Module Information
+		Description
+		-----------
+		Refresh the PowerShell Module Information
 
 	.NOTES
 		PowerShell will auto-load modules. However, with some modules, this technique may fail.
@@ -101,8 +105,8 @@ function Global:Initialize-ModuleUpdate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0UafodHst2q6DNdR1s7ZCe4q
-# 3FSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJO2CvsxKsKVm/szWsHMrQK72
+# KEKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +249,25 @@ function Global:Initialize-ModuleUpdate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRx29QtfJPjHDz8wNgIKxYcwQFh6DANBgkqhkiG9w0B
-# AQEFAASCAQCmaOCNqceaRZG9IowZzLImZ+m3dT5V9skSZYUNr7Dl1LMhZ7LQ8e14
-# v8wxJGF1gRsRGwP20ra2FhD4OllrnJgxDkznqymEvT/5wuzmlIwTLF/RyfV4rk9J
-# iA/mv+e4/MgdMZyS/gP5Kn/uBUGd+ld48i0zkOT16TBvvx7nmh8TjNXGC4dQ7TeV
-# UpT/NtdrKfquiI1pupjUxwW22NJbO1cUkj3v4OUVUehoVQRqoaMapcu77Sc8pfHL
-# BspwMJE1UFyF9KQnzRp6aPaPBpjq4s1QAijMvtw0QYVTZTIFsTyt8HoRolOtdhqN
-# nDTBT9fqhEmXEbYgfbs2sr5Aqi3+J3rHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQdPPkOPAxliIj365RYGUW2S0iM/zANBgkqhkiG9w0B
+# AQEFAASCAQCmB4Orq5MYNUnaEo94zon/DtTPolvLD+2h0fgidSfCSfXL5c5BAOLJ
+# CUFb7qOQC7IcIiCKfFzm0Q+I1zjSWv0/n2YjT3TSVhTbli3P7SNDRivJPIP2N44T
+# lySjMzFrqU7Me06aCkdB5RdFUBvS07TtxGy1UX9FVzFynWNThcvBlc71qGvBTfwe
+# MNotKK2Eoscx+tvAh0mONRV96RJeTLtm+Pd8rpLcTARuX/UzBg4cJcEDMitVHVGY
+# e6JVNvZa+/a34vaDTgTIQwA/X1Rbw8v1UIsCdEONSKRYI8UHng7iJt/gUH9UTF7+
+# ajUz4P87cpNCH34ANIecY5zuiyAq/d/6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEzNFowIwYJKoZIhvcN
-# AQkEMRYEFGqTBgCj8MnMA4d0NSagRvyxUulXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxOFowIwYJKoZIhvcN
+# AQkEMRYEFB1gWRNPobYJiKGGErOQIJGp87HkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBKgpSbFDp5K2ZMvUlvQ3TVr0+66yALhMSSTy2M3rb8Q0/F
-# dfghvdmvT4cMiZnsoV6+JnWApzoaXMHzXU3xFp5Qlrh8Qz9S7AhynkHJtMNV41Sj
-# wB09TTtgyDYK5gO3cCKZxeIRmTLxpOjHtBmNmP6r7llMg+rIEzZ7zKrYporRsjA6
-# 3ohWWAG9OX2iWwsKAra/nXPuS3I1z0HHa+XzctIi4mtq2FyOwG/s1qarcU9Bvvcz
-# xLBpAOh5DxqFC+ZQn5DXCC87Qrmnp2ldykLGrUh3yt+sSSWUOmoSc+kX+6mwG45+
-# 5QYZNz97ePAIummyLRLq1DxQTDBt4FjhzNX95/Gy
+# hkiG9w0BAQEFAASCAQBUXzam9USAH0ETY7m8yHHX0XXqKsiCEEeRmM37uj9nvId3
+# 4ukx9Gq/qVQbcMtKCay+WfOd22IoTQNljwmv66bI9wtktISq/zoJCZf5LFcTBkxL
+# B8/BKVNxY5V5RgIRKeR4mETUimL5XPwlY2LCF4hiUAdeCMxxG5ZNslbXkRk7Zb3V
+# bzPlYCJ+2LQdB/RXGheNjKQZxG8Y3RNY8U3vTQDDweiIlre7nVANB0JBrPeCsejy
+# J+M9eO/2ceU46a6rfZ9HlXAASwyRkL5N3fzgqQKmPFu/7kEBMtFkvEP5uNCVMLzM
+# Bqe1WOQ1QZz+xSzOKi6i3B4wZfmucwThGIll6CcJ
 # SIG # End signature block

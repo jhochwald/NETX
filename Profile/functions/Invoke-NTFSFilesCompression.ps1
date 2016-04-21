@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -72,12 +72,16 @@ function Global:Invoke-NTFSFilesCompression {
 	.EXAMPLE
 		Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "20"
 
-		# Compress files with extension log in folder 'c:\test' that are older than 20 minutes
+		Description
+		-----------
+		Compress files with extension log in folder 'c:\test' that are older than 20 minutes
 
 	.EXAMPLE
 		Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "1" -TimeUnit "hours" -Extension "txt"
 
-		# Compress files with extension txt in folder 'c:\test' that are older than 1 hour
+		Description
+		-----------
+		Compress files with extension txt in folder 'c:\test' that are older than 1 hour
 
 	.NOTES
 		Based on an idea of  Wojciech Sciesinski
@@ -150,8 +154,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfZYlHe5VyYu6xaZI6fFk+tmn
-# BY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnV6xHQ/dGNhWOAzlcInADKMn
+# dyugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +298,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTI0HKkq/PGRjL81JDH3ZzY8nPLNjANBgkqhkiG9w0B
-# AQEFAASCAQChIXfAN+RoN2BowcmjBt+UUs18IWJhfH9k+LohCS0P7+r2D2UT1Fc+
-# 1GR5oQEZxwxJy/gEBPLc4VIZhbmy42DCPsPWSEP7+n2Xyq3KHJkW92OEl3vFw6Ux
-# UerRXw5UDGXV8V7b6mjBqcGcUfTuC0QR4k7q/C5YFQfZJcAx/NlT147Mz92jSpiZ
-# GWMSsUX+at5Kfhbj5tqzqYfz4NZeWrvOiDdRjQbWCqmTFIYXrPgSpqQoIKY0DI6M
-# 8C0Ht5WFelbdUToLq5oLtXedVJT5lATvn0FEHKfHvINZt54L+KEEiUeKTAee/J8Q
-# oCTnWUpYj9ocQHIPAfb0qnyJY1xOXMnhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRWOPLJtW06lI2gkCdN4vojd/Z4djANBgkqhkiG9w0B
+# AQEFAASCAQAP6Hd5vuaEQhHU/R5ksx1QYtgUT1XAUe4scaqtrBs9SIsq2OnByCgg
+# 7lu/a8sjZW8aaoP0bKrmbOp14tvM2RCGRkAQaUx20BNlQGRPxrmlRjnbGDFIBJdJ
+# SND/k/u2cA/6X0SJGprkQxyi543Je79gzyI/JBlVfTDsPwgpCFGI9LzdW1w4kAyz
+# ZnrPsKnvjrEJdQi4DW/lYSdSiHV5Wwqszrkviln9qGA2qD6KIrSmnnGWJpF1VGGT
+# XCS6rDUyI/oLJl2Gpqnt1mIO/HirArdFx2AOerOCVVtg/6aF6cv/p9iHN6x16S5N
+# T9Tb4R6E2gfy+R16OXHLJxAEMNpBcciJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEzOVowIwYJKoZIhvcN
-# AQkEMRYEFKwsdA30rVMZpgSNzSAcyoe5hXCEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyMFowIwYJKoZIhvcN
+# AQkEMRYEFD3PGtjBC1mLNWAQ7i+sxMQZTXCjMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAaAkn4wdoaO16UxAlPrqve2wfGg6czKC8RFL8QyjfoINmW
-# Ke6o6r6c/HRA0JRHoREFtiVGQpxJHXjvm5cn8oncEAOCqVVIF7DA1PIRlZ06lrA5
-# hahWtKVFNQxbgMioGAz+dnPWEZ60tb3GPDhvTpcTt2zHGp0QFM68Vada/1x8+hZu
-# Hpl0WdWoBtQ4jkuXqWZZJJ+EhoqqZ9K71HCLl4r7VIx+JlILTGrlYKXfHA/FeZ8+
-# 4gwwuZy5R0A0rgxI6Pe8PfmqYgede+5eS/ZblMt1U/qk9ldIjZM+8Nfjp42W2y5U
-# S2dM0i8RBxUcNMB0zvCJ02XbqrGO0MIvUG/uXE0s
+# hkiG9w0BAQEFAASCAQAwne136CM/VXBpi4gBf5VKjYXn8N3/KcmeK3VebI7CtzbE
+# +ivsoTHkRLzwUFSmIp8SCzeKwy3pGJSMCqow2yIyc9HUkkWNiefeFP3vuwKPJtoX
+# KnR6iT89H/EZZwMpaJOmY52xPaMGczvuugf8D3tZnVZa4bkTOaWjC9ClftfB4x+C
+# aFv4mdev4LAgRz9guMTpPqbuDMvoYCH0a+AuUucphQFX/U5luZxlKXU16DiZOpJR
+# AY7SHX1iU6zmwdRVG64bSA8nzRSA7eWvtfC7BnuTOWkRdFX72G7FE+sB+71JF7By
+# fqt95+SJKeRVapZAzyK4qQba/F9EezhE4OnuAYLB
 # SIG # End signature block

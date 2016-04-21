@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -67,13 +67,17 @@ function Global:Test-TCPPort {
 		Test-TCPPort -target '127.0.0.1' -Port '445'
 		False
 
-		# This function is used to see if a TCP Port is answering
+		Description
+		-----------
+		This function is used to see if a TCP Port is answering
 
 	.EXAMPLE
 		Test-TCPPort -target '110.10..16.10' -Port '445'
 		True
 
-		# This function is used to see if a TCP Port is answering
+		Description
+		-----------
+		This function is used to see if a TCP Port is answering
 
 	.NOTES
 		This function will be replaced soon: We will build a new one soon that supports other protocols to (Not only TCP)
@@ -158,8 +162,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeaiiW3ZHXbpuRJ89lPAogPhG
-# FhOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAPR2HtrTrVW836KoGAdtM/lA
+# JIygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -302,25 +306,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSKTxcT6R1CHjUSLwv4VoEc9TeMxTANBgkqhkiG9w0B
-# AQEFAASCAQA8u5RNCt6ptdlEWpjutAQ2zamDIcUE4bPP5ANCDgfq797q6OJxvJb0
-# iuAIhK5o+UmvACB5v0EJmQEGqbmx+CC+Hnt9rHi5kRJ9rJi0IQkE5tL05GZrezZt
-# 3hiF47DHhsJbEC9sOFJKI+ZdukHTYtqvAMy9Xc+isFeOiTXzy2NIDZ//K7j9xUpC
-# fLJBFL/evUOfQhkmp7NaLusnMuVL8PvuQ9FEtYFUc7RqsJaKZmHIbslcRusI55dL
-# 0sJGE9PUKmqZ1m6A2Zt4b36Ro2fOMLCUdsQipd5zEW68FxY7Kiy9p76kzliQHLWR
-# PGqJak9QPlofmNp+LJ8DzxWii8dBpJjAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSCoiHn59Y4MyY6tT7/cM9EYU0hPjANBgkqhkiG9w0B
+# AQEFAASCAQBLb5FSaH7X2gHT/5lPLgFi95DEN38ds0MsxVZhf6queV+tyjBeiCoo
+# K/lHiBeU0mk/KgHphErICa4MyEkHLJTVV0Y6kKsU8vBQY6ryejnmcnnJXepi61Te
+# EhpoCKfyNA98XAj8WA1CmSgXQvK2BGzUu7HHzfJkZju02ldk1dWRtYD7RDddyYAl
+# 3z3Y+CbQwbuBd0XBVOW60k3a6+yCIUC5QuTZ1Xs9BzfKfU36+Iu1r65UuHplkXik
+# vyltot04fyPCvTkwKj3/8owIEJ9maz4HvBkKNMkys8/OlTqSUwQD5FGVrkJxbR9J
+# IuMMNbzsoRj1i+9mWKZHo4GZF3Tk2B7FoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyOFowIwYJKoZIhvcN
-# AQkEMRYEFKGcy5PIn6LtfgyvuvDMhpWXSjDLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzNVowIwYJKoZIhvcN
+# AQkEMRYEFIuMbqVPGIs7Nar6mPdF7mOeXDXYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA2U31SW6QBav1eNCLsVLKHa66RXiH4QUtQjX28U8Mxf6po
-# 2zK6qAyzVo3McAqcB0GI1AD3CR85p6eSr8atIrYvi4gZs+M8PWqWVp1QCPqm2h+m
-# kl56PmRqQj8ePsdGrREZh4pfrJWP7m9nicX14q6oatsfK4H/N5MceUTk3B1nTmcw
-# 5LHSaGhHY81txDfn5SZxdqv2qdwbZI2LwFwts4L7JoTCMK45yTgWGXQphCRj+wnC
-# quk+rfCWjdeLZ7/oVJB3xYNS9COMXp+igcuwlmJXPgj41DeA857Lu8ocSMibhJCd
-# Pn5tM0b9t8vgVO9wI30h2SMvcLnrTaWrIrAuyEoP
+# hkiG9w0BAQEFAASCAQCZVJpbCkKMlclfShq4IZbfb1h0biLcKGowdOB2ueutr5uc
+# xGr8nkWK+oRaZ5VAfXURjFKsBx/QmytUEy9MECGRSLzcGe8Tlu+hDMVVmbZQzcSR
+# khQJKLuxfaGgabxIA5+DofPE4/JrX9B3niE1LJSB5P9ZH7fatxuNvzs7RUsLlXyo
+# V2NSJowX0FZfWq08V9eJ0qXxk/Soh3r3t/nz6hn4HbO92ALL71FK8OGFfuQNT6+/
+# bC74XoFeZ0J1r9UO0wx/CVpqNll3HhOotH+Rg0c2nlma0jOAP2ECiv8mn09NvnwL
+# cNbKUEoBsFy6BSqBv8uQ5i77bvmanU4U+21VxBuk
 # SIG # End signature block

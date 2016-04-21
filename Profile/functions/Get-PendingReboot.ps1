@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -75,8 +75,10 @@ function Global:Get-PendingReboot {
 		DC02     False   False           False      False
 		FS01     False   False           False      False
 
-		# This example will capture the contents of C:\ServerList.txt and query the pending reboot information from the systems contained in the file and display the output in a table.
-		# The null values are by design, since these systems do not have the SCCM 2012 client installed, nor was the PendingFileRenameOperations value populated.
+		Description
+		-----------
+		This example will capture the contents of C:\ServerList.txt and query the pending reboot information from the systems contained in the file and display the output in a table.
+		The null values are by design, since these systems do not have the SCCM 2012 client installed, nor was the PendingFileRenameOperations value populated.
 
 	.EXAMPLE
 		PS C:\> Get-PendingReboot
@@ -90,13 +92,17 @@ function Global:Get-PendingReboot {
 		PendFileRenVal     :
 		RebootPending      : True
 
-		# This example will query the local machine for pending reboot information.
+		Description
+		-----------
+		This example will query the local machine for pending reboot information.
 
 	.EXAMPLE
 		PS C:\> $Servers = Get-Content C:\Servers.txt
 		PS C:\> Get-PendingReboot -Computer $Servers | Export-Csv C:\PendingRebootReport.csv -NoTypeInformation
 
-		# This example will create a report that contains pending reboot information.
+		Description
+		-----------
+		This example will create a report that contains pending reboot information.
 
 	.NOTES
 		Based on an idea of Brian Wilhite
@@ -246,8 +252,8 @@ function Global:Get-PendingReboot {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUL9JsVw1oAK+Bx+f+4sUA21Gx
-# kVGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPHMWhve4GYefhpzX8hFGTYyJ
+# QS6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -390,25 +396,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS9R7MUitlVAZvf88PCJHYlv8o5XjANBgkqhkiG9w0B
-# AQEFAASCAQAXtQLAsYmWn4L17BIDAsexexW8kdb5Fhahn2VsrKpHJduyXdJ/wKp7
-# QH6RloheVHy3cIFimhGm0hvEWyMOMwx+H4gQu8bv6rvCIa6lKNhK8m4q3oqulYaO
-# 2JG9/MVs5tBDaV4fx4JL1s0SQcm3Jqn2RlQXxpDhM4wq4xqW0Ne0HfHaCPcfxzBS
-# 5bnUJpPj3LPn92GttEO3DTsgyfOoLvvmBqxhk7RVatusM8wfFYGcq1FMMATDOqlW
-# QcvIO0ZsNrpSLSy1vOrbS7E3gunGN2KRyiclJvvKj1ydXAZRkctm9wTXJwrLa428
-# kc1jhgWfasVcQpImn7GnD9o0QYy7J1ssoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT3EAejDlNjLJJ9aC2r3JZaZXpFMTANBgkqhkiG9w0B
+# AQEFAASCAQBxw8nHVpdVhuHxtYxDJK3OT2k5fMBFfIuzr/ojXuFrbGAj7G0P/aJ+
+# DCKVxlB5arqonIIxHjWAoNSEdl5++iqJ3aOeboOcvfbdbdWhlEUIUDHdNvykp+fg
+# Tc4mnVON5bRlbU8s6olJw9G6zTIaJVjBdeQR6ZvxZi5n2ErqygaW53esrTeU9Ge6
+# e1uIQXQiUh0xzmWKdOlO8gMwsgdbQCOXRxFFQVOmeoeu7E15XxYmcVcYpxdwKg4B
+# mZwfFpVioBVmPZHopE7lL4DJ8zFI93AI/1qmbNof8+l9sgwn/YAgLfscDdmTFq5V
+# Ln1uvW8iaZ2Zqz6osscDE32vspVJq3lhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMFowIwYJKoZIhvcN
-# AQkEMRYEFOnL53oU0J0IyGf3deU+rSX4K5+ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMVowIwYJKoZIhvcN
+# AQkEMRYEFKlfWYetR9Dl4g9tM3BLrxumLO6aMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQATpFs4C+KY0JjG0oNnaT1aNu7HmtszT6rhavqEDU9JDb3D
-# uSICueEYyyIXGha0WVCLZmD1Ywn9o67p7LPcUITdqBWPgD77erRbdk+IMcNF1ESO
-# qIDK6B42rfI+ACAGhzsYw3sM+WyQr7hxjYKIHDR5D344WfJGdiIvmWJQSgAX/JpN
-# Ss+4teJJj5S1XiqUQ4b2eLHiQTvRg8NjpF1VTgIo8Ru6qHr88ODtx+8Cu1AtXoaS
-# Ib96CjcwFJrEyG+gmUjXBvUi+Uu1tH8XSsM8f9Ldb8Z/mrLo0i7h59+S/xzdhQeu
-# l8L04LujZOvjjcMn6R/bXFLUmmW924zRTzyanK9Y
+# hkiG9w0BAQEFAASCAQBa+zZaWhIBi8LxuXwl2evFTs/Wh+xyORrSIGL2qOEasNDo
+# 0gW2hMW84Ec4vwn7yVWNy72ow7sczvPGiqX4hfomeTi1zgYo58z3/CJc2HmgmF/5
+# tBuQqY/r02N1hoBUbFeSKZ5uAGvW4ZJT4T1ooMSo0ylwa2+RmkxMDjbWF7UWcdpX
+# BxrN1c64Cx6uZYkkD7m7itVBP606+1DxduaymKzlDmm2V94VZC2SiAy9WUcspOJd
+# kS+Vb5rwYeJDQdsH/A1Ik/vUyh3dCAphYy32RvVevwatOWtKjxL1u6nWjRJATEGN
+# acQKKx/fGgc8kx/7UDYE5doKN6nPPdaCj/2Gm64U
 # SIG # End signature block

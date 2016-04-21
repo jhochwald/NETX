@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -65,6 +65,10 @@ function Global:Get-ServiceStatus {
 		Microsoft .NET Framework NGEN v4.0.30319_X64 clr_optimization_v4.0.30319_64 Auto      Stopped
 		Multimedia Class Scheduler                   MMCSS                          Auto      Stopped
 
+		Description
+		-----------
+		List Services Where-Object StartMode is AUTOMATIC that are NOT running
+
 	.NOTES
 		Just an inital Version of the Function, it might still need some optimization.
 
@@ -108,8 +112,8 @@ function Global:Get-ServiceStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlOZqZgP+wR8gERaEdcp2mrct
-# n4OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWXe+unSH6xNZ+nLw8osq1yBY
+# /7ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +256,25 @@ function Global:Get-ServiceStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRtQU4ReGud/GsJeDmRK+nRBD0GuTANBgkqhkiG9w0B
-# AQEFAASCAQA37Y217XoFxq4coYNYSLAzJkq3r5k+SYLQOSXj1Od4hZKyiRnBXlET
-# +G+SUqTUcIbaHYZ+G8JXz/BP1DvaisjoAcSF8nIE+0gtbXmqefKResrdtQxMVT3Q
-# bF7kjDO+Pzudn7ef9smofiXbS8I1fSubsHAYskQYYg7FfapemYnbDy8ivjHssVyd
-# 4JT7Pv9O2ooJLGBzilRqmCox48XrPj799ZcKZb1HU/Tm8CmM0BOtakeNRTMZA3yH
-# Qzj5W4rdT80GccCG4rmHgHFuxOCE5xObdcUiBNU8zg3mXgZQaOixzfgf71lsZwr/
-# tePdZgj9DONPTBBIRJ38LvuD5IGAC3guoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRA7Ht0D6j2pE+H0m1IJnyeanbeDDANBgkqhkiG9w0B
+# AQEFAASCAQABSh/klLxLmnAwp7DARVDkXBqrgTcezMKp5ErX1+XrUuDwlFFPr8Yj
+# w9bzF2QlfiVo2hDXnYUgy5Y8LekG/FwGR+z+fe19kEbrQnwKCUoeHRByO+evuEKL
+# pV36wnWv/iG0jrgRtLsAjgHcgl5ygCYrLXGyAuuNBhbw5F8UgueTauoqtBjVgLjC
+# ABg5r/Nothxz1olv5jW0rRXDwVJPXFf1R7Y7M19oUwqmy1c1IiG8RNajQ0FWGgfS
+# wwqjpiS9TeqxbiBdHbe8+qtK+1cB+eCc4rJHYV37cHDO5E7RkQGDRQKfGXXHWamG
+# hZMD2rVoCFOUCBwBe7qP6DBjiO7NolJdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExM1owIwYJKoZIhvcN
-# AQkEMRYEFG74BS7svHWosOGsB7SQWEC185bTMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMlowIwYJKoZIhvcN
+# AQkEMRYEFIb0qTm/O5NM7WpNPup//0ONKglTMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCrU9vB1fnDAWnnU4J1joA5cnpqIbR0A4gEKtubXo50Bg9n
-# j7vz29wsDBAKC5gqJaD07kb0J+1LM1n9Koy/BsJXdvl7VFFHQeVaZcoOkQN2Ac6W
-# JMYbiP4C1VYao8hOuo2Av/oswp75vRRKyBNFb+3PZtFMqk2T5pVdh4CUN/rUAhV7
-# l9K2e3+NqM/6IhPXWCl1g+p+/Zq/VlSrpSaNruPEyM1Ap3flr+jjLkK7Uh/dkgkh
-# 86n7J8ZuQIoO3B/HPeQpztwpkDHKFp/It6dhr0LIwKF6j4afWbGnKr7eAwz94H7m
-# mby+cj03Dj/3fMgglfjn6U5+cbsKOxYSuHdsNRdM
+# hkiG9w0BAQEFAASCAQCvYnGcwTgn+XhPZ4FeFMPz0VQCeyZvO5XeNT0lrciKQO/+
+# Lav0PCDlAFMvDfQXbFtbl0cq2iuM6x4GnGm5lXCmCKkdSd+uO/IWDv+O5nXiGC+X
+# QH+xw7afF7lOTigeMOhi8JOaEV4K61xv56PrGMOD2+3i3ZCs0KYRqLAjO6/anuV7
+# JJBkZdfJ3pV1Al8c4rkA2ymtGtUlA3/MZYebItImO0WScf1JPpkgN3+ixmI24dB3
+# Vegny6zUgs4TyqHO3TMLl9O3u1RI2q32YR9I2IPgkq6dnvxdK0ef1ggV5aY+G5cu
+# mcpkvyfZ1mLLSgICkKJtuIZt6G0OFbMRaKxcrHaN
 # SIG # End signature block

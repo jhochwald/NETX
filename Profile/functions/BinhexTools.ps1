@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -60,7 +60,9 @@ function global:ConvertFrom-BinHex {
 	.EXAMPLE
 		PS C:\> ConvertFrom-BinHex 0c
 
-		# Return the regular Value (12) of the given HEX 0c
+		Description
+		-----------
+		Return the regular Value (12) of the given HEX 0c
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -119,7 +121,9 @@ function global:ConvertTo-BinHex {
 	.EXAMPLE
 		PS C:\> ConvertTo-BinHex 1234
 
-		# Return the HEX Value (4d2) of the String 1234
+		Description
+		-----------
+		Return the HEX Value (4d2) of the String 1234
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -167,8 +171,8 @@ function global:ConvertTo-BinHex {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhl2xqwM8c4JT1HR6gObacJ8X
-# q4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1BmiXVY2FIhIv4GWZCeSN8+7
+# l1mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -311,25 +315,25 @@ function global:ConvertTo-BinHex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ48AOVRgxOSLrWW6NbwPDIxqxqeTANBgkqhkiG9w0B
-# AQEFAASCAQBjHITV7kmZQl6CFfH4ZuoQ5jSNTZzqnQiRvI2UWRm6m9m3Le2llCPV
-# bxxFgOz6LCrF0EV2N48A3mGsFS1glTqV/FLsc590dxlyZq9INOoLWsIR3cENBRzh
-# j+kpjDXmsViyBQmaGl+pn61QVuKueDPCf0anz/zoLMQdQgN5CEwK63mIzU289aQT
-# EppfFWkhCfU5481meQQQ0iZ7ej6fXe7Hg0ZMiEbcLb0O05TdlPQXbJaaRp7AVkUy
-# am7DJFQccY943IzHJb7ZiNE0nJYBxwVfGHe9G6SqCdWtd9O9Sd7+rezDy9eDeH2i
-# ZEL01jgj8UWmCJLl12shGOMA+6nmmnePoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT8y7Mnimp0E3lfdz74Fviomi2L0TANBgkqhkiG9w0B
+# AQEFAASCAQBtPL19Ahbl0vdzrfHwqFAWnhH/5QML1PiwHxUIdIrQyG46kakoDIJa
+# RBonMmZ+d79GEkUBZvForFeBhpAo3h319YzqWxG+FMuS05owLDBAkVKHziWSL2rA
+# rWVVcxYFZnUi0Wv5SkcNg14bv4eQDsPR8GRekxWo6cQqGonx6Nrc5o4q6MU/5rc2
+# b//3HDdyGFw1sLATPWmRc1Rp5+6ljO9m5Wl8FuUXPMs99+UzuWFocYzCTqDtLNs2
+# 6pFSCHhwQzMA0NT+ypHFk8BuEXhKVxqC5riUvPF4Db/ZEDfY+qgf2ZiAzYWJKAkB
+# /hGFV1qyvejrDp2H+FvVksxuTaREgo1SoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0M1owIwYJKoZIhvcN
-# AQkEMRYEFGr8QDaKJ9i9mlBFylAI/xkp+mOMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjQ1NlowIwYJKoZIhvcN
+# AQkEMRYEFGNZheQT3zuUJ1tog3wmWy1OWFsNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCvn8joMQ2uvQFggrlCExepoh3LLCvFzV+nJ+sim4SXLmgU
-# Kfl66rgcOmx9bvvOy81orfiioOgTJl5bYdGUKLlXnfdumOoCvxSy4vEKz+G/JA1Z
-# WN45gASaWvI/twLsgr0jaUlJ3iV3PmAT6/pWGeBn9RckgwFelmjTCa53i0BnmpTd
-# hx0XEc4anKHn00y8Ut2AERub5vGGfNQuNCnm85taHATkL9enyBbr0YR3PceMJWy9
-# UZZc5FIfY2/BD20EziE3mdXMUXFM3EQhVki9D2UHm2au/0s2mtc0gVYvH1Nw2MjN
-# XN7BMTp2Kw10b9PdkCrstRL3sFK5NDMlHY7RoAfG
+# hkiG9w0BAQEFAASCAQB8ucYOoHpnNvrfX+nf406tNRgQMu/jzeFfnDaU04E7Em+5
+# sU+mZNHG6AJDJYvSxz0CBExQAEndID423eIZJSTs+mAgPjcaM8sG7q9bBzdgx2KL
+# fM53LqAZ3/lD64zBOh2MYBVa/zUa531VDulFrCuDu0gaC/thgJLSfs4vt54Txidr
+# Ev2As2q4/j4LdI3JVnDoxwddorwPHdoZlmUfdtprgsBsTYvIiQO6ISuyG9m6cS+S
+# qMQeBDv4WTyAcdUJgp22D2xwhHhCzpjvhmTj4KxfqAMpf36pu3Q4GR36BLbgHPwg
+# DWnxNkLChm1wd1fuV6Lxfy9/NsvkX5amuaTrN43p
 # SIG # End signature block

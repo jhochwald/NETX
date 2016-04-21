@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,12 +57,16 @@ function global:Clear-AllEventLogs {
 	.EXAMPLE
 		PS C:\> Clear-AllEventLogs
 
-		# Ask if it should delete all EventLog entries and you need to confirm it
+		Description
+		-----------
+		Ask if it should delete all EventLog entries and you need to confirm it
 
 	.EXAMPLE
 		PS C:\> Clear-AllEventLogs -Confirm:$false
 
-		# Delete all EventLog entries and you do not need to confirm it
+		Description
+		-----------
+		Delete all EventLog entries and you do not need to confirm it
 
 	.NOTES
 		Could be great to clean up everything, but everything is gone forever!
@@ -98,8 +102,8 @@ function global:Clear-AllEventLogs {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKU3swpybdRDZFbqEYo4x6iTM
-# 6U2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8CnXPop2t0PKJ5yvUUL9/hAx
+# MmygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +246,25 @@ function global:Clear-AllEventLogs {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTeiq8cmbTfbqoO50H26OJX/rLhIDANBgkqhkiG9w0B
-# AQEFAASCAQAFG2zAMFzl0/dpkdWbI5YT/tdRXVFzS9s+lamYjR1yxYz65cEpFBJF
-# E7X0O5LrJRVt8fdJHDmYqy5CtVa9ClRlaTzcU+nvXkT3vK9Y+AsqVyQC5RpJrPRO
-# tcSizeklMkJYCUOSMgAmIKYlPR2TTSrzrk696/6aO5exAf46J6AA8PnUm22wfXtb
-# d1rvPzLlMRxUawCbO3MIgACBioxZM+yYnQmltOlzDkiqMn8NvsybCFifhEQHIv02
-# l6B9ZZp6gwGx6id7BlGNFMKB/2dWVcTsdwX8eKmo/42yfn7u5t/hSomGQzW556vo
-# YnhEOmqL3KuuOXE6boooHF+RABZczzNCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT6m4I5WOefYjdel4S01VVMVggtajANBgkqhkiG9w0B
+# AQEFAASCAQCguhzW0PbUKhkLkWApI/yjcSian90DIYLD4VAq2uT87DtKgs2/kRZG
+# jfk4CGLsFLYF1P4zdteVhfXGsiKgJWjQlr3mfXxQAmKbgEFkQs5Rs6XfZBgVEyrQ
+# P/43rk/vKo154XEO4NjFARRUMA/QcCe12iabCfWxR9v9gCzDFkV4nAWaw6H4mysn
+# xm0RaQRO/SYdb5NzDLLWNqqN9h9PvxChrkONzWhtniMRT90Z1ufW2hp4DpPNu+n/
+# JS9WHJOVy4mWiHHpOU+6LqcmBvv1Khp/WgAdD2PU/SXkJGeNpwK1pX7G0PqGbm0+
+# BycC2XiMUi81TDUvRD3HkDmCpfdMbj3EoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0NFowIwYJKoZIhvcN
-# AQkEMRYEFPFU0gefMAUArhZL/KEPwKTKZBEOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjQ1N1owIwYJKoZIhvcN
+# AQkEMRYEFMNwlcGWVBuPe+GHbpGoDtVPuQ4sMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAl7fG6qrT7DLmdPOCUfJA0FwW+0Jx/K9Ol11h22HbpyBBs
-# UC0qJ1JHo694f1Pyepupcgbwlivz+wsUKI1mnP5fcqwzVJheOf96tARERqHRJKTF
-# DchUlxOqn2lLrg2RbVe7lRZ/7feC89iHykw6srTLy+mx/6wgTj8S3jPqPSUODH1N
-# yhtl5DWe8p1vGzBvpq1YBBuDe0PS3Gzo0NkWGCbB47W42ji7EeVzd+YqPTDTosTi
-# KatQ8vjgy3rQZCPjd6zdXuawJMNwyX0IYuhg91l/wfApSe1nVcyAhJyHl0NvWR1W
-# 2nx4FxwbJe/oGnUowgz3mr5ASB5thR02ujHK4Hbg
+# hkiG9w0BAQEFAASCAQBXuuHfRyR2hLwm8jlJ3rlNvqEy76oWa8bgk+xA3KiLt2EX
+# xeXYQ199RN1FS/+5ZXNGPNb4FM1KhXVLp05k8mloydD2xCZEu3vdunxxPVXU824f
+# K2NnxAg6YiHPaMORcspfoiwy3oqhm+zCyVrfYGHajpxsGrPMC5miMELS5oldkVP7
+# Gp8NG8GT5FjFfMdRSEdXwPPD7x4EDWkND9kqwQxwx2VuOmcctAnIKsX3HPs0vKbY
+# 6X95I7KOTUsaCaK/kKJF2pJvWySgH6HFoPABFuCdA6gYskvzVghtJ2wdcZL/d00g
+# c/S+UhTb4qpYmDSk/6bXn+jIWqeWMANP8xvPv6Eo
 # SIG # End signature block

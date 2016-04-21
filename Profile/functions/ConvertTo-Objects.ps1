@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,7 +62,9 @@ function Global:ConvertTo-Objects {
 		$input = Select-SqlCeServer 'SELECT * FROM TABLE1' 'Data Source=C:\Users\cdbody05\Downloads\VisorImagenesNacional\VisorImagenesNacional\DIVIPOL.sdf;'
 		$input | ConvertTo-Objects
 
-		# You receive a result of a query and converts it to an array of objects which is
+		Description
+		-----------
+		You receive a result of a query and converts it to an array of objects which is
 
 	.NOTES
 		Additional information about the function.
@@ -110,8 +112,8 @@ function Global:ConvertTo-Objects {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULjgaOygAE2VSVOxmrR1QDlCA
-# U1igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUe7z35XBT5JyWhvpcP7znqyf4
+# /cKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +256,25 @@ function Global:ConvertTo-Objects {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSlhXxYnCdIBhJH6t8TIor2prHt7jANBgkqhkiG9w0B
-# AQEFAASCAQAc57EkS8Zhl0UweUWi/wfUvPvQBDj5WodwmQIZSxsTdJ/N4G7z7Nh3
-# Bc+UDSMjMn6tfkWaUtArUD9TbtTxKhL0+DdSipzfFr9yAPUlLATyz+8sTP95kssS
-# rL11z92kRYBiefoCzO0T142Hxb6wlJ/WzNoIQ5n5VFkxBJYT89A6klMyuK3qBPII
-# e2SpNO0+cR0NZYlHKvHaxdTxtmxrCov1XTCvZjgHcnq77XQGxudXbsfNfPD9O1bl
-# IsfDGbhGWgLPRe0Qb2IlgMjI4CplCHJaRuoS9kmMdTfj9WhdL2Ac3hkEgyx2KfMO
-# m0MUJH/DE9XA31UnuUw+4Xwn8iUK/JMNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHNRcp5qc4PxyIEm1oVFlEf9sk9zANBgkqhkiG9w0B
+# AQEFAASCAQB8mE8itwakFTVLpd5V3GCoBUqhprfnfg1F/YmHPV413pSG+k0U5tKQ
+# EaScEtVqr2d0+v5aCYgeg7/FBg2drDOLgykBBAvjHACSLP+kZWvd3fsTbVSs991U
+# 2uHh5LbjSARBgGrA+KooSjwzu55iJF3UrqvyztMaBloiKt/lXHWA+MMG8osIxnn7
+# 4oqW3EckmjFt1C0zRdHYxUrtoNYWjz+MZrlt4ObssgS+5vTLUiux+YMLO7I++Ngy
+# ZbkdwXAOCkb/GaInHJPSjyrk7sLTw9KYPTjgxVQyYOMzymJNLfIskkZB5YkgwOSH
+# lezeBBaLLZ/Vn7owhA8B18TAVlHtx6jSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1MFowIwYJKoZIhvcN
-# AQkEMRYEFL/aWFOpIOTup5czQLhRhLbxDNLdMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwMFowIwYJKoZIhvcN
+# AQkEMRYEFBe45laQPuuFch+BV7EJKfuAdmEpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBATO456zVRcCsP2UyUIQ07n+bMEAoqBnZGyJy6jL/NQf13
-# 8x7I+BHhDC5G/eghL8SpM4NXH5SyiV52lvOMEDuo+zDUl7Yb9avomJp54s9+kfd0
-# QXaD4KBa9lTtDDxpAK9RiG7VD/4k+oxn2s2Re0N0a1Oj8C7RkIl/ctJxzfeqcnrW
-# bP179xIeJ2ikM5n1UjWdCCvpAw1YfWTGD/Ua4xc2XY2a1lnadHMHGtwn2zM0p5pp
-# 550tUikSKwz+ymukT62almEUsk3r+SXzai24w87CYUcTrhvKghn7EjMpQfohaDFx
-# iZYj8Q8E84c6W4RM2I8oegYtyeBCmhj4C/SI/NGu
+# hkiG9w0BAQEFAASCAQAVsykeVMYkcQYnu6yQZcu9mGrg+LGxbyPD1148BED11j4b
+# A6FBPxlQdaWVJXD5Rx813DLL1l+EhzbfI+YUyCv6T1ZdgVUSQ3eeTDF/E1gYLcSf
+# 3YsONTml6Pg/6zUVZsu99riAzD2Nw3C//YI5j+yw6rqjIB+CbwP5g8s75M9XAw1/
+# ja8bVS7gw6avpeFUrPFJoe2nqU6LNgsKme/0nmB0SrBA0/VJ8GqwXbfq31S4GBiH
+# 5w3J9Sj+5Rjtj5nF1ZFl1jvOJFyADg7XSRxeE4awwJoo0GMUkiZcnUV9afOxq+d/
+# n8nQo3D2AbVLwcRZjCIA15vhejUtUv+IdE2+yzvK
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -70,7 +70,9 @@ function global:Get-ASCBanner {
 		#  #  #  #       #       #    #  #    #  #    #  #
 		 ## ##   ######  ######   ####    ####   #    #  ######
 
-		# Create an ASC II Banner for a given String
+		Description
+		-----------
+		Create an ASC II Banner for a given String
 
 	.EXAMPLE
 		PS C:\> Get-ASCBanner -InputString 'NET-Experts' -IsString -ASCChar '*'
@@ -82,7 +84,9 @@ function global:Get-ASCBanner {
 		*    ** *          *            *         *  *   *       *       *   *      *    *    *
 		*     * *******    *            *******  *    *  *       ******  *    *     *     ****
 
-		# Create an ASC II Banner for a given String
+		Description
+		-----------
+		Create an ASC II Banner for a given String
 
 	.NOTES
 		Just for fun!
@@ -252,8 +256,8 @@ function global:Get-ASCBanner {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiJZ2e7eTd06PWGwYMCW8O2uL
-# sROgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUf3cx2jVW++xFLs5R8u4tt/DR
+# 8tGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -396,25 +400,25 @@ function global:Get-ASCBanner {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSQMt/SDsXTX1P7arbbhj/gQGaWdzANBgkqhkiG9w0B
-# AQEFAASCAQCtnFVu3EquBjSBaaNYjWA/mB7k45CXwVmpI3h/j88BZWvVbtgs5Qux
-# l7FD0XuJKHQ50nzSIbo3O2sYoEN+XwpIBKu/pH444b4Irr3QXmdeKMRGbv2IMcnp
-# f7OZNYZU2/KoVBD5oM67pG3SOeLSfpFyOS0R4tbY5dUbBc6MhWI+q8IaANjcRCrI
-# RdpxqBNh+WQTZIKt47vcTL3z2zkeG5HX5QL+E/oRKyaAFN0rS/ZF6XCSanE/VHrl
-# bisKmv7Gc7JKGa0Z4ZvV+0NHviZHK5pKqL4spM0nI/IIS74ujHBwd7bu/Vsad8A8
-# dnvtIdKpxWqZcpHFS25C9ZjxFCThqW/3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTE1EO4ZiQ6Rl2bzTQBnX07/X3MMzANBgkqhkiG9w0B
+# AQEFAASCAQCBsXyrPd3mINPxSo7ib0K4D6I1TEvtvF1p6/MuzruBpPgpHrYfLHKv
+# KOZLkgjATixqnTDGqB9XR2dxQ4u6sMZJzk2+tIGxCrtI4NZ2iUaNY7eJeZVYqs4N
+# fFcl4mFKZVBBcRM+4okgICZgzaFSv5aizeOdbYlV2ss6kc62A7cMEHnkKdxPy2Hd
+# VsIzdy/hwQQ3PARUUaCIsVXP58PsBqIzBq/vwMPe/X4iVMLQb0Gn5zTam8w1K/dc
+# TRhDPw7zsZg45P+uStL1W2SGybN0FkM/GDWqroedl6EM/xpbLSknjaBOuTEia8EW
+# b7tvDhpkrKBtFgsUUcC9JZ1pSvdHn64MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1N1owIwYJKoZIhvcN
-# AQkEMRYEFN/t/qPPhhznAO7dexfB0sPG2jC4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwNFowIwYJKoZIhvcN
+# AQkEMRYEFJgLKLvApaO4FrRoUGnLsYaVe6XLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBuQ+wl3QOJgmphOj9bkCJtxJcm0/YA/pIQnIa5nVf4aUg6
-# 2RbwIh9ADWMLZeP2wPS1OZQ7/LhKadUJBWIvIGhzl6GGO+Tlr1w4gXrWBpqAvPh2
-# a46VGqiDeyA6UjQc0T1Db8JHg3RxFJTDZOb752mSnZSl6zz9Xc8DGGUOdv9Avn9c
-# +EcTsmGb4DTPT9U/1mAsP4EyIfvEQd94oLib6wRLbsH6I/Tn1Lic14YSFpiSv8Pu
-# e/yB5qLMru3ffTXrrMbw+AgJBQ3vvgeN4GfbGPZHxg5PT5KicZ9+ZdZJvkA1gG3H
-# Z5HVFD+nm0Hb33jdXUmmOoJD0gAexJ+ipbA5TNCh
+# hkiG9w0BAQEFAASCAQAqXsonjPZ/eBQurevvIAb0nGXDEd4OqNGSPtgKFEUgPtPY
+# XH9LD/bVgwGCMhM77huiVMSG+XP0TZqmjjipV4izgW8kciXpRvhbyKdD1bG7Um+E
+# UXqZEcbKAWEjxV8m7xBvGaAQIyrHKktEYrYItgEySI8ifsznmBxQ6DLt+dAbWlig
+# pNLxG45D9tPWOhqz0Pt9gT/GTwjq3mTIILKLgmsQDptFPcOBc1DGnAVUVNSXB5E+
+# g8VKYsxaD4DOh4wiTfcSjFx+xt3dtbgoQPWUNHpFgmwMSpw9FzmGzyp3C/LG5BoH
+# tDijRZK2GTS5qBtURoDhzvgujpBqCpYK1QRwdevw
 # SIG # End signature block

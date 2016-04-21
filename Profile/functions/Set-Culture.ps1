@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,7 +61,9 @@ function global:Set-Culture {
 		PS C:\> Set-Culture -culture "en-US" | ConvertFrom-UnixDate -Date 1458205878
 		Thursday, March 17, 2016 9:11:18 AM
 
-		# Returns the date in the given culture (en-US) format instead of the system culture.
+		Description
+		-----------
+		Returns the date in the given culture (en-US) format instead of the system culture.
 
 	.NOTES
 		Inspired by Use-Culture.ps1 by Lee Holmes
@@ -100,8 +102,8 @@ function global:Set-Culture {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDssyx//24UV3FT+YKbGD2H/I
-# 9ZqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0u+ZGIofETQQz9nUSRnHtxl8
+# Y8+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -244,25 +246,25 @@ function global:Set-Culture {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSkb0fVj44f1ONHeDm9wGL44of80TANBgkqhkiG9w0B
-# AQEFAASCAQCo/oSerEZioUtI6eKuyH1m/A1pA1FSq79cjbUEPZJyl76r7fplFIOl
-# 3SFuJFXhnc7J+vjkHfU5k1G8hRw+/Nlasdhk8ZoWKQ26G48VWeJRu1wIXdxsOnOp
-# jWnqTsnIrANKdOoxnXVgpwhDbiUHbvqDQLQnWpZLUcI+ga2WvP9uawVI2eGEjBh2
-# 3MHG/Ao6iYoEcXjQja8UtUQJwYCww4Z6Vq1cuseS/OmRe8ninvzsom9OwVbfUxDX
-# gRmxXJdodup30OWtsAfrFTy46xlBe9Q8eIxjhTbPj0Eg0g2guD9Uf2nDskJq2pKm
-# FIiGinc44SwWpRsW9wySanuGfeb/45UFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQvbblom/kG8T07zOy2tQDR4OyOFTANBgkqhkiG9w0B
+# AQEFAASCAQBTP111/XzfVZua3mcbCxZPND72m5THd+WisYXfgWmDcZL5Kqr64SmJ
+# X/SdIByRcCdUOpfei0+pnZp7Ri2UZhTHwj7OdBDiu2D0QjPnrBccPE5rcx8Q6lD4
+# zATt53T5pfbXnYzS5iVJGE1QwlnKJldNoV3yokA6AbGr2Q+vsUEJYz9pGpSmgcKy
+# b9dcrsPPtbzn1AmpgRvLpvHxYLEC2WfjNP9r81s8Z8ounGYRXcuMvuwCGVNo4HM+
+# meP4/ylGuEKnv96Nr6AptCPDDxKLWCDSvQaA6T7nAl6EMjg9WWATkWJHrVhke4i9
+# 9bQ5Fu/x7xZYlNEtgXhwrXxEvKRM6i7/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxNlowIwYJKoZIhvcN
-# AQkEMRYEFEHHSc4Z7+W6Q8YOBLCa6EPZIVvnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMVowIwYJKoZIhvcN
+# AQkEMRYEFNvuwlaqeNeyfKJgPHRM3A7aDZ3pMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBl8lXbOFuRztsb7hRN8pNpLLMjbPCa7vbgnkOBnqs0652C
-# tNA+Rj5Swvy3KafTifLJ924wygnIaWZil/AHUKYCioReKmlFPo7Ws9C0sD2LcAYq
-# 7+78oTcts8ES5tJweNfeYCRUlXlEkyQucbQdAOc7KTRtsInorKadh3RDa9Eim7HN
-# kYPSMQ1iWKMT4X5uy2V1dSp1lNt9K0ZpRLsPzRpvAO1hsneXhynTjFB+UwNBpAul
-# Sp54SR7LVjAeIH6bzrvHG85xcPAqGSnQnBDMHk/kSPQYJq5/XPLespgiMuqaO1Z/
-# cBQEA+UjJIxFVOrSE+1jNy8QzZLgfvAP1hrI5TWe
+# hkiG9w0BAQEFAASCAQA1Zl+tVdV/o/2MDZiAHehCd7SKfDUS8zUfYItKl7BXcmmr
+# +Nmp8F/GtcRwsZIW6sFJ60Sd74/HFRpFgj6HCOJ8SlESLJaMjzvt60w1WGK5Z5rB
+# nKW6zvqCCUHrlA437waItu9SFJoR1bzb35lfhqYAYHv4JueqMO+moRZUZy4GqFbF
+# 5yqbnNUqqMHM2w5jIQlZBhH36AYeC1ldzbQIrAJMlbini8T8E09TdurOn0Ym1+pm
+# qFZOy1Snm1HuCLK3tohP4VnNLnbg3jTCEWNWdC2Nvvxw0JonuPIqiBHB55an5rzp
+# +E+F0fFvAnDG/BfxuwCguw9bFNygM/QHG8wVsgMD
 # SIG # End signature block

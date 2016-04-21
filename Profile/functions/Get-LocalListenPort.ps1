@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -72,7 +72,9 @@ function Global:Get-LocalListenPort {
 		Protocol      : TCP
 		Service       : RpcSs
 
-		# This example will find all network ports in use on the local computer that were opened by the svchost.exe process. (Example output trimmed)
+		Description
+		-----------
+		This example will find all network ports in use on the local computer that were opened by the svchost.exe process. (Example output trimmed)
 
 	.EXAMPLE
 		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv4'}
@@ -86,7 +88,9 @@ function Global:Get-LocalListenPort {
 		Protocol      : TCP
 		Service       : RpcSs
 
-		# This example will find all network ports in use on the local computer using IPv4 only. (Example output trimmed)
+		Description
+		-----------
+		This example will find all network ports in use on the local computer using IPv4 only. (Example output trimmed)
 
 	.EXAMPLE
 		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv6'}
@@ -100,7 +104,9 @@ function Global:Get-LocalListenPort {
 		Protocol      : TCP
 		Service       : RpcSs
 
-		# This example will find all network ports in use on the local computer using IPv6 only. (Example output trimmed)
+		Description
+		-----------
+		This example will find all network ports in use on the local computer using IPv6 only. (Example output trimmed)
 
 	.NOTES
 		Based on an idea of Adam Bertram
@@ -206,8 +212,8 @@ function Global:Get-LocalListenPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmID7ccL0HJJyVMvOBx8aK8l5
-# MvCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUchxX1IgH5NrMbaGFYl5Xt2b7
+# oemgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -350,25 +356,25 @@ function Global:Get-LocalListenPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQYTwtKGWLVIsU5G64B+21eyyaHpTANBgkqhkiG9w0B
-# AQEFAASCAQB/RaYx1YGzo1Ic5ZilwUNVMTpkDYLPSejfQzSMHWHIptKS7Ju7BRlC
-# kgGhTmONXe8SdPdmh5UwsHWQ7/SkC4m0XyP3J5dmEkuPB50A5V4FixlLey5J3CSE
-# +k3cQ2T8WKSrYt+OdW/8tPJ/k9pUmUwqS7JYMdPh+Zef7U2Q7SEezNUiEAZao0Zx
-# fFIqUTwI/labIj4+Fo38wJ74AqQWTdHF3p9BM3Z0r9rGdFlEbBmM55CR2YddpqC2
-# bzImTBtDksagIFFEbayVicbbCGT5pWIfjLdVu1Bg10vM5iTlSmpqaCJC3C0GbSey
-# KBrcp/LfXZYzl/c9NQnrEYL3z2s/yS0moYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTDjgMOEgTM7XVLKaGp2GXWzvYS6zANBgkqhkiG9w0B
+# AQEFAASCAQBzI7gHRJB7TIqVYGR+hM/11aXBvN6t0IX9WYk+44S3mc8ZfcEBpZwI
+# qrPS7asmq4KNvI5T2e3AlQCfnvnyO5A5IoBTZjGF2bDuudJjvkdcNwDAwpj8HlU/
+# pTgL/Bp3bi1YZNeFyl6Ee5WU53GVBMleTE/ba/aYmspPLvOaFM223MJB2n/QjJeP
+# i3jW5xam7vKydiEuVs5tt7fTRacxPnKkyeYICVbqF75dT6xqWB9gLIsq6oHkOtcm
+# Cd2QF6ykkon8yZNNlYvHjthPrG4KsQb9yTSt8AIikP9MBcK2Bh0dJGwSeJqR+yV4
+# PwAVmmDmT5H1r66E6Q8uIdZqIYX+bcU7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNVowIwYJKoZIhvcN
-# AQkEMRYEFNpppbmLIvvttGllbKXUKId21uSNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOFowIwYJKoZIhvcN
+# AQkEMRYEFIQwKLdDwfn2pbbPqHym5m1QkepdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAXG+KZ0aWSUfDUss7PrtOzTnamQJNh9vJsjC0spy558wyq
-# zEA0vIx3mn0RuMsYA/aE1KnYa0WN3eEq43d1x2h/WdBHm6yv96i7LPNwD5VWN50l
-# FBwb4ks9qYOZ8Hj69M3gTacXXLMliqiYUs7HrXOIZOELsHwZXSCZN8YpIjSHZ6o6
-# lTMduvpWlJbr8Bp3RrdayZWv0jncWVT36/zjuwcYOVjxT2xxPkdZrXDTP8CtwMX6
-# kcZsAsJavv3yXfjy9PSqPYPvY/UeYvBvvqInEFnY5pYKFR36d3Yc9SlEnkMLktVd
-# Yrdv7drwvC++XqP5DCceD53/e/7YLOLWlmDgLTmM
+# hkiG9w0BAQEFAASCAQAr01jdGnft8PkZAjP8gDQzhbzFcZadfahUscMOyeZMaUB4
+# 2HZdIwc19wQh96fYbQOTxnrIvuqRMcD0bd96aLTd6cONuvOFSd9XxuqiXyhChiYi
+# RYDUN5XEQ6/w8P+mFYb6R4tKX5EaOY2YsGAhl5reyt2ptupnmQTYz/oRO+JlFLJl
+# fm9afGAmy93HSNC2c+CRTos6znV9rQP+VCBmYqs2DVmcGippAne83/Tt/Kxbj936
+# uhHYos53/+HSfANH2bli0Ms3hqv0cSlfPPtZdlf9giCwhTaMPmJgKXpLzzCtfIX3
+# W1Ey7ak48esanZRdQ7yHoviBJpYm+d5/aFlHdYhg
 # SIG # End signature block

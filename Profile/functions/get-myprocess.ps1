@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,7 +61,9 @@ function global:Get-myProcess {
 		-------  ------    -----      ----- -----   ------     -- -----------
 		    511      44    79252      93428   664   11,653   3932 powershell
 
-		# Get our own process information
+		Description
+		-----------
+		Get our own process information
 
 	.NOTES
 		Just a little helper function that might be useful if you have a long running shell session
@@ -93,8 +95,8 @@ function global:Get-myProcess {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULhCQw32mw5bjTJ5yA0xnKVtC
-# T7mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTd4aAgmflw7s9Oi30INcmdSI
+# 9yOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -237,25 +239,25 @@ function global:Get-myProcess {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBROp9p5Gns5Tu9M3sKMjqGrdFTwdDANBgkqhkiG9w0B
-# AQEFAASCAQBoq+HBdxazRlYu6oxQ0tF2IrlVr2mbBTWlLI+ypiIS7vp77xFtGQHJ
-# LyiOAaGwTEEnyZFuVQ59ZlRpJMfrwFM7HTF7R5h11r+qCyKbHhy2gAiXw2yPhtsh
-# KV3s0+A1ndsjy3xOojZyhqPow8u5UtOdsi/cKo75tVzF9c7XggfKG73qj+BM4Zjn
-# /7V8yc1D33bj+v2quP6RGWOfcQWyBRPXvxcrey9tyhKXdwVn4Pzcb3xvBSSTOvx2
-# WNEDWs/q6xBh+is8uaqDoXNKUbZPV9KzRcXdaq7LD30aJLJBC3rzOE06KJ+RXAK+
-# /4dqEqHPhIkcF9e36tfIbpWg8yfaOq2noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSq+Z7KmD6WPTLxt4Qo9YWQHVS0pDANBgkqhkiG9w0B
+# AQEFAASCAQAtNHH8toK/HyHkYjtEb8uCBrVqSt7Hz+jAOyk/KDIFvtv5VqU9OjpH
+# U2qJn/UqCb7EAZVQi8H8Vpk8Rk+6Fp3+y8rvePm6VtRwqCAFS18+K3L/jJwdPizx
+# dda9o6h1cmFmmeFPGlRyKjcxb7Bql8EG1Xl1RvrxnyE01sPvmJuB6kOP6urGBdNr
+# 35R/ot7DreYaIfg3ZeRwauMqmE9p4H5ivHhZ4E+AIsijhKCsiONXAztD9TnKokLd
+# LUhWMRGw6MB8X6Dy05Mczb7pDc/ZnqfJhUvEIHOlIuRPkvg+xzKHIYDXYJqT65CU
+# 4rrj6noCwsZlQ7TmNkO1HEWe3XWahAldoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNVowIwYJKoZIhvcN
-# AQkEMRYEFBX1XwWL1WRVEmYw+f9zHbDa49TNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOVowIwYJKoZIhvcN
+# AQkEMRYEFI5Yxtqz/FdNQDoYDECUrpnt0u0pMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQALrImeoJyjGD6EiZ6ScHq4OBxHp1WrR32GNeER/clqdDQ8
-# Nj6NHcCBF1PsvVraG6BhHlIkSt4O6WzWaliTzoEJnLmb0o0HVMuHFhWxC+nrGKwA
-# 9+ngWhv4s67QWH+hWLO48OEWDgG282C0Kx57Se6r40xNM6A7V8kOi2wV68Ts9Vpe
-# LAD/LCBaRjpU6h+PQB/kfvYLtmPLqSjFLVGbvBEveAnlamXapqlSChwNKELZGDo5
-# gqDlMlpFP7HaAkpT2ZRDzJTAmoqrvS16mtcnuaRpFMFUH8Weo4Ey/u50I+M48Vfh
-# pj40bWzMELemuGaXrbJTOznUpS8dCEgxeD6sI/vy
+# hkiG9w0BAQEFAASCAQB0GWsaNBH69RuSnO2ECO48kCijacMfc5A16T5Qv3/KXgY4
+# WkrnQYqr4kjiA6xeQtg3+upDs2jVjdJo+FQJHlJAIB7R8cNDnYvnLVQ7PmNfnkcu
+# ckyCpIAgANJyHc9Uyxjx+0d0QJEQv6q5P7qPethFVyff0JDbxDYYP0OqvEWfI3Us
+# hgz8fGm/wuEDglgMtO3HdzkDbOzzVT9H8Z7ryYHnq3lKmS5RwEmIOPepppHj8nt2
+# XLBbQs8a7ewhATqg0CDGIPZd3iNcft9AHl1qZsZKvwGqVtdJ9U8l+jyfeaA6d/zG
+# tkhyhRy/WtuEH5Oy+KDe0A7mFe5h0DYhhuPspnTJ
 # SIG # End signature block

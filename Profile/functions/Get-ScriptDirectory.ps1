@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,7 +58,9 @@ function global:Get-ScriptDirectory {
 		PS C:\> .\test.ps1
 		C:\scripts\PowerShell
 
-		# Get the Directory of the Script that invokes this function
+		Description
+		-----------
+		Get the Directory of the Script that invokes this function
 
 	.NOTES
 		Just a quick helper to reduce the script header overhead
@@ -83,8 +85,8 @@ function global:Get-ScriptDirectory {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvrcNlFMVZNUJqcpekyh9Ejav
-# rvagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnPiaGnjJgcVW4Qn6hUZgYaFT
+# CDKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -227,25 +229,25 @@ function global:Get-ScriptDirectory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTRLuwKdRqze38nqfwGxZ3H0sk9JjANBgkqhkiG9w0B
-# AQEFAASCAQCfHRbwBrM+N0U6GyoqEDrwGOhWBPbCkDcpHzZWAx73lG+pHXejBJlk
-# ZOD754LeJKrz1RhOKdrAsRRjCQdUicfLgT2G4ae34gAZEvFi6NHG9B8JOc5vTzla
-# QhFPpcFAfNXUVCvzEEKiPdiB+m+DBw6gINin1Wp6etsPxUFV8uLlw1J01qEqb1ed
-# YmVewS+k9i9755xQYfsDDHIqjZYWNabsw9ZE2WE84ckSz4jtvL/MT/qtHNHKRFJc
-# iZ2tbuzOA8SpF6zj3a2gL0g0BLCswDOiVqFB4GsqbaqA8Yx0vhvd5i0RxM/iWNET
-# 2eN6GHXBGdT9xvnuoTYkFx14Yucto4oXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQKQLdBbBkHu7c3GHHmJu3x2jNAVjANBgkqhkiG9w0B
+# AQEFAASCAQCOWd12KhfORb/O4fzEjQOQQv4enqYjJEOrckdLVQ7yLg19Xb95hDYN
+# 49Zb+OAEof7L1We1BXpQVWY8B441ZF8D5lMrAeA+NWWfrkswW72BMIAGaOILjQwp
+# TEFGndL8Zaugl7MrjB3RToVpA4GG6jjPYWp1nMJd7uH0yMTfQpwJc07jNx9K80xg
+# TyOC5UEz+4SuMnreJg9VpHTbD/0tg04JUwnwQT93DyqWx4AEffd9GRwPNy7yGWjZ
+# hVXiyvYz0+rEh053ix5Jrfek8jnI/Ta2Q0pv6CoHMu4eD//6knHO5wJqQRzbXtg7
+# a/upBJvUvJdSzwOQC3Mu7u989hbjCGKWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMlowIwYJKoZIhvcN
-# AQkEMRYEFNilLfeGUhDFwNosg6iVxXi2CS2SMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMlowIwYJKoZIhvcN
+# AQkEMRYEFHnAiOzR3CCpmYCQzGmgQFjqLwcjMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAUqHFo8/le5XddzpwNaHRzaKE2Zinw8WI6rMbP2/e2JI9Z
-# MzpIr9Q/nUcYOX05U37cmoWxfBpftA5tLI6WHQjIKWtHADb9nhPL72G+DHuBwfbJ
-# mmdmCO0iu5aNSJcYquW3ZD1AMZtsKuRY78uuxQQXnmJBKPhCvoYOUZ7xP0cnlI9a
-# jDhIFpdjdOUrvGt1AJtSIMH/EW+N7PcxNLWEvGjRfmWdOko9uknIlNSpuupRu1Bq
-# 3Kl7ZyK9OIFnpGd5acBxsORwWvRd9K1NBSuLbUSnuUGi7yQ4aj6xCLPWyYwnQHeK
-# 70bkgtI/lQKBmBjz13l6Xk8lwIaVVdkoGYGhztGC
+# hkiG9w0BAQEFAASCAQB+gXcP5f/nTJ7fJhdPBS5sl6pF4F/c9zUj1gsP/1cjCiul
+# wkOsV4VBodOZe7OZBgksS0GAa8e/Thg8gtWD7DFFoZ3CJxPe86M9fm4hFVVx/F5T
+# 2Et0oehmX/lQhNjeiAbz2HBxosyan204yKe1AO8GA2AjvxuQt7j4Nz4hNtlPn/XP
+# bO2Z9l2/DvK4lInDzvSFvwQ2RyCN9nmgbF2ZuRovTQBkxwkviiGzhwC/MCTASSa7
+# 4W/uWLSvTlvVk2YGeQRKhjChpHFe+w9MOyIKqTAefYuDbhF3v1TmkMJTw/s4Z2dp
+# l3/XjhMpnlyCDWcBeYnnHBKB8UUJc7g7tAr1Yye3
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -55,12 +55,14 @@ function Global:Get-DiskInfo {
 		This function gets your System Disk Information
 
 	.EXAMPLE
-	PS C:\> Get-DiskInfo
-	Loading system disk free space information...
-	 C Drive has 24,77 GB of free space.
-	  D Drive has 1,64 GB of free space.
+		PS C:\> Get-DiskInfo
+		Loading system disk free space information...
+		 C Drive has 24,77 GB of free space.
+		  D Drive has 1,64 GB of free space.
 
-	# Show free Diskspace for all Disks
+		Description
+		-----------
+		Show free Diskspace for all Disks
 
 	.NOTES
 		Internal Helper
@@ -86,8 +88,8 @@ function Global:Get-DiskInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+7O0zlw5jcBdWqCxI1brmhjo
-# E2OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/7GudNmZOcF9fUKYLBf01Cbc
+# gICgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -230,25 +232,25 @@ function Global:Get-DiskInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRvx/wmiCoPT+Xx7w+digI55p6l9TANBgkqhkiG9w0B
-# AQEFAASCAQBGiS8FziQNulzgsEeFJ4NHwRf6QQXOgJttDsfprdb5Ri4Ix/GeAd3k
-# Zm4vbVvCy9LYNgr8oOAkrXU6Y0/QV/pBLC4Uc2VZiHqyE+56NPLpxRR3MSGAIJS4
-# zo0nzJXJyn9L3scmG9y4M40i8sqfn+eRd4CC7By7gLFN+C4yw55a/T03vpbieoKH
-# dG801FJQn8JKAg22EBAl9KT2ZQ/hpdS7cBhoyJapw1MroKg+zuvt1vIL3eIZQIX6
-# bzhR4XQRg+KuPDMxaArECn/1H7ec9wrVtReEIodkc/HWcZc3U0k3F8FqVWXjzcVA
-# h+gQ0BBrBhTuxkwV5qKBE6+N8tnC5/aVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTbnWNeHDoKQLGkzqyXnNASKwRuszANBgkqhkiG9w0B
+# AQEFAASCAQB0Pm4sKjn8kvEZUVyKqAPcqvSguI4dE3zWdpUcmyIEHbdLHpkRZ4Up
+# +CDVvgdPLrbe89C4mBuivK/4QMRphJU5yT6/gGBlSuVTHN9Lvy11CEbQd/9uxoNR
+# KfN44DOcPt6AqAQDBfYqSBL9mmCms/s9CXvWEA8r+aJLXHizdbm1Ke0e88UFYHF4
+# 62PBetJChbUrJVrKN9XZwBYjv87dI8PyKONYYn8MSHWXyT94qn9bbW710SakFzq/
+# jnzEX4B3mKooN4s+CwVSEsL98lk5yg8Ee3x+or5hM7aP9/84t8HXKkkZOE22VQ5G
+# d+j3pGFw3bS9qVUbOZZ6pO+XFTKNOg93oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1OFowIwYJKoZIhvcN
-# AQkEMRYEFEm3KssTreOshcXUd5J7gInONrqzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwNVowIwYJKoZIhvcN
+# AQkEMRYEFENU0Hcxs9oZP6jxKjGuJYn81iVuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCAj/UF+JyYhjyAAYU5Y26HpXHMO1IYY8aHa+OHXsyJFnXf
-# LJd/IHbFmnMBsk+TlKnw6p2sX8ci+/Mdgj8byhcD3b9NMrk06ID9K5ssm88J1i6V
-# 1WKrmY/OSXDckbSs6CWMngWASuQqwy34cxnv4G8ZN0aY1hdeIrS/joL7YigszbZE
-# sombGsSOPC8q/BmYQJlxaR9CRQm2LGZDoZTchcVFFjxj7AITXs0IHHu1DR5LUlWF
-# AYVnYaKRaADwmBzuhFZV98ZdD3KckUqjdPzvcFPKGVRcBHzUhCW+lgsIEUme9Hm6
-# 9fn1+eJUleWFihDkMVIaoxjrAeFL5IfqRG7Xhi6e
+# hkiG9w0BAQEFAASCAQCUoGVQKd8PDTyBCsFToZBLgXSkGstEgQr7ua4VOdMaefw9
+# TSShYlSYif4hjxSlNaNwtEd03bM+7y4FbXsrXnr/jgwn+tOEVBE9tulmporG8WGB
+# CY7L6nUUzKytMOZFpLneUvIY2NQny4eCE8EHH0YX0uWh/rG1nwJHzRFrVuERjPUu
+# rpxoelMO/U0+Jx/IL5q+8axnV5BNMCWhhU+eQy8447dWm/i6WmL41fmpV5TMKj4t
+# S+/0S9bFAiLSVY0xLmeETXUqA94pqY9aD4CFIjJAtrP/hLL32VbBP7a/NT6lbaFv
+# 3oNQKFgHvH1dsqex7F5L1DE2Q0eVdiz8+DbvFqAy
 # SIG # End signature block

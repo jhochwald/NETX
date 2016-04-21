@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -63,7 +63,9 @@ Function Global:Convert-IPToBinary {
 		------                                                          ---------
 		00001010110100110011011100000001                                10.211.55.1
 
-		# Converts 10.211.55.1 to it's binary string equivalent 00001010110100110011011100000001
+		Description
+		-----------
+		Converts 10.211.55.1 to it's binary string equivalent 00001010110100110011011100000001
 
 	.NOTES
 		Works with IPv4 addresses only!
@@ -143,7 +145,9 @@ function global:Convert-IPtoDecimal {
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
 
-		# Converts an IP address to decimal.
+		Description
+		-----------
+		Converts an IP address to decimal.
 
 	.EXAMPLE
 		PS C:\> Convert-IPtoDecimal '127.0.0.1','192.168.0.1','10.0.0.1'
@@ -154,7 +158,9 @@ function global:Convert-IPtoDecimal {
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
 
-		# Converts an IP address to decimal.
+		Description
+		-----------
+		Converts an IP address to decimal.
 
 	.EXAMPLE
 		PS C:\> '127.0.0.1','192.168.0.1','10.0.0.1' |  Convert-IPtoDecimal
@@ -165,7 +171,9 @@ function global:Convert-IPtoDecimal {
 		3232235521	192.168.0.1
 		167772161	10.0.0.1
 
-		# Converts an IP address to decimal.
+		Description
+		-----------
+		Converts an IP address to decimal.
 
 	.NOTES
 		Sometimes I need to have that info, so I decided it would be great to have a functions who do the job!
@@ -237,19 +245,25 @@ function global:Check-IPaddress {
 		PS C:\> Check-IPaddress -IPAddress '10.10.16.10'
 		True
 
-		# Check if a given IP Address seems to be valid
+		Description
+		-----------
+		Check if a given IP Address seems to be valid
 
 	.EXAMPLE
 		PS C:\> Check-IPaddress -IPAddress '010.010.016.010'
 		True
 
-		# Check if a given IP Address seems to be valid
+		Description
+		-----------
+		Check if a given IP Address seems to be valid
 
 	.EXAMPLE
 		PS C:\> Check-IPaddress -IPAddress '10.10.16.01O'
 		False
 
-		# Check if a given IP Address seems to be valid
+		Description
+		-----------
+		Check if a given IP Address seems to be valid
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -304,7 +318,9 @@ function global:Get-NtpTime {
 		PS C:\scripts\PowerShell> Get-NtpTime -Server 'de.pool.ntp.org'
 		5. April 2016 00:58:59
 
-		# Get the NTP Time from a given Server
+		Description
+		-----------
+		Get the NTP Time from a given Server
 
 	.NOTES
 		This sends an NTP time packet to the specified NTP server and reads back the response.
@@ -390,8 +406,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0NjzzcF9DkuVf2TS8Yyo/lRB
-# 6vOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyrApQcz3Ia4ldFmp5i7/if9b
+# 8L2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -534,25 +550,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQbEEMFYAIILsWm5xBLmVs5BLFg2TANBgkqhkiG9w0B
-# AQEFAASCAQBpP6MRZuy93fll+R4+w/89q5iY34u5FxF7FjxeNqxbbXCtpW4YrXhz
-# PeZyCZ72fwnSzM0QfjO6iTBDGbhAc9B1L5Pk5jmO/ZlYtEL7imi66PmMu1PN5+Ml
-# qlxgvEEBoybqlV/vWaYyQ0wRRksrFY3ntHo/55VmSPJzjligl7v8HMzP3tPmY9pt
-# WMOwsC1Hm25Slb1f0j/SwM+DK2/LQcAxVHNzhaL0DcvYoX7gn8Bt1ntpcMkTXyo2
-# ek5KF+36x3R7+AlwgzC+edxCH3B+d0fNmbMOBVWRE1B5hySqnFZgB684U4YXNGw0
-# i08sN4AT/luHozy/S7rVsq6Hq/Qh95ipoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTxdB2IARuR8UTqzLL5WJBEIzezIzANBgkqhkiG9w0B
+# AQEFAASCAQBv1cUANZLMwK7UrR34LRvqaDlK9TLOuCI4WTbiRDFjJSxxwJRtRA3o
+# iud/gsAAXlod2N6CY/ezEopz4jsXapI6ErnQl4dU44JFCLlx1/neNzvH4H42WBKn
+# QyqxQCppwMq1i5fNBFvMsVW1IKEoO/p57gSiDjYhuFm23J98oTGmK5ug7+kUOKOB
+# k1sx62nGDlhYd13WYkdPIavrwVHKLxwVpfjITMjUDeeOIExKr8FBTNQ3t1LsPpZf
+# J+KDPFulP9BhihONySmKVUMS6OyhfxRiFbzR7sgmVtdCk7cAxT8R8S0bSf0BSFXn
+# KIc7OUjdMbdGAJ6ppah4KDA9LiynvgU5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE0MlowIwYJKoZIhvcN
-# AQkEMRYEFDAHiLyzkRCw6fCjRtkdLtqbPqLZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyMVowIwYJKoZIhvcN
+# AQkEMRYEFL9rY8FTghyQLT3qW8SdZOsA9deZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCBTqdSjHN0zLLOKdaZTLZN9P1svUsgUweyNR5FihC5Ho/T
-# g/K8j4/g9YT5NOPVKl/vBST4WnMTl8FlQ6CH1pOT97UuL+d1nk+8r4PHsqcExMxq
-# UXJ4+2vF1bTXQTz0aE6gegfWHvEaYkHV36fyBdRcpW9Txx0KnSe71D2NDp2Vunnm
-# SPyn1yo8tM5GHUc043a5SB4ppK5qHia1IstqIdsxB1/e9daUGp4hMgR5JY9XIZ7M
-# OjhbaNAZFV1WPy92Kx44ro0ZNsa0LljcdlyigR88TdLsU5fz03cw/gX1slpcN3dc
-# 9ziCU+uOkHROX2of5tfgqeMSKCBXlqwdtdpW0dH9
+# hkiG9w0BAQEFAASCAQB2wLQHlvnONJ6sBl8fIRrhGV6m0MYdThNV5Wk89aDwb7ZG
+# oZI5Z2m6mrA5Zyfr8DMm3iccIM771zxoJ2CTSCSd9wk8eHEBGy/HG6rSmMQ/r5C7
+# v0s0+nKk9eFeONJ7YHCHXxE16N+Y4JwNy1oSIN/cB+UAuqX6wBoK9zjU2x16jhm1
+# +UVvM52Smsa8ne1qVXuzQknV+TAGACxu9PqJux9aSxmV5l8tRkrDubnUdmO+7UI0
+# X3dBC/NQisxKrfCKpw8qDoE+S5z/E6DfGweejgnc25iGzb7TgMhNFm1sh4GaGWMn
+# lufwMC8orsy4FMqBhSG17RqE3J/5ypmJMD1fPlhC
 # SIG # End signature block

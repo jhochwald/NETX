@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -63,15 +63,19 @@ function Global:Get-DefaultMessage {
 		PS C:\> Get-DefaultMessage -Message "Test"
 		[2016.04.04-23:53:26:61][] Test
 
-		# Display the given message with a Time-Stamp
+		Description
+		-----------
+		Display the given message with a Time-Stamp
 
 	.EXAMPLE
 		PS C:\> .\dummy.ps1
 		[2016.04.04-23:53:26:61][dummy.ps1] Test
 
-		# Use the function from within another script
-		# The following code is used in "dummy.ps1"
-		# Get-DefaultMessage -Message "Test"
+		Description
+		-----------
+		Use the function from within another script
+		The following code is used in "dummy.ps1"
+		Get-DefaultMessage -Message "Test"
 
 	.NOTES
 		Based on an ideas of Francois-Xavier Cat
@@ -119,22 +123,30 @@ function Global:Disable-RemoteDesktop {
 	.EXAMPLE
 		PS C:\> Disable-RemoteDesktop -ComputerName 'DC01'
 
-		# Disable RDP on Server 'DC01'
+		Description
+		-----------
+		Disable RDP on Server 'DC01'
 
 	.EXAMPLE
 		PS C:\> Disable-RemoteDesktop -ComputerName DC01 -Credential (Get-Credential -cred "FX\SuperAdmin")
 
-		# Disable RDP on Server 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
+		Description
+		-----------
+		Disable RDP on Server 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
 
 	.EXAMPLE
 		PS C:\> Disable-RemoteDesktop -CimSession $Session
 
-		# Disable RDP for the host where the CIM Session '$Session' is open.
+		Description
+		-----------
+		Disable RDP for the host where the CIM Session '$Session' is open.
 
 	.EXAMPLE
 		PS C:\> Disable-RemoteDesktop -CimSession $Session1,$session2,$session3
 
-		# Disable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
+		Description
+		-----------
+		Disable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
 
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
@@ -274,22 +286,30 @@ function Global:Enable-RemoteDesktop {
 	.EXAMPLE
 		PS C:\> Enable-RemoteDesktop -ComputerName 'DC01'
 
-		# Enables RDP on 'DC01'
+		Description
+		-----------
+		Enables RDP on 'DC01'
 
 	.EXAMPLE
 		PS C:\> Enable-RemoteDesktop -ComputerName DC01 -Credential (Get-Credential -cred "FX\SuperAdmin")
 
-		# Enables RDP on 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
+		Description
+		-----------
+		Enables RDP on 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
 
 	.EXAMPLE
 		PS C:\> Enable-RemoteDesktop -CimSession $Session
 
-		# Enable RDP for the host where the CIM Session '$Session' is open.
+		Description
+		-----------
+		Enable RDP for the host where the CIM Session '$Session' is open.
 
 	.EXAMPLE
 		PS C:\> Enable-RemoteDesktop -CimSession $Session1,$session2,$session3
 
-		# Enable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
+		Description
+		-----------
+		Enable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
 
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
@@ -417,8 +437,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMXc0XfcJwe5pZ5wykOPpFcBv
-# TgmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmFmGNC+q/JxrYPFrzB38hUE6
+# 1DmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -561,25 +581,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTTSdk+pWw8VJMUDDHSk0fdiBWgiTANBgkqhkiG9w0B
-# AQEFAASCAQCJlDi5lkC6i8+ipYTlTkEZb/iyGgY/v6kSpkpkgymEFi0tM5JGivGZ
-# gWcE0Xz/uBApnNJ5DSTedqu6KMh88yWD6+LtPVw76j0nFgM5nyE0fVFFI433v5Wy
-# gGDiGiQodxUC5ykkMy3mruCWZYZFJ98O5x2ashjz542Wx1I3UgUYS+eOAccpcdaX
-# 6xNiDarokqEhPbSM0OovBg4ngOKhEYoy+F5VJecc1y1EqLZFKzI/YC5OEZtro7FL
-# +bYvyP3Bhys3+2hJ3kucR3hZBwQICegyq+VrSGpUzPHB+Di1Vj6Ax6kwedJ9kf1V
-# Y8xRdfsFlV34Aad+M8F38kOi+RPT2M5eoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ93VdH26ON9Z0YzbeMck/4+KbrkzANBgkqhkiG9w0B
+# AQEFAASCAQCrWae38ZafSiAxHVqcHWtlzekEn8BjeRI00jXyHaL40/vsyYi9gImO
+# 9HmXf/g4Ai3kLJRdTowOVDih4L75zwsU5m6DfZItWU3RtJ5cRTvBI6KcdMTca/B6
+# +eJkzs1TLmP1iyUZBo23q3ZCYTAjrJpV+N+V9rtlOy/R0qWLI6nFCubcVgYxiITl
+# yBXJuQDZcRQfo06in8tN6Aovk7A3ExOr9Ih+QIHCVzrKJIO3YLOsX79ETDkwxlgz
+# 8PgBQFgsntnYFKrKNk1og9q8GTE3DpE+myExyqMWuS/oTQ21MWw527e5a4xvf3m5
+# F0Q9a9Q6MsB5hekuXl6S3dPkh2zcDfmGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1OVowIwYJKoZIhvcN
-# AQkEMRYEFIEgpJHnUJW8FPbUW+hFaFGG5/f1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyN1owIwYJKoZIhvcN
+# AQkEMRYEFNjRb/B+fnFgU/+c5y7G6RPyz44BMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBa1RvVFaaZfGTzIeEGTYr3s+wJjE/hYhnL8z0XKfgtq6Vp
-# XbPeeqXcgOdB3BKE9JpoUUnIpXC+45+KugbsoR+AzWG5smaxk2CIUOvZFSD6t41m
-# EZ24UTxQjYovP2F98cNgZmZCpMKWVu0mpRnzXqGDDJ3zt8WoHHWSeDvZERi1I6ht
-# lcdAkjAIxIV/9qvtivIyguqWm355qgLy0g66K4/mtne+e2orE71VS50e/SuAYq/d
-# LlnYZJAnmmVxSezvs05+ALRxd/0TnfW+9HceMNPN0sKwGhbWuPPtNy7jSDSGCN0Y
-# eCcK9cgvKLB9b23s6oIM38pV3lEIDu1E8s7YSzVh
+# hkiG9w0BAQEFAASCAQANOf6s4so3YqiJZoQLqTFIwDnknX/NbUPeTwT56FyniQ+0
+# 4RmwIqcFD3Y6sXSmDl2JPkV4fGxwZwboAbrt1X/M+ol6xPUN2LPwAFjsaNxMBBFO
+# QFjCX03EhfiRiUq7FA7II+r3wiyUcTbmjQSBUMdM2c/wq1d3F2wgAtbmM74Q5fER
+# RvnvaLUvW+1NQpSM/CHFxnzG4vRR9RX8CAXx2K3mpluM0nHJ1l0EJ2N+RMrimHSC
+# 2dEDPSZIR9g9MbbF7JH6VhyC5aM3BLjaqmGXOsAW7UTf8+MzGHhOTJSMHz/q3sxi
+# uSgdhv+KFsWVlNCfNcflb2Sk7CSx0VaxZlcFDStm
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,7 +62,9 @@ function global:New-Gitignore {
 		Creating C:\scripts\PowerShell\test\.gitignore
 		C:\scripts\PowerShell\test\.gitignore successfully created.
 
-		# The default: We downloaded the default .gitignore from GitHub
+		Description
+		-----------
+		The default: We downloaded the default .gitignore from GitHub
 
 	.EXAMPLE
 		PS C:\scripts\PowerShell\test\> New-Gitignore
@@ -72,7 +74,9 @@ function global:New-Gitignore {
 		Creating C:\scripts\PowerShell\test\.gitignore
 		C:\scripts\PowerShell\test\.gitignore successfully created.
 
-		# In this example we had an existing .gitignore and downloaded the default one from GitHub...
+		Description
+		-----------
+		In this example we had an existing .gitignore and downloaded the default one from GitHub...
 
 	.EXAMPLE
 		PS C:\scripts\PowerShell\test> New-Gitignore
@@ -80,7 +84,9 @@ function global:New-Gitignore {
 		Fetch a fresh one from GitHub?
 		Existing .gitignore will not be changed.
 
-		# In this Example we had an existing .gitignore and we decided to stay with em!
+		Description
+		-----------
+		In this Example we had an existing .gitignore and we decided to stay with em!
 
 	.NOTES
 		Additional information about the function.
@@ -149,17 +155,13 @@ function global:New-Gitignore {
 			Write-Warning "Unable to create $PWD\.gitignore"
 		}
 	}
-
-	END {
-		#
-	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULRgb5UT0ln97kP07pSGRc8Yw
-# f6SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsKw0FSGbj1oaRfoqww1ZSHaO
+# ZoGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -302,25 +304,25 @@ function global:New-Gitignore {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQgq4bNHF/tjmk99GTfz3t4Y3o3MDANBgkqhkiG9w0B
-# AQEFAASCAQCDYt7X28YK1RBOKgDM2ZERW8Y4PFVYDx3WfK82FMW9sLGj+Koq7+XB
-# Pvpyi8/CZb4ZjcTlYxPwFXpY+JgBgE+yNZJ10qveGLw0o9xNqDIbZMVYKJTuXZfx
-# 2RWnDbaLvZUnTU+6yRHyQQLXo/YDEOVWDvNd5c0SlbQbMv1f3JtOHgIb0Tgh7Zl2
-# 34ln0/F5nyiAU4/BBYaQXZrqVEkawO1AVs7o4WoLr9SNqm86Vth9BuuKhtDuAUhf
-# fvR+v5SyAkn6aPZo3amudjrYBk16UOnz/nt8sFCDZmK91uayyr/pLy71ccLE1JYT
-# 2mKYPFCetl8WXSuRinzm86uKDgO7F/a9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRE4ySbIhxxXqrzUHxInSOqST/SZjANBgkqhkiG9w0B
+# AQEFAASCAQAvQUYh30+z38DZ72eiEn0vRZxWBZhPZN7wdU0B61wD0BePqgN/i2uP
+# UhaI+NvQ9neTKIVpwPbXhWIHUHK79TT0peMpFfZLunyWsD159N7YEtp/VolK2DYP
+# hlFdOgd9UNrd3wDfMkZrM6ZKbi9oU30ZVXR0il3NC1ni5iEzycCbn0teBl+6dX0C
+# ILXqp/n3TUpOLkx9uhxwMu/AqxngyCER7AS+HL9/3FO0HrSJmhQgyvjjeZjrsYX/
+# GE9n5W3N7SMjKi/4c90T4q8empTTlJZpQdP1BBkiRSZmHpy96yIlcG7OVIIhwp4J
+# NkuJX6riKUkQotQmR4jDBvNYRfhIoH7YoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1MFowIwYJKoZIhvcN
-# AQkEMRYEFNUWGEAroxKPrOXz9Z+hzrmjacWkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyNFowIwYJKoZIhvcN
+# AQkEMRYEFGoDCuFBELULJ8lNvoo+pGP2k83vMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCUkJoZab4g+6p6Sogx940suVZNJY60chvbJXjufd3Ma0FK
-# di65+Sp0z9IiSTmF1B/s6i0IATIqMICyhymGzPf+araolLCcibCSuDp0eA4F2ZM7
-# BQHiH7vEncgRxUmdQe/y28pcRKNLt2lDVhnvjq+uyKEBwd0Y14Cn3yrvJEh3G9sU
-# OxqRZ36yYvbquqErkrbG8+m6FaQXiUKi+G5mncMe3wMfCa8DZnZG4z70AB34SUAq
-# dArF1e0bOqmz/ARAfxXEyOAu+2y0gQXLjw9tCTAm9VACqMCBYaAUjhN+e/xIwZG1
-# xVt81nn+zzjcJMGgwC9gN9DAe1xles5x/6K6NDgz
+# hkiG9w0BAQEFAASCAQBwKz7HXZL064ZEpir/BS5/aqMde6BL8pXzawxXguV7VBez
+# mZh6NTP3eYArP8N0MKKnFtrC5Bbcw2v0L+RbbNH1n2UHpf/Kz51BzA5DntjugGKt
+# +nVrrMbBPdrPYCQN038u901e0dRyPCHMuzrYJ5muqhxM19yyHbktdOgwbNPNaWX7
+# G/m4bS/TyA5E1/Cklie4KzihO6rHw/gtNhC882RZr3am3y+qIjIC4mq60ew1y5Fr
+# UZ2ukiaIh/cQb4lyFGWaUixQDk3ZextnEp6X1rZlWyA/JmbFgKfFJL3Ltk+DyGs8
+# G1KhfEqu5mlAdPQdqH7n78FzBHfso6DdQpRUbDHP
 # SIG # End signature block

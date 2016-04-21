@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -67,14 +67,18 @@ function global:Get-PreReqModules {
 	.EXAMPLE
 		PS C:\> Get-PreReqModules
 
-		# Get all required Office 365 Modules and Software from Microsoft.
-		# Downloads them to: "c:\scripts\powershell\prereq" (Will be created if it doe not exist)
+		Description
+		-----------
+		Get all required Office 365 Modules and Software from Microsoft.
+		Downloads them to: "c:\scripts\powershell\prereq" (Will be created if it doe not exist)
 
 	.EXAMPLE
 		PS C:\> Get-PreReqModules -Path 'c:\scripts\download'
 
-		# Get all required Office 365 Modules and Software from Microsoft.
-		# Downloads them to: "c:\scripts\download" (Will be created if it doe not exist)
+		Description
+		-----------
+		Get all required Office 365 Modules and Software from Microsoft.
+		Downloads them to: "c:\scripts\download" (Will be created if it doe not exist)
 
 
 	.NOTES
@@ -201,8 +205,8 @@ function global:Get-PreReqModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyFrugDtFkfe84p2XxNLJJ3K9
-# yGKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHJT9TkcryhEw69LSN3dwP/x6
+# EvqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -345,25 +349,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSBQB2RCTG58QkXnutTOBw5eBDMwDANBgkqhkiG9w0B
-# AQEFAASCAQCqIRY73oZ69O56ZTU+Gm12NY1CttqMzWpumFS0l2NAT4pVjntNeCPn
-# poBoR5Z7/5EbWBmCUXgMIdK5mct2WkYQmye6m1ich2qnV3lD/RZj6P/V0d2d9/KF
-# c0NEML+MqQWnxGDi0QYqTJ0o1mfB35So7FVPGg3j/Xo4uBDRQAScy5UvVv73cPrw
-# 9sjA3F0b6gBHRbX3EM1KeK7CqSTeUAIORy21C5x1fdDZt2HFoDmOoWXCiVVDZuov
-# IF96Hjwfx7kFcPBnep0XROVI9KnS0ey3chQdecgErMWr6LAhmyzJPpENEJ+E7HcI
-# bKkNJFLS8fyzqMProVKA89mWAlqFbJGpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQx5+ESFl5EtgkNdTXiaQk9pFMPcDANBgkqhkiG9w0B
+# AQEFAASCAQCbSFoq0RxGB0eHTt6ut/f6X2XVIm2R7QNG9c2OqPIbz8P8Sf4/qyLF
+# GStKLiVjqBNr3k1DKJtpI4OfOsdjg+GDN2YwYQIrNUR+7fTUND7NZ5j5mmSsbdl+
+# pLZ8tKgF8lG5TNUwKilkmXsZl2jTdsnnwpf3jujgj6aqssccAHUQGH08cuUGsX0o
+# 98qbuj5ntA6hdfbq2yAOpH2Q3IbPlhCpXSQagjkF/tcWIdk7BPjwgu+MjP+SjKOk
+# 1Ms57hyAF2oa5gnO4Q+Fd44zjOmprhI6GM1m9Nuy3nWXaLf8HI93Wr7nTQqtvYfC
+# HwN7n5Z7TzN6SH+PvLGJcp0jcEr5985doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMVowIwYJKoZIhvcN
-# AQkEMRYEFFO1BzASe7Tofp3SDIonVuQlkHk9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMVowIwYJKoZIhvcN
+# AQkEMRYEFKExYo464cURwZ2Hbr+qtaCobj9bMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAt31dQWCviyqFDfJTgg0ojTeVVdg+6okbtvd76jHyNutP5
-# WWqu5afJOeCsTu1m3ZrlvNDVJlRAXQIpT6NpN+oz4aY74J6SOQukvrvgKUKx/bvi
-# 4+HgIeHbdoz5B+Gc8is+81iAc4R64ZwvOIcRaERfXBGxUxcvUVOOiBZ90F1HkPE8
-# zAj2N1OTrkIAzqsBCDNbaGGtKOLklSkp4RVbrzFVzYQb42GSO35KQnibnV3AyEuK
-# 74tOcQP4EiJtg6ibjW1JFjpiyGlEoIhpQ2o2YS4F/Bu1SsUY0dECn5c7Eo2Duwad
-# BTgzirpOqtKb0ePm46MZD81fHb5fb4DlRF+557xy
+# hkiG9w0BAQEFAASCAQBFUXdFrmv8K2x3oIFoN7lw6AvnuWbihMjNqQg5pBStU0b/
+# w9nr4NdRidmPOJe0mXXPsPfLSxxMor6nC67O8fzB6ZkAmHIbimnSEM3UPa2UF68X
+# EIGjWGfRk9Fwt5gkRX0dZVgfZ1LyNr9m2Jxc5oxlGqyRXhrhs+AOIOXnMaZDMgMq
+# 8jPdzggqhhsmDJ75fVUR8Jdkk3F2uYFHjeb9zJoWXoeZ7OGoLUePdYOa+fG44DtW
+# y1isB91UtIwyHwWzcKyZe/P2eLuu4BgX4EtgUv8WeIYAL1qjVZ0DaElSYATvWwoW
+# 2a9dx8qdFl/YRRMmRwPXv66tCtzDgerVzPYMPYqo
 # SIG # End signature block

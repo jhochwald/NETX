@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,19 +62,25 @@ function global:Confirm-XMLisValid {
 		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\conf\settings.xml'
 		True
 
-		# This will check if the file 'D:\apache-maven-3.3.9\conf\settings.xml' looks like a valis XML file, what is does.
+		Description
+		-----------
+		This will check if the file 'D:\apache-maven-3.3.9\conf\settings.xml' looks like a valis XML file, what is does.
 
 	.EXAMPLE
 		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt'
 		False
 
-		# Looks like the File 'D:\apache-maven-3.3.9\README.txt' is not a valid XML formated file.
+		Description
+		-----------
+		Looks like the File 'D:\apache-maven-3.3.9\README.txt' is not a valid XML formated file.
 
 	.EXAMPLE
 		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt', 'D:\apache-maven-3.3.9\conf\settings.xml'
 		False
 
-		# Checks multiple Files to see if they are valid XML files. If one is not, "False" is returned!
+		Description
+		-----------
+		Checks multiple Files to see if they are valid XML files. If one is not, "False" is returned!
 
 	.NOTES
 		The return is Boolean. The function should never throw an error, maximum is a warning! So if you want to catch a problem be aware of that!
@@ -144,8 +150,8 @@ function global:Confirm-XMLisValid {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiMTe42dK7HAqI/cvNWxndN3x
-# BzegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBn8JDfJM2cLieW8Wa4N+2Oe+
+# nNSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -288,25 +294,25 @@ function global:Confirm-XMLisValid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBROBhDgGqXmRtiZUmVNQqfuurwUlzANBgkqhkiG9w0B
-# AQEFAASCAQA8vzu8vO3Rn7i1fPGtRDt7g6yA9CtU997Yn4B9N56xWOLE9ZqVKUjx
-# Ip3F88CbIautuCtPPXZFaN2DvJsYUNQ3jeM0RaNBqJCHr8UaLqEMy8u/caHDA7yl
-# kv5sZHHXJ6cVLREalvIpOv7F5X08qdKGvpB8v+X9u5EhM1SYpf/+u9ERwk7usFOJ
-# xOv4aIK7MvitDX14PkUbbg1ULnytCrya82aTpag69gkvrYjwI6vTW2j09Qqs9Wff
-# ZnNDiH6FRl2vEbpwlcjdCrEOLU6/Bii9f/Gzpv6V1nGNAYaVySFGplgJLOuK0J+O
-# RGvosDS3zBmzXZUb7zCnrBIvD1/ZUfiMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTX06No1SX9ShsoQxTdqyh9IjeN4zANBgkqhkiG9w0B
+# AQEFAASCAQBP6yYfeG/tmRXT5Hg0iyUeEtPHz/M4jH4VUqQr/5z4t/7NzZSdiguF
+# Tgv4GssDV+m3iL8hZ+3360OIonyQ0z0Qj88f+wse6A1K0ojwGSRAgJgbXtCipLvf
+# hby1/60a4pZjwDeRVQci3mtghcIxkxXctD00L9dnJwsXWxHW9GzLtqDYGSlNTEcn
+# LPoZseWgvfsoAiT9Zo+zfqytVFfhjBy6Dj9ExI6Yy+gNcphEW8AHSpV73Fvp+BUx
+# Tv/39MPnamVXhabt28yBNoBO7KH7ZWcK80GgTisHZ2Vl04ZX2KDKo1S6qZKywk4H
+# 0uROBSf9StUSbZPQfJDczD0/liNdMn+zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzOVowIwYJKoZIhvcN
-# AQkEMRYEFJH+bz/Evha2pZK9nqnT2jC2j6JiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzN1owIwYJKoZIhvcN
+# AQkEMRYEFKZwEzlWPP3Iu18MYIeplSb5hb5YMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQApq78uqUOd0ykM2VdqEHBVMDxBraxBhAqvN+sS4fq9zvJg
-# tBWLHI8QwdSD+yQ70hffVahgfki/GA4FNV2s2HPx2BUkpK//xs7MsO5Dbu8WNDGg
-# BL3SIE2Zp+5ipbCtOiRvlj16OhITuzfhDWCP8TWVSkm5q7yXi7VtRtzApHVJVDEw
-# NDwcRMnqPVuAP4psJsM9tKZNvKlSOmQa1BVW44wnDYSuucO0oiqbRrRQH26LFA6Y
-# f7/7GhLA/vmTo/w6Ov+5yT7cq+LZkt9ONX090Vc5k91Qr5GYJmj+x2noQutkg7ab
-# PDSDhLz1hZlh+hmx0Z+IJ72tmwcxLAhoJAAtRO4Y
+# hkiG9w0BAQEFAASCAQCGAeDlTVg4zsO96dPe1XxpgUOpMCSCsWP1RjRMMbjhMEdQ
+# w7PvLNKIoUIa0ADRhW1MSIZg6jYSB0GYoENS2yUL7Bo6BWhQgoSjAT66czx1MAXq
+# utCaRThA5OGnbfFJdrxjxdNEHTvr1k6eMFtZ0Oa4Ej9TSRO2KE05lBNxvA8FiIeq
+# U3pntZlmCW5QQqsQb7cWCxUbEdLxlEJ+3H8av7umPSypdhQ7h1yBCWlDkLHwO3gE
+# w/OiUc3OVKc98hZZO8bSTBfoFOr6PqaKCT4VQXeStVhYH/7nJvgy4RKK66cw7dZe
+# 2ZmoiTrRqy5vYL5RT/MzkiK6Lqi4lVFVW7GUl9fr
 # SIG # End signature block

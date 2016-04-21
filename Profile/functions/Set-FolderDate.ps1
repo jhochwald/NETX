@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,7 +61,9 @@ function global:Set-FolderDate {
 	.EXAMPLE
 		Set-FolderDate -Path "D:\temp"
 
-		# Change "D:\temp" last-write time based on the latest last-write of the included files
+		Description
+		-----------
+		Change "D:\temp" last-write time based on the latest last-write of the included files
 
 	.NOTES
 		We intercept all Errors! This is the part in the "BEGIN" block.
@@ -123,8 +125,8 @@ function global:Set-FolderDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwvBe0DiylUXC/ePvd/IiLaC+
-# n4CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlp0ZGuznYXa0BXibpR7CFN3S
+# msygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -267,25 +269,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSpZ1C/NeOeuT1sI7nAKcLtY6ChvTANBgkqhkiG9w0B
-# AQEFAASCAQAzrdb3k8Y/s7IpmgSqJBTtiPknQHhrmYidwM9FUvKlnDMNteoibOPs
-# +o3HecyfGG8fwyQpmYl4vi68tvPWVTgHboKQmxn05UEQNOmnrf4qiJcyWVSw0rVj
-# 71+bRkZg6yLVaRfZxgHYRgsB9rwpHoV6gzMANTcrXBENS033vGLBATyVkEkOC+ix
-# eZ+Qz7GtoZV70j31jIv1a6HCCxSR1cEtEjl2ZufQ+qt4BUVxVkb9CKpiTlq7VdHR
-# UUPGk8UzZD2ITpP6blzlbMSuRL3KI9cARxERWzfUI5teEomtZvuAJkeIHTPSGeCM
-# TlOVwzvBMRD637uuCz/htaFlbRVD/wfpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRea0VsBnuSPBjqRbhOuulHvvrseTANBgkqhkiG9w0B
+# AQEFAASCAQCJpOVIJ79/lJ+F6sEWSY5F1t2UhVaC7exHhI+Ig88/Bmtoquf8gKjD
+# d4bZ8ObLAcij/2R+Rilzj6O2KTP7t9ze/5+cdYZIfIuIR1MHkgFhjmZZtHV8XqRv
+# ZBbS5d5ZCTJHnYUar0D/OqXHtvjnZNvk2eDYttZTQC1XG2JbDfUzIRIFTUCZv96+
+# ggQcsAsWY3INvxaYM6lDC77mH2hfyEvm9gpwXAR6jCtv8l8+YkFkWhxjp1z3FgV7
+# GXWKaLrtC4CHrtGv2taR8RWp9cv+d0qy/40fTn53wltH3cteHfzMeuwkYmN65TQz
+# lapJdgRyBu9BR4UwN6o+hCp/mLLcIpF6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxN1owIwYJKoZIhvcN
-# AQkEMRYEFB/oUNfRVUiunvSfuynYkLsc8UdBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMlowIwYJKoZIhvcN
+# AQkEMRYEFEepzJ0xOn7Ox7SoI8wFvMi7eQJzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAwK4vQd44I2itgJIRY0Vi4mdT48XSg4Ydk6FAqypl27nmW
-# rZ5eEO7r6v89vF5I8254MtcNYqzjmfmfv1EiksTwG1Z/14Z/pFR/j7rwvCIYzYcg
-# Hjo0wzzMm9SJYUGGXJa4FTqo1tlr42EZ5yPSITr6OPuRUca4KPv10iMnl04AENlD
-# zwjAS3AMyZf4UQp8uuaVm+xjFjgrBz4v2EcLHBmDTyvWU7i1rnQty/+x9G7fvwQd
-# PE4vTz4LGUpQPKcN+6eJBrcz9bfdh84lmFHKUSVQhmYckTpojw0sPKkS0p4O+ifl
-# /GZGL/xbSwn8wJxg1LTvZW8U0F/XTu/F8obFUa0K
+# hkiG9w0BAQEFAASCAQCmolkx1DSe4B4rfAu1DTHCQ+ohn4wZmoKCCSA6EOp1HH+T
+# RBF5N5vcqIJUwbG5ELjaJwc1DkCoQLLdqsx0jw3iyLW7NuJeAfasS5RirYks17Yj
+# Y73vlkzel8gxZ3p3DK2ZeowFXBFAt8CQh/c3n0lON1YVbZ6FGAkJ+HwjAIJCSMpe
+# 3Q9gP9Fopc6qqjYHu4epWQ9cLJJ3RMrscjA876/2UifUtyB5FsM/kd0G27I8aEhZ
+# Li3O7us+KpJTyVmaljWq+WgyVmC3BSseB+yRw9/d0DzEAmGo0ICTiXRZLwDougNo
+# K+sIqCVXUAUu4F5nS7dXlV7Pyl/tc4APF3uOUckp
 # SIG # End signature block

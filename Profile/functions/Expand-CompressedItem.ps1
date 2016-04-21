@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -72,17 +72,23 @@ function global:Expand-CompressedItem {
 	.EXAMPLE
 		PS C:\> Expands an archive 'mydata.zip' to the current directory.
 
+		Description
+		-----------
 		Expand-CompressedItem mydata.zip
 
 	.EXAMPLE
 		PS C:\> Expand-CompressedItem mydata.zip -Confirm
 
+		Description
+		-----------
 		Expands an archive 'mydata.zip' to the current directory and
 		prompts for every item to be extracted.
 
 	.EXAMPLE
 		PS C:\> Get-ChildItem Y:\Source\*.zip | Expand-CompressedItem -Path Z:\Destination -Format ZIP -Confirm
 
+		Description
+		-----------
 		You can also pipe archives to the Cmdlet.
 		Enumerate all ZIP files in 'Y:\Source' and pass them to the Cmdlet.
 		Each item to be extracted must be confirmed.
@@ -90,12 +96,16 @@ function global:Expand-CompressedItem {
 	.EXAMPLE
 		PS C:\> Expand-CompressedItem "Y:\Source\data1.zip","Y:\Source\data2.zip"
 
-		# Expands archives 'data1.zip' and 'data2.zip' to the current directory.
+		Description
+		-----------
+		Expands archives 'data1.zip' and 'data2.zip' to the current directory.
 
 	.EXAMPLE
 		PS C:\> @("Y:\Source\data1.zip","Y:\Source\data2.zip") | Expand-CompressedItem
 
-		# Expands archives 'data1.zip' and 'data2.zip' to the current directory.
+		Description
+		-----------
+		Expands archives 'data1.zip' and 'data2.zip' to the current directory.
 
 	.NOTES
 		See module manifest for required software versions and dependencies at:
@@ -190,8 +200,8 @@ function global:Expand-CompressedItem {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1zLTC4zaevij7XwkNK0PC8KF
-# TWegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8j4xsQRfhPXCPTNrjluMpqFR
+# BsqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -334,25 +344,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTDxpHAMdaWQsw6KmPyAykyfkjcOTANBgkqhkiG9w0B
-# AQEFAASCAQAV3hisFIvBO9Eu1/ybEMCDlY91ab/K49rp8L85GM9UnoTRlDz46FaA
-# Nb1o4E/cv/82EQyMheLV99Gipl5kvT6N6Q9yB7jc7ShD2ADe2Bzm6AXVByzaxZQO
-# OgspHy3h7CnKTM1ubtTeq0zONMjit9gFP8vAiGyCAAsljMD5Q8iErHxfJUZ+d/mC
-# x1oD3V9WxKbOJXZMX4/XtwvYxx0UkSIRFq29YPyQOzcXNycPVAxr2CcTlfLJZBan
-# 52c5yq2a9SRlfSZV+98kf2PjP4vNv7oHflTh4v2/e+yHsQJ8ewsYPYCMEYeeUIrE
-# sErvvljW2LVdfYCk2JlSFPtIWLJRUoCxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQnGLnN4XD6f3yGfWwpJZK4eckhgTANBgkqhkiG9w0B
+# AQEFAASCAQCotLiQI9Pt1poz33dffCOTBGR3tA/Vgpg+GGUxwXZER4nlUxyMfs1y
+# /K5Ph3oVpLdLPDx6x5EpoV6YhS5vyIq9DDKqDdHqDqoWfctgk2t2IvkSizWtNtp7
+# TZ9dio3Recfx6o9olTFki1ahnL/2CnVob47yV29U1dQdMg3tWL8iQoQ930IcTc30
+# 4XroZEcloma8+hQOnHYywu3j4RUeaabDF0Q/dzlo6kFy4ys90tkHIlmopJhmTdVZ
+# uFKZeW2KiEWJHET4F6JelqKQcSfWLDBKuAtyD7/1qLcoDqLope7sbrZORLwlTQwZ
+# vQNpXHWOQAaFUjUQvXYicWNENOQe7tmZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NFowIwYJKoZIhvcN
-# AQkEMRYEFEdO0WR84xRHH+VnxUWaqzPq2C++MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwM1owIwYJKoZIhvcN
+# AQkEMRYEFEma7CWtfBOebP383aQ5rD8Bq/ljMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQARY8V8mirg9VfmTqfq/4rxqXA09MoMyXVlT62+KVLroOGw
-# gXzslpC0T+ufn8PofWb7pt3j1GCIawzyM7Z0BOQAdk0TQ0Ithx5XkMVXBHm1YalR
-# FTOWYDHzTDJA0j7EZnCxKA7LkG8lnp/p4BwIXcjzYkOLIyKN/E/1g8iJDtMdz2Pq
-# nycErdhcW7n4IAyUZx/cLO0peBp6rryIZVEEQnybjSJbeqriB/tHsM4VSCgy+uHE
-# xYYQkHkvDIRu9CYeLIL9HP3BazPXL+1NctanEdwF+pN2PX7/FAHwTMKofXT6AZ1A
-# skCBle0tr9wEkRRuGZOA+/0zDFtiPk5CHgGfTdWb
+# hkiG9w0BAQEFAASCAQAKFo5fjOeP7teRR1mcXC2cbKwAUfYCdRcq/mfnPqRqgEFu
+# nwL4Jkf/juaB6XlDhgg2nvr6ixPa3IOXKMXzNdbltFFoTJe67EyHDiMQl3/gnciV
+# UgwZAByQjyGV//M4a2XYRNcBz35TYjTsfSPPWMtG5PVN8E0GkyB0BTqsk3mKOVwh
+# H54bSE4k9gy/+wMG6LktCOYTp1O1vrA2UE15ZCJbnW0Qo4AbciHo4tM98Gbv1FCx
+# DPpVPx2KuTUdYAACf5L1TM55lDdmahfX0r99xQ7BzeraGPs/TVrnrVlQLWdJLFvj
+# 6LKYxb3/pn0c0dg+4AOSXGIBDz9aB9A1u5u/R1//
 # SIG # End signature block

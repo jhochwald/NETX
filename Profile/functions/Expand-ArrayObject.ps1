@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,7 +66,9 @@ function Global:Expand-ArrayObject {
 	.EXAMPLE
 		$arr | Expand-ArrayObject fieldX
 
-		# You get an array of objects and performs an expansion of data separated by a spacer
+		Description
+		-----------
+		You get an array of objects and performs an expansion of data separated by a spacer
 
 	.NOTES
 		Additional information about the function.
@@ -110,8 +112,8 @@ function Global:Expand-ArrayObject {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOVewV1vSmgmmIY23Hkotp044
-# EnGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUM2U5y+m7yiqBmdI9190iFkcu
+# /1egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +256,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTEDIfrPVB44lQMcQovkzEjH+o14jANBgkqhkiG9w0B
-# AQEFAASCAQAVE5FtskcOYLinLNO+ILs3CSj/gUtqBUxgfuLvpW2zdUvP9EaL8h02
-# 6Eh1KsJGB4uTEJNDwvpnDjtW6N+T19/YMpJPaRxaxt+sk28+8qHcwvwxJnRnAj/N
-# tJR3WEYdfhxHbdH4fpligLRsMYY3ldnY6gxU9oGI3oes+4OKqRC1yvmdo2O59Ul2
-# rkO0c2QoHjavUgBuRuk5kroEyOdgnfiEPoZu5MnMpal4foPrU2QjDA60fqWiswYu
-# chxEj9ZpdwLV60E6UBeYsmkeqxl4C5ZnJkVmJQBiC8NY9s0xdIK6mDyLs5DiuCzc
-# pczzkNoUZxwUBldU0MYunlIfmHatEJzLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHPu7C8QeqT5VKvif2bjim/+k3IzANBgkqhkiG9w0B
+# AQEFAASCAQACMvZaLxuf/7o1OKy4H2bQSrVv2ITfEbzKpX7tiJe8Lieg5slmjlQ5
+# Kp9R3jHFCcBEOFyZzQ4ExtiJm+HdBddYZY+xeZhE0FHemzibx8UOQckyYHj26W4q
+# Wkzvq0jpvC3+7EHkh5clD0wr3iNTtyACWkHeRH5gS8vIskJbAdDzC2p5/DrK4WH9
+# CnrAKwvNbXPm+ENdn3Zg185F6Eeu02yy5MtR9QZgTPuLDf9TomHkoDbtKVTgnJIk
+# iPaMo9WExEo0MykZHDIC0zdxAeYlTYWwurU1MO73sALhxde6EjZa39ByEwUnMj8O
+# 9Q5ftFZCLH+tALIWKIwCzq5uSlJiCdSUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NFowIwYJKoZIhvcN
-# AQkEMRYEFFQiTVmVtJy60uF+rpGODbbYav4sMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwMlowIwYJKoZIhvcN
+# AQkEMRYEFLQ/QXVHyvDyZysUep/qP6RRUrjdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCeMmGMzvUFrg4M9YWKLXZ6ynMrG0uWqSWcFHVYqkRxiBPZ
-# XnYZ4Tr7t2WOxvjdr6MDEVnlqd5zj5clCkNM0QLJts1JAHQgnX6nQl6Syzw/mIcd
-# kpqq89krKKHy5jvI6xFr6zIbkedh9klnrqXHz62KzSMnPxrucbotM2f0CGq8kMVk
-# yjcw+umna1E7yX2OPn6mxTxTMP1VCeEHuNvyYUELQIqVxtBati72qWyy997C3oiR
-# uXnPAZw7/LDXfJk65ht5G7iMMa3EVBFSMjkC8jfC6Hf1I2VBu/9/cBSe/ukkT1C0
-# IfIy/VHxvNwddVnHk6Vd2++Jn0G0YjFXQPzafhxG
+# hkiG9w0BAQEFAASCAQCED50R3b/pYPe/c96SWHNTifUbbVbVMTDNWqWkX2PmDtQk
+# s7csASZPHdkAix2jm6bFUlWVgTr3DqL4kQO/LSoGT2VKxX4Qq7uh553UBtGUGgz3
+# wJqUpWI5elqrOV2e69Owgyje+7ln+vsHtAd5Z32tCZnv9iPxJnx0vqoG+OH1DNOq
+# 86PueYU/8ODciDTFHK8BfFeq2i6kNBCd5Qow5V9x/bTMITzHD2MatCFVOv24P8uY
+# GetqMkkvWNUMVjebczQFGamgTYC85Q0VZW3taNkoxtNwqrbNatu8dcdPkjyCQewc
+# zkX64fEJi/nt5KD/7QxIiiAv0thmNTfQgwoj2cdX
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -60,8 +60,10 @@ function global:Get-Syntax {
 	.EXAMPLE
 		PS C:\> Get-syntax Get-syntax
 
-		# Get the syntax and parameters for the cmdlet "Get-syntax".
-		# Makes no sense at all, but this is just an example!
+		Description
+		-----------
+		Get the syntax and parameters for the cmdlet "Get-syntax".
+		Makes no sense at all, but this is just an example!
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -91,8 +93,8 @@ function global:Get-Syntax {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeZXU+eI+VCoM0t0DbXUEWf3U
-# 4Z+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU109kYqSYEjvZ+0xmu/l8mIeS
+# RKegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -235,25 +237,25 @@ function global:Get-Syntax {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTTaHjXBhU7XjutGLelysXuCQLj8zANBgkqhkiG9w0B
-# AQEFAASCAQCUOpp4SZHaDDjZm4XRC/YTgH10JRclJTcKfnwag3g7TEQ+DiX72UGx
-# c5yJZIyrSM8VFj+4QtGtMrNqALyk0i73xy5aqXi63Ry1QxRFF+JStVbylF/Qlxfa
-# xquY/Pw/3QoHbSoZUnFVzHHuzJ1iErIkkoOy1W8gWf+obVfOl+KnlHQzwhNFnipT
-# MYAQzc0D4r1sLKimLtI7hF+HskVBu1i8YE8spqeMkB6claFbO6y7uo+XYiI7UY3v
-# a1Bw4aU5YdCZ6c2mIPKquAxKc8v11QG2VSI6HTWBZxMw3ta8N/OQ8zGBA2Yfu9xG
-# NUKC187kqCzU02aSxYGFHLAQwXZdqoRboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTrkzvm2JViUwZHiMK2K1+l2NmpSjANBgkqhkiG9w0B
+# AQEFAASCAQCmOW6tYc+1+SLTW9+12SGuOl0tnH96ftRDfy5XoJr8wLxDvzFNTpoW
+# cRnqgga7smD4WWkV+7dmNMbQvKAEiwUdQs0lqHk7Dd/Fid20Nu5ess/apJyVmfCr
+# Drcru9msaUdQK1Np9ctkGe5zia0vhU7Vcb1EOpX6zzuei/p5HVfEFh44mvXB11cB
+# qpvf3A6UplMEHCS3KqKulWpXncFzYeAdz6s1C9hQEvC4lObYcbPH77ezeL9O4pbd
+# ZyxA3qTduslgyyeSBwEvS2Sn79d3M6mTIvsS7Ytc7WJcsIV0A3pOUsontBbRPdHi
+# 9mzqieNWLag3lApzbdmYU5M03yF9oG78oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExNFowIwYJKoZIhvcN
-# AQkEMRYEFBjGIiEWRLhRMUpkzKFMQxnrmUFfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxM1owIwYJKoZIhvcN
+# AQkEMRYEFN6p6rVzBH25+kiJ1ZuDHCyT5f3mMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBrJB63SRV4PUfXNSd3qU9RJMe9K3b+YfhFbK8QtlTTt6i7
-# G2ipHLaMnH4P1IPzXgjMxBlAU5Wj2eIvobOtE/tvnsxDvLhzi20ZbrbOuF/T0mpV
-# AInCIEM5tfoZ0TZVNLRr0tKGXA6a7ze2Vf0NWdZfIRIhZZZkuT1HGNv2AJBKUC6r
-# hyor/9Fjn6hpRTjJvzW2K8ZloZhfbb6p7uj+st3G0TGJZnvcR91jZnD/jYJ3MVpV
-# ynsX7VyoA2YrixecXpiXrbf943iDGeCNGkcsupXhcJ8qKRmex8N4Oz8uf7m2YsOc
-# zFxmrB74iJ5i0YEAAQHu6oktA19hiVeWT8EpJ+rl
+# hkiG9w0BAQEFAASCAQAe9lYd55Nu2CoqEDM08HuOgMys3TnsO50Ilk8YjkatiInd
+# 1Nin6c7r6P5mJQrMikpCIAjFVGJn80UYjIv7AQiPGLvc33+RWvPTykV2aXYxSms8
+# lTIfMUmDIcquaisBwpE6TDPrCnhSW8ZtODIae19RIqxx+TJ9BYYSZchDI4ogjDyb
+# kEuGp/x3u1Bnnrp7RcpMFYeiH3p7+r+e1hx4kDitwF/kBtSrceYkf60CN7nUPbWQ
+# xvEJGKDSqiO37nv7O6U/y10GG5V/lwtnHuKGVGFpkq6sBrNIf5lLMFFvEnZqpcjD
+# Cdk9vUyZnzuG9H9KnunS/OnuBY6XwiQlBNubDQVT
 # SIG # End signature block

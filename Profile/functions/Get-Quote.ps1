@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -63,7 +63,9 @@ function global:Get-Quote {
 		*                                                     Henry Ford  *
 		*******************************************************************
 
-		# Get a random Quote from an Array
+		Description
+		-----------
+		Get a random Quote from an Array
 
 	.NOTES
 		Based on an idea of Jeff Hicks
@@ -253,8 +255,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAcwfQdqSOhIqRQRa4K3OO1bf
-# zASgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFVJnVP7HyJRB5aZlmS63x63Z
+# cg6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -397,25 +399,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSS1wBB29PBIW+A4FXT4xVQuoDbWDANBgkqhkiG9w0B
-# AQEFAASCAQCMLTaYsT1B6J0rHI0VAGm1FmIqgPAcR0nMMGWwjnG+/+xUjxdF3AoR
-# 5Iw2I6FJzA1f5dEpVGdlvmPXtbqfNpE00d2lGeAsUzKjyncEVUyQpwd6tTZD/yoS
-# 6dvZshXomY8dcr2wZWJSDbnjWgBhuwOFdFhV58GOEvvS46153bBQdIv/BlLDPxIz
-# b08SaEOtt/T4iapzjeh9GUxwq03qfjcAXgC6u2uBNQfv+EOkPqkuapzeWxIDoxlI
-# 3sTNv1b9+KAr4F4ANuuQSFoGwC4MuXuEcsjoVCMom+IqUVR6ZV1/gFFZkNa3qXkK
-# g0EM+JTc8ntjrOgClo2EP2GCLxBLd2M8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSceNir2e6GFTVqAFxhPJhXS7bN5DANBgkqhkiG9w0B
+# AQEFAASCAQAJbNhWiUqrMMYc+5LqIGyRXQKKVrBduPF48fNOFiaRT6ZE32xx0poW
+# o9B5+BTlq+bRFdgGGc/Fk7rPwpLZYTa1hs7/eAha1DtUB5l6NsigrUFVTpKbKXEm
+# S/AqGyGGjrVxtuRmSt0sO/P/tbdCR9q02XqrRpjnZGRKuDQHQJiHarzy41DSQiOl
+# D8mQia6R1m+2CNRWRQxa373m+SBw19rmssrWnF7YnUQYOdZAWFI6c4DUTkRhks3x
+# MFZPejQmKooouflghlTcO6RyF9Jzi7cG3RHxkdmst1QkyblKZxQ5dmP9Cxf3eLu1
+# hJ6NRbda1fgrAFmRQSExwBknRkPTGmcwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMVowIwYJKoZIhvcN
-# AQkEMRYEFB4+kDEm1zR+5vSFXwbncgpn9030MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMVowIwYJKoZIhvcN
+# AQkEMRYEFMv3Q9nRgnV7ZbsVbx721jngMJHXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAFx/9TqsuaoXG848uU11zmgLIDxYgmZteidQH4ZV7L6Z9z
-# ak8Dy1reD5Y7dRG6ZGvr3wFiKyKOf7J3X/QPS+mS8A0oS3yyfaJo/1WYiejyvLP7
-# +wqWisFpUmQsgexqIYnTeueMhTB7ZCb0oiKtbG3iKXSftziQ+HsZUEaAuZ5soZpa
-# jw/uR2Tw3GG40HEG3e2iCts3G/di7kmeFwFixE/P47cB8ZMpXwxE96bF6/7ur6K7
-# 7pmaFqP5557xJq6utrj4H7lYTDKvZWBcQSxV0SHGhM2wxtaBmVVySjJZR3eLlNnN
-# kdbKwjj/nBM8atry1OqhufVKRR1qMvz/mNbGYGSD
+# hkiG9w0BAQEFAASCAQBQdsu0l+23abfnZAMpIdaOTjsyGKjiQrbfbVLSbYjKgYm9
+# LyBQThBpU7PLpDN4f/9EE5VZxjzyHXHzdPBTgg+e02E8miEwvyzxHpTMORFH+TWw
+# uZg5lS0uMBOPEv1OujsctzrjpC9DacVINctw6ASUh1+XI69tIJD9xpkK7x3oEYNs
+# Qef/NPMOXNbsLsHAqs2WzIIWNZ1OGWU9bOjdPGHneutxRABDqsDq3PSPqWUsgB1a
+# gs64+h5G/K8SSu7PVZ5Y+co0qdml2EKJPcwHyD7BwK9ZYP/Px+05GbPvsrbEGBhj
+# pPvB4ouUL/zGnvk9cyYRWU0er6O8FVyYfRVb4SoX
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,13 +66,17 @@ function global:Invoke-WithElevation {
 	.EXAMPLE
 		PS C:\> sudo 'C:\scripts\PowerShell\profile.ps1'
 
-		# Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
-		# We use the Uni* like alias here
+		Description
+		-----------
+		Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
+		We use the Uni* like alias here
 
 	.EXAMPLE
 		PS C:\> Invoke-WithElevation 'C:\scripts\PowerShell\profile.ps1'
 
-		# Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
+		Description
+		-----------
+		Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
 
 	.NOTES
 		Still a internal Beta function!
@@ -130,8 +134,8 @@ function global:Invoke-WithElevation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIY/m0OCX+j+Sxo2I/LwmOyXN
-# u6igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnRHxHzUvbV/6/xYdcoqMw+DV
+# XLegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +278,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTdUWcAPsQoESeUJB2EFPf/c5FdcTANBgkqhkiG9w0B
-# AQEFAASCAQAaGUW5z+CQPUOrbQQpsEqFwdPrrbeXvcH3CNaErgAxG08fP9YZkr53
-# HPOBlDV/PdTd9BzNosCPxuhoeC8eEfOb9DfzmBJsSf8apmxCNIoEgQWByNtk/nV2
-# 9KE/u5/TUgErBAxvXxXUFQfozepfH6n7s0y5crbexnId4CydVN3VjcpA8Dqx4df9
-# Tip4eI1j5R6X42seuQ+M3i8x131LWKhT1FVlkDgrk9x9o/GqxdiJz4Xl8u2vYDQd
-# K8kR1uV/jhKhJOxEwkWtG9vcN9ADBS0AObnmg+EkIXTSlLRGXZD2ivWnr5MzmCFY
-# 1ycVWqTSMqfN/cV1ficdaIkFoF/sps/2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRh+mjVG7x+IS+Ox77RntEQ8+XaJTANBgkqhkiG9w0B
+# AQEFAASCAQCnRTX+K5TNe/yiyr8peGU1He/uQjO/WCg4LDHGSFg2QeoAtX/RKaDI
+# vlWjZ+3efmcfUVMFOld389wxbln0ftQZBgSAtdM4kpQZ7D5kGvx7stiGQYg1Nlz5
+# LL6PCej3vQtb+cNt+oUkRv1P4biSVsVPRzVwaFkfv7OhOGti31z4+Zr8RIkVdWGk
+# gKmZwmwVyTfu2GoHSwmQApajWmDRVs41aSPwyUpRmfT4jpq+wbkEC19zkREXHYx5
+# 12e2ERp81ATjVbidj1zGCjM121lCChaPtyZ4TtizIdTEuFud5uHcJVDAZWekmWRH
+# qgRSCvEq0a8a7Vl+p2ej2I+pzcvvLVZWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyMFowIwYJKoZIhvcN
-# AQkEMRYEFKWQurFxazbULPKYdeoPOzoaTbGsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzM1owIwYJKoZIhvcN
+# AQkEMRYEFKMJ0dsJe3p+aDDoqozjWU4EK6oNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAi3Y6TKaqynkBZrA32ae4ONsI3M6w6Clh/tzmlkMJTWewv
-# nvLcT/CVfhxP7+quXwOO0YsxYu5dsJmdN8J5MKlGaAVKnN1TDpNPD2zngTkTeuUr
-# eK9m52t8+VW8j4d1Q+mu6EHTUks/JwLsZGey+VfvcEw4IP2aOz/4OBYjB2quYljB
-# jrM8OloVRwg9z+k9lLYdVb36znFFQ+AOvpow7xbRv2ueQGW5FMsKi5x5FhE3TuNQ
-# HFUDmwQ+7EqnoQTThxCqtZlxlRl1p0ViaxBSVVWf+2r+2nipw/szExAjgVP4SnlE
-# iaHKIdFEuz637DsGFGSsPEqnYRgtXK5rZb/s9B8e
+# hkiG9w0BAQEFAASCAQBHDlrPMNiPLOrR8QciaYMyJyJITzw170Av4gRpYdz0Fe34
+# f2oXJEX1F4R/rs8tTza0jcYkyy+3g9warNMW100aMG/3UqJphRFEN7eM4pKmY/6V
+# e/D0wtYaVRjckpusW1lHa5s9AEG0IMbb8ed9coNniz2bvJM9ocAWyj1nZyTkaC1Z
+# rD4RAEr70EqB+o4Pmy6GrPYt7SOy7DExgWAzYa47uvEJXe4FEuO+Jwi1Lkdya0eN
+# Z8UNeBEzB7pwUXI/fIoispAI12ivKPA4LNVc3498rORBMiCnYezoFbCMQae5gwPk
+# 73bNqcCLnDxAf99pYqjrgzk1HS9frCw5Xh3Mkdyq
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,7 +57,9 @@ function Global:Enable-WinRM {
 	.EXAMPLE
 		PS C:\> Enable-WinRM
 
-		# Enables Windows Remote (WinRM) on the local system
+		Description
+		-----------
+		Enables Windows Remote (WinRM) on the local system
 
 	.NOTES
 		Additional information about the function.
@@ -114,12 +116,16 @@ function Global:Get-NewPsSession {
 	.EXAMPLE
 		PS C:\> Get-NewPsSession -ComputerName 'Raven' -PsCredentials $myCreds
 
-		# Open a PowerShell Session to the System 'Raven' and use the credentials stored in the Variable '$myCreds'
+		Description
+		-----------
+		Open a PowerShell Session to the System 'Raven' and use the credentials stored in the Variable '$myCreds'
 
 	.EXAMPLE
 		PS C:\> Get-NewPsSession -ComputerName 'Raven' -PsCredentials (Get-Credentials)
 
-		# Open a PowerShell Session to the System 'Raven' and ask for the credentials to use
+		Description
+		-----------
+		Open a PowerShell Session to the System 'Raven' and ask for the credentials to use
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -163,8 +169,10 @@ function Global:Set-CurrentSession {
 	.EXAMPLE
 		PS C:\> Set-CurrentSession -session $psSession
 
-		# Make the Session in the variable '$psSession' globally available
-		# Might be useful if you open a session from within a script and want to use it after the script is finished!
+		Description
+		-----------
+		Make the Session in the variable '$psSession' globally available
+		Might be useful if you open a session from within a script and want to use it after the script is finished!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -218,8 +226,8 @@ function Global:Register-Script {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhfcV7Eg1pl9l3EhwXjG8nXXo
-# z+agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbIvDIwO6mayewFg8ckYtVagW
+# XgmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -362,25 +370,25 @@ function Global:Register-Script {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTQEJrLbtyT4b7y53EtkSMqlqMgzTANBgkqhkiG9w0B
-# AQEFAASCAQBbflVV8WH8tJwTUMJsNkF7EWNuJx5agflcdn0BeAUi5R6zluE1Cngd
-# u1It+S5AWw+oMoxaeERJqE1oJ2YXzVNvrLsPukbWrwWLsQ9sb3WIxFV8/B8pwjwE
-# OaP1sVyY6fbtOKsRcroUs3GFClii701mbY3Ma0R9IgKcuw6qkZmL24Ged+USRym9
-# jB5+pJb6QW9NFFD2Ip1VYNSGSh8IP9Ea5bP+mhsG1o/wkwN+rtQY/HTWmDSzupEt
-# oPT4IFVTt5jXKoMT2SzDaVvE1vEDtEequyYUEOtyPVkbHu4GHQN3pCJBN9iSviAl
-# s3buIHlLhFxpgGen/Ht2zxrPKeRXhlrvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTNhGQKEgFE9A2T9cu82x5lSllHcTANBgkqhkiG9w0B
+# AQEFAASCAQBkb7exdK0TQ+KeVaNZP7hWq5jWmq9WL6NPJT8K0e8K3mbeoKDLcy7j
+# Bq+Nfgv4nwA2iytWs/TKC6owO88FGTBwDUHQzclXBwkLE0s//Cd0seK3/p8bo1QL
+# QFJdXv6cO1gsAmj42YDyN0meoGrKzSLLWZNpm4GrbMGvCRyberAIQZqitB4V2W1r
+# 39/5qJTHi41q0tNfWM12HRCNjzgMRKpj3ouL1N+tHQsZqYimFU7b17GWCfBJOqzM
+# s3fAn2Pj0B+8u+isZMx/B3+UyVutjJWEJs8zVrpY3/9w52NcXzo793o9QfotQaI5
+# T+owQFxN1QPBPprl45UXBvJlPviOCAlcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1NFowIwYJKoZIhvcN
-# AQkEMRYEFDBi7TfJjAj/WiOwBZ10Kn/squGWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyNlowIwYJKoZIhvcN
+# AQkEMRYEFHJ/A7xoIxmuMIhyYlC7pQYasmsjMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCWIcOqKU4UBbJW/FFVWBVB8CKRJf8NkvhZJzUkGwQN4AxN
-# eD4LZerz6WAsQhajate8T561lhzvytgqqApXxR7tV/Dz4RFiVWqU9UN4wz4HRwQ4
-# VRDPwYQLcdvS2D6VwkvsRtChFwugFol7DvGlp6VwL1yX+w4q2QQoL05p71FBPANY
-# gtX4tJAT1g/ivY4+DXhcm9w9oF/eh2l62+pEuQFBdUSTq3/MSOCGKFS1X6KP4efa
-# jSsgWKwTOJHMIsgu+z45V0ZjkhA6/sziO1J79+olhDRe1y+fEXR/bosx7GVZex7z
-# 2iO0V1juNYwaPIzxe5to1uZasSNhPeLUeZtPpFiW
+# hkiG9w0BAQEFAASCAQAsb3r7+pFP/s7Dwf77oRWR5VMPtAVUCderfg4QGB2XYXAn
+# u6S1qpCqZ+ar3oBRKTSYOewV9gBm+YDe+1tMpxusmaZpHtIvdLuC981yfEMS5YUF
+# dEqmZXuvPo32nhkn7xJlP/IZlaozCbGI6Ciyh2Sjkhvif5Ix5MWDtzm2LwCjdzwt
+# 0tmWAM6r0r5+0KocSNuKoFe0bGV/jcub1H1N9icKN/JcCOB3ukEh7eEC9JlLB2cx
+# 6U0/74isk2E1GvYOTyI/YvLXFqd96tkK9KHsnw7dO+OwVNMValBYl6/CBXjZlWRd
+# pgxZo2W9hACadd/Ltoz5OXWh3IbE78mIwzZlKxEq
 # SIG # End signature block

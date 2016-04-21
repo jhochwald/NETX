@@ -1,19 +1,31 @@
 function Global:Set-PowerPrompt {
 <#
 	.SYNOPSIS
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside filesystem
+		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
 
 	.DESCRIPTION
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside filesystem
+		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
 
 	.EXAMPLE
 		[Admin] C:\Windows\System32>
 
+		Description
+		-----------
+		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+
 	.EXAMPLE
 		[Registry] HKLM:\SOFTWARE\Microsoft\Windows>
 
+		Description
+		-----------
+		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+
 	.EXAMPLE
 		[Admin] [Registry] HKLM:\SOFTWARE\Microsoft\Windows>
+
+		Description
+		-----------
+		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
 
 	.NOTES
 		Just an internal function to make my life easier!
@@ -73,8 +85,8 @@ function Global:Set-PowerPrompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTbDrVxWsEdQe36rP+MTu2cTO
-# 04mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3uiT80aMpJOiotX+AlMEjkaO
+# /jWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -217,25 +229,25 @@ function Global:Set-PowerPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSQ6XwDAYMvho31rlk6aI03HxWHXjANBgkqhkiG9w0B
-# AQEFAASCAQB8X0U1ppQRfaCzFJ/zCAk/JWARx+pkBiwhww43Ha0+1RJmD7BeCbBd
-# lsPOwIfsAjNnWl3gosxhkovehwYHirOvKqgDa+oV4pN9OfNZdOiirXZUiU5yNlNq
-# znZ7rQk/BwopUTBQfra7wL2p79Iyd1RLqcFdfZK2N8u7GILiyNVVdwWiaxxT3/ib
-# Zv0rKIT/+cWOCDrYCMMM8nTcdtFarCp31OykatwlRWQlLLAL0NY4B/enqbr/SUgR
-# jvSmgEoIE5k3hl4GfUW+MMQb0HStyqSP2ZmHbBox9Yk+WkLPyRURRwnUPnf7r6OI
-# rkU90k30YPt6us689wz9oq/pj6ddb+EvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT840W1G0QivL0O3j7oyQQDe8oFBTANBgkqhkiG9w0B
+# AQEFAASCAQACVUvh67kJnAHK5VVk8EDZCCp4mUFqjKdY1AliFqZr+P0VWYJNZxFK
+# CFWJnoTqVvqzHa9NXUm6mQvlBp6Id6VH/ZKrut3euH0/SwKXNME54A/yvKbqpelh
+# kg0oX5GHQ2gMpOmqm5QkeLPQfLC6jElCuIqms+mA8ZwLDXFpmIk0HRTjMTR4ibnZ
+# HjqG8bBvDbJpDmiK7OwEB8yG9IvXXEdWeiJVm08QWuD0ZTjsmfatElp00Ewbl6bl
+# oFZVlHaRkbC6vUN/8ofFfeM85VvhKiulxS93JtsCXYQbsvE0YjZcz3sDJvOC+SKG
+# QtfHU6ktukxlQ0NEaNhcAJWNqrWP9oARoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxOFowIwYJKoZIhvcN
-# AQkEMRYEFBQwW1saQZczQWo1WoQcIB1O6Pp3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMlowIwYJKoZIhvcN
+# AQkEMRYEFA2RbQeyeg4cyY7qcrVpAH2mUmsAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBi1rR3kfu/EEvdpb+TsG7CI6CJigGt1mAswhkuFPr5r+3Q
-# JdZ6A1q9JdpO9tB7EW1/qK5cYEyK8z2sjbiwFUMatIDfKVy6EXIQ7fR1McWOTC2Q
-# qFxegdsfwO4wb9Glxd1bRSi9GnnNrHFvltpNcJhYx7WpcUkiKhM2Y3oeQ6vGuZzC
-# K4Fra3ZPYC5TYtW/75KmCnLK9qpNAaGWxIovRwNYiYCEvv9pmM0XnsBLuzSooUSi
-# uIsl+lLEKhuG/UfTgRVJTSEOXTN23j+yK0lGjTkbANuJR5VasMwgDnsthAcIVPuu
-# f3lFJTcF5QaBHfwqknZfKCCt91i7i9xhIGp/siDj
+# hkiG9w0BAQEFAASCAQCf3eZ3MapOmqCdHTBNHD8ccdpweNkSECShINfHXK8UWsWh
+# F6yLvLptEnVlko0r2Jo336BLnovM3oio39SRmqID97W0UODIACqtETwggmoqb/Ep
+# q6bwq5nl1FbJy+gqvRPHsX6J8VCKP4kg7eCiOhf1gXz/hRsL/6e2rVk5bYKgx3bt
+# N55tg7geCRrnNGOnW7SR4Gxs3lXD0KiAN0O/ShzT2+lMLrXYpX+OHc41HA/s+43P
+# aAlpY3SHrIMHoeRxHUTKNEC3MRBywcCPRxuwv9SlT+DHWM7+6R2d/4o8BzKf+10G
+# I9r5luxRTu7w9aVzF1Ed0ksWkCVmVFfaItlyC2pe
 # SIG # End signature block

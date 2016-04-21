@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-06
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -62,13 +62,17 @@ function global:ConvertTo-EscapeString {
 		PS C:\> ConvertTo-EscapeString -String "Hello World"
 		Hello%20World
 
-		# In this example we escape the space in the string "Hello World"
+		Description
+		-----------
+		In this example we escape the space in the string "Hello World"
 
 	.EXAMPLE
 		PS C:\> "http://net-experts.net" | ConvertTo-EscapeString
 		http%3A%2F%2Fnet-experts.net
 
-		# In this example we escape the URL string
+		Description
+		-----------
+		In this example we escape the URL string
 
 	.NOTES
 		This function has a companion: ConvertFrom-EscapedString
@@ -119,13 +123,17 @@ function global:ConvertFrom-EscapedString {
 		PS C:\> ConvertFrom-EscapedString -String "Hello%20World"
 		Hello World
 
-		# In this example we un-escape the space in the string "Hello%20World"
+		Description
+		-----------
+		In this example we un-escape the space in the string "Hello%20World"
 
 	.EXAMPLE
 		PS C:\> "http%3A%2F%2Fnet-experts.net" | ConvertFrom-EscapedString
 		http://net-experts.net
 
-		# In this example we un-escape the masked (escaped) URL string
+		Description
+		-----------
+		In this example we un-escape the masked (escaped) URL string
 
 	.NOTES
 		This function has a companion: ConvertTo-EscapeString
@@ -164,8 +172,8 @@ function global:ConvertFrom-EscapedString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5EH33FSwK8KD5XAbQkhVZQAl
-# fq2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxnqdd2Wrs9cimotTtD0ZRXjM
+# joGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +316,25 @@ function global:ConvertFrom-EscapedString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRINBcH53S0yXe0Zds+uloOYMdeUzANBgkqhkiG9w0B
-# AQEFAASCAQCkt4ZDi5jiOf80xiWsixqJNC84DldMyTdKwN7/icN5XnGMZrxZkrd7
-# f631PLRVZcv09EtS8wIjZmfryjxeNnSXwMyHB0bSJVKMTYqdlOqYxU7VpgfEpbRp
-# xx5wtPRLWVYJigh/zqs2QgZeoNkHSA9KSvrvTx+5VSsNBhfU/sckcJ2+Fy7kHs7y
-# 4vMYpIfDZgX6LEJvFAZertR/t54C9NddUxyh4qE4FmR61JhussRrUEQzgFGq/xmf
-# u9RoXBH8zQeOd6wWhOb4glsCSSPCFOS0la329vZo8j3hoRcN3oytezEcOjAMDnIT
-# /nxpgFhBGWOgoI7hRppuPlJcQzs9fR7roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ+6nIj9vlqE7MNZEffOFsQApZ/LTANBgkqhkiG9w0B
+# AQEFAASCAQBpuLXd/vpJvLc1HNepVckk2HA6fGlHFnXZgO2VCwvz95qOKlkbp+GW
+# CbOk+ImWlRLymBeEHYTdtPlJkz6ApwiJ43uyTgF1kPRsXglTJSwyKo/XzgkiHfCR
+# Om5lPBX80a9yYbh7eBVGpZNzyimmpSjVStNGxIaEH/s75jaU2rD13YJnRQGUlukA
+# Or+KacfVT4zPCYkAUvLCIQLgZAUcB8QL5kammyh0p6uSLv08hfifHZ7m0oeTcaF2
+# 0Hw4i4h1AGsqdyD71MZnBYl8XIMsGeEXVloB3gVAvpYwJetdTEaEHkxlXTWCk4n1
+# D6IALivy/6PiJqQPLr7J4km9V+gJhlSwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1NFowIwYJKoZIhvcN
-# AQkEMRYEFDvQ8x6aAAnTky3udgu/jYOUSRJuMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwMlowIwYJKoZIhvcN
+# AQkEMRYEFCCS0+T2kklBCr05/fxrq0Xx25R2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCR9nFBEtbiNnSuOZD6qZrYBOtBNtOudXMxdo00bjhEYEOm
-# VSkpYomM9bNmCq06yCin+DSpE7y2upiXXu4G5Ig5TLrMNIU0rVOtB3VZBVxW2ujA
-# +7OtbP/T7xl1Dn6BZlsOeirYMrup6OGVWepSMLf/ZWnxKq+JnscF4Sx8qtDGdUMg
-# 8/QiB520YKpeHLS9cPKH/iJtv9zRht3xgeWVogq38mTzmICncZoUIteM8/1Sj1cK
-# +o0yzxSgrxtLPK5+ZPxSWRYUdwl7oO6wDXTdTnCoe+yLWLL54CLVihTE/e94kYvu
-# ubvqokjDCiwjumHnr0lmY+UWCv5XylTrqqGhquvJ
+# hkiG9w0BAQEFAASCAQChNIiMolP9bif3zf+yuQ2AWlufQT19SBX9J9DJJZKqAA52
+# YFrtFZDQx6ebJ8XWltnuvbLZ8Qlvea0wKxtcwdqt16/LejjR2ZpGNdPhe9XWPAlu
+# m2LN5aA6U7KzE5JTl1vfE75ZFRcCSJFwY0W1l3uPHSrQclx64WXsWDRxC+VRMdUH
+# /3oe63YERmJYnW+iG5gnSlEln1UTE0w9OBMsy8/7qPRzKS8FaBbKM6M5mjvOSIEM
+# xdoprH3IXsLVlQQ97GaDk6RJlhSeS8DLk1Xddxlk05nqxoIrcfLbkEkJzG4G9qgm
+# UzfieHbbqTcWo8bfb2sdJ3vo3INfIpn3idkV7i2a
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,7 +58,9 @@ function global:Set-AcceptProtocolViolation {
 	.EXAMPLE
 		PS C:\> Set-AcceptProtocolViolation
 
-		# Establish the workaround (Be careful)
+		Description
+		-----------
+		Establish the workaround (Be careful)
 
 	.NOTES
 		Be careful:
@@ -113,8 +115,8 @@ function global:Set-AcceptProtocolViolation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUm7kNxahp8S0fbYbMma0ujNnA
-# 5JWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjRnbcBSgjgyq49tiiW8xNEag
+# 0PagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -257,25 +259,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSDkd/1PufYLOrMr4p4bMY1RwPLHTANBgkqhkiG9w0B
-# AQEFAASCAQCSd9PrZ+rZpobsi3Qu22NZkuQA5PfCfH3qo3ZhV0IamocJJ10JIuV4
-# 0esxR9U8jdF7vU+rOp2syZMXa7jP+2uBqixtHXWBEeoKR9ezLKltZu5cyIXQErhi
-# lYwIXRjdaHPkXGCS7+syrzANCqztysna76ABZA186fDCx9zFQX4g3wRnZURXfw5N
-# sU21r8kTwD8v4ZsyZ/4M6jt7Zj2wi3n1yo2hFYQDK+tAOvaP8lONu0Q3np2Y8U+z
-# 3mjcvho1I8wDZFWVZ1I9aBqArxbhbtAnyybAh/uh/M/EG9NjMO9wy8O6zWZWPqlD
-# 7CcKx8+JBDFvbwaPwgzbCJ+pOlIFehMeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRirFrbVUeehvtYZbLL4f8Z/WSyljANBgkqhkiG9w0B
+# AQEFAASCAQAj92jSTnpvyDvYbgBRG90qD02nSSTWHa+pmD/xB1p/63ni8rlkJoD5
+# MMS4ZFYYe8dixRHi3JIKR0jhgQdwPsXeKHZ5O9Vm0YfrfpGHqFbAtsB2eveQIvg7
+# 904vLFWmOqOmFkWEJic8Fxg0c7G6+O1NwpEAR6mtNO9rfXB9ivSJoT6tNjEuVshi
+# iWrh1CoqpLk5p5rN31hkGjLOVtQoNN0GcHKcDfccGFh2jjSPrSoEWgOE9RojqOul
+# D8X/lNkuOozq442Qnad+QvepD4/pwrH+XfOid0BmUjQUp26Eb2kSeifiU2vePQll
+# ghlVDz+j7k4BnYqbDRs3DH/43dcs0i3hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxNlowIwYJKoZIhvcN
-# AQkEMRYEFKwJumcm2HuUu4iXbCeOCPYVZLhgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMVowIwYJKoZIhvcN
+# AQkEMRYEFJ1j9M/Y8viArX+yiXvvs7t4RrDqMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB7gwIEeBRpMYXxMa8+3CkEs1OI2uZPN38lyoH0nX3WTTlO
-# Z71B1L24mmxWdtpF+OSSnjbH1bFzH7FqyUn8wdFZlwu/ngKRc4Y0jo7AsPr6kdrv
-# qZ0xzl3A45HnlloYSXNuhUFzCG0Tp0/C+TX6TqtzWaquN0sibIoEE/dd+eUJUYse
-# Zz49tSBuo4KsRP5Yj0QtF+5hyFNjcYVIZHNMMYgzF9MiyQk9FrhmzpAFQMpqNUB5
-# DsMMUWajnnMUi4luxUvBuvEznUK8UlwweTxX65/5vm0fzlW+THoMwfhgO3Ko40c6
-# EqwRpGHoPsW3Pf77/WNmmqGtPjcpzRuSnuMeerDG
+# hkiG9w0BAQEFAASCAQCWzX6zRly0rHPfq/A8vKPtDuMlHGc8t5OC1QM8EoX8Rc6L
+# IYM+f3pPVzQnmglld8QOw7WCKBCmsCbQm9HLo4aAxZVlgb4InFiLvVrgcFegBhwn
+# GGAt9eIo7rz3Cl5/RXq61CfnwyHUG5TReD5OjWVUGsmk1qXzt8WA/Y+BL+PQxfNk
+# RANqVt8v6jMSr0ctPnQF2zwOGPAEBOY44/6d2DTjZuXWLwe9lV43pbuIlxC9lo7W
+# /YbzRBLSD8j5TNcMEqypsvMyh25hFKp788HOvvtu7uB0o2kuqsEQ0fUMhsQJnE+C
+# AI/MZMqR/YmaAQ8pAY0J3hbx4tELoQahqa6iZ2Ch
 # SIG # End signature block

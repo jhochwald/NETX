@@ -16,40 +16,51 @@
 		PS C:\> ConvertFrom-UrlEncoded 'http%3a%2f%2fwww.d-fens.ch'
 		http://www.d-fens.ch
 
-		# Encoded string is passed as a positional parameter to the Cmdlet.
+		Description
+		-----------
+		Encoded string is passed as a positional parameter to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> ConvertFrom-UrlEncoded -InputObject 'http%3a%2f%2fwww.d-fens.ch'
 		http://www.d-fens.ch
 
-		# Encoded string is passed as a named parameter to the Cmdlet.
+		Description
+		-----------
+		Encoded string is passed as a named parameter to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\>  ConvertFrom-UrlEncoded -InputObject 'http%3a%2f%2fwww.d-fens.ch', 'http%3a%2f%2fwww.dfch.biz%2f'
 		http://www.d-fens.ch
 		http://www.dfch.biz/
 
-		# Encoded strings are passed as an implicit array to the Cmdlet.
+		Description
+		-----------
+		Encoded strings are passed as an implicit array to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> ConvertFrom-UrlEncoded -InputObject @("http%3a%2f%2fwww.d-fens.ch", "http%3a%2f%2fwww.dfch.biz%2f")
 		http://www.d-fens.ch
 		http://www.dfch.biz/
 
-		# Encoded strings are passed as an explicit array to the Cmdlet.
+		Description
+		-----------
+		Encoded strings are passed as an explicit array to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> @("http%3a%2f%2fwww.d-fens.ch", "http%3a%2f%2fwww.dfch.biz%2f") | ConvertFrom-UrlEncoded
 		http://www.d-fens.ch
 		http://www.dfch.biz/
 
-		Encoded strings are piped as an explicit array to the Cmdlet.
+		Description
+		-----------Encoded strings are piped as an explicit array to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> "http%3a%2f%2fwww.dfch.biz%2f" | ConvertFrom-UrlEncoded
 		http://www.dfch.biz/
 
-		# Encoded string is piped to the Cmdlet.
+		Description
+		-----------
+		Encoded string is piped to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> $r = @("http%3a%2f%2fwww.d-fens.ch", 0, "http%3a%2f%2fwww.dfch.biz%2f") | ConvertFrom-UrlEncoded
@@ -58,9 +69,9 @@
 		0
 		http://www.dfch.biz/
 
-		# In case one of the passed strings is not a UrlEncoded encoded string, the
-		# plain string is returned. The pipeline will continue to execute and all
-		# strings are returned.
+		Description
+		-----------
+		In case one of the passed strings is not a UrlEncoded encoded string, the plain string is returned. The pipeline will continue to execute and all strings are returned.
 
 	.LINK
 		Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/
@@ -136,8 +147,8 @@ function global:ConvertTo-UrlEncoded {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/n1pb8CGIjc+X8e1lNMCMWc7
-# OZWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUory/BbfuUsWlefl6X1+FS2yw
+# NXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +291,25 @@ function global:ConvertTo-UrlEncoded {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRsAk1nov3bdGBwhbgpS8uAsUaZrTANBgkqhkiG9w0B
-# AQEFAASCAQBQA/nWTDYPBI3CWFKHsan0JD+BC0W6BoawEe4WhzJVX8qk0zzxpNlc
-# oA2l9EV7GkIf7cc5CsPJBNRjGXyrOpKOzzh964VUgnNgTkDCB4bA8Wjl/o4uw2qR
-# gt7MhuIEwlNOd78JO/DDuze8RF5HvjmTYCjKgWEVeMakTFZ6+kAAtAhQm6luZZX+
-# c6++flYdm4EH+8sI+FpUinTBqnmHOFN4AdFXK8+utJc3oNTEFZGbmTn86WKDR+Cc
-# jJo3GLyufD0PG3yafszlRikR00+B9LI0/52enhyXVeyec+Wq7DnxIe8TZ7hm6z7I
-# ANOU44M7uExgdWljKN7L21+gw8rVsihhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRRms3jIYuEzvY1qvLldRNIbEuLOTANBgkqhkiG9w0B
+# AQEFAASCAQBQFLsark8l+y2Ct/kck9ar1L3wo+RKpwlDgpW19c0xI9a/Mb40kqEs
+# LqbfjGZE7uzATmno9RmxHNWiGqrPk+XGZCDlwD942xnZ4Mvj75c4LiGP7PM+fnwN
+# CGnx9fUeIlOw+7co/f7CnIYaXdhueuwpD98qcGZMi3jXm0bkh6nNGvKK8L+iEpUC
+# SFMdCU9+2ImyPPD6UXkoVGIAXNc1Ha9ZbwHW4Dbaq3MTFzS7H9KEyqa3EnXlC6EX
+# dO17ngbEkis5+zDM8eE3H3+OAOH1Cu1b5NmxK23EK3lpRwq1XXNnvQYJOhEjrC0V
+# AosUbGZTGYzyPAOSvUMlAQb01Cnbg0NYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzNFowIwYJKoZIhvcN
-# AQkEMRYEFGflvHphEN21CiVSV8w0j+EZ18c1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzN1owIwYJKoZIhvcN
+# AQkEMRYEFCBwiq9mFvhrbjSESy6fv9cACVraMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB26TwTwgLnSlgdAFqkCaw9kxXfLsouMJKrF543rYcCpWJH
-# Sq1v28bucsqc5WnsPwyKHDWwVUMwtggftCkRYY5Pn2YSHOKbAP16NUQvcTuG6xTJ
-# jgOvgz9/b5SeWCzBOQ0TGMCxJnrVUPEXcQwNLTIYkuxIc6G2kCfuVZ6M3mCIrc6Z
-# JRJTwQTYjohn0eTetc3tWMhQUuvlRqRFfmyoahQhMqhjIfXmsJ+gyfO1ja3TwvVn
-# ZnUgyWXl8UNcTPwmIVnrvc/kUN9kCdcaNaBUZOhCS3B3GDaM4EFPPnpDJ7VbnK8G
-# 5LKnrHisxyR8uX5dGSZrQ985uWK8pk/lUZZXrZwz
+# hkiG9w0BAQEFAASCAQAb0fmVh0lNynyocNqC6u/xexxqWaNlUkq9d1ZXj8sc0RPk
+# xSmQpKzOpsKQgRDvkBo6usvrH83jXtqmzzNt6OoWvguIAguIP90pwy103aBDLzKb
+# s6aHfNNpbxWHeL/T/uyhjDj/lzl/B6qqP+oVh6A0o1b+WdnovCyKLkUFmD0XvFmD
+# NdhV0DJ76q4lQ/e4wq/5rLSMZvf77/Hr9w7zbi6Dn91sUgtfHBROMfSLGpYvXXVt
+# BOzMZwC+VMANCwQEOF8FYu5wWHdVP/AKNb/eSpb9nn0JOkgaNbHfNkgzgwZgAMyH
+# uWGskUgWino4XfNI4vu8w0r7oiQ1vLpBuwLjzDrH
 # SIG # End signature block

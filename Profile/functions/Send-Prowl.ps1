@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -76,17 +76,23 @@ function global:Send-Prowl {
 	.EXAMPLE
 		Send-Prowl -apiKey "1234567890" -Event "Hello World!"
 
-		# Send the Prowl message "Hello World!"
+		Description
+		-----------
+		Send the Prowl message "Hello World!"
 
 	.EXAMPLE
 		Send-Prowl -apiKey "1234567890" -Event "Call the Helpdesk!" -Priority "2" -Description "Call the Helpdesk, we need your feedback!!!" -url "tel:1234567890"
 
-		# Send Prowl event "Call the Helpdesk!" with priority 2 and the description "Call the Helpdesk, we need your feedback!!!". It attaches the URL "tel:1234567890"
+		Description
+		-----------
+		Send Prowl event "Call the Helpdesk!" with priority 2 and the description "Call the Helpdesk, we need your feedback!!!". It attaches the URL "tel:1234567890"
 
 	.EXAMPLE
 		Send-Prowl -apiKey "1234567890" -Event "Your Ticket is updated" -Priority 1 -Description "The Helpdesk Team updated your ticket!" -url "http://support.NET-Experts.net/"
 
-		# Send Prowl event "Your Ticket is updated" with priority 2 and the description "The Helpdesk Team updated your ticket!". It attaches the URL "http://support.NET-Experts.net/"
+		Description
+		-----------
+		Send Prowl event "Your Ticket is updated" with priority 2 and the description "The Helpdesk Team updated your ticket!". It attaches the URL "http://support.NET-Experts.net/"
 
 	.LINK
 		Info: http://www.prowlapp.com
@@ -180,8 +186,8 @@ function global:Send-Prowl {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJRsrGeWocmTL6NaLu3u2YRsd
-# dXagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8mNEwkQm8x9xXxbt34TPxBRf
+# 9jOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -324,25 +330,25 @@ function global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSzpffMgTN+HaykMITyZesq7KylKTANBgkqhkiG9w0B
-# AQEFAASCAQBsmSj/ep/awAYNNc8uKJPX0BHdmPhqrvMYnOIplYaLZY4bZHfl9HK8
-# lyXTrebKu+JkgJMrINGXW5cPngFs7umzGZHqn6fOZwCzXUyHQ57v4gpccrvJDcV5
-# UVtomXZ0pMhdm9Yf+W7sWscZyewm7VWE30YsDfNxEAz+Eqio8ntbm3A+flVo53JV
-# CKDFmH2hHLUK4YCH96rEdYDrYZPPey9FN4+Iyy2Jjkxb1h/DgsmdsPvG9Wpztb9j
-# 5/c3HtZw5VCQxlfnHTJI+9Gew6jnPGOin6h17p75nCmfykD6AHGQWKR+uuIkQK6U
-# FxwFgGLg/0v/z1y7IdPNRrQTLtNfgtFwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQfG/hJznlb8VXbebBYuRtZq13gwzANBgkqhkiG9w0B
+# AQEFAASCAQCgCRhSZ707tDQpaI5GFbuB/l5+LulN9hLgPgyHvHuzJsdY83Gq4k2e
+# Ysj7z3iBv93xbQSZ2wIBWGnP3LqiCWvTZtYBJ+m7XGo4Kpf5V1c557A6ZpCvzmji
+# zvk7PLHz+z1hrigEzeqx2WXKsTUQM/IqX6ZPVEzmv5mS7Rwlbbh/RPJDMuDeeGUy
+# dRIEgzdHd+05ACBBVIFCENhGEWBgF3Fa0fp35DXRqHtbXmgx8Dxy2wIdBRK82Rda
+# PnM4Ln0NG2xwWW+EdnOLOtmtK+9zgIkURu2+AdwHwbB5zzN6Z9QPVNI+Zvdosfhg
+# vRqsgnQFhZ8tLouvNKo2vo25Mglsh83EoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxNVowIwYJKoZIhvcN
-# AQkEMRYEFO1BDKkgyraPhvSsUvRtft75QJIIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMFowIwYJKoZIhvcN
+# AQkEMRYEFFnSrbdj5PhEVYHv9HDlbUIo8k+4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCB2DzIaMPOy/I7MHk8iqwBqDfC53K/v8cR/8oC2T5sTkTf
-# 5Os2vRTqnIhdXWWboZjn4qm9kmGZxwHjriNkjtmWiDUgB1l76DB3f4/adinP1Tll
-# l6sVDvl3I66ZxnW8kDc6Ijc+cLtuUjrbW+XZCxvKKuGvEdOLHS/m28a8fxpnVsIh
-# BWxYn9m5b7OEimul2xGbiW116xxDh5TsB5d4c72URvkem9crNl21EGOCMYM7awuU
-# IvE9QPrvAA4Y0TdMXMJeKiNyFAamDATK3xMAQ0TY49lplc/tqRcjTfv/TM69Y2Z2
-# 3eAn9KnzzxSmimZK+0IOlplTKqy0rhGurHDbnysN
+# hkiG9w0BAQEFAASCAQATi+UiEA3rN6hO6vFRPRcVsGSRSMrd3QwI6tzUoyoS1N8Z
+# s6uNb2Snmw82IKZzAkSFP/bYL/H3pX5SRZFk76JFaY+zwKNiS5WuLDq3GeKNDnPW
+# x8jh/x0WEUB3QBWwfKC+u+UrF6AnzkEy2SSwirkYseQz1jMcwgM+W4SIVGV7MsNp
+# JrY9TCGFU0sB/gKEDxYn8GNdIYme953K+JLi/PUgzmcBkJhQ8GGYmYUe+WkBVRwj
+# tsS+lt905hfvThPuVhceydOco+BJ/KFoe9qiXvg2Ria4CG/48SuBsu6eCrXqF4Ij
+# /yJq8wy8b6fE8sziOIBj5iQsJrc75GU84MLNvxDJ
 # SIG # End signature block

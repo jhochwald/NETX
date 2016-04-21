@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -72,24 +72,32 @@ function global:Get-NewPassword {
 		PS C:\> Get-NewPassword
 		zemermyya784vKx93
 
-		# Create New Password based on the defaults
+		Description
+		-----------
+		Create New Password based on the defaults
 
 	.EXAMPLE
 		PS C:\> Get-NewPassword 9 1
 		zemermyya
 
-		# Generate a Password of strictly Uppercase letters that is 9 letters long
+		Description
+		-----------
+		Generate a Password of strictly Uppercase letters that is 9 letters long
 
 	.EXAMPLE
 		PS C:\> Get-NewPassword 5
 		zemermyya784vKx93K2sqG
 
-		# Generate a Highly Complex password 5 letters long
+		Description
+		-----------
+		Generate a Highly Complex password 5 letters long
 
 	.EXAMPLE
 		$MYPASSWORD = (ConvertTo-SecureString (Get-NewPassword 8 2) -asplaintext -Force)
 
-		# Create a new 8 Character Password of Uppercase/Lowercase and store as a Secure.String in Variable called $MYPASSWORD
+		Description
+		-----------
+		Create a new 8 Character Password of Uppercase/Lowercase and store as a Secure.String in Variable called $MYPASSWORD
 
 	.NOTES
 		The Complexity falls into the following setup for the Complexity level
@@ -177,8 +185,8 @@ function global:Get-NewPassword {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaK61GVlfrolkjNVtEVvVWAmF
-# LPygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoa6Un98Xa2IpYTS8vZD09ZmK
+# WTmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -321,25 +329,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTupeDy/IU9nsakEvnz2iUjINstQjANBgkqhkiG9w0B
-# AQEFAASCAQBW8WkTrPmjK+CxHCp2n59k/VKFWtzJ4/XPRqmtkWZj5Qc76sfOzady
-# 6mQDLzRCPoY/C6BWOOyfLCUAcqlafzherACGEyYaXbpQF+Ine2ybLO2C/Z48OSrk
-# kQX5ulhkwE6b8xT3x+PpFsW1KPOEQ/ZmhHzqTQGu2AEmwtb++pTf9QDEb5jY1uIk
-# SkUOs4ngPZ5fEKh2f33N3XYNhwD5Q/LOgO8x938RdfJPZLIszA+0dz3BQn/mjuqH
-# PWLn/Pjj3Qdix+w+6KGEm5FNjS626A2rrafEyFiPzkHiquhHaSVG9tlLH4hsw/u0
-# wU0W6fiRAIbt2K037glwBVNU4TBYzSTfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTcPSInZxYVkT6Xu3anuLUrdoiWRTANBgkqhkiG9w0B
+# AQEFAASCAQCguJJmiVPVNjLpc+bx5KzOZF9F7bVc/T3fsMXkLHOqa8g+tj+bOBnz
+# foA5iE889IYJ+eQnonAuTbzSXmxCC1TxH/klpMrSp00GpDyE98Ih9/NX73O+aBZy
+# 1NOD5m8RK3qDjM6LsMg+HEMRsLWLRSIhrYn1BWvY+NCeve6MxbPvXumux68dGuhY
+# z88hsg6GbX2wV6TQeR6Rlvx+QJtNg6HlwosQyfVm1bgczK4u+2+WM+Br/QrjWTvp
+# tGdWdG77lDZUI7E8WpZh5zJBmrHVgd12lrkwZfyUSqr1qim9YwN9UJU9SwUoOw72
+# JBDX//M2nek0Jxs63JfIFHjzf1VR8IPXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwOFowIwYJKoZIhvcN
-# AQkEMRYEFHZsmkDw16q+z5kLzGL8bP3clkngMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMFowIwYJKoZIhvcN
+# AQkEMRYEFDFpuN/TWK2kM3GvQYIQlrUDkYvrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCmlc6UjVSh1tBUIyOmJkZiaGBtpVIqIPTLzMyG6kPXpMpn
-# Oo+w4Bdb7HJganZGBvftALPXY1Cs8L3XL8GNfQ93P02dJV5nwN7eKa1yXbjXCBqq
-# wf6rTvhNkLQ60rnojC5GxZVxQSNcjFrPL1WCqmarHo/CbLyW/WmKQJaxgbUV4zTR
-# g/Uj20DlYMUOeRGz2xtSJst3XGC0O1cJ5zBZ5pC1m6BWEcPSM5mQukmeYK7cdnZY
-# L8Yv3HDwUPPO8ieWpQ8tjPlbhASvWe7r9Tw8QOCbFF8Nx+g4sPCm03Ipu2JFB5yg
-# SK85S40BmJqaa3wrpMD6rHvf/dsd4Dasq94nTziV
+# hkiG9w0BAQEFAASCAQAwzjN1iIrKqAgGYViylOtGSiQ95ZSskJXB9SEum94M78N7
+# OSgE8e7gXRFW5DO2qVSrvSGd6hymgVWow5lKYjJYZ4mVJlFTsQo1QdDSdDb+HHVV
+# op7ZHvkFThdbu9q1ylbcwjJ438GkOIzyAnrwJhV7xLaYPLtzz/Y2g2BWZT0GBW2D
+# i1YNpq8QW0AILuQs5GFAdPGqE8Wob91giKPEMj7BMRCu6Xh1glIbbOx6VM3YOWNh
+# txHFBqAIErZg91lpzYHxpyWj8FScRfckLv6Z6icBEAe+oQv4zuROb83n+cgLFKKi
+# fQlBVYWrZSJh80G1NftWT4NeJ9q0IxlShuUOhbki
 # SIG # End signature block

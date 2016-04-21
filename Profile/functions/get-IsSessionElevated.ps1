@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -60,13 +60,17 @@ function global:Get-IsSessionElevated {
 		PS C:\> Get-IsSessionElevated
 		True
 
-		# If the session is elevated
+		Description
+		-----------
+		If the session is elevated
 
 	.EXAMPLE
 		PS C:\> Get-IsSessionElevated
 		False
 
-		# If the session is not elevated
+		Description
+		-----------
+		If the session is not elevated
 
 	.NOTES
 		Quick Helper that Return if the session is started as admin (Elevated)
@@ -110,8 +114,8 @@ function global:Get-IsSessionElevated {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4AnYUgWQTmHsMhZZt2XQh9f4
-# PHygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAKJcMGHDoTpca+6rfHCysW45
+# DY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +258,25 @@ function global:Get-IsSessionElevated {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT/TjVKNx23cV2I5mFZhuovrwMGGzANBgkqhkiG9w0B
-# AQEFAASCAQAS2FkQiQt7d7XhfeNDR+vyb19wVvj4qi1adzdUusoFonEbF80HtULO
-# FiN4DCnltj5KNfKPj/eiH3EoVHsj81od09l8Ah9WysGVWV9ylp2O2YSOcLV16WlD
-# ujfpQvBfEuS4sUkEQ0XibrRcUWp0gBgnikvu0wS8x/5oAQcZ0mpe4MkCKQy5AsiV
-# isic2jLqih6VsQJr4JoEoLS3gDdjg6RY8PjV85PrTQghNhl87eYF8HCUtHFV5sOL
-# 2fkp+JlXaY7JZ85X3KDNcivTP+OZDCOa74VhR2fWutiUvxm2GHFgsX0UIP7GGJnp
-# xOawcpxZO/UG4P1JSr/AV5yJ2QtcINFyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR3LUYDFGKps88vvsSMrdUL2Loh0DANBgkqhkiG9w0B
+# AQEFAASCAQAoEwewWP/oh9nAVen7fFjpmyzKkGMKBX9SL01Q3Y072NrvK3m1zClg
+# 5CBxMjg1BtlXLI+6KUMVZ/wbi7T2FQe/VCjJ+vLgEQuqMRj3A1P1YcmwcIu+gM2c
+# wOZ1uM+rADmUU820aSiPenLuSS+S2CnJ0mrSU4P7If0zNKKsQleUeAlIybxOtl63
+# SSUnwabj7iWK5v3F3sPqJn0X3nBaBdp6HtvVypHtCW4/2mfllPOxPLFQbC50l2vt
+# qSFg7zpTH9dNbU+lAhw+DThTrAmyLgVsVtlaS5/pEiAXFhCgA9AYCcvRsMCoVj2F
+# 6S3iW3hMmDteIO9jj4tt5e56Y2f4bP6joYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNFowIwYJKoZIhvcN
-# AQkEMRYEFBG5HSd5wnDqrKibzni+HK+AiLdLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOFowIwYJKoZIhvcN
+# AQkEMRYEFK0OXRrymxrbpRpDsb7zd7tXTueQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCr2QSMn7BLEzrkwW3ufHTkfsttHHNfI++evtoi/JeKpP41
-# vDW0wswgR6OoqEwswjgHJ6FLEbNyXkAGc8Wl6lqSqZwl7Zt1MxjHk9/h8jFRqUcz
-# 1mOSIPZ8UdomjEpWmjZEHsnf3tu+dBv7KtR3+aHhvnoLa6bDcmwxrqd+QPsDSP6Y
-# GU0h7efvaYMuOLJBd9KVrhMzJddwaL37dXMZRpSkXrDZOuxr8+LK4CtiNFKk/0+S
-# d+E4vNAzy2vFAyrZoU1BlapjUsvsjKJZcYrVMAQ4KQA371YLeJ67qI2U6AsduRnu
-# H8qcgcElA0+tyEcU+qzRI3YEWAXxxZFaFjZOjSUo
+# hkiG9w0BAQEFAASCAQBRPoWesOrdgTSvAb0DsWz1rOK8EKChAmVY6hiSxElgO016
+# 8LQUPDMGRukjriC8RXI5ceJ9pCKCK7UgzP/GpplhzQeMCgS9ozBCOeyvvxmdPF6I
+# y6B+Z0DHwYvekxTXKqR9qh1XXzR1LbolQ/LCmoKZYw9Xq3kZCTPUiG7LMmMEXhsw
+# CSIwz4ouYr7mv9GLj32XzQ7jH+6PxoUycyG9G+Ik5nulkz24fDczoJVZmvBNyuVf
+# /a3dvxDozS9q8mvTxCF4D8FajTBh1F2ipTO/hny3fcdeNqyr43cmgLop1wSW/drn
+# vWagigwxyQITTSsxP6tAManPLvbXcWFBE/YsVH9L
 # SIG # End signature block

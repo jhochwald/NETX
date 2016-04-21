@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -78,29 +78,39 @@ function global:Set-FileTime {
 	.EXAMPLE
 		touch foo.txt
 
-		# Change the Creation + Modification + Last Access Date/time and if the file does not already exist, create it with the default permissions.
-		# We use the alias touch instead of Set-FileTime to make it more *NIX like!
+		Description
+		-----------
+		Change the Creation + Modification + Last Access Date/time and if the file does not already exist, create it with the default permissions.
+		We use the alias touch instead of Set-FileTime to make it more *NIX like!
 
 	.EXAMPLE
 		Set-FileTime foo.txt -NoCreate
 
-		# Change the Creation + Modification + Last Access Date/time if this file exists.
-		# The -NoCreate makes sure, that the file will not be created!
+		Description
+		-----------
+		Change the Creation + Modification + Last Access Date/time if this file exists.
+		The -NoCreate makes sure, that the file will not be created!
 
 	.EXAMPLE
 		Set-FileTime foo.txt -only_modification
 
-		# Change only the modification time
+		Description
+		-----------
+		Change only the modification time
 
 	.EXAMPLE
 		Set-FileTime foo.txt -only_access
 
-		# Change only the last access time
+		Description
+		-----------
+		Change only the last access time
 
 	.EXAMPLE
 		dir . -recurse -filter "*.xls" | Set-FileTime
 
-		# Change multiple files
+		Description
+		-----------
+		Change multiple files
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -192,8 +202,8 @@ function global:Set-FileTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2AMZ9TWJhDDHrDSYyVHjnhk/
-# pxGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUd1+BGQ0Mg9fwB1r//6HwKgSh
+# WAGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -336,25 +346,25 @@ function global:Set-FileTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS1Hp0gskLcnSdw9FGKEe9T5BIKITANBgkqhkiG9w0B
-# AQEFAASCAQBMFtCGb0uPoGE7oDyEw3ZcLzVMoJE0Ha3ZvnBQ1V6qAbziVdx4OVrx
-# fmWQjEV0LdY/FMb/t/aHQgscUB8Hii3pczLoggMetpL4JCXHWQUMOUFtv99i5ZV+
-# JlLnMwwWq4sxGOow1GD8Y3abcrdcSIwL08azb4DNMYBZ3C/ei4FUw6GOtJ39Cbkl
-# 5XbIiKiIqO/7ytTp5r7EGkqXLhayag0bj2uW5IZWUE90M5RShkN44/WEUKMRx84q
-# relEUqEa+KktOBEvgo5VsvISczWU6GZArn/kdBhUtBS0L4Z5KJqy+2YhKSp02ltv
-# juUI/4m+NYIZ6qmSQzdEv9IEyO/8z0aioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSuK0SRyWiveNHOW5R7ZHGfjuSaGjANBgkqhkiG9w0B
+# AQEFAASCAQABwiL/0r9zMurgJIkvdVQupE/oDNNG2KDUPaBvHcWsHCzBXwICRQgD
+# xQtm8lIEqh63Ce78l3guI/o8gX8s3plkkmK65UPV3FmF+C7xIshb4OEjVVZ/xstX
+# lKmbrzfHE3tlVMEBwzTeW4qDMLKRvvsvh6RSnYR2rePofzM4y4t00Qm2pBjoAhSQ
+# 3oXdgGYChuGCI+EiPsLEfln1Fdjk1UsMzHw7HN7GQaCDf+40Z42HqxFx0qmfBLf4
+# c7nWtBOtDcP+X2ihkbKTrPdltPF3m3qK9WmRjojhKk5usrzdVjvbx3HdQPD05DoJ
+# YMdeCINTQczs/hk0F43l1gd8EOBPdPEJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzMFowIwYJKoZIhvcN
-# AQkEMRYEFDgWVDK+eaENU0lDyDyG1CDOtvqbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzNlowIwYJKoZIhvcN
+# AQkEMRYEFNeLMsgcOY1X/BEvSPsAYm5SrGM9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQClKnwGj/QRKB1rvUfNIOtWoVrhGe0cMzDmaImFv6OgiCI9
-# 24+bsanP9Fr3GASwkT4JGTxhkYxLlV3ecLI/v/ng9YqdkbBBKO5/+8Jb5W5HbtVl
-# 1rEWlKKs8/4UUzyuJOKOqyZCM2Cq7ZveNQfhDbZYnKqITnyONmpozGOXM/hmEdGk
-# yznQM4+04N8OdkbJTkioMkCOrqdiNEjuqQrLzshOOQjxPCFRElSMUoaY4Kob04pD
-# DFN5nteFrsoiVsPsXI5lrqdXtZTiXjW74d/dShDtkeZaln69ym+awPOSDVsVibRK
-# /iKZD3DazNOHN6VG97BpRuD15NSXDBW3Fu2pGZtt
+# hkiG9w0BAQEFAASCAQCLOfVMtviHE8pw3lj30OaYHdcUMKuSVV6Hvdu/5MjyO2mw
+# wEgIFd6t9BoMhul67uq4zdpRK1529GhD5PdQqh4Dz6ZIR2AYF6aypPlfNgKW/0eA
+# uz62QqihCOg2QZqoFpdSgzmrYT8d5uVXQ+ZnjBcWnjF3nTlZ4GX5mLagGfGvX3w8
+# KJtmKQwAHB/DqaEkUjq1N5NgTckmO80n5MO+BlfHk+FtmwWXe+7eOMudGdCL5JVP
+# bWPU26NOl/slJHzSVVSb3AJJ/bW2XNurT6mOWjX2LqS5SoJBLvE1PZfiukAZfbyP
+# 18BI1TvxAOw6wHeYIXf7L5v7JTyYAjXwU5mL/3V5
 # SIG # End signature block

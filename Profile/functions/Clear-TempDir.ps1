@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -68,8 +68,10 @@ function global:Clear-TempDir {
 		PS C:\> Clear-TempDir -Days:60 -Confirm:$false
 		Freed 407,17 MB disk space
 
-		# Will delete all Files older then 30 Days (This is the default)
-		# You do not have to confirm every item before it is deleted
+		Description
+		-----------
+		Will delete all Files older then 30 Days (This is the default)
+		You do not have to confirm every item before it is deleted
 
 	.NOTES
 		Additional information about the function.
@@ -127,8 +129,8 @@ function global:Clear-TempDir {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4yFD+e9rCzngvxWnekH+d0gE
-# zwKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6488F+pKOzwul/JJ4KqX8jEg
+# 6tygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +273,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQASACzPfzCi5dLz1A0VBK/bmekczANBgkqhkiG9w0B
-# AQEFAASCAQA5Arzy3SI6o4NdWv8fq/y4kjWj2Y3IlUdQXtzS2tmzPYtjBIer1vCY
-# msW4Fy7bomWvYCcEQxXX3ERxXnKrJih0rxZJaGnHGfC2qbqPOUk0krneMJIa86jc
-# 3x7BZOD8RdXlGTj5LNDl9XaDFt8Vge1KYgwoV9cJs6UezObdTxiTU02R3IW2gU4h
-# ipVFGeyN2ZT9n6xAOn4iReeDHtS2ND6o9vu7Cj3EL4kzqR3mUPQxXPMUXBtzF8LO
-# gJXZkzUr3TFjryObZzX+KLunkkRtZ43w3LJvkwL66EMtUt37xwr7e3zIaB0inMme
-# /ZGEn2FR7OyFYElfZVdjou9CRSf+Qy6roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQu837W37gKwimDAUrn1zDO/HjoFjANBgkqhkiG9w0B
+# AQEFAASCAQA9csjoQkJfD8gi0deRrahY5pZuZxfUJJ3fOTJNVf7bbxhGKtSrD7aP
+# uYhS5KJ3J7OP1Ju4KIZ6FIbCj5MMFZFRDIMFxfr+DVNBMuzuWWSUAw3IzM+ewLF9
+# dedwiNrZRplRTDuug8e4O2Fm1z27nTLVCPfrMmSASBPvpDGQy2TVdABz5caKHJ0X
+# mMNUU5pHTMEVb3SuNVKs0IZqeuz4GKEQLO/PZ3oes/veu1BVAgoqbvfCX0QYil+M
+# pIRG3/v5YWF77J1cE/NjUaTo3qDK5T+17dOuoSwntdBbEmsshmi5fJd5vDK3Cgup
+# 9JVItIicp2S/TuluVUr3VOwpvV1SBOy8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA0NVowIwYJKoZIhvcN
-# AQkEMRYEFPEDFAtKFNoaWhcXIFmmhVPEtN1cMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjQ1OFowIwYJKoZIhvcN
+# AQkEMRYEFHVui36bqoBzhzBo08+qo45c92ARMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBy7L8lYRq66z0pSdMOyd2D3tiDS+1pFnGcJV+dgczFnNSy
-# GP/tuuqUw8Zu1z6sjxMdHupqduwKedLs3gp/94z21sUeeJ90pZggvPm/3aGv9AJY
-# zSdTdKf3VIy840xO8RQ99joN3VFTTPnxzieEK/9uTPaI2rgV8k6D4Mh2PnWR8L36
-# Xel8oSNuCdmBvKQqU0SgQLLSCE7ayMhHi9bjU0Eag+A0/YBCOZwa/R2KvFaofjoD
-# s3X5MHCg2OJ6bNvoU+OmqELm16in5VgzEc+aD5AbY7qf7zRyHYYMogiJlXfqFBWV
-# yKAUlTb4+j97s/L4ucSlOcNg2w37667N9jAt99+f
+# hkiG9w0BAQEFAASCAQACOFL5MOd+zvybnerSvIR2CF3p8/UtWBiBE1z6hm5Nv2Jb
+# Thjua/tECOo+SpEaO/V20mH/MzHZyZQVaTy0NCZs1L4x7DjrZG2g1syK351KEaha
+# 9IJXJn+YDDpwPJvi2YHijq/H9MH9kjaASSmF41nC1Kk9eu+BVzHI5ESedaIRu8ws
+# bGuC6Njp8HtHlFVf3gE2AntgtcTaedr7x1sfw+wugFZk2Owkg1GrVHAE4ieHwHPb
+# AtT8yy6YyDYtyl5hJ/XykBppNP+WJFB6vg9a7ujP1abtfb2qQBuZpr745EVQZxAP
+# vjC7t5ErVrWzb4w4OsRv6J06VH43OK2oxBP641rN
 # SIG # End signature block

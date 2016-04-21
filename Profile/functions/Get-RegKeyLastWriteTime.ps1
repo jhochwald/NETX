@@ -47,12 +47,16 @@ Function Global:Get-RegKeyLastWriteTime {
 	.EXAMPLE
 		Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft'
 
-		# Retrieves the last write time of the supplied registry key
+		Description
+		-----------
+		Retrieves the last write time of the supplied registry key
 
 	.EXAMPLE
 		"testwks1","testwks2" | Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft\Windows\CurrentVersion'
 
-		# Retrieves the last write time of the supplied registry key
+		Description
+		-----------
+		Retrieves the last write time of the supplied registry key
 
 	.NOTES
 		LICENSE: Creative Commons Attribution 3.0 Unported License
@@ -215,8 +219,8 @@ public static extern int RegCloseKey(
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhYoHXlrvy5S0hQoVxDWHGV5G
-# 4kqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUA49LLpT3aocRaM5MImp9j4U6
+# kGagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -359,25 +363,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT9IvzXqDKkHnXUvAZU/IrQUiqwzTANBgkqhkiG9w0B
-# AQEFAASCAQCmxg+jfIe+loY8TmoISWxUDkHUI/rdTkWJwRX3OW6HfHPn/BXfqKNl
-# jf6TNJrK2VQQGoHLBF06vziZpIhVMJDRBdbOOCYpHdK2ld83yLFc0EA1FKjGqXAA
-# Dorp/ibjXaH8sxVGou//jV2FEKlyUXMRA/eyW34L25cbmbLwp1tEIGZH7pFwQ86V
-# cFJ3yYqj5Hia+hskEaO0iZlo/1Vadu1bLvPkK4mgxmOx3VxqbGk+4iaJkyJpjE+z
-# woBd028dBZ8CBrsLW67ugncwoiMOsnfct9mGltRfVkZWjAyCUf36injLNavD4G0s
-# 6lVnVC6XlEIIEGvGCiamsQ2v7kXFMjvQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS9z8UOdW5h16UEivS6iXUjU6fa/jANBgkqhkiG9w0B
+# AQEFAASCAQBcOPrLHVrjX3q5NmoADZGqtbCzTnOb6AC7tTe6IoX5PWEyz93ZWBrc
+# 4z7A16/RLDCR4slsiUM9qwy4HwSNGqdVms9+SzF+Pj+VysY/kPMsyXNR8dA06QEp
+# wudIj8qhk0cp/yw5UkqQlygBmxoGvrVj2ySaIq1ppLgN3knwc1WYhTtIx9NuNdeu
+# J+FS/32w91EsDGVZgJfFUizpIYowJOwM5ZZ3ISIVJTI9Mxk2aZPaAziVvcxM/h7k
+# LgigyofE2iUPzGt+Vh+X6jjxdIN64E/C2KlwwQ4/vNK6vS9SqrfZgjNVkzI0YHbA
+# FOFLzKlIdbt9j7bjHY8qUGVas6FGNLTvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjExMlowIwYJKoZIhvcN
-# AQkEMRYEFER0KdjrjSKTpHxqseKe+1VqIW1ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxMlowIwYJKoZIhvcN
+# AQkEMRYEFNno+Bm5OmCpLfxMtJCnowbtCnmiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBHvdN5nOVEY46QeYXU+bQv5t6cqmWcoL3dVD3vkTngT238
-# xnWgSmKjAo23KpQarGX56CrKnNiPl0muKbwVid2CVl0Pf/UYx/I60exbCDj9ZMnc
-# PA8tgVh9fV7ux5VZQj70SkOWgz/SCPSlv2JkRlMmcUkoTX/I/dMqq31BGOiS7r9c
-# NZH7O2x/ilkzZliJ3qdcjvO6UtYxIRROuxhX+C8EfXwrnPuCb1bIkzExMN1ZK//l
-# ETNx7/h1jdZzRHNHpLbPcOScq3P/xuw36kpyWDPeOyLEHeSKECzD3znaHHA3H94F
-# zzZWdFjCvescdTN207qRYB96uP2DmpAW99yrJY5t
+# hkiG9w0BAQEFAASCAQCJCiaICIDr1/b/hrXwgH8kxVN40831TVblmI5OzUxa5+G7
+# h8LMI6qb1IyOTKZqwfkU+p00QaVPF/UL1FPTmqJRnhta9l1g/ta32J6wJ3axorYH
+# L8hgObnSzB8HbgKYzQWu1IW8UvTnXDfi6k2ycUweA6azheaswH9b4x+OLE4BAr/l
+# tHbeZAHUXCvjL+pKHTRk5wThIIb37C6KRjbwmuFdqURT+z0CTU5P2y86cI6JE7cz
+# GMOU97TeuYYTsY+w4YImhMIqsmSQuWSALNjlTdxOAxxIRD2m0R2z91LfCAVZDFjq
+# dn/MddwGztK12kwWVMjLFStu1J4rApapJbs01ond
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,22 +58,30 @@ function global:Send-Pushover {
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test"
 
-		# Send the message "Test" to all your devices. The App Name is displayed a title of the push
+		Description
+		-----------
+		Send the message "Test" to all your devices. The App Name is displayed a title of the push
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -device "Josh-iPadPro"
 
-		# Send the message "Test" to the device with the name "Josh-iPadPro". The App Name is displayed a title of the push
+		Description
+		-----------
+		Send the message "Test" to the device with the name "Josh-iPadPro". The App Name is displayed a title of the push
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -title "Hello!" -sound "cosmic"
 
-		# Send the message "Test" to all your devices. It will have the Title "Hello!" and use the notification sound "cosmic"
+		Description
+		-----------
+		Send the message "Test" to all your devices. It will have the Title "Hello!" and use the notification sound "cosmic"
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Nice URL for you" -title "Hello!" -url "http://net-experts.net" -url_title "My Site"
 
-		# Send the message "Nice URL for you" with the title "Hello!" to all your devices. The Push contains a link to "http://net-experts.net" with the URL title "My Site"
+		Description
+		-----------
+		Send the message "Nice URL for you" with the title "Hello!" to all your devices. The Push contains a link to "http://net-experts.net" with the URL title "My Site"
 
 	.PARAMETER User
 		The user/group key (not e-mail address) of your user (or you), viewable when logged into our Pushover dashboard
@@ -285,7 +293,9 @@ function global:Get-PushoverUserDeviceInfo {
 		John-iPhone5S
 		John-S5
 
-		# get all Devices for User 'John'
+		Description
+		-----------
+		Get all Devices for User 'John'
 
 	.LINK
 		Send-Pushover
@@ -378,8 +388,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCYxtnT/bqkgMZU4rEmbUFZ2K
-# o3SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU55ZDnLhKINxvW8o+WY4EaFbV
+# 3lOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -522,25 +532,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT+DLP2VxlNCQHjGy6cX7+jvclxrTANBgkqhkiG9w0B
-# AQEFAASCAQBWq9ZhAkIN3AK44Xz4gvoBi3GY9JEe1Itu9qPEcwf59uhOyJxS3Qai
-# BaJM0t844vvi0NxjdhRD5iNcnnVOLwkNKKlrsB3SMLcc57TTf40FEKOECOXTN8Uw
-# VGK3hWComAKa9Cdr0ZtFkTaaUyfV09b0beAweUu13UbMV0x8SDp3fcLmHr+qcSQB
-# oEbDXlDSKIf6iDtrDRruoNXb3/vNyLfPxelte3NLxm9YtkuTzTj2c1R6/zlkgXv3
-# NrUzyor2AnTRg6/lnTb9s00EW81DQ1zWt3onEqej6EbNjyO091e4VOQNDX/igckw
-# gX+QpM7EmJQfUhiXYqGqiOaAw6uUbXM4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSLopO9ohGdyR6XHAqlkuC7e4Z3/jANBgkqhkiG9w0B
+# AQEFAASCAQCJO5V+CIh6oLnmhrJHu/SU9sD5fiBIaFWa5CMRjqsj9EiijeQcdCGy
+# 9jNr2Iysg4OG1q8deriFd4TDw30XgyyCRAcxf0Ss3x2DGlzsyKSYfAE1l48I1QUT
+# 0Idhpp5ZNdd9sUVdYj+v+xWPVXWsekzr7PGGTmiBiu/HR6DsQjim0OR+YWg2rl91
+# X+hzPb2jdOB49z4UDXZpY6TtO5yumMwcvqaLKg76bk6WDDYz/8KJA2EvQvkCuhET
+# o92K1RNvsvejLsWqTXeVsvCEljWVL5MQ7JpBgFjJHeXRcaY3ZQO8F2ympkaP9vtH
+# oD8XyWM7T8RjT/nIZVKNsCvzEqv3TfPOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1NVowIwYJKoZIhvcN
-# AQkEMRYEFBF5Ec1tI1FHh2W7bOCFiSljRJxZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyNlowIwYJKoZIhvcN
+# AQkEMRYEFBoB8bBZ1ZgnQCKholQHcjiILQkJMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCI/CM2V3Y1TGuVTooAjdrFc9iba/aFLjGEO005cP0V2vWF
-# Rsk5JwmoDiz0pasDslkTlVje0vUr7qbBIXv8vBlnd/khxJb1ZnSzpS1+bosRS+Qx
-# oQ0u11WDlWn+9qoHarfiLaGRBWw2F3emJHti3nCAVujV2CdKmn0SD/e4xiNe+t4O
-# M4+gg46/T3+DXLWm9lBfH7xdyfaXWr73EWTiBVflpDvvq6r2KIY4DYvrIHZSIbbg
-# r9jAHFyW9a39YBdD5+rph/2vopvvjjK3Uvx7ElTuseGyHAcL3IqPXFHr65SCsXF7
-# bErjE+mKVmRS23p0NqebhFK2AUjzLYVmHDZ8KCP+
+# hkiG9w0BAQEFAASCAQAcyEcg5UNtYt43du02a7IilBs2DLjQgnILQs35zaOy4JV+
+# rclolyqEh48zpYAOGmhb7Nx2e7ilobcZq1DvQVBxvuCO5T6+u7Gbcdh7DkQoaVGY
+# k4t89Rbl3Y7ApkxBf0yOCsMLLXjpow6qTBPCIdfY6Od2AaIi9RxdNYdqvaErqZpY
+# S6dQSA5tI+8GomFZ4cz8uqNw77fcRlimjtfxfORW5DUBsY7VmDeF16tlpYRmDExN
+# k+yyA2UNBudHPXFlAcpTqh8vS30TwSrIalUO71Sn4yTpPGXZA7Po8dtHTOZ/ttqn
+# zHZo4lxN5XeoL8FrcScuXRC3C4ntJGLOJqiiimZI
 # SIG # End signature block

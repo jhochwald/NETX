@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -69,7 +69,9 @@ function Global:Get-EncryptSecretText {
 		PbFw0hE0QtiKVdu8DESO2CB9H1bVYIxVWTvpvT71yDQCFFOwg0JdGJpCI6l+YxPqHqKhFcdWZtuP8JMvNZ8UbxveNVmBOrasM5ZTHfHljWIT6V6tDxy5jOd9cTiuayh/X1A2eKA/DArBgkqhkiG9w0BBwEwFAYI
 		KoZIhvcNAwcECFjYhWLX5qsEgAgjq1toxGP5GQ==
 
-		# In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
+		Description
+		-----------
+		In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
 
 	.LINK
 		Get-DecryptSecretText
@@ -144,8 +146,10 @@ function Global:Get-DecryptSecretText {
 		PS C:\> Get-DecrypSecretText -EncryptedText $Foo
 		My Secret Text
 
-		# Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText human readable again.
-		# In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
+		Description
+		-----------
+		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText human readable again.
+		In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
 
 	.NOTES
 		You need the certificate that was used with Get-EncryptSecretText to encrypt the string
@@ -199,8 +203,8 @@ function Global:Get-DecryptSecretText {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoaILdaj+Ynv42XKHPfEEhT0q
-# rG2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIbQzu5xt72WkQDDvrDKyPhzR
+# xEOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -343,25 +347,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSn4AG8bn1qvzOJ+3pdlDjSDvrFTDANBgkqhkiG9w0B
-# AQEFAASCAQAY2J5m/iwsb2IZShVh5WZiTw6E91s4I7NYHDYCaTWQwsanpKCEY5oE
-# bheRwj/e0UfL7Ey/el6rgC54tJIXCm0+1ANX5kOhJsAftwpI4/aLu+9LYKO3IiVe
-# Nyz7qCRu+VZ5fwWsrXazBt5n8+iNvaS/2JF/zybzkC5U4CXbb2fUCN/mnZW6fAbV
-# bh8hAEH24oUE17DjzeaFgz/zywGqGUm6/clSM2SfkFEdDjN42z0eGuURNrHsfBVu
-# BY9mmFbit3qrI+Q3IKM+DOyNHdCxsgohYsKk2f+rw16SzeM7Nqv0fsBsqp5U0MXF
-# qYq6sofv2fDJIR9VQOaT3W5Jw13FAsmqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSsKWPTjVWhPyNZkDgjW4qHVs8UgzANBgkqhkiG9w0B
+# AQEFAASCAQB5JjpGUBw+YzyWkgBnnz48EhtQAru15hhklowHI2j2shUm+maagvC6
+# 6hy1N/q0+Q4C96hA2erTtAc/MnaiXEFPVKa2UEiPzESDUbSvZ63HD6YjQdmWKi4s
+# 8W+Bz2Gy3ZozxI7hMJxpbEXDnjxbUt+aCaYvL9LH7WTkjV/XT7MADHExZJvXHIOr
+# xwsD6Wmal5Y6qFeifbe6LP7dVeNbum6AcfbE6wMTcoAu9M8f04cpuVaNQfckTqQS
+# NGWgNq8hDLPGm9IAq3GVRLLReq2pFaSzSSI4FNAsZ4mI5p6OlwwFT5XZVO3Okm+r
+# gYc4SjjWyADcPzHkoIeAJYKFvY9vS8e9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIwNlowIwYJKoZIhvcN
-# AQkEMRYEFKpNsqFzZtvDQ+FfJQAfr9PMUObaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyOFowIwYJKoZIhvcN
+# AQkEMRYEFAl2EKXhUsyTOKnQdJ9ZKI0mj/hGMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCDVa51rEOk3eXtG+G/MCGEfF0hLBVStu2XDPO1tg7tX4EE
-# pvlJVOUcHR1QZE2quM9ok3rhLj2WAj+nHGbgNTfZHRhQ5xqePRnwyoTJZgnmkMkj
-# QAytUeetXMx58vTJBYMoLsBbsPVZWOXZIhBCewUx4sSrlQvUuFOr8R4fN4dzSbgZ
-# gNvTUV/TPqtciBXJ2MeTu4PUJT/5Puu1QPv8HWROcWwK1F7GuxOTkh2lHxT0cfyN
-# vwFFZBv1Ubp0cypeFJhls384y6agvmyPFvjYGA1HoH22zreWinSpeTmnMXnsBJ1A
-# yW0O6ekYKuDFL8vdMRTC4vS9lamy0AmT3xbn5pz3
+# hkiG9w0BAQEFAASCAQAgXjUuAjSF1qIw3aJPUKAGBdQraEWcspWrFqqLaGHUfYN/
+# dLPX0Ao6ENHT2JJmvTGU4WH2ZaUUsQH0RT0tHpdBOZDLzj1VKMf+hbl9jFkEuUbc
+# s9smeFcGnxw3nC0a3dtYIxkmOz+Z8E3pi7EhL3v7vshBkL8e8S08Soj+I0wX7vlH
+# 1B3TuYYpVDhyvTchNaPMeSBDC4ZWA5inloXO6+j3R1uVkySEbUFbXjlxArX1qOJk
+# W8PD1uCFLTza0UDu6/gkhRiAS3axiFyEkBOK7U+MLKsQZ7mTe/kw1M7Fc6IgM90C
+# XZ0b5hoUzStTNBlkNlKG3MW3Lc0FBsM1OsvGxTVW
 # SIG # End signature block

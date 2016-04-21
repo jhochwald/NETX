@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -58,13 +58,17 @@ function global:Get-IsVirtual {
 		PS C:\> Get-IsVirtual
 		True
 
-		# If this is a virtual System the Boolean is True, if not it is False
+		Description
+		-----------
+		If this is a virtual System the Boolean is True, if not it is False
 
 	.EXAMPLE
 		PS C:\> Get-IsVirtual
 		False
 
-		# If this is not a virtual System the Boolean is False, if so it is True
+		Description
+		-----------
+		If this is not a virtual System the Boolean is False, if so it is True
 
 	.NOTES
 		The Function name is changed!
@@ -159,8 +163,8 @@ function global:Get-IsVirtual {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBdGTyLXsYC/WXiICffuwnD5n
-# PY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUK6yo9Yhg8eYpDLyuLaDVOCMd
+# 6OOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -303,25 +307,25 @@ function global:Get-IsVirtual {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS+yTO8y3A40MNFbsaEawAAWupYHzANBgkqhkiG9w0B
-# AQEFAASCAQAwAM+uZy3Gg3zon1cnYWyGQ3Wj2bfYbfMTY6Ean8LbNk3tuIexqL31
-# 2kvjIvcOLDCC+9kIf/9531ROOP+f8HzNCCIe/eXedoIQx1oQqV9ici63nBfeSrB3
-# VD96JrBhJtrwsr2vLQddfxCwoviLTFNo7HWoKWBOYrWV/2qk9UbBqRLQkEO04Nai
-# UQuDaUWI7xjWXMxFPVhl7D5xK2MXTf+Yw4W9W8X8l8CMyFejGf/Dp5y1EJkekyyX
-# ot5lsvIcfxIErlf45jOCOMWudFbfUeOW716XcmkcM9A9bkujVQYYQwd/Nkv05Zh1
-# MuDkqgyWrl0fpz1a4E0ir5Ueh09Tu5COoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRsyhl7S0pBRrlVV46vltF9zdDjQTANBgkqhkiG9w0B
+# AQEFAASCAQAkwe5S2qivRTyDZqsiyzOETgUrScDFys+WizupioYrZ6adqpvYV9m/
+# iBYDpjMDOEdloiSKxJyu+N1DSFXWitP6X4aPshbG3foP8Fy4Y+8jAQ6FwRFlk8OK
+# kZ8O7UaMRUwarANPPCDJUjMEBjX9aTUueG2irmnX3yiMgWzdClw22Ac5Dc1wOw2d
+# 6isobWr9fhzzt/D8GFH95l28fwjNALqlDoZpgVjznUlyDV1piohb3SmQGzhIy8dh
+# i+dDU/CLooAXwPxDDaqplU0dgUvhra95FxcoNxIuBfVgvLSyrLlR80U9v5XCfpYd
+# wQNTXR8+1PvO3RCzEzaMIr0v4YGXjNaEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNFowIwYJKoZIhvcN
-# AQkEMRYEFAJp6mSUnn7frD+qXnUU2c38cfUsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOFowIwYJKoZIhvcN
+# AQkEMRYEFNIxFnh/JzEuQ8OHVTWF6xHu+Eb7MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCES5HkFfuP1xSWXdfZKQVE0ygW1ye9ceHaoCvVMRKNAq+9
-# /l0dIrpzOK1NgJqBiohtT+VoCkNTIDoN4E+LeQdPDbvUahGf2R0MdqEh/HXNX2if
-# 3oE1q1l46PxZuahjRxqs4eKGkAEhLtcfI68yF0+eRa/F6ingLQT7Zv7kgvQudN1c
-# sOS5DXCEGg1VrqGNGToOv5zshqoePz+pTZ3i/ATmeWUchfjiRkIRK/Lja7gOCY7P
-# BpR5jUGnsDqG19bKPPR+KbGVKU6t0j8i9nXUpSxcm+1YaJTHt8HkcF4cEVvIME9M
-# /ww3/jaOrW2gl7eF6ufz/casoxVfzHs80thnFL3q
+# hkiG9w0BAQEFAASCAQCB9YZCRFlio8AM/up5T3r4bi6Iot3WAi7BVSgYXiicRtWd
+# ckWCoEEj1z75zkQr0Admd0x1YbRRFFrq2H1jiuuRrdT5NbYA0LMfWrkbFTENnBiC
+# r3j6EGFmHE6CNQeYF8NXW3H2G+1d/Le8bPnuhchJrcVsKqJU2Rpf4mixvDveDoUD
+# Ysfu498fGxUCTO/lBIQqrK1s6q3ixZ4wBb7TITtLpu0gulhtoILmIXGTFed6JL3G
+# zYEwsJX4yy5RDT1S6m437uIg5zJsIyRA6nM4sdj1kPvwIl3Pr2NTgm9GHP189bvI
+# lUp8YYeTBFnapPmTALGeUyudaMrsIgAxSZ3xqSrR
 # SIG # End signature block

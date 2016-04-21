@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,13 +64,17 @@ function global:Test-Method {
 		PS C:\> Test-Method -Module 'NETX.AD' -Function 'Add-AdThumbnailPhoto'
 		True
 
-		# Check if the given Function 'Add-AdThumbnailPhoto' is loaded from a given Module 'NETX.AD', what it IS.
+		Description
+		-----------
+		Check if the given Function 'Add-AdThumbnailPhoto' is loaded from a given Module 'NETX.AD', what it IS.
 
 	.EXAMPLE
 		PS C:\> Test-Method -Module 'NETX.AD' -Function 'Test-TCPPort'
 		True
 
-		# Check if the given Function 'Test-TCPPort' is loaded from a given Module 'NETX.AD', what it is NOT.
+		Description
+		-----------
+		Check if the given Function 'Test-TCPPort' is loaded from a given Module 'NETX.AD', what it is NOT.
 
 	.NOTES
 		Quick helper function to shortcut things. / MBE
@@ -111,8 +115,8 @@ function global:Test-Method {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxwgUZyhwdPmWbc6zTytXTFmG
-# RbygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvE/iXyt7CWJmWIJK/x108S9T
+# QBCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -255,25 +259,25 @@ function global:Test-Method {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRz7M3qt2cGUI48spCwkoNiZhpARDANBgkqhkiG9w0B
-# AQEFAASCAQAE8ZjN4C4Ih30vqRwyyGiCGsZwlCJEreqldevo7rTYD41Ip4znHCtE
-# hB+w7tYOkWFOJGcVPGDdxphlH20xrmZ3I6p5j1ifaeOMhWIDo59yKskgl/mowCVf
-# zIfTdxkabkc+c/dAIoojXWriGsSVY3VXMhNPROYjaxGVXO7Yeta0c+NwoQPQN0iL
-# ZBdMgpeFV5SWWFelXUi8LKGsOQ2XKUxPmlXc1yuGIzfj1rzdbJxTJQja145QA5BD
-# fvh0KZSH/+69/bKlcPoV8y98caJ66gTwAlNjAOxBB+3WXo+owEeru0xLMd/dSWhb
-# MUUCUnWX3XXPa9M7b5NJhqHpCt97aXKRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTnd3sP41C+FapLHu2L/zF7owK2bDANBgkqhkiG9w0B
+# AQEFAASCAQBUurzOH9kmPRzNrSyz1hF1nhPvEGmpZDI5XFou2qiRCB4JMfyL6b42
+# 2jH5qs/D+GxGsbriwBfNeh6UN4XJCoIl9iLM/K1ZDQTqkQClqtoY+bKviTjij/Uz
+# c0tXNG2YaF7cZmjOT9q7aQsthtqa8qjack8miLgQtPJEHHDpK9xBttkpHexaRgVs
+# V1ZJdRwZMNTZ5KePJ/sSYRwj0H7wXXaK3yNjt7EHi52Fz3mdjRHsfPBl92hEgjVN
+# 6t8xM4pBAun7ozbp7XDV4kwDp8+MFQFpLPGKdr0MP106/lW0Ba4fqULeqN1QcC+F
+# t2q9P3mwq55nIqvtY46ZfQ1J03YJWF4+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIyMVowIwYJKoZIhvcN
-# AQkEMRYEFLTRsXFfKjPHSMroiHpiz3bjijseMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzNFowIwYJKoZIhvcN
+# AQkEMRYEFHxKMeLwNe5JQXJkQzex7gnGVTVnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCEGdGtJLkbVtWSK+duK1vLxyPorHHYDB34gYmdfDeHoerd
-# mOSXY8CURMv0eUDJFR3cnlUue5sdG1mWnJ4KLe1fuw9um3WD1uvGCABmY/y/GVN6
-# mj4l/xETH09KVEYmI4anyIglD95mRXaPJXP2mWBXqY4/7Mrk2+eK9VX5g/ZO2sLR
-# pNGiARLkC/YETJZ/v/I2ZJaLcyOJ5Mh2d7gatZmQATqCCgNlgR8HrwScV1aE1Dsz
-# /0FRG6nRZE8orG47XAdA+jDTS5Y5zceynOIbD8saX7b1iCPYSnCIRm+HszMnDQZx
-# Ht6w41NYaDlXVIU1gN7uH8eD/3xVRiI+D4ZvtxCK
+# hkiG9w0BAQEFAASCAQBiC9iHshuIC/TGKsyW3DlZ+m85kNDQ3oI/0cIjKymmv0Mk
+# 4+8KITfgePlufRJK1ea8a4hi55AxViVsXMmknpVGxSF55N0GbR7nPGD58/SAXMgf
+# /whT8AREcDDaKHlM8cvHI3fr46UwfVEFkYiWqjMVY2wpLntz3d5ZKgM21Bssh7ND
+# HNVhRz2piuPuM3FYSl3o+pMFdCSKGz7Ug17o/BI+rqV6axIFNIJrEdHvnmIXZB0t
+# iKSysMbLZwv4MWPdsuVmjBdrPmxIUSquBAv4TzEEbfO48C2sD1ROncTsyrGNknpM
+# nvikxQnAZcQ05/8yuP3AU6+IEDP0JRajSb63Z0z0
 # SIG # End signature block

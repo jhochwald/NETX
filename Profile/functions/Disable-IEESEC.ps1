@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,23 +66,31 @@ function global:Disable-IEESEC {
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -Admins
 
-		# Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
+		Description
+		-----------
+		Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -Users
 
-		# Remove the IE Enhanced Security Configuration (IE ESC) for regular Users
+		Description
+		-----------
+		Remove the IE Enhanced Security Configuration (IE ESC) for regular Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -All
 
-		# Remove the IE Enhanced Security Configuration (IE ESC) for Admin and regular Users
+		Description
+		-----------
+		Remove the IE Enhanced Security Configuration (IE ESC) for Admin and regular Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -WhatIf
 		What if: Performing the operation "Set the new value: Disable" on target "IE Enhanced Security Configuration".
 
-		# Show what would be changed without doing it!
+		Description
+		-----------
+		Show what would be changed without doing it!
 
 	.NOTES
 		Additional information about the function.
@@ -140,8 +148,8 @@ function global:Disable-IEESEC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUg0JwyXalbFoJhwmbD2Lg3+eJ
-# vpCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9/fbCRvWeuwhBIDtqZ6xPFpJ
+# p4ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +292,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSXl4kiAjjE4rZ8qH4ihZk8IxFitDANBgkqhkiG9w0B
-# AQEFAASCAQCOAn+X0oIwGmCiEe8EH+R2Sm8xZ1/D9yJqpAQM0H4n4UHOxFn1T8ws
-# w37n6zg1nhpSG7Ha2GouCyFUE4LI1PU1jl1n1R4ducLcfMmKNfmD0HA0Yorh+qzp
-# And0Sy6tO0X+TUklmasAY62StkWvj9nqVB0URkzKfMHpwG/VEKELzjmE2YP9Gs2y
-# ptuIdjSJJRoD2zIa8VJjCigvOaeEmp3sLe+ID4R9SVh+y3jsDQJ9HEaYtN8jMv6y
-# 55TRgwNYBdDleRqkdA323IbbnNTJbNKWeSusQTSkUmAvCGbHnN+C5hdZDrcWy2Nf
-# FzlW4OwM/gALywLO2VQ9R3rD/awVtI1/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT2ACcf5339hFart95426kv5G4A0DANBgkqhkiG9w0B
+# AQEFAASCAQAAtrdvv5VVjJmlu1ZpjKKd+9/Vk9rv7hWN7Qhaz+YByLf1YdhnXwOr
+# 7m8JtAXaZLe1yE6dzCh5zVA73Uw7+5wwzOLT58YTkeuu6bhMxDWcKtbYEw4DPkJN
+# GeEPRo8JBwXt7dApbAfBPOofMf6vmWkzpXxabCvPghmPS8o2UU6eMGWTvrhMCPp7
+# FIUnmsnbT34sEgUKaPcDgUM4/cc3vBQuR8k2dH4ri5/bHOuNm8gzC33mO6ctKFXW
+# TuexoYjX+eo5St5bkGLYoBMc5yLSZirAWUhIZbsM+Kr+F586SQDim8FgjRaFF/yJ
+# ucHdC83Qlab+OddsquqYZzdMvXW7YcyPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1M1owIwYJKoZIhvcN
-# AQkEMRYEFKFSOSpFw7f6fPJ+pgGtjqBaeqIPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwMVowIwYJKoZIhvcN
+# AQkEMRYEFPt69KXdRxhJ2vv5II6RmBWEJlQyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB11NyPyu0rOUDQAHynKKWqXTyKCv9btXnbaBWkBUkb2dKF
-# 4uh7Ty/n+K1vxwdRQ3OJ+vaqKrFjazn2v8BXMLlOCu53QNme6fOLcz33XjDmRV7U
-# DByCDnllP5RCiv055yHkAuR6ZW8fEWmU6HAuvAmne16MfxXal5AJTdUAShLmVmvk
-# LtztwTZNoPyvcf3T2oFogFdlY+lm38MfkEjYeS/PMXGEJM6pokjvhf1oy5qlX07d
-# YgI3P0NVDONWFHsSEjgFz6vma0Vbxn6lzKoTEevvrBJ3wNwKdrReUWq7TQ9wOL0O
-# WeX5CU2pO6pHHWsmcG0usmD6xNjDvvDfvJNdcj95
+# hkiG9w0BAQEFAASCAQClFipEq0IAejGzORGQv/USmQ+WWoI6ntGibPZsKiTQZQGW
+# pXaqwRLk6PsXeP+HAdEgWg89Ysru9yBVfvhsDjM4Hhh/S+aonsEsTpCjaGfs9XKn
+# VH4zgG7pBJxWQ68wpno2l7sLj8J6qzaPx7Y7PvEMLvkACILIMODkKdLCINAwSdLE
+# WtBZZCLFDuE00gGDmLQsIaoH9xALdLKnjfcyfPb+ToWoPoRQmDQf4QWU3E0EOaGh
+# ABrRUcT3LlcBSm4l1jhKpqrFeJg5BfrY6wDvIi5ZS/t9F9aeX3cPkvNIsNJvwbQU
+# LT+PWvMR2B0p6C4SVvIKNI3CsJij46oS+NdpnEj0
 # SIG # End signature block

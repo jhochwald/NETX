@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -61,8 +61,10 @@ function global:Get-TinyURL {
 		PS C:\> Get-TinyURL -URL 'http://net-experts.net'
 		http://tinyurl.com/yc63nbh
 
-		# Request the TINYURL for http://net-experts.net.
-		# In this example the Return is http://tinyurl.com/yc63nbh
+		Description
+		-----------
+		Request the TINYURL for http://net-experts.net.
+		In this example the Return is http://tinyurl.com/yc63nbh
 
 	.NOTES
 		Still a beta Version!
@@ -130,8 +132,10 @@ function global:Get-IsGdURL {
 		PS C:\> Get-IsGdURL -URL 'http://net-experts.net'
 		http://is.gd/FkMP5v
 
-		# Request the IS.GD for http://net-experts.net.
-		# In this example the Return is http://is.gd/FkMP5v
+		Description
+		-----------
+		Request the IS.GD for http://net-experts.net.
+		In this example the Return is http://is.gd/FkMP5v
 
 	.NOTES
 		Additional information about the function.
@@ -197,7 +201,9 @@ function global:Get-TrImURL {
 	.EXAMPLE
 		PS C:\> Get-TrImURL -URL 'http://net-experts.net'
 
-		# Request the tr.im for http://net-experts.net.
+		Description
+		-----------
+		Request the tr.im for http://net-experts.net.
 
 	.NOTES
 		The service is off line at the moment!
@@ -265,7 +271,9 @@ function global:Get-LongURL {
 		PS C:\> Get-LongURL -URL 'http://cutt.us/KX5CD'
 		http://net-experts.net
 
-		# Get the Long URL (http://net-experts.net) for a given Short URL
+		Description
+		-----------
+		Get the Long URL (http://net-experts.net) for a given Short URL
 
 	.NOTES
 		This service supports all well known (and a lot other) short UR L services!
@@ -320,8 +328,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuHY83aDiootZznXTb8JjqIj0
-# +6+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU29bzautOWLta8JtufLaLL8M2
+# 8MKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -464,25 +472,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBThS7AUxnh7OEsumEnCppP/P+0vDTANBgkqhkiG9w0B
-# AQEFAASCAQAaNIrSwdPBJMVl2eCrt6UPC5m3R5gWADbsNY3bs6y2qriphFgcrmc1
-# HBy2s7zHuimH7j1YU0HMPcv1FEinQgS+svJEygUJBO3yJWeLuyxAH9mu69qfrVjI
-# S0qxQThRu4sgTZFf1+CPwIGQdC1SPHp8ghKqZL67w+vD/7121hqldo3cS+8iKiMK
-# ZbhqS7/LLLT0tXxfz8fMtdnumFBxq/2Vt2iIHpPf8te+ife1Z4+6WtNKh+J/9wYb
-# QVjDHCKJI1QIi7gGw9q2n/st1+UZ2uMMpCR0Ws/PbdlTMi86hxsC0xHmZvIABKo+
-# K0x7HpN3qJ3bv2Rs2LkP2skRjj+g3RA4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ+PYDI1mqyqDKVo/i7pneYgk598TANBgkqhkiG9w0B
+# AQEFAASCAQCNEvFsZc76rvKpMdwsPRUsYwiS7hIvIBkDyMfTpBX2VjVnZ+NBSfbB
+# jugiQRZ8c+UpbgMKKE6diA9izHnEYGcGjWmK/XpF8leTaug9zd5gQS1Buqwuo3RV
+# S2IgsHNSyng8LLUChZlnExgU2Eh/UMmh6/k6zD6qWwF2hsrRqanuTkv6K+5ue7Rl
+# 8+Yg3qGU2fG3qZyKOYZbI2UVOmoN9z+XLoZKRwNdhdWdn/oTZE5QVeqm+RDUQvKA
+# ckcFfeFHnr7V4EuEpuVbUuhHhpLuAWoy4m6B1ysOIsHlVSRy9N8lb34jCZQBbF6g
+# aliMLSN9vaL8ob6MwlEk3q63/egCh0LWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzN1owIwYJKoZIhvcN
-# AQkEMRYEFPD1vSllhKuDI1LwPJLfqY/aE9hIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzN1owIwYJKoZIhvcN
+# AQkEMRYEFDK/jkxb1BQeqIGClSLZRH42nfMPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBi0kGGMrEHR3ujYz8CU9Qm0Dx3bvYNkWzTVe4/bMbZF0go
-# WNkcaNm0nIav501Fa4Aa+CjvyBQX+h1QgTB22/l3VKzEGMn5MTF9dD2b2ZmVcHMt
-# siWRUSc6xoGEs1wRcpNpw+CngKnUznYQtC/76T7awmrBYYXn2eav0yrXV/1Y1y8J
-# cfs7lZ4tTLzCtBkhm7NNc0WC9Ak8nnM9CQ/J0EWgYSkpN9apQLy5CZ1mIbyyr7IF
-# RgzSaxYiwSmAFenenhm/iyigXUKeqOt3BaXjz6AT+iVQzRRPShsYypYlHn4FIX5p
-# tvToZytevSZc4ZzUc7qZMdAXLfsCS5jUSOV6ruCM
+# hkiG9w0BAQEFAASCAQBVcWBZQ8a5x6NAEbxDzqckeno2b+zfiw1uqEcJWvDKAR4P
+# iFE5gA/DDaQJiZNRQJq0MS7Wz4rP8R0am5VncDmUjvuA+6C3EZTuSMkFNSiD7Y+S
+# PH2KM/zpw543SK/ZWsOkogcliqHyTJHJcfsBuywiCVhHVad33G97WNipt6FGCdK2
+# aH/vhUqgiJT+7XN6KS3ZpM/c8hH/VpiJkfStg9qC27ipt6IpQUaxi1YbnYXk0ADd
+# p3kLanuyyopEK2ExnzYLrwL/wlQJHTGmm4sIGhnWpPu7uwVfrh5aAXQwEtcf7L8U
+# WPp3kAQridImS0DkZC0qRmBPSIoNHCHHBu2Z91rc
 # SIG # End signature block

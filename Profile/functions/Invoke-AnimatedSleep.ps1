@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,17 +64,23 @@ function global:Invoke-AnimatedSleep {
 	.EXAMPLE
 		PS C:\> Invoke-AnimatedSleep
 
-		# Will display a small animation for 1 second
+		Description
+		-----------
+		Will display a small animation for 1 second
 
 	.EXAMPLE
 		PS C:\> Invoke-AnimatedSleep 5
 
-		# Will display a small animation for 5 seconds
+		Description
+		-----------
+		Will display a small animation for 5 seconds
 
 	.EXAMPLE
 		PS C:\> Invoke-AnimatedSleep 10 "Waiting for domain sync"
 
-		# Will display "Waiting for domain sync " and a small animation for 10 seconds
+		Description
+		-----------
+		Will display "Waiting for domain sync " and a small animation for 10 seconds
 
 	.NOTES
 		Based on an idea of Doug Kerwin
@@ -120,8 +126,8 @@ function global:Invoke-AnimatedSleep {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUv8XNEtFX7eUG4smYx87jTGcA
-# Z2egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURmRShqYh+YQ5EJVmMuS4sKCO
+# vnagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -264,25 +270,25 @@ function global:Invoke-AnimatedSleep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTOXGouXa+ygUSgfukuHIM+Nj6iNjANBgkqhkiG9w0B
-# AQEFAASCAQAcNIiyMjgNEGNMbgFXT2Z4p7axrZvDL2Km+5EAS0ln7yH+PQ5dcB3R
-# H01gMoE+hmm7ViH+7qjOc5igou1DpuszAAqH3+Gl8d3N7E6piuC+urcENAvRnluc
-# KNDSwjITPU8j0IkbdD9R1EvhSMJNAL8fgWpsWA33vhpK7SyrykqgXzgNmgzs88aB
-# KHmSHydGoGYh1/XYDgI8mee2VBP/MlI+dTd6r91JHjVVzqexwuukAhbGjcGEp65a
-# ILBJe7M+Gh4AaveZlK00lLfcZemZxhG39uzAbpztF7Ngt4f1gDYaBkz63dprf8C9
-# 6VJIpfkDd7NFvA73k4z7OzL1L1zSSejNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQOvSdDYL+/yVr8DZHGeHtwqYAclTANBgkqhkiG9w0B
+# AQEFAASCAQAkOQy6DNWemFoaRM/3M+mFe5kzu9PH045v5t40gt12043uv7DaoWS3
+# UN/9TXfXubs9fUuWc6+QWWMsK7oawKiIXKUoyp0eAMGLCroNwdhkxc5pu0lcIU/s
+# pdc6dKjbaPGjWJANWSW3EzTn9jFJPMV92Q8nldJyblZWOvNNeE9HR3wpDJ8Hlbot
+# JHfdFrP861owzDkzaFzlF7R2AdnS4wl4H6Ovw1ybOKeLqtGKccmDbaqz1gn4M1XH
+# ayjHpsWembpJTsQlooQVnGHSRwbjj4FimjE9N9PM83kEEfR9cS3ZJrHZO6nQEv2i
+# 1stQs/byIrUThPMFwLhUgqtIGyYTYID/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEzNVowIwYJKoZIhvcN
-# AQkEMRYEFLDEjSDisPqGTyen2F7DiaACc35aMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxOVowIwYJKoZIhvcN
+# AQkEMRYEFPtmRP4YPfkyncoJKfkfyYz+n+0pMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCZUhO2vgmSm1MjFqmZednC9x4W9IJzXTk/cVwOA8W+rUkY
-# Xfq6k6Cf+bkQixVV6vlabYvfNl+kpARYNgbsKha4Thpwn3ICZRX1/9xJOATd1Twk
-# 0+bxzWAMFXWw7x0r6V4ScRz/UQ9iQhvUT4CbL95d7PvA4ZY/fPMiXnroT0uP0bEu
-# XIfqIYS4sJsztFd/uacxHxufUk+Db1ErariubUdvMRVKlmBTch3SENmWe0VXhgOs
-# abZu8DKkukckvz5Nlyn3lnx690u8D2/srZb1pUkOwV9QHju4orrnPavyK0K/SJGq
-# H29U3505SBzl61nMDOXRR+nVylGKy0WCDYmf92zO
+# hkiG9w0BAQEFAASCAQCKVQ9ZpHybDm8y71fiWmCPnjUH28Nw3Y9DZXeOF2A2gfBm
+# J/bUPPp8WsbsWBleUxHjMM9pjwMi4gTb8MG6BoGCWQcMTiC91CGmDLlMtQIr8g8g
+# LyqxLO/31zzn0lkULklurudd94a0iTtsB5ZWGW9FrlK5Cc23ihBeZ1SH6m4ZNWLh
+# x0kxGhmWiWtvtyw9UBJXHMifl1zpYRiN+9i+kyQ+LP06xBO9Y40jMSTLcx6cmmII
+# BshGp9yC+TRJHas/lC9g0pP0S9fBBOV2Q8U3fethkg7S4kNhs86KTZYKZEWu9oBQ
+# FJRri2aTtpPfl2fV1QVDGlU1mpVhvVGsNIbGT69n
 # SIG # End signature block

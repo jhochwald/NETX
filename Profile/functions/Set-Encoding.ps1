@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -69,18 +69,24 @@ function global:Set-Encoding {
 	.EXAMPLE
 		PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -encoding "UTF8"
 
-		# Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format
+		Description
+		-----------
+		Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format
 
 	.EXAMPLE
 		PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -dest "c:\windows\temps\folder2" -encoding "UTF8"
 
-		# Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format and save them to c:\windows\temps\folder2
+		Description
+		-----------
+		Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format and save them to c:\windows\temps\folder2
 
 	.EXAMPLE
 		PS C:\> (Get-Content -path "c:\temp\test.txt") | Set-Content -Encoding UTF8 -Path "c:\temp\test.txt"
 
-		# This converts a single File via hardcore PowerShell without a Script.
-		# Might be useful if you want to convert this script after a transfer!
+		Description
+		-----------
+		This converts a single File via hardcore PowerShell without a Script.
+		Might be useful if you want to convert this script after a transfer!
 
 	.NOTES
 		BETA!!!
@@ -171,8 +177,8 @@ function global:Set-Encoding {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqTFf3APBdNaMyh6hR43dJESx
-# iGOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzZPe2v4OP4fXgxA3dP1F1RJb
+# FJCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -315,25 +321,25 @@ function global:Set-Encoding {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT7ked4lpwrIji3rGNsvwZXB0VSjjANBgkqhkiG9w0B
-# AQEFAASCAQAgjVu10bz/cMRLzg2ngCn2USolLD6O2bf5zRDrY6pSoapirUT0RUh9
-# EgXePhuH1PZGEO6lBhthO0WJzG5pNqc9pOXo00CAMvu1qMkmWcyYkHQ7619HJmUw
-# cKmYnogQgQIzH1qFhwXch/yP44LrzhHB2Jy+B7C0RJcW9UDBLgLFrdNBLB4uuLQB
-# gt7x8joDEMAKUuLRNpbUE/zK0J2QbszrcwsVgpOtTwQ/FzqldREUt5IVV76IBXzX
-# adYKbSGTWvHo+L5OdKxRhutc2qQNwKSvNL3bvltndGx2MT3ExZ2gjO9WxEIgmRDT
-# VpZ3bfqz2CtYGqPy0m0xgYtu1iicQJbdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQukOYy+Zzo+DDnw+4EkDsb9DXKljANBgkqhkiG9w0B
+# AQEFAASCAQBVdlJVkDLQE9EY0+MsXybeEaHxaGdG07WtKESsvIyr2ePlESaiYzOz
+# ofNkcqz9zEmJSc6GmT/KeMw6s4071AiajOlE/WA0Wj1voaguUgHDKxW19RUy+r7O
+# RccWWvrTgBcGr5jKTMxWNzLpgZZa6rXdLYouFXA66Kuhos85yjWniQo6nHEf72jd
+# OUFVIohLERW+v3lvqPO1Red9vGcyIJLkWulimeJQJgWqRZXrqPQ9fq1zfdgvMJj+
+# 9N6eozmttB+2gPuwC7/rWejMHCDgI5kWTy5laerZrF6iPzwAjOcj3fT34c86aoMQ
+# TVJx35EZCFaVi7sjcqRPHcmPBxfJbbBhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIxN1owIwYJKoZIhvcN
-# AQkEMRYEFODEtV223cLeJ4vWi7PmNo4HXKqgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzMlowIwYJKoZIhvcN
+# AQkEMRYEFL19srzPGpzB+c06UMBD9RCUQBnFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBi5T92jvmHFbr7nBvT/UsB1cahxh8uF0WyFMGl1fGY3W1h
-# jgfpPOsDpUc0pJy63FTn/6lolccN+31NacAuxG8Dom3YVLP3BF07+6TZp16ZU2U8
-# pgF6gimJT9uuqJk2q7+TtGZ/DhH5L+hXHXgrqGA22RvHTQ9naOX9Ve1WiGkcTzcr
-# VuA/fMbCDUKiluZ40cumSDXNKcxzfq075hkw+PmxSEBt73mwsnvZ1646n7XjF5j6
-# FGeNgNz5tziJyK3u9CZ+nHeIzB8rFr5OnsRAhPEMlEkMHgNN1RiP5boK8FPxSqVC
-# MrIuDsUry4IGTKMQa4BxDIccWvq3EbXIKiWvyeOP
+# hkiG9w0BAQEFAASCAQA9NIjJ8Pr3Cv8o7J1ds1KIAN/BP+TEDd1sxlEA71tgw71W
+# TPpUfwPgoUrtIQEs6QB3zYQqmk+Tv69vNmFl6PfpcFtTClZx44XIqsAQN6ZdSQgG
+# tdlsyGkEdgQ10nBCBhCZw7DWDvxHCBamLmgpTCf6dIahJE5ayz/Cf1uXmYMvGuEV
+# F8nYAFpGcDBFgDDqYtJtpBIfYPS2uRP8TJn2zQ111YGQQQA2Zv6nMESWcFj182j5
+# k5KAxRsWAHWuZEHc8CYMbTYqRdysdlLtYHpw1K5lqDDRHfK8WcWIHZvE4NXEQDHS
+# JRO1H+IM28CrgQotV17lQgQCwCAdDcI9qPjJZc4X
 # SIG # End signature block

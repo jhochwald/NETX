@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,9 +57,9 @@ function global:Update-SysInfo {
 	.EXAMPLE
 		PS C:\> Update-SysInfo
 
-		# Update Information about the system, no output!
-
-	.NOTES
+		Description
+		-----------
+		Update Information about the system, no output!
 
 	.LINK
 		Based on an idea found here: https://github.com/michalmillar/ps-motd/blob/master/Get-MOTD.ps1
@@ -159,7 +159,9 @@ function global:Clean-SysInfo {
 	.EXAMPLE
 		PS C:\> Clean-SysInfo
 
-		# Cleanup for variables from the Update-SysInfo function
+		Description
+		-----------
+		Cleanup for variables from the Update-SysInfo function
 
 	.NOTES
 
@@ -203,7 +205,9 @@ function global:Get-MOTD {
 	.EXAMPLE
 		PS C:\> Get-MOTD
 
-		# Display the colorful Message of the Day with a Microsoft Logo and some system infos
+		Description
+		-----------
+		Display the colorful Message of the Day with a Microsoft Logo and some system infos
 
 	.NOTES
 		inspired by this: https://github.com/michalmillar/ps-motd/blob/master/Get-MOTD.ps1
@@ -316,7 +320,9 @@ function global:Get-SysInfo {
 	.EXAMPLE
 		PS C:\> Get-SysInfo
 
-		# Display some system infos
+		Description
+		-----------
+		Display some system infos
 
 	.NOTES
 		Based on an idea found here: https://github.com/michalmillar/ps-motd/blob/master/Get-MOTD.ps1
@@ -376,8 +382,8 @@ function global:Get-SysInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQtW03qm3/vWaf3wxO4ECw5HI
-# 63WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvrftG9hdu55pcNKFCQwLZaFn
+# wmmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -520,25 +526,25 @@ function global:Get-SysInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSvXHs4XfHNyQTkGgAD3CkTeHeN/DANBgkqhkiG9w0B
-# AQEFAASCAQBn4IjJtfxLDXAOVlwxx7i+DCxIgR4qP2COOhNO4sEJ9Llk1FzoGy8f
-# wGVwQaAWDxIx5LiMWhGXPJwZKpIGvhpdp2ovnIih91BIGFYAy4qlXFVo0jpyPthJ
-# vKmEtBbg3eLAULWMpJzdxrvtjytzKGaiUzKUw/1n9aeA1awmf2JYu5uMSrPXKE06
-# W1z9jlxgRHx5KKSp0bmTCSIE4rEYIgMmUV6WDVT7hlRzFw0nYXbgoMcyv9NMV/v3
-# L6TfeEgp+e7Ag6jgwd9HKJnIGeZMbzBcsYNC+W13ZnzAjAP2mhjWLMcGAZliwl6m
-# F5etJlI/MsxgOzvaNV3j9uzbsEKutJh0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTXRx+RexcSyO2h20qepLTmxOf3cDANBgkqhkiG9w0B
+# AQEFAASCAQCPDopul7gpUhtD5lQWyG51EAxAo9wiOQL9I777uKJUlWN/vQV95Out
+# ManfwwYZBIWhMZOLavDQb0nfYldRpOVRkz6Tg+H8e8gNHgG8eP4VqRQRcAvmwvBF
+# Py4HCoow2TeTFYNJa6fjVBsEqDj6cFZ6Ssw5C6LCrNUFqpvV6DOJFQwBRz64oys6
+# h5KuZlh0MksEza5LbRi4tAvFYXgEyvITmRDSETq+Z9CbMl5XIl/PlyW9YXa6wbAI
+# 60p3uKto9+F/qvxiclWEL1fKoN/kyW+QXH7BbTISzy5cRtvUicHc6XRyz/FDQpjQ
+# Vo76SD3pxZzg1ExQmmRG+Caw2Sii78rQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1MFowIwYJKoZIhvcN
-# AQkEMRYEFI60HJvOaRTHLtnsBtsrwuTU6jhIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyM1owIwYJKoZIhvcN
+# AQkEMRYEFMStAuhnGF29mvh/ZGzEtEOyI2QfMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCfwidgYKCUJoFOULYPaIuUR9D2OsMFymwJaSHw1BQ604Vt
-# LNPxchQVnjkgp5DtAQJMLRZhfaXErknbV3n2GK3qfM7WKkBDvvqt8bp1bV+rR7Z7
-# rsfgqtIT2maSqkL2six94GwdJfT56gJd7Pulp4Mp81JPQEbRYaDm9QZdheXD0K6w
-# u2o951tkseOWfufmbZBmVTmbjJRGIxpHZp5hoM2Kpr1+QulhCjzV99yEwY0OkWBA
-# w87YTc5z+u4GhpIcPQXZhF4haEpEHu4RTycIa/Rv6iNSexvSCf7zrkjaaU4YuWFU
-# ZTEQKcyAFS1NpR5mhXFDtUo7DZjhOvQ2m7oBRZRL
+# hkiG9w0BAQEFAASCAQBLRBEqy0YDRiGGhvO8W+wtuCaLZoOMAwORkXV0/Kh0klkv
+# cctaquCm1o5SHZrUYrpaTTXND+3Oe5gxBDTtF/T845auhy/CaEXyv6Ul76helG5q
+# R5KIgVKq0nFgRzTVZpkccJwgGX247u9K1BNTul2aznJ2kSo4O61Gzn98xM9vTzYH
+# vAkF9QxIEs1Xtp2kcu4eoxMpISAyZ6YLlNsEk+oVwIdhg3jGFe7b2E/847fJaH8N
+# HoZ+cZET2v8OMHGt0+W6lSwyGp3Ffov6WD+dKuG+WF89S3IVJcrg7Cw4/EG2xp01
+# hhzGeg+is++bljFZy2eCzJhp/5wPCtSDXvBlpWaf
 # SIG # End signature block

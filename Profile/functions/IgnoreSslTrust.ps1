@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -63,8 +63,10 @@ function global:Set-IgnoreSslTrust {
 	.EXAMPLE
 		PS C:\> Set-IgnoreSslTrust
 
-		# This workaround completely disables SSL certificate checks.
-		# Do this only if you know what you are doing here!!!
+		Description
+		-----------
+		This workaround completely disables SSL certificate checks.
+		Do this only if you know what you are doing here!!!
 
 	.NOTES
 		Be carefull:
@@ -120,7 +122,9 @@ function global:Set-NotIgnoreSslTrust {
 	.EXAMPLE
 		PS C:\> Set-NotIgnoreSslTrust
 
-		# Enables the SSL certificate checks
+		Description
+		-----------
+		Enables the SSL certificate checks
 
 	.NOTES
 		Do yourself a favor and use this function right after a call without SSL Trust check!!!
@@ -148,8 +152,8 @@ function global:Set-NotIgnoreSslTrust {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNwHxZW12nD7mawJmiOJTz5bL
-# WkagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8fUhvjieariYA/80i6L4xHkc
+# vDugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +296,25 @@ function global:Set-NotIgnoreSslTrust {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS2vZNR2Z32e0YYxFiTn4Ea6GIPezANBgkqhkiG9w0B
-# AQEFAASCAQBLxFo9QHgA+Um19QD6YLaDUMfvLfzgslaFruwKNANqECgNitYUXTdA
-# P06SnwfYOGDbMVbRgNH6PMFSMoL3ZHrK9uJbn/hbPZS5GUABN3R7myMRPXsf0o09
-# 1Xlai85rVO8AoJyn6pfzyKEELckMuiYuwhKVB79MV+V7+itY3kgThzR+Hgl03zXU
-# JyoTwMZ1pCx4WqcULLe0AtzqMKxsabuVlkm8l+19rHtmWHS53zQGa554lLdhZ+OP
-# LLROWgI6bjLThMO5V1NDZZzVrrwCyoKWXLBlJp5NBEMBqZmRznlZVElUakEYvn1t
-# cbO+/gBMMnjGJ1KCZgUbdwiHmrwNdL0qoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQNVpV4P4rPYKZkCFFcESQja0mkDTANBgkqhkiG9w0B
+# AQEFAASCAQBTpb9cHYPRXDBAACxjdojb1+srlQS/z75ME7Nmtswfm39r7lSQLTJL
+# UyVp4+Iw2oGaqRG0UV5WFGWK6h4/fpagaBe54LROIZleQBk+tSlYRxS+iQhzK6BR
+# JeCpPAABtCi7kGbSquFtXl7CX5Hf2jdeiMaiO6zlzLYmiI1UeQVIFO6dUgVGrms2
+# IW/ilOjEf6Dn8j/1vYXymDU/NCcKTxvzqobvgF3AqJh7ziCVfUQ2dKzG5NUdprhm
+# mAe48NpuigFETnz/XiazRlPk23wqsQP++ZRAK5reWHf3CfeCkhqk4I2KAdVQADMN
+# lgpMEFfUaJWn8ZIhxPbZOEQm0q1FWjmFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyOFowIwYJKoZIhvcN
-# AQkEMRYEFH5Iw9tcryKOnDb7bY64nQutN2RaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxOFowIwYJKoZIhvcN
+# AQkEMRYEFBDTzCMQiEKMy8iwoSwrt/03PvsOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQApVDk9TyxKQZqLpBRnhhw/QUeZvE6mSwV/dPYBO6qLLuOD
-# PrFmNsODK6jctazqHFnt3qI6snOQBMnjVQQIycisDKPZHqgQ8yvKCOwYs+bJo26a
-# skdS5JVffSas2Y6rVxevsWY2jJCwBzz768I5pb8aI4fDJcCFGDqedng6sdqgC45x
-# pb2Ntv4fZwEvD6UYQ0GUOu53AYEY7i6xGRhr+sAdmyhcdF3bhmUJkkUiVEsSYevH
-# xik4l29ixO6ZFXK9LeDcuuYK/Ni6t1P9POpNh6nE8r6jJ7T1UzQLRZS8sZgiNEGt
-# cm895RUuUBZ//hbrs3uhsMeX5uHVNdrkd/GWrfZ1
+# hkiG9w0BAQEFAASCAQCdTRZLNzGV1MOFQHj3mFZJHpC0VnJ8bb7OQveHuw2f2W3w
+# l8j7Qi/HiRhzdQn4K3uD5k4jIayZuoqx9smxcY6oIs6VA460QLBLS2FsbxoSJWzA
+# LgKQMye9/9ED737yyLflFnM7/cY3lx/RekQ0JTg4wma2ASqPBmxFVOqdCk5yyqRj
+# mM6mQdEZ3hq4IzPsPKQQIRRH47zGuN2w6zoIdqZs954Xlwvenr/kO0YFb4TaNwon
+# VmnkiLCj85twc7arUXZDY7inv+gEtVnUhKs+vEtIKcAYykpM+DRdOCxqHgCoirU+
+# B/s0SHN9tE8YLz30BkxGHzShcQHgr1sF0pMdi5pW
 # SIG # End signature block

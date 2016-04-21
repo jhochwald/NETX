@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,17 +66,23 @@ function global:Invoke-PowerHead {
 	.EXAMPLE
 		PS C:\> head 'C:\scripts\info.txt'
 
-		# Display first 10 lines of a file 'C:\scripts\info.txt'
+		Description
+		-----------
+		Display first 10 lines of a file 'C:\scripts\info.txt'
 
 	.EXAMPLE
 		PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt'
 
-		# Display first 10 lines of a file 'C:\scripts\info.txt'
+		Description
+		-----------
+		Display first 10 lines of a file 'C:\scripts\info.txt'
 
 	.EXAMPLE
 		PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt' -count '2'
 
-		# Display first 2 lines of a file 'C:\scripts\info.txt'
+		Description
+		-----------
+		Display first 2 lines of a file 'C:\scripts\info.txt'
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -121,8 +127,8 @@ function global:Invoke-PowerHead {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaSr0Pn0pIwubMkjbaGEFRSeX
-# ORCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUR1lzRfXC1MiWSbmGGl0hB2vA
+# RzWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +271,25 @@ function global:Invoke-PowerHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTSissmBC7HEXPhs0qYhvRnPNY6azANBgkqhkiG9w0B
-# AQEFAASCAQCXebBVWUOxlIM6wmbd2GJJvheyw+/0kgnIheA3NR74Ca3yHkbJmSF+
-# 0GXfM5Pk8rbvNSKTPy/HhXhtVMf4jovEI92fJuLiKQ7vD2zr5ZSpyQsQhw2iDW0U
-# FMw/wFgzbj5pbS0ZKKzL4PnPT6yWrae6cDjJcGFZDpnDuRMazepEDVTCI3Z9WDYs
-# mpMN7n5SoqITjmyG4+lpvrR+e4YAfKdtIVD+O1EWbG0KiDQo4saiEI5LXaC+xeGw
-# bmoGMQOIjoTacsmEUyc9VGXzdPKhDIdNI0O9RDoX7X+R3py5WeFZ7IbarLswbKmr
-# ohXyvnepJ+XpoN2waV2IxP/oAJh19CT+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQGj9GUEUd0nlwgUEQENwgDTpBTNTANBgkqhkiG9w0B
+# AQEFAASCAQBP9YSVJeu9ymAOdMdBbVh50k6jvL2kTMjfeLFHYM8Dg8Uq9Eze5EDS
+# GoavH8mrcZky0VLUon6cbcJvncDSVKdspeSSsyJ6D4l0Z4NfCYyMoU+xvGX+p2Sn
+# 0+qfZQJVDZ6fgXkyzoMM9S7nsMvw/JEtzQioRQqI7fuYDrKJL/upIeifMCZeuBQS
+# MfftsxJw8DncMatqqdTy28ryFVt5qbuXSQT6k6XMpo6BrTx9dSUnIhT8qaCZHowK
+# udUugT+skts2DqLA5im6M26aDsadvG1SGmPlYDamQENTiStOrNbwv0ZrNQKjUqiH
+# gHNImFOko9VIbabAo6fX6K7bqyvUPaR4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEyNVowIwYJKoZIhvcN
-# AQkEMRYEFOSEf6Xt1FZu61Gv0JqFZlfBqJNvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUxN1owIwYJKoZIhvcN
+# AQkEMRYEFN/P/W9k69XRmOqDYgNlNkTW/5X9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB+qEFy6cZUsm4u1lRg8lnXFP/g/lspWBgth/sbcVQQvRXH
-# DfDFehccU/FBVfHHGJv5XWZI7pcVMj0C3i9BFSiHPCWIUIlCr5EDPf+WjwJUUJdG
-# MNpsAwFDg5w7wCqhl7pfLICde9/lomOTxnJoGjW0A4vTudFQ7u0RgErWUe0HTgug
-# 9ZKz9xxOYx9vVR1rTDg1AxsSfLQrDek+23isRduo+UdpCC3JciDMAhPI0fvSeYWs
-# BAIRmVXt4nJLrCmIksfX5VuNUnLKRoe8Q8N5yX/gSTCszI0auMCCl6/AJ8JRm6us
-# BotUEZpYnoxw92eq0gPjLnWY6xMGCZrNsmws2KLN
+# hkiG9w0BAQEFAASCAQAxIFWG74F/aytzJ111fhPjAoFqaPqdlmcRztR2EaYDfKPC
+# 4QaF09PK3b+lVaOfKWPE1AV23WlHtSL6g4nHgpCIrME92ksaLjv4D3K7RlDzZ/OO
+# yunc8WQuA5Cl1nk6oSzuzcn2LaXppQ2gbXzF1nZbuA7FvGgeNnNcuq6pKaJsba6W
+# ehjv0wwIy4pA7l2t7D79vj7hNLbSKzWkgNGNp4upM2Htz4uz3XIThEMRM0G55VID
+# QIrTtk98iY5ztHJLf/09zMQB9gzAfNBP9Hyqqump/KCSVfDYuawEhnBC6j93kljq
+# FssGoJmGnUamwJ8OjGsFRzuno3AAMFSzQ0D6PiG1
 # SIG # End signature block

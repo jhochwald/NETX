@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -57,7 +57,9 @@ function global:Edit-HostsFile {
 	.EXAMPLE
 		PS C:\> Edit-HostsFile
 
-		# Opens the Editor configured within the VisualEditor variable to edit the Windows Host file
+		Description
+		-----------
+		Opens the Editor configured within the VisualEditor variable to edit the Windows Host file
 
 	.NOTES
 		Additional information about the function.
@@ -91,8 +93,8 @@ function global:Edit-HostsFile {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBlmUMkSGSQJ5AvuSDI9x4Eos
-# gJmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzpmxvGU3opQZGzeiTEiEsheq
+# e0WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -235,25 +237,25 @@ function global:Edit-HostsFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTFiKlCuYGTY1m1Ptlwmyk8W0Z3JzANBgkqhkiG9w0B
-# AQEFAASCAQBC9FzmTGHlLaeeY3HzgMuCVWiV+2Kf8g/UYYx+waSJlHQdPXmOppSE
-# LRekGA8tDHXGY4FinxZFGVS5C3UQQ8nASqREaEG/l6sBYgpwLF3yJRe3AHnM6aj2
-# dpU23tcDG+EmaP5zrfM5X4A/4VK1ddQ82LGAthl8Ji8zCv/CE10cBdLoSgWkAehl
-# JWNCSpzTzhJFDdQ6VaDUBO8TTSm9V+2HQfHshafVTP9enZBumhk2qGWZEafDkOko
-# lLLWkja4SptA0b8kckvN6xA5XrpfRXAVjcUnTw37MNPbtrvYy9s7+oGr87zFC+1u
-# NT1i8s+kQPTy4lZaO46VVNNPzP+tgXr9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRKpYISS6iMft6KkZMV4JFy/ySgVDANBgkqhkiG9w0B
+# AQEFAASCAQBBiqaNQ4osvH+bQiYgP+vK1tB0ftZwc/tFzX/oUdUJ12mHsIOgQcC/
+# TSf83nXv7UKYa5IL0QxCB5VUp7Vr6N9/EWkP1PG0zk/WrhKe5hGLOtqPsLW0zJCT
+# WH4z2qfsFCJI45wqaxNvVtcEQed2sgAVlySHA+znkM7eFnzFFtxo8VCNFo+Hvp4W
+# l2efH0k+FRKLmCq6mcSyfarDAuVra4NoKoMZm15Qn71Df17YveaM26uOziUbF74U
+# w2GMKgSNxuSjBc4W5cLSz00vv+4DC/MCsqY3pQYk1SG90y7h/sv+vZQNAwLB6bQf
+# 4OWLnKPKZmb5w32uCUNNtYM5jjY8FM8WoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjA1M1owIwYJKoZIhvcN
-# AQkEMRYEFMhueupUmpLMN6IK3NiKzCSpJLu8MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwMlowIwYJKoZIhvcN
+# AQkEMRYEFF2nguAoFufT37u5N1fu+5wuJDaLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCBDwzaoz8Tz8ldBf2usx6stwab/Wc9gtXtGT7Ks6wwX18V
-# +YLN77U1VSkFp1fT5z1rbGc+l0KZG6+ah/CsrtV/7g28pfpXDnd/IKM+xhh8fjds
-# 5PGmgNo3hTY6AbwENZPhwyjj9uJn5+up5s70hs1VhMk/qMiSk9iIO9OyHASXw+p4
-# pNUNOOms2XGkvHosnfvZqilLLuuSGIxN2VCA+OMgvJJthdzQnSEy+nYrKb5azGpY
-# H8cI13fKag0ANC4Oxm2g5zS8/zcCyEfpn3xQSzMVN38UI1z8dEjunQsNbg1DIvq4
-# q04U+TJDqq5xfZaLlXGauqnYDqh2fmky9Iy9cT13
+# hkiG9w0BAQEFAASCAQCCBGZWQ0xiGlKW06jPn6svYkmiraSZg5iKHE56jcn9OGF0
+# 7/L/kb4tILqowCB0AOAlvYrNgknbibokr8lmf5R9KUszzPnz7nGSpUO0peWvtCIb
+# GDTnW2YKURSwOMJQp6UhCuS97ES3T6QgDbNPPdMvaGHrx3IM1k1q0IKx3eiZChQ3
+# TSS4+blPhqXo6iCsmYmIcAdlPgLWbRlfjiLHP/e5Mkgp7InF9OsRZnmtqHsoFlzS
+# ornw7Eg7c0s6X0gaPmjO04AYRfgJVJgK06vlWTUkLEu+AK6BHU5DoVl4Fc7tfRzJ
+# Wze7U7ZLyCt8YMa3MADzeaUiP0KOgEHpmZwE2Cpb
 # SIG # End signature block

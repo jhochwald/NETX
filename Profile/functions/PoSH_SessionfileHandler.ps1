@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -64,13 +64,17 @@ function global:Get-sessionfile {
 		PS C:\> Get-sessionfile $O365Session
 		C:\Users\adm.jhochwald\AppData\Local\Temp\[PSSession]Session2
 
-		# Returns the Session File for a given Session
+		Description
+		-----------
+		Returns the Session File for a given Session
 
 	.EXAMPLE
 		PS C:\> Get-sessionfile
 		C:\Users\adm.jhochwald\AppData\Local\Temp\
 
-		# Returns the Session File of the running session, cloud be none!
+		Description
+		-----------
+		Returns the Session File of the running session, cloud be none!
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -121,12 +125,16 @@ function global:export-session {
 	.EXAMPLE
 		PS C:\> export-session
 
-		# Export the history and the export-session to a default File like 'session-2016040512.ps1session', dynamically generated based on Time/date
+		Description
+		-----------
+		Export the history and the export-session to a default File like 'session-2016040512.ps1session', dynamically generated based on Time/date
 
 	.EXAMPLE
 		PS C:\> export-session -sessionName 'C:\scripts\mySession'
 
-		# Export the history and the export-session to the File 'C:\scripts\mySession.ps1session'
+		Description
+		-----------
+		Export the history and the export-session to the File 'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -190,7 +198,9 @@ function global:import-session {
 	.EXAMPLE
 		PS C:\> import-session -sessionName 'C:\scripts\mySession'
 
-		# Import the history and the export-session from the File 'C:\scripts\mySession.ps1session'
+		Description
+		-----------
+		Import the history and the export-session from the File 'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -232,8 +242,8 @@ function global:import-session {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3jPGBl9BzUgtZs0TMzCBorfG
-# 6OegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbFIAAMnsKVKLpoD3KC1NFKOv
+# gkegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -376,25 +386,25 @@ function global:import-session {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqSFgxwYJNERsg8dFU4/c11jXWtDANBgkqhkiG9w0B
-# AQEFAASCAQCKPXsCaAiOg6iE0R+6685ndR8E2zgCl2TlpvLw/+aSFFK91mREOsfa
-# IvMQ5lF+HuNjqGmx7XXO88kOibHcoczp0RyrSCmLKpFFxgDQoImC3GIszNxdObow
-# tF6lEtm6VeXH2zDyCzdrCjUO3G1lyU8ghfvfZ+Rzj5urGKIZAxd1xy84P4J2kbso
-# bFu/nXhkuwq4ZMStCFWHkhy0Iu/6BZh5SzABnUeKd5tLpan3sUbuiSfYYnfchpY5
-# hVrqgyxBVwU8CBfGoMfhS5uxuZmXy4kCtLJnKoA9t4RyLxISsbBx/RjoIFV4JFub
-# zOYi3V07FknH0WEAI8pLrSVKMNNNn9StoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSDz/iON6XhN1XDG2h6tMNlIjqRfzANBgkqhkiG9w0B
+# AQEFAASCAQA8Kw5/3HjOHHDVz+zVnocgzjfwmiAkcw39bwT/GkcNiUjK4MpIvai6
+# MirpmY+61tbbjKRd1ylPZMZ0btBq+BPbh6m2hg5NuWKz9o2LLqi0KQ6gLGBZ1QxZ
+# 494Ttsb+0FG297XNI+cPd7UQwlsjNq0ExdBpr+lp99rBIeA5Wubm/0gLW2q99TJ+
+# hInQIGVJdwLykjTAUpCsVHufHkR6eU5TxIFApW1naprOxF/zhoErU1tgj1ZAEK4R
+# y4PHOEBrX21T17PeVCd3cAbftX92CXrgUsA/PfpEwGlyNQV/uaQ9iTLsm6L5gegP
+# TmRbslkXIHzIKCe+VnzznZCe4k8/tzy0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjE1NFowIwYJKoZIhvcN
-# AQkEMRYEFK3pTDn1E6NuU3+VdwDqx7VHIfpNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUyNlowIwYJKoZIhvcN
+# AQkEMRYEFK6ART/K22+7hRknkkcJzCEWeFLSMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB3HfbMTA3YL7PUJ35fcKgZTQYesLl2pvdribvZpVGi+93P
-# dwt8fSmRPCIfXrseD0gw6fGfhemqhO/wMwmbHmG1ZVZxchOX/BPW35js9dK9XsE0
-# R1TOczXQ6L8T+ECYYqgEdmh/+Urtv9IYJ4VxfpfHmXhSLUP8QldQymSMOIYb3Xt5
-# V5cxnNZWuqp/NXJTW2EXHhNMRjs4jFR0vMiwUgyDy4eejqo8sLsAX/4PRY2R3wEi
-# zTZLA4JlBhBTsuy6oTkE1nfe6ief057iVHix1R097LKGeOJKRrJu5vNpedaIVGS6
-# atdsV01oDAAUWcDSkQLVOU0WO3TXDEyGBrJDXtIt
+# hkiG9w0BAQEFAASCAQAq1E/kSuZRz+JIGktktOHum62VuObnjm68sf0usTUSwMMx
+# VrgqshY/ypOaQpiOEc0PoTPf4G/d9mGYE1XdXyXKWXkurHe/HFdr8B5RtOpZchTk
+# GO9PWqh6/QEcv/l3HjJCJGgzuXmWzyVWGJxzoEOjr4EGvmgltYdcTbCZ5tRtopoY
+# 0Pvc6wl3Fp3oTbmHqg+0hXzIRgLhlVEy35cl0TGUF6JKVLZf+OMOEvOP1TSYAmMt
+# RtlMNXC1dWilCbAArsDPFk+kxdIE6Hsqhi+Ka95UKrfhe1vahcx97Ub+3Ha+LgHJ
+# P2zoIsjMif/D396/l8YRv/T3dXxsT9tTQeuM4uST
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -60,13 +60,17 @@
 	.EXAMPLE
 		$MyVar | Sort-Object | Get-Unique
 
-		# This will dump the variable '$MyVar', sorts the return and show only unique entries
+		Description
+		-----------
+		This will dump the variable '$MyVar', sorts the return and show only unique entries
 
 	.EXAMPLE
 		$MyVar | sort | uniq
 
-		# This will dump the variable '$MyVar', sorts the return and show only unique entries
-		# Instead of 'Sort-Object' we use the alias for Uni* command 'sort' and instead of 'Get-Unique' we use the alias 'uniq'
+		Description
+		-----------
+		This will dump the variable '$MyVar', sorts the return and show only unique entries
+		Instead of 'Sort-Object' we use the alias for Uni* command 'sort' and instead of 'Get-Unique' we use the alias 'uniq'
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -82,8 +86,8 @@
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvIoK598WlaYoBdeQ5/Bh2N5o
-# RxqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2QhIU4TKx5W9ibzKueF3ic5n
+# e+mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -226,25 +230,25 @@
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTZADckFQVuMUdiNBZ2T7GwsO6pYzANBgkqhkiG9w0B
-# AQEFAASCAQBs2lj/QRuLxzxI8IbEut4Okb5uCxzWfZWhoHh9ClmBC/iqUbrY5bro
-# 6drYBDyZgWN3eqfDZr6Z3hn9+r7Z+cKhLVGWGYhQbdcDC8lxGuIcELrfVNN4vLRK
-# SULohHpMiMEpxMOknHJOoFlTK2nWRPPzgTg/Jc8NrCn+PD5J7rVUyofCUfdXt/sB
-# Gb9W9QJ1vKln4wc0H3Js3EMxod9RmYHYO9Yx80z4OYqjCegEh80Wh1LKrbbiWwiL
-# xzFMlUbiHNdhaPsTRFbzkKb82vC6nbLpui9HfYMTAET3YUdWPM5dTe9vC10tCQ28
-# 1D+d/3hzC7y/DUywsls2K4pwu4MjXAPsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQPszLJ5rm7WWMfDLJIi/eR++4yMjANBgkqhkiG9w0B
+# AQEFAASCAQBgNBHFaaEYyj6zgs+IttAbDbHOQ7VqTTsRMP+rr6vRFajv7NSPHd+K
+# s4g0EYQDfkMcmEFh+POiyZJvzVTlfQUWciq99LB0FTvk0WfAB9lwCD3cBdsBr1ki
+# MK1tS8lWozjh+hx65Oo5UN7ZreG4sJHYREWK19rx9NCeMWhnMO6jdu9SggzJq6Pp
+# BzlkK3RZ36g77PjuSPcyr1pHAIfXuEYrEBA4IGUO3doVS2fshb3sVcI3HPyCTmTy
+# yrwh/ZFiE5vlxvfA8yKNAORm2/NVM6AIcgJ998YP01SB8VMc9afDBsAI0qFAHMrd
+# I8H831iwZKkMH8M5+YYD+VpM3hWi9l2NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjIzM1owIwYJKoZIhvcN
-# AQkEMRYEFJSsRGV6O8e5k9eYtGY9HJQGUbV4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUzNlowIwYJKoZIhvcN
+# AQkEMRYEFNV+JTmcXxSLMHK4t0IRDwRTAKQUMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA3feLiXZqWr1/TVw00zZU+WlAXUWy5ynFPHPc7j3qBAFZe
-# PzUvnG4GQU7OXYMV4ckCkKmT8sfjHY+6RRrLXjSzzGOZgpIm1mIo33IUOfGV3EBU
-# 1ssqdlDibdDmFrxmkJiKy4BQDBTxltgrXpOrQoYkX9SSHTrOZItlpheU9pR9WJoS
-# fREItcnVITonwHdH587AdlVG5LfQJj0Ogo7LlqDzamSI4IhRtA49cYtH338J2Cem
-# drE0tIcCbkciB2JyMS+2Q+K+H4Y+c71twXrfTdH4mRHtZaLvQiX4+GQbxiJYpvEb
-# sOQDNZEDtAvOROUvQHqrDmDRPRsaoA8Ujot777np
+# hkiG9w0BAQEFAASCAQAzzTHImTBNJJtyC9DAV99ZJsnnAmalX7RiOE0v5z5NFGqJ
+# fhpZXR2PWOmRNpvkX0aar4po9F8lEAtjyNGHmohSWqVnGWMckPhLrii3F1ncytFf
+# uQTURIdrL6iEmXpUdWcj0Hl7ftztMj0s968JwJp0TrXFquNqQkZ6t1w8hAGWCXn/
+# NU0C42toHJr/sO+ngBzuTC9Z+Iyu+iT0une3n9KSbxFAFqiFqQMA+VEk9RNR5/lw
+# uITQvIFxxUK4Iaxff0TTn0Qo2MELJv0Auo71uSe6SCghIZh7paq9XAU5zyTNTFKp
+# PvOn1FRiDuIDBEgDkV0/pOrfsds3lYhhL6SKNQ1q
 # SIG # End signature block

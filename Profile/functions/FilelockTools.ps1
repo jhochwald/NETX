@@ -1,4 +1,4 @@
-﻿#region Info
+#region Info
 
 <#
 	#################################################
@@ -46,104 +46,146 @@
 
 #endregion License
 
-function global:Approve-MailAddress {
+function Global:Test-Filelock {
 <#
 	.SYNOPSIS
-		REGEX check to see if a given Email address is valid
+		Test if a file is locked
 
 	.DESCRIPTION
-		Checks a given Mail Address against a REGEX Filter to see if it is RfC822 complaint
-		Not directly related is the REGEX check. Most mailer will not be able to handle it if there
-		are non standard chars within the Mail Address...
+		Test if a file is locked
 
-	.PARAMETER Email
-		e.g. "joerg.hochwald@outlook.com"
-		Email address to check
-
-	.EXAMPLE
-		PS C:\> Approve-MailAddress -Email:"No.Reply@bewoelkt.net"
-		True
-
-		Description
-		-----------
-		Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX Filter to see if it is RfC822 complaint
-
-	.EXAMPLE
-		PS C:\> Approve-MailAddress -Email:"Jörg.hochwald@gmail.com"
-		False
-
-		Description
-		-----------
-		Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
-
-	.EXAMPLE
-		PS C:\> Approve-MailAddress -Email:"Joerg hochwald@gmail.com"
-		False
-
-		Description
-		-----------
-		Checks a given Mail Address (Joerg hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
-
-	.EXAMPLE
-		PS C:\> Approve-MailAddress -Email:"Joerg.hochwald@gmail"
-		False
-
-		Description
-		-----------
-		Checks a given Mail Address (Joerg.hochwald@gmail) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
+	.PARAMETER Path
+		File to check
 
 	.NOTES
-		Internal Helper function to check Mail addresses via REGEX to see if they are RfC822 complaint before use them.
+		Just a helper function
 
 	.LINK
-		NET-Experts http://www.net-experts.net
-
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
+		Get-FileLock
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
-	[OutputType([bool])]
+	[OutputType([System.Boolean])]
 	param
 	(
 		[Parameter(Mandatory = $true,
-				   HelpMessage = 'Enter the Mail Address that you would like to check (Mandatory)')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('Mail')]
-		[System.String]$Email
+				   ValueFromPipeline = $true,
+				   Position = 0,
+				   HelpMessage = 'File to check')]
+		[Alias('File')]
+		[System.IO.FileInfo]$Path
 	)
 
-	BEGIN {
-		# Old REGEX check
-		Set-Variable -Name "EmailRegexOld" -Value $("^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$" -as ([regex] -as [type]))
-
-		# New REGEX check (Upper and Lowercase FIX)
-		Set-Variable -Name "EmailRegex" -Value $('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$' -as ([regex] -as [type]))
-	}
-
 	PROCESS {
-		# Check that the given Address is valid.
-		if (($Email -match $EmailRegexOld) -and ($Email -match $EmailRegex)) {
-			# Email seems to be valid
-			Return $true
-		} else {
-			# Wow, that looks bad!
-			Return $false
+		try {
+			# initialize variables
+			$script:filelocked = $false
+
+			# attempt to open file and detect file lock
+			$script:fileInfo = (New-Object System.IO.FileInfo $Path)
+			$script:fileStream = ($fileInfo.Open([System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None))
+
+			# close stream if not lock
+			if ($fileStream) {
+				$fileStream.Close()
+			}
+		} catch {
+			# catch fileStream had failed
+			$filelocked = $true
+
+		} finally {
+			# return result
+			[PSCustomObject]@{
+				path = $Path
+				filelocked = $filelocked
+			}
 		}
 	}
 }
 
-# Set a compatibility Alias
-(Set-Alias ValidateEmailAddress Approve-MailAddress -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias ValidateEmailAddress Approve-MailAddress -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias Validate-Email Approve-MailAddress -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+function Global:Get-FileLock {
+<#
+	.SYNOPSIS
+		Test if a File is locked
+
+	.DESCRIPTION
+		Test if a File is locked
+
+	.PARAMETER Path
+		File to check
+
+	.NOTES
+		Companion function Test-Filelock is needed!
+
+	.LINK
+		Test-Filelock
+#>
+
+	[CmdletBinding(ConfirmImpact = 'None',
+				   SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				   ValueFromPipeline = $true,
+				   Position = 0,
+				   HelpMessage = 'File to check')]
+		[ValidateNotNullOrEmpty()]
+		[string]$Path
+	)
+
+	BEGIN {
+		# Check if the helper function exists...
+		if (-not (Get-Command Test-Filelock -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)) {
+			#
+			# Did not see this one coming!
+			Write-Error -Message "Sorry, something is wrong! please check that the command Test-Filelock is available!" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+	}
+
+	PROCESS {
+		try {
+			if (Test-Path $Path) {
+				if ((Get-Item -path $path) -is [System.IO.FileInfo]) {
+					return Test-Filelock -Path $Path
+				} elseif ((Get-Item $Path) -is [System.IO.DirectoryInfo]) {
+					Write-Verbose "[$Path] detect as $((Get-Item -path $Path).GetType().FullName). Skip check."
+				}
+			} else {
+				Write-Error "[$Path] could not be found."
+			}
+		} catch [System.Exception] {
+			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		} catch {
+			# Did not see this one coming!
+			Write-Error -Message "Could not check $Path" -ErrorAction:Stop
+
+			# Still here? Make sure we are done!
+			break
+
+			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			exit 1
+		}
+	}
+}
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURVdT2j2ybqwxa2ott8Jl/XRu
-# feigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwKF2ILGEWzXQ35uANU65SZZ3
+# MVWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -286,25 +328,25 @@ function global:Approve-MailAddress {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR2Kxf758ektrGntqudqrNj+2cTfjANBgkqhkiG9w0B
-# AQEFAASCAQBAdGyACKQ19Qp4jC4ggPlrUnEvxyRowkNeLEdzZp//nAFDy8I/G37E
-# HOarIrKoBE/M4935Od0F+r0miqryWkOgJ6t+nvaawCgsRGz2zChQG6UlWDZ6Votb
-# eTgBUfdWRsB0irRKu2CeoiW8t5B6vaX5vu4NtOnzRjIGRwdqrQRaujjksnAx1VVO
-# hpkzaBzKvVtQQ/FKaRNvLtuTEC80u062t1djSM0k9Lw/pAZ7m6Vu/yKEXuCmjTQ/
-# THQPm3hxJzTOPxnjUBEadnfdtXQO3NAHy7nL5xs/5EHPl7gM57k08fGZtsNrS3R8
-# 0Akl55GKR7c04YTKZYpDegV3rOWbFSYHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBROzo1gWikSWFDZ7XcB4KDFJVmDwjANBgkqhkiG9w0B
+# AQEFAASCAQCZMrdxds4g25CVJXHHsceQr7g6cs3D8YckXJSgXmqAUmWy2GbOid51
+# A89F362DHTQBuw54po+IorX981gcp7iiyr5uc29MJjpvNOHnVmSW8B09eRHX7uLl
+# fZQ1iZ9r2jZ2cXNl0yLTwgrUc5aMR2vwbQECf1lNWF9e3B29nTmP13Hnc3zKU6/o
+# gTuiFw6CvRGzCDfCIlQgZSBemfI25kPCQ3073jilLhZv871ii+OgFK/LVmli/dLr
+# cMIjAQYfGdWJbL3v8+tBjqHHQrD1YQrIcFX4p1vYccHgIOK+jFeXtpu1LkLa3+F2
+# Wl/hcfgeUc/d2JkBWdOgLY6T7GP7EPKdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFFLZdBnGVkrNHPBPt6VgpX/sUlx4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwM1owIwYJKoZIhvcN
+# AQkEMRYEFJva7oB7D8S7mgpyXN3sNHLv234BMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAeoRCZuOTCjr4gZTnQz80WXQDUc+iKJ2c8etU1esg9i2BT
-# XIdmbQLaQy+AazrKalE9BlanTUEmr+NhYx7oAwrSfMvYJkhe3ar161FoY+AUOXGJ
-# 2NPO8vJRUTQCd6Kf0HT5M9gIWrC6TqsY3T8zVnyzWe93PzI4nWoJgJOA6yJWz4Iz
-# FoGbiXoLQA7Q0qo9tRRuhqDI4MmheEilfRRT9YdZZfjmf7YPLYUV2Uxm2iiq0j49
-# T4bqOXrlI+g3628wbdVcx07DohexnRTpkjHtnDBVUKp4/ACYDwUmtQJZsBggKEC7
-# vMxgWSdFpZXXzqC3mpyUvOGjVB6hZw6oXCfCVVDb
+# hkiG9w0BAQEFAASCAQCUlRa/r6ohtSFBTxy1XYUSZEn60b59Wd4qycBKsqDJjFXG
+# SdAc/pUWoYz6Bf6A8mIb96xPmQokKqulbh9LhKzPQQp5v+rvh9I5mkrew/0Kvnmg
+# XqP+1EK277SPlcOhqRX/6Huc4dv6x7C9pmLbLJmDnWda8N5HU6glwVHamvnrtWFY
+# h/RVPx2bzbRa8dDMKLp3cgC4XBC4yFxtmybardS0q9B8kg+h6YY8rfEiJR7y1zqL
+# Oeuix0IIVOhiMBRsQGzGfcMGGn+nShhS1d+mFAz2KzVDNdBvJ5e1M1GZPR2iznTm
+# 7nNrZjR7NsTYfIhcXbDoE95zl/0i+mD/SSN6My77
 # SIG # End signature block

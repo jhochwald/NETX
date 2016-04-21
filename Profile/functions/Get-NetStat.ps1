@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,7 +66,9 @@ function Global:Get-NetStat {
 		ForeignAddressPort : 10943
 		Protocole          : TCP
 
-		# This function will get the output of netstat -n and parse the output
+		Description
+		-----------
+		This function will get the output of netstat -n and parse the output
 
 	.LINK
 		Idea: http://www.lazywinadmin.com/2014/08/powershell-parse-this-netstatexe.html
@@ -116,8 +118,8 @@ function Global:Get-NetStat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCWleGJI7ra3rak+bvkeFP70y
-# 21ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIpLTOBk4pvVJ8hPJGhre09+7
+# 3pagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +262,25 @@ function Global:Get-NetStat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR/B3In0oyjBxHwDSnoy0IIgb8ASzANBgkqhkiG9w0B
-# AQEFAASCAQCGBLa5kMKckNSeHa0/ReDv+ITXj1DTnVhQyL1yy9puGTgWAVg10Y6r
-# Ez55zFoakZ0Ney9EtGUvorupa3U1zKH8RYPz0jubTWaD0OKwi9VdB5i+vm2KuDLQ
-# 75AFhK56fCrvzuWO8LOUh04+b9IOXkbaWtpcHXI3BpHUD8FhFq5XqPMCKJgkwsi0
-# Y0Zz/B8TXP8/RMoA8m+9p5RWkvnxI+iwaSBOsCS4gcJ/N57Yc0jgh/L4Pn44zXz1
-# olnMuHGfYUH8pslUeFzwIwaJw+/BfYRutni8heG2vKecDOK7unRSsmwToOM8ESe9
-# xoJN/tIO0GcV4pFFwqN0HSTRt9Rt3+21oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHkLtevu4bNQvZSZYriKFJHj4DATANBgkqhkiG9w0B
+# AQEFAASCAQANNIUKJxoyNsid4L94aKvwV66Jtm/KpH5B5bov7aMr3iPg9q0lQcxR
+# l0ClEa1z9xmL78iW4RVO1zyovkv3BmUFOPIsocir3Igd1mJBxLRwcP2/7YEFFFQv
+# Bw0o4MANg0TA6q4/sxY9p/06HmyRfFknnmba6a4SvamFeBb2vrtF7BOn7phKjTr/
+# AyPvZ5EgTMXOgiMWbgO04KBYqHLSGLtjdVr+VZMU/jG8eNAJLnmbmcIr3cysvGwX
+# GdMjfAvh+IzOr5A63jO0pQnX2A6qIoEQms5+OWUhxHaeiIq4sr4VQewwzF5d4FZM
+# ErBi43s8ILTppeaw6IJnWFPDMjy14MTCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwN1owIwYJKoZIhvcN
-# AQkEMRYEFL6OBmMJpQ88ENfL9OUtQpbA601pMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOVowIwYJKoZIhvcN
+# AQkEMRYEFLTmJq5pbTIzlCFadC8RvCZhuq1RMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCiyUHTHJnf90psmVLXaorCfLXgv6yDJseHYf+kmV+gNs5h
-# TxF3TsxxQtVtIUbEFpgmF9opOYiwW9GohmbDCX8hc+GwlRccCot/BYBn4U9Q/ob1
-# mi9WGyxEWzVNjj+a4lz3z3zBfxh89F5znhi+eY2lDT0xf8DVitPB+LhHc6YNfEun
-# 1Rv0ZEfB2oCpieWEYB09QwpKPqexwM2/TqMaV+qNs0s7bRReP9bMc6QSvDihTvtC
-# OVOPhoigyLb1Vv7x1Dxbgf7J9H6INxzdExiFJSqg9Jbvclbo3ocutJyDV+gmYLSt
-# xtZPH2PELFYIVpwC2Vsy2gKNRA//UZgtCkp0SOne
+# hkiG9w0BAQEFAASCAQCVJhzfbxmeyvwZmdVjvf9xJE/1apE7tLIMBqCl+ULIY+9w
+# t7lQzWPahT++tRh7UIklqdePRwRKu1+aX08haafN2VWP2YZRDF0zi6nlDKqltA5t
+# Vt9boCApaZrNik9oYeCbfu4+FG7WaEinX3DVaCMEn9XVHz+PFicV/73xa8/9WRlo
+# 68n0lha8gIAsIg+NM7OF3aOTKCBoEVlPKCWuBZKBwcwG207BdNKVijY8AvANo2gL
+# Sxru87AmE37MS+l0RcS30QXkY90Mtvr5CbTfJwlitZNsrnxKnPrjWwD6A1Kb/r+h
+# D2Al4GWA+guzhogQ3c+z9+5452eUpJTQpfBirEFd
 # SIG # End signature block

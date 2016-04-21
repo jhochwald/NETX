@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-05
+	# last modified   : 2016-04-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -74,7 +74,9 @@ function Global:Get-NetFramework {
 		Full                                          4.5.51641
 		Client                                        4.0.0.0
 
-		# This function will retrieve the list of Framework Installed on the computer.
+		Description
+		-----------
+		This function will retrieve the list of Framework Installed on the computer.
 
 	.NOTES
 
@@ -127,8 +129,8 @@ function Global:Get-NetFramework {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxOoeu0DS4Z63m/yjzsUgGkt2
-# y2qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXj5GvrHHRdheUM2xttVPQBa2
+# UyegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +273,25 @@ function Global:Get-NetFramework {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSFeELJ4k4ms1aDf6Kdo/HaCkfc+TANBgkqhkiG9w0B
-# AQEFAASCAQAhKagHI5pbfP9qGCr7k15q+zPG8CvqsOD4WKVqxIgyyCZVgG7pNjqQ
-# Z0gJZCcSsdWQYjYp7jdViPUTBjlSQl0Pip2l9U+Y3H4Jd+w+SuE2KhtLPwkWWKBj
-# wjRgI39jrhF1DXl+a/e89bgBiAG/CjOv+c+p9y/X9W9DfoerQXCoOp+33A2q9a5A
-# szLJd8Tl2BfQsOPrwJyvgq7uTONLqbu7OC2g03hgseiozlU6SZHiA1apPHphiBqb
-# 1sE7mmXX70WWO955sRXec+M3/b2n/K3TPMgdF3QLwcM9myQq2Omx0aMUlTjVkzyZ
-# 8Je/dt8e5/f2EDGu5m9eebC+iHuEajJhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ178RHyxNN2Wialv5qhJXGs6dPQzANBgkqhkiG9w0B
+# AQEFAASCAQCOl1MLfseMJ8+ZwvtpG5GBZgydzKg0BvlbgigP36iiUj2Y4cbTYAwh
+# zQQJWXWDvVI30yrn4Ey0dmA7qzliPbr16rXT2pBbLU+6gHlS++OQJMqw6Etvhwn/
+# 4ZzbFLpwnXKHRHgC6pehf6gbCcfGTj0VpCpfdgpRW7aGDgsNuEvz3yUwFQo3KJP+
+# sdQt4OfGBBEbcIS8FanVhlVMi5Pkha8GTShAWFNQw9d0wgAqfGL/GD3t0X9DtCLF
+# ZfXEEEwdbx4LQQ17P2lNDVLC7zFp0jzJeLD7CPcT9RmB8JEv+tJKoPBbhhCMogjq
+# VhBmu8XooQq0YMwiquYCNDemyvuWXscVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQxMDE2MjEwNlowIwYJKoZIhvcN
-# AQkEMRYEFKQ3EUaZXwNyQ9jGvlYtuwnjcMRXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMDE3MjUwOVowIwYJKoZIhvcN
+# AQkEMRYEFColFvIfi4Hp1ZOgiZ0qDkC7aGvMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBcoZDIanpQIR0xj1Zjik7bEfLSOdP9dqUFamNayZiMAg6O
-# QLxS4v+mhu0/5oSl+LDof9+hb7QgDJx0lJACQ+5ZD8jCAnB76fBBXrHF81PHFeUD
-# B4DmZmJawYQ877Ij6zNXDgfLQaM+EsxeC6N/3v+4syLoMhvk0W2O+JdU9NjSH+iZ
-# iKsvGURHE6NadnORl5cXskHk2fYA8w7oczHluHRnMZ3wyVUBljPghrjY1TtWPV3t
-# LTjVXbxeMDb2GB+FojvapDzhpdq3vJfZvQ13zSBrHt1r58crMMBpp8A3cuiI6gSn
-# u/PhbHl0jo5+eYYTtnU70/NeKLU81YcrPF6/RzZ0
+# hkiG9w0BAQEFAASCAQA1kb65r/GBV272bmwRcahKO2FNb+ogotJ9YZPNkbd4i2rJ
+# UXHZau3dAJmMsbLBJzm4deZsu4/G0q2Bf9iQMAcqQLP88yrB3sLEKmlFM9XNWPYj
+# EuBMK3yrQx1sef1wUmogwOXA1ZE73/Ya2+MPdaMqpHaARoZqRQ1qCef2d0P+7aih
+# Fd3HfKmsZ/UKV+h+i2li6kaWfjdnosUgZ2kJOUfbeCygvkBwa8xAdr+sZHmAvPK1
+# 69AXaIFYsqPDyKr0Z/w6ieV+2grJRgJrb8PY/HMI6Mm+lHtmxK97xNbj1apn01DN
+# 1LvcU8WBdyS/hq4WI/r7BH0PBJDKwcIrT79opv28
 # SIG # End signature block
