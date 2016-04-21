@@ -1,10 +1,11 @@
 # NETX
 **NET-Experts Free-ware and Open Source**
 
-Mostly PowerShell related Free-ware and Open Source stuff will be published here.
+Mostly PowerShell related **Freeware** and **Open Source** stuff is published here.
 
-A while ago we decided to publish some of our stuff as Open Source under the terms of the BSD License (Cause it is very flexible for all of us).
-This Repository contains the stuff that we think it's useful for the community.
+A while ago we decided to publish some of our stuff as **Open Source** under the terms of the BSD License (Cause it is very flexible for all of us).
+
+*This Repository contains the stuff that we think it's useful for the community.*
 
 ## Content
 You will find the following here:
@@ -15,36 +16,45 @@ A sample Profile and some neat Tools and Functions
 ### NETX.YouTrack
 NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
+*Still a early development stage*
+
 ### docs
-Documentation in the following format:
+Documentation in the following formats:
+
 - Markdown
 - HTML (HTML5)
 - TXT
 - XML (not for everything)
-This content is generated and updated by our Build Server.
+
+*This content is generated and updated by our Build Server.*
 
 ## Why Free?
-Why should charge for everything? Our focus is to optimize customer businesses by helping them to automate as much as possible.
+Why should charge for everything?
 
-We believe in Open Source! We try to release as many open source as possible.
+Our focus is to optimize customer businesses by helping them to automate as much as possible.
 
 ## Why Open Source
-That is very easy to answer: Cause we think that the community might find some of our stuff useful!
-
-The more people have the code, the more they learn PowerShell!
+We believe in **Open Source**! We try to release as many **Open Source** as possible.
 
 ## Support?
-Yes, there is support! But the support is based on best effort.
+Yes, there is support! But the support is limited and based on best effort.
 
 Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
 
-*There is no entitlement, claim, or right to get a request, problem or even a bug that is reported fixed or solved!*
+*There is no entitlement, claim, or right to get a request, problem or even a bug that is reported will be fixed or solved!*
 
 ## Feedback?
-Feedback is more then welcome! Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
+If you find a problem or Bug, just let us know.
+Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
 
 ## Contributing?
-If you find a problem or Bug, just let me know. Or even better: Pull it, fix it and contribute ;-)
+Contribution is more then welcome and very easy:
+
+1. Fork it!
+2. Create your feature branch: git checkout -b my-new-feature
+3. Commit your changes: git commit -am 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Submit a pull request, be a contributor ;-)
 
 ## No Warranty
 There is no Warranty of any kind! Everything is provided "as is"!
