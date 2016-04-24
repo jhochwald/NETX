@@ -1,7 +1,10 @@
-### Final README Update ;-) (HEAD -> master)
+### Update with the regular Distribution (HEAD -> master)
+>*Mon, 25 Apr 2016 01:12:59 +0200*
+
+### Final README Update ;-) (origin/master, origin/HEAD)
 >*Thu, 21 Apr 2016 17:29:05 +0200*
 
-### Readme updated (origin/master, origin/HEAD)
+### Readme updated
 >*Thu, 21 Apr 2016 17:14:13 +0200*
 
 ### New Signature

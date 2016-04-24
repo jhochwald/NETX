@@ -26,7 +26,7 @@
 		BuildNumber = "1.2.3.0"
 
 		modified by     : Joerg Hochwald
-		last modified   : 2016-04-13
+		last modified   : 2016-04-25
 
 	.LINK
 		NET-Experts http:/www.net-experts.net
@@ -37,11 +37,8 @@
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/YouTrack+REST+API+Reference
 
-	.EXTERNALHELP
-		NETX.Tools.psm1-Help.xml
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
-
-#.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 #region License
 
@@ -124,6 +121,8 @@ function Get-NETXYouTrackVersion {
 	.NOTES
 		For internal Support
 		Version/Build will be updated by the NETX Build Server!
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
@@ -191,6 +190,8 @@ function Initialize-YouTrackConnection {
 		They do the same in some of the examples theypublished and I think this is much better!
 
 		JetBrains wants us to use OAuth 2.0 with the Hub instance, but this was to complicated for me right now. I will do that later cause I do not have the standalone Hub yet :-)
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		LoginInfo https://confluence.jetbrains.com/display/YTD65/Log+in+to+YouTrack
@@ -413,6 +414,8 @@ function New-YouTrackItem {
 		The Call of this function is based on an idea of Dean Grant <https://deangrant.wordpress.com/tag/powershell/>
 		I needed to adopt his Invoke-WebRequest based call cause my favorite Invoke-RestMethod returned 0 bytes all the time.
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.Link
 		Source https://github.com/dean1609/PowerShell/blob/master/Functions/New-YouTrackItem.ps1
 #>
@@ -583,6 +586,8 @@ function Approve-YouTrackItemExists {
 	.NOTES
 		Simple Call that I use within my other calls. So I make sure that the issue exists before I go any further and try to do something with it.
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Check+that+an+Issue+Exists
 #>
@@ -690,6 +695,8 @@ function Get-YouTrackItemList {
 	.NOTES
 		The Call supports a lot of filters, nice, but I filter everything in PowerShell later. So I don't use them here.
 		Take a look at there documentation if you like to use the filters within the call.
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Get+the+List+of+Issues
@@ -836,6 +843,8 @@ function Get-YouTrackItemListInProject {
 		The Call supports a lot of filters, nice, but I filter everything in PowerShell later. So I don't use them here.
 		Take a look at there documentation if you like to use the filters within the call.
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Get+the+List+of+Issues
 #>
@@ -977,6 +986,8 @@ function Get-YouTrackItem {
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
@@ -1125,6 +1136,8 @@ function Get-YouTrackItemHistory {
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
@@ -1266,6 +1279,8 @@ function Get-YouTrackItemChanges {
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
@@ -1407,6 +1422,8 @@ function Remove-YouTrackItem {
 
 	.NOTES
 		Mind the Gap! Delete an Item is dangerous... And it might be something you should avoid doing!
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Delete+an+Issue
@@ -1561,6 +1578,8 @@ function Update-YouTrackItem {
 
 	.NOTES
 		Please note that this POST method allows updating issue summary and/or description, only. To update issue fields, please use method to Apply Command to an Issue.
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Update+an+Issue
@@ -1756,6 +1775,8 @@ function Get-YouTrackItemCount {
 	.NOTES
 		The Call supports more parameters, but I stay with the default. Check out the API if you think you need some more options.
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Get+Number+of+Issues+for+Several+Queries
 #>
@@ -1907,6 +1928,8 @@ function Get-YouTrackItemProjectCount {
 
 	.NOTES
 		The Call supports more parameters, but I stay with the default. Check out the API if you think you need some more options.
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Get+a+Number+of+Issues
@@ -2071,6 +2094,8 @@ function Get-YouTrackItemFiltered {
 	.NOTES
 		Very intelligent filtering is what makes JetBrains YouTrack so powerful! We use them here :-)
 		Just copy what you filtered in the "Enter search request" field of the Web interface and use it here with the YouTrackFilter parameter
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Get+the+List+of+Issues
@@ -2241,6 +2266,8 @@ function Get-YouTrackItemIntellisense {
 		Very intelligent filtering is what makes JetBrains YouTrack so powerful! We use them here :-)
 		Just copy what you filtered in the "Enter search request" field of the Web interface and use it here with the YouTrackFilter parameter
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Intellisense+for+issue+search
 #>
@@ -2380,6 +2407,8 @@ function Set-YouTrackItemCommand {
 		Description
 		-----------
 		Set the Priority of the Item 'ISUP-28' to minor and set the Type to 'Task'.
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
@@ -2572,6 +2601,8 @@ function Get-YouTrackStatus {
 	.NOTES
 		TDB
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		https://confluence.jetbrains.com/display/YTD65/GET+Telemetry
 #>
@@ -2747,6 +2778,8 @@ function New-YouTrackSubsystem {
 	.NOTES
 		If the "-YouTrackDefaultAssignee" parameters is used, we use a x-www-form-urlencoded call
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.Link
 		Source https://confluence.jetbrains.com/display/YTD65/REST+Import+Sample#RESTImportSample-Addfirstsubsystem
 #>
@@ -2921,6 +2954,8 @@ function Approve-YouTrackProjectExists {
 	.NOTES
 		Simple Call that I use within my other calls. So I make sure that the issue exists before I go any further and try to do something with it.
 
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
+
 	.LINK
 		API https://confluence.jetbrains.com/display/YTD65/Check+that+an+Issue+Exists
 #>
@@ -3026,6 +3061,8 @@ function Get-YouTrackProject {
 		Description
 		-----------
 		Get details about a given YouTrack Project
+
+	.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 
 	.NOTES
 		You need to Filter it in PowerShell to make this useful!
