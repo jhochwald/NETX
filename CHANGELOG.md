@@ -1,7 +1,10 @@
-### Minor update to the Contribute section (HEAD -> master)
+### Readme updated: Docs section (HEAD -> master)
+>*Tue, 26 Apr 2016 20:02:32 +0200*
+
+### Minor update to the Contribute section (origin/master, origin/HEAD)
 >*Tue, 26 Apr 2016 19:58:31 +0200*
 
-### ToC added (origin/master, origin/HEAD)
+### ToC added
 >*Tue, 26 Apr 2016 19:53:47 +0200*
 
 ### Update with the regular Distribution

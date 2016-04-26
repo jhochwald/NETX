@@ -48,12 +48,11 @@ NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
 <a name="docs"></a>
 ### docs
-Documentation in the following formats:
+You will find the latest published documentation in the following directory: `/Docs/`
 
-- Markdown
-- HTML (HTML5)
-- TXT
-- XML (not for everything)
+* **`/Docs/html/`** - Documentation in a light weight HTML5 format
+* **`/Docs/md/`** - Documentation in the popular MarkDown format
+* **`/Docs/txt/`** - Documentation in plain text format
 
 *This content is generated and updated by our Build Server.*
 
