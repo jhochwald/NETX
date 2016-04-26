@@ -1,10 +1,13 @@
-### ToC added (HEAD -> master)
+### Minor update to the Contribute section (HEAD -> master)
+>*Tue, 26 Apr 2016 19:58:31 +0200*
+
+### ToC added (origin/master, origin/HEAD)
 >*Tue, 26 Apr 2016 19:53:47 +0200*
 
 ### Update with the regular Distribution
 >*Mon, 25 Apr 2016 01:12:59 +0200*
 
-### Final README Update ;-) (origin/master, origin/HEAD)
+### Final README Update ;-)
 >*Thu, 21 Apr 2016 17:29:05 +0200*
 
 ### Readme updated

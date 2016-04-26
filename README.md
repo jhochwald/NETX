@@ -19,6 +19,8 @@ A while ago we decided to publish some of our stuff as **Open Source** under the
 - [Support?](#support)
 - [Feedback?](#feedback)
 - [Contributing?](#contributing)
+	- [Next Steps](#next-steps)
+	- [Further reading](#further-reading)
 - [No Warranty](#no-warranty)
 - [Default Copyright](#default-copyright)
 - [License](#license)
@@ -29,7 +31,6 @@ A while ago we decided to publish some of our stuff as **Open Source** under the
 - [Reservation of Rights](#reservation-of-rights)
 
 <!-- /MarkdownTOC -->
-
 
 <a name="content"></a>
 ## Content
@@ -88,6 +89,17 @@ Contribution is more then welcome and very easy:
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
 5. Submit a pull request, be a contributor ;-)
+
+<a name="next-steps"></a>
+### Next Steps
+Before submitting a feature or substantial code contribution, please discuss it with the NET-Experts team via [Issue](https://github.com/jhochwald/NETX/issues).
+
+<a name="further-reading"></a>
+### Further reading
+You might also read these two articles about contributing code:
+
+* [Open Source Contribution Etiquette](http://tirania.org/blog/archive/2010/Dec-31.html) by Miguel de Icaza
+* [Don’t “Push” Your Pull Requests](http://www.igvita.com/2011/12/19/dont-push-your-pull-requests/) by Ilya Grigorik
 
 <a name="no-warranty"></a>
 ## No Warranty
