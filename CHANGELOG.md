@@ -1,4 +1,7 @@
-### Update with the regular Distribution (HEAD -> master)
+### ToC added (HEAD -> master)
+>*Tue, 26 Apr 2016 19:53:47 +0200*
+
+### Update with the regular Distribution
 >*Mon, 25 Apr 2016 01:12:59 +0200*
 
 ### Final README Update ;-) (origin/master, origin/HEAD)
