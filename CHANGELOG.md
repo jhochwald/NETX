@@ -1,4 +1,7 @@
-### Minor Fixes (Output Type and INT handler) (HEAD -> master)
+### Fix Output Type (HEAD -> master)
+>*Sun, 1 May 2016 13:06:27 +0200*
+
+### Minor Fixes (Output Type and INT handler)
 >*Sun, 1 May 2016 13:06:10 +0200*
 
 ### Remove GLOBAL from Variables
