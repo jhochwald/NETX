@@ -1,4 +1,7 @@
-### Minor Fix: Output Type (HEAD -> master)
+### Minor Fix: Clear Screen (HEAD -> master)
+>*Sun, 1 May 2016 12:59:50 +0200*
+
+### Minor Fix: Output Type
 >*Sun, 1 May 2016 12:59:22 +0200*
 
 ### Removed old Write-Host
