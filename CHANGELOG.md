@@ -1,4 +1,7 @@
-### Fix Output Type (HEAD -> master)
+### New Signature (Updated from Build Server) (HEAD -> master)
+>*Sun, 1 May 2016 13:06:54 +0200*
+
+### Fix Output Type
 >*Sun, 1 May 2016 13:06:27 +0200*
 
 ### Minor Fixes (Output Type and INT handler)
