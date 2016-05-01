@@ -1,4 +1,7 @@
-### Add Global Function (HEAD -> master)
+### Change INPUT Name (HEAD -> master)
+>*Sun, 1 May 2016 13:03:23 +0200*
+
+### Add Global Function
 >*Sun, 1 May 2016 13:03:08 +0200*
 
 ### Fix: Variable handler
