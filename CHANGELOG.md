@@ -1,4 +1,7 @@
-### Fix: Variable handler (HEAD -> master)
+### Add Global Function (HEAD -> master)
+>*Sun, 1 May 2016 13:03:08 +0200*
+
+### Fix: Variable handler
 >*Sun, 1 May 2016 13:02:26 +0200*
 
 ### Minor: Fixed Output Type
