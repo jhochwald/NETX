@@ -1,4 +1,7 @@
-### New:  Create a basic authentication header for Web requests (HEAD -> master)
+### Minor: Fixed Output Type (HEAD -> master)
+>*Sun, 1 May 2016 13:02:07 +0200*
+
+### New:  Create a basic authentication header for Web requests
 >*Sun, 1 May 2016 13:01:43 +0200*
 
 ### Improve: Clear Screen
