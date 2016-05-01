@@ -1,4 +1,7 @@
-### Remove Alias usage (HEAD -> master)
+### Improve: Clear Screen (HEAD -> master)
+>*Sun, 1 May 2016 13:01:20 +0200*
+
+### Remove Alias usage
 >*Sun, 1 May 2016 13:01:03 +0200*
 
 ### Minor Iprovement
