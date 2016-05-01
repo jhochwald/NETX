@@ -1,4 +1,7 @@
-### Change input name (HEAD -> master)
+### Minor Iprovement (HEAD -> master)
+>*Sun, 1 May 2016 13:00:48 +0200*
+
+### Change input name
 >*Sun, 1 May 2016 13:00:17 +0200*
 
 ### Minor Fix: Clear Screen

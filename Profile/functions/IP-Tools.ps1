@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -354,7 +354,7 @@ function global:Get-NtpTime {
 	PROCESS {
 		# Construct client NTP time packet to send to specified server
 		# (Request Header: [00=No Leap Warning; 011=Version 3; 011=Client Mode]; 00011011 = 0x1B)
-		[Byte[]]$NtpData =, 0 * 48
+		[Byte[]]$NtpData = , 0 * 48
 		$NtpData[0] = 0x1B
 
 		# Create the connection
@@ -375,7 +375,7 @@ function global:Get-NtpTime {
 
 			We now have the 64-bit NTP time in the last 8 bytes of the received data.
 			The NTP time is the number of seconds since 1/1/1900 and is split into an
-			integer part (top 32 bits) and a fractional part, multipled by 2^32, in the
+			integer part (top 32 bits) and a fractional part, multiplied by 2^32, in the
 			bottom 32 bits.
 		#>
 
@@ -392,7 +392,7 @@ function global:Get-NtpTime {
 			$FracPart = ($FracPart * 256 + $Byte)
 		}
 
-		# Convert to Millseconds (convert fractional part by dividing value by 2^32)
+		# Convert to Milliseconds (convert fractional part by dividing value by 2^32)
 		[UInt64]$Milliseconds = $IntPart * 1000 + ($FracPart * 1000 / 0x100000000)
 
 		# Create UTC date of 1 Jan 1900,
@@ -406,8 +406,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyrApQcz3Ia4ldFmp5i7/if9b
-# 8L2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGscRAeeceAkGKp4cLdqR1WAE
+# qwWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -550,25 +550,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxdB2IARuR8UTqzLL5WJBEIzezIzANBgkqhkiG9w0B
-# AQEFAASCAQBv1cUANZLMwK7UrR34LRvqaDlK9TLOuCI4WTbiRDFjJSxxwJRtRA3o
-# iud/gsAAXlod2N6CY/ezEopz4jsXapI6ErnQl4dU44JFCLlx1/neNzvH4H42WBKn
-# QyqxQCppwMq1i5fNBFvMsVW1IKEoO/p57gSiDjYhuFm23J98oTGmK5ug7+kUOKOB
-# k1sx62nGDlhYd13WYkdPIavrwVHKLxwVpfjITMjUDeeOIExKr8FBTNQ3t1LsPpZf
-# J+KDPFulP9BhihONySmKVUMS6OyhfxRiFbzR7sgmVtdCk7cAxT8R8S0bSf0BSFXn
-# KIc7OUjdMbdGAJ6ppah4KDA9LiynvgU5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTUDQ4jhsj4o41sbjp60mlizWx4YDANBgkqhkiG9w0B
+# AQEFAASCAQBqjOqic0yu9+AtzOqkGJGJiIDCFnTlEfSGM/FpyEbbPjtrbtzH9jGc
+# ioSo+rLsCXGqqPSny8wyGIhmOu8jA94jBmHLfYcYsY1zXWexLunLU3Ln4X5hY1l7
+# 4ettt1ftPgv6M/+8llBQFA2xQxYUSCBh1Wh70h28bJMYzhTDFfA55FYzydTfHP9E
+# PkwMsSii+hJhZX+CNXPKofX+yeMvz63WpkII11rWrPTPoVFVB/NqGkwus6Pf05Mu
+# N1Wn9pbS+miUsLF+rqZZdIcoRnWv3zugBDsOmSD4o6GKQduXChxFVL7cY68jMkAD
+# vW1Dp/wyFidm4fwFnV09ttHnGpFSyiLsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYyMVowIwYJKoZIhvcN
-# AQkEMRYEFL9rY8FTghyQLT3qW8SdZOsA9deZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMlowIwYJKoZIhvcN
+# AQkEMRYEFCATvSBM35EsAOoyfnYNY4O9Wr38MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCFzl1ajN7rX8fXikbyl+YE1XBTcgME1sO656HPRWIZTF99
-# 4RPSLqWyGAxKnNoJ1cyBCjRIvogXtMseU2OCxXSAdexiQwlJKjkNjSaKb4kgNPJs
-# nauz819gUWkF/8Sk5sWVs7TfYuQyLq9Jic98JzFwuu8w5geLBRJAfG2HrkAKc+ou
-# vxkHCcxpjZ496G8Mf6TXytDlvsdXvGci3NQFTfMmcgATD5eKI5acv9QMwKFpH7c7
-# SnsIDXjxY4ve8W089w0FmSYvloeWqUPuRMjrCLivel7c62tvyAH5nARRNfXf9zc5
-# rZY7w5bX+Vsr5y9j7p21TsSJNMj+HgwVJVAy/LTw
+# hkiG9w0BAQEFAASCAQBICQPdFZpvIFR6ANpqn2x1sDyO+CrXxo9ETIiBm0Ey6O7x
+# lyw5yHEloORntidOL0v10DaQpC9Pcq/YfNSKyzUyeJr6HZtu2OCElpi1A+dc+Pqy
+# nyhTVLLBKfyPExIy/A2kx29jg/d0eiuL078LQDv0udHz/+fbfst9NaRmIrmINB1v
+# wO2S1Q7a3VuEtbCmlDQeBcbL61TzEP10nlTpm5kWhSnTr3GizQWavjG1qnwY7DuK
+# w6EDtSTW1fOXpCC/9S+JN4oI6VBM63unOStr3R5JtOk4tksyedr6FBn2TPk45Tds
+# w05NFk1lonidRcKzq0PAel1h946vtrLlnOjmjXI6
 # SIG # End signature block
