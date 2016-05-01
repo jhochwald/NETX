@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -128,7 +128,7 @@ function Global:Test-TCPPort {
 			$Socket = (New-Object System.Net.Sockets.TCPClient)
 			$Connect = ($Socket.BeginConnect($Address, $Port, $null, $null))
 		} catch {
-			Return "Host unreachable"
+			Write-Warning -Message 'Host unreachable'
 		}
 
 		# Wait a few ticks (Just a few!!!)
@@ -162,8 +162,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAPR2HtrTrVW836KoGAdtM/lA
-# JIygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUa68wcS5gnkwWU3rTVJtrzUXO
+# EHugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -306,25 +306,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSCoiHn59Y4MyY6tT7/cM9EYU0hPjANBgkqhkiG9w0B
-# AQEFAASCAQBLb5FSaH7X2gHT/5lPLgFi95DEN38ds0MsxVZhf6queV+tyjBeiCoo
-# K/lHiBeU0mk/KgHphErICa4MyEkHLJTVV0Y6kKsU8vBQY6ryejnmcnnJXepi61Te
-# EhpoCKfyNA98XAj8WA1CmSgXQvK2BGzUu7HHzfJkZju02ldk1dWRtYD7RDddyYAl
-# 3z3Y+CbQwbuBd0XBVOW60k3a6+yCIUC5QuTZ1Xs9BzfKfU36+Iu1r65UuHplkXik
-# vyltot04fyPCvTkwKj3/8owIEJ9maz4HvBkKNMkys8/OlTqSUwQD5FGVrkJxbR9J
-# IuMMNbzsoRj1i+9mWKZHo4GZF3Tk2B7FoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTqH2Moh15N816cISH639dnhj+DNDANBgkqhkiG9w0B
+# AQEFAASCAQBmLCctzIWQZplLILIlWn3BezWkPcxAKp0XrpCyBmPb57ra1Fb+DGFf
+# bIBCjVpBpBAoa2jWkph2TtWm9TG0eXdStvNIjTxbs/ABZhFHOh5syqw3YFi9mzKd
+# FNddxbwFoXkeqENciES7+Qtgb2z7e5DSBDtf56NI5kXCpyJcMXGrbPWAO80Bkos9
+# t6A/cZjgqnrzvXh4a7YKXDkKV3D/LAtHPXHXAQxxnPi+skBUWE6v/y1pap5aMMzd
+# CcUPeux8a6K7y+Se0xHWZFwwb+GcPFGF/XugbgnXlRlIos1JWQXGAePn+MnuzAAQ
+# ukCqF+ldoHB/XfWQbWrh0tYzpfNN6ik8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYzNVowIwYJKoZIhvcN
-# AQkEMRYEFIuMbqVPGIs7Nar6mPdF7mOeXDXYMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNlowIwYJKoZIhvcN
+# AQkEMRYEFAFg2vqWKpAHq4nexTYG0fM34r2NMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAKMXTaeY46MlE13M4LH95Du5fEWIo1btdZMm88dY8aKr+j
-# WvMpdg+exg8Lf2MMduLYl5KKRbYZ9zYHOnaQ+/F/uL4F6dG4S0/n8bxAwSeLpScU
-# rbsFRVaK6iTkSwJEDxG8/w2Uz5fFN/o81ZuostPldqIxqW+paPLgCKmXZfS+q3v+
-# dygbQq1iD9pYbJHhvHNnMD5FOqCcMDqyl0pnCsS+Nu4trpqcxYK488Kmsn9GJLJi
-# tSRCifvWyArTcNMAUC0mvMw7VI2jjRAo6DrjE9egxQoqrkt13Tip5gYr+jCLFR3s
-# GmJ32tI47yuwTtiOMdsTh+V2+/M0RFZVaahi2LD3
+# hkiG9w0BAQEFAASCAQAH/ohMvz0zeMraJbOYqI3l8c6KC8Csmr3cmzh7nlZy64CC
+# p175bzuuCGNCZxDNHLRotZAEyDkudcOyYohEqkxrLdUJ9kvLXjvSdmrKF2wzWQGz
+# GOrn27XHPr5u4zEJ5LtXAsScsRnDAutG0MrALnhGlb6ncPlN3JQ6UYsZhaqwobZp
+# B/02v/Cl/9eCYKghQuKz0Gv2SV+vnwAWuvUkto/d3Frj22UCnvi0uszcE6Cas9Ke
+# EumauKj7v0I3u/UtEq7GJu+/X3PrK2ANq3duziglQDpPprF1VSorknntIovIxHZy
+# eKS2eZQhHt9fLYyXIRV+wrNxSMH2qVa/EZBkbl+I
 # SIG # End signature block

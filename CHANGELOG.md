@@ -1,4 +1,7 @@
-### Fixes (HEAD -> master)
+### Fix: unreachable message (HEAD -> master)
+>*Sun, 1 May 2016 13:05:21 +0200*
+
+### Fixes
 >*Sun, 1 May 2016 13:04:59 +0200*
 
 ### New: Bash like Prompt
