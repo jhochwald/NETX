@@ -1,4 +1,7 @@
-### Sample Profile: Minor Fix (HEAD -> master)
+### Minor Fix: Output Type (HEAD -> master)
+>*Sun, 1 May 2016 12:58:01 +0200*
+
+### Sample Profile: Minor Fix
 >*Sun, 1 May 2016 12:57:15 +0200*
 
 ### Readme updated: Docs section (origin/master, origin/HEAD)
