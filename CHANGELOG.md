@@ -1,4 +1,7 @@
-### Minor Fix: Output Type (HEAD -> master)
+### Minor Fix: Output Type to Bool (HEAD -> master)
+>*Sun, 1 May 2016 12:58:28 +0200*
+
+### Minor Fix: Output Type
 >*Sun, 1 May 2016 12:58:01 +0200*
 
 ### Sample Profile: Minor Fix
