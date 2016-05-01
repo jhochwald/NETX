@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -46,7 +46,7 @@
 
 #endregion License
 
-function global:Send-Prowl {
+function Global:Send-Prowl {
 <#
 	.SYNOPSIS
 		Prowl is the Growl client for iOS.
@@ -94,6 +94,9 @@ function global:Send-Prowl {
 		-----------
 		Send Prowl event "Your Ticket is updated" with priority 2 and the description "The Helpdesk Team updated your ticket!". It attaches the URL "http://support.NET-Experts.net/"
 
+	.NOTES
+		Additional information about the function.
+
 	.LINK
 		Info: http://www.prowlapp.com
 
@@ -109,12 +112,13 @@ function global:Send-Prowl {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
+	[OutputType([System.Boolean])]
 	param
 	(
 		[Parameter(Mandatory = $true,
 				   HelpMessage = 'The Text of the Prowl Message')]
-		[ValidateLength(1, 1024)]
 		[ValidateNotNullOrEmpty()]
+		[ValidateLength(1, 1024)]
 		[System.String]$Event,
 		[Parameter(Mandatory = $false,
 				   HelpMessage = 'Description of the Prowl Message')]
@@ -186,8 +190,8 @@ function global:Send-Prowl {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8mNEwkQm8x9xXxbt34TPxBRf
-# 9jOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULdOyZlAyHFMbVDn05w593hiD
+# zSagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -330,25 +334,25 @@ function global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQfG/hJznlb8VXbebBYuRtZq13gwzANBgkqhkiG9w0B
-# AQEFAASCAQCgCRhSZ707tDQpaI5GFbuB/l5+LulN9hLgPgyHvHuzJsdY83Gq4k2e
-# Ysj7z3iBv93xbQSZ2wIBWGnP3LqiCWvTZtYBJ+m7XGo4Kpf5V1c557A6ZpCvzmji
-# zvk7PLHz+z1hrigEzeqx2WXKsTUQM/IqX6ZPVEzmv5mS7Rwlbbh/RPJDMuDeeGUy
-# dRIEgzdHd+05ACBBVIFCENhGEWBgF3Fa0fp35DXRqHtbXmgx8Dxy2wIdBRK82Rda
-# PnM4Ln0NG2xwWW+EdnOLOtmtK+9zgIkURu2+AdwHwbB5zzN6Z9QPVNI+Zvdosfhg
-# vRqsgnQFhZ8tLouvNKo2vo25Mglsh83EoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRQHaFkoWUAnkH/8+AAr7PvixQUhjANBgkqhkiG9w0B
+# AQEFAASCAQBdjYeWgDkNarnFpAiKLRMMkn0bFy/JOB7tRMxqrNPTtLBpp2k53Urt
+# F6GX46cMWwPlXFBOwdpxLVowt/aF+FZ9i+B36OArerD3nu1+rsOmU83uGmaIQtrD
+# 8LrV2+kjqX9Rqp7IfmoWAFGuwoNPPCwzSVPNk7TZUuxm+nfztM9e5o6/e/uLBy9z
+# DbzpwDbanOvA3kY6ETJ8ZPgutJf52OmyaYbRNW3jeCpOv2qEOQvts0tzr3k3d+Ja
+# 8ndrNaGzJr5ghp24FO/yha+b4C1iUvEqT1tPlqZ0XG/yw4lwjEC4eXV8srytjMDt
+# zNLFhbUgXBzoyyXf43dQYgPfzFKezQWJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYyOVowIwYJKoZIhvcN
-# AQkEMRYEFFnSrbdj5PhEVYHv9HDlbUIo8k+4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMVowIwYJKoZIhvcN
+# AQkEMRYEFJMWXR5T+41a1A+MFH7FtjN6/G09MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAAiHX35Ag/QJkbWGXGdA5U8c3pR5OWIjw5m+HSr5qM+FbW
-# gXla8zv6XSgaXnVOAOeKRzz6nnfnN4dtkNFHee3Q92s2PY41G6gmiqc8URziSjDQ
-# r8y96t8fn9M1xto6JFXDI/4fDN83ICfzXDYxMFzsU/mtZWvI3liTE3jvV09HWTt2
-# 5ZCbITI2M/8LNyze2xO0EyslhZYxhrf1wVcIVMVgvj6OFl1q/6OPnEUrZ7kqmrsM
-# L7Capp/mkgBUYeyKhsn26CA76JvxEkGzQ+6DYy1wifdl51jmEyLTlGSOgYWyuHjn
-# moawXwjS9ARc835RqvNJXizzboldAV2VU1RJedv1
+# hkiG9w0BAQEFAASCAQBOXNM0sCwNexIlnR15e1PWcyAezqz7FZzbzATjflXvlT9O
+# WGkvTU6B5cUaYUTdb8I4dpMmZRebvSyfe/JuS3HGlf9vZ+QlDqD9RIlUPAodFmK2
+# VjEAGGtMyTPjd9iCdlpD+r1qjDm+wjsrDqqGzqLINDOyAwCyBi4sLhJL9nLVSQBt
+# LxyEk/jujdeprBiVwE4E3UD0SerGQII5z20ny8bglVnkn+2t6a0GHxZ3Xn367GBt
+# ZWEXQrNr9wky/gyyDCyJ2RZfe6qzN/3N3SCFos5X7imeHByGDf5Wih1ERqj5rk9D
+# j5Z+RA1r7r7Hqul6wB956qYp1TcvVJfEK1Gg+szr
 # SIG # End signature block

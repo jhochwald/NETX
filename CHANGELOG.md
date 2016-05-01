@@ -1,4 +1,7 @@
-### Minor improvements (HEAD -> master)
+### Output Type fixed (HEAD -> master)
+>*Sun, 1 May 2016 13:04:29 +0200*
+
+### Minor improvements
 >*Sun, 1 May 2016 13:04:09 +0200*
 
 ### New: Reset the Prompt to the PowerShell default
