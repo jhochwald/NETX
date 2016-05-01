@@ -1,4 +1,7 @@
-### Change INPUT Name (HEAD -> master)
+### New: Reset the Prompt to the PowerShell default (HEAD -> master)
+>*Sun, 1 May 2016 13:03:55 +0200*
+
+### Change INPUT Name
 >*Sun, 1 May 2016 13:03:23 +0200*
 
 ### Add Global Function
