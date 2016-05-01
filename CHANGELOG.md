@@ -1,4 +1,7 @@
-### New: Bash like Prompt (HEAD -> master)
+### Fixes (HEAD -> master)
+>*Sun, 1 May 2016 13:04:59 +0200*
+
+### New: Bash like Prompt
 >*Sun, 1 May 2016 13:04:47 +0200*
 
 ### Output Type fixed
