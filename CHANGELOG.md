@@ -1,4 +1,7 @@
-### Minor Fix: Output Type to Bool (HEAD -> master)
+### Removed old Write-Host (HEAD -> master)
+>*Sun, 1 May 2016 12:59:12 +0200*
+
+### Minor Fix: Output Type to Bool
 >*Sun, 1 May 2016 12:58:28 +0200*
 
 ### Minor Fix: Output Type
