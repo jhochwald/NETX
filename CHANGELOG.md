@@ -1,4 +1,7 @@
-### Fix: unreachable message (HEAD -> master)
+### Remove GLOBAL from Variables (HEAD -> master)
+>*Sun, 1 May 2016 13:05:48 +0200*
+
+### Fix: unreachable message
 >*Sun, 1 May 2016 13:05:21 +0200*
 
 ### Fixes
