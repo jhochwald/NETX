@@ -1,7 +1,10 @@
-### Readme updated: Docs section (HEAD -> master)
+### Sample Profile: Minor Fix (HEAD -> master)
+>*Sun, 1 May 2016 12:57:15 +0200*
+
+### Readme updated: Docs section (origin/master, origin/HEAD)
 >*Tue, 26 Apr 2016 20:02:32 +0200*
 
-### Minor update to the Contribute section (origin/master, origin/HEAD)
+### Minor update to the Contribute section
 >*Tue, 26 Apr 2016 19:58:31 +0200*
 
 ### ToC added
