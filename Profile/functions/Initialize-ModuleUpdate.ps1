@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -55,7 +55,7 @@ function Global:Initialize-ModuleUpdate {
 		Refresh the PowerShell Module Information
 		Wrapper for the following command: Get-Module -ListAvailable -Refresh
 
-	.PARAMETER Verbose
+	.PARAMETER Verbosity
 		Verbose output, default is not
 
 	.EXAMPLE
@@ -85,8 +85,8 @@ function Global:Initialize-ModuleUpdate {
 	param
 	(
 		[Parameter(Position = 0,
-				   HelpMessage = 'Verbose output, default is not')]
-		[switch]$Verbose = "$False"
+				   HelpMessage = 'Verbosity? Default is not')]
+		[switch]$Verbosity = "$False"
 	)
 
 	BEGIN {
@@ -94,7 +94,7 @@ function Global:Initialize-ModuleUpdate {
 	}
 
 	PROCESS {
-		if ($Verbose) {
+		if ($Verbosity) {
 			Get-Module -ListAvailable -Refresh
 		} else {
 			(Get-Module -ListAvailable -Refresh) > $null 2>&1 3>&1
@@ -105,8 +105,8 @@ function Global:Initialize-ModuleUpdate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJO2CvsxKsKVm/szWsHMrQK72
-# KEKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+XFo4wSLClwnbcJ2A8XrM/nK
+# 3b6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,25 +249,25 @@ function Global:Initialize-ModuleUpdate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQdPPkOPAxliIj365RYGUW2S0iM/zANBgkqhkiG9w0B
-# AQEFAASCAQCmB4Orq5MYNUnaEo94zon/DtTPolvLD+2h0fgidSfCSfXL5c5BAOLJ
-# CUFb7qOQC7IcIiCKfFzm0Q+I1zjSWv0/n2YjT3TSVhTbli3P7SNDRivJPIP2N44T
-# lySjMzFrqU7Me06aCkdB5RdFUBvS07TtxGy1UX9FVzFynWNThcvBlc71qGvBTfwe
-# MNotKK2Eoscx+tvAh0mONRV96RJeTLtm+Pd8rpLcTARuX/UzBg4cJcEDMitVHVGY
-# e6JVNvZa+/a34vaDTgTIQwA/X1Rbw8v1UIsCdEONSKRYI8UHng7iJt/gUH9UTF7+
-# ajUz4P87cpNCH34ANIecY5zuiyAq/d/6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQUUQ1zLcpynLD8rg/lxOccPFkCyzANBgkqhkiG9w0B
+# AQEFAASCAQBGhBt+s7pITUWup2VQQ30zjMteegJ6nZ6wILCXf9phR5mZjUxc8Lb4
+# NBfHpRvxL86TQibTIishPRFBhUW08V+jQB9o+rzyf0u2O6n8TTYt9XxJhy6japIt
+# cEyw27aRMy4WO6AY+GLV989AMlBqMT8ukOnkIyq0ItoplF4Vc/yyD7CzVn2R+V3g
+# K4sXEmMb606KOXBH3dAcdgAdd2sv18FlASfAYQPso320nTGVc4t/IYq+atctWgik
+# DFUJFC7eQRkxN7B9JWl9NEfp9shQUHoP1KYm5wyVsi9/ZzMy5yIPIRa3NEHSOlz7
+# ErO3v7YW1hAuMSPxCpufk0SDBtlmaQh7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYxOVowIwYJKoZIhvcN
-# AQkEMRYEFB1gWRNPobYJiKGGErOQIJGp87HkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMFowIwYJKoZIhvcN
+# AQkEMRYEFBwlkTjpPCccr63lJXqfoQi1J1T5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAwHXbzc+xn8lij62/7C9XRqK7AfqDr/P5z6OVKilOnZxnx
-# Cc9gF2R+fNIwdImXVclig2bAZPuqo2vH1aQapg5GWExu4V/xeNoIA+TdtYEDjV2B
-# 1/QhT881kVFDgRHrvv5H1B38u29bAQO/o9EFSCMXCcTPIGjSV0p/vEMVPiVE7jef
-# 46Um+OATSoj9/lGa6obKlgJU4HO8hafMQjV6DSTIaFCnrOadMuwNLe4Qx1GiidNR
-# mYQNESgfnz/0qiszmLTu8Hpa8x9haL19dEJzr/O17SN00ar3w66l9rb2VJ3iCvry
-# mNu7vJ+1c7UcXvpsG8VAfi2RU2zyA4OzouIYHE0X
+# hkiG9w0BAQEFAASCAQBUBPLf2aoIoTIWxZvo1A7bOP7OVCRnVK6GjzQ8S+zhkwQp
+# vum1hkSRG/kMRJgzeMq3s+d596BAFkratJDrJ+qqgM8NsSNU48H0SZ7cS3zuANYk
+# 7QOLnU5gYId1B3+eOMYjuVdwEvrYOeoheuTTDRSD+wxEQFlFsVGjZCGnEabk6xVN
+# lk896XB1lFlBs2Gw8dfxBO+snmpRHFAwh/bOBZoGVP22tJ2+w5Ka+pMbC5f07tdF
+# iTcKAzbDCcGV+B2WAR/L5Kbqg31ndxwV7fd92whq9XRmLBw4fwqcWg320A14g29e
+# 3QEeZCWfijJs/7Ml3N3I68b6r0mT3yElzHv/IqYQ
 # SIG # End signature block

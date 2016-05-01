@@ -1,4 +1,7 @@
-### Minor Fix: Clear Screen (HEAD -> master)
+### Change input name (HEAD -> master)
+>*Sun, 1 May 2016 13:00:17 +0200*
+
+### Minor Fix: Clear Screen
 >*Sun, 1 May 2016 12:59:50 +0200*
 
 ### Minor Fix: Output Type
