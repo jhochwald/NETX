@@ -1,4 +1,7 @@
-### Minor: Fixed Output Type (HEAD -> master)
+### Fix: Variable handler (HEAD -> master)
+>*Sun, 1 May 2016 13:02:26 +0200*
+
+### Minor: Fixed Output Type
 >*Sun, 1 May 2016 13:02:07 +0200*
 
 ### New:  Create a basic authentication header for Web requests

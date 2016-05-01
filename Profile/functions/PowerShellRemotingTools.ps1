@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -191,7 +191,7 @@ function Global:Set-CurrentSession {
 	)
 
 	PROCESS {
-		$global:remoteSession = ($session)
+		Set-Variable -Name "remoteSession" -Scope:Global -Value $($session)
 	}
 }
 
@@ -206,7 +206,7 @@ function Global:Send-Command {
 	.LINK
 		Invoke-Command
 #>
-(Set-Alias Send-Command Invoke-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Set-Alias Send-Command Invoke-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
 function Global:Register-Script {
@@ -220,14 +220,14 @@ function Global:Register-Script {
 	.LINK
 		Invoke-Command
 #>
-(Set-Alias Send-Command Invoke-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Set-Alias Send-Command Invoke-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbIvDIwO6mayewFg8ckYtVagW
-# XgmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqTzxvHJyG15S6+uPkWDpLBGB
+# e/OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -370,25 +370,25 @@ function Global:Register-Script {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTNhGQKEgFE9A2T9cu82x5lSllHcTANBgkqhkiG9w0B
-# AQEFAASCAQBkb7exdK0TQ+KeVaNZP7hWq5jWmq9WL6NPJT8K0e8K3mbeoKDLcy7j
-# Bq+Nfgv4nwA2iytWs/TKC6owO88FGTBwDUHQzclXBwkLE0s//Cd0seK3/p8bo1QL
-# QFJdXv6cO1gsAmj42YDyN0meoGrKzSLLWZNpm4GrbMGvCRyberAIQZqitB4V2W1r
-# 39/5qJTHi41q0tNfWM12HRCNjzgMRKpj3ouL1N+tHQsZqYimFU7b17GWCfBJOqzM
-# s3fAn2Pj0B+8u+isZMx/B3+UyVutjJWEJs8zVrpY3/9w52NcXzo793o9QfotQaI5
-# T+owQFxN1QPBPprl45UXBvJlPviOCAlcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTR85FUjtMrQrfOd/QRBXIkXwQAQjANBgkqhkiG9w0B
+# AQEFAASCAQBnvzg5C9x9f1AZNqu9KDBvHQGm3WYOvaaD/WdrmkaTHEYUsOfNG5Rn
+# fSF+rhEj5dfHydj2WWD9ZSy1f19cigLkkKVYNU7dRIUG/IcgswARJRDX832XsiYS
+# 2W/3CcylEQlPh6hcAer4AEbeloC9hw4YLcTU5AivB6PAs/eHhiF9TUC5eGEi+FB8
+# mt5PDsJTRpaUXAgB0CsmTYCFEGnY+u4sfktej/1wJyzUJVQbL31BTtLAQJ7vlFcP
+# Dsttqlo8uXcSOcBcLSkb4NwdF+8n6BUbcYqw5J3LgEMDgMDrHp2W31cAkyzYZ0vt
+# C4HsdzqcrWJmx7+ds/UXyXrpV2VAGcwhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYyNlowIwYJKoZIhvcN
-# AQkEMRYEFHJ/A7xoIxmuMIhyYlC7pQYasmsjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwN1owIwYJKoZIhvcN
+# AQkEMRYEFN06kpLCzVGz+h/WML7zwBPxuXpsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCZsK+p8XC4XWqnRLsi60G35tfiPGT0KUXLMMXyBe71uF+U
-# 893SZ4eYEGOcsWJWBKNhRrjykzU9TNUQekxKaqHngo340L755QfEDB7qZDgo6QCN
-# Ia/03sAEpIH4EtR+yEBd+4TooUfzQyaKpvXVhzvzd4/Jw3r5dd2NtJbJ5eUL0wF5
-# 7TNb5OK9PLi2HXPyxl4OTfd15MkatKblypv36HzIbeaRhi1dlWKUJ/MZQPB53B+5
-# LLJqoyo/+kybGqBaABmFwgQSRJ0KtnwnWjwV9NssgDY0lI/EWIssCjNqWnUV04aq
-# DWVVXPbQmOdVYviENTvfo9avluD1VAuWhuyjZHa/
+# hkiG9w0BAQEFAASCAQCQ1Cj59qn5UQkhfu3yqUPEDMi3MzTcvjkkU9xk7Lx2qzTp
+# Ntv34q2eFm3cQVkk9sP+l0yJ8RkC++11BGEkfAoskf/3FKq7rcZN2nN5pb0sSTZ+
+# 2dZuYWXsHxFhrY4p1GUtvJ/I2wBRDO4s+U44AWXEdWryolfxQ5MmTtlKd67WqbPX
+# 1ecYIe+L9uO0zI85V+V7oiZVkZnRZdiArbD8AYpI8qozA8QCeH6KzaaszFknk1ZI
+# l/SB8ufDani0pDZoMVjRJeIFutpC8nlsly6M0OtHuUoFhs4dyzwhkpZhUngLWe7T
+# 5CzfGN2fg6KVBnjMMQVfq0Obitj+Wz0EQ4HQObt6
 # SIG # End signature block
