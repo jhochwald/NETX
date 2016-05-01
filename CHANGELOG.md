@@ -1,4 +1,7 @@
-### Remove GLOBAL from Variables (HEAD -> master)
+### Minor Fixes (Output Type and INT handler) (HEAD -> master)
+>*Sun, 1 May 2016 13:06:10 +0200*
+
+### Remove GLOBAL from Variables
 >*Sun, 1 May 2016 13:05:48 +0200*
 
 ### Fix: unreachable message

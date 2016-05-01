@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-04-25
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -86,6 +86,7 @@ function Global:ConvertTo-UnixDate {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
+	[OutputType([System.Int32])]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
@@ -106,7 +107,7 @@ function Global:ConvertTo-UnixDate {
 
 	PROCESS {
 		$unixEpochStart = (New-Object DateTime 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
-		[int]($Date - $unixEpochStart).TotalSeconds
+		[System.Int32]($Date - $unixEpochStart).TotalSeconds
 	}
 }
 
@@ -231,8 +232,8 @@ function Global:ConvertFrom-UnixDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeXuY264NM0bAnBQ58lyADl1Y
-# XgugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKqN9M83lxh6AVcq+p9MSFAjT
+# hdWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -375,25 +376,25 @@ function Global:ConvertFrom-UnixDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRvaW3fO4t1iqMpsJH5OFyDsRfARjANBgkqhkiG9w0B
-# AQEFAASCAQB6fLtqDo3B22btkDA6evBAXfVLTU1b2FSc9/2xV2S25qNDQrDeHkR3
-# By/oNH2YyA+aWdLi86IV2iGDaFhpPis2JqT4eunl+74S0WjVMYQ4Ornit9vZQYC+
-# wHKBMQs41/+htth4PI6m2/LYrTRZRVGlvJw7CV28I5VUPBC2YRz5MaTRTeIoGIw/
-# 4W4LsczbzLzGt35FxzHxW9IJI5JX8prtG6eZ8h1pThv7pceyXiUhC0wJteSp9jNo
-# XxcQfJWPvgDCV3AX4CnhwBrxHl3TL3wcgjfHPWwji6g4+wBl8Oks4T1IfAy8Dtih
-# HRKABNHxZ6h/oc3FO6mXS3Y3fV7p99C+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR/BDHT3eB6in+05+Z3r7uR4akl5jANBgkqhkiG9w0B
+# AQEFAASCAQBI/X3zKtAgGbm0ZTVIgGkXcmcnxoZXDualNRB9IG8jbLPE0lSVX+7s
+# fbZ1BMW0OceEqZ+o0+0x3ki/Z43GGFpqOKPkEysXbEpsS5FPet9xFRG9DKxfwPVd
+# mlOEh/ZLiSkroellN7Rz0R/DoWxV8OO7Of7PfsbdDkVUPYymT3/KP1jFyV8L07tP
+# yO93+2Yf9DjBIAj25ZWWx0lhsmVg4RqvnkAl/L8pJFKRUQZAtXIXlgBkgK/DjK5Q
+# 6yJhGrv663NpUXiArHivPO4rBTbfn96DK4qoFRKdS4S5oypSfOvEmTheqihN03Uu
+# nLfwTFAFMn0XZqpBmPpNxwqR6eAUB9ZPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyMTE0MjYzNlowIwYJKoZIhvcN
-# AQkEMRYEFGItdzP0h9oJo9OO6wYlyKxXoAPLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxN1owIwYJKoZIhvcN
+# AQkEMRYEFHQe9XMOBkIvY+npvlUxXyAki/AIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA4wZs1FY7bY45oDnMLnZCRDlFO2VYq7nZxQinas+YMhrLd
-# WNXf3BfU2gWB5z+j5QuYd/h0P8xboe4yScWmFTtqwjOHGEUxDZrcrn7+bp229MUu
-# 6T3xkM8HNyAhQts2JNJ/6rGPQxD30s0WIOx3Op8UxZYJ0JxpvAcXJI8YJ+VYcVUm
-# 2AP197+G4cjd/LFnrYBxSwxvnFwOIC607wE2X7bGbOaqmDcGVI9Oz2cFyqeWho0x
-# FcDgNLJJtcT7Dl0h7rr//B2ffQwVGsSAZxDGLDE6NR2RmRcaCSMNsYnBpncxV+ug
-# sXWaUm4ps6y8QhoOxIvcqphfiRgXngdH+jRx7ShU
+# hkiG9w0BAQEFAASCAQBRnuOQBx4TkGXSzBN82tNoAqOTnkyZ2lNSfI6yNFndtOob
+# /p/rH+Zwc2+PefMtlhGrktL5KsdhQ8izWG9gN1WHjs+9wx5u3FXq9vkqE4MnVKGX
+# Xfvsd7zuDJa+s5iEU/hlMzJDV9MHcDF6FBTpc+46xqWME9flJmL411pUkekhZAVF
+# CRstTgxhq7dalMPeKYB+Qj3k2BwlQVSz2JP2mRHlUWBaQYvNlVXaDWT9lUk8WjvF
+# YfT/JZnG4LFYp4j2IeprOymF1nnas3vmw6Z6zQXWdmGSWaXMHEzy9rj+Lkq5LrwY
+# gpJBnu2Cu4gL+A1ffqb0Ia05mJZH5pvDUq/gtCv7
 # SIG # End signature block
