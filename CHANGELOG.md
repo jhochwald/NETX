@@ -1,4 +1,7 @@
-### New: Reset the Prompt to the PowerShell default (HEAD -> master)
+### Minor improvements (HEAD -> master)
+>*Sun, 1 May 2016 13:04:09 +0200*
+
+### New: Reset the Prompt to the PowerShell default
 >*Sun, 1 May 2016 13:03:55 +0200*
 
 ### Change INPUT Name
