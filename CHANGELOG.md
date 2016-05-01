@@ -1,4 +1,7 @@
-### Improve: Clear Screen (HEAD -> master)
+### New:  Create a basic authentication header for Web requests (HEAD -> master)
+>*Sun, 1 May 2016 13:01:43 +0200*
+
+### Improve: Clear Screen
 >*Sun, 1 May 2016 13:01:20 +0200*
 
 ### Remove Alias usage
