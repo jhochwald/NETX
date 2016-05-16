@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,36 +17,38 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
-function Global:Get-myProcess {
+function Global:Get-myPROCESS {
 <#
 	.SYNOPSIS
 		Get our own process information
@@ -66,7 +68,8 @@ function Global:Get-myProcess {
 		Get our own process information
 
 	.NOTES
-		Just a little helper function that might be useful if you have a long running shell session
+		Just a little helper function that might be useful if you have a long
+		running shell session
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -96,8 +99,8 @@ function Global:Get-myProcess {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuJ41Zy4dj7AtDq/8ljUYRTya
-# FAWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXWXsjZKusSoJOCpnEJqMgTho
+# fL2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -240,25 +243,25 @@ function Global:Get-myProcess {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQNnTfqGfUM3JyKAWIsHJYhfiwj9zANBgkqhkiG9w0B
-# AQEFAASCAQAchURFZncoZZYNgr/ULXVBtS7eUedljxt8Ip/M7B0XNhPGyL1vYKod
-# JIE82XlFkXndVqb9brkFfcm7eI9RBu+DUvbIljRmIHqh92/a53nrBOK2/Q8NF2kn
-# Yq9Ag6UMOCAhJgENoPM0dzu0pOiM1oagWT6EpflrCb8Tt2vkPZGkyBmL7EczSawv
-# +8hWsvuplOlihMVQZl3Ks4YTZjt4PPejW8IFNHzcmU0+lcMwHljRheOcoxk0wFBZ
-# nTqPnAN48/HpoT26Up3NVAxvyD460ci9KCXLgdEi7HDmTdMXct4jjgcnJkn0WISH
-# lcwlOmpmFpBybcZ+CVZKqxZLGh07AoNDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQR5bo57ytW59JanSKea0BBiPmr+zANBgkqhkiG9w0B
+# AQEFAASCAQBPTiyIbobU83IpNAgbzSdTtkK1TCVrjuZ0mgiRO/NqMrHvADQku0dl
+# /Qccl8XaKqFx776VhzCchSUUNmrZFZtrdbPxR2LIN08HEsQ0G2HV7R5tt+3w+tg0
+# OZkznvsYqzbhDcokfwwItZtQT5qSZeoJ4zEIpaATwAYeuaA20Gv4oewh2Iafgy2G
+# sL/2sCtrLy8oc5/Gz3x9QGWrGxJ27GlSxdkAaz2S/2UGc2xHXOtcvMRF+bfLV5IJ
+# eew4Num8pd8Gm+Fr8suPBrVvAotKjR2e4HUdTXb5iszvmNNoZclzI9WpCC0TUPnI
+# TFAN1kVmxDrW6t8AYygmSiC8f/aHi7FioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1MVowIwYJKoZIhvcN
-# AQkEMRYEFNlvcve5d82QCpQJoZ2fPztMTtO+MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NlowIwYJKoZIhvcN
+# AQkEMRYEFAyQDJV3COIfsvXQpJS32Z0UO+ktMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBsZMBQ+d2RZntI6HQTn2a68O5X2/nHlX52QlRkeAjwt8xc
-# MhpoGZdaqySVOjv7aMMR7pDcYXr6IYcC0bCl+BOyV0VjbDIiQxEBvOP9PrZX0VGD
-# hy0MElmWF36H6Hiip0fFEqVGSY4EQQK+TrLDG7uu6YmH+R2ulcuDn9DrtxRNtLxC
-# EWgTmnfLm4vlDdHSjJTrCs/4S92ffGZEB8/UbiUXFpTclIlwLNBikE+zAvv4vkZ/
-# xflL2fZ6jmwNsHSM5uIFHzLPnV0THNuq8Y/y7nw8oA3JfSPDKBQ7WqsA0C5zejFT
-# svYMQSnQd/pxJYzn4Mn0PPpXUzb5BUmiEouDz7E6
+# hkiG9w0BAQEFAASCAQBl6VH2pTZRpEDCObf7jkfibz0wMtXyJrGuHxlBvQ2B3+cH
+# 3el+7RPAoInS8lD7rlAtvuzoWgr7dJto2ZsvZJU65KZ3XZ8Y5JC/XGIqamyoOlwp
+# zkZW6x011aei70eFdEtqGTFIn/rJuB+0EIWEtv0/NBPZmH9BrJu+z6iTVIe3riLM
+# h3mlZfVspCC9/tQepq1VFCsylaoq8X2IuX3XaXJppSQqQtuNEYRtPFnyP0xxmzHT
+# VzScRHe4QThPJTFR6vK1Uc0dzeheRPFb9ld5fd1DdBtsJIc+mrqt2GlB/9XLf0Ob
+# YQiQSACiWr0p98jP45hA9fBZPkgo4hzsuNggeE0O
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ function Global:which {
 		Locate a program file in the user's path
 
 	.DESCRIPTION
-		Make PowerShell more Uni* like by set an alias to the existing Get-Command command let
+		Make PowerShell more Uni* like by set an alias to the existing
+		Get-Command command let
 
 	.PARAMETER command
 		Locate a program file in the path
@@ -86,8 +89,8 @@ function Global:which {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmMXusgbn41fWuAY6AnVMPpLL
-# XSOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeGHPJjIMAwE3neA+Ob9WwA7/
+# cz6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -230,25 +233,25 @@ function Global:which {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRDUkaZCCyBS0a7YPoKi2AB6yvTnDANBgkqhkiG9w0B
-# AQEFAASCAQBkeRSW1za4CETRW6bgK19LaWRIOA0epe/fyTgx642tWYEfmZVXofv9
-# V4KAYeo/9vF1jNNkVB99jslxQxdV0Vo00OsL9DVrOplrHJuJdFB7ahQEo1bokJhE
-# LDnIbPcsPFB42vgcQkh/hQ/PFO6kRCeGRU+sxPEKJ9LUWKU6gFKamElEnJntenXV
-# AY65Z+zXHyj4bHJ8GbZD3uV61W8BqZvyrYkFd9k2L+LXT/iTOEsa8sTeqcAcUo21
-# WZSeAk/pthOt7fmxFfytWiYekxsGRndTTrDa4YUYO358jGcsNnYxQL3gKrjnYO8k
-# ITxjMwW16Vipo95QWBUUxbZsI4vfLjK3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR+VnIO/i1p6rRrfHU0Aaput/+fKjANBgkqhkiG9w0B
+# AQEFAASCAQBXRkQmAHigaxmlSgR5MIQV1Bsq4Kfr6hfeOZI8wqVcVlI0j4s3vDTS
+# mlL9rrrdfBHKqt5fxs6hYv+6nKlKAI1lHZLtLlQbO21JWRKH0/N5j55nrwK73bHO
+# XQ/Wc++FObjBzWD0bSOUsmGLVXNGClluNzi7rrcfo3O486CNykgcFP9B3sXLTumQ
+# JRcniGgMfLXSwCC6PFrAtIs+JwH5S4IDHOmx1XzM9k7rkQ0czAaFMrKgNQfFOnaM
+# hQP/4VD9DtxNwYsrwubWqqcZz66mq5+zNadJ1Afi97hMOcL3dlQeCaglFaj94o3f
+# AriiKJfwMJnoihj0F4Q8M5P6flbCFINaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxOFowIwYJKoZIhvcN
-# AQkEMRYEFDw16qS3jA7zese+Lsl36LbcBMZuMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYzMVowIwYJKoZIhvcN
+# AQkEMRYEFGGA/sOu6BU5NFa9JqDghDoXWpfyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAKOssn/cVxHtk2MNXQtTSd+xrNZUWIGeB24POPfIVDSf4c
-# yDLRcfWKjYwKif6zbqcd6qmKYBQS41dSnzJ5Q0xkZVfmxhmvfhEuKMyM8EVWjqcZ
-# nmIpl1J0MaJzxaDtGLswrrw3ktXkEI4st1YWzxcw+XR7frul3OT59nP1XgW1U3e8
-# ma5btIfNNEzewwMKrE1rwmym7L1gm02L8Al0CuF/vINPMLTV40T20ST7zx0MAuOw
-# aEb72PUJ5H8GckFSvwQLi/nrG6nc0hsWurfke9JXLQfJAGbCpejRM1MMgrZwHGE1
-# /l/+FE+uFwajC6zdqtLnLLIdJRxQq7chGeY0Zdo5
+# hkiG9w0BAQEFAASCAQB3WzzsYUSySlJsmgx+8PTMM+6b4gaCmYNBZIXRuqy4cbzf
+# GHXeIoMhVJd2EYQ3qcJGfmRlZratQVSedSzwXTDHTF3JT1Cyl3JKMQR4tOz7fGkO
+# e/qKx133WOw/rcfiTb4Xed5MQFsoEefENOdADCdWA9JkNUL/+tA3oAygObn//zCh
+# kA5bVWQbYROzsRQc8jT4tYD9RYwJDfqO2Jja0u6rn+1QMc1UYh++OAFNItMoUlj9
+# gNAU67ZBV1dnF617tXzibb85QLo1IR4QdJHR9UfaEbOIFZa0n3ilLihJfQRWLtYc
+# sqNSs1Cu8P+S6vmoGLYcIY7upxgH9lwbsc6kEecY
 # SIG # End signature block

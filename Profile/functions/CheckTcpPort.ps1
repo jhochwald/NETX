@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,11 @@ function global:Get-TcpPortStatus {
 		Check a TCP Port
 
 	.DESCRIPTION
-		Opens a connection to a given (or default) TCP Port to a given (or default) server.
-		This is not a simple port ping, it creates a real connection to see if the port is alive!
+		Opens a connection to a given (or default) TCP Port to a given
+		(or default) server.
+
+		This is not a simple port ping, it creates a real connection to
+		see if the port is alive!
 
 	.PARAMETER Port
 		Port to use e.g. "25", default is 587
@@ -77,7 +82,8 @@ function global:Get-TcpPortStatus {
 		Check port 25/TCP on Server mx.NET-Experts.net
 
 	.NOTES
-		Internal Helper function to check if we can reach a server via a TCP connection on a given port
+		Internal Helper function to check if we can reach a server via a TCP
+		connection on a given port
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -159,8 +165,8 @@ function global:Get-TcpPortStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9Qb1eZp47kKLCBex4aqE9htn
-# 2C2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ7mnXDjhxRysgfeKpBMYcPHE
+# 97SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -303,25 +309,25 @@ function global:Get-TcpPortStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQYPkCr4kphRDFfFSxNnIYNs93FhTANBgkqhkiG9w0B
-# AQEFAASCAQBFy1AnZOQ2L/xUmRITM5lBylfSfEd9js1gT16eQn6/Ct7FXuFYno/B
-# Zx47IE13Mp7kPfZpjPWbsyL/zSpiEKdTLebil2oaCy5x+STwgCiCfFJ0zoR9yv7M
-# Q6/gHYvwEcAjgYaXICKFv0rjoUAjtPc/hpQbP/qZ9y3x2PzowvMnQaE6YZdiu6Q/
-# jwYH+YWsR/YStv0AiEeVOoiJNCK/Mn3idL+QjG6BmhHLmSBJsudm/Ed4kV0jpDey
-# uXRzgqRISwTKhTBV1mHUXTlPVVFz6cjSYFEnyybXEIKcgF6svXeE7xtVXaAcYqYZ
-# 9XGgZ/KRlG1zZr0MJD7+UY11UhOCz1isoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTyOPQfi023CbNrE3oeHtH3+wbwujANBgkqhkiG9w0B
+# AQEFAASCAQBaPKhhWDhvqzbfWi3kJ4uW/bbXYVmc6DK5W7FSm9htVaUJ78XhfXyT
+# bM8HYdzNAJGqULQ4ElAeQJbbUEam32YZncLrHKDmKBo4jcNHJ0dJSv4tnrUdUXov
+# Y2d5X7WXINhvUQUiXNR8o6LmIsL7B9mVS5PVl7R7qmgaNXDjM2wzRnyNejiwtkRW
+# bEclG3wm55dPDtsa0UTYVjnQa2xQ5u7Izo2Wp/CevQtq/+11Y6Bu3IFK9YAgCJYO
+# VFsXOfzvolT9rf+sPvCtLZvTG12bShi4atLqh8Bm/dg5XurQkTKwWNXijT8CsF5u
+# P6yqGQavmLetVPuaciZ0g4CwVv8bgIoLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MFowIwYJKoZIhvcN
-# AQkEMRYEFFun+NPqzMmkL35AcQ1hcHTc/sOnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0MFowIwYJKoZIhvcN
+# AQkEMRYEFNPtYnw99+OGEQNz/YmZRzzyk4VbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA7IsLS0Q6K2zf9i0NGTid7PsFLOUH+eV799ja9PQPwM3DN
-# 1qhkoQNDFvjCiqnyMa+e2BfT2+BS3HvrdBDqqfTEwSMvxselunjIAZY+PLsp/WL+
-# TdDx8LdO2DSauY3eSCf6VOjRSqntxQGZhu2QVgQtKWMju2fRPZGzlg7h2/tWRAtx
-# MFXnIPL8SOVjDOx+Nt35Bc858q2ZcJUJ5/l22lADmyQuMcT9IfdqRfw73+7izL/k
-# Xb0cPFAAcmHMv1iDh+5SW94IOc850O7pThmQ3jD7z5k/WN3lSeIfe4/sYtJHBHgU
-# DLkPMIPVdpzCFC3ginR4iz1s9ZI+x77pAtS1M1cw
+# hkiG9w0BAQEFAASCAQBtqdObczgYeDD8dV6sOn6OboN4+A+4r1GrGSNUknJL0v+s
+# 5FzGSpYakUp7u/59IHeSy6LBAXqvjRYp7K2C+HWA6k3SA9EOl+FC7sR4Sh0vF+Ek
+# wDwv+M5vBp1ZbKchVXrXYz1z268cUR1DoP2pokwWSFUrY/iokFhI0c22jiteBaLb
+# Y1MjZMPkpaTLaUtXZozACX8eHzz+EEXi77ZvDZg42hEP3BYk8iK2H8K7z5NcPBVR
+# SRYcgAybY0EK9P+6DLeXxozIWZTbeK+Jr6evgQBjEOk5GxdP1dSwpg3HBG5WqrYV
+# 2RSAw4eDhl5/oWb3DfZjDoE4hlqHvWQHosbHaS0a
 # SIG # End signature block

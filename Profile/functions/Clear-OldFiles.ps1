@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -58,10 +60,12 @@ function Global:Clear-OldFiles {
 		Files older then this will be deleted, the Default is 7 (For 7 Days)
 
 	.PARAMETER Path
-		The Path Where-Object the Logs are located, default is C:\scripts\PowerShell\log
+		The Path Where-Object the Logs are located,
+		default is C:\scripts\PowerShell\log
 
 	.PARAMETER Extension
-		The File Extension that you would like to remove, the drfault is ALL (*)
+		The File Extension that you would like to remove,
+		the default is ALL (*)
 
 	.EXAMPLE
 		PS C:\> Clear-OldFiles
@@ -92,7 +96,9 @@ function Global:Clear-OldFiles {
 
 		Description
 		-----------
-		Will remove all csv files older then 365 days from C:\scripts\PowerShell\export
+		Will remove all csv files older then 365 days from
+		C:\scripts\PowerShell\export
+
 		You do not need to confirm any action!
 
 	.NOTES
@@ -130,8 +136,8 @@ function Global:Clear-OldFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcyEyqdiw9Ytw9N3lQId2ECMI
-# mKSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiz5KzbQBpWswORxGxcZqahhb
+# 0aSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +280,25 @@ function Global:Clear-OldFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSOKohY6AALHtjjxV0WhpXpm5ZynjANBgkqhkiG9w0B
-# AQEFAASCAQAW5kWrKAyUZITCPi5SN8V29FprI5cwqUvaNMUwX5ZtevA+Lr+Q1SW3
-# BJLpMLp1WPIWl1ATKrpOvQsbhEiGSSrsuWI1OAbBUMZGAJ7L12T/Zg6+haeqPmlH
-# 7tkvhJPoYkOxN2PNQ2Usgi9PxmeI7q/RJM/+S1mYlEDP3VdunP/KsRPWR+REBh/1
-# cwNd0aompl0FsnIdNWbJFrKF1Zmeyd2kZD3PDhl8MhD/KmyOOr8fEKDuid4TNjNp
-# j3NYFA7QEKETiBRTRX7VkQOmZxVR+lG7OLWjkHPI24WrbFR79EDdvEWQ7x4RfJd5
-# qAxiJkpw+lYlIKWrxjauzm44Ky73CvOloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQz3kI6Xna1IYoR0f7TE+MCiILXBTANBgkqhkiG9w0B
+# AQEFAASCAQAcseYx9ui+HKu041T80RFLWDcs8lZxYfGub/+H1Rq07P3Pw1fep6jC
+# FS18ymRZGntWoujaPUBe2qU0Nsrcc9q+eXsk9A26SWLjjMJ4oPTutV5gw67HlZKR
+# 96NTMVI9r/OyIVSpEwf8n8Sd3Fi+bUhSzjQrJHL8so48B86QKgJY8s1SMAvXhF+q
+# 5EyPjFPkvWqUXtZ2ncklMHtvYME0lwC3DCMpeUjapfncona4YCM+OmWVvkQ6OG5P
+# 8RFp2p7/Kwrzdqurjug5EKhZcEd++b7GXFaMwj4UtkrPrHO9EXx7OiDN203nOplo
+# kP9T6J3rQN1ABAVky7RiQMxCbg51eRwqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MFowIwYJKoZIhvcN
-# AQkEMRYEFLjWky/Ec5YOPkmLoo8jDScGf1glMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0MVowIwYJKoZIhvcN
+# AQkEMRYEFCuUxD2baCADrLdVnyxtHNnXFGw5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAFg03wewPBhdp+VGX8aFwQB9JKBzh5tGzUr3tLIT49SSl3
-# YPLY+rJXLsgv1YCbpDVG7ye5DTig0U2uSEnmWB9+3a+LmW+Gkf+lyjUI0WMuho/Y
-# ++aVu7uOqzzfPocTbMNUHvkk6bPNCd8MBDWiYutvItMvw3YylDtvmPB6pbfe6Nv7
-# dju4q7FxwRvHL0h6OMeiqraWnafrmcjs8TLvy5sNKnBNSu/x6zI3mA+oz05Ji/86
-# D6aQDGD7GbZaC3/DRMcjo3JARh74tUt4qj4j33Mv0O4ecDry4ymystbWPnXHJnQg
-# 5x1QuulyFQr8LJUE0UtmKFiH3VszQ55EuZ5H8Pg/
+# hkiG9w0BAQEFAASCAQBFOr5knBq9TSI++06khzAIGsy1Ej8jn5L7Nm/G5dM3n5aI
+# BZl8qysGQSzzVSZT9i42DXx0Sdn+nIWOD+VhnQp2q7ZS36AXE43XmdJ1ZOpPHrjp
+# XwdEtLAwCEPnio99yZGfQMLyR8ZbXz0YYcyNHnYAdqcAMQ1X3EN9AMbgixQuWbQh
+# LroCBwTabGuWGfBWTNeYnL8IEpMFLlkXavV59ZPqoDnCSjOWJE+Ne08e9STk94BP
+# ZiDt15+95J7FRYP7PTHkhlX8YV9FPpBL5lGNLA2gcNH5jG7bMGqeR8xY1/likf4f
+# 6a8IOY3LHr2LAh8bGr+SfC6dCExQrFZ6I1aGUBJy
 # SIG # End signature block

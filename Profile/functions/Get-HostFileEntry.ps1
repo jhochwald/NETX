@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -69,7 +71,8 @@ function Get-HostFileEntry {
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
-		Sometimes I need to know what is set in the HOSTS File... So I came up with that approach.
+		Sometimes I need to know what is set in the HOSTS File...
+		So I came up with that approach.
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -110,8 +113,8 @@ function Get-HostFileEntry {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZYVEWLNrIctV4TxzdA3ptFbR
-# TrOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWYdWYw03C2QLa9/b911PVgHE
+# ThqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +257,25 @@ function Get-HostFileEntry {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSRoQsEuISnmZ2lvjtm+qZh5RHfCTANBgkqhkiG9w0B
-# AQEFAASCAQCsowDu1p6bm6Q6Ii6N4hp334Xe/+3zs2n4O399BNTcwTQgSEus5t+2
-# 0Sd+v0Du1w+VxwFQfXvd0G0lvr/r/Zf47iKcVzY9WA5FvAqBF1LGDrv8oKdIiJhA
-# DpMgKIS7cYbI+jJ7KPr1JEsZaoomIQCGA2WqQjyeb6ingdGiqBo3cQnjSfstuQaA
-# bSxJNyXCZCWw9P9CCVLPs/wGKs/fWSoy7GEN1c4V3gaJk1aXUjLwjDGUzxaZCSLK
-# l6Wt1Z+HCqyF0Ik35ZFIBhaiZx/lTnm/TWVmsOOWjQ77tiI/db0UCLEL7SEXVxmm
-# vjBtHRfIDUTR4Xml5D9no9BlYTvGYtm1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSvq0c5diMNC1RCj/nCRmBEvYigTTANBgkqhkiG9w0B
+# AQEFAASCAQBv3mN2Kj0omThbeIkGB1XGhs4/9Sqwg9jueEI7QsJBXGGpU8PWpxzP
+# pMlEAFMuv+SD2xhd5YXoECuNZfb2eOK374ng/EHs/mC7D5fPaHQyN+eOMGdwqN5M
+# YuZECCnS1RQ82mPVvaE+tUTaBJ7p6WsIOJUpCQlAe96Llhztn7huMG5Rp2MGH6Jz
+# GMKhsRCxxI60lnJdlUGGClNmywJO+y5S9m/EZTj3mtNn9klvnD1orSOb240IhCtw
+# VAoz0SLdUnHZeWcmw/7oMPQhn+EelPzVfOozKZ6LA91VmY9y8T1izBW/qMSM0W0X
+# gqfnbyYDcadCJwtR9H2xr6NWEgQC+loNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0OVowIwYJKoZIhvcN
-# AQkEMRYEFGCA7MVtC1RSZyTbh7Kjye7cauQgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NFowIwYJKoZIhvcN
+# AQkEMRYEFKEO20fCOFgPW92bcKlubtQuPF8AMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB+pgaL+DC3ZtQcqH0ohl53FzNOlKyCHoJXW8yCvm7gFaxa
-# SBeiYVluUcSNHaWJnP6fyxPp0qN1/eraI50NXJOC78H2QVAlinadRVYQqlkjaPqn
-# /OvvUc0UOhWDDfl8zjh5HyTMMkGm6vqRZsD9pKYHcBqioeGVtLOGwgR8NO7AFsbm
-# nFpbUe7HJYHyT4M2nO3xgduWmZum+W7M8n4FP5zxPPZzoBmg/VXtSlxVAY9+wzF6
-# Eun0//g4wZ5nBRNSuVMJgMCvcvpcEBamtLGOcUnXQMugMqEyXbhjRzjITzAM0rOS
-# gKK3qUQkHITMd/sv28nEsNR70DdjeTDNOMWdj6aq
+# hkiG9w0BAQEFAASCAQASInVFmEz6eQdUTSaPGqeqls+LSGL6avS7Yh70I8oZxK7O
+# Adh87jZRTmK8VXmMfSxkIQC5wu6EZw5DDNmPJaAZ1qGJ6UniWwhmXDGlNiSWFKu4
+# bEKW37MVKqSZfjdbY3TUcOXQ0Gh+wB0POEN14JlmpnEZquHlLS/x2wn52PME0g/w
+# R4O9jLjwJ7d+beiJh1S+GvycPZowLYV88MVi7MEWzwtwM2IcrEYOUqWj0M1NSPDH
+# f+L3ri4WHA2RpvQqx3fwqh9QiD+EEmoNBRgILiKIWQ2w8BDfg5S8ku4nueEgGm2k
+# L0EIckqCNqgXKvcYdSTl2WsEM1jWg3TkGNfUvIYR
 # SIG # End signature block

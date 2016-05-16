@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -82,7 +84,7 @@ function global:Get-NewPassword {
 
 		Description
 		-----------
-		Generate a Password of strictly Uppercase letters that is 9 letters long
+		Generate a Password of strictly Uppercase letters 9 letters long
 
 	.EXAMPLE
 		PS C:\> Get-NewPassword 5
@@ -97,7 +99,8 @@ function global:Get-NewPassword {
 
 		Description
 		-----------
-		Create a new 8 Character Password of Uppercase/Lowercase and store as a Secure.String in Variable called $MYPASSWORD
+		Create a new 8 Character Password of Uppercase/Lowercase and store as
+		a Secure.String in Variable called $MYPASSWORD
 
 	.NOTES
 		The Complexity falls into the following setup for the Complexity level
@@ -185,8 +188,8 @@ function global:Get-NewPassword {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoa6Un98Xa2IpYTS8vZD09ZmK
-# WTmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcWenEEUyjYPLdfmyRnCOSASX
+# VMegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -329,25 +332,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTcPSInZxYVkT6Xu3anuLUrdoiWRTANBgkqhkiG9w0B
-# AQEFAASCAQCguJJmiVPVNjLpc+bx5KzOZF9F7bVc/T3fsMXkLHOqa8g+tj+bOBnz
-# foA5iE889IYJ+eQnonAuTbzSXmxCC1TxH/klpMrSp00GpDyE98Ih9/NX73O+aBZy
-# 1NOD5m8RK3qDjM6LsMg+HEMRsLWLRSIhrYn1BWvY+NCeve6MxbPvXumux68dGuhY
-# z88hsg6GbX2wV6TQeR6Rlvx+QJtNg6HlwosQyfVm1bgczK4u+2+WM+Br/QrjWTvp
-# tGdWdG77lDZUI7E8WpZh5zJBmrHVgd12lrkwZfyUSqr1qim9YwN9UJU9SwUoOw72
-# JBDX//M2nek0Jxs63JfIFHjzf1VR8IPXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSjX/7bUK8q0L2YxO3Kbsvldg9ZMTANBgkqhkiG9w0B
+# AQEFAASCAQBJ1S2QndjEYhcNa3ygFB+wIILI+DsW0UbKQZHrllRbdTjNjNP7R7ko
+# p88TFTCY6DJg9a0/H0V1+ZWzs7e74lHw5s+g/25QSOomOwjBKSFz1acpNF4CDSpK
+# RD2U5HUl716LdNZ5W3oL2hC2cXHbgWVRjw+9GIB72bBfb23VchF8OLo07Tb3hn4e
+# z3kwYnUrmrh2wqc1FX4OT3MZ+gAk296AcQcBucIWtUwtBVjEaKRkPLjRnJQYhjuy
+# gLDnbCLDZWLC3zjNCrT1ACaFuUKOXTW6L7ufJlFYesXDuGn3bJ6iD22JBoWAAp6G
+# GWFZIHGqMOgnO7tjeU//rpsjhXSoBrrpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1MlowIwYJKoZIhvcN
-# AQkEMRYEFDFpuN/TWK2kM3GvQYIQlrUDkYvrMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1OFowIwYJKoZIhvcN
+# AQkEMRYEFAkN6gW2uAYzPTuQ+DKVXE+yKyOOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnjXnHDReLcRCFWoOpTDjN/eljr0ux6cfVN0mmVQTZ1xaY
-# rrGXk/1GKv8VdRKpTM8P0EOfbgBDa14fN/TS46gHmLfyFkO+X0kLswxySV4PSEgp
-# pZhQLjciIEY3hiPnPt1+8nolYQvIYStj/piJ4HQCjD9nXEXsMGLAmY2V5VAzX/FY
-# 2YkQ1DGgkn++NInePtqgXgSDEOAZu4o49tCdEx0qZsuh1ey3s3HWCmb4swzOPdf1
-# 5pke3ypB1b0lqQ6eUNlYZXVuy6Uph4EKIEQF40ImwE9HcwfRMNGP61hCxFCKnWnd
-# 6I185hWAMKMyQU2v012xhYOVUPJrzs8nWsJV7OSm
+# hkiG9w0BAQEFAASCAQAq8cBhqjeQfzUxxsFjoIE5Zt1FWR+iZQO7fomGkStDdG+h
+# 5slV0++/K8KclBDUd6ZMwePFTB5hIcZ8yEmoj1ddazOyc9IUQZlfcbvaGzFZgjdG
+# lq/oyNnuDKX2ZUsJicuu8ymmgk+mF9UA6z7dLeO1/ZrUkuTeQOKb7Ph+I5w/Ja3M
+# qQOdQbZMgDx/N5ytepOMXDEaN5LeeiRgICpSpvRaYjUgKp7HiaXWrULnP/75HCHX
+# h28XCJezfSYp6B9GjZ7oarGe5PoyJ/zZTqhy7L5AYbHIPWGa6ZdzH0r5dztxUQjv
+# KpYj87UoH4e+x0NqeaJgMvm+MqdoTND05IhJq+9k
 # SIG # End signature block

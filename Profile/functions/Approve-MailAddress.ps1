@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,9 +54,10 @@ function global:Approve-MailAddress {
 		REGEX check to see if a given Email address is valid
 
 	.DESCRIPTION
-		Checks a given Mail Address against a REGEX Filter to see if it is RfC822 complaint
-		Not directly related is the REGEX check. Most mailer will not be able to handle it if there
-		are non standard chars within the Mail Address...
+		Checks a given Mail Address against a REGEX Filter to see if it is
+		RfC822 complaint
+		Not directly related is the REGEX check. Most mailer will not be able
+		to handle it if there are non standard chars within the Mail Address...
 
 	.PARAMETER Email
 		e.g. "joerg.hochwald@outlook.com"
@@ -66,7 +69,8 @@ function global:Approve-MailAddress {
 
 		Description
 		-----------
-		Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX Filter to see if it is RfC822 complaint
+		Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX
+		Filter to see if it is RfC822 complaint
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Jörg.hochwald@gmail.com"
@@ -74,7 +78,8 @@ function global:Approve-MailAddress {
 
 		Description
 		-----------
-		Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
+		Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a
+		REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Joerg hochwald@gmail.com"
@@ -82,7 +87,8 @@ function global:Approve-MailAddress {
 
 		Description
 		-----------
-		Checks a given Mail Address (Joerg hochwald@gmail.com) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
+		Checks a given Mail Address (Joerg hochwald@gmail.com) against a
+		REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.EXAMPLE
 		PS C:\> Approve-MailAddress -Email:"Joerg.hochwald@gmail"
@@ -90,10 +96,12 @@ function global:Approve-MailAddress {
 
 		Description
 		-----------
-		Checks a given Mail Address (Joerg.hochwald@gmail) against a REGEX Filter to see if it is RfC822 complaint, and it is NOT
+		Checks a given Mail Address (Joerg.hochwald@gmail) against a
+		REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
 	.NOTES
-		Internal Helper function to check Mail addresses via REGEX to see if they are RfC822 complaint before use them.
+		Internal Helper function to check Mail addresses via REGEX to see
+		if they are RfC822 complaint before use them.
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -142,8 +150,8 @@ function global:Approve-MailAddress {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURVdT2j2ybqwxa2ott8Jl/XRu
-# feigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmC+An7hPOxQSiRbb1rC8Kib6
+# 1IGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -286,25 +294,25 @@ function global:Approve-MailAddress {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR2Kxf758ektrGntqudqrNj+2cTfjANBgkqhkiG9w0B
-# AQEFAASCAQBAdGyACKQ19Qp4jC4ggPlrUnEvxyRowkNeLEdzZp//nAFDy8I/G37E
-# HOarIrKoBE/M4935Od0F+r0miqryWkOgJ6t+nvaawCgsRGz2zChQG6UlWDZ6Votb
-# eTgBUfdWRsB0irRKu2CeoiW8t5B6vaX5vu4NtOnzRjIGRwdqrQRaujjksnAx1VVO
-# hpkzaBzKvVtQQ/FKaRNvLtuTEC80u062t1djSM0k9Lw/pAZ7m6Vu/yKEXuCmjTQ/
-# THQPm3hxJzTOPxnjUBEadnfdtXQO3NAHy7nL5xs/5EHPl7gM57k08fGZtsNrS3R8
-# 0Akl55GKR7c04YTKZYpDegV3rOWbFSYHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSHK3PTLdx3v16pdVdrAqC7tybPWTANBgkqhkiG9w0B
+# AQEFAASCAQCRhW/Cqr0wEwPv+RbeFVV8I4Kd7c3hkGcVBMTo0dj3z6Ttr96hfdnO
+# cfb67UYU5H5wi8fysg4y8HeaITejAvYREASu9nu3tWGInj+/6bIPm/VX05lQ6isc
+# HSB0YVlX3ucc5WpMGOfndWQPTnVfL4LuRVYMKIXNVTW7NqFRjUD4paPqLmf0hOeG
+# /R71wWngmO/uP9gF4w28YadRGcmoKwq02zvj097RX8ThNzKoFn6GCxSaHJR7IK1o
+# VrEAKaEeozDTVndF+54Jqty4wswNpgZ6Wr5uZ+1WhaGUMLpav0AqNw3V6J8AgaO7
+# 2KjUBMu2DgC5+PTd8+KaEt4Z+KGxOZc9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDIzOFowIwYJKoZIhvcN
-# AQkEMRYEFFLZdBnGVkrNHPBPt6VgpX/sUlx4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTUzN1owIwYJKoZIhvcN
+# AQkEMRYEFJ7ZKRoY4DCj14lRqPEJ/xfgC+CdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCCp52DmpPeLs9teQ0+tAzuNR/nB0NgB9iScJItyBCNVkTN
-# it3Ofl6VVb8b3y04MOz0WeKCDm2Ge0mQgwSp4lawow28q652OyVUAjeNrkoIPnAT
-# gKvX0XZxwD7OV8/EzzY7/gaeAGX8OZObVspVqdicaEGAPyGjmk04HTyZKCm7JFBi
-# jYHXkZGEcX40DwOh321XA1Po9yQs1uGDk3mPw4xpxhQs4Xw1Jw3+9MNLJ/PHbG4d
-# cY1wg1aCOhYxoclPr0C2MHs7zK4kdmXGjTz1SY30v2//4wNpVq0A0t1h+FFuHH2h
-# y6KOM4vRRq/6ooyOF9ZmuonTj0F6FV0pVQ5jt9cW
+# hkiG9w0BAQEFAASCAQCJrKMAm0i78N/6Cs0goVfNC5mlYsjro5KUBMSK8Q3QGEk7
+# zzFSVVzry4TEgS6BrvUkbnr+CylS+AjbxsSq9wv4uqAXRJi21gtRvqqROA6ICuMh
+# JdCFGkfeBzIMuxOfZX9nYDmXPewn+Hr7JsFceegJIitn81buf+fytPdkeke+lxCX
+# gVsAtKWdJwgL5Z6BoCAHLXMBsRpOsF878yS8wC+lcptsJmjLPZYujqEBr0WfrwN+
+# WAKZcz0YcICbqb1ttUKU2+r/8QLlOGCBrS+JRsHbXDuT+wI0JN9+rEpxfCh1oc42
+# AwUW5Zp/PEm95DcrTwgnh/YViQwXv8oOXrMjPWty
 # SIG # End signature block

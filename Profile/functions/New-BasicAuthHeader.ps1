@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-22
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,8 @@ function global:New-BasicAuthHeader {
 		Create a basic authentication header for Web requests
 
 	.DESCRIPTION
-		Create a basic authentication header for Web requests,
-		often used in Rest API Calls (Works perfect for Invoke-RestMethod calls)
+		Create a basic authentication header for Web requests, often used
+		in Rest API Calls (Works perfect for Invoke-RestMethod calls)
 
 	.PARAMETER user
 		User name to use
@@ -74,7 +76,8 @@ function global:New-BasicAuthHeader {
 
 		Description
 		-----------
-		Call the URI 'https://service.contoso.com/api/auth' with an basic authentication header for the given credentials.
+		Call the URI 'https://service.contoso.com/api/auth' with an basic
+		authentication header for the given credentials.
 
 	.NOTES
 		Very basic for now!
@@ -112,7 +115,7 @@ function global:New-BasicAuthHeader {
 
 	END {
 		if ($BasicAuthHeader) {
-			Return $BasicAuthHeader
+			Write-Output $BasicAuthHeader
 		}
 
 		# Cleanup
@@ -125,8 +128,8 @@ function global:New-BasicAuthHeader {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnbROncdlSAgbB357cWkOhQSl
-# 0HGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2ol1wJAzdZbP6SwVdpIcFrBr
+# NoygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -269,25 +272,25 @@ function global:New-BasicAuthHeader {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSCuvVQ35+w39rAlk77jBHjLMk/YzANBgkqhkiG9w0B
-# AQEFAASCAQAyAXFtdtBJrEaMA2Mh9nDmpGfKm6j+W1o064BIa+/grBUdD42acVxm
-# vq6fch1sf9R0oUAKAT6qZCMdo7vuyygc5vweiI0SqTJ6xJ/GK6MiBePpBU4uJsi/
-# Sos7Zh2WhjZ7VTnWfWUD4+8/Im+6hrJ2DgY+GFVWy3SefOICtj4M08CJe5affp0E
-# gDJJiXYXvEzsUKllR79YQlA+JJ0TRC7Z0weSVLMCW+7n6S80KCNYws6rzSo17eu9
-# gU9lPp0LJ6f5PlaUHKNTgPjK8k0ob6/iTg81HJzEyiWmhHC8EmZx03c1VX9UwEnQ
-# WOjHLixlO/iHlu1yHPnMZou5IMJ/tO32oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRZcyYjWQmSKMCYK1KiT9yekKp+QTANBgkqhkiG9w0B
+# AQEFAASCAQBbvw3s/u0TQ0KNr4slQ/wkREGTcj7/hWbEuVjSm17AAAWYKWqmB/Qb
+# RWTyOrbzqWHSF0mYzVncmlLYAREx1yYC28jgX58U+4ew22w7nexJKvczFWcFaC0g
+# 1gcXOded59lkpmp6a0+I20nUBPkPzTTPZgDUqDdZHNeFyerXZiDSaek2dBvNV1iY
+# ndpLZQGchphAcsNcyQbXSHroz7YqYGRzR5ne+CLcsnQAX258MNQT9/HFzEZRbP7p
+# h82yOoN1RAOMsEqCh0ePyzFahM6skbGd+KrMRVK/IWWfSZByjanW03Nik7A+heKb
+# AaubAFIkdTDcW4Pj0txkxn5dXS7Qm5/ioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwNVowIwYJKoZIhvcN
-# AQkEMRYEFPnKvV6vThMO51Zn6+EViJ7du+k2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxNlowIwYJKoZIhvcN
+# AQkEMRYEFLys5MPP0qFRcFDG6niwtIlQIkAYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBr+phEsqrMVjdXZ0TcWnq0tJQ902O0+IEb+7vB3oZ7w47R
-# xKz8LxyQw3vLhgVPcdC/3A4p58hs/XSdDwUye/iZE4mnoD53YZReZfsoWHcg3sDu
-# 0NF2mVhQdAir7wINDNCOxCkhymvxD+B66/UI8WcasC5r4hd/pkVkW00aJPfOWIkm
-# FS9AwpVgZuMaUIZppABVbMSeM3sgfCJDooO64guvkcqpGPwLeiAIhOF9J26armqu
-# w3xTmO+aIYaNsanrbS4GNXfLccHVuBVwTsWtEBuLVuuy4BbO0g3Zd8udVkRBCBVz
-# nX0wPGbwzbnHvEH8gArkuy5zFMHNZr6Q1fkfpAM4
+# hkiG9w0BAQEFAASCAQChUuWjpnDODn0cWt4Z3MXOxziYz7+UNgmimUJhmN8Zk+OB
+# ZjeRn80kctj/0ottW+OP7H1PDm9CzJj5Wfg483olXygtRpN5U+ND1/lfXT5z0g2o
+# 1kd9Q6vs7WYLTDJG7+BzDI6wingEh8XGjg9yeOMCMadrnTtpnUIbqe9IJqDi+sRs
+# /zMwVoqkfkTITxO0eiIyI5VuoqQU2A+SEho9ti9WWk3gt3EYwM+iHaEXVjr89Dk2
+# HwMP/w0EV9zrKqJ/+WZcTl4RableZ0cBPd39nsM3MheEsqimRaykAu5sryjn1aqo
+# wLMDJrLJakYeoO84QNFh+vpzsDgIQZlX4tCXsn3C
 # SIG # End signature block

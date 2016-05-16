@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,24 +51,27 @@
 function Global:Get-ServiceStatusInfo {
 <#
 	.SYNOPSIS
-		This function identifies all services that are configured to auto start with system but are in stopped state
+		This function identifies all services that are configured to auto start
+		with system but are in stopped state
 
 	.DESCRIPTION
-		This function identifies all services that are configured to auto start with system but are in stopped state
+		This function identifies all services that are configured to auto start
+		with system but are in stopped state
 
 	.EXAMPLE
-	PS C:\Windows\system32> Get-ServiceStatusInfo
+		PS C:\Windows\system32> Get-ServiceStatusInfo
 
-	Checking System Service status...
-	Total 4 services identified that have startup type configured to Auto start, but are in stopped state.
-	 1. Microsoft .NET Framework NGEN v4.0.30319_X86 .
-	 2. Microsoft .NET Framework NGEN v4.0.30319_X64 .
-	 3. Multimedia Class Scheduler .
-	 4. Software Protection .
+		Checking System Service status...
+		Total 4 services identified that have startup type configured to Auto start, but are in stopped state.
+		 1. Microsoft .NET Framework NGEN v4.0.30319_X86 .
+		 2. Microsoft .NET Framework NGEN v4.0.30319_X64 .
+		 3. Multimedia Class Scheduler .
+		 4. Software Protection .
 
-	Description
+		Description
 		-----------
-		This function identifies all services that are configured to auto start with system but are in stopped state
+		This function identifies all services that are configured to auto
+		start with system but are in stopped state
 
 	.NOTES
 		Internal Helper
@@ -85,15 +90,15 @@ function Global:Get-ServiceStatusInfo {
 	}
 
 	END {
-		Return $ServicesString
+		Write-Output $ServicesString
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVTGjxjcTbkeyys0t87SL76+F
-# Lz6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIhd9NyBTqc27QVMYqEZtRvV8
+# q7+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -236,25 +241,25 @@ function Global:Get-ServiceStatusInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSjLi9mjNhWz1wt9J6+CwVnydgYTDANBgkqhkiG9w0B
-# AQEFAASCAQCYfSiMQxY173GofF7GEr1CK0XM+bgPXrpo3xuyiOzrDBCKTr1ls4Nv
-# ORTNMQ+0NbqpFSveEs5jm/rZn/DtTgwJGnmtjMTlaR1ievym2+ajpDa7iqEk+EZp
-# VEwdz9uMkUicvXB9T4JjN4Cdetum3K+ykVCjgYeC9JJvXs+Ziog2RWuUqISZeCfT
-# VEkz+sUSFK1gcon0FvXItLMyVmMb9qeR/YRfRuLKP1xM24HFi93DrOQxZ46wpwYi
-# nfSzidmiwQRkLX+HqddrN9bhfVoy6oxzOSjMsumzf28xtDWp+y6Zkn3wH1JQotZX
-# Af6Ck8Ojgl7/U5+X4LmWW/JyoRab+rUHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRE6IdkDgQ1a5AFQWYXtTYwrZ5tEjANBgkqhkiG9w0B
+# AQEFAASCAQA3Y0B8QH2SEsjdfjDTzfvb7VxouVZ16LmdfqdP/Cl+oyZ90bXAzLBH
+# YJYHrJ7hZ5me6EBDlDNN7TM9gKXYtMM6QzrlYKftd/AMJT5FEQV99/kaL91M7bf7
+# e8cdvZu6/xVUSD8jtiI0NOFkcp0AV8trMhA2dNSz7aVHxV31KuwPgNlafdM0HEW7
+# JRtfeFXFGrDE/ggKEvK8H9uZvtxDEjytF/gieYwa9OsC5keEqwhjZPnFjSDHeL9O
+# zHDtS9KyT7Q81eTsKJQMVRiqIu9ZVv1J/rLyLVzyHQH5nevXbAG1eBuDHt7TZaMx
+# R8WlEiQUAiGEz3+PeiHvAx2lKNSbKXTroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1NFowIwYJKoZIhvcN
-# AQkEMRYEFKbp4sou3kBP4W3yDBmkHieBBFGzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwMlowIwYJKoZIhvcN
+# AQkEMRYEFDHoDNZuHTMHwjMYgBNS34x8tLeQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQABK50iE6RkDEcBB3KNiXvs87PpSy7KDe4NoZIGM3vmzMXo
-# 1MevyPjf+wJvKK/Ob90Niuzt/T8bKLgA7i92jpKLlVEOtGMLG0TR/Mp+iFC7mWeB
-# Dt0oiLt680XmvWhZCBa9ezmEGcdFN5D1Fc5ki32Q6pX9ubisX/C4SMesWinKL/3p
-# YxvTq3tmZZcjO03cH+rwZfIATEE31KuijpNxK0AGHIIPbLC+j1hGWzrcYsUT7Ell
-# Pn9w3HGk72uYhrAc5P/KaZjfnfqLHYphLb1feZzdZI5RHHbxO0s5XWGriolQ0xdJ
-# hpWRSb8JhJGUSYcxjeNClh/pbPfP5jBPW4hWu6so
+# hkiG9w0BAQEFAASCAQCrTSWio1LZhor76A4v/2QMHHq5MqTGLoN45Gk/o7Ni8Svp
+# o3N4wPCBTb12MN9X7EXScxC2RkiCkmkYgd8sRZrF1umPS1j06MolKqQpaJRACYxS
+# vFs1XBxDhjAYakp5QqOvxZKxJJIq1xeIRjdPK0nU1PVUPkH87i73e5EpmxCrc7Lf
+# lXZPJcjDmHb6dJYO+htMnHtSNQitRrz+FolrxDK7WpVrbFCnlE4IyVpaQTf9ChWi
+# XGj1Q2BKxFOqr5K9gtsENH7s8w+rWxZ1740Xfyw5JGNHjLN1rmc11+k0YJrQlRVy
+# IUiYXz+A1AqE42s05qpEwGXbP5TUlPCPXs6iULpl
 # SIG # End signature block

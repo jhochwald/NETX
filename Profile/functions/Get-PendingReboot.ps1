@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,11 +54,13 @@ function Global:Get-PendingReboot {
 		Gets the pending reboot status on a local or remote computer.
 
 	.DESCRIPTION
-		This function will query the registry on a local or remote computer and determine if the
-		system is pending a reboot, from either Microsoft Patching or a Software Installation.
-		For Windows 2008+ the function will query the CBS registry key as another factor in determining
-		pending reboot state.  "PendingFileRenameOperations" and "Auto Update\RebootRequired" are observed
-		as being consistant across Windows Server 2003 & 2008.
+		This function will query the registry on a local or remote computer and
+		determine if the system is pending a reboot, from either Microsoft
+		Patching or a Software Installation.
+		For Windows 2008+ the function will query the CBS registry key as
+		another factor in determining pending reboot state.
+		"PendingFileRenameOperations" and "Auto Update\RebootRequired" are
+		observed as being consistent across Windows Server 2003 & 2008.
 
 		CBServicing = Component Based Servicing (Windows 2008)
 		WindowsUpdate = Windows Update / Auto Update (Windows 2003 / 2008)
@@ -64,7 +68,9 @@ function Global:Get-PendingReboot {
 		PendFileRename = PendingFileRenameOperations (Windows 2003 / 2008)
 
 	.PARAMETER ComputerName
-		A single Computer or an array of computer names. The default is localhost ($env:COMPUTERNAME).
+		A single Computer or an array of computer names.
+
+		The default is localhost ($env:COMPUTERNAME).
 
 	.EXAMPLE
 		PS C:\> Get-PendingReboot -ComputerName (Get-Content C:\ServerList.txt) | Format-Table -AutoSize
@@ -77,8 +83,12 @@ function Global:Get-PendingReboot {
 
 		Description
 		-----------
-		This example will capture the contents of C:\ServerList.txt and query the pending reboot information from the systems contained in the file and display the output in a table.
-		The null values are by design, since these systems do not have the SCCM 2012 client installed, nor was the PendingFileRenameOperations value populated.
+		This example will capture the contents of C:\ServerList.txt and query
+		the pending reboot information from the systems contained in the file
+		and display the output in a table.
+		The null values are by design, since these systems do not have the
+		SCCM 2012 client installed, nor was the PendingFileRenameOperations
+		value populated.
 
 	.EXAMPLE
 		PS C:\> Get-PendingReboot
@@ -102,7 +112,8 @@ function Global:Get-PendingReboot {
 
 		Description
 		-----------
-		This example will create a report that contains pending reboot information.
+		This example will create a report that contains pending reboot
+		information.
 
 	.NOTES
 		Based on an idea of Brian Wilhite
@@ -252,8 +263,8 @@ function Global:Get-PendingReboot {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPHMWhve4GYefhpzX8hFGTYyJ
-# QS6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqytwMHyTUQYbZApkFO+OmNXf
+# j2mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -396,25 +407,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3EAejDlNjLJJ9aC2r3JZaZXpFMTANBgkqhkiG9w0B
-# AQEFAASCAQBxw8nHVpdVhuHxtYxDJK3OT2k5fMBFfIuzr/ojXuFrbGAj7G0P/aJ+
-# DCKVxlB5arqonIIxHjWAoNSEdl5++iqJ3aOeboOcvfbdbdWhlEUIUDHdNvykp+fg
-# Tc4mnVON5bRlbU8s6olJw9G6zTIaJVjBdeQR6ZvxZi5n2ErqygaW53esrTeU9Ge6
-# e1uIQXQiUh0xzmWKdOlO8gMwsgdbQCOXRxFFQVOmeoeu7E15XxYmcVcYpxdwKg4B
-# mZwfFpVioBVmPZHopE7lL4DJ8zFI93AI/1qmbNof8+l9sgwn/YAgLfscDdmTFq5V
-# Ln1uvW8iaZ2Zqz6osscDE32vspVJq3lhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRC2sHt+WWT00qdWnALzvNO6HRcOzANBgkqhkiG9w0B
+# AQEFAASCAQBogPGM9e+Byr+4ZYhMu0FfHiMHft1DeIJPnEtQdX+dUhWG5wrwp1rQ
+# qknJRV26x8djgMhnMmi030DDtVFAJjLCSp/h5XqYZNIekejaij0DcOLGQxJEYQ9n
+# 16l/lr4U7Jad/kubROScLgB+gW+Nk/Mnbw3f6S5G+kPc+1PYyHZ4A71P7qIqKlB7
+# Iv491DE8HqnRjSNBLIRXbUQaVSTf1898tY5j2S7mxsJluucLg6scOGueOE21HTyA
+# ft74oiz1FqpJt8JjyfryF+AD68lGVoLJ+zOgRiyU3s5J7HAj9nPAjCGHHCxzCUuV
+# 87bS7+mQQt5ZHQkf/GsqILaAaYysRP6aoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1MlowIwYJKoZIhvcN
-# AQkEMRYEFKlfWYetR9Dl4g9tM3BLrxumLO6aMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1OFowIwYJKoZIhvcN
+# AQkEMRYEFD8bHsAZ1BiLWnOP8WvDiEfNyMmtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCiCFY9ykvsyxfIWjUVC6AYF12sUOLqm/rP1neIkDg0Vbur
-# i7vcVlZ5srCUWBEcYA5zbNyr5u73bERMfe0WVbDS1rkfHi8MRitFaqTjRx1TJd3f
-# 4tIgUH8tFn1RT4r1UEwzWWQ69rHKxKJH5r1vaFzpVvegFaCHA+0n2U2fOwu4DFja
-# tx0C6Yv+kq+/sdNxiauJk1zeAyH8ZqiLwg+WKyym/Wcdc6IAg3YtMAhMghcGGApK
-# tqC+ynWVSPmN4DUAyowc7Ut2QjrPk549tdZ11lL7sRFM3sHU7j6BtRqZFs+4O1fW
-# GdhdmkaIt7to6DwItgumvCe7HSRobkbg2JqjfI6S
+# hkiG9w0BAQEFAASCAQBXQkXMlzWfIK7tdYqLUn4UGsuRoA3srcv/oseV0eGdQox3
+# 9emDrEvig/hY9YmZdnAvDGSVWfqzsC4OZLe1C30ELAwkknaXkX13JBR/mRjHQmGo
+# 8ikl3gUSFNrC2f1skrR26x1Gib64cADpeFhRjiQouh+XzaJ/tDNvY5G0AxHtEF2a
+# ik8kuo7bNcbHNUQ7H/TAofWrqy9ZtC136AM3R6tb2EKA/wyOWx5/7Iiw554sBPU4
+# FK7XhOLRVZ2podt9l7bSZYLbzmBtof1TeK/CWlGCbuqxiAjLWDFkY0IuqW3T9leO
+# 4U0HzqvnoU9uBGz/j9JK5VM5YcUtsAgD3cQLb3bG
 # SIG # End signature block

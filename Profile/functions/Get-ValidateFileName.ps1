@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-16
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -48,76 +48,74 @@
 
 #endregion License
 
-function global:Test-ModuleAvailableToLoad {
+function Global:Get-ValidateFileName {
 <#
 	.SYNOPSIS
-		Test if the given Module exists
+		Validates if the file name has valid characters
 
 	.DESCRIPTION
-		Test if the given Module exists
+		Validates if the file name has valid characters
 
-	.PARAMETER modname
-		Name of the Module to check
+	.PARAMETER FileName
+		A string containing a file name
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
+		PS C:\> Get-ValidateFileName test1.ps1
 		True
 
 		Description
 		-----------
-		This module exists
+		Validates if the file name has valid characters
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
-		False
+		PS C:\> Get-ValidateFileName -Filename 'test1.ps1'
+		True
 
 		Description
 		-----------
-		This Module does not exists
+		Validates if the file name has valid characters
 
-	.EXAMPLE
-		$MSOLModname = "MSOnline"
-		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
-
-		Description
-		-----------
-		Bit more complex example that put the Boolean in a variable
-		for later use.
+	.OUTPUTS
+		System.Boolean
 
 	.NOTES
-		Quick helper function
+		Very easy helper function
+
+	.INPUTS
+		System.String
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0)]
-		[string[]]$modname
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'A string containing a file name')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$Filename
 	)
 
-	BEGIN {
-		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-	}
-
 	PROCESS {
-		if (-not ($modtest)) {
-			Return $false
-		} else {
-			Return $true
+		$invalidChars = [System.IO.Path]::GetInvalidFileNameChars();
+
+		foreach ($fileChar in $Filename) {
+			foreach ($invalid in $invalidChars) {
+				if ($fileChar -eq $invalid) {
+					return $false
+				}
+			}
 		}
+
+		return $true
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdcVibYXRC7CJuS22QNBzKsg
-# fb6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUN/81ij1NRlv6zMh038UY6yko
+# kK+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +258,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3ePQiRsx1QEyXRppYsgo/Pb6QxjANBgkqhkiG9w0B
-# AQEFAASCAQCPaA2xxUn33qreYxLKql3+JcwmhlxO7EZ+E7JvV6EIKRPZcAwBF26i
-# szvq938iTFTx+KdRFqSN/wE0lIDRTYG4sjkvqAUcVVMKaYNx75VxS1fyaTdkE3Cb
-# 2EwUT39NLO+woQ+82hF/iyKnNvzQqcmDl2sle7lx5UAkKoSKjZq29dg1GYh/e/i/
-# 8hDaNoIjcz0AAk1KbzBkMysVSukJuaExT3BuU50CeWWqwkBxKrgr+zQzX+LjTD2g
-# ZpOlAkguBty6SZxu9if7E2dMg5NXkDoSraHuP8Au935iuwzA3XDqTBhOyyM/XbQe
-# YHZeHoDKPcjF/9GcoWs/d4taGGKBxwBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT5AJSI5VyEZ9aRN3qwIKqRyggjtjANBgkqhkiG9w0B
+# AQEFAASCAQAL8f5pfgnEdjyzPVU2uzyNJYUHGtxpIE1xhtSSh4PASVia8ETBwNZW
+# iH+Ytl4+vbV2UW0sCAOn2OI8FKRzFnLlu06hKeMJ8zgt2euGbPCpj8+Ny5UPUjUp
+# M0HbFCOisPEI7pG3XjtnAWjYpj9pSNUh7Hy4j7nD3tFwH/M8PNgtHMJ3u+fMhz7P
+# GH9tiPkBnfp+z+6TFX9v61rNu/615tYCqvDv0sFyl+nCNh41nfodZz2QHqvQucJI
+# DD51LfZOFumS3FnoCkPp9E3L3GIiJlFFETrqXdcRv8KeoK8z4wYgLKYqdgpyuBLL
+# EUXPmgJ0xS33ndx6V7/VcqmYyEU3fM52oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
-# AQkEMRYEFK/mi5xhP2DDm9pjy39oX5dA/f8KMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwNVowIwYJKoZIhvcN
+# AQkEMRYEFNM2g2AkIwj9TxJFzwQmt2/CUimAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnrcc6WHBaX7BmpE+bi7DTStPa6LLQklXdZJSTp38TjCDQ
-# m14zMTuitRwAylGZmiDz/A/uVpmRI27ZiHNMWGoegANOST0cpTSal6zkCEnsr9Kl
-# +Rw91SYcrDPZ/mKpN1Qzg6L4sQpTwhOvv7mE4mra2GBk0JaET5MD/cUCrblFOk8u
-# 2GczO/ozCKCP380KSUTS10V6q4nU9XVwbaT+1KDwQY6rdJjtLn6eSPirgdDekgzk
-# LvpwFUYrc6kJWdw4kflTHvg4XG6S9mBZZofKwGuqUwfEPTlnYx60ER+h1b6iEavt
-# 4vMK4khIdlBAscY/3VpeNcGmYc+wxUYCvX9RLSou
+# hkiG9w0BAQEFAASCAQBDzzU4Hniek+Rv1ap/lpsvyHHVfS5gSiGOJhuGVMaDG0CE
+# 4TMDpBhoN38v6ePE5fuGllgCSd/e1rO5PGzNYkYKCWvN8BYaWx2Bpv0HbSCwuuuU
+# HAEru7OVubeyDzX/dRsFwpgyNw6ORDo9O8CQEUMFCfyqIQDPvhmOg/VRwc9/bsAQ
+# Qag4Q7MVOBHArtE/15eknjbNHAI7E9EFUZZknMw+jhlQRa5SlMoCk8DQfhk7gIdz
+# yIbHwEWHv02beWD4KIHCmzDpAS/MtcHILZPVwuZTd4bKabYoNOaKwR8PGfK8JbaP
+# CjuToOjjyaUNQApIuZqSYzvtYq/yJ8CyyqezxxJr
 # SIG # End signature block

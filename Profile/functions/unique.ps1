@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -62,15 +64,18 @@
 
 		Description
 		-----------
-		This will dump the variable '$MyVar', sorts the return and show only unique entries
+		This will dump the variable '$MyVar', sorts the return and show only
+		unique entries
 
 	.EXAMPLE
 		$MyVar | sort | uniq
 
 		Description
 		-----------
-		This will dump the variable '$MyVar', sorts the return and show only unique entries
-		Instead of 'Sort-Object' we use the alias for Uni* command 'sort' and instead of 'Get-Unique' we use the alias 'uniq'
+		This will dump the variable '$MyVar', sorts the return and show only
+		unique entries
+		Instead of 'Sort-Object' we use the alias for Uni* command 'sort'
+		and instead of 'Get-Unique' we use the alias 'uniq'
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -86,8 +91,8 @@
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2QhIU4TKx5W9ibzKueF3ic5n
-# e+mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBpaWQuYvPWLLof5QpFUJiS5S
+# M6KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -230,25 +235,25 @@
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQPszLJ5rm7WWMfDLJIi/eR++4yMjANBgkqhkiG9w0B
-# AQEFAASCAQBgNBHFaaEYyj6zgs+IttAbDbHOQ7VqTTsRMP+rr6vRFajv7NSPHd+K
-# s4g0EYQDfkMcmEFh+POiyZJvzVTlfQUWciq99LB0FTvk0WfAB9lwCD3cBdsBr1ki
-# MK1tS8lWozjh+hx65Oo5UN7ZreG4sJHYREWK19rx9NCeMWhnMO6jdu9SggzJq6Pp
-# BzlkK3RZ36g77PjuSPcyr1pHAIfXuEYrEBA4IGUO3doVS2fshb3sVcI3HPyCTmTy
-# yrwh/ZFiE5vlxvfA8yKNAORm2/NVM6AIcgJ998YP01SB8VMc9afDBsAI0qFAHMrd
-# I8H831iwZKkMH8M5+YYD+VpM3hWi9l2NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSfg3sQsh4DtQPo+r0JRN0r///jRTANBgkqhkiG9w0B
+# AQEFAASCAQCIB4NHn/GeSu5L8Ct1MbDFNhY7tJlIvKDDcqPo2RvEKYXYE/bWXiSR
+# Rp2prieRqjWt2E78z2pZzLK1LnLeiM58vp0+87w6YChawWmW6D4cOZl2CkZ/84S2
+# KOJBH/st63GkT7DYVDCARSU7cqfniu0fdxabbAqV3fto2UNcvZwQ8U2iFmyU/gWZ
+# 5tUfEk0fTTVosr3Y3ktXyJ5XDITq8mWAext/Ij2rG0zKlVvziF3qe2PFl+05i0dd
+# tTloYWC4LhmZZtLOY8PNhEZpyaoiU2GUzS/K8ICO4OaluCH2OB0S9bf+LNEeocA1
+# L2PsmeB6/vnUpldDjpTnpRq0N1visIPcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNlowIwYJKoZIhvcN
-# AQkEMRYEFNV+JTmcXxSLMHK4t0IRDwRTAKQUMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyOVowIwYJKoZIhvcN
+# AQkEMRYEFGeID0LYYH+nc0WyKa5twbzupZRvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCF3bfbmDqNeDWf+CtvtdSznXdQalerUOlSyUnL8uFf2MMd
-# g47d5ymPZS8VJP9dnqx/wHLxz2H4W469IcVFST2uaAeeKZHoOTxj/GVM8+fNZLoX
-# lEYdAiuHvD9VLssydLGK6WIhqPCZGIVPSiYZTQpsapTQjyvy0t6Q2AbJD93Yl26e
-# ZVatTFmGwzuTQPjLgNiK8noKNy1H3EgWYAORAdMWrQlmiF0Ziy3U7xRbqQnViTbQ
-# ERd8YrkGsJO6Gg/DTpeWpNl/VgICy4SLlIMz3SqGDLdzGZr1WfjB2zjVCNr0peyV
-# FdlxgV0TVLTkE5cshby4fdDeJDtOXzjWZMvOAHRC
+# hkiG9w0BAQEFAASCAQBjaixR5suZ5rP4JF+X+UhX1JfmkOMWTTTGOhjgJEhWyK8N
+# 7/EAdR3eHBAgDKGXO2oPA2qsXusX20IBDYE7uJXOsmB0PBneNVjQSJluplHsw/yy
+# 9VzHHVa32wrw3SRcFSqVd1PXuA3GlDu2KT1s3a4IN2KKyBHxGsJWKWAbYQQL+34f
+# JRQuRTNOTTxByPRIMavicvif4hyYOH3AscJS0KZylQE+6yU8tRdwDJFGmzwPmjVs
+# hOVp5svdqZys+f0MIo+xm4RyL7DYbSsaCnap7rB7dTrjZAVq5H0djUrVDMbuFn0B
+# qwpeCqdjVj8Z6/eAPFZTMS7IL/l4BJWGna/S7uDH
 # SIG # End signature block

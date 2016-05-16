@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,10 @@ function global:Set-AcceptProtocolViolation {
 		Workaround for servers with SSL header problems
 
 	.DESCRIPTION
-		Workaround for the following Exception "DownloadString" with "1" argument(s):
-		"The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+		Workaround for the following Exception "DownloadString" with "1"
+		argument(s):
+		"The underlying connection was closed: Could not establish trust
+		relationship for the SSL/TLS secure channel."
 
 	.EXAMPLE
 		PS C:\> Set-AcceptProtocolViolation
@@ -64,7 +68,8 @@ function global:Set-AcceptProtocolViolation {
 
 	.NOTES
 		Be careful:
-		This is just a workaround for servers that have a problem with SSL headers.
+		This is just a workaround for servers that have a problem with
+		SSL headers.
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -81,7 +86,7 @@ function global:Set-AcceptProtocolViolation {
 		# Set the SSL Header unsafe parser based on the value from the configuration
 		if ($AcceptProtocolViolation) {
 			# Be Verbose
-			Write-Debug -Message:"Set the SSL Header unsafe parser based on the value from the configuration"
+			Write-Verbose -Message:"Set the SSL Header unsafe parser based on the value from the configuration"
 
 			# Read the existing settings to a variable
 			Set-Variable -Name "netAssembly" -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
@@ -115,8 +120,8 @@ function global:Set-AcceptProtocolViolation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjRnbcBSgjgyq49tiiW8xNEag
-# 0PagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDlEyEF+DiWASnA+AkQCsCVI+
+# t5CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +264,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRirFrbVUeehvtYZbLL4f8Z/WSyljANBgkqhkiG9w0B
-# AQEFAASCAQAj92jSTnpvyDvYbgBRG90qD02nSSTWHa+pmD/xB1p/63ni8rlkJoD5
-# MMS4ZFYYe8dixRHi3JIKR0jhgQdwPsXeKHZ5O9Vm0YfrfpGHqFbAtsB2eveQIvg7
-# 904vLFWmOqOmFkWEJic8Fxg0c7G6+O1NwpEAR6mtNO9rfXB9ivSJoT6tNjEuVshi
-# iWrh1CoqpLk5p5rN31hkGjLOVtQoNN0GcHKcDfccGFh2jjSPrSoEWgOE9RojqOul
-# D8X/lNkuOozq442Qnad+QvepD4/pwrH+XfOid0BmUjQUp26Eb2kSeifiU2vePQll
-# ghlVDz+j7k4BnYqbDRs3DH/43dcs0i3hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQksUzj1it4nejxwB+RaXNX2tl6PTANBgkqhkiG9w0B
+# AQEFAASCAQA2inafsJnhjDnsipnWGwkt1jKRwrqFKNR2n/q30gVLnJIjBlMNGknu
+# tOGnzx3CmmdLAztIuH20ScDIUt9/yjv5VFRkyfrHR7rBnAo4BDKHcD1H/Mu5FvK8
+# rPU1QxHZ2KcrmiZZBxES3psyhv8nsB6m/bYfCHgC81QPR0l+41Ew1noPambmy7He
+# kaEy2r2wC1a5AXoh+Msa1Ti8mnOjm6p2R8un2QG6uidnuW3ATCv4w1j0wWNCERUC
+# W9RfXEgcuIjN9tVJai3xsb9PzacEbfxQqb5Mow08B25yJr8XFEJEsBAk1NEv5Qwp
+# JRY/Rdgs8biO6Br6ReY3Ylmeb8onzTuBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMVowIwYJKoZIhvcN
-# AQkEMRYEFJ1j9M/Y8viArX+yiXvvs7t4RrDqMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyM1owIwYJKoZIhvcN
+# AQkEMRYEFDeMoEEjwgriFh/IdqNC1yo95xJPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBdlmnKh+ZqWLgrlEeZe9CBYNSF8Ci2JghJg3EEImu7IUQX
-# N8DIw5Ls9FFm0zgWxx/E9FSJwbRtxCrqw1W6TQIL6Fz8kFzBGOsrdOXWRHEQsIr6
-# Fyo245uhRbmj4PliXrErudK0kKm3SpphyZKQG/OBWsYdMdxloVy3HGhYyqj1/FaE
-# S1LAhIVxa5MnLN9SHZYQtOzTppJq7NQ2DcJr3n9Pv1tGjHuL6X7VnYQr+MILWgXI
-# zuGgv05qBuk7LxpKQOc4o1s7o/KQF3Aer974n3yX9fb/dOKjVE7kfpEDsIy0refc
-# OLrqxGSS8epS5Cy0TPbZ2fJzrRdFPVPt+uEzZHC3
+# hkiG9w0BAQEFAASCAQBfpb4geovtM9XfvPG+u8oNwSyaZx+Ikjo0a6dpqIFRqt7g
+# +7lef9Bb/X9P103C1xR1UVKCBNYzYKu40E6gCBWsRf7VsXKKHV1zlrD2QtxGnGUs
+# fO9ZZ3zpB5+wq7caLTCLnBZcHbndx58Q0YTuLSZqOe52ycIxzcnlGEByKzBs1+uh
+# sLpuniVuW9EB1BQbNK2A7nK8zrnU3NBfv8qCe1tsK/VT24g6o7ko8uLyCA4Uk60t
+# nn7zlsLqbpVWPVDGOYClD03oq7QHOQ2++cvdJtVLxOUdHKg0S/JNs2rPmNQZknt0
+# GbWR+Skyem8ObEBVPnMD+vfXKFrmdoQKddQhpJx0
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -48,76 +48,191 @@
 
 #endregion License
 
-function global:Test-ModuleAvailableToLoad {
+function global:Get-PhoneticSpelling {
 <#
 	.SYNOPSIS
-		Test if the given Module exists
+		Get the Phonetic Spelling for a given input String
 
 	.DESCRIPTION
-		Test if the given Module exists
+		Get the Phonetic Spelling for a given input String
 
-	.PARAMETER modname
-		Name of the Module to check
+	.PARAMETER Char
+		Input that should be Phonetic Spelled
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
-		True
+		PS C:\> (Get-PhoneticSpelling -Char 'Test').Table
+
+		Char Phonetic
+		---- --------
+		   T Capital-Tango
+		   e Lowercase-Echo
+		   s Lowercase-Sierra
+		   t Lowercase-Tango
 
 		Description
 		-----------
-		This module exists
+		Show the Input and Phonetic Spelling (table) for 'Test'
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
-		False
+		PS C:\> (Get-PhoneticSpelling -Char 'Test').PhoneticForm
+		Capital-Tango  Lowercase-Echo  Lowercase-Sierra  Lowercase-Tango
 
 		Description
 		-----------
-		This Module does not exists
-
-	.EXAMPLE
-		$MSOLModname = "MSOnline"
-		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
-
-		Description
-		-----------
-		Bit more complex example that put the Boolean in a variable
-		for later use.
+		Convert 'Test' to Phonetic Spelling
 
 	.NOTES
-		Quick helper function
+		Simple function to convert a string to Phonetic Spelling
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
-	[OutputType([System.Boolean])]
+	[CmdletBinding()]
+	[OutputType([System.Object])]
 	param
 	(
 		[Parameter(Mandatory = $true,
 				   ValueFromPipeline = $true,
-				   Position = 0)]
-		[string[]]$modname
+				   Position = 1,
+				   HelpMessage = 'Input that should be Phonetic Spelled')]
+		[ValidateNotNullOrEmpty()]
+		[Char[]]$Char
 	)
 
 	BEGIN {
-		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+		# Build a HashTable with the alphabet and the matching Phonetic Spelled
+		[HashTable]$PhoneticTable = @{
+			'a' = 'Alpha'
+			'b' = 'Bravo'
+			'c' = 'Charlie'
+			'd' = 'Delta'
+			'e' = 'Echo'
+			'f' = 'Foxtrot'
+			'g' = 'Golf'
+			'h' = 'Hotel'
+			'i' = 'India'
+			'j' = 'Juliet'
+			'k' = 'Kilo'
+			'l' = 'Lima'
+			'm' = 'Mike'
+			'n' = 'November'
+			'o' = 'Oscar'
+			'p' = 'Papa'
+			'q' = 'Quebec'
+			'r' = 'Romeo'
+			's' = 'Sierra'
+			't' = 'Tango'
+			'u' = 'Uniform'
+			'v' = 'Victor'
+			'w' = 'Whiskey'
+			'x' = 'X-ray'
+			'y' = 'Yankee'
+			'z' = 'Zulu'
+			'0' = 'Zero'
+			'1' = 'One'
+			'2' = 'Two'
+			'3' = 'Three'
+			'4' = 'Four'
+			'5' = 'Five'
+			'6' = 'Six'
+			'7' = 'Seven'
+			'8' = 'Eight'
+			'9' = 'Nine'
+			'.' = 'Period'
+			'!' = 'Exclamation-mark'
+			'?' = 'Question-mark'
+			'@' = 'At'
+			'{' = 'Left-brace'
+			'}' = 'Right-brace'
+			'[' = 'Left-bracket'
+			']' = 'Left-bracket'
+			'+' = 'Plus'
+			'>' = 'Greater-than'
+			'<' = 'Less-than'
+			'\' = 'Back-slash'
+			'/' = 'Forward-slash'
+			'|' = 'Pipe'
+			':' = 'Colon'
+			';' = 'Semi-colon'
+			'"' = 'Double-quote'
+			"'" = 'Single-quote'
+			'(' = 'Left-parenthesis'
+			')' = 'Right-parenthesis'
+			'*' = 'Asterisk'
+			'-' = 'Hyphen'
+			'#' = 'Pound'
+			'^' = 'Caret'
+			'~' = 'Tilde'
+			'=' = 'Equals'
+			'&' = 'Ampersand'
+			'%' = 'Percent'
+			'$' = 'Dollar'
+			',' = 'Comma'
+			'_' = 'Underscore'
+			'`' = 'Back-tick'
+		}
 	}
 
 	PROCESS {
-		if (-not ($modtest)) {
-			Return $false
-		} else {
-			Return $true
+		$Result = Foreach ($Character in $Char) {
+			if ($PhoneticTable.ContainsKey("$Character")) {
+				if ([Char]::IsUpper([Char]$Character)) {
+					[PSCustomObject]@{
+						Char = $Character
+						Phonetic = "Capital-$($PhoneticTable["$Character"])"
+					}
+				} elseif ([Char]::IsLower([Char]$Character)) {
+					[PSCustomObject]@{
+						Char = $Character
+						Phonetic = "Lowercase-$($PhoneticTable["$Character"])"
+					}
+				} elseif ([Char]::IsNumber([Char]$Character)) {
+					[PSCustomObject]@{
+						Char = $Character
+						Phonetic = "Number-$($PhoneticTable["$Character"])"
+					}
+				} else {
+					[PSCustomObject]@{
+						Char = $Character
+						Phonetic = $PhoneticTable["$Character"]
+					}
+				}
+			} else {
+				[PSCustomObject]@{
+					Char = $Character
+					Phonetic = $Character
+				}
+			}
 		}
+
+		# Loop over each char
+		$InputText = -join $Char
+
+		$TableFormat = ($Result | Format-Table -AutoSize | Out-String)
+
+		$StringFormat = ($Result.Phonetic -join '  ')
+
+		# Create the new HashTable
+		[hashtable]$Properties = @{
+			PhoneticForm = $StringFormat
+			Table = $TableFormat
+			InputText = $InputText
+		}
+
+		$Object = (New-Object -TypeName PSObject -Property $Properties)
+
+		$Object.PSObject.Typenames.Insert(0, 'Phonetic')
+	}
+
+	END {
+		# Dump what we have
+		Write-Output $Object
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdcVibYXRC7CJuS22QNBzKsg
-# fb6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpFQIGTTNls4bmeMt0fStZn4v
+# uNegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +375,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3ePQiRsx1QEyXRppYsgo/Pb6QxjANBgkqhkiG9w0B
-# AQEFAASCAQCPaA2xxUn33qreYxLKql3+JcwmhlxO7EZ+E7JvV6EIKRPZcAwBF26i
-# szvq938iTFTx+KdRFqSN/wE0lIDRTYG4sjkvqAUcVVMKaYNx75VxS1fyaTdkE3Cb
-# 2EwUT39NLO+woQ+82hF/iyKnNvzQqcmDl2sle7lx5UAkKoSKjZq29dg1GYh/e/i/
-# 8hDaNoIjcz0AAk1KbzBkMysVSukJuaExT3BuU50CeWWqwkBxKrgr+zQzX+LjTD2g
-# ZpOlAkguBty6SZxu9if7E2dMg5NXkDoSraHuP8Au935iuwzA3XDqTBhOyyM/XbQe
-# YHZeHoDKPcjF/9GcoWs/d4taGGKBxwBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTh36OJde7lMqSorOe2q9EWEVrAcTANBgkqhkiG9w0B
+# AQEFAASCAQB98QQxHs0x9M+fpjUO593XAZq/TuDGyENABM46nulw7EwxJ//DmFkr
+# RVaxn/psUeBwGOWUcHJJ+HkJ6Mb5yDMN1IdsFVnHLWCJ6OqF8Xj8Xaol3OXvCFzS
+# d5U/hEC8zd+ZcxuiXbUv8i1wBFJ2BN4mJaOjvzoXZSeoukxRE9zQmq1hYfnxjzc9
+# JpcTQlDm3bshOje4WWP8lc4pvWLpGsBUoZnXtYWiqwCQyGjNKaAmMHMqTWW0JBc2
+# kieMy6cocWIByaHB56hoZyICNsUUDtvmo7VdV+k5aAK36yUoeiooLLGFTRypzRrC
+# Q6DSjTevfPP5jTm9BqCu09vnE6qfFy86oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
-# AQkEMRYEFK/mi5xhP2DDm9pjy39oX5dA/f8KMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1OVowIwYJKoZIhvcN
+# AQkEMRYEFE/oZzx4WLC6mjrIJWQL7mSajEPrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnrcc6WHBaX7BmpE+bi7DTStPa6LLQklXdZJSTp38TjCDQ
-# m14zMTuitRwAylGZmiDz/A/uVpmRI27ZiHNMWGoegANOST0cpTSal6zkCEnsr9Kl
-# +Rw91SYcrDPZ/mKpN1Qzg6L4sQpTwhOvv7mE4mra2GBk0JaET5MD/cUCrblFOk8u
-# 2GczO/ozCKCP380KSUTS10V6q4nU9XVwbaT+1KDwQY6rdJjtLn6eSPirgdDekgzk
-# LvpwFUYrc6kJWdw4kflTHvg4XG6S9mBZZofKwGuqUwfEPTlnYx60ER+h1b6iEavt
-# 4vMK4khIdlBAscY/3VpeNcGmYc+wxUYCvX9RLSou
+# hkiG9w0BAQEFAASCAQCKtKWmrnitj/E/PqZ0Kp2c2ZuxOJi5Yy6XukslwrpRBkkc
+# 56gJcFzSGN2R1o3XTiCPtxgTtG1duSe6y5iwJVFNf42Ni9dwt8hENQg9ya7hIpe5
+# T1HHzvkD+r2GmLTRnXLpD/2A0FmsWEwJtBEVDkiYbTut4HJdBPhXPYrlSI1jt0SU
+# 17sGoQAKRlkk61Z25tAY++mZ8qo2/jQ5Du+9DFrk5xvlzuteK+CjKMZNi/Nc8Dxc
+# ZePWfuFBKSOLOm9oSufnFHGfuL//rvM94VpmpNgcM8nLohAyAX98x1Dr/ihOxbpE
+# oXkLXHpv3uCqgfKUY0tiukDqsf7pnAe8wVt/ZH9G
 # SIG # End signature block

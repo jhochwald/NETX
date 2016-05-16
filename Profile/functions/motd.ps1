@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -207,13 +209,16 @@ function global:Get-MOTD {
 
 		Description
 		-----------
-		Display the colorful Message of the Day with a Microsoft Logo and some system infos
+		Display the colorful Message of the Day with a Microsoft Logo and some
+		system infos
 
 	.NOTES
 		inspired by this: https://github.com/michalmillar/ps-motd/blob/master/Get-MOTD.ps1
 
-		The Microsoft Logo, PowerShell, Windows and some others are registered Trademarks by
-		Microsoft Corporation. I do not own them, i just use them here :-)
+		The Microsoft Logo, PowerShell, Windows and some others are registered
+		Trademarks by Microsoft Corporation.
+
+		I do not own them, i just use them here :-)
 
 		I moved some stuff in a separate function to make it reusable
 #>
@@ -382,8 +387,8 @@ function global:Get-SysInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvrftG9hdu55pcNKFCQwLZaFn
-# wmmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUR4+TuaCD+zAgMX9ig2CNlDl+
+# 4wOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -526,25 +531,25 @@ function global:Get-SysInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTXRx+RexcSyO2h20qepLTmxOf3cDANBgkqhkiG9w0B
-# AQEFAASCAQCPDopul7gpUhtD5lQWyG51EAxAo9wiOQL9I777uKJUlWN/vQV95Out
-# ManfwwYZBIWhMZOLavDQb0nfYldRpOVRkz6Tg+H8e8gNHgG8eP4VqRQRcAvmwvBF
-# Py4HCoow2TeTFYNJa6fjVBsEqDj6cFZ6Ssw5C6LCrNUFqpvV6DOJFQwBRz64oys6
-# h5KuZlh0MksEza5LbRi4tAvFYXgEyvITmRDSETq+Z9CbMl5XIl/PlyW9YXa6wbAI
-# 60p3uKto9+F/qvxiclWEL1fKoN/kyW+QXH7BbTISzy5cRtvUicHc6XRyz/FDQpjQ
-# Vo76SD3pxZzg1ExQmmRG+Caw2Sii78rQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTAAmr08D0ZaRmlRX7lVsDOTlooyTANBgkqhkiG9w0B
+# AQEFAASCAQA/vMLXdZVWKzybtOz2SYvoLYM8HZSeTx8hbvBgwn0m3npusM5ZExvR
+# 7un19QstunDtIARHxzNL5vIYouOokx3zq+opwIt/t57mVwTTUSEU5a0490Tkb0E7
+# Old4JbnKCrqwTI1D7jlUV0EgCr5ZxK+nrvqKAlAeodIW22PmSXhMaytOvsKYioly
+# lDK3G6m7O8aDRyCyXX1iPrzNhbvmuDYZZqXB4lQHK2+9y41EGQ9Rj3s611J7F1A6
+# tQXTwpi2SN9DGgwohYIZkDk1M539+k7ITE5Sj8T82x1gu79v673EphHQMYXRrgFh
+# boJuCqVu3ZZlWIQwuj7WoQH1WB2DOjw6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwNFowIwYJKoZIhvcN
-# AQkEMRYEFMStAuhnGF29mvh/ZGzEtEOyI2QfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxNVowIwYJKoZIhvcN
+# AQkEMRYEFNDKEfpxxcnU7L4nN5EreikzjstDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBuYsbOKwlE1oqgm8JyJvdCWdBuV32qTFPMVKDx5NyuQZeP
-# l3rcDS352CGjQAPZeXMY7Vq6Ome+oTce6Tx4+EbWrDcgSNvDD69ZY9cOixYDmJLi
-# 0iaKjcu4v8LZBGLHA4lUBh2ML570ubul9PsYuK5MsufNv6IPh/OzG7WH3eGGZ8Qg
-# hgAR0VJVvOdtYneziqKl24X9KFNqKZ9FwLH8W5SJDi2mCMg8KgX3RKXIRn85zBPB
-# T8wM86G3n2FfbL89fV/WUBG+mh7Jl7SQqTqS/x2TpDfHYy3zNR703tLfpurVCl/4
-# eaJdYD6nKeuCVvdR26x0l2wmOG+M7eyzKCR4Q1id
+# hkiG9w0BAQEFAASCAQBwqt72agku9rOppqF5h4mJMm4w5isMaA2Nda8+D7BIjj0R
+# HhO7dOwJrpbvL8mYvPf0pzyzxUhr0Fb0VqgPyWWm7B1LMbYGXfle2eNVoowWV5TO
+# WAMsTq9PHU0kgi7LorwnMklk2V7K7ndBR0luYCgOvVM0IOvXpMHoXfyBrmMb+3Ch
+# 0Y+piEWzmFBU14a3pm+KAdN3ACrY0j2Q7M/PEE+IJ+HwrTZawO4r7EF1GJzKw5X/
+# VV2gH1GOjdqo+Ha99JyeiCRUc/ySo49bc77NsbODQ83Tr8ior61RHnmwKGp9FtMB
+# kHo9uTdpD1qJFyqJ2jArOD2nAJSDJBNrl8ZqbQKx
 # SIG # End signature block

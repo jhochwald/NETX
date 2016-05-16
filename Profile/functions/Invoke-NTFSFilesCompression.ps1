@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ function Global:Invoke-NTFSFilesCompression {
 		Compress files with given extension older than given amount of time
 
 	.DESCRIPTION
-		The function is intended for compressing (using the NTFS compression) all files with particular extensions older than given time unit
+		The function is intended for compressing (using the NTFS compression)
+		all files with particular extensions older than given time unit
 
 	.PARAMETER Path
 		The folder path that contain files. Folder path can be pipelined.
@@ -61,10 +64,14 @@ function Global:Invoke-NTFSFilesCompression {
 		The count of units that are base to comparison file age.
 
 	.PARAMETER TimeUnit
-		The unit of time that are used to count. The default time unit are minutes.
+		The unit of time that are used to count.
+
+		The default time unit are minutes.
 
 	.PARAMETER Extension
-		The extension of files that will be processed. The default file extension is log.
+		The extension of files that will be processed.
+
+		The default file extension is log.
 
 	.PARAMETER OlderThan
 		The count of units that are base to comparison file age.
@@ -74,14 +81,16 @@ function Global:Invoke-NTFSFilesCompression {
 
 		Description
 		-----------
-		Compress files with extension log in folder 'c:\test' that are older than 20 minutes
+		Compress files with extension log in folder 'c:\test' that are older
+		than 20 minutes
 
 	.EXAMPLE
 		Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "1" -TimeUnit "hours" -Extension "txt"
 
 		Description
 		-----------
-		Compress files with extension txt in folder 'c:\test' that are older than 1 hour
+		Compress files with extension txt in folder 'c:\test' that are
+		older than 1 hour
 
 	.NOTES
 		Based on an idea of  Wojciech Sciesinski
@@ -154,8 +163,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnV6xHQ/dGNhWOAzlcInADKMn
-# dyugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUulCFIARJj4TY2vnhg2pe0sbF
+# +wWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -298,25 +307,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRWOPLJtW06lI2gkCdN4vojd/Z4djANBgkqhkiG9w0B
-# AQEFAASCAQAP6Hd5vuaEQhHU/R5ksx1QYtgUT1XAUe4scaqtrBs9SIsq2OnByCgg
-# 7lu/a8sjZW8aaoP0bKrmbOp14tvM2RCGRkAQaUx20BNlQGRPxrmlRjnbGDFIBJdJ
-# SND/k/u2cA/6X0SJGprkQxyi543Je79gzyI/JBlVfTDsPwgpCFGI9LzdW1w4kAyz
-# ZnrPsKnvjrEJdQi4DW/lYSdSiHV5Wwqszrkviln9qGA2qD6KIrSmnnGWJpF1VGGT
-# XCS6rDUyI/oLJl2Gpqnt1mIO/HirArdFx2AOerOCVVtg/6aF6cv/p9iHN6x16S5N
-# T9Tb4R6E2gfy+R16OXHLJxAEMNpBcciJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSPyPtYPZ4xhc8pWETFZbI17VbbhjANBgkqhkiG9w0B
+# AQEFAASCAQAVmPVG56tKO9J/BUrC4zpDDvER+xP/qeWqU2RrYZgquS2J8jeB/Xnh
+# fSXkIH0PQLb0epezIO2E12SphlENMJupvSSbuY7jrpKDDQG0/Rhwml8UrFqHnNb1
+# kgd2XchCYh5yIlO1Mgu5HHj12ok5p5AdxcxkWFd6tUypNVT7EEUWefZHjxvlMDXH
+# /y20zIr7vVhUDt2tPA6pIri8kidGyqgco++W+uRgFY9umcZeqzXdYxiFTrjUCxC2
+# tcejxqqS+3xaCkW+KOexNQ0tLOTOja264UYOvwgU1BMv6sjhcTRlSuidBnpmVMom
+# rngJpZxawXAfhqrE/rqyLWU6yCSBEccsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMVowIwYJKoZIhvcN
-# AQkEMRYEFD3PGtjBC1mLNWAQ7i+sxMQZTXCjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMVowIwYJKoZIhvcN
+# AQkEMRYEFFa7j/tqnCZktY28X+BaglbMHg5SMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCPNSS+ndPCcvCWD3kHtgnDuusDMkNzSq3rk0nDfiXbkFWJ
-# RwUSTN2g2z47kFoXGB8h1XHseAu6c7D4vkrjYXkCdiBmczTa3yw68ujvmSNJJhhl
-# h7g2sInzzy6qr4jptVmE/PCa1JQPd08rkW6htbxS1MBDd8/wxwbBLMn6zlQV0YDp
-# PTFuk57z293HHdTMw2AxLoBcsb4sSViYUwdXfBtJc1AzwMTVW9+75eR4i5+y/r3R
-# H418iQBLiMsd60aBHdr7hbR4KVfO9U5mkkQ5pnzfpwucDLtv+266SZXl+SNPYEBs
-# Cvn9R8/F2CpoaQKfIm/oSiNHE3cHRCwVzfVz8bE+
+# hkiG9w0BAQEFAASCAQATIp9Sofn5+tMM3D0/U+mBN+fUzDgdLGG2TjM2PbSnKyx6
+# kaE2Pyo32yAw4ytKp2kSdZr18kkGhkmHTQQeDxrvnnIgz2IxAySPEtQMwYqg5NRO
+# yVSBnBL2uA3QNqpubPFz/cGoYeq1bJSFwL/vjHrfBR7lGm5XOb160HtGcOmmaLht
+# rB4vH2TVXL222o5RgrxzepJtPm4iZO9V+60RKqDJARwJkSoSvawSmh60kRYpc8O4
+# qNYA0PsB/pEyXi8PbOPOI+8aXb2WwOhMiJ+lbnnluFVWJJCIrXrU2f5SohoUI4NL
+# 7FdhEMUWI2E9QSVDn5sE5PnYylbE7owxeEtfutev
 # SIG # End signature block

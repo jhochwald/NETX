@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,7 +55,8 @@ function global:Send-Packet {
 
 	.DESCRIPTION
 		Send a packet via IP, TCP or UDP
-		Found this useful to test firewall configurations and routing. Or even to test some services.
+		Found this useful to test firewall configurations and routing.
+		Or even to test some services.
 
 	.PARAMETER Target
 		Target name or IP
@@ -92,7 +95,8 @@ function global:Send-Packet {
 
 		Description
 		-----------
-		Send a 'TCP' packet on port '4711' to target '10.10.16.29' and it uses a fake source port '14712'
+		Send a 'TCP' packet on port '4711' to target '10.10.16.29' and it
+		uses a fake source port '14712'
 		This could be useful for port knocking or to check Firewall behaviors
 
 	.NOTES
@@ -150,8 +154,8 @@ function global:Send-Packet {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUumEdP0XG05EMHqsCoImMJuZO
-# RKugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUva8nCdYEa7DXPfplWGYKL3cs
+# lr6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +298,25 @@ function global:Send-Packet {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRU3uNp0EZ4o9GV6tMbIJ39C/uHMjANBgkqhkiG9w0B
-# AQEFAASCAQCiu9j8paOu5nYQ7GUekNYup+Qpa5KkacM2/S4O6rpUKUdJGxDN5ZC9
-# n6bvGN4Yv7wNLeWUiPtiFt+VITCNXWOY2ujvxztrCGPpwwVuKXu1lm5Lm5M/DTt/
-# O2MiGvODY/+wMRB1+cLwnG03uUhAGVPsmn4+4xrZV9cB8YYvNZLEPd0qEohSdcUr
-# 1HJ87+j7pa9uoaWKS7R7WZEPQx4zuckDzdZI868BX/fq040aKdMzjdq0+WfP1bRk
-# t4a/GV408BtuIQekWTIy3JdfkpaL9PWsJSVQFOrh5+V2Zdz7Rmdi2L5k/SdFSvnk
-# Hk0W9RbT7foXLAp5639HGAHg5K4V74ikoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQHDcj/OO03D42JcgXWAfCyPDvqXDANBgkqhkiG9w0B
+# AQEFAASCAQAoVa1Dy5z73Dz3J9zmFO4U1J89WaCzHC0sq439zUxJTpTlvwGJM066
+# nkw76XOCMNvNHECS//2UJzHR3wOL7n/TXENvbq1urpfCK2MJ89iLxTBZxGyvVTxF
+# JQREGG+j7wxKwlx80tziph4DSeatXOTw0LWpS3RWMGYjFckk1S80HG3ESZXEemw6
+# EhSciNrp2Z0Eq3HHWLuddhrR13uZNxiv+UuwyDx1fpYbbE8Vs2A7FefnqcxnSTmn
+# MdJeers8gKMoUesAfx4Ys52kqCTwGZXdlbynwNvOL2d/Aa0MlUhZAfB/ge1jS2F2
+# O8JHRBVuwXmD9+aEwpyXpdr1lZG7TicRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMFowIwYJKoZIhvcN
-# AQkEMRYEFHuPJwX2C8ThuBOIIEuRBk8GW9BEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMlowIwYJKoZIhvcN
+# AQkEMRYEFPMxn7qM7g+LHqn7KjI9i7SuilfNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBhW8y0TLnaQaNJHhFjvL9+MjJwl7BtfPoBuNr2kUaOVkTv
-# npPDBPXctABFDvYUoPnZjUaT1xpX9bTa+niXYnGAxRBZMW7AEEq7j0l02kb7nzL0
-# d++4t3etKtwnh8DDOcWM0qfJ88X5FaVUOs4NDsDU5n+u29m7o6UklH2agLxNIEJF
-# pGPS6GAi14B4e6QZpXHdTHdwLTAWJaYizAZ5J1DyLCCHnaUzjMw6GPpQyxR3XhI8
-# YRXIKrxCA7p+nDhihj4CHwXKp8bYWjIytwHCIduip8spXspWHI/x4b+/ppjyEom1
-# kVQrnNsbmXcPvJjYNt1gF6FE5cQUKrCGfiElu9hp
+# hkiG9w0BAQEFAASCAQADbAPHI7w2HQXg+y6Q232oVYi2OjUk6rTmzl5XQ2/ze6Ml
+# 6JtqqDFqm5R1PV3X7gr8MOG9yKLTcjQLFCIKZKO/43u/sCZID+uipnXTZC4VqVJw
+# qR0PyAwUbvuay2Qa3YIwMh1bgQWGC0fCYjooY6ZKspskE7aJ24CDOx9fpzx7cbb6
+# gH/OivdUwTTpMLikKxNRvgPHzcuyNrOXEYfW935wntWCGkTvnOQh/9F42V9l4Yf/
+# 2v7RpaWZ+NvySWaKYVoOWUp7ckIt78GxYRV5RvpAzLRa7lQ9d2szumj8+zn6kreP
+# retRnQQYAJTfUOpa7WnYJAn49wvr+lsr04s5ZSzj
 # SIG # End signature block

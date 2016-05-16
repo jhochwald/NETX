@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-04
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,10 +55,13 @@ function global:Reload-Module {
 		Reloads one, or more, PowerShell Module(s)
 
 	.DESCRIPTION
-		This function forces an unload and then load the given PowerShell Module again.
+		This function forces an unload and then load the given PowerShell
+		Module again.
+
 		There is no build-in Re-Load function in PowerShell, at least yet!
 
-		If you want to reload more then one Module at the time, just separate them by comma (Usual in PowerShell for multiple-values)
+		If you want to reload more then one Module at the time,
+		just separate them by comma (Usual in PowerShell for multiple-values)
 
 	.PARAMETER Module
 		Name one, or more, PowerShell Module(s) to reload
@@ -114,8 +119,8 @@ function global:Reload-Module {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU91EvSOHovUDVTY6lMOztSYQR
-# 7+WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUh8ac0lVTMVuoRaC8tilxM6JN
+# zMCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -258,25 +263,25 @@ function global:Reload-Module {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ0PVHu3MaD1/rRPEl43oCpCm1pUTANBgkqhkiG9w0B
-# AQEFAASCAQCXyjnxtKEJwxCzTeWTow365ZjJEI//edXLDgYSLvUs19f7RY0UMUZO
-# o73+GB5e3AaVuGwzTdNIifce+2rZPNnhqMTfPpR3RklImJ2izUh87n5YRua6u8wj
-# V5kpwFByBnTfptSOdx+mPBb1d6wtnbyW+gsVhXv6erkIEibgZ2Ao4ZHXjCIWqSf2
-# UPm+WFK7OBFN3UQut20nLfgPUxArSF8FOVN+l9ZaawWewWFnRJBB6IWqpzhmOHbw
-# QR8YrNijR8+8xUpo0VwNbCx3Gpx/qxoHVTT626C4PBLLP6NoXdOUv3TH8NOHI+3I
-# cCPJUiBMWogXhr7vymaaJZXMWRlChfCnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSseNE2gN9bxVmPwlzygKaQL1j2GjANBgkqhkiG9w0B
+# AQEFAASCAQB6FItRNOkzSemMnxg2dJcC3S8vpZfo9DTLBuMnpgU5DAOfgcRKiQQy
+# 5SpUk3k8H+nbuaITooMq5qIQNL0WZoZR+IAt7PPt/J4OekBhohbXbjEvTnMV7Uuv
+# 7YdsRdeY6P1rkk8UoFwIwzXUVBxFqcRSvohD2pfcbyZiAYvw6hexkdL9+7hgI9qx
+# zj2/l6adfIcNBP66LxYqBjE3rQKL85lh/TDsN84U8k8s4IgjUWSIl7f5kDhOrCSx
+# 68n1i2lN67NVYJaH6rvINtrIeJKIJR4BjOZ5kv6eVPuwStIMZiLALymi7+MJh5k5
+# hilVYM2AZmAmvo2cNEZ4iVZ+O1M/ysvLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOFowIwYJKoZIhvcN
-# AQkEMRYEFJMFwNQcZ8LIOzEZj38ybl9Yzx1fMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMFowIwYJKoZIhvcN
+# AQkEMRYEFKdWnRIKir1w/i0cz0ZV34wfiKllMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCqbsHV6F3L8o+SlylMYMuUFR3pxXWEWWPOeIRwS++wL5w/
-# Em1DNwc2aFhpYub7bO2Wofb3reSSIjArbTBgfmk9R21Hv6Q/2t/XCFBltmHXUGws
-# e0ODwy4x7qhwWzIf9duBXcrNQSns+0wSXoFAU7tbSEMIogkWx2jYzm5maWcNUygc
-# hbwvh3CJ2U17driBbtC62LlipzF8WHz1R8ONePCgfNSCFn+GCFevxXrxsZKTrXSk
-# jZ97/4GKWB/LFDBvwS6Yiirv4P/cW+XzHx7Eudd0qcNf+DOOY/+wv3hcgeDaxw5Z
-# /4r8nwSaSZ274WlY27YyE7J32LcIw3npmYOQPVkh
+# hkiG9w0BAQEFAASCAQAEBI7TmXWVpXhJv2UiGfukXaVFNnV/LxJ+rW9NycTjp9hx
+# T+YdAPgm/hgg6AgIC15en90my83lUJjzZLPP+V8YmIVVkIn7bqxFr2LD0C+DGyiG
+# qyNgd6YOaIpZWq0ZIsOSIW/y/WUpQXujR4q7bv2ecjRkoHM04n15+P7X1JBZItWJ
+# zdtqbuCDrUlmXVLLGdQPun88kvhDOG82nx2Ukh4haakXgb/maSGolXmrQUjC5gmv
+# oy5w9Nkp4q+7qPCoWKakXcn+9kzja6aNiHHQtMJdPv7xNj5MuY+QEHxwtUxlOuxV
+# MqzxnFA/U1VMJ5RQUeZQfBeL+uXgmLlo7ApX4WmL
 # SIG # End signature block

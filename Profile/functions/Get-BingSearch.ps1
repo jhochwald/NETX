@@ -11,7 +11,8 @@ function global:Get-BingSearch {
 		Get the Bing results for a string
 
 	.DESCRIPTION
-		Get the latest Bin search results for a given string and presents it on the console
+		Get the latest Bin search results for a given string and presents it
+		on the console
 
 	.PARAMETER searchstring
 		String to search for on Bing
@@ -28,10 +29,13 @@ function global:Get-BingSearch {
 
 		Description
 		-----------
-		Return the Bing Search Results for "KreativSign GmbH" as a formated List (fl = Format-List)
+		Return the Bing Search Results for "KreativSign GmbH" as a formated
+		List (fl = Format-List)
 
 	.NOTES
-		This is a function that Michael found useful, so we adopted and tweaked it a bit.
+		This is a function that Michael found useful, so we adopted and
+		tweaked it a bit.
+
 		The original function was found somewhere on the Internet!
 
 	.LINK
@@ -95,8 +99,8 @@ function global:Get-BingSearch {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU941YMzi4V8H2EBx9eGOxw+Tq
-# XbOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUT/h47KQL1NOTIUILOQI11Z/x
+# 1zygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -239,25 +243,25 @@ function global:Get-BingSearch {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQkuSXisUQx910ZzCpeQ1xbUwid2jANBgkqhkiG9w0B
-# AQEFAASCAQCOoAAE+Ojf3vt4wH/lvKUzCBwpNnXulz3ZBbdapO1wrlJ/qVVYIcl2
-# dAlDDEvBSjxGZSDECM/OEA+nxnz9LmLM680Y6oqHG6/dkSBDw14FhmBNhQNLYFza
-# M12aiw4RHRWf4X/486jXDcqbNpwoIRoeB/ICDsmAQPz2jenfo75v64O5e5EGlhlc
-# qAp3Oxbz58SVrZdhRYhk5OW6QLDMyBe41BHlOz3fWoS11KqpF2Q4jOY/oRkwi5F8
-# uwv70gXO4w88Tv6qOF1/RT11ENXh5RtMFQn/36SB8Ir9I1rcTT7mIpCYVqRUeBRZ
-# d25db+WBXx5Zi4mTfyZyijHkxGLNuNjtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSVKROIUmsHbj98WPiwMr+0TWN3njANBgkqhkiG9w0B
+# AQEFAASCAQCfs+gbnKHreIMycOqPUvv5oexJ0R6w1s6FzPexmLnjS1REM//XO4Ux
+# xplm7bq+ZxOJlIC6grkW07HGGRfn7JZHhZMN3KC/FcALmct8m6r4jcuHDmrdzeHS
+# Z4vP7UBgKkEdlqS3e6qsMXlYFhymonv89KrvKCAyuyu5rSqq28IqMd7g/okF2qJa
+# K+ZwZTZmWvM9jT7mJPDu7nboxE+P6Yr8mEjYEMOwHfoIOQEqGCzQgN5UmDmSBW+C
+# 7d51U7GNE4wcpLDrpCunMLp+yI4ZPa74snl0tj5AHlemBV4MfJxNdTe17Okyh1Xt
+# 5isRg6FI40pFbsl+a9TS3gbhGJ33ERGZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0N1owIwYJKoZIhvcN
-# AQkEMRYEFCRketnaHUdLKwWVdRHif0gIFALQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1MVowIwYJKoZIhvcN
+# AQkEMRYEFMA2lGaCHSE318rSkAbMZBNxk7waMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCYzIuxETJcsdmB0e8yCufUvZte3hubufK3lAyFC8B6uw3n
-# ZiXX5RkBP+cGYysM+PaEVKvYWSOVTU3w/9SqfZTsgLz61CVP4jz/Sjqr8NJ9/3o3
-# b6IWkja0g0mh1vAn0JlNdTNU5/BtSWEcZ/9iQ4XUKnEybfto4ksotXb3sy6vqJpu
-# yP7GGjQmvOd1u33VddSJo4JyswGQnp9jfOgxCpNvVSIfkbazxjRYlEw6KVMamXlh
-# 96cdSrpUHPYGvDNwlrjH22yJjCBPtQYEru8nRiX0PaWln1aVUwOeqpuAaQnCLlmq
-# ERQTlXJriwnu1fPgK3cssjOjxWkIQuc3EZBBw9m2
+# hkiG9w0BAQEFAASCAQCS4fudCnvdXQ6YThXBPfCNrAxFrHMgiC5QZtUAKPEJ3N27
+# zcKUBAMwEp1121JUEiZChkrf17/wyBetPEsx8YWvUo9xWLNTXfYiF+Od9qmFznZi
+# nroDeACnUse6YCeurJK2UDE7k1b+G1uWpbNTGn5x0D7d9v5k5XXBoAymSa3Zgd5M
+# Xmt7LKXXAulROPIgDLUDlO7BUnYPuagi7dfnShaEgh73h/IKJcFPgxUtqtdvnhlg
+# XZE3yDYdKinTqZjcyRzPKF3kEq8nt54bZvMdBpHZ7ygfKBg1bcbTS9BzlfTBhkgp
+# CbsyB3n06j/s7KKGzRRgxZhGkDXvHOetitxXw67q
 # SIG # End signature block

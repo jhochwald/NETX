@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ Function Global:Convert-IPToBinary {
 		Converts an IP address string to it's binary string equivalent
 
 	.DESCRIPTION
-		Takes a IP as a string and returns the same IP address as a binary string with no decimal points
+		Takes a IP as a string and returns the same IP address as a binary
+		string with no decimal points
 
 	.PARAMETER IP
 		The IP address which will be converted to a binary string
@@ -65,7 +68,8 @@ Function Global:Convert-IPToBinary {
 
 		Description
 		-----------
-		Converts 10.211.55.1 to it's binary string equivalent 00001010110100110011011100000001
+		Converts 10.211.55.1 to it's binary string equivalent
+		00001010110100110011011100000001
 
 	.NOTES
 		Works with IPv4 addresses only!
@@ -121,7 +125,7 @@ Function Global:Convert-IPToBinary {
 	}
 
 	END {
-		Return $Result
+		Write-Output $Result
 	}
 }
 
@@ -176,7 +180,8 @@ function global:Convert-IPtoDecimal {
 		Converts an IP address to decimal.
 
 	.NOTES
-		Sometimes I need to have that info, so I decided it would be great to have a functions who do the job!
+		Sometimes I need to have that info, so I decided it would be great
+		to have a functions who do the job!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -323,19 +328,23 @@ function global:Get-NtpTime {
 		Get the NTP Time from a given Server
 
 	.NOTES
-		This sends an NTP time packet to the specified NTP server and reads back the response.
+		This sends an NTP time packet to the specified NTP server and reads
+		back the response.
 		The NTP time packet from the server is decoded and returned.
 
-		Note: this uses NTP (rfc-1305: http://www.faqs.org/rfcs/rfc1305.html) on UDP 123.
-		Because the function makes a single call to a single server this is strictly a
-		SNTP client (rfc-2030).
-		Although the SNTP protocol data is similar (and can be identical) and the clients
-		and servers are often unable to distinguish the difference.  Where-Object SNTP differs is that
-		is does not accumulate historical data (to enable statistical averaging) and does not
-		retain a session between client and server.
+		Note: this uses NTP (rfc-1305: http://www.faqs.org/rfcs/rfc1305.html)
+		on UDP 123.
+		Because the function makes a single call to a single server this is
+		strictly a SNTP client (rfc-2030).
+		Although the SNTP protocol data is similar (and can be identical) and
+		the clients and servers are often unable to distinguish the difference.
+		Where-Object SNTP differs is that is does not accumulate historical
+		data (to enable statistical averaging) and does not retain a session
+		between client and server.
 
-		An alternative to NTP or SNTP is to use Daytime (rfc-867) on TCP port 13 –
-		although this is an old protocol and is not supported by all NTP servers.
+		An alternative to NTP or SNTP is to use Daytime (rfc-867) on TCP
+		port 13 – although this is an old protocol and is not supported
+		by all NTP servers.
 
 	.LINK
 		Source: https://chrisjwarwick.wordpress.com/2012/08/26/getting-ntpsntp-network-time-with-powershell/
@@ -406,8 +415,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGscRAeeceAkGKp4cLdqR1WAE
-# qwWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuqD5BmUtTmldxfUC8qQkVc4t
+# J3+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -550,25 +559,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTUDQ4jhsj4o41sbjp60mlizWx4YDANBgkqhkiG9w0B
-# AQEFAASCAQBqjOqic0yu9+AtzOqkGJGJiIDCFnTlEfSGM/FpyEbbPjtrbtzH9jGc
-# ioSo+rLsCXGqqPSny8wyGIhmOu8jA94jBmHLfYcYsY1zXWexLunLU3Ln4X5hY1l7
-# 4ettt1ftPgv6M/+8llBQFA2xQxYUSCBh1Wh70h28bJMYzhTDFfA55FYzydTfHP9E
-# PkwMsSii+hJhZX+CNXPKofX+yeMvz63WpkII11rWrPTPoVFVB/NqGkwus6Pf05Mu
-# N1Wn9pbS+miUsLF+rqZZdIcoRnWv3zugBDsOmSD4o6GKQduXChxFVL7cY68jMkAD
-# vW1Dp/wyFidm4fwFnV09ttHnGpFSyiLsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSagNEr2B7pnL0buX5wMAwfnVwcizANBgkqhkiG9w0B
+# AQEFAASCAQAn+o2XgAwHikXXJDkW3tPeMS5Z5g80jLw9/xWWUP2D/+7ruKSXfuLY
+# awkBBHiNs+7v7gT9bpoSBOqsIwEcAVUZs2Qii57XcfuAmxf4jYi3VVZMxp8l4YmT
+# imjUdw+NMXLu9zQw6scdItd058mDXxi8FFSgSeMrur58XYteIaBePxend2qMnNgS
+# BiQVxFOVLX8WrXK4Y/voqcBurNydkmo202KPiHkCHPjdXbvsUgIitP9tGn8l52On
+# bjOfXewjN02SDN7ftH5hqXdShEvXJ3EIp6O+97+8xEW9QkdKCLGTao3o17zY8Z2+
+# 9vodww34GLxwPrHndgJ6kZgHQRvKOipvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMlowIwYJKoZIhvcN
-# AQkEMRYEFCATvSBM35EsAOoyfnYNY4O9Wr38MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMlowIwYJKoZIhvcN
+# AQkEMRYEFDqNjuVBY8YEpOFb6PXnyhXYPtnsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBICQPdFZpvIFR6ANpqn2x1sDyO+CrXxo9ETIiBm0Ey6O7x
-# lyw5yHEloORntidOL0v10DaQpC9Pcq/YfNSKyzUyeJr6HZtu2OCElpi1A+dc+Pqy
-# nyhTVLLBKfyPExIy/A2kx29jg/d0eiuL078LQDv0udHz/+fbfst9NaRmIrmINB1v
-# wO2S1Q7a3VuEtbCmlDQeBcbL61TzEP10nlTpm5kWhSnTr3GizQWavjG1qnwY7DuK
-# w6EDtSTW1fOXpCC/9S+JN4oI6VBM63unOStr3R5JtOk4tksyedr6FBn2TPk45Tds
-# w05NFk1lonidRcKzq0PAel1h946vtrLlnOjmjXI6
+# hkiG9w0BAQEFAASCAQCsgP7IbtvGG+jE5Bt/2ZdW2idPlBYQhJrem11ZDS2H0yWw
+# i9tn3h25MCZgQ4vDGTR84XLVqoBfWGv0yjFPQcvcQQvDvYyopMdq0hi7XlvtVcVV
+# 3jcW8fMaydEw6hY8t50qNZ1KYRsKQaSkzTesOt53u80crmCD6dpbsUhOVhf6ZnRz
+# S4XLHDl2wNIHeQL5XWxuJ1mDmtEvqDNXgg1SSIPWfkWA0ojfCwdc1yp1J0NJ7Mr1
+# P6gLWRQdot59DR6d4hk5P0wDRTvFtp0Jxvv2G+lodV8NNBJbcQDHTbVk2G6OEH9e
+# Rqm9DKWaNZdwTF6VUrzpjNk2B99rkHmwhHMQkg6z
 # SIG # End signature block

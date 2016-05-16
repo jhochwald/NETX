@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -72,14 +74,16 @@ function Global:Invoke-RDPSession {
 
 		Description
 		-----------
-		Opens a Remote Desktop Session to the system "deepblue.fra01.kreativsign.net"
+		Opens a Remote Desktop Session to the system
+		"deepblue.fra01.kreativsign.net"
 
 	.EXAMPLE
 		PS C:\> Invoke-RDPSession -host '10.10.16.10'
 
 		Description
 		-----------
-		Opens a Remote Desktop Session to the system with the IPv4 address 10.10.16.10
+		Opens a Remote Desktop Session to the system with the IPv4
+		address 10.10.16.10
 
 	.NOTES
 		We use the follwing defaults: /admin /w:1024 /h:768
@@ -163,8 +167,8 @@ function Global:Invoke-RDPSession {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSruuQusQorqoj7/4rJJzxph8
-# JmSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHGpoCAgZOBoUKdUk7KU1qAid
+# nAygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -307,25 +311,25 @@ function Global:Invoke-RDPSession {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTrxqFLB7qdzUlFmtLiRsB3Uu16vDANBgkqhkiG9w0B
-# AQEFAASCAQBRRDnOSE+Nj56w7zhwm/yJkhkrANeNG3CXc8cmbMv+odceD8iA2xJ+
-# UCmz+J/CmE5kVDRpNjs4abnOMkjvBq7a0DyrYpAn2sSw8Zs0a7fs2ZjXvYm6Hrjw
-# EiSNfGL19q1JUj8BzPlaiwAIN69lzUu/c1JDIGcX77UwR3IciswrgufUOPVwtGXH
-# aVpAIIS3zalsYwwRIjaK0VkpJZZwQr+0NcxhzikR5xAw3RcrEyGNbJNXr8zZoupe
-# Hm34Jp9qS25IJyIjKgEC8K5Gvn8vahhEvdryBo1secf2yj6qPZSrU55gwMqd70XA
-# 9lXUMMREw5V8AAlzH8hi22aMsahO4vv5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHFJxEnK57Qzm8alopYtqpX/y0ijANBgkqhkiG9w0B
+# AQEFAASCAQAXiFhpc4OmmOx1j3V2Fd8ciug0Sfb/v/ENaoTKudes/EznziQVeSAm
+# UTBfWMPDENQFm9HGvQcLL1HPlTxXW0F1qL0fNqHndOCgpLaHITNE/LNGAWUYTVps
+# tGvp+xd5BzFhZyDkViJq+w/5Rv1sYvg+RrSagckY364yjUQXFfCDr59Okm6C8DU7
+# Vhbip/yTSFPei8JHm8rDruNtmgod/E8c4bCq+dsCW3YTcNZTtXEed1TgngBVfi2Z
+# QecQJRmWnAzPdVxtC6v5VNi/ZmGkGer7YDcclOLfmps3cEI+rH5C7dXjvdUnHpei
+# KAK38Fae7TjWY4F/Hm5eV5yliBQ+mIrzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOFowIwYJKoZIhvcN
-# AQkEMRYEFNNp91K2WpcmAlssWOk6ZCqvsHLmMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxOVowIwYJKoZIhvcN
+# AQkEMRYEFKQJYszMcw8d7SmZ2rUgDCS2191QMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAs8kw+z+DefFAMOf5ev3RkaKNlL8/jbqMNGDeZFKK7lTfe
-# mPwRtEUj+4IYDm3/5xUp1Y5FQd7vo/NUbiYM04FUOG/B50rAYlbugBVPEn9KgJld
-# oO0reMnnXgqAWJsagshk2Yme5NTpCoJSdwMm6JZztG/VmSlJheMJWRquk+1C7RXd
-# FAC0P+ZZocL4nAunVHQYRVy24hLB/uPAvaljeDW09Cvv9+IIQuqIg+U/mzD+Wdx0
-# wxzoacQfdX+CkOWCXt6N56MJuaLpFoRE0BKHxACAV69R/RBnZxSacpdxdNzqYTib
-# K/9GKD4bO0SRNZrEZZk23zcZKypQWkoOECTdVCVu
+# hkiG9w0BAQEFAASCAQCXsVeUCamlP01KiWYh+5GodQyWShOQKg2m0iEcR/AuhtnU
+# KOoH6lsL5WH41hilWkCiKHPYvJimBh/93esJz12ktTbuzkWFII+RDnWRtHRrjpjl
+# OoaF7Aov+DfJpYEsfjGLkmTo+Chlm0HjelrWzBsM6sIsVh3dOHB/UeEIv+9xi1F5
+# wfhLQviG+ojN9tYBRn/0Y4uBy9a1NNfaNozQyvYl8e0Fg3fwvohIhsKadq58cPdF
+# 17GNFjnH2oE4mDShxu7KtMbsgR9xSZbL5QsZLaSuV+iPQJo1I+qw+VepHSZ1LpgF
+# rgzbtUrgBkNh+lwxZc/0hku0wS4l6VVy2/CnuN0d
 # SIG # End signature block

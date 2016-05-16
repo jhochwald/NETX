@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,39 +54,49 @@ function global:Send-Pushover {
 		Sends a push message via Pushover
 
 	.DESCRIPTION
-		We established a lot of automated messaging and push services, Pushover was missing!
-		We do not use Pushover that much, but sometimes it is just nice to have the function ready...
+		We established a lot of automated messaging and push services,
+		Pushover was missing!
+
+		We do not use Pushover that much, but sometimes it is just nice to
+		have the function ready...
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test"
 
 		Description
 		-----------
-		Send the message "Test" to all your devices. The App Name is displayed a title of the push
+		Send the message "Test" to all your devices. The App Name is
+		displayed a title of the push
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -device "Josh-iPadPro"
 
 		Description
 		-----------
-		Send the message "Test" to the device with the name "Josh-iPadPro". The App Name is displayed a title of the push
+		Send the message "Test" to the device with the name "Josh-iPadPro".
+		The App Name is displayed a title of the push
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -title "Hello!" -sound "cosmic"
 
 		Description
 		-----------
-		Send the message "Test" to all your devices. It will have the Title "Hello!" and use the notification sound "cosmic"
+		Send the message "Test" to all your devices. It will have the
+		Title "Hello!" and use the notification sound "cosmic"
 
 	.EXAMPLE
 		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Nice URL for you" -title "Hello!" -url "http://net-experts.net" -url_title "My Site"
 
 		Description
 		-----------
-		Send the message "Nice URL for you" with the title "Hello!" to all your devices. The Push contains a link to "http://net-experts.net" with the URL title "My Site"
+		Send the message "Nice URL for you" with the title "Hello!" to all
+		your devices.
+		The Push contains a link to "http://net-experts.net" with the
+		URL title "My Site"
 
 	.PARAMETER User
-		The user/group key (not e-mail address) of your user (or you), viewable when logged into our Pushover dashboard
+		The user/group key (not e-mail address) of your user (or you),
+		viewable when logged into our Pushover dashboard
 
 	.PARAMETER Message
 		Your message, can be HTML like formated
@@ -93,7 +105,10 @@ function global:Send-Pushover {
 		Your Pushover application API token
 
 	.PARAMETER device
-		Your device name to send the message directly to that device, rather than all of the devices (multiple devices may be separated by a comma). You can use Get-PushoverUserDeviceInfo to get a list of all registered devices.
+		Your device name to send the message directly to that device,
+		rather than all of the devices (multiple devices may be separated by
+		a comma). You can use Get-PushoverUserDeviceInfo to get a list of
+		 all registered devices.
 
 	.PARAMETER title
 		Your message title, otherwise your app name is used
@@ -108,7 +123,8 @@ function global:Send-Pushover {
 		The Push priority (-2 to +2)
 
 	.PARAMETER sound
-		The name of one of the sounds supported by device clients to override the user's default sound choice
+		The name of one of the sounds supported by device clients to override
+		the user's default sound choice
 
 	.NOTES
 		Based on our Send-SlackChat function
@@ -277,10 +293,12 @@ function global:Get-PushoverUserDeviceInfo {
 		Retrieves a list of registered devices with Pushover
 
 	.DESCRIPTION
-		Perfect in combination with the Send-Pushover command to send a notification using the "device" parameter of Send-Pushover
+		Perfect in combination with the Send-Pushover command to send a
+		notification using the "device" parameter of Send-Pushover
 
 	.PARAMETER User
-		The user/group key (not e-mail address) of your user (or you), viewable when logged into our Pushover dashboard
+		The user/group key (not e-mail address) of your user (or you),
+		viewable when logged into our Pushover dashboard
 
 	.PARAMETER token
 		Your Pushover application API token
@@ -388,8 +406,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU55ZDnLhKINxvW8o+WY4EaFbV
-# 3lOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPnlZDAzxRq9hZOT5OoFVYu5+
+# CLmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -532,25 +550,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSLopO9ohGdyR6XHAqlkuC7e4Z3/jANBgkqhkiG9w0B
-# AQEFAASCAQCJO5V+CIh6oLnmhrJHu/SU9sD5fiBIaFWa5CMRjqsj9EiijeQcdCGy
-# 9jNr2Iysg4OG1q8deriFd4TDw30XgyyCRAcxf0Ss3x2DGlzsyKSYfAE1l48I1QUT
-# 0Idhpp5ZNdd9sUVdYj+v+xWPVXWsekzr7PGGTmiBiu/HR6DsQjim0OR+YWg2rl91
-# X+hzPb2jdOB49z4UDXZpY6TtO5yumMwcvqaLKg76bk6WDDYz/8KJA2EvQvkCuhET
-# o92K1RNvsvejLsWqTXeVsvCEljWVL5MQ7JpBgFjJHeXRcaY3ZQO8F2ympkaP9vtH
-# oD8XyWM7T8RjT/nIZVKNsCvzEqv3TfPOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQiuV7ewmvw/Id4Y+06dGAc2AhKTzANBgkqhkiG9w0B
+# AQEFAASCAQBMpjus5uqNl5BVru4DREs7FG9TnaUe6DNuvnQ54utvJbvXwCkU7iC9
+# W/SU896r8xmo93MT8xKdHnLDwYBcKlPAI6T/F9jC/NIErCf915Cks4YVTK0WBKZ4
+# yQK3xLSZ5bUiun2b/Y/wwdG8rQ+udwH6Zjm/HuN0F2u+C8UOgmJO0KiwosfK32q3
+# 1IaMorO6zH6tcDkBGo7w78Ki1odiIf/56oKXA1mFHBntwZ/eW/joMU8MCADjxNXv
+# XamnLoI+DxAfjAIGh/WKPNAVaRF4h9Sn98gFteSwLP//NTF/lePZA2ZkqK5vst3y
+# DTbnysy6iHTttQvpciRcoAk7RbrB6HMEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOFowIwYJKoZIhvcN
-# AQkEMRYEFBoB8bBZ1ZgnQCKholQHcjiILQkJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxOVowIwYJKoZIhvcN
+# AQkEMRYEFJjLL7ZOTNSrJk9MbQsTcCTdN821MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBmijOagC07wRUPGiBMibJuq/6AU3yO1987BS6baCDQ1ggA
-# gyYu3Y8I7i8f1eHpucTGTEGyb/kDnAfA2rMtlj8oo0UAi4j5Ze1tzeU6rPS3DSVM
-# YnJoGcectvG9IzKYThqpJOGUnHsjkRwAw8JQ3PJItyNHHB8gWcXx0mpnY4wbJ0Pw
-# P33UYPe9sY9BQDr5O7+wjwe2dE5WLMcuh2gRc2TKvO25JWu8zpCFmt01hNgvGh8q
-# Tk2+Re1BNEQ1/sp7BCmvFdAD1aMc9sg+e4wadIcSZNMtpPr+Lq/C9m//cvuAkez7
-# FqJMqEg4hyZiSBu2p8pvIGOMuOcajZBXZiXzlq2I
+# hkiG9w0BAQEFAASCAQBP6tA2YODUo8EcT2srXqAXIXbHotd3IW9PhrZyhFsSyVuF
+# 57+V6ygNVWFaZrtH1scmJWcScrDrtMBqwv3ggcYyr38cYNmPfuWl98QQ8gwBbNYg
+# NM1vPpghC07MASQsCWeknTi9Dwp5GASInp1Do4nPlqH/E4XZdrIa7b4Eq/e43P06
+# l5bhsxjW1CHlehTkg9cRf7oAgtQmJjvkI3Ulw73t7HzxzKYYRrVCcMU8aw7pIq14
+# vOd8B4AOJShrzsMJnnNHUa9IGC8ARW2gpebjD/49ISCJIlIJeaknZ+I6HjsvkvDK
+# tvEpk/UVhAU7JnVBuZiTsH5HJYO0sMG//Cmc4V2i
 # SIG # End signature block

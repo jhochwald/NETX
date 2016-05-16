@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -12,146 +12,94 @@
 #endregion Info
 
 #region License
-
 <#
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
-
 #endregion License
 
-function global:Confirm-XMLisValid {
+function Global:Get-ReqParams {
 <#
 	.SYNOPSIS
-		Checks if one, or more, given files looks like valid XML formated
+		A quick way to view required parameters on a cmdlet
 
 	.DESCRIPTION
-		This function do some basic checks to see if one, or more, given files looks valid XML formated.
-		If you use multiple files at once, the answer is False (Boolean) even if just one is not valid!
+		A quick way to view required parameters on a cmdlet, function,
+		provider, script or workflow
 
-	.PARAMETER XmlFilePath
-		One or more Files to check
-
-	.EXAMPLE
-		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\conf\settings.xml'
-		True
-
-		Description
-		-----------
-		This will check if the file 'D:\apache-maven-3.3.9\conf\settings.xml' looks like a valis XML file, what is does.
+	.PARAMETER command
+		Gets required parameters of the specified command or concept.
+		Enter the name of a cmdlet, function, provider, script, or workflow,
+ 		such as "Get-Member", a conceptual topic name, such as "about_Objects",
+ 		or an alias, such as "ls".
 
 	.EXAMPLE
-		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt'
-		False
+		PS C:\> PS C:\scripts\PowerShell> Get-ReqParams -command 'New-ADUser'
 
-		Description
-		-----------
-		Looks like the File 'D:\apache-maven-3.3.9\README.txt' is not a valid XML formated file.
+		-Name <String>
+		    Specifies the name of the object. This parameter sets the Name property of the Active Directory object. The LDAP Display
+		    Name (ldapDisplayName) of this property is name.
 
-	.EXAMPLE
-		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt', 'D:\apache-maven-3.3.9\conf\settings.xml'
-		False
-
-		Description
-		-----------
-		Checks multiple Files to see if they are valid XML files. If one is not, "False" is returned!
+		    Required?                    true
+		    Position?                    2
+		    Default value
+		    Accept pipeline input?       True (ByPropertyName)
+		    Accept wildcard characters?  false
 
 	.NOTES
-		The return is Boolean. The function should never throw an error, maximum is a warning! So if you want to catch a problem be aware of that!
+		Just a filter for Get-Help
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
-	[OutputType([System.Boolean])]
+	[CmdletBinding(ConfirmImpact = 'None')]
 	param
 	(
 		[Parameter(Mandatory = $true,
 				   ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'One or more Files to check')]
-		[System.String[]]$XmlFilePath
+				   Position = 0,
+				   HelpMessage = 'cmdlet')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('cmd')]
+		[System.String]$command
 	)
 
 	PROCESS {
-		foreach ($XmlFileItem in $XmlFilePath) {
-
-			if (Test-Path -Path $XmlFileItem -ErrorAction:SilentlyContinue) {
-				try {
-					# Get the file
-					$XmlFile = (Get-Item -Path $XmlFileItem)
-
-					# Keep count of how many errors there are in the XML file
-					$script:ErrorCount = 0
-
-					# Perform the XML Validation
-					$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
-					$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
-					$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
-					$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
-					$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
-
-					# Now we try to figure out if this is a valid XML file
-					try {
-						while ($Reader.Read()) { }
-					} catch {
-						$script:ErrorCount++
-					}
-
-					# Close the open file
-					$Reader.Close()
-
-					# Verify the results of the XSD validation
-					if ($script:ErrorCount -gt 0) {
-						# XML is NOT valid
-						Return $false
-					} else {
-						# XML is valid
-						Return $true
-					}
-				} catch {
-					Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-				}
-			} else {
-				Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-			}
-		}
+		Get-Help $command -Parameter * | Where-Object { $_.required -eq $true }
 	}
 }
-
-# Set Alias for the old function name
-(Set-Alias Validate-Xml Confirm-XMLisValid -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBn8JDfJM2cLieW8Wa4N+2Oe+
-# nNSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFSDr/CgQwC/0u1FGGSZrcqFH
+# OnGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +242,25 @@ function global:Confirm-XMLisValid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTX06No1SX9ShsoQxTdqyh9IjeN4zANBgkqhkiG9w0B
-# AQEFAASCAQBP6yYfeG/tmRXT5Hg0iyUeEtPHz/M4jH4VUqQr/5z4t/7NzZSdiguF
-# Tgv4GssDV+m3iL8hZ+3360OIonyQ0z0Qj88f+wse6A1K0ojwGSRAgJgbXtCipLvf
-# hby1/60a4pZjwDeRVQci3mtghcIxkxXctD00L9dnJwsXWxHW9GzLtqDYGSlNTEcn
-# LPoZseWgvfsoAiT9Zo+zfqytVFfhjBy6Dj9ExI6Yy+gNcphEW8AHSpV73Fvp+BUx
-# Tv/39MPnamVXhabt28yBNoBO7KH7ZWcK80GgTisHZ2Vl04ZX2KDKo1S6qZKywk4H
-# 0uROBSf9StUSbZPQfJDczD0/liNdMn+zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSr4yPRqkopJrzM4m/ReruFRpYEkzANBgkqhkiG9w0B
+# AQEFAASCAQClzGHtPzq0bJkP6Mj5BA245rLsjqUejoqvzw11O8UWHlcEnaeIn7mn
+# M4i6mNmPU6mPKQhoomHzaf+09eodjj/hkEqKZgWxwv5tnDF+N9+Z3zEOiKvirABr
+# 2qOO4Qu2CVmcTCq4mKoTtbf3ZdEc5qiRcGXNORvpiJa42BLAUXAwVok5Z3+SqOkm
+# w3YSs4TENoD56a2nw51RdrXgJ2BmDsVris/CnDilvAuI0rOLP5nDW5eMobAli5Hf
+# eVuDXbgyXZkflil6I44auOKUbu4JMzvmjbwSUhbTx1BIoJlna1pdTKxmPoU9wc1P
+# iBW7xMNrcN7cyJkZJ/1DmSylmTf/3ptBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxOFowIwYJKoZIhvcN
-# AQkEMRYEFKZwEzlWPP3Iu18MYIeplSb5hb5YMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwMFowIwYJKoZIhvcN
+# AQkEMRYEFN+0bvEVjZ1L4nzAkjd2tx74fQIZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBkyLA33gc5CCdXSKv6YmQV1kc2X6fus/C5hbaUyVT+2Rnl
-# dAmqlUpqrMVqlayByPgyIlfGCAO2UIgl6OkEcBDgItv9eGsrIdRNXSTYeh5RehrN
-# 4QZGwTk/BFKH3rNGFVdv1Y5o1fQ9gq7cuVoZidiCA+/X07dvRFlywkYgKXHECeE9
-# 6MiBW5qrvuP2b5I84w5uVoCpGGijiHGwgeeYMWLP1wP2Bg5NNI8vVrip3584qf0l
-# Y+DTc3zXOGdcnojmfqtmBCVjeTVey28ydfTvLuBeFPdVR+58E55NkeEXyOgiaKWj
-# Go/MfoHxa+qCCAr1QDzAy/wCfBrrynduxP+Fif39
+# hkiG9w0BAQEFAASCAQBfaBfc+J0md5PUpnTHTPd42ludIF6RnJYybvTv4et+t16r
+# lt4LmjvNGx+xlk9pzK9fl6jOktClSD1iKgdyEHZebwE1evF4D3TfBVMsKfUU/9ne
+# 5Kz1bji0c9uqDd7pt1o/6McaQ4VLtm+wjqPbRFukZgcH8bXmWHgTPQNLfvJWf76Q
+# gZgXZ2PC8BCTJ5eYWK70eeVEuMqSVFP3NF0bD+kbc6Q1agXYNAIAJMb3E5M6dLAC
+# 8Le0jhFes1oTk5unBefS8YSenT0TheXZmDjhb/lZ+G0NHLZfAMZDL0WdKPdmIPnU
+# SATRUbljbSdZEXTDwAs2NWE64dRgIHk762iBWQf8
 # SIG # End signature block

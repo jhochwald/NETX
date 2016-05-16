@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,21 +51,27 @@
 function global:Invoke-JavaLove {
 <#
 	.SYNOPSIS
-		Set the JAVAHOME Variable to use JDK and/or JRE instances withing the Session
+		Set the JAVAHOME Variable to use JDK and/or JRE instances withing the
+		Session
 
 	.DESCRIPTION
 		You are still using Java Stuff?
-		OK... Your choice, so we do you the favor and create/fill the variable JAVAHOME based on the JDK/JRE that we found.
-		It also append the Info to the PATH variable to make things easier for you.
-		But think about dropping the buggy Java crap as soon as you can. Java is not only buggy, there are also many Security issues with it!
+		OK... Your choice, so we do you the favor and create/fill the
+		variable JAVAHOME based on the JDK/JRE that we found.
+		It also append the Info to the PATH variable to make things easier
+		for you.
+		But think about dropping the buggy Java crap as soon as you can.
+		Java is not only buggy, there are also many Security issues with it!
 
 	.EXAMPLE
 		PS C:\> JavaLove
 
 		Description
 		-----------
-		Find the installed JDK and/or JRE version and crate the JDK_HOME and JAVA_HOME variables for you.
-		It also appends the Path to the PATH  and CLASSPATH variable to make it easier for you.
+		Find the installed JDK and/or JRE version and crate the JDK_HOME
+		and JAVA_HOME variables for you.
+		It also appends the Path to the PATH  and CLASSPATH variable to make
+		it easier for you.
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -122,8 +130,8 @@ function global:Invoke-JavaLove {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQiW2Ee2zUnIHN+JoEtI+QfGB
-# 1PqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURtQ8rePgHBQqpzl5fOVCaNqS
+# 7iqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +274,25 @@ function global:Invoke-JavaLove {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRFHwKWYGPO6bjKTF/M04m5qeky1TANBgkqhkiG9w0B
-# AQEFAASCAQAQcoeIUWfEqYFkFDwyetbn1E4x1VcZBALq/tDfz+uJ/bdp3Aw+PWlk
-# 72xwaeWVJ+Y/NZN4jlrnCm3ReN0zmqJrirHet3gWfk6tVAC9hBSFoBv8FWax1FIa
-# wPmYANnbeNiGiNpl36O9UFd6yrqONjxHy5OK6/hmHNUIenlNHlCtryTa7zto/b4B
-# SabirFJTWlKVqv5/DOdpsvA+A4z7g0wkXEcP8l1qmyuJ6KtYoVCbY8e+hy3rJESS
-# LpsLJlcZT2Om/sLATcn5XXWDt9If97ActROfrSD9RQjStLf98qMWEooVYNBoIPX6
-# wD7yNQOfPjD4PfX9UPbkKMRfxCOfpshUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSKtSmBcjhIXis6vojHs9Y+HrC0TDANBgkqhkiG9w0B
+# AQEFAASCAQCVNtjP2ON24zwePIlRfTJRFGZV7rusQ+R4HagTt79iqDjOL+GLrkB+
+# 4vSVPtWG6fn4IBIMqUDYmPc3OssG3gBzfzALkF7rJ68Fsraisv2vB1WDGlsnVyf5
+# ktx2mO6yMWEx4lLuFRhpbf1YoivVfJjCiMYseDviTaYjZSb58mvTCyamC5e182qn
+# vwGIybwgjgPJCSPg620xEEnaVkQEmlBPxrYzWICB4NUpwcZHiiuS350sGUphmasU
+# BjcYxVoNi7sAfVwuUNpPj6s+GkvLzgqn9tSgVgnKPe2yyi+yRXIyYtQckWaX8E8f
+# EC/fTIRbnuxogKO//CX5/Wq9VS7mEAV6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMlowIwYJKoZIhvcN
-# AQkEMRYEFJCUosSMoGRjgI2wYjtHx8lsAQwfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMlowIwYJKoZIhvcN
+# AQkEMRYEFKom3aP7J3ni/eUnk6xipiPXd1tZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCdI+NXF0C59ozdoizg1UpQqUp0H0xMdqauli753H7agJPl
-# L/Iniqpt725zoizrdfZFFuBVG2hwdMFPi29RgPNbtoEzNxo+LMe2wbuydgPoGuRo
-# kiA5OFOupY4+gvDBs51ETRi50RH7aG7OMmDzUvwnvzVwA5dX8ps4sSM1lO6qlZGz
-# K1WyOsnvRYl6rejiXzmPLpnTVsSVR96osMsTU3AdJaa/DGD5K4V6UT4RYy+EFV95
-# FK0JMGSlQJ4mGAzER3oFohDx0aQxMp22v7JV4QZXo8HzHpy9fvUSfeTsiJg+r/EK
-# tJzUyeRZSIMXSbLG+u3RDSPAtogs1n/WF7J3r8ZA
+# hkiG9w0BAQEFAASCAQACZC9rKvaewgj+m5/2IUoKnfVPQHi6UGuujBYlaVg5Vrul
+# NNjMbQsr3DlEFsZsvicjIYrBEDcq3L6basW+i7HAKN4rm54DZmhQuhmROvdRADFT
+# c5MYpi7ANIiEnqr/BwDubw0Vi8wLvyFUOG4Rf/vXxuWDTn2yN0EBxlemx9XaxFim
+# YKhzcMlTQGzabPmbg+hETtUq5Pd0OIyIotJOuaQFLiMUqNtZZnb61GIb5QvJHzyY
+# gtSCXpYrs+ZixIazwQbD3VJobkWxhBe4mnWe2iF+zhFMI82TRx8Zz+V6lUwGwKWw
+# zczMBTcdHHTXA8vUMPfyIA/Puv84LrjWMFCplg2t
 # SIG # End signature block

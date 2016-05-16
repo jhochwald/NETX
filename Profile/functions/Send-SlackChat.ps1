@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,9 @@ function global:Send-SlackChat {
 		Sends a chat message to a Slack organization
 
 	.DESCRIPTION
-		The Post-ToSlack cmdlet is used to send a chat message to a Slack channel, group, or person.
+		The Post-ToSlack cmdlet is used to send a chat message to a Slack
+		channel, group, or person.
+
 		Slack requires a token to authenticate to an organization within Slack.
 
 	.PARAMETER Channel
@@ -72,14 +76,16 @@ function global:Send-SlackChat {
 
 		Description
 		-----------
-		This will send a message to the "#General" channel using a specific token 1234567890, and the bot's name will be "The Borg".
+		This will send a message to the "#General" channel using a specific
+		token 1234567890, and the bot's name will be "The Borg".
 
 	.EXAMPLE
 		PS C:\> Send-SlackChat -channel '#general' -message 'Hello everyone!' -token '1234567890'
 
 		Description
 		-----------
-		This will send a message to the "#General" channel using a specific token 1234567890, and the bot's name will be default ("Build Bot").
+		This will send a message to the "#General" channel using a specific t
+		oken 1234567890, and the bot's name will be default ("Build Bot").
 
 	.NOTES
 		Based on an idea of @ChrisWahl
@@ -180,8 +186,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfXPSfHDuAZBLGAc6IYi8HDwX
-# tC6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+V2T658ouBw0YVYqup+pIX/b
+# mxigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -324,25 +330,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxy4ewQiqkhARlE2poWBdVcJzKFzANBgkqhkiG9w0B
-# AQEFAASCAQBDVJ03d5YVCsDcSmK7TWa//a/H0HDYfUMEmhCd4DZeu1Gii0WcC/8r
-# Guw47nGK1kLEUx6/K2rherdv1YHAsVps6yH8lJsWqlxS0NddPFLXlbmalja0Dq/9
-# 2Wo6sWVaYb/CzfAyKBpV+LiRFHPI2/9hJfuV4Mi775kqbzfZImPBRFwwt8xT/4mv
-# feQxdBG5tkVxJxOJH5Rg/gS4+g5xwoOiJx3Xfy6S49CYXdWWBcHUxd8hPkyl1mTT
-# VD6d+okknVtm6OFDR82XudZC/X9b2UGp6DjMRGcYRnfIv9iIG3aqssel9Lyr3Mns
-# u+h4FeimDYTCh1LyaVmtcHbOw9vlvaAIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRNEaImdm4sQnzJeIyrwi0TqGlrVTANBgkqhkiG9w0B
+# AQEFAASCAQBSu1eiYkGerSxId1iTacuu3g8LYRY09IttLi60630q7mBFlrm3wUx+
+# tdvL7GA2d+w03P04C75bsb/1tjvXGhWmydPYN63L68Ml2YZt3vhuN1Cg0JNKG3+H
+# wT1svlneAy2pHOpyY2KAAw0+BS7fjYO3OjJH5OalH0cTflWsX7Ooi5CpyPqaq+No
+# rCh2TLrv7D3jqjwlETPCVd4u17yu5p6cdNzQrUF6evN2l8kD7qQAdvkT5QNHJkCH
+# kR2sWTd8gf5ncjUE0g4KfHMrpb1aSZklzS/6uycS8OfyzcywxnlrXPNURSD2YLT2
+# wEZUCNlsiY4MsmQu7AMKGmX/hTGJ1JMAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMVowIwYJKoZIhvcN
-# AQkEMRYEFA7+92A/79DHK6d6KLCtmFn5RbzXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyM1owIwYJKoZIhvcN
+# AQkEMRYEFFPkRo5dKxyQuBfYpt1nDHfQQj+9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBdC7WKu2/3Pg6xaXI8VflluqEqPflrlaE15JH9D2aomyns
-# 8XVCBqzsm1L5n5wSCvpyKguuVvwViATcZc5NmQQZH6OI1obnPVBZU28yiKHqAzY4
-# N1aQGN9iMpSVAziiEjUXBQgvm0fRGNE6JDnkl20c+LeBl2LOM+ytt3kVhZuRdBku
-# P66SBxlKHJVDkFauFPba7ZAPQ7fc1tUzddj8BIHU0+I8dVXsU4mRlhOOaS6WBglf
-# 79OXdlD60lQbQZvzjCHpqtoIwkIpMQUo0VEwM4QPzOABndpvt0xKQTWuxM/gN8NN
-# NpSCt+BBKI9ZU52Bd6SmivU0yYDIn0ri30Fqbe9v
+# hkiG9w0BAQEFAASCAQBJWg5sGFdeXIYwh4Ph3t7QlVeu6s6ZU4Kl9hlBJ/AqfYHU
+# WMuHYhvPIo0gGZKRasOF3mEYA9rHLx28ecovcRY6XmLZedmoJtaC26OQsSM8JWO+
+# f77Ay0XjS1wSjLO4OcHeqVdKrNqNmwb4DC5ZVxE/xGUJutXczIkpUZlV5pwiElID
+# ccEcrAEUhj5eTW0xeAERRpM/vYP5arvIjo6ORsL58wF+yV6oKfKJJdqSQhBVl08A
+# jpKsyXZBWN01JmrPOTXPEBgSBxV2AZNFPrAYjvHhIBMdXJeba+BjREpHNNPgA3Io
+# evGTSJR9SQ45CHeX6clxOmV4G9wKA2Iflr/m3I57
 # SIG # End signature block

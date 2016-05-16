@@ -29,8 +29,10 @@ function Global:Get-MicrosoftUpdateInfo {
 
 		Description
 		-----------
-		Return the installed Microsoft Updates in a more raw format, this might be handy if you want to reuse it!
-		In this example we search for the Update "KB3121461" only and displays that info.
+		Return the installed Microsoft Updates in a more raw format, this might
+		be handy if you want to reuse it!
+		In this example we search for the Update "KB3121461" only and
+		displays that info.
 
 	.EXAMPLE
 		PS C:\> $MicrosoftUpdateInfo = (Get-MicrosoftUpdateInfo -raw)
@@ -38,8 +40,10 @@ function Global:Get-MicrosoftUpdateInfo {
 
 		Description
 		-----------
-		Return the installed Microsoft Updates in a more raw format, this might be handy if you want to reuse it!
-		In this example we search for the Update "KB3121461" only and displays the info about that Update as String.
+		Return the installed Microsoft Updates in a more raw format, this might
+		be handy if you want to reuse it!
+		In this example we search for the Update "KB3121461" only and
+		displays the info about that Update as String.
 
 	.NOTES
 		Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
@@ -98,7 +102,7 @@ function Global:Get-MicrosoftUpdateInfo {
 
 	END {
 		if ($raw) {
-			Return $OutputCollection | Sort-Object HotFixID
+			Write-Output $OutputCollection | Sort-Object HotFixID
 		} else {
 			# Oupput the collection sorted and formatted:
 			$OutputCollection | Sort-Object HotFixID | Format-Table -AutoSize
@@ -112,8 +116,8 @@ function Global:Get-MicrosoftUpdateInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWta2Z2X1f2kTc4q1S1cyx5EO
-# AZmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsbrJqz0VJif8Kgqv0WpUTSpu
+# v/SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +260,25 @@ function Global:Get-MicrosoftUpdateInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQsVjkWUMbD9x04SkumNiacsH1yGjANBgkqhkiG9w0B
-# AQEFAASCAQBOtqT62A/ZCddOFDmC75QM1YnjV/ZY5uVqvY9kpXlCV/vDTaD04rSA
-# h/iSCOkCU3z3Ow3VzsoslYKOFxRQdtQbZWhUwH/VPCUomfw+4ZBqN7LRo9C1iJia
-# TTkCwH3dYW1cagfPbftC+Dm9cBLmxJu2P1vqfYn+7U/2nVa/4V8qcKPPSPRE6T6W
-# 7FYI+lcVsTZ74py/eCt4CCIlyDAFxhGwTqkmL5YCLG+mMOswANMU/KoIqTuPhb9r
-# ctYJiQnz+GOy+YnGDVxiymdfYDc70vfZxk4+t21eKFy/TjEIR+xHBn/TZohrsYAG
-# JK0pXoIGtScMn9Nr9G0nbPf4oi8Bp3bloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRMpv3MPe7ejfp6cUWsIVpy56me6jANBgkqhkiG9w0B
+# AQEFAASCAQBtBplpkx+LfKQBHQxP06KvxfYi1ozAaKmC63QaiTvHLoQFxL+0sAH1
+# NCjYdAt2N/SCmJryJS8S17vpUvYJxwo1HiWF6ivzBEV5qQuBjeaXDYug9JRlrtHy
+# HOw50+GZlNk4nwRWpOfyRsn0UUMbFrgTEymReUPRmvTSfwUl9bZjD6AStB1t8zJj
+# iznGMrp2bQx3YNsk1EZKHGQ65i4Hj9ApZgHw0DL7ay9FAJ4dy2UuTyZTQqo6mPwx
+# rVxrg3r+yX96+HNgPo2RW850VIhg5fKlsXoMhHW5CunlK8066KrP+0I+586xrXqP
+# RhqRy2401CcMT9E5h1vsj5/86LACxggpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1MFowIwYJKoZIhvcN
-# AQkEMRYEFNn9DAr3Epe0AiUQSmBcZhZ1H1ecMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NlowIwYJKoZIhvcN
+# AQkEMRYEFJ2CXvWN+4UKgTXpT3JWJb8SAxzWMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCogkUfgYxH+KaSnoeVhbGpM/zms+BRZw8RY/0ppY62RKVv
-# Wml6QwMQcyaHszHzDP+KSY/LW2Cd3HuPmkJrrMMrTWIc8NbBUIrNfHLsC4teq0XR
-# ny84/DTBBWeIRhF+X/SJdIf6DCyL1HdyqhTEg0Hww5F8eAutE87H6aALfuCGSHuY
-# GEio/qi9rikq7LOSds7QiOi6H0ZmQpsjFZqARgCLGi1j1kqR8RzAYalhKNCkhHqT
-# pRoYKN13dGAnVqSWVAsS9/Aup4eesItZYTmdbroKWTHEXyqp16kyIM2US2eJQuTK
-# H0lFe06mXcW1WWy7cYKSN6VomUceuFPKwHwnK3bb
+# hkiG9w0BAQEFAASCAQA69lNT8wfT/Fw52CJZwV9fQ6c0qjj2em03jTVkgnm2bQtJ
+# +2PQXzynstHPRPr79brS1iX0HEltaJHBq3FDcWIearzQAGswWX/vB8co4GQVsx9S
+# 3V93yk47BUnyCbld/DCJq7CTyAGkwxqiob8AtoTVcXWD575miY20+slhrkFMe0yi
+# NDjtDmSeinIDwRhx6IZyQ/jxHy817xMVL76LOKu31SjcFYvLFhZeKUpPGcwku2P9
+# xw3GKa9u3vsrGQACYRGBoPiAEnLntZQSIrwR1/OzGtdGbVPrTE47hznSVIctVK4P
+# tvKK6f0NzfT3qA+FjlpSoR2JxX8QfQlgL1pNEiXU
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,31 +54,46 @@ function global:Get-Whois {
 		Script to retrieve WhoIs information from a list of domains
 
 	.DESCRIPTION
-		This script will, by default, create a report of WhoIs information on 1 or more Internet domains.
-		Not all Top-Level Domains support Whois queries! e.g. .de (Germany) domains!
+		This script will, by default, create a report of WhoIs information on
+		1 or more Internet domains. Not all Top-Level Domains support Whois
+		queries! e.g. .de (Germany) domains!
 
 		Report options are CSV, Json, XML, HTML, and object (default) output.
-		Dates in the CSV, Json, and HTML options are formatted for the culture settings on the PC.
+		Dates in the CSV, Json, and HTML options are formatted for the culture
+		settings on the PC.
 		Columns in HTML report are also sortable, just click on the headers.
 
 	.PARAMETER Domain
 		One or more domain names to check. Accepts pipeline.
 
 	.PARAMETER Path
-		Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export
-		Default is C:\scripts\PowerShell\export
+		Path Where-Object the resulting HTML or CSV report will be saved.
+
+		Default is: C:\scripts\PowerShell\export
 
 	.PARAMETER RedThresold
-		If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)
+		If the number of days left before the domain expires falls below this
+		number the entire row will be highlighted in Red (HTML reports only).
+
+		Default is 30 (Days)
 
 	.PARAMETER YellowThresold
-		If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)
+		If the number of days left before the domain expires falls below this
+		number the entire row will be highlighted in Yellow (HTML reports only)
+
+		Default is 90 (Days)
 
 	.PARAMETER GreyThresold
-		If the number of days left before the domain expires falls below this number the entire row will be highlighted in Grey (HTML reports only). Default is 365 (Days)
+		If the number of days left before the domain expires falls below this
+		number the entire row will be highlighted in Grey (HTML reports only).
+
+		Default is 365 (Days)
 
 	.PARAMETER OutputType
-		Specify what kind of report you want.  Valid types are Json, XML,HTML, CSV, or Object. The default is Object.
+		Specify what kind of report you want.  Valid types are Json, XML,HTML,
+		CSV, or Object.
+
+		The default is Object.
 
 	.EXAMPLE
 		PS C:\> Get-Whois -Domain "NET-Experts.net","timberforest.com"
@@ -335,8 +352,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUztDXP0FnJo9v6nmi6TgjcthE
-# wVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdAedW5XbsK2ph3SYm9X541EY
+# RtqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -479,25 +496,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSQ/oWuLSqQYBeBatxClVoAVxC6eDANBgkqhkiG9w0B
-# AQEFAASCAQCmM9WtnkcD5VugJ78FWvXcGBGtPfCR2rvSw4MicdkedBo7wbwtIQfb
-# n6cc5J/QMW3QKoRGHOkLZ3j5KBieLk/yOyxqX6FP18AN3qCqLgaH/s53Meujjb+Z
-# pYyXhet0LLKKdOkLQxO0H7QNuC0XOcFNGjNQPFsatEXtqnss5yILt7BPITcysfxw
-# aK4s5IQZgSiYVSEpkxlQinlCXO2Ludv34mHlSqIfpa0SrdVPo022FJYbByxAZCGA
-# 1jUCpn9Zp8VgPTK+mTU2N37NZAeaCxf31gJkJDeJYRkb8GeHUWdnrwdUlw7m2niX
-# SGl2B8/+yrLY8yCqOZMTK5tC2ANSGcuroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHpsAY1jQta3vqYZKGzTfptZ3PLzANBgkqhkiG9w0B
+# AQEFAASCAQBOvyICPsUEVr+Xc0S8C1pd766p0P6xjb8u+PyJRn0M20jPREphYx8r
+# 5xEo6WWy8wRYiVk1DQXXfwBLI/J8bdaviIChAXd25+sx6AVisXIB50hgvpsE7xy4
+# VOnDaHce9YAm5P60uyhEmAV7CHuFk/wo/vyqsUgcCBeEFHI8kCpJzhM0lUyqozND
+# W3pRBkdpLcSAjeEjuv96Q7QGfYOBfS2bhinIDE7Ggr+hMihbyPaAoYjGyf8k5ox9
+# SAHxdrXPirE6HC6hCjvzS71anOhxyAjWYFJUIXcguBwYKqwmwoFx4rfJU2DbQbnI
+# kg7B7d03YMGQ91KwsXL7Xg7o+iWYf/vWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1N1owIwYJKoZIhvcN
-# AQkEMRYEFKAPDnd+rDcUFJim0ikjS/5+ZmCWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwNlowIwYJKoZIhvcN
+# AQkEMRYEFMXvOGJQ5GK+lhbPNVhDYwpC5VdpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCA2VZ8ecw0It2QAogl3X0HXuNWy4J6t+f8m5IjBnT7IDKh
-# T1+9/DhsRkptWrjNiEuFCHZSgW8d6wom5rJhAM0z2wpkTHFlyQzZRrADx9XRm4MZ
-# 4dza3RMxbepoSlk4rXUfgefBqnmjFgCBvhOSzNd0XASgFDsNDelUDNENvno8A9pY
-# BAtypeuwqJy3OcH+fSj0wGygkAW5uxRt65l3ofw6Hu31/bnjlYfPsAQbIFv/23ZN
-# QCeLQ5dbcC8M16d1Gy28kXwp2hx8dedkE2bWReSbY1WP5BLeXPxjchDQbgN8W9Eo
-# VZxqVU2bf3CEkQNjAM+2Iji9lzjJS/WTkYMTe9aj
+# hkiG9w0BAQEFAASCAQA3wP2+BpszGkwaFa/X8Av+S/rIBi8jiaHvClWUDaWawsLM
+# WC5QuIMraYj8kcoE/OuWNf5uZZn+7UVVPCnPg5p19wowbBHEIfIKp6r1Qr6y0h8A
+# YlVLWWlLEBescEmvrJfW2t/geQU10eCx5IYkEnicnVy0+93vos2HaEuAW1rbUl9y
+# m606kUZobBmVHmK7jKJJpghFQDnVh7khI0HoqXrCL1Yn3V5+B738POk656Z/cI9y
+# 9JPoFy4FC4JT6Ekkg7rpiE/Y5rWgom1NVRbLYUXIjuoKd9c9eNXW00mI5ZY3TGHr
+# 3rACZlLatE1L/r1GQ2U6Gtxpjr+dZ4FUB0UC8TUt
 # SIG # End signature block

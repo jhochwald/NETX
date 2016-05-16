@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-28
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -60,7 +62,9 @@ function Global:Set-LinuxPrompt {
 
 		Description
 		-----------
-		The user 'Josh' executes the 'Set-LinuxPrompt' on the system 'fra1w7vm01', the '#' shows that he did that in an elevated (started as Administrator) session.
+		The user 'Josh' executes the 'Set-LinuxPrompt' on the system
+		'fra1w7vm01', the '#' shows that he did that in an
+		elevated (started as Administrator) session.
 
 	.EXAMPLE
 		PS C:\Users\Josh> Set-LinuxPrompt
@@ -68,11 +72,13 @@ function Global:Set-LinuxPrompt {
 
 		Description
 		-----------
-		The user 'Josh' executes the 'Set-LinuxPrompt' on the system 'fra1w7vm01', the '$' shows that this is a non elevated (User) session.
+		The user 'Josh' executes the 'Set-LinuxPrompt' on the system
+		'fra1w7vm01', the '$' shows that this is a non elevated (User) session.
 
 	.NOTES
 		Based on an idea of Tommy Maynard
-		If you want a more colorful Prompt, take a look at the Set-PowerPrompt command
+		If you want a more colorful Prompt, take a look at the
+		Set-PowerPrompt command
 
 	.LINK
 		Source http://tommymaynard.com/quick-learn-duplicate-the-linux-prompt-2016/
@@ -137,8 +143,8 @@ function Global:Set-LinuxPrompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8DXKyxyo0c4GG8biQDrlxYP5
-# TsegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMcKBxag8jwu7mR3b316j2JQV
+# ZDCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -281,25 +287,25 @@ function Global:Set-LinuxPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT1UuUU2VslRhntNG1KoJAlvQ9BCzANBgkqhkiG9w0B
-# AQEFAASCAQCVPYK8p8CMFCk2huAlpwtkpiYPJUWD3KcUaDcvBMxKI/z2JP+/EYsI
-# V28pjkanbyIQmf5Pwb62NHku1OCARqz80Sw8qi7snRGdUosDJ406JY1KoD2AY+Uw
-# oSiu8ssSiuw6wZJgzZBfcaz7izAdOt12dzCEKK0jUaLYJamCwZZl9Po18i45jZwU
-# kBTNbe5a2aim9xDuSRJLtZaR64giWHcf+3yfNq2K3qsgdQ2jXBXhyYCw3zyouqvn
-# corpL36Xj2XfcSCt92+oLgrBiuuO4h38yRDbKYNj1qAfyvX570OnCbYNc851GFFT
-# jH9ysy9u0Pd3/C2bW7cXLLNX8gLFh0awoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRg1ee2znrMsxa8jCEktojrX7IERDANBgkqhkiG9w0B
+# AQEFAASCAQBN93ud55R0JGCAtFd6QIuBrD32s3WIVY+zsZIn02c8ZCDaHPjIa+ZK
+# wr8cDeza3HPstjz3k62g/u+QaD19vsrXN0QNfMmd0gzmO3BQlKeBpQSB99UfSOfU
+# Hq/fGqd19I4xMdfuKb1ivXMdT0RTG7jo3Wvfv15Qc+DtjCToOz4EDjZxlSd7cQce
+# SZhckfoONQoulREHcC7huDkpugPnY0R3Ni9GPKLS1q+lLs+PNcMpkDlGvNVatdWH
+# 0nRy/jnvzmbnEcFu9deQ8ntHPIJ7jKJdKQuqeCJOL6W1QepDPS310OAKEQ5JzlNz
+# jnj8HaWLzRFpz/WL4pQaJ1B7yzB+d0qjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxM1owIwYJKoZIhvcN
-# AQkEMRYEFG0SyfNE+kVBKP/J8Z5WoDyQ2vk0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNVowIwYJKoZIhvcN
+# AQkEMRYEFGpDsMlDgYcNGG+JfF0OYDT8hnn3MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQByouhhX0ovJhCVhFiinKiYtI8vP7Xe39suskUZPjU6TQDT
-# NYnl6AYJGlkT9uDNRKC5J5IymGI5ekocCvMwVAs6Ag5bZUzJwhpuPYJqg3meIDNJ
-# CRQvcekdHFcak9c+587a18Nvc2bBi4xphgY5tTHKoKoLXJd9AJZhR3dSvhLtcg7l
-# 01cHiF5Xoom8I8jCqxeIjeeksTghS2+ZSbJ34gFAjHs0yGLXJkbI8ZeVcSKRyWjD
-# lWgGnRaHx1lB7i0ZVj4itKQgs67K3pbf5GVs1J6Xd8/LhUaXbGEHZsofgNmIdXHz
-# v6WuA+TUvkVatr7mfKTLrJJuXOceGJ41qzWODRLA
+# hkiG9w0BAQEFAASCAQCXzoVFKW5gWFCpa2wkfCtMil9MjnPLzsQazqFjQYMYaviV
+# ugGAObc5WubGARopCUYVNqUaS8UMHkMPjwDEYIs4RKFv2zgbLzwfgck97IifAsrU
+# iMGf0PgGvPtIEN/U4/SaQwpLOpvuoDhvJosYUnvuL0uXiWK9DYmxzh7GWjihVdre
+# tOxObr+aoxj40hqiSk2GsJgcn0b+gngkr4ALY/qDkXrIyA05SVUqtjwyMNix6VB1
+# zeMbFAFwvfBNMnlZK0c4JLvpuS4JstJ8Xyig6V9nBuFjePhrA4Z/adfOFkHQKPEJ
+# 4WDXFRvXsiu64ijUnQcIarDmVw4VwFz6TccMyXwb
 # SIG # End signature block

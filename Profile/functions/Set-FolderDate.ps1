@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,27 +51,33 @@
 function global:Set-FolderDate {
 <#
 	.SYNOPSIS
-		Change one folder, or more, last-write time based on the latest last-write of the included files
+		Change one folder, or more, last-write time based on the latest
+		last-write of the included files
 
 	.DESCRIPTION
-		Change one folder, or more, folder last-write time based on the latest last-write of the included files
+		Change one folder, or more, folder last-write time based on the
+		latest last-write of the included files
 		Makes windows a lot more Uni* like and have some Convenience.
 
 	.PARAMETER Path
-		One folder, or more, you would like to update, default is C:\scripts\PowerShell\log
+		One folder, or more, you would like to update
+
+		Default is C:\scripts\PowerShell\log
 
 	.EXAMPLE
 		Set-FolderDate -Path "D:\temp"
 
 		Description
 		-----------
-		Change "D:\temp" last-write time based on the latest last-write of the included files
+		Change "D:\temp" last-write time based on the latest last-write
+		of the included files
 
 	.NOTES
 		We intercept all Errors! This is the part in the "BEGIN" block.
 		You might want to change that to a warning...
 
-		We use this function in bulk operations and from scheduled scripts, so we do not want that!!!
+		We use this function in bulk operations and from scheduled scripts,
+		so we do not want that!!!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -92,7 +100,7 @@ function global:Set-FolderDate {
 	BEGIN {
 		# Suppress all error messages!
 		Trap [Exception] {
-			Write-Debug $("TRAPPED: " + $_.Exception.Message)
+			Write-Verbose $("TRAPPED: " + $_.Exception.Message)
 
 			# Be Verbose
 			Write-Verbose "Could not change date on folder (Folder open in explorer?)"
@@ -118,15 +126,15 @@ function global:Set-FolderDate {
 	}
 
 	END {
-		Return $Folder
+		Write-Output $Folder
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlp0ZGuznYXa0BXibpR7CFN3S
-# msygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3U/6424Z6WL1MtXp7uebw4Hw
+# x8ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -269,25 +277,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRea0VsBnuSPBjqRbhOuulHvvrseTANBgkqhkiG9w0B
-# AQEFAASCAQCJpOVIJ79/lJ+F6sEWSY5F1t2UhVaC7exHhI+Ig88/Bmtoquf8gKjD
-# d4bZ8ObLAcij/2R+Rilzj6O2KTP7t9ze/5+cdYZIfIuIR1MHkgFhjmZZtHV8XqRv
-# ZBbS5d5ZCTJHnYUar0D/OqXHtvjnZNvk2eDYttZTQC1XG2JbDfUzIRIFTUCZv96+
-# ggQcsAsWY3INvxaYM6lDC77mH2hfyEvm9gpwXAR6jCtv8l8+YkFkWhxjp1z3FgV7
-# GXWKaLrtC4CHrtGv2taR8RWp9cv+d0qy/40fTn53wltH3cteHfzMeuwkYmN65TQz
-# lapJdgRyBu9BR4UwN6o+hCp/mLLcIpF6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSUO7KVcCp/DZx8hm8m3gLktxlyITANBgkqhkiG9w0B
+# AQEFAASCAQCFCPDTX3o70dTNFgfwmchEHL4YLlMuzMxl0JGRi1bw+xWtAxfebCVO
+# Z4UJ2vhsWY52Ofv4OyePBeQIhGZ7C8U7V282vhC3r+VfTJZ162xihz+t7S43mcAz
+# 2C84FHagT+IMMlh926OnQs7Shuf4q0DP8kzBS3by2+jMOqKpJMETOpAc8RDkc9X1
+# AcOtE6AsMhwzS3tSTdjxdF/LdrQYYlqbCPnN/AFJoRmlrKQ8AblGOvNaoKMlolsB
+# Rl3Ab6BXrPwFJbM30pBFoZNZvbbChCGzEYk9jXpVUUKNrP8BZHs/Vg+Fd4vq70pB
+# lYShXi+MDe/IKHIZCt+LqEOMcRTdgFCkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMlowIwYJKoZIhvcN
-# AQkEMRYEFEepzJ0xOn7Ox7SoI8wFvMi7eQJzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNFowIwYJKoZIhvcN
+# AQkEMRYEFKCE5XkJBjiD0EGNRIIrG6HvFuZiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBzlVAqu1jbWgkI32zP1npFh/d6Dcq+TM4ZD3GR4Ocx9g/m
-# vPYHMaQtklH8zHYz2bu16CcKkSFQ0rJV6o2rNri90LLqIkHQ+Slr5j8tdcsjzOG0
-# bR4k7ULTHxdgk28rWaWLuF1/t6SRB97R6c5fLLWqOvc08yoB0HereAB8+Lwx4Ydz
-# UCPB3f78oepz0ox4XHXI3pOEAcUi2xNwOCcygHGTaTdhFMckMBVyjbDV23AKWGAG
-# vElZUrzHpq+E4rkzYou+NbeLcUiPDuuFvJ0NKml2s/j0EsO4K1u0Ypht2PC8FdUX
-# riaGO/nElt+GSOC6ZKnGStYRopMrhZBXKcBrz4sN
+# hkiG9w0BAQEFAASCAQCBmRh+kHVL3R7RKTmVbTcJnAw3YHICVsUg9Vn2FR9QSkOO
+# 8oJ6+KVMTQ+/g7lDlL9yyl9qrd46nNikUDzsUbnsALtMBNeH0y92vVoS/f/lTBdT
+# FlFAXuB0p8E8VrKy0JsNibbJVaSnWWB1X4XVWEGlllos7lEnNGKhTcIdALYhZ1u7
+# /Iynu7U7/P/6rRElaXFIZd8t3nDdItz5Ovfhe1RE+jxsW1TIBWhQK8uC1N1riwqh
+# Rik6mNTz0AlKbtf6BGT+6la/0fTnTDjuag4KP3ZGS53G416sNANsPOoRRAaA9GlL
+# 9hDx9IhBaz+7UBWxY5DBbt2DGK97QfjfJUh4MkxP
 # SIG # End signature block

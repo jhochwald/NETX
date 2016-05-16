@@ -1,4 +1,4 @@
-﻿#region Info
+#region Info
 
 <#
 	#################################################
@@ -48,44 +48,51 @@
 
 #endregion License
 
-function global:Test-ModuleAvailableToLoad {
+function global:Confirm-XMLisValid {
 <#
 	.SYNOPSIS
-		Test if the given Module exists
+		Checks if one, or more, given files looks like valid XML formated
 
 	.DESCRIPTION
-		Test if the given Module exists
+		This function do some basic checks to see if one, or more, given files
+		looks valid XML formated.
+		If you use multiple files at once, the answer is False (Boolean)
+		even if just one is not valid!
 
-	.PARAMETER modname
-		Name of the Module to check
+	.PARAMETER XmlFilePath
+		One or more Files to check
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\conf\settings.xml'
 		True
 
 		Description
 		-----------
-		This module exists
+		This will check if the file 'D:\apache-maven-3.3.9\conf\settings.xml'
+		looks like a valis XML file, what is does.
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt'
 		False
 
 		Description
 		-----------
-		This Module does not exists
+		Looks like the File 'D:\apache-maven-3.3.9\README.txt' is not a
+		valid XML formated file.
 
 	.EXAMPLE
-		$MSOLModname = "MSOnline"
-		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
+		PS C:\> Confirm-XMLisValid -XmlFilePath 'D:\apache-maven-3.3.9\README.txt', 'D:\apache-maven-3.3.9\conf\settings.xml'
+		False
 
 		Description
 		-----------
-		Bit more complex example that put the Boolean in a variable
-		for later use.
+		Checks multiple Files to see if they are valid XML files.
+		If one is not, "False" is returned!
 
 	.NOTES
-		Quick helper function
+		The return is Boolean. The function should never throw an error,
+		maximum is a warning! So if you want to catch a problem be aware
+		of that!
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
@@ -95,29 +102,65 @@ function global:Test-ModuleAvailableToLoad {
 	(
 		[Parameter(Mandatory = $true,
 				   ValueFromPipeline = $true,
-				   Position = 0)]
-		[string[]]$modname
+				   Position = 1,
+				   HelpMessage = 'One or more Files to check')]
+		[System.String[]]$XmlFilePath
 	)
 
-	BEGIN {
-		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-	}
-
 	PROCESS {
-		if (-not ($modtest)) {
-			Return $false
-		} else {
-			Return $true
+		foreach ($XmlFileItem in $XmlFilePath) {
+
+			if (Test-Path -Path $XmlFileItem -ErrorAction:SilentlyContinue) {
+				try {
+					# Get the file
+					$XmlFile = (Get-Item -Path $XmlFileItem)
+
+					# Keep count of how many errors there are in the XML file
+					$script:ErrorCount = 0
+
+					# Perform the XML Validation
+					$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
+					$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
+					$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
+					$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
+					$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
+
+					# Now we try to figure out if this is a valid XML file
+					try {
+						while ($Reader.Read()) { }
+					} catch {
+						$script:ErrorCount++
+					}
+
+					# Close the open file
+					$Reader.Close()
+
+					# Verify the results of the XSD validation
+					if ($script:ErrorCount -gt 0) {
+						# XML is NOT valid
+						Return $false
+					} else {
+						# XML is valid
+						Return $true
+					}
+				} catch {
+					Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+				}
+			} else {
+				Write-Warning "$($MyInvocation.MyCommand.Name) - Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			}
 		}
 	}
 }
 
+# Set Alias for the old function name
+(Set-Alias Validate-Xml Confirm-XMLisValid -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdcVibYXRC7CJuS22QNBzKsg
-# fb6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdtsCawqlLu2+REAP8SKa7sUO
+# 8NegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +303,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3ePQiRsx1QEyXRppYsgo/Pb6QxjANBgkqhkiG9w0B
-# AQEFAASCAQCPaA2xxUn33qreYxLKql3+JcwmhlxO7EZ+E7JvV6EIKRPZcAwBF26i
-# szvq938iTFTx+KdRFqSN/wE0lIDRTYG4sjkvqAUcVVMKaYNx75VxS1fyaTdkE3Cb
-# 2EwUT39NLO+woQ+82hF/iyKnNvzQqcmDl2sle7lx5UAkKoSKjZq29dg1GYh/e/i/
-# 8hDaNoIjcz0AAk1KbzBkMysVSukJuaExT3BuU50CeWWqwkBxKrgr+zQzX+LjTD2g
-# ZpOlAkguBty6SZxu9if7E2dMg5NXkDoSraHuP8Au935iuwzA3XDqTBhOyyM/XbQe
-# YHZeHoDKPcjF/9GcoWs/d4taGGKBxwBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQHkTCjs+m1AS/F4ftv65UVj4P16jANBgkqhkiG9w0B
+# AQEFAASCAQBqLByu3uWPpYYKlydijCJXXY2EsG3l8QrnfioN1gonvKKVn2i9OUIV
+# u0BH/vrKYQe50uzQyE42xcnl/bfcevkOV4zxZh6v8UDADV4FuE/0UV8jMTKFeDk3
+# uscDtdujyIG5LGmZF39DDrhQyCeH2cA5mVnwnDPgl/VbW0yWyg+tq14HRxTjyPSb
+# 5CgXijrcnj9wX1OCzHtZmH9vn8ffYmGmf5utgQsZIa6XSpTY1ZirRlnG+RfSYQrW
+# /SQQd5P7eGXZGQKOh+Nm5Ez4VbJ+59WDvxgMendhGJ8VlLS89DmlGMMTpUnrOBYg
+# fukrrPSvdrQmk9aqPwr6Yy3vhFSNdOT0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
-# AQkEMRYEFK/mi5xhP2DDm9pjy39oX5dA/f8KMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0M1owIwYJKoZIhvcN
+# AQkEMRYEFNFNriWIaOfYFdtdYyAbIQQqOurEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnrcc6WHBaX7BmpE+bi7DTStPa6LLQklXdZJSTp38TjCDQ
-# m14zMTuitRwAylGZmiDz/A/uVpmRI27ZiHNMWGoegANOST0cpTSal6zkCEnsr9Kl
-# +Rw91SYcrDPZ/mKpN1Qzg6L4sQpTwhOvv7mE4mra2GBk0JaET5MD/cUCrblFOk8u
-# 2GczO/ozCKCP380KSUTS10V6q4nU9XVwbaT+1KDwQY6rdJjtLn6eSPirgdDekgzk
-# LvpwFUYrc6kJWdw4kflTHvg4XG6S9mBZZofKwGuqUwfEPTlnYx60ER+h1b6iEavt
-# 4vMK4khIdlBAscY/3VpeNcGmYc+wxUYCvX9RLSou
+# hkiG9w0BAQEFAASCAQCZo1BYdbzJMBC/dl0A6y34GmenhlsqDScfCA4gpHqgDXD6
+# SoouwSj2dwH2xiodC5LkeyR5+bpvSMNPd6+l0/J0SbSCpRt6hFujoksKdfufEOCI
+# douVHpUaBnG4uz6vjQ5lR1NITbKr+9MH8TBBg23kj4c3UlAl4bwgYeO3T9g39qWt
+# HU3BsEfByk0JWSy3dnyIjSWIn+G2+6OBd4E5KK4nY0QRwwNMguE7G+6PwhIu621I
+# XkDDBTAm0lbCUdl1fYlQJ1LKiB/gVZvRMes9vwlxb9gaiMqrLQ5x8gp5gf2W1jAj
+# 7lAd7wN6XSGgjoCc8Bq1J98OCsbOehcv6g5FZlzO
 # SIG # End signature block

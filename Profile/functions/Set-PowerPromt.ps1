@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-28
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,31 +51,36 @@
 function Global:Set-PowerPrompt {
 <#
 	.SYNOPSIS
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+		Multicolored prompt with marker for windows started as Admin and
+		marker for providers outside file system
 
 	.DESCRIPTION
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+		Multicolored prompt with marker for windows started as Admin and
+		marker for providers outside file system
 
 	.EXAMPLE
 		[Admin] C:\Windows\System32>
 
 		Description
 		-----------
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+		Multicolored prompt with marker for windows started as Admin and
+		marker for providers outside file system
 
 	.EXAMPLE
 		[Registry] HKLM:\SOFTWARE\Microsoft\Windows>
 
 		Description
 		-----------
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+		Multicolored prompt with marker for windows started as Admin and
+		marker for providers outside file system
 
 	.EXAMPLE
 		[Admin] [Registry] HKLM:\SOFTWARE\Microsoft\Windows>
 
 		Description
 		-----------
-		Multicolored prompt with marker for windows started as Admin and marker for providers outside file system
+		Multicolored prompt with marker for windows started as Admin and
+		marker for providers outside file system
 
 	.NOTES
 		Just an internal function to make my life easier!
@@ -153,8 +160,8 @@ function Global:Set-PowerPrompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP1yIIDr6f+1s2Tm7Iyee0nLS
-# YMOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+FvuKwlR6XvLsLYgs6Vbfgvk
+# GEOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -297,25 +304,25 @@ function Global:Set-PowerPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSzgxAQ8a+Us7pYrD+yIQ5EajFL+TANBgkqhkiG9w0B
-# AQEFAASCAQALosEnkFm/Xeohu7gQwhiwgQwixIVi9INDpfBHGbRLueeW2tbz82KJ
-# qBVIgClPmf0b9haiV7j4oME7BXIgM/xQUyPHCJ4WtFo4v5RebO4khBCUKvlrfA/j
-# PujWQd8cHFREYmTwKLIlNvhKh8/AkBy1FLwPMBa2EeTNW2Bt2nf7t6Npeph5L5n9
-# OsFgj/qmDMoWBk/NW3K9JesU79XoJ8md+pfogC9hh1tIAnw0X9SO/MB5JjVkLXu5
-# VM8bXyZQTBl2gs7iXtZojNdAgUkjoiUwcQ94taLlt/1Go6EUidGnfcKO9GYDPRaV
-# GgAK8sfXLrAMmMKXCqkD2GffiJwlARK4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ6zIsSafLE6eMLl79eKwA0oVgkETANBgkqhkiG9w0B
+# AQEFAASCAQBC2LqcP1rJnQscJNDHZsv1xLK3P+zThuWQFaffc/3FL+QP5rcc+ZAf
+# NpN8FFWOIm2BB1P7frrGQj4PQ72MvGMDY3DKyxylSc9YVcLUZequVadSn5yX88d3
+# 6F7hVqHpF3L4DD5sAQ8/VjUSono1iML/Ws5iTYlCd64JzZIjoCIkHgBWhumonZBD
+# 6ShjvWZHPoRcePGOKzkryZ7/Mc2snfZn4/xldS3d7sUgBtwd8zWCwyS4NkTvynQl
+# 5a0iH0Al8EeKZ/aTDO52Cs+yWSpT+6NPY7YBubuYyoVJkzAe2HH9NZDscdpVzI5k
+# 14zBx/EVPCJIDnSXxBxkZARZH6zykinmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxM1owIwYJKoZIhvcN
-# AQkEMRYEFBJYNZ8qqZuVJB5X0smTLyYBE8+vMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNVowIwYJKoZIhvcN
+# AQkEMRYEFMSId6JdygbB7kyQTYFutUT7TybcMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCK0RmQyT3gvflfbaf1ak2vP7GPQQCPSALoPnTl1fAJX3Td
-# vEbyzbEgnusVLMZzqBkv5iMkUsEqxZccF/BvTDiURN953Ao9K8aILB8sdsTu54aU
-# t9/zMsto3Bm3IRTqoogDOs5EhP98ZGlvWIhBwGWWV++xBk+I/uvqriYWWlyW5Fqa
-# /W4MqnzqQhTDJR3YcNcHCfxoB0aDDtQucz7n6xZbpmosXLV2Xi16aJzvitfu3THq
-# gwMmKXgrbs62ABl6KJkQVBGhkqRt3Uw/8jmCRjF0mUTzRvDjQHdC2TkDcq7iZGxg
-# AdEi1S+E/+jHFA76ufv/j3hEOvLDDKO3KGfbOptJ
+# hkiG9w0BAQEFAASCAQCOWnCHbix2WtBWvRR2giLT59mvZlolAS/DILqL/Tu7+UhX
+# dcJJo4Xltk0Wvl8d4unLzjvF2GJrB6Bfkkv2cttykTZ7FTI6pYii6rCbXsA/SdwO
+# pS6IQT00AxnX1aNnKOZhN6Z73iP/sPXMM5ht62972NnvWf9Djk5l8smW2p1hHK0f
+# oP5IZ2odzXCmVaT+9aS9GJ+Js0J/FDbOTXQ9v+w9sB2LZQS+aQX0XNio8tJMYyRI
+# eiGe65HQEYYHqhOfF/kfymXa25VznNs8AyjDBOpXqd3vG0CY9yfYWnyU3g6j2fJp
+# ps2j+ULAcwftFmjU04ZXiOnUyB40HzoApr0rMHYo
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -75,14 +77,16 @@ function global:Disable-IEESEC {
 
 		Description
 		-----------
-		Remove the IE Enhanced Security Configuration (IE ESC) for regular Users
+		Remove the IE Enhanced Security Configuration (IE ESC) for regular
+		Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -All
 
 		Description
 		-----------
-		Remove the IE Enhanced Security Configuration (IE ESC) for Admin and regular Users
+		Remove the IE Enhanced Security Configuration (IE ESC) for Admin and
+		regular Users
 
 	.EXAMPLE
 		PS C:\> Disable-IEESEC -WhatIf
@@ -124,7 +128,7 @@ function global:Disable-IEESEC {
 					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Debug "Minor Exception catched!"
+					Write-Verbose "Minor Exception catched!"
 				}
 			}
 
@@ -135,7 +139,7 @@ function global:Disable-IEESEC {
 					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Debug "Minor Exception catched!"
+					Write-Verbose "Minor Exception catched!"
 				}
 			}
 
@@ -148,8 +152,8 @@ function global:Disable-IEESEC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9/fbCRvWeuwhBIDtqZ6xPFpJ
-# p4ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUatSdK3wSisLqMGvM+axyuaif
+# fUegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +296,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT2ACcf5339hFart95426kv5G4A0DANBgkqhkiG9w0B
-# AQEFAASCAQAAtrdvv5VVjJmlu1ZpjKKd+9/Vk9rv7hWN7Qhaz+YByLf1YdhnXwOr
-# 7m8JtAXaZLe1yE6dzCh5zVA73Uw7+5wwzOLT58YTkeuu6bhMxDWcKtbYEw4DPkJN
-# GeEPRo8JBwXt7dApbAfBPOofMf6vmWkzpXxabCvPghmPS8o2UU6eMGWTvrhMCPp7
-# FIUnmsnbT34sEgUKaPcDgUM4/cc3vBQuR8k2dH4ri5/bHOuNm8gzC33mO6ctKFXW
-# TuexoYjX+eo5St5bkGLYoBMc5yLSZirAWUhIZbsM+Kr+F586SQDim8FgjRaFF/yJ
-# ucHdC83Qlab+OddsquqYZzdMvXW7YcyPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS+FDheyBl7GeOppsYRdlNRWbkLGDANBgkqhkiG9w0B
+# AQEFAASCAQCjWIr5aDPrySJEKtcoRSNnLvBft0g0BDdw+MGGVSLAu3KXxGONU5uW
+# sUoyr/vA4WKYJQipUX+oA7oO6TWr51VR5wqOWF89pFq9Tr6/iJIAEcKfKcrUps4Z
+# uqgij5DX9vOAFBGXGPgsH6fXWq2B27mh7cZZlrhq8jqDlhHMlezBko9+eDEzzkZh
+# zbheDpNpFRAx+uvfutkd2lVL2Imzt0STowdSlqWr2y9U6Esv0SksMTHfDPenInWf
+# +ELPFZwRjuSXqqrCuAI2ZGeWJNh6F8tjsM85DlPOVfXMgd+HJlo/f2MdoS5+dkD4
+# 4yjjdWdqhcMdSRnA+FgUNQlXS4cIViBXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0NFowIwYJKoZIhvcN
-# AQkEMRYEFPt69KXdRxhJ2vv5II6RmBWEJlQyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0N1owIwYJKoZIhvcN
+# AQkEMRYEFIs5F0wrHD5w8OcSbhoJwXk/BQ8YMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAahaW4ySBg20BsBrvJE4NqtFbwSMtw9GtWvKo4SKE4k0zw
-# 5fGkyFIk4HTwXxcb2KWXuBOLHawNF/2PPT+u2AT4yD3Yvt383ruNzSgkhx/SBQAG
-# G2iaeKqedbYKXWoqlX5UeZkxs6NSjfVzxfr3HpzJb9m3mdaDh3WgfKdE9nmlzsm1
-# GpVQeGpdVIL1ujbNRfQNQDsfEvXPkEyhlyEnRav2lpW5GJmyeBLIcyULM7dandpH
-# t+kI5KHQv9jasWm4/3pUX5ckWIVhVXjp3Pzbsa6D0WifxAW8ZWVjPYtstRHMLEhs
-# pHvyCPcaOhcMGJDwIaonLCiLck+P0fe4WAfQYIfB
+# hkiG9w0BAQEFAASCAQBKvQpf3TF2c3YIf+S0HXRhc15rEeHDlg3XmQrZnG5xkBOy
+# Fc0PIn7638x5TEZu5fF7ISodCHML+GsqreFsBrOPH/Skvul5sDFFUp4NsxnTiKMr
+# m65jE93tdf80vR4nKIXXd4cvxM7sfz2+4K5n65CaVMakMYImizHKd9BelXPWOK5w
+# x0C6ZpvbxJRVV0KBGYDVB0H7WYKNihkYGm9MWN4/7nPjdBXtKqVAIiNW+f60tZJ7
+# t7celVpZEh8tXvom7R7V1s07iJI+EpSwygiNJEz2CHSICfglhZ/1utjfyzBJOoBG
+# YJk+c5k/wYKecVaiL62efPFGaXg/tdQRQNYQA4jN
 # SIG # End signature block

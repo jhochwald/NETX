@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -58,13 +60,16 @@ function Global:Invoke-RemoteScript {
 		The remote computer to execute files on.
 
 	.PARAMETER Folder
-		Any folders (on the local computer) that need copied to the remote computer prior to execution
+		Any folders (on the local computer) that need copied to the remote
+		computer prior to execution
 
 	.PARAMETER Script
-		The Powershell script path (on the local computer) that needs executed on the remote computer
+		The Powershell script path (on the local computer) that needs
+		executed on the remote computer
 
 	.PARAMETER Drive
-		The remote drive letter the script will be executed on and the folder will be copied to
+		The remote drive letter the script will be executed on and the
+		folder will be copied to
 
 	.NOTES
 		Additional information about the function.
@@ -164,8 +169,8 @@ function Global:Invoke-RemoteScript {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSmdbJYY/909A7ELxA/ktzDNg
-# 62qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUd65YCWlWzesAGrohnRqojl8o
+# 0gqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +313,25 @@ function Global:Invoke-RemoteScript {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT482xhQYPt4zBs+0T7tOY9azD9IzANBgkqhkiG9w0B
-# AQEFAASCAQAelZGOQVwWdbp4nbZpF4O+tsiwqgSs6F26+bgTfb9WDcf1ZcdRUgv/
-# ut1o76BgJWlCqFcX06vAgS/+jCIpdV3/erppYuH6jtGGp+iehU+O1wP5bWWSCCkY
-# apKqDhibORQJdCwmh6fFPl5datu9eMYve24o5xagxMwtVh1+dSInMr5g8oTIWYHn
-# +9tiBmDxxwuF+4BvpfrVOxm/Pz9/CQLkxA2OpV/UlUYQFHK2/mOoQy5G1/MT6TCr
-# UDqfYruuJs1Wnf/LMgdJRTduKKnCG8VA1bfKU1T72Zndr1AxCrzTaWHwiRiEHULK
-# 96mWL7RDDxmSBcivOivQIhpkfW+WKJx8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSi761Ws+B0rr/GPFWqV5ogRdClQDANBgkqhkiG9w0B
+# AQEFAASCAQA6SK75ZWiLQ0BuoDM2NFLxquvEY4Y2peGRqCPmLoC4JP2NXDqT0nmB
+# ee3L0+9OD30XQSgr70q06E7SQPxAQL6hBE7eTAbz/GcMl9M3OUUavlcNUJhclMio
+# D5fabePbx8kmyii6EzWbXy12ltgT1XWCh2v3jVXkVsAWIkxnomWFcLy1ZyL4T5ys
+# iou5N6AtAwLpC0UNtrH99gKV4f/5DPzdZzFRK/2tZJPe+WHyBTYGIouFty7WbJk6
+# +PmEiMKjY5PrZKT2v6FwMLEWU+DaX5CzsAh7N3KsKrHqwWoEv6Bgw5Ir5PYB1JVL
+# R00+TV2Aijmd3J1ZeQdyfRO1cQ2BYbN4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMVowIwYJKoZIhvcN
-# AQkEMRYEFLdJGAVthEnIg8xueBGOfe2DVC4eMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMVowIwYJKoZIhvcN
+# AQkEMRYEFOcZrvadJ1x7QIvkjLhf9zZZJQ0NMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBi+026U+H52o3IuE0lN/+0V0iTbVIz2WMPhGdZQdmLwDMi
-# 90yALzmiHI0hPpmwUymc7PIWhpV4nU+p/iNnF2b3MKiECFG+rH1lZegwlkw+glCQ
-# ETT/vv3iIF0gwqYH2BfS1RliTq5z+zjgLT9d+lXVYdVdEIbywJo5bmWqwrcm4aMK
-# 2OwukhVneoZZqoVDLEJ/8sxNZdLFNE3sG4gISFa+4ymC4jzPQFwzxOllg/5ywCL7
-# fD9dwtKIdT/TbEhXB7Gl4EK86TDEDUdHp1xkYOD02hiXupE4bjKUp/GzjjYkGVw4
-# FKplfuCX8PUT08KPoZ0uAUNMpLxssmfJ98Us87B4
+# hkiG9w0BAQEFAASCAQAzHaidMtCcGguOTQWAIyWkNzlm4XKARmW1UUAyS4EWuxqq
+# 2aMcQ+m4SttK20EGczBZylUAjrbrfyNRJoODiFAt0MxaoAFbb/QEQEP3UPslMrU4
+# l4WMJHQw1zFrVduS1FfrEY3LGNhhbZr9dnoVRi6dGLDctkovidSPauknCl/X0alF
+# i2EEAJzk4AjTNd4sCYwkx3eRHSpNGoQhcu/fwBfi5vdwbq7HkgtO6CNr58bvJsQg
+# x02iAz7rU5OT9waoKneZE8zi3aXW3hv+pWDUNJhShQ5hRVZziMP1cpOgfj5vn4yu
+# 0jB3tvHUpe4fb7TQXtOhVYvmmIs9bZqmHu6J0SCF
 # SIG # End signature block

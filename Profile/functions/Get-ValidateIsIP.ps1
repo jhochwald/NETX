@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-16
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -48,76 +48,77 @@
 
 #endregion License
 
-function global:Test-ModuleAvailableToLoad {
+function global:Get-ValidateIsIP {
 <#
 	.SYNOPSIS
-		Test if the given Module exists
+		Validates if input is an IP Address
 
 	.DESCRIPTION
-		Test if the given Module exists
+		Validates if input is an IP Address
 
-	.PARAMETER modname
-		Name of the Module to check
+	.PARAMETER IP
+		A string containing an IP address
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
+		PS C:\> Get-ValidateIsIP 10.211.55.125
 		True
 
 		Description
 		-----------
-		This module exists
+		Validates if input is an IP Address
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
-		False
+		PS C:\> Get-ValidateIsIP -IP '10.211.55.125'
+		True
 
 		Description
 		-----------
-		This Module does not exists
+		Validates if input is an IP Address
 
 	.EXAMPLE
-		$MSOLModname = "MSOnline"
-		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
+		PS C:\> Get-ValidateIsIP -IP 'fe80::3db7:8507:3f9a:bb13%11'
+		True
 
 		Description
 		-----------
-		Bit more complex example that put the Boolean in a variable
-		for later use.
+		Validates if input is an IP Address
+
+	.OUTPUTS
+		System.Boolean
 
 	.NOTES
-		Quick helper function
+		Very easy helper function
+
+	.INPUTS
+		System.String
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0)]
-		[string[]]$modname
+		[Parameter(ValueFromPipeline = $true,
+				   Position = 1,
+				   HelpMessage = 'A string containing an IP address')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$IP
 	)
 
-	BEGIN {
-		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-	}
-
 	PROCESS {
-		if (-not ($modtest)) {
-			Return $false
-		} else {
-			Return $true
+		try {
+			return ([System.Net.IPAddress]::Parse($IP))
+		} catch {
+			Write-Debug 'Something is wrong!!!'
 		}
+
+		return $false
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdcVibYXRC7CJuS22QNBzKsg
-# fb6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaA/chmlVtrgR92gf3kBxHAQQ
+# 5ougghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +261,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3ePQiRsx1QEyXRppYsgo/Pb6QxjANBgkqhkiG9w0B
-# AQEFAASCAQCPaA2xxUn33qreYxLKql3+JcwmhlxO7EZ+E7JvV6EIKRPZcAwBF26i
-# szvq938iTFTx+KdRFqSN/wE0lIDRTYG4sjkvqAUcVVMKaYNx75VxS1fyaTdkE3Cb
-# 2EwUT39NLO+woQ+82hF/iyKnNvzQqcmDl2sle7lx5UAkKoSKjZq29dg1GYh/e/i/
-# 8hDaNoIjcz0AAk1KbzBkMysVSukJuaExT3BuU50CeWWqwkBxKrgr+zQzX+LjTD2g
-# ZpOlAkguBty6SZxu9if7E2dMg5NXkDoSraHuP8Au935iuwzA3XDqTBhOyyM/XbQe
-# YHZeHoDKPcjF/9GcoWs/d4taGGKBxwBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSCK4P5G+d1U9goOyDqHofRlO/kBzANBgkqhkiG9w0B
+# AQEFAASCAQBx7ECi5qsxb/4TG81GPxN0VnvYFC2kRoiJnkOLil4HnEB7ktNIKrmV
+# l2HIXY1EcRm/PwC05ukktzp4BM+81zkqEBqMuOIEuJs+vYjusXBBoh2H/bRkvLUT
+# BjxEDEd/hrL/1Y26SgZb+/INOVitnO+zDBK8qULfxKAjNFdso7ZdPPpslZ4u+Fo8
+# E2rzqiVi2w4Ce+AZqjB2wdAYhJiTpyTLSghClgdtJVHM6I1xu2QUXJNaom/BA7qE
+# FxpkFuu1o2I0BjekoKgcQqRhD/xSNTzT63z5PUthrmM3iDCbLKy+2Xax6YLe6mbv
+# NXsiwglLyau0Jlx9lQyPCyB7Bydk65HGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
-# AQkEMRYEFK/mi5xhP2DDm9pjy39oX5dA/f8KMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwNVowIwYJKoZIhvcN
+# AQkEMRYEFMiT+TT7cWBHIfUCWJlED5Kux49CMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnrcc6WHBaX7BmpE+bi7DTStPa6LLQklXdZJSTp38TjCDQ
-# m14zMTuitRwAylGZmiDz/A/uVpmRI27ZiHNMWGoegANOST0cpTSal6zkCEnsr9Kl
-# +Rw91SYcrDPZ/mKpN1Qzg6L4sQpTwhOvv7mE4mra2GBk0JaET5MD/cUCrblFOk8u
-# 2GczO/ozCKCP380KSUTS10V6q4nU9XVwbaT+1KDwQY6rdJjtLn6eSPirgdDekgzk
-# LvpwFUYrc6kJWdw4kflTHvg4XG6S9mBZZofKwGuqUwfEPTlnYx60ER+h1b6iEavt
-# 4vMK4khIdlBAscY/3VpeNcGmYc+wxUYCvX9RLSou
+# hkiG9w0BAQEFAASCAQCLCqx0xdROFIPKLfM3jQAxG+Oh8dTqQMGTxThXavKeLGRz
+# 8oeAbotTfW8UvWnf1FBwb9QibNVGyvU8hS01m6S764c01t583CeFvaIgXCYvLwBb
+# 9RNeFAQ/QdeFiUXcC8qulWB9pz/VzLVRKzauzQ3Wa9nfMlazi4VhhftzuqxaEk5i
+# VsMrROMMPo4XbOiU0JV2LZD3bKcgvM9MDySyG3H6QdbHjfK6ZkDBKE8baxaBR2ik
+# BRto1X2AqjPpKaenycKLM6rTrRECzykwox7bUmSSB1ffV7xXwx+EotV4D9QufE20
+# vFHvaIYNrr8nBUSR89Feq7T6inNqzWzo4v3LGAby
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -58,7 +60,8 @@ function global:Get-Hash {
 		File or path to dump MD5 Hash for
 
 	.PARAMETER Hash
-		Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.
+		Specifies the cryptographic hash function to use for computing the
+		hash value of the contents of the specified file.
 
 	.EXAMPLE
 		PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
@@ -77,7 +80,8 @@ function global:Get-Hash {
 		Dumps the SHA1 hash for the given File
 
 	.NOTES
-		Re-factored to make it more flexible (cryptographic hash is now a parameter)
+		Re-factored to make it more flexible
+		(cryptographic hash is now a parameter)
 		This is just a little helper function to make the shell more flexible
 
 	.LINK
@@ -117,8 +121,8 @@ function global:Get-Hash {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8ivvqOHbq67qsANCWDuNQZi8
-# wWigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIH/hQFIhFB7S9UG3LaRowXIQ
+# ipegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -261,25 +265,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTcSAzSycDJAxLFgYX+QxjVVZhCIDANBgkqhkiG9w0B
-# AQEFAASCAQAdTtBwTtyjl+78oNEGwvmLqos7Mo/z79uKwZc4fLPrknI5gF4rMYEI
-# rddZ7BAj3IlHgjKc8duuYR3S5NlMcbJxmCDghouF7j38uz5/u/JV5tvcOq6FT6Go
-# RU/uodnU8AXJfcVScttFSp9SwGs7Md+j7APfK1caB6Hg+8ESKCG/dmowVl0m3lY0
-# +0q5JV+twtXwl+W+akhWi7Grx3Os0I6X1w6kjnASYDgWSHSPgy+Bz5XJ+HPbIhrf
-# lZCiQy9iaSGMYdMfJZnRZPNcjc41bid8cGFPS50bQFeTiUPBk+5dWmf9UpXuGV/U
-# wuFKwLkDVCBCxClm0F8mu0l3hqwqR03yoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQK4qUT9dJPthvwIxGQ50xKEhIgvDANBgkqhkiG9w0B
+# AQEFAASCAQCavzlnQOOb4fsyk/7hHn8+2r5MQ5jAk3s/7E+SNFQ9b+EXXP06JQac
+# fpQ3Q7kwsm89f3xr+VnO3zXT2Ybf2Ug5MxyAq11CpwAZ9vjLYDxNNYJkB+az4I5T
+# 3KEpTz6pmboaDMMfVKX8Mm3jjXGG3OkNMc5RKsHKVluQC5Qp9hZeWkXGoKSaZcyX
+# /aT4ai5woZk2t2uIA3L99c59dtnroiIWrJSvS9RHDE3ETm4SBttwt9AYOfW2IylE
+# JqWuVxR5ShQsB1UbYZD+L6yI3HxrCiWTJXIkvX3oXUvVe7nHHx6WJE7Pv1EuxdGs
+# Xowt4qE0qCgJwBTXW732ZWpD5GH2YSocoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0OVowIwYJKoZIhvcN
-# AQkEMRYEFIbomWA6Yw1PQSyKOJyQKRxFyzmZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1M1owIwYJKoZIhvcN
+# AQkEMRYEFHyUnJyvjBrVAw0NgU/CqWb8PcHmMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB3aIrc6L2RIuZ2+DOIbHQfSfwSG6QRXgVE/NbBegXpzitj
-# FwH/+JwbwzM6vk6UmAn7KIeuvS4/zBpBR1R9qJ7myC7YfqaLz4RLXjFlgXoce0/V
-# CqB45G+fY38RRF6dMabGzDw+F2dUG9tnO6e5T9+mAXLNs3KHNNptD8YpSNOcIWi7
-# 0T1ybRxD9zyk6G55Yv6OfS5m6mp42hBbgAZcpY8V94AYSSOlc2+12hWEAgcTwNcK
-# n1+/2icJdHq1Wg54eK2v81kiApuFFM4yVkcIbO5tshR5bYC2ksaUMI6AiL1ErH+u
-# h8hfLQmbVm9+oL6uMbma9HRToWHjzfZWhUek/U6v
+# hkiG9w0BAQEFAASCAQCH7K85CuB4mb+rRuBbVpWJh5DI5fBrD+54wzM1EnVkQQnY
+# xIVP5SM5FDPiFbEhVFlsBcqmta0Milw4LqywidQdNZMlj+P72C0ng/h7TNSuwwEM
+# R0JrAu//DDR/Ete0s+aujT2kCIKobeiik4wpH/b20ZfeKcBN90+b+ZzKzT6hz6Xa
+# abt9Bsi8RdV6L5o0J5T2FUNA36y6Gr3m9ZvQy6nNq7WEI6Q53+u7hoeoVVEKOpBT
+# UarRUoInmrzTrhJnKY1dK24aa5n1BSHLjTVyFiaK7ciUn1elWh4weqqeaenDY7sF
+# Mh3m+SiZ3ihQ1M2a2K31kyPLVAhMJHeBkRQK4qVL
 # SIG # End signature block

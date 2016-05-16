@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -115,26 +117,30 @@ function global:export-session {
 		- history
 		- The export-session
 
-		But still can be very handy and useful. If you type in some sneaky commands,
-		or some very complex things and you did not copied these to another file or script
-		it can save you a lot of time if you need to do it again (And this is often the case)
+		But still can be very handy and useful. If you type in some sneaky
+		commands, or some very complex things and you did not copied these to
+		another file or script it can save you a lot of time if you need to
+		do it again (And this is often the case)
 
-		Even if you just want to dump it quick to copy it some when later to a documentation or
-		script this might be useful.
+		Even if you just want to dump it quick to copy it some when later to
+		a documentation or script this might be useful.
 
 	.EXAMPLE
 		PS C:\> export-session
 
 		Description
 		-----------
-		Export the history and the export-session to a default File like 'session-2016040512.ps1session', dynamically generated based on Time/date
+		Export the history and the export-session to a default File like
+		'session-2016040512.ps1session', dynamically generated based on
+		Time/date
 
 	.EXAMPLE
 		PS C:\> export-session -sessionName 'C:\scripts\mySession'
 
 		Description
 		-----------
-		Export the history and the export-session to the File 'C:\scripts\mySession.ps1session'
+		Export the history and the export-session to the File
+		'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -188,19 +194,21 @@ function global:import-session {
 		- history
 		- The current directory
 
-		But still can be very handy and useful. If you type in some sneaky commands,
-		or some very complex things and you did not copied these to another file or script
-		it can save you a lot of time if you need to do it again (And this is often the case)
+		But still can be very handy and useful. If you type in some sneaky
+		commands, or some very complex things and you did not copied these to
+		another file or script it can save you a lot of time if you need
+		to do it again (And this is often the case)
 
-		Even if you just want to dump it quick to copy it some when later to a documentation or
-		script this might be useful.
+		Even if you just want to dump it quick to copy it some when later to a
+		documentation or script this might be useful.
 
 	.EXAMPLE
 		PS C:\> import-session -sessionName 'C:\scripts\mySession'
 
 		Description
 		-----------
-		Import the history and the export-session from the File 'C:\scripts\mySession.ps1session'
+		Import the history and the export-session from the File
+		'C:\scripts\mySession.ps1session'
 
 	.NOTES
 		This is just a little helper function to make the shell more flexible
@@ -242,8 +250,8 @@ function global:import-session {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbFIAAMnsKVKLpoD3KC1NFKOv
-# gkegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOMrh2GGkAqrns+w3lrMXzENX
+# V8SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -386,25 +394,25 @@ function global:import-session {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSDz/iON6XhN1XDG2h6tMNlIjqRfzANBgkqhkiG9w0B
-# AQEFAASCAQA8Kw5/3HjOHHDVz+zVnocgzjfwmiAkcw39bwT/GkcNiUjK4MpIvai6
-# MirpmY+61tbbjKRd1ylPZMZ0btBq+BPbh6m2hg5NuWKz9o2LLqi0KQ6gLGBZ1QxZ
-# 494Ttsb+0FG297XNI+cPd7UQwlsjNq0ExdBpr+lp99rBIeA5Wubm/0gLW2q99TJ+
-# hInQIGVJdwLykjTAUpCsVHufHkR6eU5TxIFApW1naprOxF/zhoErU1tgj1ZAEK4R
-# y4PHOEBrX21T17PeVCd3cAbftX92CXrgUsA/PfpEwGlyNQV/uaQ9iTLsm6L5gegP
-# TmRbslkXIHzIKCe+VnzznZCe4k8/tzy0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTtyc7jD6csJ9C4WZgs5eoX3S+VBjANBgkqhkiG9w0B
+# AQEFAASCAQCqLp3qzLb+bpKFO2JneFVFhdswo++zguqdGxkTB/DvW4lYmTyRh49I
+# DLn94Kic/u2saUvhw8XrDcM5p60Yu0VUcQCotRLmAuajXeAhTvXv1ZyeReuOye8+
+# nFUUrmi6PYGV48oz6hDbAIfMfvIuwk3FG6s8LlEtAOhZaLEdVxtsrNeo2YCnxS+j
+# ycnQ18WewOmB3mfDftf+/yJXrBiWIxVMk6/so3cEnoVUL0zPMasjIg6CePzPvbTD
+# +oWInEa+696/qOIdiDstTxPTr3jo3RZuCBFCdxOwTBzcx3r03ubKDC5pyo5xaJDV
+# ZGYTDkyabmC0WFcOwRTdKOy4ZNnBXh5koYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwN1owIwYJKoZIhvcN
-# AQkEMRYEFK6ART/K22+7hRknkkcJzCEWeFLSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxOFowIwYJKoZIhvcN
+# AQkEMRYEFJiO7B9zhSbjDigZaqkS1DqNRNWzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAC5kpAEcfMNfi+kbS+OXsexZI2bUk2rnpcMtGblvEJv4+h
-# pr6rD/bG6Tx8oAE0SO/LLXSRzHHqc3zUolc0TkH3Q83mMEr7W3hky5WRXrM7xhdz
-# 52/EYz0S2cHNQBQG5qrQjebnszVj/D3LoGAUSocZvKIvWRY1iQb9yKbhwe3eCTnH
-# C6LLA2f7TvYHx6JbQkm+EjEufi0m41r/SVcGs0DBQiCw645R1XbfDpoB28jiy/CD
-# dp5dbsXjiAEovjj47YJ141MAhAzxmxr87sQk859psgKkX01X0H/8rYN/7HLmYYUB
-# 498J1zXVMAgFIY9TVMiGpB+Yje7UVTw1IWJjJXY2
+# hkiG9w0BAQEFAASCAQCutaFbItLquLOcR1dLKcf7DNmilRGCmlwYcNkyW+XDQT0Z
+# R/SrRnnK7E88Zkkj8Ub4Y8gZtoQb970AV0SdPC+mWoDvaAIbUCeY49bh0gO2QTP7
+# OCkiPRJxkXpMD/LjdCL7I6nd2KnIo7lkPJNGyPhZXwcqCPiuZ8SBuP69RUcvsCz9
+# V8Vm14vZsALoGvkbaZAKgxUM5S3hf7tDSkgU6aJK5SmP0y2niX8uX7KTTZStraVv
+# AOwn430Cifj7rjN00FpwJC2CuOqErWrwUuC7H9rBdI7naqFZuEWLps1JmV7OXMQc
+# n7BLRPb8Azorhykt3QNiXexi/1pIQu4ilYmOC1fi
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-13
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -48,76 +48,113 @@
 
 #endregion License
 
-function global:Test-ModuleAvailableToLoad {
+function global:Get-LocalIPAdresses {
 <#
 	.SYNOPSIS
-		Test if the given Module exists
+		Show all local IP Addresses
 
 	.DESCRIPTION
-		Test if the given Module exists
+		Show all local IP Addresses
 
-	.PARAMETER modname
-		Name of the Module to check
+	.PARAMETER LinkLocal
+		Show IsIPv6LinkLocal?
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
-		True
+		PS C:\> Get-LocalIPAdresses
+
+		IPAddressToString                                          AddressFamily
+		-----------------                                          -------------
+		fe80::3db7:8507:3f9a:bb13%11                              InterNetworkV6
+		10.211.55.125                                               InterNetwork
 
 		Description
 		-----------
-		This module exists
+		Show all local IP Addresses
 
 	.EXAMPLE
-		PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
-		False
+		PS C:\> Get-LocalIPAdresses | Format-List
+
+		IPAddressToString : fe80::3db7:8507:3f9a:bb13%11
+		AddressFamily     : InterNetworkV6
+
+		IPAddressToString : 10.211.55.125
+		AddressFamily     : InterNetwork
 
 		Description
 		-----------
-		This Module does not exists
+		Show all local IP Addresses, formated
 
 	.EXAMPLE
-		$MSOLModname = "MSOnline"
-		$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
+		PS C:\> Get-LocalIPAdresses -LinkLocal | ConvertTo-Csv -NoTypeInformation
+		"IPAddressToString","AddressFamily","IsIPv6LinkLocal"
+		"fe80::3db7:8507:3f9a:bb13%11","InterNetworkV6","True"
+		"10.211.55.125","InterNetwork","False"
 
 		Description
 		-----------
-		Bit more complex example that put the Boolean in a variable
-		for later use.
+		Show all local IP Addresses as CSV and shows IsIPv6LinkLocal info
+
+
 
 	.NOTES
-		Quick helper function
+		Additional information about the function.
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
-	[OutputType([System.Boolean])]
+	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0)]
-		[string[]]$modname
+		[Parameter(HelpMessage = 'Show IsIPv6LinkLocal?')]
+		[switch]$LinkLocal
 	)
 
 	BEGIN {
-		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+		# Cleanup
+		$Result = @()
 	}
 
 	PROCESS {
-		if (-not ($modtest)) {
-			Return $false
-		} else {
-			Return $true
+		$AllIpInfo = @()
+
+		# Get the info via .NET
+		$AllIpInfo = ([Net.DNS]::GetHostAddresses([Net.DNS]::GetHostName()))
+
+		# Loop over the Info
+		foreach ($SingleIpInfo in $AllIpInfo) {
+			$Object = New-Object PSObject -Property @{
+				AddressFamily = $SingleIpInfo.AddressFamily
+				IPAddressToString = $SingleIpInfo.IPAddressToString
+			}
+
+			if ($LinkLocal) {
+				if (($SingleIpInfo.IsIPv6LinkLocal) -eq $true) {
+					$Object | Add-Member -Type 'NoteProperty' -name IsIPv6LinkLocal -Value $True
+				} else {
+					$Object | Add-Member -Type 'NoteProperty' -name IsIPv6LinkLocal -Value $False
+				}
+			}
+
+			# Add
+			$Result += $Object
+
+			# Cleanup
+			$Object = $null
 		}
+
+	}
+
+	END {
+		# DUMP
+		Write-Output -InputObject $Result -NoEnumerate
+		# Cleanup
+		$Result = $null
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdcVibYXRC7CJuS22QNBzKsg
-# fb6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+AfTu+x1PIVm6fNShqN1FCzU
+# V3SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +297,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT3ePQiRsx1QEyXRppYsgo/Pb6QxjANBgkqhkiG9w0B
-# AQEFAASCAQCPaA2xxUn33qreYxLKql3+JcwmhlxO7EZ+E7JvV6EIKRPZcAwBF26i
-# szvq938iTFTx+KdRFqSN/wE0lIDRTYG4sjkvqAUcVVMKaYNx75VxS1fyaTdkE3Cb
-# 2EwUT39NLO+woQ+82hF/iyKnNvzQqcmDl2sle7lx5UAkKoSKjZq29dg1GYh/e/i/
-# 8hDaNoIjcz0AAk1KbzBkMysVSukJuaExT3BuU50CeWWqwkBxKrgr+zQzX+LjTD2g
-# ZpOlAkguBty6SZxu9if7E2dMg5NXkDoSraHuP8Au935iuwzA3XDqTBhOyyM/XbQe
-# YHZeHoDKPcjF/9GcoWs/d4taGGKBxwBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTi+pU/xGcIQhfZcadpLUhSo9qLlTANBgkqhkiG9w0B
+# AQEFAASCAQAEdZMUnqWJZRlnC7Qzvh5bG0I71i4996G6glF4N5zd9HlTYAKVLyXB
+# N71wlFD7JRIMU8LSIFAJ13Gr4WeB3RPgA5DcmBqdGqOPZUHU9vjcYPi7VTTGhdkM
+# rqZf4yeigN3efKXXyitXNPTAMJy0HNnYRwSV5TvkaDmMGONt3ZM1Z57uGTzftNur
+# VwX0X3nIH7ekpSi9Yo0zdZYhwSTXd5U+3iJbgSfX2oD74h2AysJX7sT2XWFQpjgC
+# FpwlvISdmdMyUnhjyFS4fNbFvr/BNnfNpsACZHgueTfFarQyIk22rn4RTBti7Ka5
+# qGEzSLu7h38B/wmHeXa0XnGASer7PlYgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
-# AQkEMRYEFK/mi5xhP2DDm9pjy39oX5dA/f8KMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NVowIwYJKoZIhvcN
+# AQkEMRYEFNiNv8BNtLJvm42vHch9CvmM6OZNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnrcc6WHBaX7BmpE+bi7DTStPa6LLQklXdZJSTp38TjCDQ
-# m14zMTuitRwAylGZmiDz/A/uVpmRI27ZiHNMWGoegANOST0cpTSal6zkCEnsr9Kl
-# +Rw91SYcrDPZ/mKpN1Qzg6L4sQpTwhOvv7mE4mra2GBk0JaET5MD/cUCrblFOk8u
-# 2GczO/ozCKCP380KSUTS10V6q4nU9XVwbaT+1KDwQY6rdJjtLn6eSPirgdDekgzk
-# LvpwFUYrc6kJWdw4kflTHvg4XG6S9mBZZofKwGuqUwfEPTlnYx60ER+h1b6iEavt
-# 4vMK4khIdlBAscY/3VpeNcGmYc+wxUYCvX9RLSou
+# hkiG9w0BAQEFAASCAQBibAPmIRv1ZryE3vXvNkMsROXynOp0ATOHvua8ch9B5Frs
+# JMfqK5ahJ0mPMpaT23cITsY/hrXSlnHhvLMO/u4xAiV+IpQsuTgd2c6JFy8ddUPZ
+# inmX3WJYtT6DRx3r/121JffRfdMK1cHbniQ4I4lLVc99yFFHutfVqYa/oUaq9/kZ
+# fXmyaFpkWgRlDPim37FnrfBaGWd4orXS3dAehxzKha58llX24KRcpoYDtg2LAKLZ
+# +7DaTVN4Y0b1LSuqDAQdB78LiQSIAbtTMV9nIAlzQsOMyQxreye/BaFZBNBhT58m
+# aNcdQU3Yxa/F+R5cqAE/aJyoB3vGI3RXtX9LJPsu
 # SIG # End signature block

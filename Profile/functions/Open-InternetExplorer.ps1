@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,31 +54,38 @@ function global:Open-InternetExplorer {
 		Workaround for buggy internetexplorer.application
 
 	.DESCRIPTION
-		This Workaround is neat, because the native implementation is unable to bring the new Internet Explorer Window to the front (give em focus).
+		This Workaround is neat, because the native implementation is unable to
+		bring the new Internet Explorer Window to the front (give em focus).
 		It needs his companion: Add-NativeHelperType
 
 	.PARAMETER Url
 		The URL you would like to open in Internet Explorer
 
 	.PARAMETER Foreground
-		Should the new Internet Explorer start in the foreground? The default is YES.
+		Should the new Internet Explorer start in the foreground?
+
+		The default is YES.
 
 	.PARAMETER FullScreen
-		Should the new Internet Explorer Session start in Full Screen, the Default is NO
+		Should the new Internet Explorer Session start in Full Screen
+
+		The Default is NO
 
 	.EXAMPLE
 		PS C:\> Open-InternetExplorer -Url 'http://net-experts.net' -FullScreen -InForeground
 
 		Description
 		-----------
-		Start Internet Explorer in Foreground and fullscreen, it also opens http://net-experts.net
+		Start Internet Explorer in Foreground and fullscreen,
+		it also opens http://net-experts.net
 
 	.EXAMPLE
 		PS C:\> Open-InternetExplorer -Url 'https://portal.office.com'
 
 		Description
 		-----------
-		Start Internet Explorer in Foreground with the URL https://portal.office.com
+		Start Internet Explorer in Foreground with the URL
+		https://portal.office.com
 
 	.LINK
 		Source: http://superuser.com/questions/848201/focus-ie-window-in-powershell
@@ -103,7 +112,7 @@ function global:Open-InternetExplorer {
 		[switch]$Foreground = $true,
 		[Parameter(HelpMessage = 'Should the new Internet Explorer Session start in Full Screen, the Default is NO')]
 		[Alias('fs')]
-		[switch]$FullScreen = $False
+		[switch]$FullScreen = $false
 	)
 	BEGIN {
 		# If we want to start in Foreground, we use our helper
@@ -140,8 +149,8 @@ function global:Open-InternetExplorer {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKtNruLbfql3DUsPE5tF5DFk0
-# baygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUljdaHRo5meWP3sqs5Pz713Tc
+# hzygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +293,25 @@ function global:Open-InternetExplorer {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQIXMjNMHRW+YMHqTru04UTq6BhqTANBgkqhkiG9w0B
-# AQEFAASCAQCH8ZSZhFjvitR6wrHYFym11iV2w2G00Xhlx7W7k52nvQztttGW57qe
-# YiDCysOb+tAeJ9rG+6KcWlTKtKOA+YgDZdM54qezOM9SgGKN3Vqs5dGJXdw3o2ZL
-# yPT3hGZ8XQVoLEo8ynub0RBicTl3kkHXxqPoaTwVoE2cu1f3gWWhvePjhwvYycIY
-# iWNl0YOay8y05QaAap9WCKc0Nb1I+YUQfmgwHkW7rdCmNm/GrLP5/x3n6OZ3lhra
-# feepVYhU7bfsxmr5JZ69ubspOTvDsl68r6+X4DewNfvWjar3SlBji7WhbPqfo48H
-# jgUuz8zEbMg9zjLH3JNNQkdkZmUmXY00oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ9wQkB9xa8Jw7KgkiL5CQVNFN7GTANBgkqhkiG9w0B
+# AQEFAASCAQBh4hXXoHeZdwEYw4CrDQYvbC95Qvt/bxieLZbqD6HBENoxZQJmkl5+
+# ARy2aFxhJdoA2y8X+EQjV0krAr4ZeiO/REv+ujA7atgsoe9wfqgXoPIF8aXoSFOt
+# cPiaBAKLo3PzCCu0LICwUzsPozAHGvNXHd5kH5ANnGn37co+GfUnetgNKGrz80ND
+# g2gBY4AYwWj4DiAZ641GfkNbf4aCXWAArIS8IBGYSFM6gKoOc46X6rBf53dpt9Hr
+# TrQpqN3CePIJqgaksHw83pSJZJvTUWhFueYfvmfp718YYj1AioMX162lbcDW/LGt
+# HW89grgeffSAHqaZwBhmVMiUeHLy1UvtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwNlowIwYJKoZIhvcN
-# AQkEMRYEFFWEKtj4BrK0lvtrjcnhLgidUKoDMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxN1owIwYJKoZIhvcN
+# AQkEMRYEFAHzz9vSKf5xTks7/43FPMcE/ZzgMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBDjbvqbvxrp2b4zA4AqII5Yon6hUiKV/u2YwclJpXe8Arg
-# GLnosK902JXR0mi2sr+0wg0SZvklzXAip+U5myW5ctv4itxhdj+STjtQ299Cm50L
-# ycvSwGoXACSazRile+pHRIDMQpn4+0YyAAClkh9vXcT2ywn6oVfC6BAGQ/DMhHDF
-# t7HoFgUcAoqpzxSM19mqLJvlnemzk039m7ruJB4UckHd8D08tNk3FycWqTVsURBQ
-# uTWLYulHYMHITSG35Q3W77WYsRFxzlNJyOAK0AATRxM9kHMoaGOPIPvr1iyCymB9
-# Teu436rhp2PAgRy6SyNboJzRwolXslMPBZdH4q6I
+# hkiG9w0BAQEFAASCAQAGO7Aq7u7kHSGv6UJiybeOv3N4gBsv/itN+bsEo7JQwDJQ
+# cm7uHqsCBDrBv1MonQmK55KF+p33eedhBgufSSE8v1hztBKFY5ymS06ZVOzRsalD
+# tjQLpMmbMJmNRv8Ep0cieOpgTMOC1YzNr/A075C55Gw1oJqRbIIByOgIIlVeiVli
+# PE0/B/ccHUGiaWpn2fvcLTHrkQaVaEkjvtkKzfP1pGFphOGDxD2xYiNXezwXKtHo
+# ZHfCfTl3PyBVvznkARsdx4WfUPha0vW9072o/uOQ3Uyd8f86tuUfNf71xlQuSpep
+# i9XobVeEBHgBXCeSdzOwCoxhR2NvV0nWcpv+sGz6
 # SIG # End signature block

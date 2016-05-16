@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,13 +55,16 @@ Function Global:ConvertTo-HashTable {
 
 	.Description
 		Convert an object to a HashTable excluding certain types.
-		For example ListDictionaryInternal doesn't support serialization therefore can't be converted to JSON.
+
+		For example ListDictionaryInternal doesn't support serialization
+		therefore can't be converted to JSON.
 
 	.Parameter InputObject
 		Object to convert
 
 	.Parameter ExcludeTypeName
-		Array of types to skip adding to resulting HashTable.  Default is to skip ListDictionaryInternal and Object arrays.
+		Array of types to skip adding to resulting HashTable.
+		Default is to skip ListDictionaryInternal and Object arrays.
 
 	.Parameter MaxDepth
 		Maximum depth of embedded objects to convert, default is 4.
@@ -121,15 +126,15 @@ Function Global:ConvertTo-HashTable {
 	}
 
 	END {
-		Return $hash
+		Write-Output $hash
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNTZmP1KqIe9ZHXQoduRHIMi/
-# H8agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNyqoj6UTNXMouNu1/penqDqe
+# iROgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +277,25 @@ Function Global:ConvertTo-HashTable {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ6UcRMzfNe+Su8+5HY2ixGJTwBUDANBgkqhkiG9w0B
-# AQEFAASCAQAzm7AM1OEaOtj090Ul6SA0sLq6c84Oe4PKEY7izuJjCbwNnYlJUGVK
-# daH7VORW5VuPQUH5sTJz7vgw2Wt0t9/dxStjdN2dmgFFb5PTpYv7HlrLyjYemcoB
-# XVwaMTPQgKqNAu9oteyZZgi6n84QoJYBnSVZhF4JdfV56tGlBU7N5CUqaWgSgXhw
-# QgEfgKXadxUo2MsA8UV/d3NYMRkNm7Q8Sts71otBK5e+RB4C3pShx7pXIlEitW9P
-# olnz5whrPHzrECjlXWx7zt5OiCOjFr+nH1JOufFjFAuz5FMo+So0HBk8lUc7vQJp
-# Az+OrYtIeQh3fnohnDMO2WTTXr82jHAToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRJLELtCiy5gi+vzwpFMWsXAlqbQjANBgkqhkiG9w0B
+# AQEFAASCAQBqHljQ6YiHIePoMkxm+Kz0SRVDlUTMaSuftuHUiD3toOCSxPZer4eI
+# rQwHWIeI4MNIW89mXOU3A69w0YyPW223eP2a9OrqgTcT4E2+scTlxuDowMNPqmce
+# hjgCk/zTtSs++GUFE2mMh3scyyefGMzVPj5xyJm56P5WGDra5pTujA0AxeGWLAlE
+# enZ9IpTwqkvkoiceAvfqCIIdL8uF935VwCKnqZDrEOD0l2FtGw/uemVXWIUlEwkv
+# xsdeDjoOdmcPIqznKhUHeEAKrYreEieq5cCmwTkUoXBqLFkEKRlBU3+qjUNZaw6z
+# KtKI9T1rQiVbK3LJpzlIthaZMTX3bPuRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MlowIwYJKoZIhvcN
-# AQkEMRYEFD7osXWeUGYXnR6fZWMdrlLS7b9MMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0M1owIwYJKoZIhvcN
+# AQkEMRYEFMpPlkofTq/Ehe2YiFSKt14Z2VwwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB6alelAuq/FYR9kfwFEEvry0MxAo/XfSASssA2U3Y/f0Xc
-# x6qDScrQcCBF7JtZ4mipn8V9MPe4Lbx/AkemqXvX8puXZYPzhlEurNjcDbrvl61Z
-# wzqVnVoso9l1Q4YzSJaVuSN5JI9+l9YQqkWQiw7CJfTKd1MrVieDCTk+scZJkj2X
-# S0XmCgtNIl2dPfGFggOuCHL3ZjivRZdKvZDchSNTmmhVP1lfzWQbFubtpyr8vFx9
-# 3DZOWYx1lCp+nNJYhBY0dbwcw8lO5Awh0vQQcmCyCrsrf4MWUSeeP7hfiwHX94av
-# lrRXMwBobwsnbmIrfjFZkUTiD2Y8fz/QWZQwb403
+# hkiG9w0BAQEFAASCAQCC2BAdhQyog2kr5qSfG4YTQZlRvPCPOhvjsujuUkrmoyQn
+# lLtjWKWkMF7cMz4Zif7oJqM4lPHsEegscfbS4zlsW2dxYSI/B3J1/+Fm7i3Tvy84
+# agc9MPX33etDgRQ5WqPWfzr3QvvJ4ZnGDWs4kxky/N4LhZEsdgRkVEg7o9ggQm+S
+# idqhKO2xudGfJ/UN3uIVmTyiVZsUjk57TkwN6EeXNVoVXRV1QONOg1BPjdiwIHgb
+# zfxsyKOq2/vgbjsdIT67MaRF3QpkoeD/PBpdS3X21FMw4s+KRpddcVWURPNuW984
+# axtsg7J9SNLtThQHg0OcugiV67itKNN3nXhAOICo
 # SIG # End signature block

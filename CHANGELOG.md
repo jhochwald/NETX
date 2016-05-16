@@ -1,4 +1,7 @@
-### New Signature (Updated from Build Server) (HEAD -> master)
+### New format (Updated from Build Server) (HEAD -> master)
+>*Mon, 16 May 2016 08:25:30 +0200*
+
+### New Signature (Updated from Build Server) (origin/master, origin/HEAD)
 >*Sun, 1 May 2016 13:06:54 +0200*
 
 ### Fix Output Type
@@ -73,7 +76,7 @@
 ### Sample Profile: Minor Fix
 >*Sun, 1 May 2016 12:57:15 +0200*
 
-### Readme updated: Docs section (origin/master, origin/HEAD)
+### Readme updated: Docs section
 >*Tue, 26 Apr 2016 20:02:32 +0200*
 
 ### Minor update to the Contribute section

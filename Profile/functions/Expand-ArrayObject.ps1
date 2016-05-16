@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,10 +51,12 @@
 function Global:Expand-ArrayObject {
 <#
 	.SYNOPSIS
-		You get an array of objects and performs an expansion of data separated by a spacer
+		You get an array of objects and performs an expansion of data separated
+		by a spacer
 
 	.DESCRIPTION
-		You get an array of objects and performs an expansion of data separated by a spacer
+		You get an array of objects and performs an expansion of data separated
+		by a spacer
 
 	.PARAMETER array
 		Input Array
@@ -68,7 +72,8 @@ function Global:Expand-ArrayObject {
 
 		Description
 		-----------
-		You get an array of objects and performs an expansion of data separated by a spacer
+		You get an array of objects and performs an expansion of data separated
+		by a spacer
 
 	.NOTES
 		Additional information about the function.
@@ -105,15 +110,15 @@ function Global:Expand-ArrayObject {
 	}
 
 	END {
-		Return $array_result
+		Write-Output $array_result
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2t9QxFDWZFXwcRnMlNLbupAs
-# 93mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc0Uf5nG6k8Edh5eHFo09gndA
+# LCygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +261,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRCVrE4pk6VLW1jTR/cMreklkVAwDANBgkqhkiG9w0B
-# AQEFAASCAQCJfvr+HXf/GdAG0FWwVG+/ROCNPzJkVEVOx5xIYiS23iReQYqTELM0
-# Htm70+CAtpuZbH9SEfcWjLiSq19HRqVG4sXyfvLSZiGOV3xA/FjBbvyYD+ZzaLyD
-# 9BHtZZDaiI7cX2hm3a7AJc2JHiE9dwcQ+vXXuABfmdkBFQ/jjcVxQ8CFPeGVFdOV
-# aWomYVqv8RxPUxQyJnwzhij/TNJZ7IfB27ERxWn0meuIq01Hn3+wJ4so/7x0EVl1
-# jn7QMotqpe4jUQFqf/AYwEkzhA9VPsY7Dbnu7r2/nqYy/GvvXPrSAHw5GvawQlpc
-# Vd86nkitvL+unfrl7j1lQ0tmcmPBUG1YoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQTaomzL5xPWXKGJeUWajkCbWUMOTANBgkqhkiG9w0B
+# AQEFAASCAQAZ3nhQegN25utD9kya8kqiuqitd2FjMfoJ+1OsSDAhg+XwVWjAp9By
+# jgJ9HZfW3dyGoq1lqx17ZtolSlHdreHgE2Ze25c/rgHyrFPvlt/Nm1MC0vuW+SoY
+# pBc6h8oHk16ly3kpWgv9DMG0FTL7M+VuFb9vtHF7A7anxUCjvUkGIN5IEldp4WEU
+# 1kJzO8q/S/sigP2iCmyqWveWftgMcYH00KD8wFI6U7uDea8L2eWquBAgTrmA3Ky2
+# MlqvKwZxfskgDaLBP39hFgJcFeBV1Hk3m0FKTKr5BlivsRVE9dk1Q4X+N7quMpWX
+# 20KjQFmIlSpAI4S6Kzw7ktEZWba1k8bVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0NFowIwYJKoZIhvcN
-# AQkEMRYEFCpdqeq17Hg7JU12ynzOMfi4SDOXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0OFowIwYJKoZIhvcN
+# AQkEMRYEFNGhNWHSm0bb8dtehRQtMYR/Jht2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCEhllrpLxBweTsQXgC1RtjgN5kJ5FNmSNC3DsqaTDP2gts
-# Jai4FPq5XOCS0X2uMh6j9E7r0SZNERfOWoBz6cAZIeQ40J6nDyozpN+JdCLFHzo6
-# +paeej8g+GjPeAOR2cnqJa9TtcKN1ZG6T1L4fL3GJAzGPuJ+k1qKl1j5gHON1/JT
-# dtAZXzV2J+b5OKpMyTGebNjP9cUPy6mnFQpSDZYufLpA9yruOu8NqNTP+4ZFTCpb
-# iXT4rIMg4PKSqrvPWJ9DLmA7V9vzeFCd/usaL5ba9vOKCPMVyoxUG3J5QqUb/n69
-# v11xzc0xVczmkv144BY5byXM3ye2ryA+Ly0rABRA
+# hkiG9w0BAQEFAASCAQB/PFnk1Wmyxri2zXpsM64h5Kxl+wEgwGbiIHvVJsfPVP5W
+# kOlas8EkNzjMqncLgFrBl7dUF/jWUWJRyTk/n2lbnMlwyUyu+QZhjOETfRB92ait
+# KV+550gUI/gMufHU8+Y+/88yZMYDFYauLqeCBen2Jddz5/LurSozl+RLlRkRbU1M
+# yTnk/VwyUPxTSZxzX1qDirTUn3n+8DFYY01ffffizViHfJUrnkIol5jGRiuCyXag
+# pLig5zeABoGhgLoQNs/6wLNh3ETywi/hPmi0aW8qgDFlO55oJGdCWv7daF0YPPh4
+# 4Db480sc0pVOh46JNvdG4m7P77WU2QXKH76jDJex
 # SIG # End signature block

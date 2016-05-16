@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ function global:Test-ProxyBypass {
 		Testing URLs for Proxy Bypass
 
 	.DESCRIPTION
-		If you'd like to find out whether a given URL goes through a proxy or is accessed directly
+		If you'd like to find out whether a given URL goes through a proxy or
+		is accessed directly
 
 	.PARAMETER url
 		URL to check for Proxy Bypass
@@ -61,7 +64,10 @@ function global:Test-ProxyBypass {
 		PS C:\> Test-ProxyBypass -url 'https://outlook.office.com'
 		True
 
-		# Check if the given URL 'https://outlook.office.com' is directly accessible, what it IS!
+		Description
+		-----------
+		Check if the given URL 'https://outlook.office.com' is directly
+		accessible, what it IS!
 
 	.EXAMPLE
 		PS C:\> Test-ProxyBypass -url 'http://technet.microsoft.com'
@@ -69,7 +75,8 @@ function global:Test-ProxyBypass {
 
 		Description
 		-----------
-		Check if the given URL 'http://technet.microsoft.com' is directly accessible, what it is NOT!
+		Check if the given URL 'http://technet.microsoft.com' is directly
+		accessible, what it is NOT!
 
 	.NOTES
 		Initial version of the function
@@ -106,7 +113,7 @@ function global:Test-ProxyBypass {
 		if ($pscmdlet.ShouldProcess("$url", "Check if direct access is possible")) {
 			$webclient = (New-Object System.Net.WebClient)
 
-			Return $webclient.Proxy.IsBypassed($url)
+			Write-Output "$($webclient.Proxy.IsBypassed($url))"
 		}
 	}
 
@@ -119,8 +126,8 @@ function global:Test-ProxyBypass {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDIYcMA6ergXNsNMcCnexfoov
-# SwWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+ar4Hc1b4F90pSSWQYjhegvY
+# TW2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +270,25 @@ function global:Test-ProxyBypass {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRkfujrTEOuoPdEC9JJ7r9z57gCTzANBgkqhkiG9w0B
-# AQEFAASCAQADKqVnCGusC9iwwGDiluYDwxJAvjdN+TDvNbGFHvbIJU+K5p2Q5KyX
-# sN+pIQyLgwtNCDzA7zMzLs6n37xbeuQUUNm9n1nS2KJo2rc4iy0r3LcqEnhSGpyT
-# F8SchiEcI9Pl3g6C95caSScPFj+dj2RZ5P4E/fPPOhBkznf4UUoNDX0qiGvxNI7K
-# YaPRUYRUn5YJb3oF4f7UDkpLJrV0BfSoPy+UkupdP25W/5RCuyoe7PmlvyRZK4KF
-# TMTaC+On5KpeFxHejjW68rKtGeI2UZQt5gFXgg5JC/iEW+ZXUHf2GB2V0QT0TASz
-# QGOqA2AsqdQ6gLLo520iVOby/q1ldOIKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSnYfowm7hO7RWmH6g2o7fJLa+Q5DANBgkqhkiG9w0B
+# AQEFAASCAQA/n8ZKZ6pyA3XAIJb8OBfeEf7cS37SVSUtLCwCvuSDexZka7kLZFhT
+# bRqvqQBxwl1uUZ51f8VhZJEiYkZVYgUR7p0RP7HUcryAQOTwMB0GsyYGVUGOos5u
+# Rlh82DHKxroMvebwR0K6xG3elWzb0zilTnP/xftixllf9/gCJzhzMsfJnL4/1RGH
+# LFgmLFmcEFYOXS/Zm4JrpoH32nmTeOJ2RK63aK07PG2MC3Ue+gUNVPd9mTs2ExYW
+# kyboMxsQFhA1nm5NKQKWHqqu7yqV0jrJgJE7HXRsykLoFPRZ+B0rLAC/jzCQW75F
+# YechHyzXKZun301H1Y/H3d83+ICID3d1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNVowIwYJKoZIhvcN
-# AQkEMRYEFItgd9xW/sX/XIVqVphweCx2xQ7hMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyN1owIwYJKoZIhvcN
+# AQkEMRYEFJ0zV2ATy9FDnBfWOKqFuHnR+guCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBQR7S+TfhF0BsDKQqy/xzRVIURQ8bsStC6hZGnB61BjmaK
-# 6kZsNmMXHytNsHVHjhnZ9QvxPNNv395/8IljbLeoN9WO3Sy5srpDIlqWiTq96B4O
-# N5/uwHPbaK+RmH+R3B+qDl3K/Py2x9IZMB0NiSDNaJoXB/qhLZ7QgKBdUR+FMDST
-# Tsri4bURGwOqdTIi4z1pLcz8x01y8TZio6S783dqHLMGc5pW+b2kl0vlQLAiaTLt
-# t7qPH2ruRXk3jbHw7tf1n40nSzkDc2ghQl2xWZKVYGMpvKmLDfk0q9Vvno2gTVhy
-# 749CPlzF+p6C2PNsL0TD0IZrkHUd7RjRpRVRTIN/
+# hkiG9w0BAQEFAASCAQBGnm5zpMWjaaaiwsZS1vHKWerYUZSxgMctrWXy8Azr7Ep6
+# cEhJ9352NDUw8EtXGJvtzKT14Q688QuUpgFGQA1yaAkojv0fH2ODQ9IySoMuAToP
+# OcM4TJtzNosZgE9gGDaxydDTBsRqSZUslOFbwgmF1YV5nQWQ/ZCCmnGTJYrz+n2d
+# jFYjx3kG5j8V7JF7hOO1EsC9dpqbv9zZqCNLTPWrt0ETNCnJX7aE/iErr9CPUL/X
+# /movI9U+kZkLz3AvHtqzlEjJFSakP1Wb6VhQDOzpIGE8GgpHHaHfOTcduHLgBJkh
+# I6ycnaTlPIotPODEscNl1d3DdSG2u+2pnZekLhjT
 # SIG # End signature block

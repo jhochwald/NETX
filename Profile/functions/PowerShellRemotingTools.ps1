@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -118,14 +120,16 @@ function Global:Get-NewPsSession {
 
 		Description
 		-----------
-		Open a PowerShell Session to the System 'Raven' and use the credentials stored in the Variable '$myCreds'
+		Open a PowerShell Session to the System 'Raven' and use the
+		credentials stored in the Variable '$myCreds'
 
 	.EXAMPLE
 		PS C:\> Get-NewPsSession -ComputerName 'Raven' -PsCredentials (Get-Credentials)
 
 		Description
 		-----------
-		Open a PowerShell Session to the System 'Raven' and ask for the credentials to use
+		Open a PowerShell Session to the System 'Raven' and ask for the
+		credentials to use
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -172,7 +176,8 @@ function Global:Set-CurrentSession {
 		Description
 		-----------
 		Make the Session in the variable '$psSession' globally available
-		Might be useful if you open a session from within a script and want to use it after the script is finished!
+		Might be useful if you open a session from within a script and want
+		to use it after the script is finished!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -226,8 +231,8 @@ function Global:Register-Script {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqTzxvHJyG15S6+uPkWDpLBGB
-# e/OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwCmSQ9EP0fpaGA9H110WEgvJ
+# z+KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -370,25 +375,25 @@ function Global:Register-Script {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTR85FUjtMrQrfOd/QRBXIkXwQAQjANBgkqhkiG9w0B
-# AQEFAASCAQBnvzg5C9x9f1AZNqu9KDBvHQGm3WYOvaaD/WdrmkaTHEYUsOfNG5Rn
-# fSF+rhEj5dfHydj2WWD9ZSy1f19cigLkkKVYNU7dRIUG/IcgswARJRDX832XsiYS
-# 2W/3CcylEQlPh6hcAer4AEbeloC9hw4YLcTU5AivB6PAs/eHhiF9TUC5eGEi+FB8
-# mt5PDsJTRpaUXAgB0CsmTYCFEGnY+u4sfktej/1wJyzUJVQbL31BTtLAQJ7vlFcP
-# Dsttqlo8uXcSOcBcLSkb4NwdF+8n6BUbcYqw5J3LgEMDgMDrHp2W31cAkyzYZ0vt
-# C4HsdzqcrWJmx7+ds/UXyXrpV2VAGcwhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTASp9tXObd+BexZ48ujcj8JLiGiTANBgkqhkiG9w0B
+# AQEFAASCAQBtYjM+PKxxeUPmmFBk+FIQziSFnNg8PLvrxWJnbrYtlUk0YYLNg2oE
+# v+5B8MFm4Ftv9JgPpFf+5K/fTlCyg7XdGTbryFDQzH7Q7Nz51h/xUeUVWIUbfQRd
+# cUWBWyefKirf7R0QBXioAfHCr0Tw2PJs8DaWIqbYoRFFin/5toPh/aAYQQAfDD2Z
+# yd2QL8HWOyPkR5KPcnuHxvF0z8Ogjiw8t4FBcOwSUbW/Fr3zy+b2+w5Cu9PV1JiX
+# BtVsrsDgzJfXRNi2Mj2mC+yEQqTD2yqerauHNKooSPtDS/KlE01yaE1peuwcQWQQ
+# wMHPQxNlENsDcr1tdi/Ei7cyJKoAJUjLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwN1owIwYJKoZIhvcN
-# AQkEMRYEFN06kpLCzVGz+h/WML7zwBPxuXpsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxOFowIwYJKoZIhvcN
+# AQkEMRYEFLC94GPNDlbX7Y9CcaIhOP9stO3iMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCQ1Cj59qn5UQkhfu3yqUPEDMi3MzTcvjkkU9xk7Lx2qzTp
-# Ntv34q2eFm3cQVkk9sP+l0yJ8RkC++11BGEkfAoskf/3FKq7rcZN2nN5pb0sSTZ+
-# 2dZuYWXsHxFhrY4p1GUtvJ/I2wBRDO4s+U44AWXEdWryolfxQ5MmTtlKd67WqbPX
-# 1ecYIe+L9uO0zI85V+V7oiZVkZnRZdiArbD8AYpI8qozA8QCeH6KzaaszFknk1ZI
-# l/SB8ufDani0pDZoMVjRJeIFutpC8nlsly6M0OtHuUoFhs4dyzwhkpZhUngLWe7T
-# 5CzfGN2fg6KVBnjMMQVfq0Obitj+Wz0EQ4HQObt6
+# hkiG9w0BAQEFAASCAQBp11LiZu9qHnxTfWCr9CdB+i7IVi3nHSM65ZX76YGC8e/9
+# WhK7HDrtruU4BRkUnb047iB9HvxUH/HMRsupp/NBwM3+9G0/ym0/2IeacBQ0fBjc
+# tckawn+uKJFrqfu9wVx4EAfwUje8zSDXFNiQyXsauLlE6MPJRydJH28zX4zv/18X
+# SL8U+pizTPEwBz6xJPbH2LYlS6/gZgN9hZi86EXpNXYscl6GtBM1OGATYyP4+xV7
+# mSLhliMIYH9tNVYDS6skoQ+2YqaB40w3sDZq3obqIjugGyaMZRGBVFsqygwVicJ9
+# DTNEOr1K3xXuJsY+ntbgID2nb60xqSJ7iz/l70uU
 # SIG # End signature block

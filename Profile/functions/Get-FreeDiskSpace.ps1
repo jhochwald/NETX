@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -96,8 +98,8 @@ function Get-FreeDiskSpace {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrxhTR++GcPPQpZsLHp2Rkaqt
-# qougghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0zsibxMwlJHzKHYIeQQzynCE
+# 5nCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -240,25 +242,25 @@ function Get-FreeDiskSpace {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTdfvMNp8dagjAr2J0oHeeXSURpaDANBgkqhkiG9w0B
-# AQEFAASCAQCTImGHFZzc8Gj5Oji3Jy9regu+BKkpLnyPYSlJB5NmlPdSLZU0r4V6
-# E8z97PCsSJsY3NFg+y+GOIC9wCQEGuEKIFjUXW9ERVgSdIIUU1epbQL59z6kECG7
-# aY9nrHYvvPjxG7BSEMF+iGz1Sm9B+skR2+7eVyS29bSlWhGdN+NFuOPqOuYPx9qu
-# DYafNLf+6tXE276kr0Rm78OH6mI+rSkxCSJQSGeOh4/jr116JBNambJ8+PEHdfYI
-# KbnSG1ljHG53b8GyMo/4s5oIeUt+Tj7Qc8MEzn+OVbWM+QniV+jd8jQ8prcrm3tK
-# ERap5KrYDdjWpQxasnQWwdIlTMX/dZUEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSJ9hKLBHVVHAgf474Wacejti+YdDANBgkqhkiG9w0B
+# AQEFAASCAQBetTTyaW6oLfa4wuvvapSNUXw2K/YTW7bnTudw7KeE+o5SycP2Tn6w
+# Vm98dZtYdcLXCcmkjWFh9BtWp3TNQNMFfdWbOG73JDTi0ehSOKFGY5Bs/DjZmlv9
+# 1FW0q39IeSdLntqf0yUsexcQnCQ9AU5xKmcuEhgXAFB/OkEDhGnDVwiWwbzxkx8y
+# ZWunkzl3JsD/2Emao6uiiVUJkJ9umSLCty7G4E0VseVgmcRQ7jSJJENuYViJOCU0
+# /r40m0j6H/DMDB0fapcwBONs4ESZi9GI7v+wlGsXJjUe1KqTOwGbcH2vD7mwOP3M
+# n4C0wj75ruAZtyaJ15ZF4Qgr4Q+Dp0RWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0OFowIwYJKoZIhvcN
-# AQkEMRYEFGddEGBL0YabhMmUF5GzKBqCjPyYMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1M1owIwYJKoZIhvcN
+# AQkEMRYEFJv75lCMNH+Ihc4jVoxrN4HZGIBEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBxGalxZZLe0y7Vhc4ZcQETRHOivbWcOfVaeJmb4U8BI/3s
-# Wb6JPmxzUorsc0PklpqVoE8QMBKqg9I82jhuXNBlabKq/O8K7o0XjSQkziSW/yN6
-# oDufAL5IUMNThGke5DYJbmfpUZETVo30GeMiFL4ljlBZ55kqmx5VLGDJVodwZnN6
-# RkTiH5jbMwtcVB63rT2SoPvY3RTB5NOVev8SGBJBuz4Z8rqRbuNcw8qm+GuDqBtY
-# 1NtlkKGbpCu5h9XPl3BOQ58ncIjjOLa7ryCGdTKJSR4Z0lWkT6KvPKln1c1M3DRY
-# WTLMEC+cWO/yycSWt4M6LemFc8zHaaJI1Cllg6w4
+# hkiG9w0BAQEFAASCAQBa3dGsFLi3oo3wXWZZh17491F3WduL+cwsmASyuRV88Fid
+# 7/Axwj4RV5P9mP12xi0oZeR/xl3SjjWmE5ic42A4D3AEgz/AZE3grKfp7dNP3VNp
+# uxcJGWTzuMrl9Rwwa5Ck5+ThQL+y1T3ccspF46mp9Drg3kayg5dXgw+D9IOT4x1e
+# V/Qg7yrNtn7bZkdcTd7Irq5rmEiih+lZ5QQKdWDVA9fFcg3ZDfIwuVty+/DUTlo6
+# 6qkGtX6N6VJ7AX11RMZBbNlEkFGi/E81KBSdNBaXbd3Bh1RLGd4E62iZdkcne8ea
+# W9l4Pvd90MLNqn6CL9HPcMTwEXMuY289lMtFDDnE
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -106,10 +108,12 @@ function Global:Get-DefaultMessage {
 function Global:Disable-RemoteDesktop {
 <#
 	.SYNOPSIS
-		The function Disable-RemoteDesktop will disable RemoteDesktop on a local or remote machine.
+		The function Disable-RemoteDesktop will disable RemoteDesktop on a
+		local or remote machine.
 
 	.DESCRIPTION
-		The function Disable-RemoteDesktop will disable RemoteDesktop on a local or remote machine.
+		The function Disable-RemoteDesktop will disable RemoteDesktop on a
+		local or remote machine.
 
 	.PARAMETER ComputerName
 		Specifies the computername
@@ -132,7 +136,8 @@ function Global:Disable-RemoteDesktop {
 
 		Description
 		-----------
-		Disable RDP on Server 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
+		Disable RDP on Server 'DC01' and use the Domain (FX) Credentials
+		for 'SuperAdmin', The password will be queried.
 
 	.EXAMPLE
 		PS C:\> Disable-RemoteDesktop -CimSession $Session
@@ -146,7 +151,8 @@ function Global:Disable-RemoteDesktop {
 
 		Description
 		-----------
-		Disable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
+		Disable RDP for the host where the CIM Sessions
+		'$Session1,$session2,$session3' are open.
 
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
@@ -269,10 +275,12 @@ function Global:Disable-RemoteDesktop {
 function Global:Enable-RemoteDesktop {
 <#
 	.SYNOPSIS
-		The function Enable-RemoteDesktop will enable RemoteDesktop on a local or remote machine.
+		The function Enable-RemoteDesktop will enable RemoteDesktop on a
+		local or remote machine.
 
 	.DESCRIPTION
-		The function Enable-RemoteDesktop will enable RemoteDesktop on a local or remote machine.
+		The function Enable-RemoteDesktop will enable RemoteDesktop on a
+		local or remote machine.
 
 	.PARAMETER ComputerName
 		Specifies the computername
@@ -295,7 +303,8 @@ function Global:Enable-RemoteDesktop {
 
 		Description
 		-----------
-		Enables RDP on 'DC01' and use the Domain (FX) Credentials for 'SuperAdmin', The password will be queried.
+		Enables RDP on 'DC01' and use the Domain (FX) Credentials for
+		'SuperAdmin', The password will be queried.
 
 	.EXAMPLE
 		PS C:\> Enable-RemoteDesktop -CimSession $Session
@@ -309,7 +318,8 @@ function Global:Enable-RemoteDesktop {
 
 		Description
 		-----------
-		Enable RDP for the host where the CIM Sessions '$Session1,$session2,$session3' are open.
+		Enable RDP for the host where the CIM Sessions
+		'$Session1,$session2,$session3' are open.
 
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
@@ -437,8 +447,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUegTsUEjiDIllUgmgef7mWutH
-# Ov+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUemBvMN8cf9Q8LMXuDUvSCw0R
+# +yKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -581,25 +591,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRRUGlTvxvySlE/Erya+seIeOP5CjANBgkqhkiG9w0B
-# AQEFAASCAQClyG7pTQtrD0tVTM28Ton7XSOht+ydMOM1i/TLle0fmEZkwbH4kCWI
-# CxDZ9eJboMvegbU//buZ5Lk/ZTzmJYBzKSJ6Ma+ggGV5QGtDPP0r/giBhnLoeK03
-# BhvrllZRmNv43e9ZcNY38ISk8u4sJZLTfSNpmOQw+/7CBGez24/G8aFD5VgU7CR/
-# RlPFRhwM95U1rAPKh3kav+W6eiDY/3kLLJu3oo95A3+AbbdCFuYh5+F+r/UZnWfX
-# GA2jwD18ZxV82ZW9UqmTAE2X53XBFrmmCNS4yBZXN36ZMqck7saYODp3rgBhTePN
-# Us2k6K7VlZsiD9OFQHxio+yCq6d4ZO43oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSEG2ySEABGbsWIBSaHzRRSE0r+jjANBgkqhkiG9w0B
+# AQEFAASCAQBoTkmLs2RJpRdzedFK4/XdY/h8Tc23XX/AkyNwaPk5J4uLC2H6pfeK
+# Czg9XOKN0WjVu7mRmY6uTpSeHFysRox/p7NcnLlT/rcaT55s6LDewb3iZ6aZI36K
+# AuwVRjzswolS08SLHi6H+dCTEMGOTBG0zUJYhyMX6Cu2pgrgrlu/3KtjdQUkalfw
+# jWOzA1zZqQxK+A94OqklUMbwx5Wc8m2uInEl4SczdnuhdEw1NWb0At1LEdYAFzcV
+# r4AYyI+iHEd5xpWtILwzXi4TjbAzwzecHrJUPpB0eoKSdxkvY7pAXCV9/N3mrZIa
+# M0xZFeO53jyB7BL6CEBNoVZyiysisjWloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOFowIwYJKoZIhvcN
-# AQkEMRYEFFb20CxyRWbUwk49iQ6uV1UMPkRsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxOVowIwYJKoZIhvcN
+# AQkEMRYEFBR6MVmok35neF9F556hOkScGjEXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBrKd0Mgm/vhf6Oz4jcV7XBqsdkaJaoT6MS+E3AoiydgOHB
-# f8ywH3QzjYOTIWZWDJdUTfg6Ctc4aRPf4IuwODSqE5uOLap1igiyVM7dI+AtEvLd
-# rEPng1k0CIS4hbHSISTNkKntIVdp1LxilNpP4Z2jxmZGYA4IiPjpQknqIgMtTnq/
-# rSKgu3LZ8a8QvTGm3HyDZCN+nJscsIp1sayjpSaLPaS+wX9KPR0r806yw7j55gVG
-# GjncZoV4ypZw8y49Ur+o67ASu8wxiKfNpwMrUklCwibOf5CbeaO4AMsGCXzuYFl6
-# vO7uWjLKW8NN9WvcOmHEB2bycNvp1vOqbU13ouiq
+# hkiG9w0BAQEFAASCAQBlXSshRVqCgaecUApz/vsG/o5ZLqNWaG1//SGd8qCTN2HE
+# wEo5fsrhR8gPCjLHC8GNKsm1DlR3Gwnt7dU4cZJWkJ12GtK1dtrOIgJAf4tqZPjA
+# aKgeUkDA3G53xKgRDf+j1iTJ2/jxcxPva8Cdws8SkvrWHyAvNlEbNL1sTpL+AETF
+# fuOc3CSchVO2In3/jaKf/WR3H3KJCuCeLkimrZzLDs4f91YrNCFl8faT50r+oCxs
+# cNjcKq1SJGdb27eafCs5XurnH4LvUIY8dTX8ErdMYq79FYT3LdOCIEpT96iGvERU
+# +bWkC3Ovi0f+yBzdSj5t/g78v43MMHn5hMdX8Vay
 # SIG # End signature block

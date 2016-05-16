@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -63,7 +65,8 @@ function Global:Invoke-GC {
 
 	.NOTES
 		Just a little helper function to do garbage collection
-		PowerShell sometimes do not cleanup and this uses more memory then it should...
+		PowerShell sometimes do not cleanup and this uses more memory then
+		it should...
 #>
 
 	[CmdletBinding(ConfirmImpact = 'None',
@@ -82,8 +85,8 @@ function Global:Invoke-GC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVCv2RftVt22yMdjpJ2W4au2P
-# /ZmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyseuqZ6cBUlMVQmPRVTWXL/Y
+# pEKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -226,25 +229,25 @@ function Global:Invoke-GC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRloqNgVGrn38IDYK5wFstNqiao1TANBgkqhkiG9w0B
-# AQEFAASCAQBegaitqKCPGy3zZK8V7iqzUGpJX8YU7fUR/aJmlDXvzGvJqDAXuTPM
-# Yh5P+W1MmQSndjxbWQ6SmmyV9kS2khg7iCvSDZ335rw3ligMJ01rG+SBajTGJ6FE
-# GGuUrBtMgxrw1kCvxdkD9pzyt7M48IAhMXr2eA47UhWBK5JUcIX0w6tvzXt654n6
-# N+wl0uQZ2vlT95D8adQglE1GMZiEddOVmi6oIMavu77RgLHXI/wRJe5fRaVs92+a
-# +F8lvwRWNKs/99peRZ16wutK6LkHlgtIskW3eCddiKqdkMEDiLpYYDsj9nuAOS40
-# T/Y3iy9jefnuWf4yS5+O+El41S1wSWUeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQn8DEyalqdnk6gmy5d+210CeSPkjANBgkqhkiG9w0B
+# AQEFAASCAQBu8oDhpLrrzm2ibqfavLU1bC1XyiHcAGqIC5j47VpdDpiy4G1N2fCQ
+# Hu5AUwUQ6Oi90aCHxhZXO/ns7S6GVqQtNZh0KFHh+o5sdQznsimSQYoF8gKuvX7H
+# SIyGDhzhopJ901YlOcv0Ah4IFkVl/o/+OH9Ujic5KdPHJ5uokrDNXbpcfxylmrIN
+# 1KKZ9HxAP1k5N71D7HSJHig4vkrqElZmDyExTe+bMXm79C6lEq7kbaoQ0fcxQC3t
+# qDEkf8KayZj7QyZ7uW72ILQgQzWTg96pey2Mhy4lS31UIMQFyYFo4NIvQBxT8rIZ
+# tfnTRectXwZW0wWNs7ERreOv+6zHmmKmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMVowIwYJKoZIhvcN
-# AQkEMRYEFM2KZL8I7HfS6uuWwC655hzxfRgFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMVowIwYJKoZIhvcN
+# AQkEMRYEFKuoYIjPGDLWQ7ygtu8PozS2HUv9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBp/QzhktTlLA3ycTrQPKu93Q9vE5Uth7+XZ5RM1Nuz3LoV
-# xbRUguNjq/P2jgixDQLlnQ+THC6Y1ocywVLaF2h4SCS6UPfpDxrlW/I/m4zO7inp
-# wMQfnAgS9aKl/eomUGJ0KnAT2xmQSJwt7mMmPWJy7T9L+OrK4/btLVYKBfXSYX7R
-# ZBNewCClyWpN3AfSOsIVDze6LG3Rte4cwT9il7//lw2JFO/Wp66H7Dc/17Q9A7GS
-# FoOo3zoGYpTsoQoZ6APt+St8PK/syVs4QUwW8NBUH+OvzezHa3Pi7c2VcVBqlTAY
-# kuTpkrU2eWFUxSFUwkuoh6CtMOi4yJKDTZCuF+Y6
+# hkiG9w0BAQEFAASCAQBOOvVDHXVk9hik08LSDmbeh7KOZiJCwLcRgfOa1nEHIHJM
+# D5VWBWZng88pUJ3NWc1PmfYflQbPaIaNfzfnZd03I8Gvj9jgoTju+RMeEsLbbBBh
+# BaHZVlYB5BWrqpmSo+q+oZC4Yx5cV/s33dpOSYoOgw/kBnhT3Mh6LT4zzMWodJEz
+# O6tkcydW9i/x10jZo0zOXdw9G8w70JgQokNEtzt6h9Jey0gzgmqmvMjFedwtV4kn
+# LN8MW4bEqqMOWXnsY2eDxc9G8JN35NETUKzOHMDd4Hm4jPd9LBmFR+rAUSBABL4r
+# Hxhv1gCMlXr8VAr/TruGrugLV+98WgEQ0Mo1w5Vy
 # SIG # End signature block

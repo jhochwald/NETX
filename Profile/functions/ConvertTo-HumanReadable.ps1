@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ Function Global:ConvertTo-HumanReadable {
 		Converts a given number to a more human readable format
 
 	.DESCRIPTION
-		Converts a given number to a more human readable format, it coverts 1024 to 1KB as example.
+		Converts a given number to a more human readable format,
+		it coverts 1024 to 1KB as example.
 
 	.PARAMETER num
 		Input Number
@@ -71,7 +74,8 @@ Function Global:ConvertTo-HumanReadable {
 
 		Description
 		-----------
-		Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case) and make it human understandable
+		Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case)
+		and make it human understandable
 
 	.NOTES
 		Additional information about the function.
@@ -106,8 +110,8 @@ Function Global:ConvertTo-HumanReadable {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFhoKGhCYkbFfhSLUVyHGb6KY
-# aRagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYjg7wSnMHzq4VYkSS8h86nOw
+# CV+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -250,25 +254,25 @@ Function Global:ConvertTo-HumanReadable {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQIZVaRHtFwxijD1uRGVkpyAB1n1DANBgkqhkiG9w0B
-# AQEFAASCAQAOeGJGQEMrStx0GeBMkdrM3t/eO/xG7AJjeHUOO0VO66WSPAntQQTM
-# PJE4qXWktVAc8ohdBhfEHCqHhtBvG+PonSowK4RPd6VQyA4/b1A3C3g2ahnpL4Za
-# ZUFx2Jb7XSobmF7t/CM42ioSdfUeNWKM2pPComGqGR0wPcnEucLrcg26XhLNJuhG
-# ivmbwd9YuK6ful39p1ytuvwF10HAzodLm4J9qukUVmq5KrX+ldIQjhUK6cf8PpdI
-# nNhi1AkypJ5ChOm2+NkEayPZYQHH9n49HjTxMdIXGIRMZjKD7sCZAxkWOXYYMg/u
-# lpHB+0g8mQHD3ZOexZEpQ+htVdVBbOmeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTKPIGqLRLo5CqftDBCdTERKljwlTANBgkqhkiG9w0B
+# AQEFAASCAQAjhP/A1zwbKZpd2m71/RVDVaGvi/sxDpIaeLSeJvG220QiimjvkmdH
+# yw0KwokEJJG3NG7ABB8b3k+cy2AFuvrj66IjBJdw+5MFOoJiQXNl5SThtRBdRh+V
+# SDuJliPSNtV8vFlS1z+BRfyX16m05ks8LdfVNyf/zc4/Y/f6e35uG8aV8b/nkG61
+# 1z4cxpeE2s9M9aOlLThqKJjbeMKOMFtPFORKq6WBi8eWDCY0V+cvTcoWC5vfQeQF
+# Yg+1iiNVeXfZFLzlPfVCS3lPfpAh/2YWfXtvZS+canu13L9uGQcjrz6E+7zUUt4s
+# 483FFGH3W8pT3K8me791c7ETPD9KRJyIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MlowIwYJKoZIhvcN
-# AQkEMRYEFKUtREE79HEivFdC4j+5dZ4OzUaKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0NFowIwYJKoZIhvcN
+# AQkEMRYEFKc6MoaM59vTLdzYvWwFyoGlidPuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQATUzPA8cNAlI3lRQncdBkxwRt0ZIgiIkozjm8I+rikBK8W
-# wTzfL4r67V3btcuum7K9t3c0Da22BX5JJvw0EA8bAxypEGTWsbjER43mt7XJqEUt
-# YR/bfGa6Esv+6QHeUzZ6jaIb7QxhUAXUGYm3U8Dpbg2NDJiTklp7MqlDtHmVFktl
-# 8kVUI3p3XHdZBNaS4VE2s+/1ZFtq8pDSg9QfrtaL4cmpwTuI0eF+XNIry38JDF/y
-# Ua0YZR4sYz5OEwAA0apz+S2fXnNhJu1ODNqCqj4izIgE3qLo4GeslCOpZzoRX4ZF
-# UGT+yZ3KYOG6WsV/aXYeG04LL2IlJHvhF+SKttXg
+# hkiG9w0BAQEFAASCAQALUUBQVL4t2p2WzJBe7ChTGII03YOiO9bPWZDDqLyMASk8
+# lAI5Hvl7nnztYt+3Vqa5glfM1V5o4SF5VG1ZKONxOP/zCMhrIi15MJiV9w5dYJ0K
+# tRIAN0mwAwsaV30Ch3Ei7yw9ns2MCTHJXtXSKbsLcU1bvUz7jaCdumsyAjQeP3HE
+# NUNS1UtyK9RKq7NWu96HHfiqP/tTJ23WXMbY3Tt8i3In53/MzP+Ecj/mIk+vC5+W
+# C6KYiqay7tys4FmtIyvJGpAEClQyiv0deBskCU9ZxEmbxxkkJZmtu82n02QqnFIL
+# dy7A2zfrFVGbd2OhhD7OZBbAk+NXB4kib3JBNQfR
 # SIG # End signature block

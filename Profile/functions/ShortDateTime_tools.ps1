@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -71,7 +73,10 @@ function global:Get-ShortDate {
 
 		Description
 		-----------
-		Get the Date as short String and replace the '.' with '-'. Useful is you want to append this to filenames. The dots are bad for such use cases!
+		Get the Date as short String and replace the '.' with '-'.
+		Useful is you want to append this to filenames.
+
+		The dots are bad for such use cases!
 
 	.NOTES
 		Helper Function based on an idea of Robert D. Biddle
@@ -131,7 +136,9 @@ function global:Get-ShortTime {
 
 		Description
 		-----------
-		Get the Time as short String and replace the ':' with '-'. Useful is you want to append this to filenames. The dash could be bad for such use cases!
+		Get the Time as short String and replace the ':' with '-'.
+		Useful is you want to append this to filenames.
+		The dash could be bad for such use cases!
 
 	.NOTES
 		Helper Function based on an idea of Robert D. Biddle
@@ -169,8 +176,8 @@ function global:Get-ShortTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtX8HC2xPhovGA799sya+kcdV
-# 76OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeUxH3V9QY+Dr8sJoflOCiAhn
+# dEKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -313,25 +320,25 @@ function global:Get-ShortTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR46zJ3RmluparzQd21wLN4VYor5DANBgkqhkiG9w0B
-# AQEFAASCAQBBROJaM4CEaqTh/9VIJq8UPxx1eLoWadqjtTAGWC2jFbvik/AFtFag
-# Fy2n6ECyjCbbfIh6BceyQkWNhjfwu4hWfQjNsUO86tINv3Z44GsXsKPysCTAMGaZ
-# BLDZ7vTm5rtFj5bVhJvGO7yG4lBzCdnqsHLiL0CtJXnw/PV/nsmDGh1ylb5ayYm3
-# kQX+YbBMgXACP06pN9d3GQzyCpblUwo0pzEhlyXxkjp9Mb+kSmW23Fs2KmZcpExr
-# 2tJOfQN7YhOmfL83BFsDAg+sSWY0wDJM9e1mD3rzBFZf9ApD577DEQNOinA+r+Tn
-# CwsZDd4Kv2Hmvo/zdnB4D+Kj6P833HrAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRiFDgkh53Sr0k85IxmGhGNTkq79TANBgkqhkiG9w0B
+# AQEFAASCAQAPbDd1pgVHDaApooqL/FumpTaH4xsYHB3Avok0Wvd/LSDh/hHviJJZ
+# jFS+hoyT9ByQKvVLjsaOD2MPXCGAzdUwjgpr/S1Z0M5mvefN/xMONKtKC605/yGm
+# 4vC9kzsgHScxIKiv/4Y5Lr6+fvgrZL7zX0Bo6UOuos8/sqrKMAZWJf+3MGuixzT1
+# U2Jwrl9cb2WQGjual7Dl/lUUkkFS2bbYJ3JRZVIY9kkbfzvC+j5ZQsD7+sqybbwn
+# EXzM8fAeDAkZlk3Kl6agsr4pIo9J2345mH7E9vKfNKSiCty1dNNE9Rbyyy1n7i3w
+# hNIhue4UVi1xVEj88jz1gp05BF2X3Z7LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNFowIwYJKoZIhvcN
-# AQkEMRYEFMBj0wym6Qk1CVzOoZxadR3/BGq+MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNlowIwYJKoZIhvcN
+# AQkEMRYEFANAw2sJfLpQXpfaquTXP7OdTT2rMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBPh2x3utQSeR35d42JeuOwuvZm/zmO6Ev/p/Mg+YSaH/RD
-# zaX11qzhzs/+tuWfRKHoy/UGtBTejk1WtXQTDnFODq/jQTwNtiLub9bioi66u0D2
-# POrzOVYSUs27YSXV00Z2UMce46SbryUnWFJMA04cIC9wxaSWnUIoyaIVFGP9wPbP
-# TDuKWwhLwx+Pgp74tFpPDXYcHm5FKGO1Npptj0PbFIB+O1pB9tRe126aP4UwXutw
-# N4c1+mQ7XC5967dXJsoPZy0pK5s0IeAaXjWQJKJWvPBpgAy8zcBXwZMYgirCf6U9
-# pt/DNYNZo9IeZ47uPDvnO+oV0EW23FmXWDjHmq4X
+# hkiG9w0BAQEFAASCAQBqOi+jHdKyY7oGpGykQolI9gOykt7YmyCPdQOtLx4+p6LP
+# PTMdjY677z/5qwFjL/CDS4+lvHNYhaS63tbgH7wNN+WOr2vw8A3lWULSVnty3KDc
+# FhJYg98BURLBECVJqHFhAAtKr99bHfH/5ZpIMG1ZARHEmDAiKuy3EavaLh1+mpCB
+# c5pdjHxpQJGIJ2QraiVsDStePhSDs5hjRbaMkbhOLk6U2W/f6rxy1RpbUchBXZLL
+# wznizJgjXH2kCXGOnAb3RuFkUvrT9sWhyKGql01FxImwbDUfYMSeDvYhxcdhk0aG
+# DDXcBLpe86YWzjyAKuLAFf0tNFbbLV61nAKRUTqz
 # SIG # End signature block

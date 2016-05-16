@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-03
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -82,8 +84,8 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUS7LY1n665rzaxtcAznbeempr
-# sQqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU92AneMIK4A3eNSshXyXzSeqo
+# ZVGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -226,25 +228,25 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQqcwFJZXU3qYf9pcf0U9A2kurg0TANBgkqhkiG9w0B
-# AQEFAASCAQAlYhFRpCapdK0U0+d3h26S6qHAZpQXQh7UoGd7lJlKv4BLXFWHUwir
-# tbdqgT1QXp8rJs3L1E8QN1sk1xtMWjEGm8s67mpiqzd1GYThypu/8axl/T2IVGlt
-# 2JzvR27UXUJWgrKNIJqO0aIrSAG+AvdKrLNefjsNULWVSLaR1+HrdN+EOHOLZtmp
-# mbd3NPlG6S8Yc16yuskGaevjRn0ZbD59rDHcRFDik8yel82ZcE6ghpUoYB1qzHfm
-# 7G4T+IxEBSnbPB/wu8FDXI/noa/kjEvCT30IyrwO78lqyfJsc20hqyiMK13kWD+s
-# uDB78ZqOJpf4S+3RLrWiIvWwBZKsQcHBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTUTyREO6p1epsdFpu0/qE2lKPv/jANBgkqhkiG9w0B
+# AQEFAASCAQAeT5LrF8BATO7pYplhMIhA6F3P08gKlvYGqzse0aEVXFBSZAIPFLmC
+# /4LjNrx7idftKIspRUSJ4ojVmQyy6dU87bctdX+xLJqaemu9yOrZNw39lWGodvfm
+# TvKYD0eSna/aOMo3ng3kWrRdHrJKNvxF4S9Sc531T/q0HwusPDI/aUZfQdLjzcGU
+# rPHIPC2BtScPcD4f/lvFLLFB0X3bQX/RwHKeaIhlnMqcPBVlxVvSmn06vmoWzbKV
+# jIp+kMKnB0Lb4A7HRP9oxWtkpXVn+/PDFridd8r4pFiQit3zb5vdKfrA/M7MwAm/
+# FwoszbO+m7dnu/ecbsfN9tdWucBiXLqioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MVowIwYJKoZIhvcN
-# AQkEMRYEFLm27lxEUW9VItiJz98Ve4OzDDREMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0MlowIwYJKoZIhvcN
+# AQkEMRYEFOfZGJ4npW8OwTkoCSLs4ApjkwPOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAnI+VEjo7t620U/9B0x4pE4v0WmiMXIQjvGfRWjEJjcWBD
-# /osiCE3YU67ZjYi8dZLVwNXw7MeJ7FGKbnDQEvwmbRJtguhcmuDZj+s0DVbQGG9O
-# hkLxk5fibR7JbPj5DOaFC8peRtyCdIZJ9bw3Ikqdqwg3kxoUSVSm5IViX2XHnM6o
-# RlGhdKxBzBCcfkJRXlnkPD/9qXjqqJcx1InM4KNhm65EnlbM33FZmjd8fKBc1Xld
-# b5YoN+27CHD9LldQbMGRvAdItr2dpHOI6ZOGlYQLAjXjy6V1Si2sVII7Cak9aEMQ
-# tHWYCq98M218W7HbL5QBDNoE52vg0sAeJ93a6ta1
+# hkiG9w0BAQEFAASCAQCvxGlwmtmYftfr6gfbM13BRQqh9J09w9bW9PQEOqltpQYJ
+# Plvc0YgmapszytA9TCIdEgATwz7YLMpnIq9HZ+VFVZFo6E9PjLKsoQB0YyevuLvY
+# kLMk+zXmy9vhCAqgdsj9XNR7/jmyK19n0LMOQFsj79PANgUMwSK72eP1B6ZzBPX6
+# xtNLfjabQo8wRVbz8LZ7CMWrT6AB0nBqyWOlY5Ob9L+W8cVjDtGV0R+oSX5yS4bW
+# C5US4Uz51bXVy7beKaYatPcQ3+BZLs7nKkGf8G0DnaAOt/8/Jh2IAfTQDmISUC/0
+# mPW14UCy46FOUAGYMj3+UAxVR1Q/NuD2QoH8imXa
 # SIG # End signature block

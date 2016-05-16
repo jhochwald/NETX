@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -54,17 +56,23 @@ function global:Expand-CompressedItem {
 	.DESCRIPTION
 		Expands a compressed archive or container.
 
-		Currently only ZIP files are supported. Per default the contents of the ZIP
-		is expanded in the current directory. If an item already exists, you will
-		be visually prompted to overwrite it, skip it, or to have a second copy of
-		the item expanded. This is due to the mechanism how this is implemented (via
-		Shell.Application).
+		Currently only ZIP files are supported. Per default the contents of the
+		ZIP is expanded in the current directory.
+		If an item already exists, you will be visually prompted to overwrite
+		it, skip it, or to have a second copy of the item expanded.
+		This is due to the mechanism how this is implemented
+		(via Shell.Application).
 
 	.PARAMETER InputObject
-		Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.
+		Specifies the archive to expand. You can either pass this parameter as
+		a path and name to the archive or as a FileInfo object.
+		You can also pass an array of archives to the parameter.
+		In addition you can pipe a single archive or an array of archives to
+		this parameter as well.
 
 	.PARAMETER Path
-		Specifies the destination path Where-Object to expand the archive. By default this is the current directory.
+		Specifies the destination path Where-Object to expand the archive.
+		By default this is the current directory.
 
 	.PARAMETER Format
 		A description of the Format parameter.
@@ -183,7 +191,7 @@ function global:Expand-CompressedItem {
 		}
 
 		# Show what we have
-		Return $OutputParameter;
+		Write-Output $OutputParameter
 	}
 
 	END {
@@ -192,6 +200,7 @@ function global:Expand-CompressedItem {
 			# Remove a no longer needed variable
 			Remove-Variable ShellApplication -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
+
 		# Set another variable
 		Set-Variable -Name datEnd -Value $([datetime]::Now)
 	}
@@ -200,8 +209,8 @@ function global:Expand-CompressedItem {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8j4xsQRfhPXCPTNrjluMpqFR
-# BsqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo6dsyrYHP2FJvVsJ1JYG6zXx
+# CaqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -344,25 +353,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQnGLnN4XD6f3yGfWwpJZK4eckhgTANBgkqhkiG9w0B
-# AQEFAASCAQCotLiQI9Pt1poz33dffCOTBGR3tA/Vgpg+GGUxwXZER4nlUxyMfs1y
-# /K5Ph3oVpLdLPDx6x5EpoV6YhS5vyIq9DDKqDdHqDqoWfctgk2t2IvkSizWtNtp7
-# TZ9dio3Recfx6o9olTFki1ahnL/2CnVob47yV29U1dQdMg3tWL8iQoQ930IcTc30
-# 4XroZEcloma8+hQOnHYywu3j4RUeaabDF0Q/dzlo6kFy4ys90tkHIlmopJhmTdVZ
-# uFKZeW2KiEWJHET4F6JelqKQcSfWLDBKuAtyD7/1qLcoDqLope7sbrZORLwlTQwZ
-# vQNpXHWOQAaFUjUQvXYicWNENOQe7tmZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQoZU6qXn+uxUohiBTYeQ4epcqH1DANBgkqhkiG9w0B
+# AQEFAASCAQAHaEb1IkwPIEcCUM4EqLH6nO+thrLKq6FmmXy5sHDfTWBYzUJJcw+s
+# uOsGqrHcspjVYrwvuWfGjLZHDX6N5mAvgJv0j5J52YX4KBGEsc2bH8slSDYleqnE
+# hSGXez0oPtmCNQqnOEXXOy/YvwP0xFIzoyXQK5+GsAGa6zEcNDCZJRBzvFkbDlwC
+# gZ2gu+jELXXFfRmzXXICymZ4F3FUkfV28Ri9nJuDL3baMPpx1dMbVwJZdgfsPFp7
+# 9uDOd5AigSxg0r9YUpBYHa0lQ40wQEznNhbA0E9f3QdoT+bXTq9PM9ZZGwtAbv/V
+# kYWRXbHVyjL33WzOfm536GVAje8aQpUtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0NVowIwYJKoZIhvcN
-# AQkEMRYEFEma7CWtfBOebP383aQ5rD8Bq/ljMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0OVowIwYJKoZIhvcN
+# AQkEMRYEFEngQZnbcvsDrUTY4QxHmBQ0Sy9DMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBSkM2NsS13+cfAVUaJlis0AzwrCXDh8fpO7bzLij6mFtNy
-# 5laNDS0kMM0jSBkWIAvn0zyNgoUOkXq7X+UFAlpriF55/XGUyxS2KdGuHcvZXg0T
-# 0GCYYaXRqPLAfOfhXAkG1eAbQoXmSqIu+DuZr/L3W80r3207L4gTyr0Nq7W9avcD
-# m9Nst9sUOBJwkZd2P4CExNIVWIJXvERM3hmk5S4eMmp+nKVOvQlSJ4ANCCereZzk
-# vCLUWdJ8Lme+7SNLK+r6bSlF+sXIl1a0pCsdONlyf2ubudfhWtrCQGDiGEp0Lo4c
-# eV1Pam17GzafafqWlhsPmcZZVnLRL9/YZsAn5D/V
+# hkiG9w0BAQEFAASCAQCj27JXhPtx5dwzrbA0RtXZWLUEHXPJhWPcXAiDevpPKhgI
+# MXm951OIcYS18yh6Mpl3dZbBVIwpFnILLmVER7ptmOBggq98JaAnn2lUyETmXT7l
+# zR6VBXQ5FZG3fEnlqVlL7NA76RfQxxOR3ECyfQ9fsR6mg+BW6SZcKR0xYcnMywkP
+# SCJ7RFYK/OKj6tKcEJ/rflHk7AoUdOyvEUDPoP4pMenstxDdu4S3TbYmhr1stLnf
+# AVZm1QxOoY0X9eWi5ogqIbZBfjWZ8JziY4ksvBMNE84E1Bttzhdgb8KEeIKs/M/8
+# ESfOTnEmu0qxmP2J8HHaFwSxKdynB2LtuJNUDufO
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-28
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -60,7 +62,8 @@ function global:Reset-Prompt {
 
 		Description
 		-----------
-		If you modified the prompt before, this command restores the PowerShell default for you
+		If you modified the prompt before, this command restores the
+		PowerShell default for you
 
 	.NOTES
 		Just a quick helper!
@@ -128,8 +131,8 @@ function global:Reset-Prompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6/83ro4QBg41aMOqI3P48Aom
-# xLWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKcDWG+BvMhyI+boDhWbJdKrx
+# ZISgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +275,25 @@ function global:Reset-Prompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTcpGAhKNq5w7vd+7U0sFizBbd34zANBgkqhkiG9w0B
-# AQEFAASCAQAAeWEcjCpqVTrTjl5Eoi5fpOvuCgVmXFeWOYXk9RGPUNLgEU8eiXm0
-# kzlJXwerki0ZhaaLuaVsQb9Hmf8Fqe31bsw8BeRoCMoAdYe+Bu+D6+UaUk5gfeH9
-# qhvWxqG2qvu1Mm4pGFkoB2i8r4WLwhIFDe0Bfq9hjYFvhyXfmKCh1fMbEJcipta0
-# a7zHApphRPd5G+YKSCWTSaqKA3495QH1h/2Fu0V473njcV2n5Sf/4+TKjbTTLkrt
-# rC1ncjIl3VZw77Yxk1w8dZBCqbN5zbb8muKqn3V7vki/lyPkKRFRPP9gxAgrXPi6
-# Z/qQN0THdGwyD8/JKGGmApDfJnezIAIToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQdh9s8CyaI2XY1xWJEChiBSGs2qzANBgkqhkiG9w0B
+# AQEFAASCAQAJOm6KxyJDS1GbCoDW/7g7Pk+EO3RDBudFA8hfTKYRoqQ7eznFft73
+# Ylh4AgIt7Xt1gEElC2nJODEVoa8p90s9OJqImzx47sbAp6osrLCvRCYGzh0LWcbg
+# +L31b0e1TZRWpMuXcQ4ve4CBnSbZb+9aSiQmRhiZh98Yvu84YF94ZGmIiL5uCQ5i
+# yr0C8pz+FOHUMAXz5ShDr18YJzNWOGB6j5zDFPmyVRTOOXGVrfT64gG8Di4RYQbb
+# k+wtv6sprI6BFatQIXvO6Sr2V5sYDMf911O+ebczAOIzOnRdA4KRS2mMbp61FzGU
+# 9DT4HU3xkZJDRNgv3695tm9R/QiGXfuBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOVowIwYJKoZIhvcN
-# AQkEMRYEFDQzmkGPdAvpCS1cgnzqiBeDGNOIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMVowIwYJKoZIhvcN
+# AQkEMRYEFNOAHSidVINsyZI/oM37mXxS5g50MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAHVoJyVLYhQJizonywa/aQc1HKGqi6cTiZZbGW/oSvrOba
-# uhmOqwsdno+GtDFkar1pZH9VOhU2sXGk+hwRL3NQhWA6cklph+xYi1n8YG0e3pD7
-# x+GZhToqSL8YGCC/Om5/sZqPsWKIRFhIeHU9REbGwxqd+FJKeQrgU8J1P8vqyDSs
-# KK91twhpLSjDvoMGUOdx5o5BhX2OItI5X9KXjrLV5PYZGpUIPXKpC7YgOY+5R4J7
-# cngjL7u4oAiXC3u2xhtZSkm3KXsIGUMmMk7yXwftH4H3NGOiP28V15yTU47QCqas
-# d2Y/Xl+lD0N8y3Gw3bh7Bzm+UnDF1euVXaHYpVBh
+# hkiG9w0BAQEFAASCAQBk6R4OPx4qsaKoszVFhnw9u9y5moFOx+r1wR/9INtusqDz
+# GU9koaInaHoWV847pAGMfY87s1BxpZ1IWSPgbacICEVit0bEKi5MMBhAC5KIRAo4
+# 42f71R19lxQRpZThu9scMirZnSDijudaj9ZYIdN7zYvv5m20e1TlHp4IORuRCnBv
+# E9uJs6Ps70YUu2S228Vnv9ut9Xe2/nP4LyJJLmuIKFiN7tVCsf57UinZifMIkuuA
+# v3Za2kQu478yWNFRU4GMSxA/0TjFfHaqGC8Jq0HNnpypNk1zlux0b3U4KQM2lYKG
+# ZmCABAL4Dm8E0CGDT5zrYZEcbxpCaGCX3YOujSw1
 # SIG # End signature block

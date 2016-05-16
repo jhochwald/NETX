@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,10 @@ function Global:Get-EncryptSecretText {
 		Encrypts a given string with a given certificate
 
 	.DESCRIPTION
-		Sometimes you might need to transfer a password (or another secret) via Mail (or any other insecure media) here a strong encryption is very handy.
-		Get-EncryptSecretText uses a given Certificate to encrypt a given String.
+		Sometimes you might need to transfer a password (or another secret)
+		via Mail (or any other insecure media) here a strong encryption is
+		very handy.
+		Get-EncryptSecretText uses a given Certificate to encrypt a given String
 
 	.PARAMETER CertificatePath
 		Path to the certificate that you would like to use
@@ -71,7 +75,8 @@ function Global:Get-EncryptSecretText {
 
 		Description
 		-----------
-		In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
+		In this example the Certificate with the Fingerprint "XYZ" from the
+		certificate store of the user is used.
 
 	.LINK
 		Get-DecryptSecretText
@@ -126,7 +131,7 @@ function Global:Get-EncryptSecretText {
 
 	END {
 		# Dump it
-		Return $SecretText
+		Write-Output $SecretText
 	}
 }
 
@@ -136,7 +141,8 @@ function Global:Get-DecryptSecretText {
 		Decrypts a given String, encrypted by Get-EncryptSecretText
 
 	.DESCRIPTION
-		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText decrypts it to and human readable again.
+		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
+		decrypts it to and human readable again.
 
 	.PARAMETER EncryptedText
 		The encrypted test string
@@ -148,11 +154,14 @@ function Global:Get-DecryptSecretText {
 
 		Description
 		-----------
-		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText human readable again.
-		In this example the Certificate with the Fingerprint "XYZ" from the certificate store of the user is used.
+		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
+		human readable again.
+		In this example the Certificate with the Fingerprint "XYZ" from the
+		certificate store of the user is used.
 
 	.NOTES
-		You need the certificate that was used with Get-EncryptSecretText to encrypt the string
+		You need the certificate that was used with Get-EncryptSecretText to
+		encrypt the string
 
 	.LINK
 		Get-EncryptSecretText
@@ -196,15 +205,15 @@ function Global:Get-DecryptSecretText {
 
 	END {
 		# Dump it
-		Return $UnicodeContent
+		Write-Output $UnicodeContent
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTDC8nafJHIWXCThuZu3Vadxz
-# uoGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9Jx4PkmU9kjYuzDqBoJtiLlv
+# ZHugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -347,25 +356,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTlmOxBQve2mJUHU+LqPZbNQrN/wjANBgkqhkiG9w0B
-# AQEFAASCAQCAyYnf39YCmGG2MFbKskaRMGBMVx4hIdG1hT+IsRvXPqo2HNTuPuIM
-# wJYIFpQLGkvPeywOyzi4mZASib9yMx6AfXO2zmFW7etOuUZFMGiJL2zrfJCp0slG
-# k3j2L/Qu+4dEUal83WeSXY19qkh2ERIQFgNahdxebPvGgfHt/DDCUKo/d1SAGLQ2
-# PvM9mydTrVQVdZVzlyrJeos1TpE0f9ziD3wTHRVwhsT2CAItrPcTgEXb7xRxdPze
-# 8NLNzxMTI9SU2S6ggj/jgtNIcK0fTT2/MD/w/dgk6mG/W5DTwpqj2xFbgJFMxKkP
-# S08rtjL9psGMvM3kintAEM5QbPmaEj8goYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTH6N9TqOWAJhc9sS8XWzEZbmxCkDANBgkqhkiG9w0B
+# AQEFAASCAQB8NW9xxWo56FMMZZdZCxnJUcXZj5spIeRv78lpH+wNvL6362pC0r3Z
+# wkwCh+6EsbAdIz93+jIl7eAf33ds19YG81qwtn/vrC/WK4deI6GMRNC6E6sJDysc
+# 255tfcUbwJOLINcrw3CLVyIoIFFnXQLaDobavGeNLVhvM++csgMaY22618lJINzI
+# Dj00XybhTk8N9Z5t3hdbY9sRp5Za/HL5xZekXHHLxoNKHG8HEARrXRMqWbUcc4sW
+# 0g/mZf/uid/3gBW8Y8QpQlc/W0euKK7mVmt7qeyPXOfLPwcHVhJR71fl6DXp8n0i
+# 5tc1DFWgL0QSzl/O/I0c3NbCtDzS/EqdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMFowIwYJKoZIhvcN
-# AQkEMRYEFBR46lk7Wxt/+B1bHY9gYcJYJOzbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMVowIwYJKoZIhvcN
+# AQkEMRYEFIM0wdrePaNVvxIEQkLBxO5Nyg+5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA0a/Ie0uY93f7R4P3NByZyi0yTu8rzCglEW00TSFCvL/Di
-# 3ERk3Rc5jGUdpof+oRBgZcaClZqSwrKXo8nxIOwz4t3sZF031e8YU7Kl4p5b3ZkG
-# DmeGbmZ+W/3IYQvbI5IrQ/hj+IHEQpxSzxF7H8nbVbOyBQTxE6Z5tKFtK5UXnWBc
-# 247xuj9Kcveh/HWJCXHMdT3lzPWgSE74pQLvwcNUdKjdXDd4Llib7mFHysvpwAKI
-# ccJQ169raff9SZETwht7Lfh9q1mDhzzGQv5BCvwc1HWF76DIKNczEcsufnFQ62jq
-# Xq+TG3lFhZ46HmL2Okpu57l3WCRxfni2NgaHNKsy
+# hkiG9w0BAQEFAASCAQBooRWL4zUZNLKooKHWgQ3B6mJ7+I1a4mcf69H2Si8a6U+4
+# yG8TRK7EY8BY+8ag0FEhnqc6IyGx73B2tDYJ9WlerRbQxXmlNur0AnX9da8MgVRz
+# jKPvEhado+T9qJfn2hXijm5UelOqCRoEXC4lf+nDycfHdH5TqtFNFMIrAC9OaVkP
+# zQZtYSW76SKjjAXQ0NOn+R3K0plqpbtMKJ9oINFLyUXz5jkymMxeA/fHGQV3uVVJ
+# Ch29D+45fCBVEJS8HDl7vNUM2tvi6TwLKDfFNtevld5y47Gs1Yn0v6Zi51Xwujzv
+# 9i9SvIZA8zqMBRBU6X1AlI5MPI8ZTXSIp9YYgLlR
 # SIG # End signature block

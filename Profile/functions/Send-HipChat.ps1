@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,35 +54,51 @@ function global:Send-HipChat {
 		Send a notification message to a HipChat room.
 
 	.DESCRIPTION
-		Send a notification message to a HipChat room via a RESTful Call to the HipChat API V2 Atlassian requires a separate token for each room within HipChat!
+		Send a notification message to a HipChat room via a RESTful Call to
+		the HipChat API V2 Atlassian requires a separate token for each room
+		within HipChat!
+
 		So please note, that the Room and the Token parameter must match.
 
 	.PARAMETER Token
 		HipChat Auth Token
 
 	.PARAMETER Room
-		HipChat Room Name that get the notification. The Token has to fit to the Room!
+		HipChat Room Name that get the notification.
+		The Token has to fit to the Room!
 
 	.PARAMETER notify
-		Whether this message should trigger a user notification (change the tab color, play a sound, notify mobile phones, etc).
+		Whether this message should trigger a user notification
+		(change the tab color, play a sound, notify mobile phones, etc).
 		Each recipient's notification preferences are taken into account.
 
 	.PARAMETER color
-		Background color for message. Valid is 'yellow', 'green', 'red', 'purple', 'gray', 'random'
+		Background color for message.
+
+		Valid is
+		- yellow
+		- green
+		- red
+		- purple
+		- gray
+		-random
 
 	.PARAMETER Message
 		The message body itself. Please see the HipChat API V2 documentation
 
 	.PARAMETER Format
-		Determines how the message is treated by our server and rendered inside HipChat applications
+		Determines how the message is treated by our server and rendered
+		inside HipChat applications
 
 	.EXAMPLE
 		PS C:\> Send-HipChat -Message "This is just a BuildServer Test" -color "gray" -Room "Testing" -notify $true
 
 		Description
 		-----------
-		Sent a HipChat Room notification "This is just a BuildServer Test" to the Room "Testing".
-		It uses the Color "gray", and it sends a notification to all users in the room.
+		Sent a HipChat Room notification "This is just a BuildServer Test" to
+		the Room "Testing".
+		It uses the Color "gray", and it sends a notification to all users
+		in the room.
 		It uses a default Token to do so!
 
 	.EXAMPLE
@@ -88,9 +106,12 @@ function global:Send-HipChat {
 
 		Description
 		-----------
-		Sent a HipChat Room notification "Hello @JoergHochwald" to the Room "DevOps".
-		The @ indicates a user mention, this is supported like in a regular chat from user 2 User.
-		It uses the Color "red", and it sends no notification to users in the room.
+		Sent a HipChat Room notification "Hello @JoergHochwald" to the
+		Room "DevOps".
+		The @ indicates a user mention, this is supported like in a regular
+		chat from user 2 User.
+		It uses the Color "red", and it sends no notification to users in
+		the room.
 		It uses a Token "1234567890" to do so! The Token must match the Room!
 
 	.NOTES
@@ -210,8 +231,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUh/DbPVmpynb3QTUfLHZG7yHH
-# nomgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZhP8bXoc76+M25vH3liPID57
+# DKSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -354,25 +375,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTJJYqFNuMpQBoWQ3zOfS6EuLnEYzANBgkqhkiG9w0B
-# AQEFAASCAQCUO8UjQvk3TfAugx5ULgEHNNmF/Kw9/j9zX9wONNwZZZ983SmHbHPF
-# Bn19J8YuNa26qEb56fIxroSc5Lhw7reufE1O61xwvn1/9pfg7aHbeToW83Heu1Dl
-# sLhJnqgoz5HwN53Mny4lxqzPLEsyC5kmgYUX84e6wHraWTzswgkhAtyhhl1Iia9O
-# vIVti8OM8WX9gKoPALpJYZz/t0sNTvWIk5RfkpiS8DnmCIcqRgyd0J0+OuWvWf2Z
-# 3A2hF8bn57vk+7BFqWL2C7RbM9EL7A7BQEVaQO4orbk5gDv5dl1XP3kpE5am/xpX
-# QdSrr4/v0z7G+aHmfhrun4avUrtUvKh8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTig12OywXsrNgyagyrKHbcl3MaRDANBgkqhkiG9w0B
+# AQEFAASCAQBbayfg3Yp5d4mXQRQYkOwg6L/95NL9WRImJuyinuTW6QOypNoxEQYJ
+# fKR4i0RGNDFmzCOJYzaoDouipXlmmnAEJUU5HEOC1SV9ljAAowIeWGeUArLQ0rDD
+# Tnzg0beErY4jJ64ICKnqRRr2XW6ae8PDGahG6syECCPpoYq++PzU3dQ0g1XDacCM
+# yqSqUnIacwrVaHx6T7JQNGA51u7YiGVeTzKYpZpr5xbTRxllPKqv1khSWkSGjpF5
+# Ihi5xkvnulawoGSxYgPWDgfDC2ZN2TVK2z0efua/QmWXOpdDe2xr/RbW+PAAf/WN
+# gc1b4JhduFFWytv6up/EqByu2EgoBYf2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMFowIwYJKoZIhvcN
-# AQkEMRYEFF6SOi/311lZbVdo7Lj1vqwqvf8rMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMlowIwYJKoZIhvcN
+# AQkEMRYEFAj8LU1Y9+wr2PHoXKGRmuop0EriMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAetdYU59vsKraBPjdfO8OWfDXjTzMO428XwLSNMxdv/AHQ
-# 5RuHsVLPVV17ot8OI0VV+X0+bncwcZuE5in0FSoVlEJwWXJ1BwuWNLR0lmWcPabM
-# nYQFBhK6cfVdJdlCyrLy7fPb+WEwuruhb5Eta5zFT8uCGG6Omn41MBL+sA8bHV19
-# rFCBVmdYq0kYYrFXKHkeU0Hk/DbA+7FdZS9l88k75NfGVANn6rSU2sQS22ZK6bGa
-# K6C2TeNR/IbHMJjXvIKbqwigJUuM1j21Y0PdktIsE6E4siEmNBnq5Y3lJUbIZU8a
-# fpvOkudLXi5xo3nwlKL6RMtrOU0CPth+Ie596Qz+
+# hkiG9w0BAQEFAASCAQCZoxwWlT5EnMYWK7GHnWySnpLswm7mZvCM6H3L3PcPtNqt
+# E/fG6cIhNkN4uiyRLD7sKME6Olc2TwrGk/VJTY0aR/t/kJnqImK5/kf+WG8EFsOG
+# Uv+xb23edhxzY3vjaYBwAc5H4pqPlXN7/3WQWJee70nINkZ9XBPgbCsYmIsOQzO8
+# iNnkKtibsY/vvx9cNwHIUoshPfhL1aVMbR2tq4TKdFHFyovMnjQd4s3WiQaaTins
+# KJluNsoMvE5TKt6RQyNeBBl36FpUkrUEvRu0pszJgsM0R/6AJiW4EbU8TAvcBe2K
+# DzPu8TxaPHJ6Swr2QzMTb6pfXapMKFYn1F14tHZb
 # SIG # End signature block

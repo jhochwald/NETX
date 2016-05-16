@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,10 @@ function Global:Get-ServiceStatus {
 		List Services Where-Object StartMode is AUTOMATIC that are NOT running
 
 	.DESCRIPTION
-		This function will list services from a local or remote computer Where-Object the StartMode property is set to "Automatic" and Where-Object the state is different from RUNNING (so mostly Where-Object the state is NOT RUNNING)
+		This function will list services from a local or remote computer
+		Where-Object the StartMode property is set to "Automatic" and
+		Where-Object the state is different from RUNNING
+		(so mostly Where-Object the state is NOT RUNNING)
 
 	.PARAMETER ComputerName
 		Computer Name to execute the function
@@ -70,7 +75,8 @@ function Global:Get-ServiceStatus {
 		List Services Where-Object StartMode is AUTOMATIC that are NOT running
 
 	.NOTES
-		Just an inital Version of the Function, it might still need some optimization.
+		Just an initial Version of the Function,
+		it might still need some optimization.
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -112,8 +118,8 @@ function Global:Get-ServiceStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWXe+unSH6xNZ+nLw8osq1yBY
-# /7ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUul7JaRo9Z60pIglN2mNr30BE
+# NPSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +262,25 @@ function Global:Get-ServiceStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRA7Ht0D6j2pE+H0m1IJnyeanbeDDANBgkqhkiG9w0B
-# AQEFAASCAQABSh/klLxLmnAwp7DARVDkXBqrgTcezMKp5ErX1+XrUuDwlFFPr8Yj
-# w9bzF2QlfiVo2hDXnYUgy5Y8LekG/FwGR+z+fe19kEbrQnwKCUoeHRByO+evuEKL
-# pV36wnWv/iG0jrgRtLsAjgHcgl5ygCYrLXGyAuuNBhbw5F8UgueTauoqtBjVgLjC
-# ABg5r/Nothxz1olv5jW0rRXDwVJPXFf1R7Y7M19oUwqmy1c1IiG8RNajQ0FWGgfS
-# wwqjpiS9TeqxbiBdHbe8+qtK+1cB+eCc4rJHYV37cHDO5E7RkQGDRQKfGXXHWamG
-# hZMD2rVoCFOUCBwBe7qP6DBjiO7NolJdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ5Ocrfpg9tlIF4sLCYGMxq/nxIoTANBgkqhkiG9w0B
+# AQEFAASCAQBRD0uOmH9lRzIjmZcdKqdtq0YqD0viH7Htwb6AoVLChbohsGT4mZfO
+# 2jFfUDv9fl4wyvOS43MCMRcv5cckm3WfjzW/62t4Hogo4nyGAVsAQSOeUn7VpAmY
+# Lmbon0ttZOyCM5Azxeu1lyc+OZxX6M5corfsghzKlqiwF/nOh3P4M47Z1KXAcJbE
+# GLc9d2zCs5tSNmDqXlzfl+5NjWRxC/Q2kcq9q7BOloxAX+vKGIr4qNq7oNcLG4F3
+# 5Ote5m1oPIdLEYAQ5zgFCQ56Sdx0ILHCLShSu+MyLpcW6fxVbHqPJOC+3VVpGUFs
+# U5bvjAQMdP8mzQvuC4e6GrAj8SBPKGIFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1NFowIwYJKoZIhvcN
-# AQkEMRYEFIb0qTm/O5NM7WpNPup//0ONKglTMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwMVowIwYJKoZIhvcN
+# AQkEMRYEFNbqggfojEcDYAyQJvn0oCtKSemkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCRWejkUpKZvP5lIdmBgsno9oi2trsnRsNHKRnlfgO+ij2o
-# Kt6MUlT6UmK3ef7SM3dnOKz+8RCl3QEXpZceM02dqYG5g0VjvXZ2WH6pqqWrldI8
-# roqhDqu9F+nVLWDkjJ0pW5VW8ubvNlA+qcNBI7Q2JUTvNhYl3TSAx15jMh9foLbq
-# X5jjWBXGb5t8Lie04wHovprqHh+8bCoqldaViUJwtX1zX1pwaiEfQ6PUSit6NNgH
-# qJj3SMxhR1LPev9vV1Nec0+Xx7TVNu5FA+Ye2aiVn3YAtIHOLQPmuz9ccpcLC6kW
-# IG1Plrg/pCptbcsc7d6PrRFjpXABuVsj5S9vB9Hz
+# hkiG9w0BAQEFAASCAQCR+FKHKwhDJkWBWYV1d6hAeX1dkYykVLGtoKSpJXweH8uG
+# hpBir8QNlDV5CwKQLNb7Viytu9Eydb0oqJoaQyL+/Wr9OD9eaVDuoZQvo/G+kJMU
+# emBnQAQdKCovIlsOJlyMM9Kczbz+CMBqUUMXYJRbEYM/SMQ13y4imIHz5EqaOGT3
+# WVLyXr4zc6MFguFa7YvowN3Qz1VY1qMjZq+nJiVDGvhsf1l0KJPspAVwJFmm0Vke
+# MqTQ0/quWa/I7MH+41pAhOZUItToxC9jVMQd5EtX+BQ+cRdEKmXYERmX+Y/VL7+7
+# CPDHOOD0vPLSBPkdXOcWVwgKTgaCSV//DEB25DMR
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,10 @@ function global:Invoke-AnimatedSleep {
 		Animated sleep
 
 	.DESCRIPTION
-		Takes the title and displays a looping animation for a given number of seconds.
-		The animation will delete itself once it's finished, to save on console scrolling.
+		Takes the title and displays a looping animation for a given number of
+		seconds.
+		The animation will delete itself once it's finished,
+		to save on console scrolling.
 
 	.PARAMETER seconds
 		A number of seconds to sleep for
@@ -80,7 +84,8 @@ function global:Invoke-AnimatedSleep {
 
 		Description
 		-----------
-		Will display "Waiting for domain sync " and a small animation for 10 seconds
+		Will display "Waiting for domain sync " and a small animation for
+		10 seconds
 
 	.NOTES
 		Based on an idea of Doug Kerwin
@@ -126,8 +131,8 @@ function global:Invoke-AnimatedSleep {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURmRShqYh+YQ5EJVmMuS4sKCO
-# vnagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBfLIjhAfv2blySv2aAZ7l5AQ
+# k2egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -270,25 +275,25 @@ function global:Invoke-AnimatedSleep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQOvSdDYL+/yVr8DZHGeHtwqYAclTANBgkqhkiG9w0B
-# AQEFAASCAQAkOQy6DNWemFoaRM/3M+mFe5kzu9PH045v5t40gt12043uv7DaoWS3
-# UN/9TXfXubs9fUuWc6+QWWMsK7oawKiIXKUoyp0eAMGLCroNwdhkxc5pu0lcIU/s
-# pdc6dKjbaPGjWJANWSW3EzTn9jFJPMV92Q8nldJyblZWOvNNeE9HR3wpDJ8Hlbot
-# JHfdFrP861owzDkzaFzlF7R2AdnS4wl4H6Ovw1ybOKeLqtGKccmDbaqz1gn4M1XH
-# ayjHpsWembpJTsQlooQVnGHSRwbjj4FimjE9N9PM83kEEfR9cS3ZJrHZO6nQEv2i
-# 1stQs/byIrUThPMFwLhUgqtIGyYTYID/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT+CVN+f6qzcx4tyJmbYdSth9SYhDANBgkqhkiG9w0B
+# AQEFAASCAQAy58zNqVa8PIEmmNPIwqInXNnnXo7+jBkb3rw+itumVCdBm/jTXk1J
+# OPl6JklNCxshxIQp0bKvgVATKn8M5j8rgs6qdfQFXgAkn1O5C036VuEQcONLvg2b
+# /urhufiUQPLNp+PfaF+5cSlWQm7v3eyNehi0XifiKKtT9u+0j4P2c9VDdL3xaQ88
+# wTZ9QaQmVjy+sCZ+PZAeJbDG5m2Vmp4EbpUfM2VLse2vwylcRgjWTlK6NXal638/
+# Cqfq7YCnq9Vg7HRS1pFPk7icDopbS/8NbO6lndNnlKmAK6jZQ7+hBCdfo8OaMnIj
+# RJA9pEHad2g57mUhZKoytKMFpCTChgw6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMFowIwYJKoZIhvcN
-# AQkEMRYEFPtmRP4YPfkyncoJKfkfyYz+n+0pMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMFowIwYJKoZIhvcN
+# AQkEMRYEFAhQxT2ul6RPkEZ1ANC76M+PGhG6MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAuzBh8zSOWRDJS4NsEb5abs3DZNZgHqSHUfoWLhD8ZBdH8
-# 4IdMVQ5V0Aea2k0wYEIGc1V2RikrMgJXo1JCQRFtAdjZgsqMlgih3iaCmxl/nK6H
-# FBWNO0C5E4ImQuxVXXh8/85huXjUnBF29bGM0IDBzpQ0lbiVSVcdw49cWnQAV9Q8
-# 7pRCpVNjPW8jnbftGlcy+QB4lpGEo32fxdksgTsUyyUkU9nUV+woF81Xij351eHp
-# pA2ijEBMCR4c4iQBu1sHXwC8HF6ScuuBqKE+sZuJaAEFvukrWa+qCLgQirpPFmJv
-# wLoeApLVtQBzU+flCkbQIycJ36kPNUhfiYg7LSz6
+# hkiG9w0BAQEFAASCAQAv/2Ia0BAmP20rbNnrQMyP15tTdxJt+YdQ2Zx2pLZbhZg/
+# rP6cX5lL0QMO+jPXNdNFnVGW4I/TKyekhsB4By9Ee6joGGmO90eNZUfhNB6G9ubm
+# Vj+TVOCn/RVz7kWfkbXCkl7tC+vWLLbG0nnTSWGLR8dMqpDZDUZvIqu3+2rQcq5a
+# zQKx+l+Z1H+G0BMCCw36Ifby85mNLWlsMgCuiU2U2wH7f022oWNWzUDIICFVff+f
+# qbX0PX0HKuO6qWeLQtJyNTqkdkx1WyysZcKb1MXx8iYEnlPrT6rEF6gtB/xj+qLY
+# wDmTAGPxOwGQFlaZ6IoR21GieiWi+tEecsawS6VN
 # SIG # End signature block

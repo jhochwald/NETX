@@ -6,8 +6,10 @@
 	.DESCRIPTION
 		Decodes a UrlEncoded string.
 
-		Input can be either a positional or named parameters of type string or an
-		array of strings. The Cmdlet accepts pipeline input.
+		Input can be either a positional or named parameters of type string or
+		an array of strings.
+
+		The Cmdlet accepts pipeline input.
 
 	.PARAMETER InputObject
 		A description of the InputObject parameter.
@@ -52,7 +54,8 @@
 		http://www.dfch.biz/
 
 		Description
-		-----------Encoded strings are piped as an explicit array to the Cmdlet.
+		-----------
+		Encoded strings are piped as an explicit array to the Cmdlet.
 
 	.EXAMPLE
 		PS C:\> "http%3a%2f%2fwww.dfch.biz%2f" | ConvertFrom-UrlEncoded
@@ -71,7 +74,9 @@
 
 		Description
 		-----------
-		In case one of the passed strings is not a UrlEncoded encoded string, the plain string is returned. The pipeline will continue to execute and all strings are returned.
+		In case one of the passed strings is not a UrlEncoded encoded string,
+		the plain string is returned. The pipeline will continue to execute
+		and all strings are returned.
 
 	.LINK
 		Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/
@@ -136,7 +141,7 @@ function global:ConvertTo-UrlEncoded {
 		$OutputParameter = $null
 
 		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject)
-		Return $OutputParameter
+		Write-Output $OutputParameter
 	}
 
 	END {
@@ -147,8 +152,8 @@ function global:ConvertTo-UrlEncoded {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUory/BbfuUsWlefl6X1+FS2yw
-# NXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHEDCiIcmsmJTDqvtjtl6tpZn
+# SkugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -291,25 +296,25 @@ function global:ConvertTo-UrlEncoded {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRRms3jIYuEzvY1qvLldRNIbEuLOTANBgkqhkiG9w0B
-# AQEFAASCAQBQFLsark8l+y2Ct/kck9ar1L3wo+RKpwlDgpW19c0xI9a/Mb40kqEs
-# LqbfjGZE7uzATmno9RmxHNWiGqrPk+XGZCDlwD942xnZ4Mvj75c4LiGP7PM+fnwN
-# CGnx9fUeIlOw+7co/f7CnIYaXdhueuwpD98qcGZMi3jXm0bkh6nNGvKK8L+iEpUC
-# SFMdCU9+2ImyPPD6UXkoVGIAXNc1Ha9ZbwHW4Dbaq3MTFzS7H9KEyqa3EnXlC6EX
-# dO17ngbEkis5+zDM8eE3H3+OAOH1Cu1b5NmxK23EK3lpRwq1XXNnvQYJOhEjrC0V
-# AosUbGZTGYzyPAOSvUMlAQb01Cnbg0NYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTbwjmOBjDZsBD1SUUqBKurafy2IDANBgkqhkiG9w0B
+# AQEFAASCAQAtS8anhYrUKnoVcuRviMtx4hq4IGOnd055sloIH5jM89Ea7cKTR8nJ
+# fwbsloMPsDO6OwMioyz5jqP8l93NSkU/6G2ozwyB0Eb+gHjsCFARU4HFlvmTs3vP
+# YoFk635wYYvP4tI4vQQYgo/9DV7nAcs9pmw3q5SbL8wr2dMc6/aeEls/YfE9fGTb
+# 3Fw1+QQswemvTLby437UdqKMNuiSJlSQeKiQk7s8zl2MRs5KKd3TmXxInfJnmec9
+# NAfIWeQfsgOEYCC3zLRR/mkkAebQ7dG/1QzOxZAV8H7MMcbkiHs3f59Rrz9ZHFDk
+# Q5WEVdWJmWR2m8NL0GZ2gZ4XUqTEXueroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxN1owIwYJKoZIhvcN
-# AQkEMRYEFCBwiq9mFvhrbjSESy6fv9cACVraMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYzMFowIwYJKoZIhvcN
+# AQkEMRYEFL28IbSFtj5mayteoHe22jj7ecijMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBby1LwEVsH3SBdfaNbgVfYpghIc+/TJwRc3jKqx/3GpMWb
-# J7s8JUwcN7KtgFSFvq3FUIJnMtW2dokoiiBqVmsIS9x3Ksur7YEfJD+m5f7fh4D8
-# jFaGCSAS54LUHzfUYt5n89oGX94NBwGY9tsJMFpcE8J+W2x0PLEL5Dm0iInHFzeJ
-# aKF63t9F+FeXun2ARfDOX7hv/ISyx8RUsBfC7clVGnhX0ZM3XrGun2EUSergSKHO
-# lieIGtnVBL13Hf7zm/radd+8X0pcv798oLC1x/uaMT5MhqFlsXsC6Ca4jwM1QSlU
-# t82BKOGIb0ZlIA3r6vxzFqD3JD7hIurO9ULAyDLt
+# hkiG9w0BAQEFAASCAQAn13r/U16rAuYEXarBYH6tatQkuUSKnBdLd6PzJ5Zh1jJL
+# p4Y6wbmjU5JTDFlZju4EcbzHj6CfMX3tZ/Izg3qBWFc+TelIsdJXXh9iFXu61k/M
+# RwohmLWy8kkss5N0aFXNw0Vm/yKC8AkxOv286g4eXho5XfDMSnlG96Pq4VPuJB/n
+# GbZVV8AP4tKYBEhFSutYVBu/mbcc0AJINN4h0WuBDekOAmFOqjElT+XGOyJ9nz0u
+# rv9BdOy+UwuWrU8BkYYUlv152/CXLV4o9ArX2tINdYICwc7UFdmrlBgV4rtOL9uH
+# 2m2ich9e26xDrA8B2ZKup3N73YYPKq1yRYr2MkCn
 # SIG # End signature block

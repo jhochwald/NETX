@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,16 +51,20 @@
 function global:Test-RemotePOSH {
 <#
 	.SYNOPSIS
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on a given Host
+		Check if PSRemoting (Remote execution of PowerShell) is enabled on
+		a given Host
 
 	.DESCRIPTION
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on a given Host
+		Check if PSRemoting (Remote execution of PowerShell) is enabled on
+		a given Host
 
 	.PARAMETER ComputerName
 		Hostname of the System to perform, default is the local system
 
 	.PARAMETER POSHcred
-		The credentials to use! Default is the credentials that we use for Azure, Exchange...
+		The credentials to use!
+
+		Default is the credentials that we use for Azure, Exchange...
 
 	.EXAMPLE
 		PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN01'
@@ -66,7 +72,9 @@ function global:Test-RemotePOSH {
 
 		Description
 		-----------
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on 'NXLIMCLN01'. It uses the default credentials (Same that we use to administer Exchange Online and Azue)
+		Check if PSRemoting (Remote execution of PowerShell) is enabled on
+		'NXLIMCLN01'. It uses the default credentials (Same that we use to
+		administer Exchange Online and Azue)
 
 	.EXAMPLE
 		PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN02' -POSHcred (Get-Credential)
@@ -74,7 +82,10 @@ function global:Test-RemotePOSH {
 
 		Description
 		-----------
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on 'NXLIMCLN02'. And is asks for the credentials to use.
+		Check if PSRemoting (Remote execution of PowerShell) is enabled on
+		'NXLIMCLN02'.
+
+		And is asks for the credentials to use.
 
 	.NOTES
 		Initial Beta based on an idea of Adrian Rodriguez (adrian@rdrgz.net)
@@ -145,8 +156,8 @@ function global:Test-RemotePOSH {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5cwbaGl7xDoG6Ca2X0QUzX/b
-# jmKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwXWYZnAyEhYtnv9QrJ9UtUb7
+# YdKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -289,25 +300,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRNoIhNAnUCVDEHgAfFEIxqzH1dgDANBgkqhkiG9w0B
-# AQEFAASCAQB5dWIFmUghj4nk+zzAoZ4hbmcbxU7ybi+Uw6/em1yaXfuNlOu+fy4m
-# H/OAZ4yltOSLJFy/MEvKGp5rtVCcH+pf+me8BXjwLLV55+cDCSLVrqP7gW7sWovF
-# ct/CswrsA0kUom/NZMb0yDujB0I4Nc+hG6A1qGb/2+l6tG/Qy+g27zW9gaCF5L6F
-# wrkuE/JW1hAAchFX6tz5pfAJKCdx0O5aiVN9Gx1o1rPBD5Ap/Mo/lK8S6ilsmWMp
-# 3Z+reeT/va2+VHrQljE42y0AhscLTzmHGvyi5IsmQuUo65U91LLfZ8F7EWMaOLmo
-# 6eq85KQOIpiZulEQ2bo31KPfLNRRPqm/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSoMhD6oyj6kgG/c/GkQwvpQ2G8njANBgkqhkiG9w0B
+# AQEFAASCAQCUVROEPOJxe2HGdTEfJW63e4XArGfmHrtSfhkLgoWmv5pRQ5yeQZJf
+# TORYuWPGUQQv1iztFmvCAmdMovn5dCwuyautXrhQip6gWdBCi80xHi3KKQo/AxPW
+# 6frJcbt0N93isYY6fKVyAIC5XWp4ke2QaDFM/2+qsF8l/jARQeFjB1K+NOMXbKvT
+# Tdum4KRnz/tGpdKow/FS7CaOg2/8E9Iln2GUJmDEvGo3zMqcfKLca9BE6sm6vgIH
+# r9ptK1N6jCI80G2OKqFA8Xp3vi075Y1rcGxePL0LhT/4W3jy46cA6rqf9LcGLI+u
+# SIRym9uNK4RfgRQsS717f5fv/89J2OvIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNVowIwYJKoZIhvcN
-# AQkEMRYEFO0E5X3J6LBIx7W4T/gnZ58pFfrcMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyOFowIwYJKoZIhvcN
+# AQkEMRYEFEpviX6R5cj5dA5jNsBCqn7U8+HbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAjrNVLVYUfed81b164D8C7gQbjo9MficjbWBdU3FtqFka/
-# n8KlS+NsryNthX7BOGCrA1bcpfh3Iz5lBi2VfxSoKVj1HxE3oaAMCsAx5rPNCxDT
-# splGpB7dl6AyZcxijqvkSCsI1M1nXkrzE6Xg/KtchtqTeEjPYw4bPlDey0Qdfo01
-# Cj0wQrKSJ+Vx5q8lXDRu/msLIBZWxsozkdUyIEzlF1U6DPl6czvLNT9qjKCg4txP
-# K9dp3XOalI2ksd7IktVn+hAzFwoOLzh9ndTMvErE86ok9jd3iehVa/slB2isszN5
-# vBVuAjw6t9dPB4yPhPnuZtiiKCxasErL/+vKJvF2
+# hkiG9w0BAQEFAASCAQBw4jiBsBSkHhKR1ohfy+qwzPvarFLJQ79+MWghAA/gnjvA
+# Z7F7J3z2lvP1e1lZ8cvFJEWi1gy20Vx8/XqCe7ikqh79OTi/fEn/H6aNhAvm9jRC
+# X2kOEge8ueJ3Mo1tqwk2y6lh730LIJVwwjXADjQ1xglcNmp8Hkg5vLql2x6og8Tf
+# WwJedULZZbs8Ebcyo0T8fKrmGjfNVEMA9EatKKQISyzPj63TLZQQDETTO5DZihSC
+# jdMb19G387OjDBDPu2wHrsrLr/eP/4776/2r+JKJqmE9NfRgDcneN4Ex2laUqFBG
+# H8UZCul6HyTP3986LavwMbk8n2ApA/zjc76zxDqO
 # SIG # End signature block

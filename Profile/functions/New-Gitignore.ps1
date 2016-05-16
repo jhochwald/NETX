@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ function global:New-Gitignore {
 		Create a new .gitignore file with my default settings
 
 	.DESCRIPTION
-		Downloads my default .gitignore from GitHub and creates it within the directory from Where-Object this function is called.
+		Downloads my default .gitignore from GitHub and creates it within
+		the directory from Where-Object this function is called.
 
 	.PARAMETER Source
 		The Source for the .gitignore
@@ -76,7 +79,8 @@ function global:New-Gitignore {
 
 		Description
 		-----------
-		In this example we had an existing .gitignore and downloaded the default one from GitHub...
+		In this example we had an existing .gitignore and downloaded the
+		default one from GitHub...
 
 	.EXAMPLE
 		PS C:\scripts\PowerShell\test> New-Gitignore
@@ -86,7 +90,8 @@ function global:New-Gitignore {
 
 		Description
 		-----------
-		In this Example we had an existing .gitignore and we decided to stay with em!
+		In this Example we had an existing .gitignore and we decided to
+		stay with em!
 
 	.NOTES
 		Additional information about the function.
@@ -160,8 +165,8 @@ function global:New-Gitignore {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsKw0FSGbj1oaRfoqww1ZSHaO
-# ZoGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUU54wg+9xXY2l6GTSSX8aPOEM
+# mLugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -304,25 +309,25 @@ function global:New-Gitignore {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRE4ySbIhxxXqrzUHxInSOqST/SZjANBgkqhkiG9w0B
-# AQEFAASCAQAvQUYh30+z38DZ72eiEn0vRZxWBZhPZN7wdU0B61wD0BePqgN/i2uP
-# UhaI+NvQ9neTKIVpwPbXhWIHUHK79TT0peMpFfZLunyWsD159N7YEtp/VolK2DYP
-# hlFdOgd9UNrd3wDfMkZrM6ZKbi9oU30ZVXR0il3NC1ni5iEzycCbn0teBl+6dX0C
-# ILXqp/n3TUpOLkx9uhxwMu/AqxngyCER7AS+HL9/3FO0HrSJmhQgyvjjeZjrsYX/
-# GE9n5W3N7SMjKi/4c90T4q8empTTlJZpQdP1BBkiRSZmHpy96yIlcG7OVIIhwp4J
-# NkuJX6riKUkQotQmR4jDBvNYRfhIoH7YoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTbLWvxncWV3HZflU3ODDbvGK1gNzANBgkqhkiG9w0B
+# AQEFAASCAQAN2iTOwx2P3keFOCBJ1rodVs07iYjQ0vKREbLSwi14lReTy83/jY6I
+# aW9+DjbLSNkExwN0iKgh9FmSh2rdCJjRqIY3wG5LKGn9BrYs9lChwsIIvKAIa1Q2
+# yIkfcePfFZuBIMEQvmF04FMK837+JracxnYScx8k6UmL245XdVI01KsJmHtzeLz5
+# cxJPwvlBguUGUp6jCcOajIkHfhERbREPv8hdCH/P1TNVfIEI7O8q5d+DGsYCJGOz
+# 7YY6iJaK2eExhLCTpXweEnAfPcKY2gnbYx1df9mfSq7w1aAe7KRIcE59stKEMQ4Q
+# LqudnnU2JzEmMmvAQCWW8r3Vcvvw9DhioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwNVowIwYJKoZIhvcN
-# AQkEMRYEFGoDCuFBELULJ8lNvoo+pGP2k83vMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxNlowIwYJKoZIhvcN
+# AQkEMRYEFIK/83I+nNxl4WTOmVrjS7VXjTi+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBeE7068XMIMus+TKS2VwM6Dj9Tai7TILCNAfsVQiKZ2irZ
-# C0zPLcfJ/265XO8SNCgMkqKAy08dpDE5vn09L0KhsznU7XBtac3bHZ5jvJe8n4ZL
-# 7+wX4MNlQzBfPRS/4iqJ2magArhRuetr08T9MdGaF5FAO7VwIm3NywClpk/wktbM
-# OjX+jIUYj3JVd+dNUqM+WHGgHGkgj9oGUivUHKO3ut5h9rjBA7J+qqblZVrh3jww
-# eW4nrCBYRAumP4XHlNgLLXipNrl2RGj4DYjFE/y5QQ0AvRC57zkxWQoaZ+cdzTI8
-# i9sDaqGHXXuMoG8N7+PjLhcYsXCi3NTipBc8Ol1N
+# hkiG9w0BAQEFAASCAQBXcL0WshjBfzx5SKibFN25kfDn7N8Ntu64a9jj0ek4vPmp
+# 6ZlqNOQZ/4Zzj6ERAOrh2P82LevzrTHa5vD6j8aK1pPmu5nlLTYhMCBVRFfh8rPd
+# LI/m4WOT4g13L2o1zpABtWujG3jTIbBuxq9XSef1m0mSsp7xJhg+IoxueNL/fJ6u
+# btXW5ZOoS9bx8gf4lZBD2Q+0OVU9Vprwj+Y4wYsD36F+us7fxfrFS2Xw+ZDc0nhb
+# RVOHeQUWztQQVi7F5AcwlBq3Pw5RHsm4Jyi6CwGFNZkCUYzjrhQK5Ruk6EzT03ES
+# IeiFT/rwqY9G/mnqLl5eZ2g9xSKoKDK1vBYux+kK
 # SIG # End signature block

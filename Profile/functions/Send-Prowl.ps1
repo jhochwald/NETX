@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,9 @@ function Global:Send-Prowl {
 		Prowl is the Growl client for iOS.
 
 	.DESCRIPTION
-		Prowl is the Growl client for iOS. Push to your iPhone, iPod touch, or iPad notifications from a Mac or Windows computer, or from a multitude of apps and services.
+		Prowl is the Growl client for iOS. Push to your iPhone, iPod touch,
+		or iPad notifications from a Mac or Windows computer,
+		or from a multitude of apps and services.
 		Easily integrate the Prowl API into your applications.
 
 	.PARAMETER Event
@@ -85,14 +89,20 @@ function Global:Send-Prowl {
 
 		Description
 		-----------
-		Send Prowl event "Call the Helpdesk!" with priority 2 and the description "Call the Helpdesk, we need your feedback!!!". It attaches the URL "tel:1234567890"
+		Send Prowl event "Call the Helpdesk!" with priority 2 and the
+		description "Call the Helpdesk, we need your feedback!!!".
+
+		It attaches the URL "tel:1234567890"
 
 	.EXAMPLE
 		Send-Prowl -apiKey "1234567890" -Event "Your Ticket is updated" -Priority 1 -Description "The Helpdesk Team updated your ticket!" -url "http://support.NET-Experts.net/"
 
 		Description
 		-----------
-		Send Prowl event "Your Ticket is updated" with priority 2 and the description "The Helpdesk Team updated your ticket!". It attaches the URL "http://support.NET-Experts.net/"
+		Send Prowl event "Your Ticket is updated" with priority 2 and the
+		description "The Helpdesk Team updated your ticket!".
+
+		It attaches the URL "http://support.NET-Experts.net/"
 
 	.NOTES
 		Additional information about the function.
@@ -190,8 +200,8 @@ function Global:Send-Prowl {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULdOyZlAyHFMbVDn05w593hiD
-# zSagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvj3FD9uGy51R5j4lEb4A2+zQ
+# EAagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -334,25 +344,25 @@ function Global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRQHaFkoWUAnkH/8+AAr7PvixQUhjANBgkqhkiG9w0B
-# AQEFAASCAQBdjYeWgDkNarnFpAiKLRMMkn0bFy/JOB7tRMxqrNPTtLBpp2k53Urt
-# F6GX46cMWwPlXFBOwdpxLVowt/aF+FZ9i+B36OArerD3nu1+rsOmU83uGmaIQtrD
-# 8LrV2+kjqX9Rqp7IfmoWAFGuwoNPPCwzSVPNk7TZUuxm+nfztM9e5o6/e/uLBy9z
-# DbzpwDbanOvA3kY6ETJ8ZPgutJf52OmyaYbRNW3jeCpOv2qEOQvts0tzr3k3d+Ja
-# 8ndrNaGzJr5ghp24FO/yha+b4C1iUvEqT1tPlqZ0XG/yw4lwjEC4eXV8srytjMDt
-# zNLFhbUgXBzoyyXf43dQYgPfzFKezQWJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSOmjsYDZwOFsdB11f7R11Hi0FCiTANBgkqhkiG9w0B
+# AQEFAASCAQCP8ANMF4LX7j/wAEm/0MyVG0nuOuMFAAkNqiIvVf/6uD4VFRIM9xXj
+# aagdROnaHO/gbxNzkNNEh1vNJNNEOsqumDoMCtRXTe0YdvVnrz0Dyvf4dSV4kEGh
+# lKdTGxsbJOju2+S5wEPFkeM95mZUvS0ltI+SkF9w2dwV0PjcIXFLwXjlrPEsP5x1
+# ADopsg5MeSZJmnLpovXOyNpJVStuuOwp91scXOWfOvCxJYrPyLdEJeWP7sDorOfe
+# v7P2MSXJuoUMuYXtK4JFBWvfDev4c/ST5TzTMxUefhCzTPdPn4eLTQTMZ96DZaLu
+# vMQeJcPBBU1JZLHRCGojniLSh1E+TlfOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxMVowIwYJKoZIhvcN
-# AQkEMRYEFJMWXR5T+41a1A+MFH7FtjN6/G09MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMlowIwYJKoZIhvcN
+# AQkEMRYEFP3vAi8sLGBoLE1wmpjBDv6PyKD6MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBOXNM0sCwNexIlnR15e1PWcyAezqz7FZzbzATjflXvlT9O
-# WGkvTU6B5cUaYUTdb8I4dpMmZRebvSyfe/JuS3HGlf9vZ+QlDqD9RIlUPAodFmK2
-# VjEAGGtMyTPjd9iCdlpD+r1qjDm+wjsrDqqGzqLINDOyAwCyBi4sLhJL9nLVSQBt
-# LxyEk/jujdeprBiVwE4E3UD0SerGQII5z20ny8bglVnkn+2t6a0GHxZ3Xn367GBt
-# ZWEXQrNr9wky/gyyDCyJ2RZfe6qzN/3N3SCFos5X7imeHByGDf5Wih1ERqj5rk9D
-# j5Z+RA1r7r7Hqul6wB956qYp1TcvVJfEK1Gg+szr
+# hkiG9w0BAQEFAASCAQBMx+CYcnFa1S4XsTKUe85tjYR5pdhGTUjOhE6QHHaFgRwj
+# FYOVlYOKczO4TLdl5mfItH9RRRwYeXNqwiUYEySUJjs/12niIdeX/N/sbnH+GPq3
+# QsN03Ly1nq4RDmxQjEjfagnL3l31iLSDNEuDhkrz21xovvIE3fDf7rMJBr/20NtX
+# tKy266U0if0iwxzs/H/39BLMhT0aa57+n6qOf++oKWiTcd6rA2MxFPR+Uk3naS72
+# 36lql/CS0HMRkhE7NRIjpv9W5uvSIwLsTs0o7vzm1V2Li8ZGV1pxUc20Q4qYKYzU
+# 8icGIoawSGYB6W13Czv8Wxhqm4kYyBD4CZI574Bx
 # SIG # End signature block

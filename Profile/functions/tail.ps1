@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,8 +54,11 @@ function global:tail {
 		Make the PowerShell a bit more *NIX like
 
 	.DESCRIPTION
-		Wrapper for the PowerShell command Get-Content. It opens a given file and shows the content...
-		Get-Content normally exists as soon as the end of the given file is reached, this wrapper keeps it open and display every new informations as soon as it appears. This could be very useful for parsing log files.
+		Wrapper for the PowerShell command Get-Content. It opens a given
+		file and shows the content...
+		Get-Content normally exists as soon as the end of the given file is
+		reached, this wrapper keeps it open and display every new informations
+		as soon as it appears. This could be very useful for parsing log files.
 
 		Everyone ever used Unix or Linux known tail ;-)
 
@@ -68,7 +73,9 @@ function global:tail {
 
 		Description
 		-----------
-		Opens the given Log file (C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows every new entry until you break it (CTRL + C)
+		Opens the given Log file
+		(C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
+		every new entry until you break it (CTRL + C)
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -113,9 +120,11 @@ function global:tail2 {
 		Make the PowerShell a bit more *NIX like
 
 	.DESCRIPTION
-		Wrapper for the PowerShell command Get-Content. It opens a given file and shows the content...
-		Get-Content normally exists as soon as the end of the given file is reached, this wrapper keeps it open
-		and display every new informations as soon as it appears. This could be very useful for parsing log files.
+		Wrapper for the PowerShell command Get-Content. It opens a given file
+		and shows the content...
+		Get-Content normally exists as soon as the end of the given file is
+		reached, this wrapper keeps it open and display every new informations a
+		s soon as it appears. This could be very useful for parsing log files.
 
 		Everyone ever used Unix or Linux known tail ;-)
 
@@ -127,7 +136,9 @@ function global:tail2 {
 
 		Description
 		-----------
-		Opens the given Log file (C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows every new entry until you break it (CTRL + C)
+		Opens the given Log file
+		(C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
+		every new entry until you break it (CTRL + C)
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -165,8 +176,8 @@ function global:tail2 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULO/P4Mqz8QeaxxzfYZJ12nqx
-# goqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTucBQJ0aF3EyS0ZEh5LcyVDh
+# u5CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -309,25 +320,25 @@ function global:tail2 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqR5aG/9RikUyKMD/yAcAGcTgM/zANBgkqhkiG9w0B
-# AQEFAASCAQAxz5S75yK8t2dlm8N2uTwhsvdJ0vy7wri2L2jYalVVIk8EsPOnqZXU
-# gORdqXTObTLpETTB9cGGtO3JO0eCO2q4rVSb2HBo16RTdLl7lXKJFto1NJL/sNlm
-# uczdStu26p8oJFC8tM1qkeGZxsEbqgg/zypjaJ9XDboXz9KtM5S5+ByLHpH6Ct2q
-# m4IzvtCyW5hhbLVGZHzEYx0Yywp3ZdMWCa8rrxw0nr7eqP5JbL50jI+J7jBDK0q2
-# 0EX2tk6DxGkcv/5Cz89VF/hR9jI49O8N2EhJ2VB4OEIuoB87g//m2FoVhGTXpXV/
-# 3g03m0+uZAfP6D7NEAmqp5aUEaQWAy/uoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTXntqnSW7PwCbYrf7Mc4c9y5wAyTANBgkqhkiG9w0B
+# AQEFAASCAQACOuPPCusg4zQI1PR6q8s453G6MND8jawJxlmV/4bagMf9cGHW9PSx
+# BtbgRUANRl4RLjo9gdF9xFyFM6n7qSTKs2zih9l0y/xJ6lt9fJOr2cbAArAsHrR7
+# N5Mo4y8yP5xg9FScSs56sqxI6M9wGYAu2dHRNO+82caSeE1sCDjn3k09hX3asnrs
+# aD8m1g6XgEDh7SVkJIiOFC3+tLFQhOZh+JsIMd5f5+/xq1lTiBWtWsjbyfHiM1Ea
+# 1tf+YpD911Mv+daBP9TU9fngpDXYl7auJKASmn/mTW3GNQRWVm1uTeoz5zDAg0KF
+# r3qas8ky/hjsbgW2inF5kV+K5qZB3+HSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNFowIwYJKoZIhvcN
-# AQkEMRYEFHvZ8Qae4p3YF7XKStrIo4GFZguWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNlowIwYJKoZIhvcN
+# AQkEMRYEFNQyA9kMU3wDBwro6u66HZZQVZmEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBeVagzxd8vtH8m+2xbMpsVGi8njfmVdtcEBIPXIse32/tv
-# Qa9CeCPLbwU24BFncwWrKvZnOieqBVTLvPOv3XiD5Mm2PT+0B5Y8kr0JwaT7Ppq5
-# H1dJVIJKDpDbqWICSVBxpgay5EKeKb9HgpnrdJR41P+fzB0LBUlicF8O27U+AWO5
-# 4e/ma4NYd0bGvrAvbPQdP9h7fDThKOdzlVB+hd49sz+0mPa0tj7y7705lFsa+xiS
-# Q23p30aiOq5cwimodL8sRQ3usbfs+S67fn5lpADLgkX9RNtvDi67pP/Nb6Kj5v8V
-# g2nYBh8PmtnMVGk00oFzFN5NW3OI4wdG8BGWrDKT
+# hkiG9w0BAQEFAASCAQAmSrGBor7yYnj/+ouGqNp2fqvQ3G9uzvEKaJY6ujj7d8xB
+# IBIMDtDvuS0ZW/6bozx/dQTHWcbdJ4qTgWhXRKtZI1ATgRh+CgeGmcCPpPRFQfji
+# DRHtEM725W5XBCWgP4AHm3ziLNwKa0huFPHXX+4kIyefWghEhzeQmM8QW7P6IiY4
+# MTHXQWdSIjEMh77tjtmZAxePSIah2jVef1/awsD4OMjCXQ7eNyK3T4Pb7b8piMbS
+# hNooVFlOlj+RPROBGVa+Pp1N9X2xvdssfLk0FdmwUy1zrZp38mTNpbnGpDQ76twg
+# mTq06dv+A+XDqoHXKX+g2OqymKRjxfYYpJs8bWzN
 # SIG # End signature block

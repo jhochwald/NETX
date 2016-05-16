@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -70,7 +72,8 @@ function global:Get-PreReqModules {
 		Description
 		-----------
 		Get all required Office 365 Modules and Software from Microsoft.
-		Downloads them to: "c:\scripts\powershell\prereq" (Will be created if it doe not exist)
+		Downloads them to: "c:\scripts\powershell\prereq"
+		(Will be created if it doe not exist)
 
 	.EXAMPLE
 		PS C:\> Get-PreReqModules -Path 'c:\scripts\download'
@@ -78,7 +81,8 @@ function global:Get-PreReqModules {
 		Description
 		-----------
 		Get all required Office 365 Modules and Software from Microsoft.
-		Downloads them to: "c:\scripts\download" (Will be created if it doe not exist)
+		Downloads them to: "c:\scripts\download"
+		(Will be created if it doe not exist)
 
 
 	.NOTES
@@ -205,8 +209,8 @@ function global:Get-PreReqModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHJT9TkcryhEw69LSN3dwP/x6
-# EvqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYeyAtcHjEGKPFtvzb+2NbFn8
+# ddWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -349,25 +353,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQx5+ESFl5EtgkNdTXiaQk9pFMPcDANBgkqhkiG9w0B
-# AQEFAASCAQCbSFoq0RxGB0eHTt6ut/f6X2XVIm2R7QNG9c2OqPIbz8P8Sf4/qyLF
-# GStKLiVjqBNr3k1DKJtpI4OfOsdjg+GDN2YwYQIrNUR+7fTUND7NZ5j5mmSsbdl+
-# pLZ8tKgF8lG5TNUwKilkmXsZl2jTdsnnwpf3jujgj6aqssccAHUQGH08cuUGsX0o
-# 98qbuj5ntA6hdfbq2yAOpH2Q3IbPlhCpXSQagjkF/tcWIdk7BPjwgu+MjP+SjKOk
-# 1Ms57hyAF2oa5gnO4Q+Fd44zjOmprhI6GM1m9Nuy3nWXaLf8HI93Wr7nTQqtvYfC
-# HwN7n5Z7TzN6SH+PvLGJcp0jcEr5985doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR+6I+RAEunP8u0qhKKNwQw9K1MoTANBgkqhkiG9w0B
+# AQEFAASCAQAb/NLWIBLJyzJO8w9MwgzZrPQHKkiwM3zpxEg8CRN4JrQaXnJAD2Gu
+# JdoORTsF5PTgqldDqqs2isnG+Ub/P9pREJRCAh6sk6hWBdPl94KeKBEIC/kNuk4+
+# 4M3KR5Svx7VPhWk7mBsCJO8OUo3c0nedjmlni5BauI/FZafoRo/SBRNPuNWQPR0A
+# xmV5cJTaekGT7cZPD7aqKZ110+3CpJ7h3TJuuAghXQlr/0FGkuvRhIoM+vOq9E+K
+# SkOY76tn6spgq9V8ZH/tS8dPZ3ZyDa2LOzbAUDVD5JHlKz76S3LMHlCfutsnEejg
+# XggPMgaPlu4pfWyPq62yCQPHiD0RTtDioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1M1owIwYJKoZIhvcN
-# AQkEMRYEFKExYo464cURwZ2Hbr+qtaCobj9bMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1OVowIwYJKoZIhvcN
+# AQkEMRYEFMN07gPEHV5XC8C+9LG80zmsck5UMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA9LG5ANyVesGPrgVdMM8IEm7mqP92XqZBPbrLDc3Kgmetq
-# Y1NvRps6aqvBwsztePo1T4bHZiLUNe5ZvT6NdD0K009/YhAW9FcrhfgNIIuLkSoW
-# pqJgAC2qs5skvUEJ4iaMp1xj5k885NWlKNLfKKGJY5DKsF9CgUKcen9GtYmNmzD5
-# vNMD+SLD98SSm50KayGtiyG8m8j/E/jQNV49vDT8xVDKHDW8XvgEtfrvOqgmTla8
-# btwT/Ny976qgsEDQxeuE5hqs0UUGLXX8vwTesA+4sz9IcJ2x+b5KCIv5cwlxz6RU
-# gjAOrD5PtaBV+rE2uHPGqXBsVkgz8dBcW1kJwcYN
+# hkiG9w0BAQEFAASCAQA/dQvXKD7XHtkMRJkpOhScckcHCsihl+1LsJUkqoCrdFsE
+# qOCyT4TdtNK58B8ueReNDnbTv2p1e3oPYM/JQq03D3fh+yv6CCNcAIs9t4ab4B/F
+# K96HIW61Ti8qUqsDVumKaa7QrT+aWM68qAiiMCLXeel3eGY2i3yEzitwDwWt7Nh/
+# Iqik9U+xyI4oIerODORAbbnbU9sebRdo+XvP1Yce30np369kkYk606NS1x0CNX/h
+# OkWg9fRe/RzgWuODI+0KOh3lDAh3a9Eioqe9HAeAipwUXK9osu90lpR3qE53/8+2
+# NVXY6NhMKjJr5OlVW7FrQqqiMrYderGmke2dRjBY
 # SIG # End signature block

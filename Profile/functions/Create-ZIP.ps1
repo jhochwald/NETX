@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,7 +55,8 @@ function global:Create-ZIP {
 
 	.DESCRIPTION
 		Create a ZIP archive of a given file.
-		By default within the same directory and the same name as the input file.
+		By default within the same directory and the same name as the input
+		file.
 		This can be changed via command line parameters
 
 	.PARAMETER InputFile
@@ -61,20 +64,25 @@ function global:Create-ZIP {
 
 		The parameter InputFile is the file that should be compressed.
 		You can use it like this: "ClutterReport-20150617171648.csv",
-		or with a full path like this: "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv"
+		or with a full path like this:
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv"
 
 	.PARAMETER OutputFile
 		Optional
 
 		You can use it like this: "ClutterReport-20150617171648",
-		or with a full path like this: "C:\scripts\PowerShell\export\ClutterReport-20150617171648"
+		or with a full path like this:
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648"
+
 		Do not append the extension!
 
 	.PARAMETER OutputPath
 		Optional
 
-		By default the new archive will be created in the same directory as the input file,
-		if you would like to have it in another directory specify it here like this: "C:\temp\"
+		By default the new archive will be created in the same directory as the
+		input file, if you would like to have it in another directory specify
+		it here like this: "C:\temp\"
+
 		The directory must exist!
 
 	.EXAMPLE
@@ -82,7 +90,10 @@ function global:Create-ZIP {
 
 		Description
 		-----------
-		This will create the archive "ClutterReport-20150617171648.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		This will create the archive "ClutterReport-20150617171648.zip" from
+		the given input file
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+
 		The new archive will be located in "C:\scripts\PowerShell\export\"!
 
 	.EXAMPLE
@@ -90,7 +101,10 @@ function global:Create-ZIP {
 
 		Description
 		-----------
-		This will create the archive "NewClutterReport.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+		This will create the archive "NewClutterReport.zip" from the given
+		input file
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+
 		The new archive will be located in "C:\scripts\PowerShell\export\"!
 
 	.EXAMPLE
@@ -98,16 +112,26 @@ function global:Create-ZIP {
 
 		Description
 		-----------
-		This will create the archive "ClutterReport-20150617171648.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\temp\"! The directory must exist!
+		This will create the archive "ClutterReport-20150617171648.zip" from
+		the given input file
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+
+		The new archive will be located in "C:\temp\"!
+
+		The directory must exist!
 
 	.EXAMPLE
 		PS C:\> Create-ZIP -InputFile "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv" -OutputFile "NewClutterReport" -OutputPath "C:\temp\"
 
 		Description
 		-----------
-		This will create the archive "NewClutterReport.zip" from the given input file "C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
-		The new archive will be located in "C:\temp\"! The directory must exist!
+		This will create the archive "NewClutterReport.zip" from the given
+		input file
+		"C:\scripts\PowerShell\export\ClutterReport-20150617171648.csv".
+
+		The new archive will be located in "C:\temp\"!
+
+		The directory must exist!
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -229,8 +253,8 @@ function global:Create-ZIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdcV1fwjKlHeVHoEkNIrLh1RA
-# LvqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUidXFEWJCtTL4qmb2Qe6ks79F
+# FBqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -373,25 +397,25 @@ function global:Create-ZIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqimuthMfb/Y7P8Jr5p0vd//QJUDANBgkqhkiG9w0B
-# AQEFAASCAQCWok2FfaRd9XDt4MR+9FbvpBALRx1EH4H9YMxr1MRZvG8TUy5ZjdTr
-# L6H6kC25b31tSgEZMt5sw7T/No9DGzoBTauCr2D8EZQfAvJWXimNXs0lYQmu3bu1
-# U5L8xJQooKzjf/pYuZr+hupiu8kP7b8xfqBxVzpQ6oezRHQHvmRccZYCn9dpKMkU
-# ZJoS9DUGbdDswLGYKIaIrSSTGUeL4DZkIDgRl8A6X7sT59W0kqtpdqm11krKFw5v
-# 0g0ti1DaYHbNOb/5eIXIBP89TIbiS8jb6/fHKOtNQ3u4ECRlUDvHbMqR/pPQU8Qr
-# icQQ/kveMBLYNHbfZJMsksnX+y8EwCqdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS5shXXs75oCts86AMqHf8iaUMxIDANBgkqhkiG9w0B
+# AQEFAASCAQA27puJFrcZNXzy2KWOoeZ7XOczEsefomuASuaIcLltA59Jq4+Dvl+O
+# elkbhXMDVAn9b3sBkwoHw4Cq6QkySKrRfsLAnq8Pd/MNfMT6YGHL1KEe4JKwUWZh
+# 4svwpHcLkR2Xgm9fBs9a+lUJfPF3RozkiXP/ijZlfPzmzXAgm2ZvGvqSb6PyeJva
+# ZVY7phidGDOK81BwoaQ6c5t1nc/CF6Zr+D75ToyN18oMNgNTgndJjrrtRVRuHAit
+# QuY3pvHrUqe/hKImAV3cDQXXgOol06nG12LeR8FUAlZhJwJAv9AOCD8C/uH8t5MO
+# rdKi4PpqBijfLtPfrECeKJBCTvqnLbR/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0M1owIwYJKoZIhvcN
-# AQkEMRYEFEpBWi/TvvO9HqHBsavfcfBA+C55MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0NlowIwYJKoZIhvcN
+# AQkEMRYEFOU4rtJ2A2K6WtiF5A/IZ8CPuTw/MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAsg50WBI7D+tSSrF8Ckq/ses1z9pA6ok0SuSlE7FroWLeo
-# ISdYxgqEuewnXQZzGtDZDfvuPexjmDT8WE5egbRCzd+CXo7hI0GFedOOdZSCyd+F
-# Swj9m9NCbuw6cePUsG7wPBFkZk3Pi0GphqlZu7nMcNrsBCx93pjpinA2TL5U6zxn
-# Qs5V7bQlWfqQYDl0gJjA45WV5kS0fsF8dr3T3+lMX/TY+SHqykTjLGfjGweFA6j1
-# AUk3V8XxN0O5aDtcTpzWxKo1hq3ygOOQEwnWD/SXlWBrL+2n/oNGz/K5ky12XXLy
-# v+m3bxV0PyNbY9oxYdf2EBVTiSHru+cYfChXSBch
+# hkiG9w0BAQEFAASCAQCenrsb9TOLikwglzuUY7m/tW8ImxiKl0kKr1/ozMWr2dcz
+# BjHrNTR9lKlUMTTeDLeT83Y4PNvmAudNQIuMk6iL0jgEApZ7denYHFaUC1iZz1eV
+# WXw2rTBLATVwmDekxMZUpmJt9CpZXIeeN93h6v3Zhwsen1fqNbOu6EyizSDUQ0Q4
+# QQjHvDN9mB6Rc9tOJ91z0CkHdcIGXZPWp1OPr5Nzu50hx0AbI9E2EzsuGC+j/aC5
+# HlfcvNRVNPADjvKurnAYpjTy1lVbxorHue1ydKeJn4/Dmo9QGj+Y+u4kC+bLRWbG
+# ebHEXb/ab+VJn8ZLP3MNbd17PoBPbfi5XSM4V4KR
 # SIG # End signature block

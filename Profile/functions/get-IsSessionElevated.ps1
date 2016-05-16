@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,8 +55,9 @@ function global:Get-IsSessionElevated {
 
 	.DESCRIPTION
 		Quick Helper that Return if the session is started as admin (Elevated)
-		It returns a Boolean (True or False) and sets a global variable (IsSessionElevated) with
-		this Boolean value. This might be useful for further use!
+		It returns a Boolean (True or False) and sets a global variable
+		(IsSessionElevated) with this Boolean value.
+		This might be useful for further use!
 
 	.EXAMPLE
 		PS C:\> Get-IsSessionElevated
@@ -114,8 +117,8 @@ function global:Get-IsSessionElevated {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAKJcMGHDoTpca+6rfHCysW45
-# DY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2QMiaMVNA8MAJJiJO+8DxT48
+# ysegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -258,25 +261,25 @@ function global:Get-IsSessionElevated {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR3LUYDFGKps88vvsSMrdUL2Loh0DANBgkqhkiG9w0B
-# AQEFAASCAQAoEwewWP/oh9nAVen7fFjpmyzKkGMKBX9SL01Q3Y072NrvK3m1zClg
-# 5CBxMjg1BtlXLI+6KUMVZ/wbi7T2FQe/VCjJ+vLgEQuqMRj3A1P1YcmwcIu+gM2c
-# wOZ1uM+rADmUU820aSiPenLuSS+S2CnJ0mrSU4P7If0zNKKsQleUeAlIybxOtl63
-# SSUnwabj7iWK5v3F3sPqJn0X3nBaBdp6HtvVypHtCW4/2mfllPOxPLFQbC50l2vt
-# qSFg7zpTH9dNbU+lAhw+DThTrAmyLgVsVtlaS5/pEiAXFhCgA9AYCcvRsMCoVj2F
-# 6S3iW3hMmDteIO9jj4tt5e56Y2f4bP6joYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT1+V/Ae94jbc4G0AxZqKuGdpjvZDANBgkqhkiG9w0B
+# AQEFAASCAQBItw2Ksyj1i2jheg5OE94kTPj7fBzxMJEVHFOpo8/8544PG0BSHsc2
+# JeWbusCyuKnDefhmKbWUww1AIV1jlitGm2P+cStDU7e1SpPG61LA7I/Daotm7/FS
+# umBBSp8/TYULv1Euwuo2Tol6NZ0ta2OxByjjKjrrHqYbwwWTWWrLFflBY+wcANDR
+# aOUc+sxbotLsYUc7hRah8QpQGt/ewgdC2y6K4hDFQ355u3CQj56A9T7nwcLIDu1l
+# swWI7AUSpjZgc6/JwqvcD/6v0qrF/mPMOaA8CVbrUYBjfApqdBlbFhplVKSMHCk1
+# c9BcMDskST3vgm1VaKYZSep7Laz+IoNyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0OVowIwYJKoZIhvcN
-# AQkEMRYEFK0OXRrymxrbpRpDsb7zd7tXTueQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NVowIwYJKoZIhvcN
+# AQkEMRYEFHm6yfOuDqmown5Urbh/WQbcySCtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAbDmn0RO5z+rFqFat64+JTMWQT/YtiTi2jYaInWgwT9107
-# yKrLnw+DaU3ySdMvLrSCdpTOJ4zt8W+U4NcGJPEOjCXrnEc0lR6Vm4sS+CIG7nac
-# 2R/SLT6WA67cwIo7eUzHHqIwUEmia2f4Ktoe1WSBqUgMUgLUbJaQXX3f0EZ6TdDt
-# DfabF5ulljgBw6QNNMh16AaJ5lBGGP2UrXGQbxaxzx7NWoRFj0VzxKmsbht0ciVF
-# 7QbROMPwoHY40PU0xlthGSMcY1IMlmhyY1poH9Jke67wouUi1ZfwYW2ZbfKILP93
-# l0FKBIgvOuUCFt83zRfuKTmy2UvF1bG48GHR4QfF
+# hkiG9w0BAQEFAASCAQBGitaz/Bv89COEHS6+QyXJda6fO83E2TrLwC0B/ZsYGOZ6
+# BLSx5XV25OLCP5fOxF426QEvXM2gHHaz0jDE2tJ/ZX2++Z52cGkOGNMHonIFODMI
+# nmv77AJbo/U3MnG6EWuk4qFOfnqRpXu5DUthbk43PVyw2DkREfDtnbTKz2REcJuM
+# Mz9t7n89uxKVvAa+BQ8rG9xp6fG2L/nvlRAhZicBS8O550+TK5udomSReiMiAeWZ
+# prrmZb2VrGfaY1nOzYHUG+uCAEKysmzpamOkqGGo3lmXX1M6XrOyTzrnzQD+Gqka
+# epbcrmm0MT+hzQCAD7Adgtuhia+TBJgKtfXCuUVv
 # SIG # End signature block

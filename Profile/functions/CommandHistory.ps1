@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -61,7 +63,8 @@ function Global:Save-CommandHistory {
 
 		Description
 		-----------
-		Dump the Command History to an XML file "commandHistory.xml" in the user profile folder
+		Dump the Command History to an XML file "commandHistory.xml" in the
+		user profile folder
 
 	.NOTES
 		Companion command
@@ -79,7 +82,7 @@ function Global:Save-CommandHistory {
 		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
 
 		# Be verbose
-		Write-Debug -Message "Save History to $($CommandHistoryDump)"
+		Write-Verbose -Message "Save History to $($CommandHistoryDump)"
 
 		# Dump the History
 		Get-History | Export-Clixml -Path $CommandHistoryDump -Force -Confirm:$false -Encoding utf8
@@ -100,7 +103,8 @@ function Global:Load-CommandHistory {
 
 		Description
 		-----------
-		load the Command History from an XML file "commandHistory.xml" in the user profile folder
+		load the Command History from an XML file "commandHistory.xml" in the
+		user profile folder
 
 	.NOTES
 		Companion command
@@ -118,14 +122,14 @@ function Global:Load-CommandHistory {
 		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
 
 		# Be verbose
-		Write-Debug -Message "Clear History to keep things clean"
+		Write-Verbose -Message "Clear History to keep things clean"
 
 		# Clear History to keep things clean
 		# UP (Cursor) will sill show the existing command history
 		Clear-History -Confirm:$false
 
 		# Be verbose
-		Write-Debug -Message "Load History from $($CommandHistoryDump)"
+		Write-Verbose -Message "Load History from $($CommandHistoryDump)"
 
 		# Import the History
 		Add-History -InputObject (Import-Clixml -Path $CommandHistoryDump)
@@ -135,8 +139,8 @@ function Global:Load-CommandHistory {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkjD9sDMea4SyuMhNeVI7s/3l
-# fVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjTXQNW1db5uXNPOE+ufzAws9
+# ofOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -279,25 +283,25 @@ function Global:Load-CommandHistory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT5dx8v60mmVZumnGjNJYRU6x8KajANBgkqhkiG9w0B
-# AQEFAASCAQA2CrnbrnS9Qh21pazH+3t1B6rZzYOwKeP2McVqtkL8sXJ0kpH0jQM6
-# 1x5HQFKpcFyCK0IDhfv+DeJrpLxIki3gFsqbk+w7g1QEeYFhEIZfEdfpmuKm/6gC
-# Aiuhdww+SAsulPQ8jxFDgVAjIefVnFTHZywRHfu3p4OmiWvIMNQWFYXn4xE/xrgN
-# ZkRQILDFSRuOHxu0ojunDah+I5PkkQPZQcsDQelFeQ7/4TYU5Jffw0oIP4X8RmSA
-# +UfgTJ0UROPBR6EOwfoHL/eGYIl4iudmO/mJgEDZRx4Ixg52Vtum8CSRBMvGUYUg
-# SNrMjAuGgAV4I2NK9vGB5EQl/uUcdNSPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRXw1byFaw7vhSAuhF+DPEVb+DsYjANBgkqhkiG9w0B
+# AQEFAASCAQBL2epgKqf29xmgWzRUN+P0oy4m6LNF2x0waI1+GKbQfeuKL/b5qSCT
+# IT5Q2Wsx3+YNwKzCkU8KxLv9PxWFfbkNNrh/uBGTr8b8FK9HlCAUUGYzV6OagHKv
+# CJOL4Qgg0+kujf96ufTRQm5t8MO6xsl5bXryQ+MceLuevXDuTd/Wp+4irRbK5jq9
+# 4oCAIiXZYin3LXfDQha1EFEOiMglYE/yRADYMHUoAr6J1C+IrsFZScV9jwN88oKx
+# 3KsBY8w2TGLkxfGTgAGEQCQOsTNrQL24aGNfRmpez+P8NfUFShk7yjP+116GVyEn
+# r52LtSL3ZEdtpxfvSoCQpI/dJ//ktyHcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0MVowIwYJKoZIhvcN
-# AQkEMRYEFEw6IwEi/Q1m3xxG6kuclnVFJIG1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0MlowIwYJKoZIhvcN
+# AQkEMRYEFELpnfe3YoPLWn7eyV5r5+BoToyiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBV8JV5R4397uSBiLBbrWeCM7klJ2Cp9UZh7TJuWW0Ihg+0
-# Aga2MmoQiTlPoEVms0BUUv8UHvJdgQoYnYgleQNR+q/GgABYqCV1HzKZ3zb5K5E6
-# cZBP0GFh1tnb+x6vz2u7LWWRbtx3oVLSKyKVo1obeEjTJxADMPIuOsuHKmRLXFdH
-# mMo1fB6rR7d+O9mZyI9N1+VLW70/B6gqEBMKftAhbF8OvPRECbHE9yiQ/4uzHmhV
-# 6ssm12oBTKlwKyhYSundNRFavyu8C+CQ/B/79tPjq++44TRDTYUrW7zZf6nG3Dhd
-# TjeVQDQ5oZZMVt47Zo0g2kOwjb3FdiSUIcAGCUY8
+# hkiG9w0BAQEFAASCAQBOtrIq8LxJViP3nfjONaZzo5IqkxXCLAIXQTk7sRom3oWk
+# HgP6PgBX99wXIx51jCgWf29hPiU0Fc67Xng28aFY2I+5vA+ka8Zj23NaU2HT9feF
+# 8InoCQPNB+lm3o2Q3af/9TQi/wDpxjcfZ6Jg2LXW74fQ19n7YuELs3FnT+ac9jZU
+# F/iPUHAOl662JvTD0peiS/AKGu9r0YYuwr1hUF44mr1ewOsb01Qo3TLQ/IW24SDK
+# GT3li4bTK3ab+KybfNMuKUPQnnykIoi6SJ9C5oSx+brXUFU0NytkuUY0uVv1GUQy
+# C4J0pyVdhqQXSeqZE2lzgOmrLApjgYq9ANnPw2/w
 # SIG # End signature block

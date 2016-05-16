@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,16 +51,20 @@
 function Global:Get-LocalListenPort {
 <#
 	.SYNOPSIS
-		This parses the native netstat.exe output using the command line "netstat -anb" to find all of the network ports in use on a local machine and all associated processes and services
+		This parses the native netstat.exe output using the command line
+		"netstat -anb" to find all of the network ports in use on a local
+		machine and all associated processes and services
 
 	.DESCRIPTION
-		This parses the native netstat.exe output using the command line "netstat -anb" to find all of the network ports in use on a local machine and all associated processes and services
+		This parses the native netstat.exe output using the command line
+		"netstat -anb" to find all of the network ports in use on a local
+		machine and all associated processes and services
 
 	.EXAMPLE
 		PS> Get-LocalListenPort
 
-		This example will find all network ports in uses on the local computer with associated
-		processes and services
+		This example will find all network ports in uses on the local
+		computer with associated processes and services
 
 	.EXAMPLE
 		PS> Get-LocalListenPort | Where-Object {$_.ProcessOwner -eq 'svchost.exe'}
@@ -74,7 +80,8 @@ function Global:Get-LocalListenPort {
 
 		Description
 		-----------
-		This example will find all network ports in use on the local computer that were opened by the svchost.exe process. (Example output trimmed)
+		This example will find all network ports in use on the local computer
+		that were opened by the svchost.exe process. (Example output trimmed)
 
 	.EXAMPLE
 		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv4'}
@@ -90,7 +97,8 @@ function Global:Get-LocalListenPort {
 
 		Description
 		-----------
-		This example will find all network ports in use on the local computer using IPv4 only. (Example output trimmed)
+		This example will find all network ports in use on the local computer
+		using IPv4 only. (Example output trimmed)
 
 	.EXAMPLE
 		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv6'}
@@ -106,7 +114,8 @@ function Global:Get-LocalListenPort {
 
 		Description
 		-----------
-		This example will find all network ports in use on the local computer using IPv6 only. (Example output trimmed)
+		This example will find all network ports in use on the local computer
+		using IPv6 only. (Example output trimmed)
 
 	.NOTES
 		Based on an idea of Adam Bertram
@@ -212,8 +221,8 @@ function Global:Get-LocalListenPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUchxX1IgH5NrMbaGFYl5Xt2b7
-# oemgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2GWgKC0v9u6l5wAgM19kuNtq
+# ICygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -356,25 +365,25 @@ function Global:Get-LocalListenPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTDjgMOEgTM7XVLKaGp2GXWzvYS6zANBgkqhkiG9w0B
-# AQEFAASCAQBzI7gHRJB7TIqVYGR+hM/11aXBvN6t0IX9WYk+44S3mc8ZfcEBpZwI
-# qrPS7asmq4KNvI5T2e3AlQCfnvnyO5A5IoBTZjGF2bDuudJjvkdcNwDAwpj8HlU/
-# pTgL/Bp3bi1YZNeFyl6Ee5WU53GVBMleTE/ba/aYmspPLvOaFM223MJB2n/QjJeP
-# i3jW5xam7vKydiEuVs5tt7fTRacxPnKkyeYICVbqF75dT6xqWB9gLIsq6oHkOtcm
-# Cd2QF6ykkon8yZNNlYvHjthPrG4KsQb9yTSt8AIikP9MBcK2Bh0dJGwSeJqR+yV4
-# PwAVmmDmT5H1r66E6Q8uIdZqIYX+bcU7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBScyY5vtbAJqxQ5tU16nrid58rKuDANBgkqhkiG9w0B
+# AQEFAASCAQAJeAQgs3Ayi7MnO9A29ZuuM29I3RuNfJZ+/MZHBBbBV0F9aE8sN/ZF
+# C4xoETxf+NMTj+35iXJ8ump4L8wi4BA/pecXBxY+jQYAkGl0W3PXl31w/vdiKrKX
+# 4EgDjxztvUun1hy2grPpbDSHvy1nhCJoRRZTOq7JG+Tu5HzVZv0WirXMCHhqeFtx
+# HK07njjOQUPjFCzPO4WEkssK+9SGXaKxNjRMVTvhdY7VaRW8Sy5uXmdrnUee97OB
+# q6qwdm8w8YnGhTh3v/DrbsyN7sv8dbhgokpos2nsGNmAh9rDCH8ySIE9nxUXKhbB
+# GyxupLHouUPo8NG/6cLT4afViQ1TFK4roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1MFowIwYJKoZIhvcN
-# AQkEMRYEFIQwKLdDwfn2pbbPqHym5m1QkepdMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1NlowIwYJKoZIhvcN
+# AQkEMRYEFMxMbRhWayveLsD3ySuAdYCzLsG3MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCflh+g41kXJzPPs7Y63aWUOPUdAa8Ag618UIOgyz/RvRgF
-# TlcuPtTRhZBxrQLRKr+oHs9crMuvarns2tS965imcejOvri9ia9jkFOREAgFTHn2
-# UrE4UMos/xkMbOcWUpVNzsfDgeuo24SJep6m7hPiLwDMHa0UMzkgdL/yZinaxdif
-# 1gY1ciJd3dJzIDWLtorfnjotFv/hVBXZhANSzOXZtSvrO9g/UH0u1bXZVi7cOPfk
-# O7m465Un6VBT74SHSaHPcLbfB2SZf5RCjM26117irn1qTXYHXg7a/SO/wLrz34+6
-# KM1QMtjTqBoldFcS7rPEKYGn9ZVMY46xTtCqozy5
+# hkiG9w0BAQEFAASCAQAArrMGIa97Hqt+HNw8YALyALBtFaFTV/bRoOyex1A7w0Wc
+# 3sWaA7eyx89+gqGNyGJ5/EjhXTUGRQ1Dn6SG5NssdvNK07vhjbmyrFv8okfx6WAi
+# jySfVQGV76FBqX4zvwHWC77xyaKHQ6WNcmsA4XglsSmsDH7vtY3NsEGzrAQnY/al
+# csCvIafuga8HWcBNu9Bde73MX662ZDFobB5hxRDWf8zgJqvWUuzXwxfXXL8XNZk9
+# 5I6fNMCoIZa4whHkS5Y2P4uqStgsrS5D/8TNSMleCQIYAnY5pGl06KXAl6dZGd+N
+# kvGIPvvbup9vmwE5aka5Ty1l/rJsBWS7udEs32Jp
 # SIG # End signature block

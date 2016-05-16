@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,7 +54,8 @@ function global:Invoke-VisualEditor {
 		Wrapper to edit files
 
 	.DESCRIPTION
-		This is a quick wrapper that edits files with editor from the VisualEditor variable
+		This is a quick wrapper that edits files with editor from the
+		VisualEditor variable
 
 	.PARAMETER args
 		Arguments
@@ -66,7 +69,8 @@ function global:Invoke-VisualEditor {
 		Description
 		-----------
 		Invokes Note++ or ISE and edits "example.txt".
-		This is possible, even if the File does not exists... The editor should ask you if it should create it for you
+		This is possible, even if the File does not exists...
+		The editor should ask you if it should create it for you
 
 	.EXAMPLE
 		PS C:\> Invoke-VisualEditor
@@ -119,8 +123,8 @@ function global:Invoke-VisualEditor {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgLitUwq0jSQZRAkueYDaHvUD
-# pzagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwIl3QwfGz2cAz+1wKj8PWHpU
+# DJSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +267,25 @@ function global:Invoke-VisualEditor {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTF0Ki5vhzWLCxMX1hwohELRmEqfjANBgkqhkiG9w0B
-# AQEFAASCAQBd3wvTQmMiL6rHXqTbM7thtEE2bdSzlvSeyjc8Yg3ohZteGYSkEFNo
-# rii8qBb/AjWN2IMKusZF+RxGVKB5l/RiZDyZIovkg3F6w8ezuTeH+QdB2ULlUIWb
-# CzUTU6l7skg44+6PWHCf00snV6YowsYLGCS+COtocmPXf0DTZkdFeFFzgnXqWlkE
-# bv2/ln1fNvpqcvEVtWNwkCVF7/M039E+GKj9ydFBEW2cxpBjzBnlEoYzvv0qdzMC
-# aGtpo0HE5fyzK+hOSPy6cJezBGGx6Wzsoo7CFShvmxF0ZfnNk2aOZC9Htj7Kk3T9
-# FN2XH+GOdhgAyY0cuawFbld03x2Xp+eooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSiP4WvZzGvF6cMj5suOHfRKCrPoDANBgkqhkiG9w0B
+# AQEFAASCAQCa5Y8BCfcFVJ4nN+VYXB6Tpfdn9mvXH7peS1AxxzAhaTptjtAT5Ztf
+# fqJFeHScOerwgmxe/7eXiLtnTZ3NuK9xFQxpmR0OhozrX6EElErZKmCFpN26eJHA
+# aDAUQHkjTREBzGFQ+ZoYX9ZlnFZG5wfKL4RfbZdzSCTasTJ25nYduGinP/lT0UA4
+# 1yEMbbYil2c5AkYMqttFE0Hxk9vuPjBACuRej1XzRseze4hQ5E+0XUfCSGUcBaoc
+# sGzjEy+OwSOSrTC9bay6bI/9R4862d3kmlidoH9/cNoMTWGBYaoBvzZ55hkJp9Kd
+# tZgMK4nGi01Ub0TLhso9+dvSmZxGcTsooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMlowIwYJKoZIhvcN
-# AQkEMRYEFN597h00u0ZVgHnrzdn8fVBf/IAiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMlowIwYJKoZIhvcN
+# AQkEMRYEFCor2HhLlja6DQEqbj3QteTJCm5ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCpGgjLxhSOpnjjc4hraiy7eC90Hu+gra602iXHXOzg9gnz
-# B70FfjJV4qa7NRqEaYhIPuV02NTpRwVQiMUysUTPtNIWDOCJs92kRkKCKc2WqiUT
-# HiSLzSQ3CJPVLbCFfYEtV087Z8fVcvH7CuWtmbkg4wjCnHErpf7DSEP9y+H6MxkI
-# X3+KOs78JrA8p6Dsqor5w1/TbIhr2fa//wZPGFUieJuSreUbMzN7PJpefUDJHck+
-# liXaBse9DxQaGfEDZjhnlVIWBlMuBuJwhmDSOAovRxxUW2gLlJc9UaCg6OBL1rSY
-# LMMMtPQiahLbLwYY4rEdneQhurNrzCSzLOIjIq9s
+# hkiG9w0BAQEFAASCAQAzg/8i7y/x7TCzweUIZYV3df1fCtzS5Dxs6O4kusN7rMo/
+# 9GMwk8DZYtj1f4OJx8gNQvwS/R59ViZJTbfg4/xDMKBLn2X9H2x1nnBVjLkK31DP
+# ZqZoDS+quqEtxjSS2P2nHa4S/hW12g/5jrK6xoKZH7Yt/nxhMK5h3txs8yUF+lNR
+# hjBFfZ6HQzdCp+o0ol3PMdsEgCQLhWEe4iVYYbSlpVoxVaSSgTNv/UWUOGrjiFdf
+# 2TGf0tK/4ep8e/swzaDeJX29Qt7w9A1CoEGoZiAsQi/KVbimUVz9YsEO//3RzkpN
+# gv4utsPHo2J/oKmPtiyW3BFUzo2n/XUp6Kut2Lsn
 # SIG # End signature block

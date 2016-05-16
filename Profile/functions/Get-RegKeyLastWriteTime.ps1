@@ -16,10 +16,16 @@ Function Global:Get-RegKeyLastWriteTime {
 
 	.DESCRIPTION
 		The Registry data that a hive stores in containers are called cells.
-		A cell can hold a key, a value, a security descriptor, a list of subkeys, or a list of key values.
-		Get-RegKeyLastWriteTime retrieves the LastWriteTime through a pointer to the FILETIME structure that receives the time at which the enumerated subkey was last written. Values do not contain a LastWriteTime	property, but changes to child values update the parent keys lpftLastWriteTime.
+		A cell can hold a key, a value, a security descriptor, a list of
+		subkeys, or a list of key values.
+		Get-RegKeyLastWriteTime retrieves the LastWriteTime through a pointer
+		to the FILETIME structure that receives the time at which the
+		enumerated subkey was last written. Values do not contain a
+		LastWriteTime property, but changes to child values update the
+		parent keys lpftLastWriteTime.
 
-		The LastWriteTime is updated when a key is created, modified, accessed, or deleted.
+		The LastWriteTime is updated when a key is created, modified,
+		accessed, or deleted.
 
 	.PARAMETER ComputerName
 		Computer name to query (Default is localhost)
@@ -42,7 +48,9 @@ Function Global:Get-RegKeyLastWriteTime {
 	.EXAMPLE
 		Get-RegKeyLastWriteTime -ComputerName 'testwks' -Key 'HKLM' -SubKey 'Software'
 
-		# Retrieves the last write time of the supplied registry key
+		Description
+		-----------
+		Retrieves the last write time of the supplied registry key
 
 	.EXAMPLE
 		Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft'
@@ -118,7 +126,7 @@ public static extern int RegConnectRegistry(
 '@
 			$type0 = (Add-Type -MemberDefinition $sig0 -Name Win32Utils -Namespace RegConnectRegistry -Using System.Text -PassThru)
 
-			Write-Debug "$type0"
+			Write-Verbose "$type0"
 
 			$sig1 = @'
 [DllImport("advapi32.dll", CharSet = CharSet.Auto)]
@@ -219,8 +227,8 @@ public static extern int RegCloseKey(
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUA49LLpT3aocRaM5MImp9j4U6
-# kGagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVse9/eCUIABMVedEsT7QvzPA
+# 4cSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -363,25 +371,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS9z8UOdW5h16UEivS6iXUjU6fa/jANBgkqhkiG9w0B
-# AQEFAASCAQBcOPrLHVrjX3q5NmoADZGqtbCzTnOb6AC7tTe6IoX5PWEyz93ZWBrc
-# 4z7A16/RLDCR4slsiUM9qwy4HwSNGqdVms9+SzF+Pj+VysY/kPMsyXNR8dA06QEp
-# wudIj8qhk0cp/yw5UkqQlygBmxoGvrVj2ySaIq1ppLgN3knwc1WYhTtIx9NuNdeu
-# J+FS/32w91EsDGVZgJfFUizpIYowJOwM5ZZ3ISIVJTI9Mxk2aZPaAziVvcxM/h7k
-# LgigyofE2iUPzGt+Vh+X6jjxdIN64E/C2KlwwQ4/vNK6vS9SqrfZgjNVkzI0YHbA
-# FOFLzKlIdbt9j7bjHY8qUGVas6FGNLTvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTATD2xtqTPrAi/aHjj46UTODTiRzANBgkqhkiG9w0B
+# AQEFAASCAQCEnfMDXPoZ/yUrBx0umpHz10Inw0HWK+luCRQumrhmsToVY5jdo+md
+# v6aJt/S2+J5b//2Z0tIqcv1a2wmz/13fRjKAXBhTAoPg9RxZ2mUAY6UyHq1a4Lnv
+# 79dI71nRlRTNQMiZkDVR4JXAW6jgX4DkAq0VoVb5EWP8MG4SU18qE4YjUcwXwDgJ
+# W94GztbaMuj/xREKHm3hivcWSZC0VIADeGBKBwbfoxeKlaQb6j/xNxC8Y3JANOYk
+# GJ11QRcGsuxo2L7poL7jZ8kJj+Sx1iQvseOwgreLB9kPOw1mnZjO7PDBDLnOgcNW
+# M27iun3981Gv7k4D1TBLPWypIq3s+HTvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1M1owIwYJKoZIhvcN
-# AQkEMRYEFNno+Bm5OmCpLfxMtJCnowbtCnmiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwMFowIwYJKoZIhvcN
+# AQkEMRYEFAfPvAUqOlDv31LI/iiHhUBjc80FMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBHjp2xo2KlwB/2dPT1/+Xp0c/fJA9PFHPmpLxfjrCmWn/N
-# a/8BuKuIsK2F8NM7PJmpjeh++SCBn19cxBdaei6dU/uQhQyOwQWQ/bVsATMC4kFb
-# y8yz1bRuAiNhOfBDvxHJHfpcGA+hwGYHiEMhx5P/HTsFNlOUNhVDXY+vujTDVump
-# VVpM/+yVCCFLEantqc4OsPA1r1Su5P+eBmR6U6qpPz1uxk+IAkYyBIUtZIb8mKgX
-# 1Rn0dMBZHU4etuFOiMRremqvF2poJOe5TKyYU0N5u7RNgL11oHh6hnED5M4lHGEA
-# dXRtZsqmklYMrB81SGTO9K05dn+kkmZ4LXArXOFo
+# hkiG9w0BAQEFAASCAQBJqe2FWZZu+//IRImBKHnUDlX84IAqyBbEeJ5PZmcsmKcn
+# 71quQWVuVofsatjM1d+jDbM7IL306MCJd1jBOOQsgZyNgjZQTrMfk+DLBzTZfjGm
+# lCMQSDu64VVf+qTynDaDm5xjG+sEdEHemMpIl+hwTvXiaco96sb40VI1Boh/fdrE
+# A72182cxYwZWI7PG8zQo5gTgru/VATgghEdOcME2P6SSm2jvGX7XPC2Ii3N/qHID
+# jpH8zTTLS6zmWi+Uts24p2aNkalKQgFMvcrCZtsH0IC0g6eUgVk9z9iPl71vAax4
+# 3cflUbigJb4pSQIf+oanWs/GXXFvsRg3oI9XKBlL
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -68,7 +70,9 @@ function global:Invoke-baloonTip {
 
 		Description
 		-----------
-		Show a windows Balloon with the Title "Title" and the Text "Message..." as "Information".
+		Show a windows Balloon with the Title "Title" and the Text "Message..."
+		as "Information".
+
 		This is the default values for everything.
 
 	.EXAMPLE
@@ -76,14 +80,16 @@ function global:Invoke-baloonTip {
 
 		Description
 		-----------
-		This shows an Balloon with the Title "Diskspace!!!", the message is "Diskspace on c: is low" as "Exclamation"
+		This shows an Balloon with the Title "Diskspace!!!",
+		the message is "Diskspace on c: is low" as "Exclamation"
 
 	.EXAMPLE
 		PS C:\> Invoke-baloonTip -Title 'Reconnect?' -Message 'Should is reconnect to Office 365???' -Icon 'Question'
 
 		Description
 		-----------
-		This shows an Balloon with the Title "Reconnect?", the message is "Should is reconnect to Office 365???" as "Question"
+		This shows an Balloon with the Title "Reconnect?",
+		the message is "Should is reconnect to Office 365???" as "Question"
 
 	.NOTES
 		Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
@@ -130,7 +136,7 @@ function global:Invoke-baloonTip {
 		$notification.BalloonTipText = $Message
 
 		#Make balloon tip visible when called
-		$notification.Visible = $True
+		$notification.Visible = $true
 
 		#Call the balloon notification
 		$notification.ShowBalloonTip(15000)
@@ -138,7 +144,7 @@ function global:Invoke-baloonTip {
 
 	END {
 		if ($debug) {
-			Return $notification
+			Write-Output $notification
 		}
 	}
 }
@@ -146,8 +152,8 @@ function global:Invoke-baloonTip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWL62SYj/ZDM25y+9bS8bE03U
-# oyqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUj2ypp8Q4X+GNYZWhGgakLlJX
+# fA6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -290,25 +296,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ6ChP0/rSvrQOl/zKfKEOl/KiWtjANBgkqhkiG9w0B
-# AQEFAASCAQAqDxUicLWUgV9vVuiPLpSnEnqwx63IZQN78aWZPCO7v6K9YIwMSde8
-# ZQ99+Bh3gHeqs29IvfpMQu261CUoMRpg0GzX/jHrFYYemnL2A8q5Tts3Ul5IWTWN
-# H4eyg0+2zVwlHebrJKQ0AKMW9gvFY+3cA2bA1GZqO/1bA8+DvmK95d2sYKOT8SVU
-# AKcWIFeq7IGVKsn21i9iBtVNaLSWmdqgpQBNG6D5TZ2irmRM9Tlpkb9PYYYYcBJ3
-# V8xCvbGaiFFu6Q2GQ8U7HPSSoOIeN/x+s4nNGNZJ21010FvFwEh1h/9K7Z3OYTLG
-# fMkrPX5eDoUCyxstaq5hre+lXcbLpRQ1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSxLfWbtLUP492IAhl8BWf73Wc/eDANBgkqhkiG9w0B
+# AQEFAASCAQBT+4eVkPvZAfOZFyKHJ6HSlParKz7Et30UAr1GMr5cYMZM+dGJxYTk
+# gEm/aLrO270vXxaKSNPhwazQ4ALHPyLMseS7qlPeEVmaRsV4f8oEQjPJDeh2O7mN
+# 3jKKAgSud4Dzc9t9nCbqhbh09As+OttfFR4yL0WkwUJslJGjFXz/xg+pDExJERFh
+# Ry0vfQXNO7FQqO28qxKKd33z1fTOAXlLJQraDAk9Xp/n7rjxSYgukyr/A2dBFH3I
+# x8UI263Nt+cHMig2oAQElpTMB+oMrqr8mPMYdKEB8bVmdxaNe1q61J5JFCJL7MAC
+# 2PipHeiEKEJCDvI7ftcijo6g/+d9O5BLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwMFowIwYJKoZIhvcN
-# AQkEMRYEFPUVw7J7F2mnlXYNTQxdejhOuJG7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMFowIwYJKoZIhvcN
+# AQkEMRYEFICBA7jqq3Mmwb8YEMzDVl4IqACXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCg+oSj6p25jlU4vpehtjJ+e7hKWkwWKqLQh2OCQGhvIV7X
-# 80+LSbO4+BXKftIkKU4/z/huW8eJK6VG5UvDKTQSDRU+rZL0LXMVSVceHw6//mZ0
-# uqGlv9YtSNDl+68bCRj5ffF3emqkK+wPOoKqGC1YbQK82Og/G0vSR7Gg2BFvQHAx
-# JcPrwAeJyzi9bVD7sMP5ahhg9BXkAJH6+2/CDzeqA76RgAw3q7sN4FwQwfYUjkFk
-# wIbIm6Zh6r6yH/HcOpfcX1W1uw2qXqzKgwVwOaRzB4NmOnZB8cdzWtaFrjmrBMzJ
-# QeBYIB9Qv4XdJAYraVGF4dr//wbHmXyiOJXILN2k
+# hkiG9w0BAQEFAASCAQCq/gmn5AMdfIcC03O4iu/8j5w+PZ3zlRtTH+/ytSCeysbo
+# Ym+D5HYSyrSMRkGt2QTP9TTcwnzfGjmQoGh1X3YcBwSntNEp2FeHEmYmhiGJFx2v
+# f3VMzO+Sv/tBFsM3ZCBI9evDmmWhIVozteAJasAQ0swRMeArKUSG78qCJcL7k7/t
+# 8R7VOxx2W1d8MBfXVRHhXfXiwXJLSb7RCqw+AS/cj+XOYmb4vB3GfK03m+NVxG0e
+# jm37062Jgl4gP9DVDZ8bCG287ONpbFilFWpsTtSEj6TKmPeRtHlCv7zVw+YACFTc
+# /3BWrdTnvMhPaz5t58WY8Em1vOEJ0U0mkIQyJhSa
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -66,7 +68,9 @@ function global:Get-Time {
 
 		Description
 		-----------
-		Runs the script new-Bulk-devices.ps1 and shows how log it takes to execute
+		Runs the script new-Bulk-devices.ps1 and shows how log it takes
+		to execute
+
 		We use the well known Uni* alias here!
 
 	.EXAMPLE
@@ -74,7 +78,9 @@ function global:Get-Time {
 
 		Description
 		-----------
-		When you run this command, service information will be saved to the file Test.xml
+		When you run this command, service information will be saved to
+		the file Test.xml
+
 		It also shows how log it takes to execute
 		We use the well known Uni* alias here!
 
@@ -83,8 +89,11 @@ function global:Get-Time {
 
 		Description
 		-----------
-		Runs the script new-Bulk-devices.ps1 and shows how log it takes to execute
-		Makes no sense, instead of Measure-Command we use Get-Time, but we need to use this name to make it right ;-)
+		Runs the script new-Bulk-devices.ps1 and shows how log it takes to
+		execute
+
+		Makes no sense, instead of Measure-Command we use Get-Time,
+		but we need to use this name to make it right ;-)
 
 	.NOTES
 		Make PowerShell a bit more like *NIX!
@@ -130,8 +139,8 @@ function global:Get-Time {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXXYnPk6ycbpboKoTvyOeRXax
-# yBigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUr5SCE+jt7Ae/7KFNioihzyIV
+# 4FegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +283,25 @@ function global:Get-Time {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTJvMxO/3uacxna56kSY1iuZ0LaozANBgkqhkiG9w0B
-# AQEFAASCAQAYqNv+/DQABUm55fk0/1PzEq/MvjW7pgmbO+Yjb/4TDzqMyC3xNPrh
-# kmaRfTTk6rhrv8iDph0wNwSG8ALqLebHeQK+JEbMQDMZpMDn3x4x0d1CUc35V70l
-# Mjqb9B3fFP6Y1YYb8M7qLKmvYY1+zoBR/KAqcg8aq458wqhM+iPGMicDrjpKV7qI
-# L+wNmqEiYw0IB1dyC4QBvNXCvLR++JqmjGmj723+BDWNWGaYgk5jDZwrXJ7/W43K
-# hMGu8A4ZO9lXxkFMlC5evrOGDNmmS1XxrsPD/V6zElIy6E3fhAAn7klUla0gOT0E
-# Rsrm1gs/iQsNexdZ4d3sFJpvtxzGMgPgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTX7hBORUiiIocLqzFjos/NX91T/zANBgkqhkiG9w0B
+# AQEFAASCAQBZDMj1gcsLrwgrPvRYMCurrdrgJSEkCaSj3oUgm+AjdmSS3Nb9ufbQ
+# YaXBZxbo/v9+ENO2av1RKZsV58iTOCsTe1nVetDHz+q/Ig48Z/YvLxWWOijWSHQc
+# cXKCxqSW4lnGpthdi487x/feIsLo0LgdHQSEoRqmMJzxSGVCoRli+o6mR7AOfbz3
+# WkPcbYQzuwpsw7vHLKvjrpbgVHb++BSwtjP3elXXZ2Xy420M8fkNiS8v+prCY4r3
+# XhmEDNRHPlNFlhkobUgZbZ/4jLKMvI5rzRWGsh2RcL35m8IQH1AxCX/UkETzf+4+
+# 6hny9uUnx2gN5E56QlJD7/AOwsXfxjLAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNlowIwYJKoZIhvcN
-# AQkEMRYEFE0PTUFdODLYP6l4Zxzvx378tUBpMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyOVowIwYJKoZIhvcN
+# AQkEMRYEFKRRCAcZOmkjUcTFnIHXtO5xPZkbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBWWhucItpnR2Eaai0a3mhDcwSttF6erANe7btlu6t/8e9u
-# Lg1lKTLBI9FRCX5rpCSslV0uRBHBNKO1ZTJIhsYjp1ZogPW2v8ZJHS6hI8MnBHnX
-# 9scw2V8nWGW6BhEh1aQcONHV7TgIP9c0te4m7dfmPFUo3J+D25x7CkCGtUtjIWXk
-# 9E9zI4MbvYzMhsKn5HBbMjMOtItr8vlKsR5Wr6PZyi1A3p6i6v1ynjYFrOayYVHW
-# yUHnYmWoZy5pCrJ1k20x2G8NgMnp3Kgnx9fWEgLnxxkmybjRht2xcpYZ7vs6JNe9
-# nnuCEg0Kxp+OEl5+k9m545pgnTRhGy44rQzwiuT+
+# hkiG9w0BAQEFAASCAQAI7G8V1JSfnPk5kaVEsikl8hxYkkHIHj1Goor2gpXiLU1M
+# 3LE1VThjkU9RbfU0q6q6GHLni/eeNTO88RXQhQx6Jz7ZTB85huYQSDq6eGembLIX
+# n2mWm3kryyvuZI6uCsajd3Vrxh9GYHDUPmb8yLC8YFVAG1PEckkWOgK1gg485uHl
+# ZeEpFDYG7O730nvtdFhJGZ5pT4JaERB8MdD+qm0cpOBi0DHspodTbuEsdEauSUyu
+# FiEZ9xNaOT1dZT+sRlEJ0BJGYUvFudUKF7XwtobzQopXJzzsmVjyw/v/CKq2ucwJ
+# Etp2hfJHOZK2Q5E00/HgXiVX4pvYleOeafEcsFsZ
 # SIG # End signature block

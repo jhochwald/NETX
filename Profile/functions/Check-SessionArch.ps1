@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -61,7 +63,8 @@ function global:Check-SessionArch {
 
 		Description
 		-----------
-		Shows that the architecture is 64BIT and that the session also supports X64
+		Shows that the architecture is 64BIT and that the session also
+		supports X64
 
 	.NOTES
 		Additional information about the function.
@@ -93,8 +96,8 @@ function global:Check-SessionArch {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUflzoHhz0KQTOfCN/nF11y8KF
-# S9ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl5vSdggTAq0Oc47HJVcn/J/d
+# 3LegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -237,25 +240,25 @@ function global:Check-SessionArch {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQAGL/Apfe9NHjKnELU4klv5beYnDANBgkqhkiG9w0B
-# AQEFAASCAQAv1m1ncR+TfD6E4NzTkL9KeRs28l8KoI8NHTNSwGYSwqciWvxPFrDM
-# 6QfvwG59TkQQol+9qSixFqBGczz/XdgT+Wask2om//5FWIktV6vNnIwLCRZ7sLwx
-# OqOu6UQD/vAFainfzJ/ejZqSm2aJ97YXquL0azdpIgVqnKAWEaHBbR7FLIcpL4j/
-# HxzuoaZaqQW4JRAvlN2od2uqgESIfAQOny4/vkhGjS3MTwf7rAqgZ5sGmLF/QZl/
-# nP5TjocBYKfMOOSkHZduZRDgPs8xvqTfnY8HKbXsqAi5A4qWDSKt8WfHXU/ffdL0
-# 0sHyEmj/oUnSpl2FY95Yxuf7D5mYlkUgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSRmpVELX1MJKXBCpPC3wAVX5gfrjANBgkqhkiG9w0B
+# AQEFAASCAQBak/WBX54aysa4DffkK2huHs7jNJKJGowcAvqpBULdARN8TqCvqcEb
+# PswlDyIETiMXFpjkk2Nksrdtmne5zrc51TJ2L5QG8QCnfLNA8Q21Ba867kMzDojR
+# 0iKTb8uV9c3TVl1sl5vzcTH6doWn8/xGJn5fPHa74nK95sWWCpTXGxPfZQMpoSII
+# aXwE4LjuUJkrY2a0FZLC63cWkbQ3Xu2H2RF+k4fruLt87jYYfwdM/cnCQHIX+lZj
+# tldlBm0sby1mlMsmL/GXDoZ3IFUCBgvJfJfdx7SOjzSi/0XAhs0ATwtP5AHJFyKU
+# kIJElJUG9R/FHpe5lHP2sqCeqrAh88d+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDIzOVowIwYJKoZIhvcN
-# AQkEMRYEFJjA6IN/r9K7A+zyIYL51HgwTvEHMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTUzOVowIwYJKoZIhvcN
+# AQkEMRYEFNDbs3umo4duhogjqPhfuvZdo19ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBl3eenXaclCiqII6u961Tr/Mo5aRFtmf4pAibh+xL7Yg9g
-# X6EG9RBeE0w7DzKM0D3Z9iSJMqnItSUaMS2U0QJVlh4vgJYyrJsqcoTYZYHoCo/B
-# e3C9JntvNKBrNWoZRtNbyoScLlUQdmWjAB+YWVEhSAATnQyfCX0c1dz+EsjXxggO
-# z99U2q54dGoL8KmBizf0QlpNMGWnNBkz80OiJDxsL3ulQe7a4CfM2xzFH7qxCZJj
-# 8+2Xyamvj11ZhfBbFUm52pVwe5PjfCj9qBxVKkEJbwmoPWFVgDtNnL13oBJEV7o9
-# OZSfE1Zgsv+oQdNxVhdih/9ZdLxyrLt6xR3wItPH
+# hkiG9w0BAQEFAASCAQAiUBgdxl/GfVj/NP2cfk6sf1Z5dPPDR/h6EBrHduJ5ionW
+# 0dFtvDLaviGksL8t5JNZ1eAR+k8bVxwAe1Ef7OrzPBYzy9Ti0DrK9Gw/tb70CS5A
+# q+TZJiBUZizsXKJ/MrCy5yStP6EURurI0dlEVD9bT1QD8g1JmwGuGA22Sg0d1hmn
+# ucH5AllfT6GY8UAeuplGxHtHl+rpsLL2H7dmaKQfkko/6hoGuJuB3b2qVzhuKIxo
+# kdpGDkDaMgCuQHKMyAv6bq6sptW/BR6bjWLlvPK4OHG+GHsqRr9rhcsgk8eLK8ge
+# OSs2hz4OPzqnvyX+G8XK2YJCUDhLJV9lI6cihd69
 # SIG # End signature block

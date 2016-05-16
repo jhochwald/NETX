@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -80,7 +82,8 @@ function Global:Test-TCPPort {
 		This function is used to see if a TCP Port is answering
 
 	.NOTES
-		This function will be replaced soon: We will build a new one soon that supports other protocols to (Not only TCP)
+		This function will be replaced soon: We will build a new one soon that
+		supports other protocols to (Not only TCP)
 
 	.LINK
 		NET-Experts http://www.net-experts.net
@@ -162,8 +165,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUa68wcS5gnkwWU3rTVJtrzUXO
-# EHugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQu2sxuu0OPsDq+jE9RLcjr+d
+# z9egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -306,25 +309,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqH2Moh15N816cISH639dnhj+DNDANBgkqhkiG9w0B
-# AQEFAASCAQBmLCctzIWQZplLILIlWn3BezWkPcxAKp0XrpCyBmPb57ra1Fb+DGFf
-# bIBCjVpBpBAoa2jWkph2TtWm9TG0eXdStvNIjTxbs/ABZhFHOh5syqw3YFi9mzKd
-# FNddxbwFoXkeqENciES7+Qtgb2z7e5DSBDtf56NI5kXCpyJcMXGrbPWAO80Bkos9
-# t6A/cZjgqnrzvXh4a7YKXDkKV3D/LAtHPXHXAQxxnPi+skBUWE6v/y1pap5aMMzd
-# CcUPeux8a6K7y+Se0xHWZFwwb+GcPFGF/XugbgnXlRlIos1JWQXGAePn+MnuzAAQ
-# ukCqF+ldoHB/XfWQbWrh0tYzpfNN6ik8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSI267ttwQBZL6al7fCDfH3YzpffTANBgkqhkiG9w0B
+# AQEFAASCAQBO59RVXqqBNyhhas6vuWEjduvP/UM8+vMzcZmJqnyseYIca6LRGIw6
+# T/AS3+5sXKKjOvls9umJTmh3JsfLcShBwtLtS/szWLe2QpBB9cC1OdbrYZN9PCWX
+# FT2pdc5HD0UvAQ8NhVB15o/OWI7gh+GBFRiA+2u596090SZnCk1Pi6NipbHHEk/v
+# c2AWtuuOcwydfdLGGC2kmPlljSA56Tm8hVW+QdjoSCi9uu7Ered8IjQ9KIs6Uw+f
+# GEYhHiB1mohnCqrgwvUHtqkI5OM8v1mcgC/rFtBXMJ8Drue+2MI3Z1zKIv9778DO
+# YA9L5R2TpVSWiTQO9240rc/+p4TA2ogzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNlowIwYJKoZIhvcN
-# AQkEMRYEFAFg2vqWKpAHq4nexTYG0fM34r2NMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyOFowIwYJKoZIhvcN
+# AQkEMRYEFOkOl4Nqkv339nik5fpUsAbA1iUyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAH/ohMvz0zeMraJbOYqI3l8c6KC8Csmr3cmzh7nlZy64CC
-# p175bzuuCGNCZxDNHLRotZAEyDkudcOyYohEqkxrLdUJ9kvLXjvSdmrKF2wzWQGz
-# GOrn27XHPr5u4zEJ5LtXAsScsRnDAutG0MrALnhGlb6ncPlN3JQ6UYsZhaqwobZp
-# B/02v/Cl/9eCYKghQuKz0Gv2SV+vnwAWuvUkto/d3Frj22UCnvi0uszcE6Cas9Ke
-# EumauKj7v0I3u/UtEq7GJu+/X3PrK2ANq3duziglQDpPprF1VSorknntIovIxHZy
-# eKS2eZQhHt9fLYyXIRV+wrNxSMH2qVa/EZBkbl+I
+# hkiG9w0BAQEFAASCAQCP5R9oWZ33NO1sOpVGG2Y05xCMWyv8HfxwQ+ubMsxmQzqK
+# UdqwiYMy1XCzR0c8cApYBQ3id6AkiLw8Ko/Wcdxvrf6ob9+k8/9jLkh29cVOXQ6o
+# oIz07EsqiXhRPr2tZi9HRhjKreBbs1gdJV7SxWlo07Anfh88Y4bHTgiFphHqaNIQ
+# 1q1XudI/RjNbEssrj01gOL2ITqwPeD8sIR3w7cc31qFCis0uCQ4EqFGfGgyKHuMf
+# kji8MO7fKNnvlTtAfabh4pcwKKLECBZxXhlohFZitsycLcdRsEyvP7Zxjbd86oBb
+# zrcDGIjL7dAiNhH62LmAH11CXtwxclPlLLIF3Qtr
 # SIG # End signature block

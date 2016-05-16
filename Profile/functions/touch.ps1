@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-25
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -52,9 +54,12 @@ function global:Set-FileTime {
 		Change file Creation + Modification + Last Access times
 
 	.DESCRIPTION
-		The touch utility sets the Creation + Modification + Last Access times of files.
+		The touch utility sets the Creation + Modification + Last Access
+		times of files.
 
-		If any file does not exist, it is created with default permissions by default.
+		If any file does not exist, it is created with default permissions by
+		default.
+
 		To prevent this, please use the -NoCreate parameter!
 
 	.PARAMETER Path
@@ -80,15 +85,18 @@ function global:Set-FileTime {
 
 		Description
 		-----------
-		Change the Creation + Modification + Last Access Date/time and if the file does not already exist, create it with the default permissions.
-		We use the alias touch instead of Set-FileTime to make it more *NIX like!
+		Change the Creation + Modification + Last Access Date/time and if the
+		file does not already exist, create it with the default permissions.
+		We use the alias touch instead of Set-FileTime to make it more *NIX like
 
 	.EXAMPLE
 		Set-FileTime foo.txt -NoCreate
 
 		Description
 		-----------
-		Change the Creation + Modification + Last Access Date/time if this file exists.
+		Change the Creation + Modification + Last Access Date/time if this
+		file exists.
+
 		The -NoCreate makes sure, that the file will not be created!
 
 	.EXAMPLE
@@ -203,8 +211,8 @@ function global:Set-FileTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU93BMgDE+g/et7cWsVMpOW71W
-# 2xKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2u9Utyk+FPKTLABrnzAgiin2
+# N4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -347,25 +355,25 @@ function global:Set-FileTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTUujCjZsGbnhrw3hp65FfupHGdsDANBgkqhkiG9w0B
-# AQEFAASCAQABI0PTyQvyLeSQIDsdKoRdKogwykXLAqshwkJ2EaqwjPHVAATX8k+q
-# N6hHrdYo2NAmlzqsZx+Fgydou3VfZAmNXwhwR0eP41qx8u1iAAp0YJfCFgXpy08p
-# tdrof8nu9VUy6XXOLRj7n9W2i8W/CbOlyNHdifvSAcbM6S3Y3i0Xc2rbMNQDpB/z
-# 4GxYL5Dbd/L92kAfj3sG1Rm/J5BjOkwevJH9EHVKlPj3xe+U0i0rhA9M7bIavMVL
-# 16UrMNddywbDW4VijvLm/AirReCLgPn1aQE1JYbov+EDGWJ4uWCPJNSDuCZnboEJ
-# UqlXsMbdAn6wBoW1cXdACGq5lS/GX+TmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSgbhTZ22tguqIvkbOcwJaRiUDXHjANBgkqhkiG9w0B
+# AQEFAASCAQBnxWIpW9L96ByvM8WXAQdrrEJDdqnarCyaX1c+uqvisN6vaeTdczkR
+# r4nxTrGY8KcLqIUBONmxImbtXq5/kPBVB50SB6owIqQ/eIyEvi31KX8hFc7Bud+j
+# y36jm1+IvBxqDoWX21n1cLAW2xqXEYI2CW4dcNVcy93hvTJHO1gV789FF6HAzVM7
+# gGo2MDQrLmykK2LODMmvUfwSYuIxqNe9JQY3yiUIE3aQlIa3LcYTANAmO1eBfUmd
+# 2iqnoP8AoULsQrY7g0tJxNlR5SSYxlNfjmCOnulAFbqRZxDQaTy6wpEMQtk7ciXU
+# 8unJnkv7Ovz3zPdU4WLTqPnyjJNQMlCLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNlowIwYJKoZIhvcN
-# AQkEMRYEFFod2mtyU+py217qeDhoi0P4+CkXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyOVowIwYJKoZIhvcN
+# AQkEMRYEFCVnN/9fRe3a3cUY2UOAryIcHxKSMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB1FLkJic+07/tN83SH5Y3bTyHN6tTqkZ6u+zn285FoWwcb
-# ey/M0b3oSTYMD3k77vsSpGAMyhZBPR2lo0mr1FrBSoDNlcgBahwfYm0AK3P/r63G
-# OFCMBREQ8Dn3xkv5lK+gxSxIUnwJJwtxgAg9CEvTHfX1gXFVopiP+n77Lt3RyfGE
-# SCBXqrLJ6lJVTkGYnMlVMfHJv7iLvTbJSmLo/INue+Z6dFu0TMxAWS+7jDVNNJ5+
-# 3JZ7VsJz7U/h+6dD8KcTL384IADmMnLf+RT7H4iKTpMf5zWXkuGg6TSyUqf5ndf+
-# vSqzr42Zck/PAmQtQwSRGBqxClLjZLdY6wSb+VtZ
+# hkiG9w0BAQEFAASCAQAAlrvH5xCrGWe9Xfus7xWmj4K+KXtqjEft3ooOv4hMH+qY
+# JLr7otd9okJhpooalMNJfBPfiYRiYQdRHoMFQ+0DWyfMF/TRKfpN5hb0h3mB6ACM
+# oSMrlPAri1cGSZYMrdRzAieuDD9AKKZDJ8k/YOQykXCoL54h6n0En7DkgnEaYZv9
+# IwhY6nqxlakST2UZ6dSJ3cgsT9eyI+zg0jbXCFyS+q24wJizl9o5X9dLFtwcRLQG
+# HSAj1Em9RSQ6qPfP31i5ge8EkLZp3G+QuGeezisjZ59R5WaRTDiJcJYpAeu5SAfN
+# ysKKsW1SXacHUZlzGZDA5MQIYusUJuuIm573aw0l
 # SIG # End signature block

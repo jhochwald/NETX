@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -83,6 +85,7 @@ function global:Get-TempFile {
 		Description
 		-----------
 		Creates a temp File: C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
+
 		And fill the newly created file with the String "Test"
 
 	.NOTES
@@ -128,8 +131,8 @@ function global:Get-TempFile {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYv93ELryHEz9ujuNPkF8Yt8l
-# 7rigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc+TcZnVbcLQElIGiNCyBuyfF
+# eIagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +275,25 @@ function global:Get-TempFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS8JszgptLXk+nH5IRZTsMibf/3FTANBgkqhkiG9w0B
-# AQEFAASCAQCO9bN+3jAxsK4s6HahTXu1t6k81tcWMnOjB7pbCG+OYiQkpTo4Zzfr
-# JlAMyAmeamDvCxtzK19BaJr4Yq8LQd+dvRwqC9BKz5rIBwlP5DXqOkNXOPUFpx+j
-# a4+USN2C15xEku2PjP8jBcDLBWqImvq0c9KWjR/SqZMvsH/fTd5We98OuC24VHsN
-# RtYROUMfHSwOHnbGeHkO2Rt2fwKn4VhrrOdlWE8tVWvqnjgghSk0OhkM9a/j1spL
-# NO7dgePE4ZpMU2BazSxH/U3ARAjyZP9T6L1DOyLtd6TS5bMytGZRZ2pakAjlmR4W
-# iJX9vutBDAvVlgH97toaYhAQhRV06n6joYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRD2jRDISxVU5gY6ZNqlTyhgegxnjANBgkqhkiG9w0B
+# AQEFAASCAQB/MlKVatOtxOmhj11OT7MARhOjgZMLYAaOrzxkee4HMC2iI3uBBvnB
+# m6igLBxgqsrE14mCFLSK32OKSApek89lAFvWtR2J7OxVQjUyW+QY/A+TWXqDAf3p
+# 4xRLo5GwjeLthL3UfYx+gckObSzdr0ocLXD00kxEFJ9h9T4UwXrn2ljESTjuk0NG
+# 8j50yYqUQyMXpzlTYZtKzXqgPHymx0RUNY6ugGy9P5YQPq4pDgBhjz7D/4CH70jE
+# /ZBo3MLSoyq5k123Ul9ctlLWjL4yj/dGtTy/A3ebBUmNAdpDrT+WcCPIF9LyQwpo
+# dlarx9B2FRFA+CXSJbnpSbaEnUSmHZNSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1NlowIwYJKoZIhvcN
-# AQkEMRYEFLHG1TRvjbtnUta9t2rTLer1PI0MMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYwM1owIwYJKoZIhvcN
+# AQkEMRYEFIrl82GVaB1XoRrun8INFp2cCUbQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAns/jnEjGQLuwcS/Ju9umtFT5QTeMrZF61XQLPKnFll/G6
-# /oFVmSYwsaj3XfyE/n0VNQsF3RTn81tg0cMXHJGMKjnNZ7A6QEOpDm4iViAb88xJ
-# ZuTAt+3fqn1FDJ3MhE6HZ4zIpCjjW2Ogh1BxsgtQ+zo+dRuSNjcf5YeAHzZfK9eR
-# 1eu5RxcP5ul3BU7SapO6Dd/SgtOtVde+avv/L8n0fH2MG6HfnkZyV+54sPM+0Mg4
-# f6hEzz5BeHAwwBkbOu16MHbaW3BJpwc73gDIeVrfiKaYtGhvQqUniAwcIzkmW7FP
-# +pSwd6k/Fn8g1rviSG1ZTfEBkL81LY5jI1umuUkX
+# hkiG9w0BAQEFAASCAQBGWwpGct2ZrKybXuTvj2L9G9s1qwsfJbnjv4jfR4oNQH6b
+# 77muTEBramwBx+QdL6/AuxLrc0K3UNCj7urDCK6DVb3cecNukdADA5g5+dxfE2Rn
+# 9Dw7cMRafgV3/FpGWzHLgs7vsfmVyInGhuvLJMUiDOeTypZA0fxLFkBboy0e+s22
+# RM0oVmZxh4sBZfjudqnAUacKHMOajWO0AhoePr9/9uVB4p2Xu7FK59/C881OhxKF
+# /GYQkSi1POmt1ouix1fUcEJFNZx/1BuQ9/es7G8cLHJY5XpbdWvXPHU5FcMDR9/J
+# TTJOhAHdsT4sbRi42PEXasQnhYFc60Enmw3H8qdG
 # SIG # End signature block

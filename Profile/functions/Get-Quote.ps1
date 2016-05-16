@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-21
+	# last modified   : 2016-05-09
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -53,7 +55,9 @@ function global:Get-Quote {
 
 	.DESCRIPTION
 		Get a random Quote from an Array of Quotes I like.
-		I like to put Quotes in slides and presentations, here is a collection of whose I used...
+
+		I like to put Quotes in slides and presentations, here is a collection
+		of whose I used...
 
 
 	.EXAMPLE
@@ -143,7 +147,7 @@ function global:Get-Quote {
 		# turn the quote into an array of characters
 		Set-Variable -Name "arr" -Value $($quote.ToCharArray())
 
-		$arr | ForEach-Object -Begin {
+		$arr | ForEach-Object -BEGIN {
 			# define an array of colors
 			#$colors = "Red", "Green", "White", "Magenta"
 
@@ -259,8 +263,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFHogCc1GhMLZ5GsMwTClU+dK
-# 5JagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb9n7CwDeg9CYLKTQogp/UGmC
+# opegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -403,25 +407,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSQSgDwuWtTMsHPQx0Df0+qvLR+uDANBgkqhkiG9w0B
-# AQEFAASCAQBY0RAIYSiQpAQvQ52EXp9StlfVMlBejmgGPI+CUM7mfLpOeY9L/4I/
-# PoGGGDowYZev8f3S09rJ3a3Sg0bs5GYPKFT1+SmBp4UnljahJkGNDuGao8u8CqvJ
-# W8S8mc6doTozgsJSoo63PjeN8rW+sXj+RxSDNG/5KrsfHZ7qvUNdTPbQ4nS5sUGn
-# ok8exzEreeJ1tMArlHGHfEtrDqjbNzGBoQ0/2SWTVhZlsvxU3IGIif0U4YoQf/0n
-# JpYPapSbGYq2QdUFHq4x0Z+CVBNXM2PGBI1l/VZ/yMBO7zEMZzreinRwLwOEyKnz
-# RKikzWJZzIBDU2o8OCKZncJUUYEnbfiZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTujbFygRkso9HrNxoHmVE6YOKFxzANBgkqhkiG9w0B
+# AQEFAASCAQA5DRQCpRfJHawq/LaVsP/adYEAHCjQtbbNWHvoQ7V4pFtUS51csgrF
+# PBUaty+muLK7n4P2JY0ELdfux0KA72aUUQGYOzA9tXhLv/N8ZtEBoMcETqqCGxdn
+# vPTyQNl1HB5EfcPwYsbxr8UPrxCbmAMb8IqUI5W0FyKuFAMmI32qNpTtLRTWSgt9
+# jXgNM/pYPVFW0n87OgNBCXkUUEh35vZ3CTD+2mw3GSY3uDud8Jpy+P4khEgzOp80
+# YCaQW+y1u9U/n6ReFf0qDFhMCHet/iPH/3+RQRTLoOSQwxdxSghPqXp+GppV8lV5
+# 2WZxCDgejE3laEVYGOesPvQ4AMoeartNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI1M1owIwYJKoZIhvcN
-# AQkEMRYEFERT1ZXknDZKucbY8oZvXONEClRQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU1OVowIwYJKoZIhvcN
+# AQkEMRYEFNri+AnBWpePWm3Yyz0HwG/5IY1lMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBkrEjpRZycRJ+7oDbLodPeoFaHNDoHjmzI9ak9VVoFXWYO
-# Qt4+mLfI4FW+uU8H6j5nQo3pYGHcBVZ+0gUQrd6zjOdF1+iQbpHPTmzTaHgWpl+U
-# +2UAUDIDq/EaRR5nOLC5faeqR6quN4FvVuXb63qxXQwT4dQE+1mRZ954PDxiKuNS
-# TOfYeviKRQpDot4kG1ssBbkOZqXBcCiTwMaFKYWuAVmzOfYvMKhOhwS3VkUddbAs
-# NWJ25Ew8aU7hYs/KUHhO533cs7D3afu61mQtDt3DxXnmJiOVBuZ60SwKM6IZCE/m
-# SJkTC0l2XNDjkN09op6EYfuHM/F9+/skQOCDoJ9G
+# hkiG9w0BAQEFAASCAQA9dLFzu5e0FDD5o2s1PFS4SyXTikTls3Riu0Jc2L5PTkxM
+# oOz4UzmBtPd5civjIdUIqfvwFFgwbQeQEUh4Yg+ZcLJTRIvmgU1yVsGJcgwGPjc2
+# +RUh1L/IOG0map4BEmg6FUKFmmK6YbSW95GlWLclI2Y4wqDi22H0FoDVEosMlhU6
+# GzFHiFyQZZuU5niV9v7iFvLlWOkWLP0CQPiBfRK/KN+aOl8iRp0gciysUuufBfTU
+# mqAz11NDEjyFVn7V7L02R3+3bWVjqHt4U7akjniGNRrU7qY97mikjHviECsQV1Hw
+# ODGznkBOzhppp5qx3cwdoYScFAtAw2v+FS68mwWq
 # SIG # End signature block

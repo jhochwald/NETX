@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -54,10 +56,14 @@ function global:Invoke-WithElevation {
 
 	.DESCRIPTION
 		This is not a hack or something:
-		You still to have the proper access rights (permission) to execute something with elevated rights (permission)!
-		Windows will tell you (and ask for confirmation) that the given command is executes with administrative rights.
+		You still to have the proper access rights (permission) to execute
+		something with elevated rights (permission)!
+		Windows will tell you (and ask for confirmation) that the given
+		command is executes with administrative rights.
 
-		The command opens another window and you can still use your existing shell with you regular permissions.
+		The command opens another window and you can still use your existing
+		shell with you regular permissions.
+
 		Keep that in mind when you execute it...
 
 	.PARAMETER file
@@ -134,8 +140,8 @@ function global:Invoke-WithElevation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnRHxHzUvbV/6/xYdcoqMw+DV
-# XLegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPp9B9F4VitirjjIOEQ57HukC
+# 2VGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -278,25 +284,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRh+mjVG7x+IS+Ox77RntEQ8+XaJTANBgkqhkiG9w0B
-# AQEFAASCAQCnRTX+K5TNe/yiyr8peGU1He/uQjO/WCg4LDHGSFg2QeoAtX/RKaDI
-# vlWjZ+3efmcfUVMFOld389wxbln0ftQZBgSAtdM4kpQZ7D5kGvx7stiGQYg1Nlz5
-# LL6PCej3vQtb+cNt+oUkRv1P4biSVsVPRzVwaFkfv7OhOGti31z4+Zr8RIkVdWGk
-# gKmZwmwVyTfu2GoHSwmQApajWmDRVs41aSPwyUpRmfT4jpq+wbkEC19zkREXHYx5
-# 12e2ERp81ATjVbidj1zGCjM121lCChaPtyZ4TtizIdTEuFud5uHcJVDAZWekmWRH
-# qgRSCvEq0a8a7Vl+p2ej2I+pzcvvLVZWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQbfx68HKjjCHv31HK0+xexDblCCzANBgkqhkiG9w0B
+# AQEFAASCAQCn06ymwkwHYj65Dp4WncguRRf7WWB+qwe9qaHNdFAmbAH1qYWQAg+U
+# URBuSG10eGY/k0F3igP8/O/favw7mpkiAztxKOm+rHzwxnxJA3p9xXSpBWHA+TWq
+# cDDVpp9ocVmhIvrLml+Y6mZWeGI7MmvNan8G/25k3jLuzVHREQNzzPBkciwsH+bx
+# agHzVL14SBaIMDV8BdpcTnFURyxN7vXxSUm68VBVLrajhQNSZ6a3WKfJmGeruqaj
+# kIjV23WIwJPMpRchb0XZNqnss3ogxnOFK6UZDlXsNeQQ0K33Mxwg0m/vVO916Jqf
+# euVnC3vGlS+p754GXECqk8BjHorHIgDioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMxNFowIwYJKoZIhvcN
-# AQkEMRYEFKMJ0dsJe3p+aDDoqozjWU4EK6oNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNlowIwYJKoZIhvcN
+# AQkEMRYEFHWTNFR1FsKkg4d/hB2VLJSfHmYyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCYkJIdhiEsrO4vTGWNj0VmJ8FjLusmRf5KRuG/wSJnPdBz
-# N2El2XxK+RsgLNCHoJ04T41pyOd9Bvmc4o/BhRVpZWex6k4G15BsCY4yqsWF+5dN
-# nSFHc69VPokJ7jFPdziKsjaS3PtqoVpfE0TwAJ8aH4HLyPt4jEuzBYXqNLDP6JLn
-# dUplMLY1Wo0Cn60pSZs9U4EyBZu4NfD/Ca8ty40oodmpNwZNp9ibHXv4GDSGqbCS
-# Ktei37OeY0BeVlO2m1JDU3CcS9Bsf7dqJShAg7GaCqDahkaoepynuoZ5dUasV5mq
-# /7tW0i/kSnk2F56P9jnE7yWBWVYZKcxShuzXsC90
+# hkiG9w0BAQEFAASCAQCCR9fqY6kwRabaGRDxnOJUTLlfLpN3NleM0M/VeUmgMvP9
+# aNUEo8zNXd1kUheUbyFAiz2XPzRArWPvJH+D1wOaOV8l7E5i4SqZj47O0sm0n2FD
+# N4VimKx4w3+FSYVU0DnK0X5mZCfKwSb82mq47XwFVP2VJSifc5M31ev5uyLoHe4e
+# gcyJKY6f5DQEsK3EOBm5/zMLiUW1Syvwy0QYdkxdlwW4XoJYWyYUMMrJVAk2G0RO
+# GqnD0o3Xmv6ksEFfCqizZt513Shh49YUMf655lddGi5YcHjhoHGVKpQhldi22CEh
+# On1+QyjshUbRLzFbb0TNS6pPjuaTBaewK20b9bBA
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -49,11 +51,15 @@
 function global:ConvertTo-EscapeString {
 <#
 	.SYNOPSIS
-		HTML on web pages uses tags and other special characters to define the page.
+		HTML on web pages uses tags and other special characters to define
+		the page.
 
 	.DESCRIPTION
-		HTML on web pages uses tags and other special characters to define the page.
-		To make sure text is not misinterpreted as HTML tags, you may want to escape text and automatically convert any ambiguous text character in an encoded format.
+		HTML on web pages uses tags and other special characters to define
+		the page.
+		To make sure text is not misinterpreted as HTML tags, you may want to
+		escape text and automatically convert any ambiguous text character in
+		an encoded format.
 
 	.PARAMETER String
 		String to escape
@@ -110,11 +116,14 @@ function global:ConvertTo-EscapeString {
 function global:ConvertFrom-EscapedString {
 <#
 	.SYNOPSIS
-		Convert an encoded (escaped) string back into the original representation
+		Convert an encoded (escaped) string back into the original
+		representation
 
 	.DESCRIPTION
-		If you have a escaped String this function make it human readable again.
-		Some Webservices returns strings an escaped format, so we convert an encoded (escaped) string back into the original representation
+		If you have a escaped String this function make it human readable
+		again.
+		Some Webservices returns strings an escaped format, so we convert an
+		encoded (escaped) string back into the original representation
 
 	.PARAMETER String
 		String to un-escape
@@ -172,8 +181,8 @@ function global:ConvertFrom-EscapedString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxnqdd2Wrs9cimotTtD0ZRXjM
-# joGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQdNKZVXHxeHfw0+sgXYm7bqK
+# Wo6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -316,25 +325,25 @@ function global:ConvertFrom-EscapedString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ+6nIj9vlqE7MNZEffOFsQApZ/LTANBgkqhkiG9w0B
-# AQEFAASCAQBpuLXd/vpJvLc1HNepVckk2HA6fGlHFnXZgO2VCwvz95qOKlkbp+GW
-# CbOk+ImWlRLymBeEHYTdtPlJkz6ApwiJ43uyTgF1kPRsXglTJSwyKo/XzgkiHfCR
-# Om5lPBX80a9yYbh7eBVGpZNzyimmpSjVStNGxIaEH/s75jaU2rD13YJnRQGUlukA
-# Or+KacfVT4zPCYkAUvLCIQLgZAUcB8QL5kammyh0p6uSLv08hfifHZ7m0oeTcaF2
-# 0Hw4i4h1AGsqdyD71MZnBYl8XIMsGeEXVloB3gVAvpYwJetdTEaEHkxlXTWCk4n1
-# D6IALivy/6PiJqQPLr7J4km9V+gJhlSwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ04SlX4M21pRzCgvfT8ccCL3c5OjANBgkqhkiG9w0B
+# AQEFAASCAQCYsjQfw2NiAjiBeSv5kxRPal768IZh59m6vzRA321LdmAbRJ9i1TTe
+# 8/TDOPHBc63b7sVu4rRni/oHNR09W7Uwv3kDmQcUZi28cUW+it2NW9kplX0G6uO1
+# 8DhqVR7HOhG/keb7vVdblH499QyeDfDszUQUG48cCNLkc9Esy3ooqfAcjtRcrqDb
+# qvOz6u6whbRNXcyJgH+fvx19NKRouaapgdopTGpi+/XCGdiY5M+WIWA7OmpkrNr1
+# yn5xhy5avv0hAH4AjUMqeQnaFMs5aZ443ZGCm+ODTWjYTHVjTXGAq5sgyVI1CVKu
+# HQskTj56eZb+da8BeVuRM7UdKhu6nvy6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDI0NFowIwYJKoZIhvcN
-# AQkEMRYEFCCS0+T2kklBCr05/fxrq0Xx25R2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0OFowIwYJKoZIhvcN
+# AQkEMRYEFGpcecnkAIXpSLvc5EWKvdfPyRyAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA5G4m7E7ipRQ3q5aqhhYmqvXWKx5ifGqSod++viz+YOvHm
-# eb35v+dagW/AU5RmRemFmCNKWaM1yFgSsDadYdBb4+fdWhLHegw4aJTdHcZ/w4MX
-# tuortcf486v9lhHF/EsqRO7kGxgyXCS/PRWjIXHBBMjX5ZCmqzRxR7zIs/OR33z6
-# MtoX2oiTysAH/mKUVz4N5Ew9is1IiL51PDnYVrE6naCde6jxKGnQPT4E4iVDYzDL
-# NJoauQnjb13PFHcSzIP3hAm7TJGAvzfoJy3SRarvCaeXN/2Ql3B0bA4d6X+NhLUw
-# mq7E51My5kejKj9jUHLsXac6o8jDpMGxTdA8YVij
+# hkiG9w0BAQEFAASCAQCnTncRxUTKmtcDX1mEQwoH/wg55i3EIwqjKsSSbicHuIE6
+# 8A8xwevFRgJyJOovZXCnCs3kr956TnBYb00ib/oJtHHuzl16jYv9tZwYeaBKWpjQ
+# NUIyN+1jaxMMdMdKsTImxIxr7i6iXBjo3MbzANHW4Q3t7ZfqASaFNgmcSCDyCiUe
+# DoZwm9HxdQ5cFQ42a2p1HefGUiwakTw7H6AYB5SHXy6wSKaaDEsFsWeC418d9Kg/
+# Dy55QHKwmbD8Mnt9tUbde+eHkgVFu4V/NU1InsY5gsRzqdJRn02dGM8wnY2zTQQj
+# 9jmesEbLIlb22Ac/0spGbho9+VOnkjC4M/sNFRpG
 # SIG # End signature block

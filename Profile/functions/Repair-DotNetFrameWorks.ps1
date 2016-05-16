@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-04-13
+	# last modified   : 2016-05-05
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -17,29 +17,31 @@
 	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
 	All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without modification,
-	are permitted provided that the following conditions are met:
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice, this list of
-	   conditions and the following disclaimer.
+	1. Redistributions of source code must retain the above copyright notice,
+	   this list of conditions and the following disclaimer.
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation and/or
-	   other materials provided with the distribution.
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its contributors may
-	   be used to endorse or promote products derived from this software without
-	   specific prior written permission.
+	3. Neither the name of the copyright holder nor the names of its
+	   contributors may be used to endorse or promote products derived from
+	   this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-	IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-	AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-	THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-	POSSIBILITY OF SUCH DAMAGE.
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+	THE POSSIBILITY OF SUCH DAMAGE.
 
 	By using the Software, you agree to the License, Terms and Conditions above!
 #>
@@ -58,7 +60,9 @@ function global:Repair-DotNetFrameWorks {
 		installation of new NET Frameworks, or even patches, makes them use
 		a single (the first) core only.
 
-		Why Microsoft does not execute the NGEN.EXE with each installation... no idea!
+		Why Microsoft does not execute the NGEN.EXE with each installation...
+
+		no idea!
 
 	.EXAMPLE
 		PS C:\> Repair-DotNetFrameWorks
@@ -118,8 +122,8 @@ function global:Repair-DotNetFrameWorks {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjx0kb8Ua1080DAYDyyTJQsPp
-# FlOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYq0Ceu9PzancUQxdypIrWvex
+# HPygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -262,25 +266,25 @@ function global:Repair-DotNetFrameWorks {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSeE1IMVuf7hSEOW5XP8L7jUpmWxDANBgkqhkiG9w0B
-# AQEFAASCAQAFOKHWzo2qhe0wluZGkWRJjdLnpMZEmyKKH1MRI4iyaPEugs2nYeq1
-# XlzPekZgTrj9hrt5ygShFFgN0kobtEOytggjFsvLEHhqAbs1wXqSo+O9UM0CoIfs
-# HZII5AXsralbZaCzej1ubOKypYD9/QPRcCSK+ib93q4SeO+l2Si60PrHzLLKHgjT
-# 5VzYDl5WmuEfNxH89tf7qCPEsWxzWwa1c82fq4JCSqjcCB+BZFpgGqZM+Wot+id0
-# MWscJQYajdQ4YQzbExoLKu/RXFSQvgMJ1W80A17AlZPRT6AkxiOFUOz+6T06P9eW
-# HLW/B9gnn9/++z8NTegM4uMYyG1fuyrgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTooaNP5GMelmXIrOTu1/QBXINuPDANBgkqhkiG9w0B
+# AQEFAASCAQAPPlkBPVWx+AUI0iZYUEmgMeGhIs9lzR7jfwVXFnZzm//ND46Xi4e+
+# 9DTyHsVS6/qyri0xMo1jCvWUnuTCxd/Xr8MyEe956/6tnkDJMscyehSow00TigQo
+# FZjYhpWszfNw18nSIQXCF7Pci3tfiAAY4Tb+y1CFtPDMZlSWPLmOlPuP1TvhFIz6
+# oyDIfl9NFI1CjpJJ4kHIijjIhvcwQ9jVhMyasTxaIt6+fAJXCFmdp33Mx40XRIG4
+# YZdU1aAaeSMkgr7A1NYIoPAlABiHwnWeKyq9uGrzvZ+eACsxDLSnYw7HwqbrZh1l
+# c2aerHQLxTlo9vBHLjghnZ9Xy0OPznlMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDQyODEyNDMwOVowIwYJKoZIhvcN
-# AQkEMRYEFAKVr9gLIr5Ae0Xo2VNLzIjmPmlKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyMFowIwYJKoZIhvcN
+# AQkEMRYEFJWX9K1/Gs8WE4Qo68cxhnOIS/m0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCfPlUkS0DORix2Sxh20QJew3lMGBzqazj6pHFRoTvD1o0F
-# FyS2PyLuvZVrqwS7MC0Bmp9mo6fKR91N8QkxOJ8lhcVFq888ssRFj5wR5p90iOFu
-# Q0KP6trSNyKFM7yWpof8LvlH3PQIB1YwLD+cxLy8a+4Etf+efNE/QZGGYB1QTjhv
-# Yrl1BliAJ7WdKsLkwBrISakEAIGWXr6TvxWpJXDJzz2IgrY4Vn6kCK1TR/wz8rS4
-# jaPE3gaxk8KyjaUyZMqsNh81PlS8zu584W4uCKJz/fFtHIZ1wDoi5sboyZIrt0Ny
-# DSk6Gdo83mRWzo9g2lxGCOiZ5x21nLP9Z1HXKqZ5
+# hkiG9w0BAQEFAASCAQABpgOCVF1uwnpEDJQqCFN1roFwG83m3SetlEiCiojGhAnN
+# yCdNWBc9Z6dvodYxo7Y/yL6GpLSEnVKqHGhVxX6GdqPAXmZ87aF1ymnJS26iaknV
+# dsKHC8MOEg5pKpoKWEnxd33YqD8qlQSCwJokKn2hWwLeNvWgPqkMKQ8MFNUGRtid
+# uFuRy1g/kQ81cmY4Km8IwjP9XmbRD6zoKUgYi29RFoKDD7DBXdsspNCkxL3dybKy
+# yg5KsIqFUEQXFFD/7i6JWVj6Kp3//kHpMDdqkDL2YOvLQAY682gvzFMnLE8hsE+n
+# 0Q5/tAKBMG+bP4EotesRpptAKK1E1M+R/1egMrrn
 # SIG # End signature block
