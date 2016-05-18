@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -87,8 +87,7 @@ function global:tail {
 		Support https://github.com/jhochwald/NETX/issues
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(HelpMessage = 'Follow')]
@@ -150,8 +149,7 @@ function global:tail2 {
 		Support https://github.com/jhochwald/NETX/issues
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true,
@@ -176,8 +174,8 @@ function global:tail2 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTucBQJ0aF3EyS0ZEh5LcyVDh
-# u5CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYYYaya2yg7BURPVQwfnwHrff
+# y0SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -320,25 +318,25 @@ function global:tail2 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTXntqnSW7PwCbYrf7Mc4c9y5wAyTANBgkqhkiG9w0B
-# AQEFAASCAQACOuPPCusg4zQI1PR6q8s453G6MND8jawJxlmV/4bagMf9cGHW9PSx
-# BtbgRUANRl4RLjo9gdF9xFyFM6n7qSTKs2zih9l0y/xJ6lt9fJOr2cbAArAsHrR7
-# N5Mo4y8yP5xg9FScSs56sqxI6M9wGYAu2dHRNO+82caSeE1sCDjn3k09hX3asnrs
-# aD8m1g6XgEDh7SVkJIiOFC3+tLFQhOZh+JsIMd5f5+/xq1lTiBWtWsjbyfHiM1Ea
-# 1tf+YpD911Mv+daBP9TU9fngpDXYl7auJKASmn/mTW3GNQRWVm1uTeoz5zDAg0KF
-# r3qas8ky/hjsbgW2inF5kV+K5qZB3+HSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT4PtOHC3+Wi8xeW2I+PyMAlLWVHzANBgkqhkiG9w0B
+# AQEFAASCAQCepgvCvl3boSWE5CB3LxNltaveemdIHjRT3ljCDg1NHTPHu9Gj1JUX
+# kJ13e+g9qTwnMtRjRi+WhWDykK1siimdtmlUzp4v4ZX03QC3CGL+wrWCGQeur9uu
+# Qp0/LiBejPYNNkQ8CYbwJWgtOvHG1x99Cq5ezSE8fTZ0VR9p75YTVQfqlGE975ZH
+# iShSVAACxYAw50o++aeZM02DjQviQNyKwgD36pkUu2Ozi/em6TpOQI2ldoXbv7WT
+# Tvd+cMy3lVHYoAtIk2VgJu2TbBGumftzTCE25iP/VrgzRzPyK5YMdJFreVY0t9/C
+# 55UQuy2Xa3DlX+RPWAKUilJFtYfNJ7+HoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYyNlowIwYJKoZIhvcN
-# AQkEMRYEFNQyA9kMU3wDBwro6u66HZZQVZmEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDczOVowIwYJKoZIhvcN
+# AQkEMRYEFMZsULmqMkxxurUus5S9oNs57my+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAmSrGBor7yYnj/+ouGqNp2fqvQ3G9uzvEKaJY6ujj7d8xB
-# IBIMDtDvuS0ZW/6bozx/dQTHWcbdJ4qTgWhXRKtZI1ATgRh+CgeGmcCPpPRFQfji
-# DRHtEM725W5XBCWgP4AHm3ziLNwKa0huFPHXX+4kIyefWghEhzeQmM8QW7P6IiY4
-# MTHXQWdSIjEMh77tjtmZAxePSIah2jVef1/awsD4OMjCXQ7eNyK3T4Pb7b8piMbS
-# hNooVFlOlj+RPROBGVa+Pp1N9X2xvdssfLk0FdmwUy1zrZp38mTNpbnGpDQ76twg
-# mTq06dv+A+XDqoHXKX+g2OqymKRjxfYYpJs8bWzN
+# hkiG9w0BAQEFAASCAQA9EobtWLebh4ynQecG7kbsbz9eC3VZ0j+pK4eva/6GREXL
+# G2dtYMjJ72Zw4XkZ22iRR1FTSRuNyds5CU8jpqZrHW3T0T6i+w36gnWQ3NnbYk9L
+# Qi2QqhXeHS2y45s2mRNIAMyJzZpHk5FzatRuaRWDnRFlTWhnfJHteOJz23dOU6Xa
+# 9Zb8UUDvnlqHzdImD79bbmW6/iJFXD4MtLVvUhepSwqD4/YXMlpWnsknHkWUH5s1
+# ZIKKvFEA/7Ri0GAXuuE7cX0/deP5SOtqV5Me1FCwkxggC6CtQBy9g1ihY9hZXXRy
+# XFSX4qjzv5joyyHMknmdz18DPv+TAY2REowb2cdo
 # SIG # End signature block

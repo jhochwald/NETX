@@ -1,7 +1,10 @@
-### New format (Updated from Build Server) (HEAD -> master)
+### Update to Build 1.2.3.66 (HEAD -> master)
+>*Thu, 19 May 2016 01:13:26 +0200*
+
+### New format (Updated from Build Server) (origin/master, origin/HEAD)
 >*Mon, 16 May 2016 08:25:30 +0200*
 
-### New Signature (Updated from Build Server) (origin/master, origin/HEAD)
+### New Signature (Updated from Build Server)
 >*Sun, 1 May 2016 13:06:54 +0200*
 
 ### Fix Output Type

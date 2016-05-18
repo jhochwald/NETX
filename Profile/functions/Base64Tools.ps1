@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -82,8 +82,7 @@ function Global:ConvertTo-Base64 {
 		ConvertFrom-Base64
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
 	(
@@ -150,8 +149,7 @@ function Global:ConvertFrom-Base64 {
 		ConvertTo-Base64
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
 	(
@@ -184,8 +182,8 @@ function Global:ConvertFrom-Base64 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBb/c043Fjz0eOdHg916yHbZC
-# B8egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKeKeJAVnp6q986zoSPsPUy/a
+# ZvSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -328,25 +326,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQT8sPmKjiHHGJ3MaIGA+ey6vHeHTANBgkqhkiG9w0B
-# AQEFAASCAQAWwdw7ylgBCwK0OekGYr//P7GCZAFiRLs/lmaKInobgoqu9DRZYrjr
-# IufYKeXGLl1ITUebtZIYnf0MycgEsj0mJ13KyTWJiyZJnksWYNVZx0WMC3KPnTMr
-# 9bcVQeO3tXhDKUpWt/pvQLlCV8i8a6XDdeLDtkb7gNJkBm8gImttTBjiAgzM0odB
-# 5076dZfczXaoJfnHyXM95hJtKSFQmYdXZXDHNts8nNYd84BgbiQfsG0IR1+Lnnai
-# /34mxr+APiL2dVQCxbGRS7RMpJzWgrumx1/BJatiCv+mu/RKP02yNcNTgzsfYptp
-# C3iY4kX88k3d0y418MktctaudYedgNbaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSRUmoE7p6BVkyXOKBNj0DpsJOx4TANBgkqhkiG9w0B
+# AQEFAASCAQCPP8X9KNw3M5kae8GfUFXWHiB/hHvalmt+yUb/3GsQeTuBQ2FLndy8
+# llTemIiWjekPe8WaVpD3FKUC2T5GuM0xa3Sdr46MP3p1ItOFc4kV4rwgD4NgZJG+
+# HHRjHiuZZmCOms1yd69ktEzIp5ZUcBIxKPtaeH8FoRi3D3M4tJ9B3AWIekqRQBlw
+# AgEUFofW1rgsJsPh3k0MHFzLlLeLqbtDgET/ZaBLeHD4P7SQ6KExwregHtLjBG3k
+# taxTskOwIBzSNPkIC/l4HLRF5vLxu1Y+stOakbCxN0oJelhgGURULJ12a7ArIcRV
+# Away/3L0re7ICqPdLO5dSDg0k4vxWqM+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTUzOFowIwYJKoZIhvcN
-# AQkEMRYEFLaQe3dEGbgUx1kasZkdUoGWDFWcMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDY1MVowIwYJKoZIhvcN
+# AQkEMRYEFA14fweKG3gZnuqoFr0BiXimu4MzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAZP4FwCTFDT0a0hFnFynIaVwF4CnOGyiiz+wpdDC+/g1Ux
-# BM+WBqYOXsL4uPDnQc2ULdBcGeNU645MDc+Uy/LkG57jUor/yyDO0iV6dUrZ4Sw3
-# Cc1pNlFCeNolSzPkQ+T2/BskGonxV4XJpm6Kh/ZSOw3X82nqlwrb359NbZMJmlCb
-# OduPRugjDdAGk9EssCrfcpbVPEWTIZpV06LGUHNZuBdhCld+9bf9+YEAvTEd6Fiv
-# OD009S9PZoXfPsgKAHmvTeA42gdBigA2tyaFZ5lAjFxKV2cClMj8cwlTjc63u3mN
-# EOX7btwtilUg22peZjo/4ca0Pa+wfhg/Oeazq2T0
+# hkiG9w0BAQEFAASCAQBAqScfPY4NPd6AfbP6e74IIH3LVWG0siokbHEp8jH7TWFT
+# KdLqWcQrIAgtoz2v71BMAqk4sSOSDX/sVnFljZnquYSX3tmN7/lthuJvGOd0Qr2E
+# Yobr1YYJbZr087DNkVGfCSd3iHjlZMq5XhZS5jmksYA8tLA6xyjVuSYvfprFZPf1
+# w9NZp2BPaGftjpmOn9L5jVWC2TbIQd/Ae53h1MS5PFu/a9aORF4R8Ii4WwCagNrE
+# C2DXMlbMlH8LqrjQrB7owUbTwdKvJ0dqn0v4lOvzWqG5LBzyGKMvMgh4uZ6MP/LZ
+# /eUo+qJirmw1RLySnKuL63eN9QVLu0mvNQcduASs
 # SIG # End signature block

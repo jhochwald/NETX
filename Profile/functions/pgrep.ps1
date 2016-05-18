@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -67,8 +67,7 @@ function Global:Out-ColorMatchInfo {
 		Source http://poshcode.org/1095
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
 	(
@@ -79,7 +78,7 @@ function Global:Out-ColorMatchInfo {
 		$match
 	)
 
-	begin {
+	BEGIN {
 		function Get-RelativePath([string]$path) {
 			$path = $path.Replace($pwd.Path, '')
 
@@ -112,7 +111,7 @@ function Global:Out-ColorMatchInfo {
 		}
 	}
 
-	process {
+	PROCESS {
 		Write-PathAndLine $match
 
 		$match.Context.DisplayPreContext
@@ -161,8 +160,7 @@ function Global:Find-String {
 		http://poshcode.org/426
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true)]
@@ -181,8 +179,8 @@ function Global:Find-String {
 	}
 
 	PROCESS {
-	$allExclude = $directoryExclude -join "|"
-	Get-ChildItem -recurse:$recurse -include:$include | Where-Object { $_.FullName -notmatch $allExclude } | Select-String -caseSensitive:$caseSensitive -pattern:$pattern -AllMatches -context $context | Out-ColorMatchInfo
+		$allExclude = $directoryExclude -join "|"
+		Get-ChildItem -recurse:$recurse -include:$include | Where-Object { $_.FullName -notmatch $allExclude } | Select-String -caseSensitive:$caseSensitive -pattern:$pattern -AllMatches -context $context | Out-ColorMatchInfo
 	}
 }
 # Set a compatibility Alias
@@ -191,8 +189,8 @@ function Global:Find-String {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1iWbTRUO/QL2AHpMC77w2BUO
-# bPqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUftkEWwimN2LnP7+kmzJ6S/Em
+# gRSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -335,25 +333,25 @@ function Global:Find-String {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ/EN5igJykNuCMivugGMfHD9mepTANBgkqhkiG9w0B
-# AQEFAASCAQCL0NIZK2rKFHLdEKO329pxp/BKw2x3KgsSS8IItnDjtpu1XL0O4kYf
-# CkETUwX5gfFu1ZjtTw5W9Em+yYK2/ssLZRMTl6oQeGo1YnymxHT+GyVgg7BqqmBI
-# 8U26XYBHUk+ZSubU8RjHhz5eBCuPNTQQh5tn0GA+xuitJd7eM8yRsTGu4xj5ok3G
-# K2vbA85pWAN50HqF9WrBtLd4cOkiy1Mcnq5fO9/NgRR6Vjigqvg7DoO9JB6/gwjQ
-# bj4gnIUsGId8Df/KTRz8g+J5lD/DIMvaISDbLtA/GZ3XvhNQgOjLOzt2qfdlni1h
-# eVu2J7nnPT/QPoTniFl6TrU2Y0jtz8J7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS/UXmEaBlYr7NqUOaHZqjrYjsLGTANBgkqhkiG9w0B
+# AQEFAASCAQAOBG465sATHVHkXD615o35e2MXoU79zZR0pRapjXjdI+VyWKWUJc8Z
+# FtRG0s+uSBcb3AiMkhmpwNb0g1NS3j4gILA8jCkcGrClEBipNDUELsgimQxD+h9q
+# USQRM73INgdp6eiyIc4iT0O4am5+qqhZxfuEPWUZ2yFw3XxjBC7Mk+d3fao63Zdk
+# 4xPuiW9fPd6Q86Mdq5LK/5XV8xyr+4ViQvfWGSxEtH1UPdtbmiqfBBEFEk6ShiQY
+# YHopcfAFMJxEQ2dHHQVy2FiVbKUXLp4gZh8mZPQ4RC1zMxjVSplW2+XCTGG2ZC+5
+# ZlCeF8Zxs47Y7tdu5Qe/IE+DsYwGktujoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxN1owIwYJKoZIhvcN
-# AQkEMRYEFKUkSC7ksk8vO9QTr0NhAXk2qn8qMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDcyOVowIwYJKoZIhvcN
+# AQkEMRYEFP+KE3+hv2Ph3XZCVe3jIhvEYyMfMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQABYJ0D4GV46Hn5mKhmhDyUH86GadWm7xEu6XNBaWC0c+J0
-# k4Mt0l40cAnNPC7blQuNlejEigxIVyp0LaJEnLrXUoIWIzr+guChRacNPuAvUrB7
-# 1ihIw34afbLyIiIXUBwrIGVexBePvobT7Q1vW/6n5PBnPMoahwqUxDXIExKKqr0N
-# SZ6La+db1Vz7yeWSrguIfUxOJ7VLh52yTXNA9Aght0FWRdkRIsSSMkUDKEte7F2u
-# 2TKjPWchCb/+bvgF0tBwo37AZEm5WHBJD6uzPdCEA1a8e6lG2QpbKyGmSemLBId+
-# i/4dji2NIfFxAsX9E2MGYTU5oCvhhKFL3G8zulqI
+# hkiG9w0BAQEFAASCAQAPlc/9vvOdd6qJKWrCEy4Ds42/dUygu7j7xtD3SX3ihtts
+# pJQzLhFeapN/bzpc8QuO43QDWJxWSp0QUSCcwksFz1HPa6WxPJFKdw1xVL+aeocW
+# qBJ+2KFFu26YUMHseKielOqNstBl28sRmzS3l7xDkBZ4rzAb0qfEEWQoTtRsMwzg
+# nHCBZwh8jnEPuGqZX5c5Qy1oKSvOh8mR32h9DbedSZEoAOLmAZ/Xg34hyH5GWVUE
+# AQH4qODHRyRJwhiqLiyJMRlKdDyL67t1qNdUNfRgVRN+M6rGZQiuD/UqLsIveqY+
+# LiOiZFQcknyNJFu6HX3uRD1PXCSJn+69znGEXM23
 # SIG # End signature block

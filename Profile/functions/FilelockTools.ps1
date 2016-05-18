@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -66,8 +66,7 @@ function Global:Test-Filelock {
 		Get-FileLock
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
 	(
@@ -124,8 +123,7 @@ function Global:Get-FileLock {
 		Test-Filelock
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true,
@@ -186,8 +184,8 @@ function Global:Get-FileLock {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSCxPvlo7BBiWjE6p3yUt1fla
-# uPSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUK1DJm3eJsJuOSHGyflYZPqag
+# K3OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -330,25 +328,25 @@ function Global:Get-FileLock {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSTzBcumruD9t8NDflFoEPRRaLRujANBgkqhkiG9w0B
-# AQEFAASCAQAnTVQXnm8QL4EdwzT8fyI4rhQeF9kSUIKA1/heQAoLnB3jHHYDcZcw
-# yiZOmhyjsF7gyBh+KX1JxO3CAZdUcgeXZ+vY/IrcNBqNhG8DIH9crOGwDlF53+Or
-# HEYVIeijlVBTlm/AN/l1cxTcdTs8i9pMxYYkchcnej60SvGaviN1J3p1eyYHsbKN
-# cJWjhQsqip3OG0r8ZJddLzbSCwd/WWtiDT0l8dhHtAEOLlwm8wmi2KnifzxTYxlc
-# dZdOqZjany4zNL2/XDwq88mNasHMwenDbpbuJzQ/TOrr4Ezq/rfIXkW/mH5qHyxe
-# 0jZsf3mczngwn587QiVl2djUXiPlDVtBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS6kEqIxwqk162Dn35QLsJHC+n8UjANBgkqhkiG9w0B
+# AQEFAASCAQAyvm+z4YdeaxybvekpudUInyb2nAXdI7ZlOAKbxepvP6x79/7d4UdL
+# J7iIymMMI1JeoE4acoUk4V6VVC5b76Myj+IWCGpCxhPeiivisH2gkxU/mv744grd
+# IUIQZcyGVNjQwjMWTBxZaVXDYrlHCk2dJpL5Tneakwta6v+4z0uwJTcUx1sXsz8f
+# TOwKqMuE9lPGZ8qXcXUJV2ppdH3krnKKsxmGHOSxs8pfj52PmUJfeUR75NtFhWuE
+# g7XZwRtLqlQts//Z8/2WNF5CASihDPJZFQKZr/o+v6dD8XGsrBfFW3G/Etro6eaB
+# ltZuFSw3vJOY6HvqtB9YPN8309m54rHvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0OVowIwYJKoZIhvcN
-# AQkEMRYEFCdEgUYlaQjtViJsYhT1UERjQ5xpMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDY1OVowIwYJKoZIhvcN
+# AQkEMRYEFGnfxFAYV+O1HjBW/G9Bza5wfc4iMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAQFy3xeAyA5CU34xtiohw2uDIWyq9w9laEIeQod/YrHv/Q
-# OpMwsq709IwAFRIDg5cANE4laI9izTkKR3KaL2/8DYPZ7nVt3//v2vOZYBNi0hK7
-# C3JjCdaaz495FTle4WsdmrASWSweiiqNoBKdhsk35NNAAdNkcMXJBTTQ88PUup89
-# kF+wgc+1ym+3u7XhNVh6Kw9LWruVspg9GH68cv+HyOjWhHrU2guRz5umTRHAAI0A
-# spfXo2DTXfXpFhRxwKbyhGNtpNomBERk+Y5z9OJBT3cI1nA5uSV87qnW2ooOxVvM
-# xDgxCxIPWQnSJ7BJJyDjuNtjN7DPixRA8r7Lz+p5
+# hkiG9w0BAQEFAASCAQA+xAWYt+w41ZTEEF0FY0ZSG7aRAS0RuBJuZwg+0uKpuVlP
+# PDO2EBkeaCwDuAKNsB+LZYdIRmU0otxQ3JtVxSRrw2Mdk7aGCk2v5Ok1Vbtcutd3
+# Gn//4CcFqr7Ml5FsyF1FSUCuVWuk+zyrZkvaY7xb92vb06x6xtjj/1PofmNi1sR0
+# ksB3glyYW09wLyUwYdncSuwsWBfhL4WblB7SsCe/AHO2NLSTK6JJ1D/SPLB6ajyg
+# KGzwL2dPh9uMA14m9QgxBYvOopvN/MEeGW+p1t32nXAlA2GRDJAbAX8vJ6Ghp5FJ
+# Bnw04s58UJj9yTft5x71JfBRBRcjXevDgz+X5Swm
 # SIG # End signature block

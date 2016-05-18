@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -73,8 +73,7 @@ function Global:Add-AppendPath {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
@@ -130,8 +129,7 @@ function Global:Remove-FromPath {
 		Just a little helper function
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(HelpMessage = 'The PATH to remove')]
@@ -152,8 +150,8 @@ function Global:Remove-FromPath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxZdxkSWIWWK4z2grmSmre8lU
-# i0ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9nPZkmr/RtzoOjY4EtTp1Ikp
+# HEKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +294,25 @@ function Global:Remove-FromPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqiUGmpfQG3Hh/DT6AVL8ZNXLPSjANBgkqhkiG9w0B
-# AQEFAASCAQA92t3ZG9/QL0RKiObGQeAqFK5b3XIovh6k2VgXthChE6Kns23801hZ
-# 7ofYcJDCCYOaow4J4TyeqAfdgm+EDGf8R3Tgx1A5S5xIaWZ+Rqy4VzRYKwjOQXPd
-# rscVUBv3FaQYmr0CU/Cy3r3CsA+T4kitsk3Ds5FTuiojL0vDQbbBYqxYLg7Cc8+A
-# 9Q1KsbOR/J7AxBpkEIEnWHA7ozNtNSt2uC5vURWmG3cmThgMWGk0fmIip5CUVrWJ
-# iwE8gxPRRtHUE+4S48HoT4PgOnGIovUu/1+luHA5UFb7fJMXVqP6HGMXY36qgzGa
-# xM+EFmu2+RN2WiCeEkqGlm5r8blt2JYCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSTNRsLKHNwOn7UzOmPsJqE3EOUtTANBgkqhkiG9w0B
+# AQEFAASCAQBNyd8QJh+hCV0nBKEjyga4SbDBC0MDD1ap8ohKWeeEN1HzcKz9LJgf
+# +1u+jxtvatTzgI/2amZh+f+2NL7p13wYYvkS7E4ZWIWfD56QU7u8Y7SDOpiaSEcn
+# 8ls8fWpQrQmVxpIz9Tn1bVya6Gm82isTBNW5k97b8BQjuCeWlQU9kd27dgk3qxle
+# 29mG7oyxPxhTZSazDvWYVdp693woQYGboYCW5l66s9iCcF5/QQABAfb32FEKnACM
+# yOpZoN0mgvAuX/KMwVxB6O+WuucKY8846JHN15CId3q2fSDt9cXTiAgKBwN4TRNE
+# SxqsyvXhPrDTFd0tn3hm8k4CXFbtq1sJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxN1owIwYJKoZIhvcN
-# AQkEMRYEFI5kkTUOXPQI7c567xzbpPOy8/+cMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDcyOVowIwYJKoZIhvcN
+# AQkEMRYEFHAEXLVZqfGpxdRoQHMOx9NE52aNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAxVOoXup94cJ0kNyb1H0v+LjrQMEp1JZnG4sH6g3dNOLuT
-# 3CRRcxDUI1wGt66wdisdtNcCzteeo/7a7IYpmcCb7bDHU9+IUWqoARzUS2umBZ1V
-# BDzGDix4vSa7IKxcEdXnTW3s70ZBtKJOhsJSQASc6Nbj6gKbrerGKI17wuByoN7o
-# hMIwEjjdumkQ+MbsloenE2P3N4/oNje4E/6IBmvu/fAbGosFNtlJAa+b/2sxXcsM
-# bUJXa7MizYCRR0skzXmbZ+AhawQNYZurGXEuS27gyyTt9oWiTRFxEDjmhO8Kkmt6
-# QQl7c+TO9vml435AkW09cF9mbxtea39Go3vG6ZiC
+# hkiG9w0BAQEFAASCAQBLr1y5XytTIFHIQFkjxQGjyBjwsnu0EOx7aKxf6uBAE7yo
+# 5kYF0oPc89s7T6gQu4FVse1dBoQ/9g1+JFpRX4Szsw9xMFdkcM1V+/bEAlHqMBGu
+# 7luGun+Jod9tiLspVjcskVF0Ybd4B6A4/KwIs5U7j0Nt6DsHFZTdnEkNRRFAr4Uv
+# dhIgF6TgCRH1FeDl5m9/HmMAHBdpS4a1HIM8+qaIW1Y4cdfcB4ipRNeLBAnh2l/V
+# kSDZB692B4cWzTijETE+T7rBqs64l/jTIfy89AZjqJAAB2lK2yklSK1m/1FFjwgk
+# x9MIK6EeR3PEP4TlgAm5fqvqyAcaELPzcKDS0C2o
 # SIG # End signature block

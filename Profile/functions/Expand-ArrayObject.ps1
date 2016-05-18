@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-09
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -79,8 +79,7 @@ function Global:Expand-ArrayObject {
 		Additional information about the function.
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	[OutputType([System.Object[]])]
 	param
 	(
@@ -117,8 +116,8 @@ function Global:Expand-ArrayObject {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc0Uf5nG6k8Edh5eHFo09gndA
-# LCygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURI79+5vgMc5J/PKGd/Ap07iW
+# 2lagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -261,25 +260,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQTaomzL5xPWXKGJeUWajkCbWUMOTANBgkqhkiG9w0B
-# AQEFAASCAQAZ3nhQegN25utD9kya8kqiuqitd2FjMfoJ+1OsSDAhg+XwVWjAp9By
-# jgJ9HZfW3dyGoq1lqx17ZtolSlHdreHgE2Ze25c/rgHyrFPvlt/Nm1MC0vuW+SoY
-# pBc6h8oHk16ly3kpWgv9DMG0FTL7M+VuFb9vtHF7A7anxUCjvUkGIN5IEldp4WEU
-# 1kJzO8q/S/sigP2iCmyqWveWftgMcYH00KD8wFI6U7uDea8L2eWquBAgTrmA3Ky2
-# MlqvKwZxfskgDaLBP39hFgJcFeBV1Hk3m0FKTKr5BlivsRVE9dk1Q4X+N7quMpWX
-# 20KjQFmIlSpAI4S6Kzw7ktEZWba1k8bVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRyvf1odnIU3Usl9QaQ0fJwnXeCBjANBgkqhkiG9w0B
+# AQEFAASCAQAcfbjKTZ8IyfTMhUk8Nt87g0UopOxGd1RDEOmnbud6GaL8PGCJgFFr
+# T+90V+lOpKzPkoquZFllR9JrcdsnAUXxobwtlVLhbsqHZMBMx7lTZO8vBemXZ0m8
+# rg3wijZlhNftTVPt+gtGLIJBCwNDOWXfc4T11X/rXdMAPesb9PLxnq5t/j7iRaQK
+# lgjITg27RJPXFPJtzzRWxxXxwcxGeUqMhTuubjTIzjGXf+eRBffwkXPGlulKiu67
+# OjoT5cdEGOxRWYmul5G+ofKSq2Qbsft7XsR77sb7EuzctObnzJIBE8OOxjdVxrNO
+# a24espZV3n2tJA7OHpzyVy6Qhfa5iFQioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTU0OFowIwYJKoZIhvcN
-# AQkEMRYEFNGhNWHSm0bb8dtehRQtMYR/Jht2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDY1OFowIwYJKoZIhvcN
+# AQkEMRYEFAKDBKRQpDWEmCNoZHs5Qsn4xALlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB/PFnk1Wmyxri2zXpsM64h5Kxl+wEgwGbiIHvVJsfPVP5W
-# kOlas8EkNzjMqncLgFrBl7dUF/jWUWJRyTk/n2lbnMlwyUyu+QZhjOETfRB92ait
-# KV+550gUI/gMufHU8+Y+/88yZMYDFYauLqeCBen2Jddz5/LurSozl+RLlRkRbU1M
-# yTnk/VwyUPxTSZxzX1qDirTUn3n+8DFYY01ffffizViHfJUrnkIol5jGRiuCyXag
-# pLig5zeABoGhgLoQNs/6wLNh3ETywi/hPmi0aW8qgDFlO55oJGdCWv7daF0YPPh4
-# 4Db480sc0pVOh46JNvdG4m7P77WU2QXKH76jDJex
+# hkiG9w0BAQEFAASCAQBTXxeKH+aS+rJc1ofQ+FViqsyIJSLxP4n76+mXcF/LtpdC
+# tTuMti9My6m5ELfsWSOAftzDneUFqJ3qtLdmz4iBF1qrAZUMDlvpgSF0eq4dpZ4d
+# 60tMx6tauEKssjq975CBzJJlDIlZTcpmSLdU3i3aTGseSLbkPqPetMn23siNbg9p
+# byWn3hEqXt6EhXRo/+DHQZOfxNP6glvxrlSHZIcf8fAVuBmQkFtmzgQ4JFWqEl8Q
+# 33DoCOo3TLVUusQtPX/JMzGma8O6lNQWFBlLz6m4H0eecL8uQYBvrfYwcpdvQ9QQ
+# BP/89DfheEx/mQATH/UEyAeiLq2q4VlztefGr3a/
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -89,8 +89,7 @@ function global:Invoke-VisualEditor {
 		Support https://github.com/jhochwald/NETX/issues
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $false,
@@ -123,8 +122,8 @@ function global:Invoke-VisualEditor {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwIl3QwfGz2cAz+1wKj8PWHpU
-# DJSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULAEhkZYHuZmf4VeG5oupOuQQ
+# B0OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -267,25 +266,25 @@ function global:Invoke-VisualEditor {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSiP4WvZzGvF6cMj5suOHfRKCrPoDANBgkqhkiG9w0B
-# AQEFAASCAQCa5Y8BCfcFVJ4nN+VYXB6Tpfdn9mvXH7peS1AxxzAhaTptjtAT5Ztf
-# fqJFeHScOerwgmxe/7eXiLtnTZ3NuK9xFQxpmR0OhozrX6EElErZKmCFpN26eJHA
-# aDAUQHkjTREBzGFQ+ZoYX9ZlnFZG5wfKL4RfbZdzSCTasTJ25nYduGinP/lT0UA4
-# 1yEMbbYil2c5AkYMqttFE0Hxk9vuPjBACuRej1XzRseze4hQ5E+0XUfCSGUcBaoc
-# sGzjEy+OwSOSrTC9bay6bI/9R4862d3kmlidoH9/cNoMTWGBYaoBvzZ55hkJp9Kd
-# tZgMK4nGi01Ub0TLhso9+dvSmZxGcTsooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQmU29lCOOu8kGX9DhUA9WI5zhHtjANBgkqhkiG9w0B
+# AQEFAASCAQBBZOafc4hGDvkpO5ButlxYOdmcrRNHYcod5/PxR9eTZvpxdrkayt07
+# L6j6/40DS6xPD9ESPQMYDFdSlxJLyC+lZKJTFfeKOVYApprBOWRurlhe6TsJpnXi
+# g9zQE0OYEdSk2kPmjniV4oyPjQ5N39cf+FnYV28+pw0IgjcC8q5KnXU/cNQjsubt
+# EFWnnB6aL6tGrRd1OA0+a77dvxxqs1vA2f1QyvXxUvWk9M31uvKwRAovK4Ob+PK6
+# axJxdcxDwXjMLc3DOcy9+piehb7VxWtQCFmxkpT9iq9Q2GsbstqIg7VGNQdVjphd
+# aq4DKu+Cyd0Z+rRzqghjByGRgCSL8kfNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMlowIwYJKoZIhvcN
-# AQkEMRYEFCor2HhLlja6DQEqbj3QteTJCm5ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDcyM1owIwYJKoZIhvcN
+# AQkEMRYEFJLshRXJUjCPHNzG63eRnoTaD29CMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAzg/8i7y/x7TCzweUIZYV3df1fCtzS5Dxs6O4kusN7rMo/
-# 9GMwk8DZYtj1f4OJx8gNQvwS/R59ViZJTbfg4/xDMKBLn2X9H2x1nnBVjLkK31DP
-# ZqZoDS+quqEtxjSS2P2nHa4S/hW12g/5jrK6xoKZH7Yt/nxhMK5h3txs8yUF+lNR
-# hjBFfZ6HQzdCp+o0ol3PMdsEgCQLhWEe4iVYYbSlpVoxVaSSgTNv/UWUOGrjiFdf
-# 2TGf0tK/4ep8e/swzaDeJX29Qt7w9A1CoEGoZiAsQi/KVbimUVz9YsEO//3RzkpN
-# gv4utsPHo2J/oKmPtiyW3BFUzo2n/XUp6Kut2Lsn
+# hkiG9w0BAQEFAASCAQAe/vsyrglLR+9zEkGo4Jj6jia8cEN8zKfwg5Qo3nL8aVVK
+# ZSzgsyAdhRYsmQpJuh0xzyzWahqBtfkHinAH3xACLrTihRbZKrciv/yGBxL/uQS5
+# he28DEWGEB9V63irRSHFgcYgZm5jPmfdOI15rzF+iN2H/K9ro7MnoY+pwPfXLvcU
+# 0dVpeH8OVYp20BbBWPg+pXcKnebk4cffGe+Rc5Fk9QqDTZJ772K7USE35jCwbpdC
+# IjAmhqrSQWceBMPpBIehwnCMCUqtmJblEkjpCdRM4G2b1sIDHhxlpaA1p1RmeHcG
+# KCwP5Wr3JfLo2DO/sfWKV0Ip1QQaKBDUlhF20ahV
 # SIG # End signature block

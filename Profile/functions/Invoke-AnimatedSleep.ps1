@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-18
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -94,8 +94,7 @@ function global:Invoke-AnimatedSleep {
 		Source https://github.com/dwkerwin/powershell_profile/blob/master/autoload-scripts/vendor/sleepanim.ps1
 #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $true)]
+	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
@@ -131,8 +130,8 @@ function global:Invoke-AnimatedSleep {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBfLIjhAfv2blySv2aAZ7l5AQ
-# k2egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPBz8TO16A0zVI35eoLoqoOMP
+# JfigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -275,25 +274,25 @@ function global:Invoke-AnimatedSleep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT+CVN+f6qzcx4tyJmbYdSth9SYhDANBgkqhkiG9w0B
-# AQEFAASCAQAy58zNqVa8PIEmmNPIwqInXNnnXo7+jBkb3rw+itumVCdBm/jTXk1J
-# OPl6JklNCxshxIQp0bKvgVATKn8M5j8rgs6qdfQFXgAkn1O5C036VuEQcONLvg2b
-# /urhufiUQPLNp+PfaF+5cSlWQm7v3eyNehi0XifiKKtT9u+0j4P2c9VDdL3xaQ88
-# wTZ9QaQmVjy+sCZ+PZAeJbDG5m2Vmp4EbpUfM2VLse2vwylcRgjWTlK6NXal638/
-# Cqfq7YCnq9Vg7HRS1pFPk7icDopbS/8NbO6lndNnlKmAK6jZQ7+hBCdfo8OaMnIj
-# RJA9pEHad2g57mUhZKoytKMFpCTChgw6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRa7nrlOVbaW6Jz9QjQBNhMBpYLsjANBgkqhkiG9w0B
+# AQEFAASCAQCtgMYSHh7zd5GWjQwYWInMJCD630aBgsI/NeutgkiWQzi6hbe4fbbX
+# joFKbvZ9ebQx+LMfxwMFoqipaXAgGJa7QEyPxDnF0cz0Zvo/uX3MCA+46Xm4hLLl
+# 0M1vkdb/a4LvNg6lpyJaL7TmdxZlY84r8BDsyKih7hqlqaqXzvpd45/INhfo8J14
+# xDh6Wt63KhSwIrtlqs1OW66zj66Y5ZLPRC9ulGva9DMsczlDj775HHtkEwt9dg+K
+# MDCPPAlB0JTf7eKTUlYXtTQrCne/FBm05aYIGXb7rN+z6Ww4U4mRkIkrAoCDveLd
+# jrc65qI+LcodxkBrN3LrO6kLcJbvuvJVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxNjA1NTYxMFowIwYJKoZIhvcN
-# AQkEMRYEFAhQxT2ul6RPkEZ1ANC76M+PGhG6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUxODIwNDcyMVowIwYJKoZIhvcN
+# AQkEMRYEFJd+rMiMyjQ2bq31pghsN2jLJkPwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAv/2Ia0BAmP20rbNnrQMyP15tTdxJt+YdQ2Zx2pLZbhZg/
-# rP6cX5lL0QMO+jPXNdNFnVGW4I/TKyekhsB4By9Ee6joGGmO90eNZUfhNB6G9ubm
-# Vj+TVOCn/RVz7kWfkbXCkl7tC+vWLLbG0nnTSWGLR8dMqpDZDUZvIqu3+2rQcq5a
-# zQKx+l+Z1H+G0BMCCw36Ifby85mNLWlsMgCuiU2U2wH7f022oWNWzUDIICFVff+f
-# qbX0PX0HKuO6qWeLQtJyNTqkdkx1WyysZcKb1MXx8iYEnlPrT6rEF6gtB/xj+qLY
-# wDmTAGPxOwGQFlaZ6IoR21GieiWi+tEecsawS6VN
+# hkiG9w0BAQEFAASCAQCvrq4Ok5dBT3Vhsl0jbcG7+CASKGcC3fiTaATpZhgue8Rr
+# 5oCnmuh4pZMBP3U5UUwM0C3KzBBSNz87RZENZ4GWFUbGZrIibLuhrdzhjaTmQTAw
+# zrUDFOoHIJazlIn//dWNpIC4EYc9u7x3491+IO+ZPDQkpPnF5okWkxSWtz2q0j88
+# cbJv1UBURzNBG5AiaEW7gx5DhZ7F91ixUFzk3xeyuPAul/Db29zsZnUQjv1w5ook
+# MABbBXRD+tNXBYRjFLNMd1aSUkK8OAEjKpVmIqcMXkbnhhlPgvimiJntXk+flFas
+# yFLmRcOiEoGq2cjdoN4PKRjBiR0jaE7B5vpsd1nd
 # SIG # End signature block
