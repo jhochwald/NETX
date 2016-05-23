@@ -1,7 +1,13 @@
-### Update to Build 1.2.3.66 (HEAD -> master)
+### Changelog updated (HEAD -> master)
+>*Mon, 23 May 2016 14:39:26 +0200*
+
+### Distribution Snapshot 1.2.3.71 (origin/master, origin/HEAD)
+>*Mon, 23 May 2016 14:39:06 +0200*
+
+### Update to Build 1.2.3.66
 >*Thu, 19 May 2016 01:13:26 +0200*
 
-### New format (Updated from Build Server) (origin/master, origin/HEAD)
+### New format (Updated from Build Server)
 >*Mon, 16 May 2016 08:25:30 +0200*
 
 ### New Signature (Updated from Build Server)
