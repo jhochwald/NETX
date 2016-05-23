@@ -1,7 +1,10 @@
-### Changelog updated (HEAD -> master)
+### Readme updated (HEAD -> master)
+>*Mon, 23 May 2016 21:10:40 +0200*
+
+### Changelog updated (origin/master, origin/HEAD)
 >*Mon, 23 May 2016 14:39:26 +0200*
 
-### Distribution Snapshot 1.2.3.71 (origin/master, origin/HEAD)
+### Distribution Snapshot 1.2.3.71
 >*Mon, 23 May 2016 14:39:06 +0200*
 
 ### Update to Build 1.2.3.66

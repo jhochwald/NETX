@@ -18,6 +18,7 @@ A while ago we decided to publish some of our stuff as **Open Source** under the
 - [Why Open Source](#why-open-source)
 - [Support?](#support)
 - [Feedback?](#feedback)
+	- [Reporting security issues](#reporting-security-issues)
 - [Contributing?](#contributing)
 	- [Next Steps](#next-steps)
 	- [Further reading](#further-reading)
@@ -78,6 +79,13 @@ Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
 ## Feedback?
 If you find a problem or Bug, just let us know.
 Feel free to Open an [Issue](https://github.com/jhochwald/NETX/issues) here.
+
+<a name="reporting-security-issues"></a>
+### Reporting security issues
+We take security seriously. If you discover any security issues, report them right away!
+Please _DO NOT_ report them via an public issue, instead use the private [Support portal](http://support.net-experts.net) to open a Ticket!
+
+Security reports are extremely appreciated and we will name the source! But we don't want them in public before they are fixed and user have the chance to install a fixed version.
 
 <a name="contributing"></a>
 ## Contributing?
