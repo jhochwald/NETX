@@ -1,7 +1,10 @@
-### Readme updated (HEAD -> master)
+### Minor Update: [CmdletBinding()] usage updated (HEAD -> master)
+>*Tue, 24 May 2016 01:55:45 +0200*
+
+### Readme updated (origin/master, origin/HEAD)
 >*Mon, 23 May 2016 21:10:40 +0200*
 
-### Changelog updated (origin/master, origin/HEAD)
+### Changelog updated
 >*Mon, 23 May 2016 14:39:26 +0200*
 
 ### Distribution Snapshot 1.2.3.71
