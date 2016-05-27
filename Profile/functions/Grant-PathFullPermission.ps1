@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -98,7 +98,7 @@ function global:Grant-PathFullPermission {
 			# Still here? Make sure we are done!
 			break
 
-			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		} else {
 			Write-Output "Set full permission on $path for $user."
@@ -116,7 +116,7 @@ function global:Grant-PathFullPermission {
 			# Still here? Make sure we are done!
 			break
 
-			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
 
@@ -144,7 +144,7 @@ function global:Grant-PathFullPermission {
 			# Still here? Make sure we are done!
 			break
 
-			# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
+			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
 	}
@@ -153,8 +153,8 @@ function global:Grant-PathFullPermission {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUp2aiyceMt7fPePaTHWlAkQ3a
-# PzKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoI85RI7mjB8fotUwpLeH9Jm/
+# DyqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -297,25 +297,25 @@ function global:Grant-PathFullPermission {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRuJ5upDuDyJ7qPAXF21GjwGsaf1zANBgkqhkiG9w0B
-# AQEFAASCAQAf/rmLtVbaTs46oduLYQEAL8nTPyLwzhf64m94NZo5Tric3zyMY61j
-# nyrzBpmNdf3qAdl0JLEm/Tt3sYSUbIkOpjSjDJENQ7H3FJ3GYVrk7vR4axZbwgT+
-# fshjFK7Rr6OzdjDAeCfqc77u+gqn73NX60Oa/ajOg03j+6d75+LheK2hSCldH39W
-# 0IgShEoRSemMUb6LZPxZQxR0z17tBffVeTCm2wLofKAKlrgwtq/JhBkQh2T+Ny5u
-# yelNzyLntI8n3ZA+T+RzjgulNEbGxdv2lOOaLoAbhwG+pyzgttOlKmb2LaMG5b12
-# m7WUKMBJqXwU4MwLwVbs5asbddt6b9COoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR5diadRajWSuBUEJpn4A0S35YurTANBgkqhkiG9w0B
+# AQEFAASCAQB+9HzKLQU08igUgXOnAPrJS1RXEuLOerPNRsaE7Pz5NdF8K6lkYTSa
+# cwLt1PuyBuBQjbUiWAzI3Y6C9D3XbBTeUirJw0x7RGmoaN1mxBWIw1+UA9Zk0Wd7
+# DyHu0MRphuX1HE0+TeoyWbUbLrZbTtVNURvE7tpyv2y5HqSy5EvqEkCQsH3RKRM0
+# pvtOvN4e59DG0Hq34024QN9vWkznd6YEg9c+OQI6RykDlKus9p7P95r6zc/jCZEE
+# b3FjZ7qV+KP0Aey+BlTgpB61wPviHTjgIR02PnqfIyCEmIlH5IFcqZQykF9Uml4e
+# d7tzMQrNKo9SiTqy5sJXlpgAowqHSlk7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyMzEyMTY0MlowIwYJKoZIhvcN
-# AQkEMRYEFFzfyndcRDCg1X/NpjisCqFBpJa/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUyNVowIwYJKoZIhvcN
+# AQkEMRYEFHskxhCZqyXjznDSdUafFZAMr70RMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAZA5tKV2GpX1dBF71xkTcOsWn0oQIHwMosPSX+rDNtHvu+
-# nhKB4esmywbexuvm2cQSmCpf3fymL7NSkST54qnO11h49SkibVmUAqmL+kRasWtW
-# fwVs8G3Ma4R9RqujGmARyB4osMc6f7b2bYe+NZp0cZT0cdYBKatfGaXGZrjUVqdy
-# qw7sUG3MYw6DwQ8iP0kYTTLOKeXhJaSnhIfUZKgfIEs27fUTo5npz/z9PmHMFFLS
-# EmuOX37Xy6KCCYE1CC7Kt7JJigWOeTPBs6eU/z8/yN55tHmtv4jenOc0zJnbygSt
-# E40khfKpLrfoRERxXZBIEeqlR3mXtI/1x1D57HT4
+# hkiG9w0BAQEFAASCAQAAH1bJvteHavmtX9Dj4wyEiZ3EoP4XG64zza59XIKWugjA
+# XUbXVAYZ/Xfzw3T9xAZvqgwGJ0bAWFffB7iK/0WZy1X2+2OL6cWbHG/YlG7BAg8E
+# uA8w7eoxNohLlG3jYm3C93lufxBkzg16BoytEo9j7KHetl63QzGCGkIGbdQh+3iw
+# 8nHVKZUTZfs1xQMqYfQZVdmm7wmGgtEp6ftW4uCP0R37ufzFFvQtEEMNCd317WQ9
+# rs0UTqRcAqWCIwkcwaau8bCIT45wwMMyu3P5mvofUsCr1UvIq7tZNIBEniX/feQH
+# 1AYxH/aVH7fWFgzMg5mm1ZSxW2N+BHx/OVq0Ti4/
 # SIG # End signature block

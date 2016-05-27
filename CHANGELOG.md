@@ -1,7 +1,10 @@
-### Minor Update: [CmdletBinding()] usage updated (HEAD -> master)
+### Minor update and refactoring (HEAD -> master)
+>*Fri, 27 May 2016 20:36:23 +0200*
+
+### Minor Update: [CmdletBinding()] usage updated (origin/master, origin/HEAD)
 >*Tue, 24 May 2016 01:55:45 +0200*
 
-### Readme updated (origin/master, origin/HEAD)
+### Readme updated
 >*Mon, 23 May 2016 21:10:40 +0200*
 
 ### Changelog updated

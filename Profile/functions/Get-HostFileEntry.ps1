@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -100,7 +100,7 @@ function Get-HostFileEntry {
 		Get-Content $HostFile | Where-Object {
 			(($r.Match($_)).value -ne "#") -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)
 		} | ForEach-Object {
-			$_ -match "(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)" | Out-Null
+			[void]$_ -match "(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)"
 			$HostOutput += New-Object -TypeName PSCustomObject -Property @{ 'IP' = $matches.ip; 'Hostname' = $matches.hostname }
 		}
 
@@ -112,8 +112,8 @@ function Get-HostFileEntry {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJNz+3YvJ4r2wBM2N3rcLwU5E
-# sYmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4CMx7J8cRfKzbGgNszcf2P6a
+# DU6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +256,25 @@ function Get-HostFileEntry {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR5l+KcPXQS3Uw/ex6hKUXVDEUOijANBgkqhkiG9w0B
-# AQEFAASCAQBrd7Hx5sjhmX3xUcX9ANNkuipVnEbqw7k2G3LRMnCxTTqm29td7V7o
-# XdgqsbZpHtwguS/GtiXIwW02QR7m0YvMjnn810kATRG2SBDeKy0nFUFGN+LFds3y
-# y0MCQICuv1sDirrLwJc4V0N6dclMNVahvD2m5PPHlw3ICz1AIE6Djoim8x9jZqF4
-# bYjejyWzgcAUzYwyG1ydT/GKz5Y4RI8j3fU3nKhQkZRK5gwEmfsIAv/ikVQnQlvS
-# 6oxidK697Oqe8ecGfgfo5+YwKg+nDk5q/LSx98YRzb4TMSR2frqOrf4/m3ApRzPa
-# Q2fjJ9Di3jO6zPNZE2TRkIVzoPUvCpfVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRkm9AfPwNfj09fh6Z4GIP9jjs1CDANBgkqhkiG9w0B
+# AQEFAASCAQAoILt63pEutqWMW2MaPKFUdC5LjI+fN90zy6mV+eSQ4ZkGJXBoZ1l8
+# +hZtgpI3QOByl1347oh/ISiL0VR36fyDVL0siICx+YHQLDGdCwBORQ7N3luy6rm2
+# gAL8eKL2kkCw3Dc9CQVwENVUPoM5VoxYZoB1225/SqKvhUtnKq4B1bWvqTDnr37l
+# n0tp9SoBFH4OtaUmFDa5Kpp4NWOaquz7j7QDq3wVXyDiMvh7sIoZ5sIYwxk/rmtM
+# 8xBi4LYA2BhNOUxtWfC2jwoDadFNkl6OCQvjt3EcZ9Fq5eCn/atoRR+Tma8P+aQX
+# 5YnCW7WCIl1X6NDTkkBeQdd55CBl5LgjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyMzEyMTYyOFowIwYJKoZIhvcN
-# AQkEMRYEFFjPVxKA7xJNeJlPylpzi8xBL5MLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUxMlowIwYJKoZIhvcN
+# AQkEMRYEFHGwyoqQjZbWQNdQ11jp/KkOGQ3LMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAA8isSx+LHekb1lRTeCPv8V6gSgqCSG+6Ny4j9fhVIpGoX
-# WD1V5O6gBqepzKcrHVzmEjIKLvIFT4KJiQsNpg0NoX3wOm1jLiDmLMpmyWTQ6BH+
-# axcddf5MpvnGJOQJmOKJTmSi1AAqbcMoqVfO3H/OQWLl6zwxzkwhWdUkMiA7OpIJ
-# Z2g6tBFK7ujHjM9YtGnECGc+pT8+SptFdlFDsNpC/QcFD1PojRWHrOZgxJg9UeKR
-# JUh5PJPITRTzvfvJBt+NpGUo5vWNe+vcQuPUvsg2AYEFgG4Cm10SNYOtWKeH1gH0
-# PfIV4aFaftyy/xTJobhse9L95XGLuA9BedHU/I4K
+# hkiG9w0BAQEFAASCAQCdWI8tpt2t4ZEmGqSrAP/JBVUmyK6HDnvuo3yL1JdgJvOK
+# rnyMuVgpTAj62nBGRGjlAkT1WALrIPngJDRDj0X6reY6sP9/4LKUA1/Uxcers3sn
+# n5EJ5+fbrw4B7RZqZ1DYffdpIsU1InShlZ2sJzVLFJSIuoCi2DBHoVKgTuTiD1cn
+# 8xtE7DSRi1Tiv1FSSn9uTxQLStUUB6AVvyEqPRR8mh0tZ+r2ytl73Fk4lqzo0iD0
+# 2GyBkapxndHH9bxU8B51PjCfYkWJ+UmMHAcRCkdwXuCUHKzTDqwRmccVTA7ZkYOs
+# yvjraIl5a8o6/jsjrLZ6+1QU7b9uFRuyJiSFlgaE
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -252,7 +252,7 @@ function Global:Disable-RemoteDesktop {
 					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - disable Remote Desktop")
 
 					# disable Remote Desktop
-					(Get-WmiObject @Splatting).SetAllowTsConnections(0, 0) | Out-Null
+					[void](Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
 
 					# Disable requirement that user must be authenticated
 					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
@@ -447,8 +447,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUemBvMN8cf9Q8LMXuDUvSCw0R
-# +yKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcCNgT1sZGgsdRqX4P0Xb5Wut
+# G5igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -591,25 +591,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSEG2ySEABGbsWIBSaHzRRSE0r+jjANBgkqhkiG9w0B
-# AQEFAASCAQBoTkmLs2RJpRdzedFK4/XdY/h8Tc23XX/AkyNwaPk5J4uLC2H6pfeK
-# Czg9XOKN0WjVu7mRmY6uTpSeHFysRox/p7NcnLlT/rcaT55s6LDewb3iZ6aZI36K
-# AuwVRjzswolS08SLHi6H+dCTEMGOTBG0zUJYhyMX6Cu2pgrgrlu/3KtjdQUkalfw
-# jWOzA1zZqQxK+A94OqklUMbwx5Wc8m2uInEl4SczdnuhdEw1NWb0At1LEdYAFzcV
-# r4AYyI+iHEd5xpWtILwzXi4TjbAzwzecHrJUPpB0eoKSdxkvY7pAXCV9/N3mrZIa
-# M0xZFeO53jyB7BL6CEBNoVZyiysisjWloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSSfUL7lDuhiiUqo1evvCgtHUrauTANBgkqhkiG9w0B
+# AQEFAASCAQArABEvh5Mo04fkQAHncVr6h4pb+2r2XVEe/ycUloVWGp5z5q21lLW9
+# Fd769yqnF3t48yS1qh+KNyiaPgk9kkE9KA5u0fiyt8/SxmXUcT7morrYR8kbTgby
+# DLcBnI8VTALpR7VaryhZhyaDLtDTBezT9LxLnZ9c1Q0kITisC9bbdleM4rNgKk+5
+# Tyou3eEgGNbrGNvPcbAH+uPvfqwvOxrNjQlPXC7u1jDFki89J3jtIqKRLshdhTZt
+# xQbZyAfJGvQ5/SWSgIwLt5P0CIRob23Mov4belhL13CrUgQZRUzz+kdztjBOlggG
+# +QdcQpJbVwqT44n5HR+5I/gme7+0DW+soYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyMzEyMTY1NlowIwYJKoZIhvcN
-# AQkEMRYEFBR6MVmok35neF9F556hOkScGjEXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUzN1owIwYJKoZIhvcN
+# AQkEMRYEFKyOtAOIqEqIQyWwrs/PJp3Qke+wMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAqiYN9/5MIiPMHmClMzPAAPCAId5yRHWnomeqdxTbJYrFg
-# oJHiZGZJoxE/E9jeTYTkAT9vowBwD7AtnWMrbBGPj27TfEGDreTnFzgu3VukoaQe
-# fTX7Gwp4aPD3UbPY8yUYHpbmenxGBZa7H8/Y5U6donO5S1+cyfYqHNoYDjrJCRQr
-# SLJNE91wShJ+Ot4XuKVpAmNerkayAcDrTnQO4PNR+HO5qcjtGvBth2JP7bi3GQaF
-# R4HuLnezM9qEqHOmqdHqhXXZF06YTSHpavIwzaNlWnyWk14SeBV0UhWTZV/u+tak
-# jy5siAQUBWnMhy/rpLDm251Bc3I+t8eSmd60wGKc
+# hkiG9w0BAQEFAASCAQCLt7zUDFox1tw6oWCQ0IKIsE/TcPYVODuebhsnePxtvuYR
+# 24ZY3PxWo60SaGBQR6+NsheMrHNGVLs5B7eyfzncOHhA/86KXmaQw8s/rbXNfjE/
+# nvO/3kM06xrMsB2cvoDmMZjMa5epK2YDq91HOYQNYFmf+pxd1DyoT9Jes6HMc5fm
+# IrMTzCPkkFaJbsZOYdCmj+pshBJH361qEdtmnpAHpMFQ7ZxP93Vf0Jxiji65IZjz
+# 7DlSt7IFF3zrvh5MlYbFJoj3jJP1m/ixew+/RQUCCYc1qEJSuuI0SLjWGSCCgE2J
+# 80TTGGjd8j3+LxPpY3j2sh8y7WxfzAv28ipAeQzt
 # SIG # End signature block
