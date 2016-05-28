@@ -1,7 +1,10 @@
-### Minor update and refactoring (HEAD -> master)
+### Provice all Functions combined in a Module (HEAD -> master)
+>*Sat, 28 May 2016 17:07:40 +0200*
+
+### Minor update and refactoring (origin/master, origin/HEAD)
 >*Fri, 27 May 2016 20:36:23 +0200*
 
-### Minor Update: [CmdletBinding()] usage updated (origin/master, origin/HEAD)
+### Minor Update: [CmdletBinding()] usage updated
 >*Tue, 24 May 2016 01:55:45 +0200*
 
 ### Readme updated
