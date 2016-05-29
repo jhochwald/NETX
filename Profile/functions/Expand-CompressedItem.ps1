@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-09
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -134,11 +134,9 @@ function global:Expand-CompressedItem {
 				   HelpMessage = 'Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.')]
 		[ValidateScript({ Test-Path($_); })]
 		[System.String]$InputObject,
-		[Parameter(Mandatory = $false,
-				   Position = 1)]
+		[Parameter(Position = 1)]
 		[ValidateScript({ Test-Path($_); })]
 		[System.IO.DirectoryInfo]$Path = $PWD.Path,
-		[Parameter(Mandatory = $false)]
 		[ValidateSet('default', 'ZIP')]
 		[System.String]$Format = 'default'
 	)
@@ -209,8 +207,8 @@ function global:Expand-CompressedItem {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo6dsyrYHP2FJvVsJ1JYG6zXx
-# CaqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtFT/bc+AZziMs5bU0NF9zAra
+# UqqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -353,25 +351,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQoZU6qXn+uxUohiBTYeQ4epcqH1DANBgkqhkiG9w0B
-# AQEFAASCAQAHaEb1IkwPIEcCUM4EqLH6nO+thrLKq6FmmXy5sHDfTWBYzUJJcw+s
-# uOsGqrHcspjVYrwvuWfGjLZHDX6N5mAvgJv0j5J52YX4KBGEsc2bH8slSDYleqnE
-# hSGXez0oPtmCNQqnOEXXOy/YvwP0xFIzoyXQK5+GsAGa6zEcNDCZJRBzvFkbDlwC
-# gZ2gu+jELXXFfRmzXXICymZ4F3FUkfV28Ri9nJuDL3baMPpx1dMbVwJZdgfsPFp7
-# 9uDOd5AigSxg0r9YUpBYHa0lQ40wQEznNhbA0E9f3QdoT+bXTq9PM9ZZGwtAbv/V
-# kYWRXbHVyjL33WzOfm536GVAje8aQpUtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRsNw34tPlYAq8b9nK7Pjw3poR+ETANBgkqhkiG9w0B
+# AQEFAASCAQAQEgvrHUFH1bE35IpfkkwTek6rK56FjcE7Tdl3BogwCeKWngSdCS+A
+# niAk9mXUm9qDcu1GX8NpsnLUNLce6hzTvnHFwmbGSytKhdIb4JwkgaTU6k9cAwJa
+# xJjkGTaeF2uEHgd1AhNxOP+N6iuxVwOtM3XoqYSHwFyQFjpIxMfg4qCO9xOERjSO
+# 059zR0rAMfOv0JXx2M0H2ykxEju0Em23kmcN1tILEvFDNa2oVvREFafrF1JTbPEz
+# VFN9fjwC/lPNrwV2ijdRzKA+CA3d9k8yILebCh3cKB8eT3dEEMrHEetb2eX7fAc1
+# 6lojoF/4v9HHqS8LEZaRPQcJzxNuwZjmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUwNlowIwYJKoZIhvcN
-# AQkEMRYEFEngQZnbcvsDrUTY4QxHmBQ0Sy9DMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTYxNVowIwYJKoZIhvcN
+# AQkEMRYEFPHozjSGyJ0+1azl5BX/HeKxYJdpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAA5xDSMJe8BiuO2Ubyo4PpBcRf0IrfJgKuFmJuLHv6LpkC
-# LzrZqoXuurkRQ+ERs+3Y4YC0HIPQBJ3x5kVjvU7YZRbuq6BmaTSqCynfFNj9hFfz
-# OzePSe7d2iV0atNoRqt9hia0f5Cc/Ikh0xHOOqqKxedrOyTY/Aiamda9H0OA8lls
-# CHyTwW0u3gt/w27OOlTp1gDDyFCWApLjVRoArdkgt9Kgbmas7lGEDS2up971DkjJ
-# D/9vC5kj5tgTMg+iEyfx+h2hEQfK9IPH5Q4nfuj79CQfWvlAk9tMBX1NlP2RYn2g
-# yduoGD/PDqvx9IOZEvYheSpruuBd8xL6BBzySe17
+# hkiG9w0BAQEFAASCAQB4B5yzd0/pz3KJ9lLlRE/k0hIFEliIpF/9iCTLzwEHdOPZ
+# BbHa0qmHzjcErGVz8itw7kycckVWXw+M4x9RzzYxU1qzLpRi0NbCcqoaq4OZli7B
+# ePq9gUDUVSYP73mDkoXp847XrV4M/F/iH477tiQPGkaUGsNjQfEitwapG9t/z4TN
+# WnG2pqZGAGirx2Yls1qzcrCKAIDjum1/AJuuBz2Ug263J9yuRuvi/cuwENw9zGRx
+# I2jx4ApPhbbxVDuuffyY8Tt223nhAkAsiKlXlfotndneaS/y3U0yTK8k6rnlv4ps
+# DmHO8OqnfgJlmE9WESP2J8ZJRZ7qeuCVv98G/7Rl
 # SIG # End signature block
