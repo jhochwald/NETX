@@ -67,14 +67,12 @@ function Global:Compress-GZip {
 				   HelpMessage = 'Input File')]
 		[Alias('PSPath')]
 		[System.String]$FullName,
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $false,
+		[Parameter(ValueFromPipeline = $true,
 				   ValueFromPipelineByPropertyName = $true,
 				   HelpMessage = 'Name of the GZ Archive')]
 		[Alias('NewName')]
 		[System.String]$GZipPath,
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Enforce it?')]
+		[Parameter(HelpMessage = 'Enforce it?')]
 		[switch]$Force
 	)
 
@@ -199,14 +197,12 @@ function Global:Expand-GZip {
 				   HelpMessage = 'The input file')]
 		[Alias('PSPath')]
 		[System.String]$FullName,
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $false,
+		[Parameter(ValueFromPipeline = $true,
 				   ValueFromPipelineByPropertyName = $true,
 				   HelpMessage = 'Name of the GZip Archive')]
 		[Alias('NewName')]
 		[System.String]$GZipPath = $null,
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Enforce it?')]
+		[Parameter(HelpMessage = 'Enforce it?')]
 		[switch]$Force
 	)
 
@@ -273,8 +269,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZcUuVk/96ogSqu9Ltq3OG91C
-# jcugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPedr/VP680ofFWGp11x5UlIW
+# CgOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -417,25 +413,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRWT1O+CEceGxIj52FbevC+ZTeGEjANBgkqhkiG9w0B
-# AQEFAASCAQAkCZVfcojtb20X90RSzWRV93aXZzhzIVfBkyb4Pybo16Zi9ok0Kn9W
-# itOI+l3IRyaVNTEKO/ZplvF+neOhg55QZVtySUcv+aQyRmzeR6Sr4xCqKV/j5t9S
-# NigreikhhVB/6+iFNbJvyZ986Xn5MgeBs657giB/oH3VK1bVxgQe3zG+i04eyfdL
-# SdDP5ASaiBz53M05yZihMwa+vRcYhi7f49hshLw4uXikdt+XGNmi0bP1Fl0T4uzu
-# p5kp8dwHsI4YselWF3NSP5lf5+9t4oj/ADo0IeSeTcqmbCbE0SaBYmQf8SKacoRo
-# G6vFtETPU8sKycGTWZ4bka/znXGj3lvAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ08HGJZjzB3Vu4EhFfbrl9V/H8tjANBgkqhkiG9w0B
+# AQEFAASCAQA4szy0pB50J0dCi46upqBsNoOAbsT4arPSvUztsXVUlLC7WpFYwN9X
+# CeYUPHjQjKdivA4ugs5t6Cvi7d5tA2L7eBwMZ5Gd/m/AGXfF+6+/AAmDMT412FCG
+# 9Iz8QaT9uBqzel+eYhIGpkcnpIlvXY8fFeAKEx9oZJRUl3PQoGFpOCsod4OPvi+r
+# OqOPgUA9F1JBYJ8PPI77/4lKp0ILTihHfyV7f4gZ//KVqYVYNR5E1g9doOm3vjE1
+# alDyZnMbXQ7D2lJvz8TsP2a0XGi4rCp7HvLa4zrOUZFrPA3hWxo9yqi3fhcyj8Ei
+# 8u18kDVmHsG12apkFODHTsKrQ7+ZW4B3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUyNVowIwYJKoZIhvcN
-# AQkEMRYEFHEtXeLnizlY21qPakstWLiwinhLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTYzOFowIwYJKoZIhvcN
+# AQkEMRYEFMfHVq+jkQ1OP66o3Q4zb6OztjHSMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCdZ2fGOI3jCAXq9yce4EjB0OidhuOFwRYedaGMSR3uJzpD
-# FD8xZ8ywjcHWvm1N1PY0ez9q19GmnryzRxPggBGX8BqnsvPFo5DZ6xYDcIqJw5Qw
-# QuiaEbIoxMjvX9pL5hunNm2Bc5JHQ1e3Uymhr8BJOAVCo9cN7kCbF/HIeYnsyf2/
-# uvrlNNFXVRly7eZZ8DRyjUO2bc8VZ0SWZ2ySD/WP15f7Gq27/fufeQLnGKMvAVSH
-# HfjpUqTcteZ67i3OBoIhvh6qSlWk+Gi3d4X3dajQlwLqMoFmQi/2L5CKMkhaY8QM
-# LEYt0ZF69UQiPmN7oLD96/GZWoDyXeJD1RS9fTFZ
+# hkiG9w0BAQEFAASCAQBfzM317rnL29M1tEisR9WfTFXWcv61IWTQc2L3sextUl5B
+# SD1zcOaMup5LYkS83IMvix7wJnjbFnRZ5Vcl9+ZyU9tQ0hdqZu4f8mZI+5DLOKQh
+# QvlrJ6lPe4TfJfzGv947JdqZngRudIU0OiojQGwqmP9IuIrFPJbiM/+0ISXLyt8x
+# uVceJE35ZcvkQU6qZmcU+pichVY6Sevtpw62B0q+kF/UKvwKyKNEIv4s17XHSxY2
+# zdhBcNOCF2IohvFrrBL9nBSqhX3DbP19SeVA3UFL10R3R0BV6610YE+cYl9cELC6
+# Nywb8P+Q/fLIOClNOBiAyLG6XNRDMFkCF43hZDzQ
 # SIG # End signature block
