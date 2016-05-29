@@ -1,7 +1,10 @@
-### Provice all Functions combined in a Module (HEAD -> master)
+### New function (HEAD -> master)
+>*Sun, 29 May 2016 23:45:29 +0200*
+
+### Provice all Functions combined in a Module (origin/master, origin/HEAD)
 >*Sat, 28 May 2016 17:07:40 +0200*
 
-### Minor update and refactoring (origin/master, origin/HEAD)
+### Minor update and refactoring
 >*Fri, 27 May 2016 20:36:23 +0200*
 
 ### Minor Update: [CmdletBinding()] usage updated
