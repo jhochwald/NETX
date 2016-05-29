@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -89,21 +89,14 @@ function Global:Invoke-RemoteScript {
 		[Alias('Computername')]
 		[System.String]$Computer,
 		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $false,
-				   ValueFromPipelineByPropertyName = $false,
 				   HelpMessage = 'Any folders (on the local computer) that need copied to the remote computer prior to execution')]
 		[Alias('FolderPath')]
 		[System.String]$Folder,
 		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $false,
-				   ValueFromPipelineByPropertyName = $false,
 				   HelpMessage = 'The Powershell script path (on the local computer) that needs executed on the remote computer')]
 		[Alias('ScriptPath')]
 		[System.String]$Script,
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $false,
-				   ValueFromPipelineByPropertyName = $false,
-				   HelpMessage = 'The remote drive letter the script will be executed on and the folder will be copied to')]
+		[Parameter(HelpMessage = 'The remote drive letter the script will be executed on and the folder will be copied to')]
 		[Alias('RemoteDrive')]
 		[System.String]$Drive = 'C'
 	)
@@ -169,8 +162,8 @@ function Global:Invoke-RemoteScript {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUd65YCWlWzesAGrohnRqojl8o
-# 0gqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaExBI+awM8HcVixinBfLKrse
+# FyagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -313,25 +306,25 @@ function Global:Invoke-RemoteScript {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSi761Ws+B0rr/GPFWqV5ogRdClQDANBgkqhkiG9w0B
-# AQEFAASCAQA6SK75ZWiLQ0BuoDM2NFLxquvEY4Y2peGRqCPmLoC4JP2NXDqT0nmB
-# ee3L0+9OD30XQSgr70q06E7SQPxAQL6hBE7eTAbz/GcMl9M3OUUavlcNUJhclMio
-# D5fabePbx8kmyii6EzWbXy12ltgT1XWCh2v3jVXkVsAWIkxnomWFcLy1ZyL4T5ys
-# iou5N6AtAwLpC0UNtrH99gKV4f/5DPzdZzFRK/2tZJPe+WHyBTYGIouFty7WbJk6
-# +PmEiMKjY5PrZKT2v6FwMLEWU+DaX5CzsAh7N3KsKrHqwWoEv6Bgw5Ir5PYB1JVL
-# R00+TV2Aijmd3J1ZeQdyfRO1cQ2BYbN4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQIoLHNZovMkMfc/GuoseNapdB4oDANBgkqhkiG9w0B
+# AQEFAASCAQBxtSm4Fw+Geh/qVH5UIiAsYYg4djJWXdq37xRvEos8z5zBY4yOfywP
+# oiDPYfw1nQiFFM8l/RkAwoXdng+87MtkiYuJ459tmPA01N3/8F8EayBNM88JYb5N
+# 3uxCwYNw5JaMyT7f/eXHLELc1aoy4ao0Yg+uOrH9DnPKvVQLhBOd5XVvdFZVWBog
+# UNmblGuIj9VT4j6mUZXShC5kxXxn5NyU9AU8CY2nDxceqegLhBnaCqO1xuqXKL1Q
+# ESjvCRkNDrpewb2sj7eZrcqVL4ltccFWXqCZKoltZ9bPiVbNvFNgCvWH3+xXv9ZP
+# HU9fMI14Q7Y/S79K2j/xKTtumKLTi+GCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUyOVowIwYJKoZIhvcN
-# AQkEMRYEFOcZrvadJ1x7QIvkjLhf9zZZJQ0NMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY0MlowIwYJKoZIhvcN
+# AQkEMRYEFFvSE18yCKJTbKebu85lTpgxOu//MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCuGyA73g8ZIbINAmsAXyjF1CI67LfLFBYAlgw3OZZa2RKl
-# e1ocPKfb6P2GljirASjoUha8Lix2S6yLWiqMn+zEmeNAgwfbRV2mRAFDLPlRtRQ4
-# gJ92//FdyB1tB2JNDXNlMQM6J+IEqTZdUcm/J/fzhKvCn3JzmHgbl43Uv/VuUfXx
-# puKZdo25UYnbS0mqO1L0clUZYTCDRwglntXdI6Wn+2vOs4MpTHG0bu9bI+1M1gpQ
-# +TUHpSQanPLJ0GbvV6K2S5xOwqMC4lzM6zw0BTGHXwnoT2rMOZPDTGYmty8XeOBa
-# WqBTW12Vis+Zb0iwe5DRsypUf3QNfbKgI2oQjxvV
+# hkiG9w0BAQEFAASCAQCoeUxIV6ubc15FXrkqQi9wJsq5iAd5x453VBHK2GChVyJI
+# B4jVmXB0yY6hj+wX05pQJPUkw81M0VJrKPVs4WhZuIyu3dpONgMevMW4L2fjB+rz
+# pioIxwhG0TiEAvKYOzWzr6Zo19ejLum8EGjnogRng22ohRVkbuNLTe61fk6VuDP4
+# qaHyUhoZshsKSUWnwx6ZmY0k6EY3IgvqrRhWLGCIPYRWwPsnw8I/rKreq42J0xxH
+# c4y+b3Whxo9sJ4474fuNtqt5BncN93lw3aEvrPwlKlT86Yb8Hse1qhpP+tgZ7xx9
+# ikhxq9l9lsaDe8Y0WD2coYdv7NJEU8A79U7s8J9x
 # SIG # End signature block

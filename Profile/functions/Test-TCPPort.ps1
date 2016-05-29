@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -107,8 +107,7 @@ function Global:Test-TCPPort {
 				   HelpMessage = 'Please specify a Port')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Port,
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $true,
 				   Position = 2,
 				   HelpMessage = 'Timeout value (Default is 1.000)')]
 		[ValidateNotNullOrEmpty()]
@@ -164,8 +163,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrnkbK+tgn6/9R2Yseyv1F8zh
-# GxugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFSqG2JW9F1ut5L0n9a87d3qs
+# c3agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +307,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS1boT9ZCd5k++cWfwwQApHmry71jANBgkqhkiG9w0B
-# AQEFAASCAQBmtTNCGkGD1M1xkxfwaeRxkHNLBmYlDgF5MXqqc9yldBRmhkNHJ/f+
-# NDNbrJV0wpPsAqHjNGDpD/5oFe4zcl67zYvzXsk2EsrNiMYueif1vPjfP4IFgUc+
-# mfGCXwoypkGZiYqnOUYA4OPM5JYmqOCbX2YorHKq9utnYGnEbaldiEz5Bz19kzX+
-# trzolFc5L/I8PYYuRLiUNzhE3/SiCUIfi9iX9AZIR4yb5/kZT6RzMz47QfNDSep9
-# Bzf4DCn4g/VgLx/8JvZqMqNMAS6coX19H95fNKJwSyew3RM1moLQkoUxkGvUj0nT
-# k9n2LiPVBM6oYE8U/UmgvTFU6250NPhnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR8Byn+dw7R3+lsppcGuN9NiTlq0TANBgkqhkiG9w0B
+# AQEFAASCAQCJSRJu9iI8oK7Q010MPZYN338xHnK/6zedC8ow+2exeefbjlWzs1rl
+# Ra9+F6eOYMl2Tqwfla0+ZS+mUPGrIeVIjWQwR/aweguvLqlwkaSUcqYMMOH0PL7M
+# ZM+qCNBsHMJiGNZ21q4Fb/uDaJuA4mt0GVGuZtqmqjZXb2aAjWKOEEocexHz+z95
+# smeUwsRIuuicuUhx3FCrW5XUKJetnnnxGQ4DqQ0KOswM86nHTmc9o82LbxxFFX2F
+# /FTDifVFMagtmjyoLBSJ+bnsu0BoCYtQPRTktjAZisnK0VdxezdbL4EAYyrYJuxJ
+# C18FIJhga/FJNC+8tQFc9llpTobXSYgdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0NlowIwYJKoZIhvcN
-# AQkEMRYEFMi7+dVNQbU6SQnPk/y9fPtmLqDJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTcwMFowIwYJKoZIhvcN
+# AQkEMRYEFCV3GUwjbY8kHS85BQKPNzknNyYGMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAfu+WFjP11TKcKxMHrN9NB314vV0oWN4qRsqp52K1X1MTO
-# zkXZ+QGaJi0q2PNKWP7jOAb6X9DFqt7a3MBe6QAnpkeyaCH0R/9km4SEV5ef0PfD
-# W56Wku2yn/r/2j8SxZTf8N0ajNpsYx12+hrpUysiiNackTcW5G6mEUuZXk81s4Sj
-# QGTMYSVGjQTJszQbt0yKjnjcJHkz86HC3yYRDbtzA+gR7NtHzo2fH5mGDmdBu8/d
-# z4EylSNzI+/LVToBIy7+NEKhUzqssQvtlMAxZNTmMcUFcW43BxLkQEQY2k8ql95a
-# Sh2lu+Uzbk40splVkCA0R9Nk2+rk0DMpvH/D+Zaz
+# hkiG9w0BAQEFAASCAQCodIcj9YR/26NZvbf1b0At31lPBPvhZhsYXPYuHxIOK8MN
+# 5wb4DPjX3ZGxuEyyxd4w/BoUoryT+uUK+uaPcWeizcarfkXJg8zfSiNmyazPEtlI
+# Yu7/Age4IFsGNx9a9SKPRu0XiB7tG9hGIcqO8PHemZsBHjTybFbEjKz7ztYqlqiz
+# 5ilgRAr/osFcaCeu3I8L9Na7V+gjUzFZD17eR/cJZ7WnFu0R9rpb44dDB5cpAJwS
+# 6P8ilY1DdSrYQ8CKHZ6zJMgCn+0JpJN6c4aaMKZKCw/si0fGTSX3rrHFGyTyVfYx
+# yJuJpJ3wQOYToUYuFuInVtZyrenQRUrhu4IUQhw3
 # SIG # End signature block

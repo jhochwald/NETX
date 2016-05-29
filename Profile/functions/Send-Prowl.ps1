@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -129,20 +129,16 @@ function Global:Send-Prowl {
 		[ValidateNotNullOrEmpty()]
 		[ValidateLength(1, 1024)]
 		[System.String]$Event,
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Description of the Prowl Message')]
+		[Parameter(HelpMessage = 'Description of the Prowl Message')]
 		[ValidateLength(0, 10000)]
 		[System.String]$Description = "",
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Name your Application, e.g. BuildBot')]
+		[Parameter(HelpMessage = 'Name your Application, e.g. BuildBot')]
 		[ValidateLength(1, 256)]
 		[System.String]$ApplicationName = "PowerShell",
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
+		[Parameter(HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
 		[ValidateRange(1, 2)]
 		[System.Int32]$Priority = 0,
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'URL you would like to attach to the Prowl Message')]
+		[Parameter(HelpMessage = 'URL you would like to attach to the Prowl Message')]
 		[ValidateLength(0, 512)]
 		[System.String]$url,
 		[Parameter(Mandatory = $true,
@@ -199,8 +195,8 @@ function Global:Send-Prowl {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoDWoykA5QOA0TA2uLeRYX4c1
-# WgOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUr/E6Gb1Q48iXo21t6tSB0cTG
+# RKSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -343,25 +339,25 @@ function Global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQuzsdavwx80sO3Z6PpQ1/YJTLl8DANBgkqhkiG9w0B
-# AQEFAASCAQAPACIvDWVHkBrAGp6SDPlR6a26Gh1OaT4SEP19HhP357FYoP8rwOLm
-# 84z1+KlrIx46yG/QjG0+iuTnQPAOtYetutCdX1bMcg4LR+JDjSgCayuqsN5IeB5y
-# 7oShINL/UyGYDXMs1pSGXZ2OstrJTnUTiBhVOjdo8LlxcAMD078VHlh4W/RDyDSJ
-# yT5NZ0fhYx6vjwOCkhVwUHfobs1/zq6SSBuqrSXkpf1sXRhTzmzhmqXrPf8mqnNo
-# KP3gaPDvp8DNquBJD+dtqDKEbVoPSpLVu/SdoumbQrXFrgIUQoKRYoX9sefOUWJN
-# r0FuYMz3G4N8kxggLFuKQ/iG6Gorp5wVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRSS98TDRWnqJcEUmH4MvCXcb2ouzANBgkqhkiG9w0B
+# AQEFAASCAQCb9qx2/AMKVEO9DAdedU1J5CUVBDdlYOfYgyxoR8dyc8Hy9XaKVNts
+# DBrtwLaujAbcd5gaEAdsQXmY7exepTQaXHwvxQakJed/PSv7CgUELM0aagFPDKRk
+# AFlwmA2IHXLyPv7Wh7PkgZ0EutkhRwhyCZXj/lfWfox0AECepCthwlSCNs7FLpkD
+# Qr8h8FSEX0QgbDAlT0mFEbh1Sa4xAMEzE3s+M71G+cmonnu43WcKigqqaMnNdE75
+# TSMMprFzKxR0fkdwmV3y27k8LCNh+h3gtTavwHojtiMEjWUl6CZ6nrLXQvC2YMYW
+# uQ2BXcHBB5Xg5vjNs1Ab05FgxOV7WiAOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0MFowIwYJKoZIhvcN
-# AQkEMRYEFKUz7CaqnTcHqyGT0NTiASldF4EfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY1NFowIwYJKoZIhvcN
+# AQkEMRYEFBQuvs1vhmw8yol7yUF6bj6vpUA1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAsHB4G+o1jel3Qh6Xljc66g4iz3LODu0+N8WXooXSPu5hG
-# nEWLy6BQGwdn5WYZRizvbFt0RzOXE9Li3YgNZgpU5qvS8KphsP/PeOP41MqmimbS
-# o8kTQEQfZJo8FFhFLL49fYBsZ+EU1j+gFYHDc7Ovny2qCYN8jxgPHLVQ5TH8wses
-# +pheJPaL0dusW7CnTFiXis/PJ/jfPRmsUKIrSQdG2/EIwwjRlNl6vJ3hSVDSOUvL
-# Jtv3G/tWCEvBwbtgllfF9sVD7069EP3A8+MYobCFduSPtPMBTKMwCMk2WugTkK3R
-# 0Koy7AQ30ewJn5H8nuRNP+6DO/rVljtfUX2/UvP8
+# hkiG9w0BAQEFAASCAQAtn33rH3WiddZNwrBZ980Owmm3mFD49x/KugAXw2Yqx3xF
+# 6bJjPRjZ98uvZ6KdBlJTDOxS9d+TcaruC7GpbuS+Iat3ewUQLGamSxXCC55D4Z/K
+# ckemFQNWM1q98a16COWLfAPlYy88nNaetXZcc7G3ccsow0X8muih4RyvMQjFG6zM
+# LlQGYcB2jMT4ZuwMGlghzxMKtwadQmPPQrHC+RUZqFExqjs3lmKK+K49EEnhsFZM
+# uvzozCSwXfZUACduk53J8xveScZc7dEz6YFMZIkCDLt+hcNZqgbTsPbRMpBY8PTU
+# UXB3SGby/CHX9FObzmthdhhEjWRucKyt7uBQp1lv
 # SIG # End signature block

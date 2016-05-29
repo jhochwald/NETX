@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -120,13 +120,11 @@ function global:Send-SlackChat {
 				   HelpMessage = 'Chat message to post')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Message,
-		[Parameter(Mandatory = $false,
-				   Position = 2,
+		[Parameter(Position = 2,
 				   HelpMessage = 'Slack API token')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$token,
-		[Parameter(Mandatory = $false,
-				   Position = 3,
+		[Parameter(Position = 3,
 				   HelpMessage = 'Optional name for the bot')]
 		[Alias('Name')]
 		[System.String]$BotName = 'Build Bot'
@@ -185,8 +183,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUA4puKU74X8nPEN8Di9DWbdF2
-# 6HKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3bF+IV9PmNqZIpf7I5erCJQR
+# IVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -329,25 +327,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR/l3udz7n4l9TDNFOvM9g2wn9lezANBgkqhkiG9w0B
-# AQEFAASCAQBspHqjUzgsypuIsFT5m/P3Zkc4iE0SdKm/pmocc0RbRnwh5/mo7y2E
-# bKF8W5WbaCI8bx7tJjkMi4prQJqs84l5iHoKG+Ic9+FbpdMLiiPGcd41gFkhmWDC
-# B1PJ2fu9Z8W/GmIN8EJg+qfBrY1fChmCgqJmLfYgDmamDB6lFKi/lsndQ67JZoF5
-# JwRQs7vyrRHuKF7GW5/TbKFNqIsSD7dNrXsUUe4wU3EZKaYgyivXl6ccTWsyH7ew
-# T6gKYy1AU/zbUtD/WFRRAbPA3MHCwp/p5GwwkHL1aBBNQqDaXLhac9IwX2hLoAlt
-# 4SekkdAaUGrIqcgMf/Q48TpoG1wBPadgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRV54ZjsYn9fcQ73GX5wE6Xni4RPDANBgkqhkiG9w0B
+# AQEFAASCAQBlAPJ4/IUj/BaW9AnTo2Vxuqf0zzz8DM31Td4bno6b7M5L0nPBigHo
+# 6I3kOpKpfm6HASo2mrmUlDjEinXIbJfeTWcMu24UlGRN4A8finGWzZYGRc5fLuit
+# MUnkQq9o607TyPHI+H8VC719XiJdLeuW5iDrzB2eIdBgtVWHW5tIbVCbUb9eBymG
+# dBr2zag9eDU5hkqv0F5aNS5+blKVUZy0hHLyXRk56rABIBmDXej9XzPMwXUQs6q+
+# quCbHFOrP6iS+PVXc82hL4HTJv9wB3OHvmnelbT+T9yqsjn/wwz+YXViUkIlmVo6
+# WQHoyGxTa/x13uE+JrlUNNEMdZ3RFjOCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0MVowIwYJKoZIhvcN
-# AQkEMRYEFDZjoQqhWzCtDEwRrLwAiV32NzHHMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY1NFowIwYJKoZIhvcN
+# AQkEMRYEFN7tmXNUYavjEGaICrLE0AJf41SvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCVJr5HZmc1O2upDeBitZQCjtAJnUqFZFPEqF6rhIltvuC3
-# 0FbbjH3PpYmQ2SjnWgu48EN+6wZqJEkpQhNhb5nTTgYOAMcOw7xiSNHnVsZKdr+U
-# 5sB83cEItX/UlGyWxyhgInYDbHwFB+EbPFxhx2zCBwvGgbIArY+AW49Ndm1Ih3Qp
-# VMqpMQq7U9Z3HzQwwzcOrmTAfftkMFJZZsvT9T6D4arbY9y1dJyu8d4HAMh9sTHr
-# N/OPeSpTreA4e1JeS7suRNTJqKDAJT+gLu7c0qbTStoFKkPcX9xQXNhcgYKj/9yh
-# 26rNKymGc//Iodc0ycinlnO1yzNPfyQH2AU8Zu/G
+# hkiG9w0BAQEFAASCAQCSb1BlgcrS3khT8H/BXPuvZ26JQ9Msa35AnwzAO2fFUgjg
+# V+d7jvklJge1URVLgO0B9azVxuhV4KkeyIa/lczAnpJrP6bUNpWbUzB0Ohft0qlp
+# xu+Zd5pyjflKZY5lF6XiIzRoo7SWQmoOB09DU0POmahs5S7SCczLYuNPgKHyEokH
+# chINUWKAkjrWFD0vnqUq43LqUU1tcyM/LwFVPpb+RJtWGYtaLk/4aWAPj2BD8Sc5
+# vZqCVMqWsOrxErEeJxgooJ88edlzy5dicVrSiHJ9JlStmB7p+LlpNbnMyPrQa0tc
+# vi/MzN5ZvpvRKop/8FumdDVPxRxP7pGL5iBUEH76
 # SIG # End signature block

@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -101,8 +101,7 @@ function global:Open-InternetExplorer {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'The URL you would like to open in Internet Explorer')]
 		[System.String]$Url = "http://support.NET-Experts.net",
@@ -148,8 +147,8 @@ function global:Open-InternetExplorer {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUA71rETxx8mGF4Yf9Z/nI+Wfg
-# 7hagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC4TcTqAfPKVitkxeBK5chhVh
+# Kj2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +291,25 @@ function global:Open-InternetExplorer {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRjuN8Jam6RDODwk7qNw5KBD6mQ+zANBgkqhkiG9w0B
-# AQEFAASCAQB5PGDDPhoymakZhbibJs8ftjjlwOFgnlNCxO/CCc/UdExrykaRNuQQ
-# xNu3I/6HiUg8J4kjgxZL0gCmhTTPQPmJz938a232fHbuW2P3ZbSSCW8YsYAt7t7p
-# G5D8bm7sW2G3ryd1+Ury6juv8VqcwvmW73dOVpw/4qLtAMMXwuWVbITnTdlCC272
-# PR8iGf89iHvXDKHUgx/E6mLQrd2MJQdQQH8ZSqh62hN+NpxpsQFU7tXefQLSOhUC
-# NQgDewqdC4rOCMRVMy/ZlRJzKBlu8ZMnax1gGujMwiuQdaVmGSfjlSyzzLo3sZX+
-# vcK71dbHohfEug2oUjHiH/Cuyh0xxb84oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS0Qbt50Jth52K42ZjyDQIws7xnFTANBgkqhkiG9w0B
+# AQEFAASCAQA1SjDQENshf1ZT12SmRhraWgFHL5RxRtXmL9xmKeWazHRVwib5FaRH
+# WYFeEo7C1lhN+ylnhGahgnMF3sKpGXvJWNOARFSYFJIQuEvEExHQV9k4QTRNcJjY
+# kQ5JC3UCol3AgE2C9kVDYIl5XhtN9z5wdYnMQijtvWuVGRQGCi0boWRPt+gF05nH
+# zgx9Unr982Yen3MBysb3iauVUt4zDIorgSxt7b8QM7wdsrhOjTKf5FfIzPM5qCXE
+# fqBzC09RYON4+OjtwNJ8x2NqJsVMVl8TmTbwJ1JCncEfQ+5/ohKNon2KdsZuYG+0
+# 5OlKgGuJ5/UwWskgoszxmyyoAR62M7uloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUzNVowIwYJKoZIhvcN
-# AQkEMRYEFLCvuM0KSHIYy8dcUEwAcN3D7gh0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY0N1owIwYJKoZIhvcN
+# AQkEMRYEFHZGfO38m6pSPwKvLL4XKilyI2n/MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBwuyLxxXjP3Vns0pLDzsDi5avBVfEy/7ae4e0ASzf+rsg/
-# y9OMUwxyBrMPUgdf2pqAszXtexABxsdxHSwbobaAZpDKYODhBftTH8TQ7R9z+bj/
-# wihS0nvYzXLn37b6CGKD6zOtjL1/swKxbygmoKS1MaVnH0o9L2DjAzuWphojp5mW
-# sMS+GCwbZC1LjQlbAuvOEfo5xLR0aok4H1pUgMOk5tdCUEp5Lx9zAKV1038E0S2g
-# iI1ayI9iqKmDaeBvH+5arRyFKA2nVl04wI2yD9UEC2zbmMmmWEzepHtDNWKtmRxp
-# 1EeRz6Z73n+L/mCCaYYUicEVtvMFPQDmp+eUktxo
+# hkiG9w0BAQEFAASCAQByonakTKxauRYFSDvkTtzGjWoEsOYpXPpeoOz1YaMxa5Q1
+# 4gZfBoHN1emYLoj27HRX/gmM0VojTUaTpbBUoB+lcvuTaL3WthaTvtf5Th1UGG3a
+# oAhQJfjpTD9W2gjVrH9NxDOdJxWHE6rF8JhMgt+tbRgcga0nzDj3t2vexGW8sbKF
+# ebn3YeM/QfWw2lIzpgj5EtSFD3bY03cK2irVH+vndABZVnMa2YfjRmx7Bhj3kTJk
+# dL5n8568JNPKu8e/REJ9AZ3aAk0xjn3bbakORFYhp0q7Aq16sz+LnUSBQi0Tx94+
+# MCV1MY+Cl75dR/2oE1X0TZDEQ1NLKIRmLK2vXnIE
 # SIG # End signature block

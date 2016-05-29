@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -104,8 +104,7 @@ function global:Test-RemotePOSH {
 				   Position = 0,
 				   HelpMessage = 'Hostname of the System to perform, default is the local system')]
 		[string[]]$Computer = ($Env:computername),
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
+		[Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
 		[pscredential]$POSHcred
 	)
 
@@ -155,8 +154,8 @@ function global:Test-RemotePOSH {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUctDXp2TCHSOaep+nwB1BQF8C
-# zsqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkNHqfJo8vL2mPgUbRneBASnc
+# Q4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -299,25 +298,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQjscldoqDKqOTScj7ICj3eyZyLRjANBgkqhkiG9w0B
-# AQEFAASCAQAa9FFso51Km/k3hVvU8+LnUiwb2LQk04yOZXLuRpDPzAF3Qz9mStkr
-# 6/eQPLCLXWEa0KV2sYePRkKtaUCr+WvEtCojoTWXTPBE5Y8SYhWyOheb4G85x2Uw
-# Ug8YTEWkX2y5237xzIRbow+r7QPZyFw8tpXSflCtzNXWqv7vsOSp9Yq9JcuryFyF
-# 0b1jCYxIMwx0kJlHvGrkmfXjyDXKESgw5t0DP93YxFs0GR91Xz5WN8EmyK3Kwugi
-# lo8zheuvCZGrVzBbTuNFYwEHHl27pUrt6Mlq8TU9/epJ1UnEAQ0yesOHdjAX+GCm
-# oGJuSJ8v1P9h5GDf5GD5w9twEbvR4zv5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHs9CVbMj3l4O96TC/Q2gXAXb+CDANBgkqhkiG9w0B
+# AQEFAASCAQCt9Ap4E14/LGDsiwGcu+hnpueEhJYMdDZlWYateV12Br82twkkL9Bj
+# S/lgMHPinVCRGOB4CYvzQxC3ndySndoGjOwD1rWM7DbkuRbgkjGxerAx803XaOBi
+# DIZUCpJSjMEYP5mvcoqP0s9ctg0/OTCulmBGkZ0PWWcFu1OOMjHSXQLo2J0Jq85C
+# D/NcMsNZwWh2Eo6tuLkdYAdCsjpbMRCMQL0mjeZS0kEwodCikWEuEdptaOnWI35w
+# 1kV3lBKMk1ABY19wtYfmvO1CbjAN2XjjfqWNuQlM16IvLFopIjW23O1uHTpfJtM2
+# 72mOYDANsxqItJvYdAGXfkeXtktNJ+6hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0NlowIwYJKoZIhvcN
-# AQkEMRYEFElllq4RhjoCRFrMfVKM9c3YhBh1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTcwMFowIwYJKoZIhvcN
+# AQkEMRYEFCjKteJaeCUZAsDKF3y+LYMuQj8nMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQACizY80BvL1xCJHO4qU1ZvUQ7xIrUG6aAmXOSGQ1pCDYMd
-# ufaxzjyYBfctEMG8Rghyh1FhlaLXB8ZKdz3wwrgLU0IvzDTGsjKL6BWwLkWAgtXE
-# eUcgkTQJ8sI+ca93Q/SIA7/5G2xbYY8DkJZoZYYjKMmB0ORBEHrhI5xhioLvd4vG
-# Ct50+r3r0MFz/Uvp8C1q1zTxrVS1jdfS7KNGj1ZATdCRMxNmV7wzO1MTnZXFcI87
-# IP/gzNSZ8fFba09rARbZRoGvIPWu4IOyp/2DV2jHJZRhE6wHqqcxrqDZzAMjxsT6
-# tmJZhP7D0cnfUBDDq3gmJGGtAEfwHb/KxCuQLYQG
+# hkiG9w0BAQEFAASCAQB76EYkz32RENk8K7zKVK+O2I6udcxXhVmK+g05X0pS7oMq
+# 9o0jDZghexT7heXEiRUq/l0VRxpd3D0kfm2uwPPH+X5IIjPPGo6sOKGRrijPekqA
+# aX4qIoPXnmA2cBXVowR2zLP32MBOpXeCatWSvYTvPmBS9op9LrEkqZ/66ZWD7R4C
+# sC+LW5YvKwJ8QwbfuxwlbdfFUmHxGHep7arM/PCdp62Nxa+ccFyQ7sTObgKq3Wdk
+# fuGalpHPFDJzm5A6KTvHK4+PcFRNyj0qNM4QJtjS/0JOuZBYngcYRkS6t4++YMvc
+# dOUQwKbl1grpjwh7AsaJk1/hdzXcSqIr6IjlvMKK
 # SIG # End signature block

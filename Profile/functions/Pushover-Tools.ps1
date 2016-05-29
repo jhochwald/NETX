@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -161,8 +161,7 @@ function global:Send-Pushover {
 				   HelpMessage = 'Your message, can be HTML like formated')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Message,
-		[Parameter(Mandatory = $false,
-				   Position = 2,
+		[Parameter(Position = 2,
 				   HelpMessage = 'Your Pushover application API token')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$token,
@@ -341,8 +340,7 @@ function global:Get-PushoverUserDeviceInfo {
 				   HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$User,
-		[Parameter(Mandatory = $false,
-				   Position = 2,
+		[Parameter(Position = 2,
 				   HelpMessage = 'Your Pushover application API token')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$token
@@ -404,8 +402,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTT5k4PgFv46PL6GWRGUIUuRd
-# tjCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9HCmfmGej23sKzAw/IUzPTx/
+# XEygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -548,25 +546,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS91ORYxs/nuKBgEsgKgh2qPDQWfTANBgkqhkiG9w0B
-# AQEFAASCAQBF+Ujw/tJAByFpFywb2s8tuq2PWyG6vRrVGRqdp4u/By4ST5jmYXFu
-# rcluvbBST8WESGDqrVwPS0aCBMpzDy9d6oMpsG/4qpEypJdVPnMisl0+adEwYw1T
-# yJkSMJzEHLoRe+xjyjVNQmyaJSle5Oxtu50sSKEcRebneF6GSm1agX8etk/aiE9h
-# O+mNZ20WmFQKmw9L47+oiAhcLoDBr1p6Y+8Cs33aqZ/aNQHQNftU9Z9aIm222nF5
-# LmAU1v8bxALuabGDT66hA+lLCrgHL8FHuEC/2JwsjPgKP50zlN+q/QOaXBa3qNos
-# +3xQZaQekX6uvD50a8v/Jk/hszX9XvJMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS+JHnbEK5nHkGQ/liRkJTpKn2+KTANBgkqhkiG9w0B
+# AQEFAASCAQAgI7iQKw67aXWF64gKTDIDp3TWNTr+prUL8da8XgRZENnbbFuQqhUl
+# wGjkrM5+GBMTOQyBnHrdpMbEXRmNt6YKAHiP4EOGiAUiUiBHFJppVY8dZq+R6Ft+
+# NCXHQTsOiPjP5G00ZVMdo+E49DnhQs8ixbtVgzG1Aw/uIqUhuwDOWuVk0gA7/tzL
+# TRbabBqMnWyLDckVVsY1JZIsU43y3m7YA6uygAUSgOFuH+bZHexfyG7mw7gquK0J
+# KtLoIIQekyIpl3QXfJZh07vg0NM5290wcSW8d4u2C6pyGCINYT/NalJfzoQm8yBo
+# krvq3byyzpWdnFmtCGj5yWHEPucq7pe1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUzN1owIwYJKoZIhvcN
-# AQkEMRYEFGgGtj6R8YrRX627mmZTL6bFK1+/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY1MFowIwYJKoZIhvcN
+# AQkEMRYEFH128acYlbfrPZMwFcDexR3VRELXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAtGrQ52RuziK9v9K3DJyFpayi5gANI9c0do4X65SajkwfH
-# eOE4pp4QcFQ+wQdFcyfQChGX9euCkJv6sDoWRiVV66x0B+NGgWzlhPz2X/Stq1qf
-# q2TOo4DKKX/5tnFTxfw0Qi4FcU2JJ/1/nlc7mfUGJE1Bd5T7QKl9iDBZ/FTh7N+K
-# KdRCdAa142M7smYcT7Om61w+ls5QQU020z2AeD4i8+scc+vEkdGQFjwnpkQrdpSg
-# FuRakq3fbrCJVYf0viwb/zxYuB7I3hSvigGwqi1L9Jk2P5sHyjtxKPylt1EANH5v
-# rqQaO9Mlkk8aEK5FRYbni/4DWCFtSuI0kQlzaS5a
+# hkiG9w0BAQEFAASCAQBb6Hiey+tDWQlOqxWG1hbnN3gAVDu3fSI60ExH9lSUPXyv
+# lbbtmSCJiemiJ2TxQ6FS5aUdGL5fTgqz94NjSZUxf3bd5HuIusSayYYF5SXYmh1H
+# A6Bd4AP+PgcPo+LENjji3TipiqanhFDXr3ZKm7k7jBdoK+iHZRBs6nSJQhJSV8KU
+# J8/tfX3Ui2ie267sztEp+wr7U6wuo6/GqnITBmhCIfWFxvGbvMJhj4n225HjJFhn
+# G/O+b+23RKeHCYIDBan0rVdjUazgWWDozTZgYlZQu15piGkqiWAfLFzuJYxmMbls
+# 5zrqTgcl6zt0eKScTWNU9TJB25Gg2audwuKf4q0X
 # SIG # End signature block

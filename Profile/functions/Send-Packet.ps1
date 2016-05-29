@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -114,8 +114,7 @@ function global:Send-Packet {
 				   Position = 0,
 				   HelpMessage = 'Target name or IP')]
 		[System.String]$Target,
-		[Parameter(Mandatory = $false,
-				   Position = 1,
+		[Parameter(Position = 1,
 				   HelpMessage = 'protocol to use, default is IP')]
 		[ValidateSet('IP', 'TCP', 'UDP')]
 		[System.String]$Protocol = "IP",
@@ -124,17 +123,14 @@ function global:Send-Packet {
 				   HelpMessage = 'Target Port (against the target)')]
 		[ValidateRange(0, 65535)]
 		[System.Int32]$TargetPort,
-		[Parameter(Mandatory = $false,
-				   Position = 3,
+		[Parameter(Position = 3,
 				   HelpMessage = 'Fake Source port (Default is random)')]
 		[ValidateRange(0, 65535)]
 		[System.Int32]$SourcePort = (Get-Random -Minimum 0 -Maximum 65535),
-		[Parameter(Mandatory = $false,
-				   Position = 4,
+		[Parameter(Position = 4,
 				   HelpMessage = 'The Time To Life (Default is 128)')]
 		[System.Int32]$TTL = 128,
-		[Parameter(Mandatory = $false,
-				   Position = 5,
+		[Parameter(Position = 5,
 				   HelpMessage = 'The count, how many packets? (Default is one)')]
 		[System.Int32]$Count = 1
 	)
@@ -153,8 +149,8 @@ function global:Send-Packet {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwwGS7Fjo3snOI//f9byY1vUX
-# ogmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3t5DQ0FDILcsEuqSLbtMieei
+# fEygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -297,25 +293,25 @@ function global:Send-Packet {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQWWJ1sv+p8Fs6o9fB1PVbfdOK8LjANBgkqhkiG9w0B
-# AQEFAASCAQCQzyaZy/TwYZynIuuovXApFqeonscRLh4z+bX+h9+6r6QAsYWWbb9+
-# ms8FrVKoroSyBdTCex+dMLs+QLEdcvEbd1qG576f9bxsjWN/9oG+aAAER6j/X2Zo
-# Qof7CZY79m2U45304KCBzQrLto8Lu+1wj8etU8mqO30RVNOYtCWO84bu6TvsYkKe
-# T3cB9ndHTkBOuf0eWZVczN4sUNEJdiW3rJkKtVayyssBOqGUezyACbwbgsTeh4Ja
-# o12lH51pVn2bFfH0Srz9PD6cdVxUwRotSK6IVdkyDqTU+1BJzNxzy1gdenusyuB5
-# F25Tm5vA9RKxL44y++sOQ+bMo4U/2aiKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQaYOV1BJJKANguooMHfJ1TgHYrSTANBgkqhkiG9w0B
+# AQEFAASCAQBPaVmXS/b4wQ5ZBgh4GHzkF5f6w7jP/1XIj1hN7l3Oihjpx92hvHf5
+# AlLSAa9CETQYGQRfutjCFCIQSpoc4xoBydpYyAcIhBTSBvCElV94qjfEEUqrCbU4
+# /kcYWvao5SLCOQ9ml3pHP5cUHtpIbzQp7SLRYNNaqhLeV8zF469VBiXyZx0rUp+E
+# p143dLKQ8Esj7wdX34vV3t3Sn07GjBbciGAEZSkWOZCGvLDKslfH5r+LyA/GOYwq
+# XSP3V8GvhssIkTx9LT6PYy6ozBZDYLIsaPSWfeujjAlXChXjRKlGq2VVpX9g5sGG
+# AoM/S/f8Da+xFoY9kDXAWfN/AhrlkrdtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0MFowIwYJKoZIhvcN
-# AQkEMRYEFJMNzxrj4xvYaWPjWhmID4R2VIS6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY1M1owIwYJKoZIhvcN
+# AQkEMRYEFK5J+eChgX+GQ5DSDqPhxkHeyCQrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCEShdIw4jBLJI1FweTyo0kqT7DotOXg53i5qN9Ku8LMHUb
-# PL/mF2kUq0YWTE/pwMVUUsP3Jf+LniaM4V+vmnbMuw/I3+HkN3F6ZjcblcfYr2+N
-# FnRk5Lh8y2HO2gFoWmasZljp3WmzJpoTpmddbdA3JlAqCdcugXuNFXGsOw/aaSbw
-# mKrlPUWN8xwrF9Rt8eUsqzt6vcVLr7iUcvxSZy0+RLLdWCud1UnMZ3MhYhzRRj1P
-# 8+Uuy7P3di6KvOv3nOThRcLIOfy+bQ+/Pkag4yYjHmXJV0CsT2dzbw8YHxhtmqo7
-# E/WYcXxsvPisd8YdpXsbdI7DudXdzp9GvrgHY8+X
+# hkiG9w0BAQEFAASCAQBrTNoPIgwr/0F0WY0JTubjm0W+KjX58qDNGKi3wuORza6D
+# mmojpCHFmttrzotU4g74h/VqTUserLeRIk7adcxeWjvurB//PCFKiGK1l6GZZ2rN
+# sEGn/FTm0sjZuGJkV5AU2YKWCXgpnNEU49AXRx4HexN0N3TbUYKdGJKvvcJ1nYQB
+# Znvhi7YnFx70rtE05lkRzibbj/tj1TfXXI4z4u5z6NJ9XnhqNLBerFkIBFXwNdbM
+# mfYnHxSr3e+w94fGDXjI4PjRU+6/QRACpWQ1NNNI9C5jc+ZR0Jn7sFAcaknkRIBQ
+# ibluWHqcDUB1Ve46GJxTW5QhCpiTXT7QucvrTWyz
 # SIG # End signature block

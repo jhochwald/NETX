@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -89,8 +89,7 @@ function global:Get-ShortDate {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $false,
-				   Position = 0,
+		[Parameter(Position = 0,
 				   HelpMessage = 'Make sure it is compatible to File Dates')]
 		[Switch]$FilenameCompatibleFormat
 	)
@@ -150,8 +149,7 @@ function global:Get-ShortTime {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $false,
-				   Position = 0,
+		[Parameter(Position = 0,
 				   HelpMessage = 'Make sure it is compatible to File Timestamp')]
 		[Switch]$FilenameCompatibleFormat
 	)
@@ -174,8 +172,8 @@ function global:Get-ShortTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqx+nuvJ/KfPQGDmzj8STGeqI
-# LMqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgvIPQF0ensMYD4IdV2Smh9io
+# aYagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -318,25 +316,25 @@ function global:Get-ShortTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ9fIRPLcj5Smk+4Pd3NWQB9ZbarTANBgkqhkiG9w0B
-# AQEFAASCAQCnIqOvJ2FRsO07Joyumx7kuKYq93XnFMdv9OqtWt2XSRJ2pqgacgOA
-# A8DUQ9QDFYQWLZ/cGRnzzNwdY4xwcSlRYry/VBOQD3m13d7ie+o+DtcFhUVFcD7G
-# 8CjkqN1pNIdvBghZb/n7lIS0Mw6x/HdCjngafigJ2BrNZu+EIpOgbqxAuAIFAw6B
-# +Gx/ogHacxb7OtsxRi703y65qLufI4VXoaCMABHuQoGNoxKjHZ2QnQKg5Zn1KqsW
-# LcwQoSur0Of/uFOU9Vl/Pb5siVxHBKglC1NaIiGwdfqcifko5swJdPEqeL4eEwL8
-# ctr5+9oXcxMkZIhpD+kbMHG2DCZd4mAloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTDvm2ETGGQj2TlDwQuebIHS70nUDANBgkqhkiG9w0B
+# AQEFAASCAQB7ugmNKQpNV3ANzOcRJtX8RMgeVBkprwkmwzL/p6dtK/rVxVz2bVi3
+# SkrWUu60yIijXWK0GY1mczr8ax8MQ6FzE3wscQRxM84D6tkhtbVM7IJX/kIHSKaW
+# wmBhPjXQQ5ofeAXcFHi9Zt+mikONrptavF1CYzcr+PQ6s13BC1A3sPo/sViADO4D
+# Vxui5zB1QtdNhp/3PvgGhXJNCFZtlcyNu7cO3TluEg4FqrrbnOVvz6lHKyW2xcJE
+# OvB+mnWGF+laZNgm58C0z2wi+T9DcNJJSTNQYrn2ZeQ/TWOBMmu7xTiJiMxL8o06
+# Nyr4YcwqW1dCIX3P3G3T2R5IuatRkH20oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDU0NFowIwYJKoZIhvcN
-# AQkEMRYEFIGxb5EMpVUObkQfvF2qbBMjMi8dMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY1N1owIwYJKoZIhvcN
+# AQkEMRYEFHhZks7QHffPSXWrYvs5prHKA8LbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBuNqBfwjBuwMQlmgby5SIxIfBLbSXijvRfA0ifHyYTbSJT
-# wvTXfVDI4q8NPfeOtkx2eV9xjV1olMp6iEeVNrSoRRgpa+M2aEMPh25QuRbe2Ylt
-# Vb/IgDROJIqX9mXEy60Oxu93ok+CO6ax9l4TOC/98RwvweN4/e5SqOM0wutai7tH
-# mzW//A7pKgR5uvA+cjXCeGN8jsanZVwPx4gG7VF7Zrm1iQB9+K1uFdp/hapL+Wnj
-# aEyKIRxzF6QsFCyI3qB1LZMkcSuaCxA6j8lfsYi20pVjgmUoS8U1k43J5BQUAoBo
-# yQC5hQIal6whOTuRjt7CF06ahx3e8r0Yy7Vnx0Dl
+# hkiG9w0BAQEFAASCAQBg1FBNKcrDxzmECV1f5yrNgCpzh36lXM738ogCCF4M6/IQ
+# KeVFHUybUc2fifxFLHRiPre2MtGwixdu3igFOEzFVGfpmNOATxnWqzn/UGU7hj75
+# IZvUjox8DOuDw8VohuzAIWVcP3wlhzq6ZG+VROZ/CDawu2jTm8E9m63OBbdI3M1b
+# RxXghwx/XshkXbCw2bx3p+Eh85DgpUjWqy3wVLJp1J91ib3wpwZOejpB4IWOkbdG
+# aYWipjiaYIDhIx0vCsdrXBD92f4qlk4/UNEj6F5AvdY/3UQAx33ObedPtVjr95j+
+# 3unarVGV1ujaF8+WXYyrmJ4zFJGabqwfEWFpzI8C
 # SIG # End signature block

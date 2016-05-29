@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -147,8 +147,7 @@ function Global:Get-NewPsSession {
 		[ValidateNotNullOrEmpty()]
 		[Alias('Computer')]
 		$ComputerName = ($Env:computername),
-		[Parameter(Mandatory = $false,
-				   HelpMessage = 'Credentials to use')]
+		[Parameter(HelpMessage = 'Credentials to use')]
 		[ValidateNotNullOrEmpty()]
 		$PsCredentials = ($credentials)
 	)
@@ -229,8 +228,8 @@ function Global:Register-Script {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl/aQQzIznRxvnMR6Y7CtNal8
-# 4UmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUptPfwgO2qGAeNj8PYJO9trcz
+# ZZigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -373,25 +372,25 @@ function Global:Register-Script {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRgXeb+dzJCn1cZ3dOnjZsJ4s3IBDANBgkqhkiG9w0B
-# AQEFAASCAQBcpiC24sK5FWMFOhVhMVy/kWfd9Kdb3/823PxdllwW6JMJ12/LfWA2
-# BXXDwaHO740mVsheX1HRLdZuYBm/efBORYXrBucN+M1zXwQHzZqPHYq38wfdbRnz
-# /tgn6ZT6v+kZIQknfCdAyZeIB1wvuRNdPhs22xpDecj2QZ7rC0aTgX3w/lcc1eE+
-# 8m8hYsx9BL4Utsxk6ZasTDmHynuoH8RSZvbeMvhIGwrifJVSxGV+VcWL6e9MDRmO
-# JvE3usxt9Z9vj9yAtGfsb0M9gTYEQV+KVppL23Oc916HkTdxRZlZM6jTqu/+WxSK
-# 8g6NtZnppzqtnTu9EEccJTAn5lF0f6cZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQnPt4Kg4jHHOpaz7RyRiSc6BUcCzANBgkqhkiG9w0B
+# AQEFAASCAQB+VbuX+oSUWNqZfWsZU0y+MH/IPUwLOm6x3DlTK3ulSg/SdKfPBVU8
+# ENoewqXvrJNHoPye9+7Z4/psZCsPq2xsHp0TYNYvxl6bsRl5wsBJuo38HTnPY+wI
+# R7elhUF/0vZ9B6ULt5dwJIFzmNZg64Q/SAjhyTHRUXcywjdkNVNV5bHfUuSP2vVM
+# QlKOSz1mGFbny5iKULvOSE6/5Fy3Xl0jad+i4IISj40UhhbxE5nD4XxCCnKmzOUA
+# AzyJKkVrqqaMvxya9dzLRa5XVu/l9DLmIjZGbhoD1TmL1dB3/pcdPXoEp+X9beOU
+# bXPURjOYw3+wuEZmeAuIYqhWKlFOJv8MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUzNlowIwYJKoZIhvcN
-# AQkEMRYEFCwt7kZSlmcVnQm2HCEPMfqR8rxbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY0OVowIwYJKoZIhvcN
+# AQkEMRYEFOugFdU1Lc7bvCQxEG1fsofVkdOCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBHR7Hsqj+ljqNPr+S0eAFqNhFZK+vGBZ0fwlOJq0H/3xk4
-# A1W6bUdoIi4TFTn6vM5sTKN+dO8EIfLcKwdhAyYLNyzpxNl2jq8gwtnYBjKy2IIl
-# 0doIrF2OmwLtcnO7iB4zP8xh9T31BTPqfMf+hTXkldoPTR46qvGdDjvU3eQQ5JEj
-# uv4Re7VuSmd9wYha1CppGLRW17N85KGIUkDbiuoc21F3VM+dzbNct/leQa7/51O2
-# UHTx1QR+RBFH+bzglyICqmaALuEARblzfOB6970SNFD5Rsq5GEjxEBINK29QOkLN
-# EIZzEDtftPR9phTSbX7jHJpHj1dJKSLlo2urnzCz
+# hkiG9w0BAQEFAASCAQB4DIZMpZOaNXg3wM5FhMrp48MEuyuSZCbjQPqXTR0pldMj
+# oSD4u2sMRis4ZCwIcfjO+Pzr8MpPI4poQtjf5L87NTlOIrFKr1mED9F+aTJKr3nT
+# srw/k+Ygg0Ph8dXSmMvaIoDk8NpEZaX+5sBbjyUkWT0B2F1kH5k9r7/ml1gcXErl
+# 5pK98m460LFsHq6BCisDSZWG5HMue6PJ+aP4PjnKzPYoMO9pFV4YgLOfae6Vpe3O
+# typaELtjLAmhYLBrXZAqsf3zbAPsouzKf8VotGXTpBXhg40OMZnDHeZ2+hcotWig
+# kcso9sunLxKxdcieEWEn3JVlYlnBNQ+PR5a++hJu
 # SIG # End signature block
