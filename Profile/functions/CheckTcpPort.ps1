@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -96,11 +96,9 @@ function global:Get-TcpPortStatus {
 	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $false)]
+		[Parameter(HelpMessage = 'Port to use e.g. 25, default is 587')]
 		[Int32]$Port = 587,
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $false)]
+		[Parameter(HelpMessage = 'SMTP Server to use e.g. outlook.office365.com or 192.168.16.10')]
 		[System.String]$Server = "outlook.office365.com"
 	)
 
@@ -164,8 +162,8 @@ function global:Get-TcpPortStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQr+S08+Gk/Jgu/9Dutd7YghN
-# ygagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFKZ8v6CsGdhLCPY/62A2GPVY
+# 5fOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +306,25 @@ function global:Get-TcpPortStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQZarxHvaVjRjyoj/YAzMbo/yZ5UzANBgkqhkiG9w0B
-# AQEFAASCAQArEZulSoEVBElitNJgCv0saygNgF6++gOWv4HUgGNnTlHBEuSy/C/0
-# AcHRQyd2GjGGuSS1HRx67swVPh5XNXaYJF7KboG0R96KF85TkH8QyBoAuEey1LWA
-# qi1j1Agdf2A2oMXHsc6JZth00djd0vxDB55TfrEuiZUijS8Ii9mSdrTpIETxJjQU
-# o5bXwiR4zeatvoImOxs049MWwaWaECfLfUy6HBAWIbJcvBBubSVz1zRxul1yIBSP
-# ncvD7g9hd49mESeEm77Un0JSBMhvNaiNmz1a9AkDWu2eLUBTKp33f1yxJ/Yk+CUN
-# yLiq+L7UB0yi2kviI7eLPQCPndOQlqfWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT+tHW4FTNr4gcGehlZ58JWynqM4zANBgkqhkiG9w0B
+# AQEFAASCAQAGUhql3rXWYMNrj43xnkQP91dNekWIDIfHF71IUkR7JUEX0OfC2HHV
+# UDtdL44NK03/x637JpLWSg0jCOKEBiRONV1HrQd789wfoksXAKeYut8xuM2ckKe6
+# N1kU+uZWDLV2Hdf02cgpTLZbes0L5xsuEBujvwyxeztnNahYTSXgMee2iGf8WZws
+# UwNGQplApuq9acPmHKbWYqhVM/yKPfhTXZgE6Qxp4XhXcL9f6pyJLJJvAxiyOC9K
+# kyHMxLx9yIyJLlGzJ9Qcek+86LvTkpwsRiJcl3V/3/jQlNfw5cHzTrmRxedCzd7V
+# hvJJ99bBdNXTUBy1wKdK7x86B+Aq0BHpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDQ1OVowIwYJKoZIhvcN
-# AQkEMRYEFCjQSwdvp41JaKcFcBcjVjSxwTV3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTYwOFowIwYJKoZIhvcN
+# AQkEMRYEFNt3Ko1xcdy1NewS5QQD8YuFIGMIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBDPGS4AHmCmI060AB9YHOs1Y57wXYygUAYPr8q4H1qU7NZ
-# 6tDOesUm7+mMl8yH5xFwHXzmOHTq0IDL7rrs0w8Up1ICCSaZtLV87aJJ25yW3VIB
-# uliNRuHpOeXk5KsXIoYKLsWWjLk8abxLt+f7/iWAHHlx5gB5LOf6xaAqMeT1pANk
-# MzrUl11tcKSDgM4eRxuw0PnXF+tjxFGlvm/jvyTv55/oLYoZfS69pUbvVuChnV50
-# 8uicMGyVuUenL4bH2Mk6vKnx5Dus5L3fZeNcv0uJcJgp4MfItEis2y0vCLlKxvus
-# eIoBdJk8wXhcp81kjNh06RR+e3FM88cJT8QJ9x0i
+# hkiG9w0BAQEFAASCAQCi0tjZ5IZ1UsinP6pBeMYhpvp0+PQ1nfcLEe4AQu3KDz6X
+# rCknMIapb8M2ToUo0E5aIyg655KhZ96FCtPuh+4AcypXHB4vXBPuYt4xlwnhFhO/
+# KneuxsEq+l1Vwgj8RRjMdIRdQHCpS7PyqEI2aG9BxtbAt9GkA3VxRXTZGulbWZ/e
+# rvn0s5PQEMy9gJyZLXqfJyi3z+jGhhV7svDuv3dHeSruG/EVgjPAoE4kggFmw9bM
+# eORis9Sw2UO5HmgBYb26TUZ7wxCbiRbBKACr97MuYHF3pmmjdhtC55wkv30y8145
+# CDl9r2TyU/eUMLTUvj5Lb2w3ohdmef3yWd4RSTNq
 # SIG # End signature block

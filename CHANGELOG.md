@@ -1,4 +1,7 @@
-### New function (HEAD -> master)
+### Minor Update (HEAD -> master)
+>*Sun, 29 May 2016 23:45:49 +0200*
+
+### New function
 >*Sun, 29 May 2016 23:45:29 +0200*
 
 ### Provice all Functions combined in a Module (origin/master, origin/HEAD)
