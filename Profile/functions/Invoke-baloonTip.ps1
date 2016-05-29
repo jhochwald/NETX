@@ -3,7 +3,7 @@
 <#
 	#################################################
 	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
+	# last modified   : 2016-05-27
 	#################################################
 
 	Support: https://github.com/jhochwald/NETX/issues
@@ -98,8 +98,7 @@ function global:Invoke-baloonTip {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $false,
-				   ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'Title of the Baloon Tip')]
 		[System.String]$Title = "Information",
@@ -151,8 +150,8 @@ function global:Invoke-baloonTip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8gVfPn8+peKRohjjvizSE5Hu
-# jP2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPCmi3dBl6o9YQ5TL1Hyh9YjS
+# wXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -295,25 +294,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS0ppxkpzt6hVfK1syCLBrrG+/5tTANBgkqhkiG9w0B
-# AQEFAASCAQBZbk1Cpw/aQ3dng2DM1NYcnui9sx3I9U0bfaX+dhgam81R3wxPMWjI
-# 8PCsoCLovi1GbZ75BF73LdvfOnJ5vB100AT9b+54pyhqJsyRp5i0DPYUjLS8jx4M
-# Y1EihLPhdv1wAGRjBK/F3XoRvs3hdutP/NyAd5bvtdvhB/lRmZ/ub8HEjrCnR6Id
-# 6EonzegPg5f/4V2w20WSye3DO+Bq2HSXf45syb4k2sO+TvNw7FLHufVrLtCPXGTm
-# k/MN69uqkMtHlGDew+eyRG4KBYgUbBXDX0VIeElU0TFI3F0RdMW1vXyJ4Yd3SZo8
-# xNq1FQpNEHh0JXxK9CT3Kzh1GoDsewpmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ5qPzEjrtBEAbya+KjqPOKwLrPXzANBgkqhkiG9w0B
+# AQEFAASCAQAZq2NAHGKmqs/H0b0bWShEWa/HRHG+ve1GYyQtPF10zsQPxrECH5GP
+# Pl5Z02hF3pkP4EnFKkSS+Lg+wsmgjdoliA9bAxcJWdCdDRfafrLYAN9Sh+9ttm1+
+# jIEMktC26fBkArGBycoh+1Lm1DGKYqa5Lg6pJ1A8L5faFAXuEne3Fi3YvdgKxC7p
+# xfisACySrTW7spMlsEORogVF2k4CyVnXG+ueLoRALwnK7Ed/GMSAH9UibRZN5Mkk
+# hno9d7sd8Q1DEq9kO2Fplda85g7bA29A9UhgGWZWALIt/T3HdreRYdt1T9xPpkpG
+# +DX9B2uLJPaNmGsvpFWYcYm6jqOWYTMsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyNzE3NDUyOFowIwYJKoZIhvcN
-# AQkEMRYEFI8IwaQR+LiccWRuVnA8ywBp/9dsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDUyOTIxMTY0MFowIwYJKoZIhvcN
+# AQkEMRYEFMWwLZx7IqhgzMzQd41VSdlmRm7LMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCKpvm031sSelEfpsMO4pUeNXEwZnXRlHWaCo9nWim1pt13
-# bSJ4kcGvrcJ6JlZHZ82EyRqchTSPki3sZHyO10R6sL03sdhXYYlaIZrzXZA3XvPi
-# /nMrpQf7orUtJCNCqkG/nw0VH0ux47xGofxVHo6fZxFlllrf7WzCDdO2Lrec5egx
-# MJKp/7c7UHlYgny+9eezf7UL8+ugWmTm02tMaDBcB6eAvRodrmupNaHe7sfPifvB
-# aUi6OAfKSinTiNec74Z1+K0PLH8HT0+jPq5WWSOvoUhneAaMaMQaxynJlluehSWM
-# SRVtbUK4xMXMUpbTKmJifGEiusgOynAFEs2f5TcM
+# hkiG9w0BAQEFAASCAQB5rPcvi1jjzvjwa1TNWFXC8dW13Ja6vqswQ0O53fzRkjiq
+# Ufxs7usFAvTdmvvbRIGljiVzfC57AZ7osZQ9r97j89EF5gYZdfSyszMH/HuxMVh1
+# CJVAc3+DpiLdA4IEOfn5oqadG9YEqHIg67kOMKZ0SkRYQOBBKQalYWEIpqf30lQ+
+# Q8W2+eoTnq/ZtgghBJ/Hqivan06C3zm/W4jLAlvRnWBOVaOqhM4KR9enrM3ypHui
+# 2we6h5iarJ2Fr1aq197fUcT8TG3NX6DYYjs8XOBdcdbrjfXPHQlpdvy98a55IYz7
+# H30zhgxdJ2clURXRoOqwohU47qIsRKn/ihcMzhfF
 # SIG # End signature block
