@@ -369,7 +369,7 @@ function Approve-MailAddress {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([bool])]
 	param
@@ -380,15 +380,15 @@ function Approve-MailAddress {
 		[Alias('Mail')]
 		[System.String]$Email
 	)
-	
+
 	BEGIN {
 		# Old REGEX check
-		Set-Variable -Name "EmailRegexOld" -Value $("^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$" -as ([regex] -as [type]))
-		
+		Set-Variable -Name 'EmailRegexOld' -Value $("^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$" -as ([regex] -as [type]))
+
 		# New REGEX check (Upper and Lowercase FIX)
-		Set-Variable -Name "EmailRegex" -Value $('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$' -as ([regex] -as [type]))
+		Set-Variable -Name 'EmailRegex' -Value $('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$' -as ([regex] -as [type]))
 	}
-	
+
 	PROCESS {
 		# Check that the given Address is valid.
 		if (($Email -match $EmailRegexOld) -and ($Email -match $EmailRegex)) {
@@ -401,7 +401,7 @@ function Approve-MailAddress {
 	}
 }
 
-function Global:ConvertTo-Base64 {
+function ConvertTo-Base64 {
 <#
 	.SYNOPSIS
 		Convert a String to a Base 64 encoded String
@@ -434,7 +434,7 @@ function Global:ConvertTo-Base64 {
 	.LINK
 		ConvertFrom-Base64
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -446,28 +446,28 @@ function Global:ConvertTo-Base64 {
 		[Alias('unencoded')]
 		[System.String]$plain
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "GetBytes" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "EncodedString" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'GetBytes' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'EncodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# GetBytes .NET
-		Set-Variable -Name "GetBytes" -Value $([System.Text.Encoding]::Unicode.GetBytes($plain))
-		
+		Set-Variable -Name 'GetBytes' -Value $([System.Text.Encoding]::Unicode.GetBytes($plain))
+
 		#  Cobert to Base64 via .NET
-		Set-Variable -Name "EncodedString" -Value $([Convert]::ToBase64String($GetBytes))
+		Set-Variable -Name 'EncodedString' -Value $([Convert]::ToBase64String($GetBytes))
 	}
-	
+
 	END {
 		# Dump the Info
 		Write-Output -InputObject $EncodedString
 	}
 }
 
-function Global:ConvertFrom-Base64 {
+function ConvertFrom-Base64 {
 <#
 	.SYNOPSIS
 		Decode a Base64 encoded String back to a plain String
@@ -501,7 +501,7 @@ function Global:ConvertFrom-Base64 {
 	.LINK
 		ConvertTo-Base64
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -512,23 +512,23 @@ function Global:ConvertFrom-Base64 {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$encoded
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "DecodedString" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Decode the Base64 encoded string back
-		Set-Variable -Name "DecodedString" -Value $(([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($encoded))) -as ([System.String] -as [type]))
+		Set-Variable -Name 'DecodedString' -Value $(([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($encoded))) -as ([System.String] -as [type]))
 	}
-	
+
 	END {
 		# Dump the Info
 		Write-Output -InputObject $DecodedString
-		
+
 		# Cleanup
-		Remove-Variable -Name "DecodedString" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
@@ -562,7 +562,7 @@ function ConvertFrom-BinHex {
 	.LINK
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -570,19 +570,19 @@ function ConvertFrom-BinHex {
 		[ValidateNotNullOrEmpty()]
 		$binhex
 	)
-	
+
 	BEGIN {
 		# Define a default
 		Set-Variable -Name arr -Value $(New-Object byte[] ($binhex.Length/2))
 	}
-	
+
 	PROCESS {
 		# Loop over the given string
 		for ($i = 0; $i -lt $arr.Length; $i++) {
 			$arr[$i] = [Convert]::ToByte($binhex.substring($i * 2, 2), 16)
 		}
 	}
-	
+
 	END {
 		# Return the new value
 		Write-Output $arr
@@ -619,7 +619,7 @@ function ConvertTo-BinHex {
 	.LINK
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -627,19 +627,19 @@ function ConvertTo-BinHex {
 		[ValidateNotNullOrEmpty()]
 		$array
 	)
-	
+
 	BEGIN {
 		# Define a default
 		Set-Variable -Name str -Value $(New-Object system.text.stringbuilder)
 	}
-	
+
 	PROCESS {
 		# Loop over the String
 		$array | ForEach-Object {
 			[void]$str.Append($_.ToString('x2'));
 		}
 	}
-	
+
 	END {
 		# Print the String
 		Write-Output $str.ToString()
@@ -673,19 +673,19 @@ function Check-SessionArch {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		# Figure out if this is a x64 or x86 system via NET call
 		if ([System.IntPtr]::Size -eq 8) {
-			Return "x64"
+			Return 'x64'
 		} elseif ([System.IntPtr]::Size -eq 4) {
-			Return "x86"
+			Return 'x86'
 		} else {
-			Return "Unknown Type"
+			Return 'Unknown Type'
 		}
 	}
 }
@@ -733,7 +733,7 @@ function Get-TcpPortStatus {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([bool])]
 	param
@@ -741,21 +741,21 @@ function Get-TcpPortStatus {
 		[Parameter(HelpMessage = 'Port to use e.g. 25, default is 587')]
 		[Int32]$Port = 587,
 		[Parameter(HelpMessage = 'SMTP Server to use e.g. outlook.office365.com or 192.168.16.10')]
-		[System.String]$Server = "outlook.office365.com"
+		[System.String]$Server = 'outlook.office365.com'
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		Remove-Variable ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Set the defaults for some stuff
 		if (-not ($Port)) {
 			# This is the default TCP Port to Check
-			Set-Variable -Name Port -Value $("587" -as ([System.Int32] -as [type]))
+			Set-Variable -Name Port -Value $('587' -as ([System.Int32] -as [type]))
 		}
-		
+
 		# Server given?
 		if (-not ($Server)) {
 			# Do we know any defaults?
@@ -764,13 +764,13 @@ function Get-TcpPortStatus {
 				Set-Variable -Name Server -Value $("$PSEmailServer" -as ([System.String] -as [type]))
 			} else {
 				# Aw Snap! No Server given on the command line, no Server configured as default... BAD!
-				Write-Error -Message "No SMTP Server given, no default configured" -ErrorAction:Stop
+				Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction:Stop
 			}
 		}
-		
+
 		# Create a function to open a TCP connection
 		Set-Variable -Name ThePortStatus -Value $(New-Object Net.Sockets.TcpClient -ErrorAction:SilentlyContinue)
-		
+
 		# Look if the Server is Online and the port is open
 		try {
 			# Try to connect to one of the on-premises Exchange front end servers
@@ -778,20 +778,20 @@ function Get-TcpPortStatus {
 		} catch [System.Exception] {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		}
-		
+
 		# Share the info with the caller
 		$ThePortStatus.Client.Connected
-		
+
 		# Cleanup
 		Remove-Variable ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		
+
 		# CLOSE THE TCP Connection
 		if ($ThePortStatus.Connected) {
 			# It works, close the connection
 			$ThePortStatus.Close()
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		Remove-Variable ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -823,35 +823,35 @@ function Clear-AllEventLogs {
 	.NOTES
 		Could be great to clean up everything, but everything is gone forever!
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'High',
 				   SupportsShouldProcess = $true)]
 	[OutputType([System.String])]
 	param ()
-	
+
 	BEGIN {
 		if (-not (Get-AdminUser)) {
-			Write-Output "Would clean all EventLog entires"
-			Write-Output ""
-			Write-Output "But you need to be Admin to do that!"
-			
+			Write-Output 'Would clean all EventLog entires'
+			Write-Output ''
+			Write-Output 'But you need to be Admin to do that!'
+
 			break
 		}
 	}
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Target", "Operation")) {
+		if ($pscmdlet.ShouldProcess('Target', 'Operation')) {
 			Get-EventLog -list | ForEach-Object {
 				Write-Host "Clearing $($_.Log)"
 				Clear-EventLog -LogName $_.Log -Confirm:$false
 			}
 		} else {
-			Write-Output "You denied to clean the EventLog entires..."
+			Write-Output 'You denied to clean the EventLog entires...'
 		}
 	}
 }
 
-function Global:Clear-OldFiles {
+function Clear-OldFiles {
 <#
 	.SYNOPSIS
 		Removes old Logfiles
@@ -907,7 +907,7 @@ function Global:Clear-OldFiles {
 	.NOTES
 		Want to clean out old logfiles?
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $false)]
 	param
@@ -917,13 +917,13 @@ function Global:Clear-OldFiles {
 		[System.Int32]$Days = 7,
 		[Parameter(HelpMessage = 'The Path Where-Object the Logs are located, default is C:\scripts\PowerShell\log')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Path = "C:\scripts\PowerShell\log",
+		[System.String]$Path = 'C:\scripts\PowerShell\log',
 		[Parameter(HelpMessage = 'The File Extension that you would like to remove, the drfault is ALL (*)')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('ext')]
-		[System.String]$Extension = "*"
+		[System.String]$Extension = '*'
 	)
-	
+
 	PROCESS {
 		Get-ChildItem $Path -Recurse -Include $Extension | Where-Object { $_.CreationTime -lt (Get-Date).AddDays(0 - $days) } | ForEach-Object {
 			try {
@@ -972,7 +972,7 @@ function Clear-TempDir {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[OutputType([System.String])]
 	param
 	(
@@ -983,40 +983,40 @@ function Clear-TempDir {
 		[switch]$Confirm = $true,
 		[Switch]$Whatif = $false
 	)
-	
+
 	# Do we want to confirm?
 	if (-not ($confirm)) {
-		Set-Variable -Name "_Confirm" -Value $($false -as ([bool] -as [type]))
+		Set-Variable -Name '_Confirm' -Value $($false -as ([bool] -as [type]))
 	} elseif ($confirm) {
-		Set-Variable -Name "_Confirm" -Value $($true -as ([bool] -as [type]))
+		Set-Variable -Name '_Confirm' -Value $($true -as ([bool] -as [type]))
 	}
-	
+
 	# Is there a WhatIf?
 	if (-not ($Whatif)) {
-		Set-Variable -Name "_WhatIf" -Value $("#")
+		Set-Variable -Name '_WhatIf' -Value $('#')
 	} elseif ($Whatif) {
-		Set-Variable -Name "_WhatIf" -Value $("-WhatIf")
+		Set-Variable -Name '_WhatIf' -Value $('-WhatIf')
 	}
-	
+
 	# Set the Cut Off Date
-	Set-Variable -Name "cutoff" -Value $((Get-Date) - (New-TimeSpan -Days $Days))
-	
+	Set-Variable -Name 'cutoff' -Value $((Get-Date) - (New-TimeSpan -Days $Days))
+
 	# Save what we have before we start the Clean up
-	Set-Variable -Name "before" -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
-	
+	Set-Variable -Name 'before' -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
+
 	# Find all Files within the TEMP Directory and process them
 	Get-ChildItem $env:temp |
 	Where-Object { ($_.Length) } |
 	Where-Object { $_.LastWriteTime -lt $cutoff } |
 	Remove-Item -Recurse -Force -ErrorAction:SilentlyContinue -Confirm:$_Confirm
-	
+
 	# How much do we have now?
-	Set-Variable -Name "after" -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
-	
+	Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
+
 	'Freed {0:0.00} MB disk space' -f (($before - $after)/1MB)
 }
 
-function Global:Get-Clipboard {
+function Get-Clipboard {
 <#
 	.SYNOPSIS
 		Get the content of the Clipboard
@@ -1030,10 +1030,10 @@ function Global:Get-Clipboard {
 	.LINK
 		Set-Clipboard
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		if ($Host.Runspace.ApartmentState -eq 'STA') {
 			Add-Type -Assembly PresentationCore
@@ -1044,7 +1044,7 @@ function Global:Get-Clipboard {
 	}
 }
 
-function Global:Set-Clipboard {
+function Set-Clipboard {
 <#
 	.SYNOPSIS
 		Copy Content to the Clipboard
@@ -1061,7 +1061,7 @@ function Global:Set-Clipboard {
 	.LINK
 		Get-Clipboard
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -1072,7 +1072,7 @@ function Global:Set-Clipboard {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Import
 	)
-	
+
 	PROCESS {
 		if ($Host.Runspace.ApartmentState -eq 'STA') {
 			Add-Type -Assembly PresentationCore
@@ -1083,7 +1083,7 @@ function Global:Set-Clipboard {
 	}
 }
 
-function Global:Save-CommandHistory {
+function Save-CommandHistory {
 <#
 	.SYNOPSIS
 		Dump the Command History to an XML File
@@ -1107,23 +1107,23 @@ function Global:Save-CommandHistory {
 	.LINK
 		Load-CommandHistory
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Where-Object to store the XML History Dump
-		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
+
 		# Be verbose
 		Write-Verbose -Message "Save History to $($CommandHistoryDump)"
-		
+
 		# Dump the History
 		Get-History | Export-Clixml -Path $CommandHistoryDump -Force -Confirm:$false -Encoding utf8
 	}
 }
 
-function Global:Load-CommandHistory {
+function Load-CommandHistory {
 <#
 	.SYNOPSIS
 		Load the old History dumped via Save-CommandHistory
@@ -1146,24 +1146,24 @@ function Global:Load-CommandHistory {
 	.LINK
 		Save-CommandHistory
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Where-Object to Find the XML History Dump
-		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
+
 		# Be verbose
-		Write-Verbose -Message "Clear History to keep things clean"
-		
+		Write-Verbose -Message 'Clear History to keep things clean'
+
 		# Clear History to keep things clean
 		# UP (Cursor) will sill show the existing command history
 		Clear-History -Confirm:$false
-		
+
 		# Be verbose
 		Write-Verbose -Message "Load History from $($CommandHistoryDump)"
-		
+
 		# Import the History
 		Add-History -InputObject (Import-Clixml -Path $CommandHistoryDump)
 	}
@@ -1215,7 +1215,7 @@ function Confirm-XMLisValid {
 		maximum is a warning! So if you want to catch a problem be aware
 		of that!
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -1226,35 +1226,35 @@ function Confirm-XMLisValid {
 				   HelpMessage = 'One or more Files to check')]
 		[System.String[]]$XmlFilePath
 	)
-	
+
 	PROCESS {
 		foreach ($XmlFileItem in $XmlFilePath) {
-			
+
 			if (Test-Path -Path $XmlFileItem -ErrorAction:SilentlyContinue) {
 				try {
 					# Get the file
 					$XmlFile = (Get-Item -Path $XmlFileItem)
-					
+
 					# Keep count of how many errors there are in the XML file
 					$script:ErrorCount = 0
-					
+
 					# Perform the XML Validation
 					$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
 					$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
 					$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
 					$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
 					$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
-					
+
 					# Now we try to figure out if this is a valid XML file
 					try {
 						while ($Reader.Read()) { }
 					} catch {
 						$script:ErrorCount++
 					}
-					
+
 					# Close the open file
 					$Reader.Close()
-					
+
 					# Verify the results of the XSD validation
 					if ($script:ErrorCount -gt 0) {
 						# XML is NOT valid
@@ -1273,7 +1273,7 @@ function Confirm-XMLisValid {
 	}
 }
 
-Function Global:ConvertTo-HashTable {
+function ConvertTo-HashTable {
 <#
 	.Synopsis
 		Convert an object to a HashTable
@@ -1315,25 +1315,25 @@ Function Global:ConvertTo-HashTable {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	Param (
 		[Parameter(Mandatory = $true, ValueFromPipeline = $true)]
 		[Object]$InputObject,
-		[string[]]$ExcludeTypeName = @("ListDictionaryInternal", "Object[]"),
+		[string[]]$ExcludeTypeName = @('ListDictionaryInternal', 'Object[]'),
 		[ValidateRange(1, 10)]
 		[System.Int32]$MaxDepth = 4
 	)
-	
+
 	BEGIN {
 		# Be Verbose
 		Write-Verbose "Converting to hashtable $($InputObject.GetType())"
 	}
-	
+
 	PROCESS {
 		$propNames = $InputObject.psobject.Properties | Select-Object -ExpandProperty Name
-		
+
 		$hash = @{ }
-		
+
 		$propNames | ForEach-Object {
 			if (($InputObject.$_)) {
 				if ($InputObject.$_ -is [System.String] -or (Get-Member -MemberType Properties -InputObject ($InputObject.$_)).Count -eq 0) {
@@ -1349,7 +1349,7 @@ Function Global:ConvertTo-HashTable {
 			}
 		}
 	}
-	
+
 	END {
 		Write-Output $hash
 	}
@@ -1384,7 +1384,7 @@ function ConvertTo-hex {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([long])]
 	param
@@ -1393,14 +1393,14 @@ function ConvertTo-hex {
 		[ValidateNotNullOrEmpty()]
 		[long]$dec
 	)
-	
+
 	PROCESS {
 		# Print
-		Return "0x" + $dec.ToString("X")
+		Return '0x' + $dec.ToString('X')
 	}
 }
 
-Function Global:ConvertTo-HumanReadable {
+function ConvertTo-HumanReadable {
 <#
 	.SYNOPSIS
 		Converts a given number to a more human readable format
@@ -1432,7 +1432,7 @@ Function Global:ConvertTo-HumanReadable {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -1443,22 +1443,22 @@ Function Global:ConvertTo-HumanReadable {
 				   HelpMessage = 'Input Number')]
 		[System.Int64]$num
 	)
-	
+
 	PROCESS {
-		switch ($num) { { $num -lt 1000 } { "{0,4:N0}  B" -f ($num); break }
-			{ $num -lt 10KB } { "{0,4:N1} KB" -f ($num / 1KB); break }
-			{ $num -lt 1000KB } { "{0,4:N0} KB" -f ($num / 1KB); break }
-			{ $num -lt 10MB } { "{0,4:N1} MB" -f ($num / 1MB); break }
-			{ $num -lt 1000MB } { "{0,4:N0} MB" -f ($num / 1MB); break }
-			{ $num -lt 10GB } { "{0,4:N1} GB" -f ($num / 1GB); break }
-			{ $num -lt 1000GB } { "{0,4:N0} GB" -f ($num / 1GB); break }
-			{ $num -lt 10TB } { "{0,4:N1} TB" -f ($num / 1TB); break }
-			default { "{0,4:N0} TB" -f ($num / 1TB) }
+		switch ($num) { { $num -lt 1000 } { '{0,4:N0}  B' -f ($num); break }
+			{ $num -lt 10KB } { '{0,4:N1} KB' -f ($num / 1KB); break }
+			{ $num -lt 1000KB } { '{0,4:N0} KB' -f ($num / 1KB); break }
+			{ $num -lt 10MB } { '{0,4:N1} MB' -f ($num / 1MB); break }
+			{ $num -lt 1000MB } { '{0,4:N0} MB' -f ($num / 1MB); break }
+			{ $num -lt 10GB } { '{0,4:N1} GB' -f ($num / 1GB); break }
+			{ $num -lt 1000GB } { '{0,4:N0} GB' -f ($num / 1GB); break }
+			{ $num -lt 10TB } { '{0,4:N1} TB' -f ($num / 1TB); break }
+			default { '{0,4:N0} TB' -f ($num / 1TB) }
 		}
 	}
 }
 
-function Global:ConvertTo-Objects {
+function ConvertTo-Objects {
 <#
 	.SYNOPSIS
 		You receive a result of a query and converts it to an array of objects
@@ -1484,7 +1484,7 @@ function Global:ConvertTo-Objects {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Object[]])]
 	param
@@ -1495,20 +1495,20 @@ function Global:ConvertTo-Objects {
 				   HelpMessage = 'Input Objects')]
 		[Object[]]$Input
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$arr = @()
 		$count = 0
 	}
-	
+
 	PROCESS {
 		if ($Input) {
 			# We load the results in order and loop over what we have then
 			foreach ($item in $Input) {
 				$count++
 				$obj = (new-Object PSObject)
-				
+
 				# List all the fields that are in the query
 				$obj | Add-Member Noteproperty N $count
 				for ($i = 0; $i -lt $item.FieldCount; $i++) { $obj | Add-Member Noteproperty $item.GetName($i) $item[$i] }
@@ -1516,7 +1516,7 @@ function Global:ConvertTo-Objects {
 			}
 		}
 	}
-	
+
 	END {
 		# Dump
 		$arr
@@ -1543,7 +1543,7 @@ function ConvertTo-PlainText {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -1555,13 +1555,13 @@ function ConvertTo-PlainText {
 		[Alias('SecureString')]
 		[security.securestring]$secure
 	)
-	
+
 	BEGIN {
 		# Define the Marshal Variable
 		# We use the native .NET Call to do so!
 		$marshal = [Runtime.InteropServices.Marshal];
 	}
-	
+
 	PROCESS {
 		# Return what we have
 		# We use the native .NET Call to do so!
@@ -1569,7 +1569,7 @@ function ConvertTo-PlainText {
 	}
 }
 
-function Global:ConvertTo-StringList {
+function ConvertTo-StringList {
 <#
 	.SYNOPSIS
 		Function to convert an array into a string list with a delimiter.
@@ -1616,7 +1616,7 @@ function Global:ConvertTo-StringList {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -1627,43 +1627,43 @@ function Global:ConvertTo-StringList {
 		[ValidateNotNullOrEmpty()]
 		[System.Array]$Array,
 		[Parameter(HelpMessage = 'Separator between value')]
-		[system.string]$Delimiter = ","
+		[system.string]$Delimiter = ','
 	)
-	
+
 	BEGIN {
-		Remove-Variable -Name "StringList" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Be verbose
 		Write-Verbose -Message "Array: $Array"
-		
+
 		# Loop over each iten in the array
 		foreach ($item in $Array) {
 			# Adding the current object to the list
 			$StringList += "$item$Delimiter"
 		}
-		
+
 		# Be verbose
 		Write-Verbose "StringList: $StringList"
 	}
-	
+
 	END {
 		try {
 			if ($StringList) {
 				$lenght = $StringList.Length
-				
+
 				# Be verbose
 				Write-Verbose -Message "StringList Lenght: $lenght"
-				
+
 				# Output Info without the last delimiter
 				$StringList.Substring(0, ($lenght - $($Delimiter.length)))
 			}
 		} catch {
-			Write-Warning -Message "[END] Something wrong happening when output the result"
+			Write-Warning -Message '[END] Something wrong happening when output the result'
 			$Error[0].Exception.Message
 		} finally {
-			Remove-Variable -Name "StringList" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -1759,7 +1759,7 @@ function Create-ZIP {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -1772,7 +1772,7 @@ function Create-ZIP {
 		[System.String]$OutputFile,
 		[System.String]$OutputPath
 	)
-	
+
 	BEGIN {
 		# Cleanup the variables
 		Remove-Variable MyFileName -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -1780,65 +1780,65 @@ function Create-ZIP {
 		Remove-Variable OutArchiv -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		Remove-Variable zip -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Extract the Filename, without PATH and EXTENSION
 		Set-Variable -Name MyFileName -Value $((Get-Item $InputFile).Name)
-		
+
 		# Check if the parameter "OutputFile" is given
 		if (-not ($OutputFile)) {
 			# Extract the Filename, without PATH
 			Set-Variable -Name OutputFile -Value $((Get-Item $InputFile).BaseName)
 		}
-		
+
 		# Append the ZIP extension
-		Set-Variable -Name OutputFile -Value $($OutputFile + ".zip")
-		
+		Set-Variable -Name OutputFile -Value $($OutputFile + '.zip')
+
 		# Is the OutputPath Parameter given?
 		if (-not ($OutputPath)) {
 			# Build the new Path Variable
-			Set-Variable -Name MyFilePath -Value $((Split-Path -Path $InputFile -Parent) + "\")
+			Set-Variable -Name MyFilePath -Value $((Split-Path -Path $InputFile -Parent) + '\')
 		} else {
 			# Strip the trailing backslash if it exists
-			Set-Variable -Name OutputPath -Value $($OutputPath.TrimEnd("\"))
-			
+			Set-Variable -Name OutputPath -Value $($OutputPath.TrimEnd('\'))
+
 			# Build the new Path Variable based on the given OutputPath Parameter
-			Set-Variable -Name MyFilePath -Value $(($OutputPath) + "\")
+			Set-Variable -Name MyFilePath -Value $(($OutputPath) + '\')
 		}
-		
+
 		# Build a new Filename with Path
 		Set-Variable -Name OutArchiv -Value $(($MyFilePath) + ($OutputFile))
-		
+
 		# Check if the Archive exists and delete it if so
 		If (Test-Path $OutArchiv) {
 			# If the File is locked, Unblock it!
 			Unblock-File -Path:$OutArchiv -Confirm:$false -ErrorAction:Ignore -WarningAction:Ignore
-			
+
 			# Remove the Archive
 			Remove-Item -Path:$OutArchiv -Force -Confirm:$false -ErrorAction:Ignore -WarningAction:Ignore
 		}
-		
+
 		# The ZipFile class is not available by default in Windows PowerShell because the
 		# System.IO.Compression.FileSystem assembly is not loaded by default.
-		Add-Type -AssemblyName "System.IO.Compression.FileSystem"
-		
+		Add-Type -AssemblyName 'System.IO.Compression.FileSystem'
+
 		# Create a new Archive
 		# We use the native .NET Call to do so!
-		Set-Variable -Name zip -Value $([System.IO.Compression.ZipFile]::Open($OutArchiv, "Create"))
-		
+		Set-Variable -Name zip -Value $([System.IO.Compression.ZipFile]::Open($OutArchiv, 'Create'))
+
 		# Add input to the Archive
 		# We use the native .NET Call to do so!
-		$null = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, "optimal")
-		
+		$null = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, 'optimal')
+
 		# Close the archive file
 		$zip.Dispose()
-		
+
 		# Waiting for compression to complete...
 		do {
 			# Wait 1 second and try again if working entries are not null
-			Start-Sleep -Seconds:"1"
+			Start-Sleep -Seconds:'1'
 		} while (($zip.Entries.count) -ne 0)
-		
+
 		# Extended Support for unattended mode
 		if ($RunUnattended) {
 			# Inform the Robot (Just pass the Archive Filename)
@@ -1848,11 +1848,11 @@ function Create-ZIP {
 			Write-Output "Compressed: $InputFile"
 			Write-Output "Archive: $OutArchiv"
 		}
-		
+
 		# If the File is locked, Unblock it!
 		Unblock-File -Path:$OutArchiv -Confirm:$false -ErrorAction:Ignore -WarningAction:Ignore
 	}
-	
+
 	END {
 		# Cleanup the variables
 		Remove-Variable MyFileName -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -1913,7 +1913,7 @@ function Disable-IEESEC {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
@@ -1925,38 +1925,38 @@ function Disable-IEESEC {
 		[Parameter(HelpMessage = 'Apply for Users and Admins?')]
 		[switch]$All = ($false)
 	)
-	
+
 	BEGIN {
 		if ($All) {
 			$Admins = ($true)
 			$Users = ($true)
 		}
 	}
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("IE Enhanced Security Configuration", "Set the new value: Disable")) {
+		if ($pscmdlet.ShouldProcess('IE Enhanced Security Configuration', 'Set the new value: Disable')) {
 			# Set the new value for Admins
 			if ($Admins) {
-				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
+				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
 				try {
-					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Verbose "Minor Exception catched!"
+					Write-Verbose 'Minor Exception catched!'
 				}
 			}
-			
+
 			# Set the new value for Users
 			if ($Users) {
-				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
+				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}'
 				try {
-					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Verbose "Minor Exception catched!"
+					Write-Verbose 'Minor Exception catched!'
 				}
 			}
-			
+
 			# Enforce the new settings
 			Stop-Process -Name Explorer
 		}
@@ -1991,16 +1991,16 @@ function Edit-HostsFile {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Open the Host file with...
 		if (-not ($VisualEditor)) {
 			# Aw SNAP! The VisualEditor is not configured...
-			Write-Error -Message "System is not configured! The Visual Editor is not given..." -ErrorAction:Stop
-			
+			Write-Error -Message 'System is not configured! The Visual Editor is not given...' -ErrorAction:Stop
+
 			# If you want to skip my VisualEditor function, add the following here instead of the Write-Error:
 			# Start-Process -FilePath notepad -ArgumentList "$env:windir\system32\drivers\etc\hosts"
 		} else {
@@ -2049,7 +2049,7 @@ function ConvertTo-EscapeString {
 	.LINK
 		ConvertFrom-EscapedString
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -2062,7 +2062,7 @@ function ConvertTo-EscapeString {
 		[Alias('Message')]
 		[System.String]$String
 	)
-	
+
 	PROCESS {
 		# Try to Escape
 		try {
@@ -2113,7 +2113,7 @@ function ConvertFrom-EscapedString {
 	.LINK
 		ConvertTo-EscapeString
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -2126,7 +2126,7 @@ function ConvertFrom-EscapedString {
 		[Alias('Message')]
 		[System.String]$String
 	)
-	
+
 	PROCESS {
 		# Try to Un-escape
 		try {
@@ -2139,7 +2139,7 @@ function ConvertFrom-EscapedString {
 	}
 }
 
-function Global:Expand-ArrayObject {
+function Expand-ArrayObject {
 <#
 	.SYNOPSIS
 		You get an array of objects and performs an expansion of data separated
@@ -2169,7 +2169,7 @@ function Global:Expand-ArrayObject {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Object[]])]
 	param
@@ -2188,17 +2188,17 @@ function Global:Expand-ArrayObject {
 		[Parameter(HelpMessage = 'Delimiter within the Array')]
 		[System.Char]$delimiter = ';'
 	)
-	
+
 	BEGIN {
 		[PSObject[]]$array_result = @()
 	}
-	
+
 	PROCESS {
 		foreach ($item in $array) {
 			$item."$field" -split $delimiter | ForEach-Object { $newItem = $item.PSObject.Copy(); $newItem."$field" = $_; $array_result += $newItem }
 		}
 	}
-	
+
 	END {
 		Write-Output $array_result
 	}
@@ -2278,7 +2278,7 @@ function Expand-CompressedItem {
 	.LINK
 		Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Low',
 				   HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/',
 				   SupportsShouldProcess = $true)]
@@ -2296,14 +2296,14 @@ function Expand-CompressedItem {
 		[ValidateSet('default', 'ZIP')]
 		[System.String]$Format = 'default'
 	)
-	
+
 	BEGIN {
 		# Build a string
 		[System.String]$fn = ($MyInvocation.MyCommand.Name)
-		
+
 		# Currently only ZIP is supported
 		switch ($Format) {
-			"ZIP"
+			'ZIP'
 			{
 				# We use the Shell to extract the ZIP file. If using .NET v4.5 we could have used .NET classes directly more easily.
 				Set-Variable -Name ShellApplication -Value $(New-Object -com Shell.Application)
@@ -2313,28 +2313,28 @@ function Expand-CompressedItem {
 				Set-Variable -Name ShellApplication -Value $(New-Object -com Shell.Application)
 			}
 		}
-		
+
 		# Set the Variable
 		Set-Variable -Name CopyHereOptions -Value $(4 + 1024 + 16)
 	}
-	
+
 	PROCESS {
 		# Define a variable
 		Set-Variable -Name fReturn -Value $($false;)
-		
+
 		# Remove a variable that we do not need anymore
 		Remove-Variable OutputParameter -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		
+
 		# Loop over what we have
 		foreach ($Object in $InputObject) {
 			# Define a new variable
 			Set-Variable -Name $Object -Value $(Get-Item $Object)
-			
+
 			# Check what we have here
 			if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Object.Name, $Path.FullName))) {
 				# Set a new variable
 				Set-Variable -Name CompressedObject -Value $($ShellApplication.NameSpace($Object.FullName))
-				
+
 				# Loop over what we have
 				foreach ($Item in $CompressedObject.Items()) {
 					if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Item.Name, $Path.FullName))) {
@@ -2343,18 +2343,18 @@ function Expand-CompressedItem {
 				}
 			}
 		}
-		
+
 		# Show what we have
 		Write-Output $OutputParameter
 	}
-	
+
 	END {
 		# Cleanup
 		if ($ShellApplication) {
 			# Remove a no longer needed variable
 			Remove-Variable ShellApplication -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
-		
+
 		# Set another variable
 		Set-Variable -Name datEnd -Value $([datetime]::Now)
 	}
@@ -2395,7 +2395,7 @@ function Explore {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -2403,14 +2403,14 @@ function Explore {
 		[Alias('loc')]
 		[System.String]$Location = '.'
 	)
-	
+
 	PROCESS {
 		# That is easy!
-		explorer "/e,"$Location""
+		explorer.exe '/e,'$Location""
 	}
 }
 
-function Global:Test-Filelock {
+function Test-Filelock {
 <#
 	.SYNOPSIS
 		Test if a file is locked
@@ -2427,7 +2427,7 @@ function Global:Test-Filelock {
 	.LINK
 		Get-FileLock
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -2439,16 +2439,16 @@ function Global:Test-Filelock {
 		[Alias('File')]
 		[System.IO.FileInfo]$Path
 	)
-	
+
 	PROCESS {
 		try {
 			# initialize variables
 			$script:filelocked = $false
-			
+
 			# attempt to open file and detect file lock
 			$script:fileInfo = (New-Object System.IO.FileInfo $Path)
 			$script:fileStream = ($fileInfo.Open([System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None))
-			
+
 			# close stream if not lock
 			if ($fileStream) {
 				$fileStream.Close()
@@ -2456,7 +2456,7 @@ function Global:Test-Filelock {
 		} catch {
 			# catch fileStream had failed
 			$filelocked = $true
-			
+
 		} finally {
 			# return result
 			[PSCustomObject]@{
@@ -2467,7 +2467,7 @@ function Global:Test-Filelock {
 	}
 }
 
-function Global:Get-FileLock {
+function Get-FileLock {
 <#
 	.SYNOPSIS
 		Test if a File is locked
@@ -2484,7 +2484,7 @@ function Global:Get-FileLock {
 	.LINK
 		Test-Filelock
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -2495,22 +2495,22 @@ function Global:Get-FileLock {
 		[ValidateNotNullOrEmpty()]
 		[string]$Path
 	)
-	
+
 	BEGIN {
 		# Check if the helper function exists...
 		if (-not (Get-Command Test-Filelock -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)) {
 			#
 			# Did not see this one coming!
-			Write-Error -Message "Sorry, something is wrong! please check that the command Test-Filelock is available!" -ErrorAction:Stop
-			
+			Write-Error -Message 'Sorry, something is wrong! please check that the command Test-Filelock is available!' -ErrorAction:Stop
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
 	}
-	
+
 	PROCESS {
 		try {
 			if (Test-Path $Path) {
@@ -2524,19 +2524,19 @@ function Global:Get-FileLock {
 			}
 		} catch [System.Exception] {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		} catch {
 			# Did not see this one coming!
 			Write-Error -Message "Could not check $Path" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
@@ -2558,13 +2558,13 @@ function Set-FirewallExceptionRDP {
 		-----------
 		Enable RDP via Windows Firewall
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
-		netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
+		netsh.exe advfirewall firewall set rule group="remote desktop" new enable=Yes
 	}
 }
 
@@ -2583,13 +2583,13 @@ function Set-FirewallExceptionFileSharing {
 		-----------
 		Enable File Sharing via Windows Firewall
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
-		netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
+		netsh.exe advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
 	}
 }
 
@@ -2629,12 +2629,12 @@ function Get-Accelerators {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
-		[psobject].Assembly.GetType("System.Management.Automation.TypeAccelerators")::get
+		[psobject].Assembly.GetType('System.Management.Automation.TypeAccelerators')::get
 	}
 }
 
@@ -2671,17 +2671,17 @@ function Get-AdminUser {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param ()
-	
+
 	BEGIN {
 		# Set the objects
-		Set-Variable -Name "Id" -Value $([Security.Principal.WindowsIdentity]::GetCurrent())
-		Set-Variable -Name "IdWindowsPrincipal" -Value $(New-Object Security.Principal.WindowsPrincipal($Id))
+		Set-Variable -Name 'Id' -Value $([Security.Principal.WindowsIdentity]::GetCurrent())
+		Set-Variable -Name 'IdWindowsPrincipal' -Value $(New-Object Security.Principal.WindowsPrincipal($Id))
 	}
-	
+
 	PROCESS {
 		# Return what we have
 		Write-Output "$($IdWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
@@ -2733,7 +2733,7 @@ function Get-ASCBanner {
 	.NOTES
 		Just for fun!
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -2748,9 +2748,9 @@ function Get-ASCBanner {
 		[switch]$IsString = ($true),
 		[Parameter(Position = 2,
 				   HelpMessage = 'Character for the ASC Banner, * is the default')]
-		[char]$ASCChar = "*"
+		[char]$ASCChar = '*'
 	)
-	
+
 	BEGIN {
 		$bit = @(128, 64, 32, 16, 8, 4, 2, 1)
 		$chars = @(
@@ -2852,11 +2852,11 @@ function Get-ASCBanner {
 		);
 		$o = (New-Object -TypeName psobject)
 		$o | add-member -MemberType NoteProperty -Name OriginalStrings -Value @()
-		$o.psobject.typenames.Insert(0, "Banner")
+		$o.psobject.typenames.Insert(0, 'Banner')
 	}
 	PROCESS {
 		$o.OriginalStrings += $InputString
-		$output = ""
+		$output = ''
 		$width = [math]::floor(($host.ui.rawui.buffersize.width - 1)/8)
 		# check and bail if a string is too long
 		foreach ($substring in $InputString) {
@@ -2864,29 +2864,29 @@ function Get-ASCBanner {
 				throw "strings must be less than $width characters"
 			}
 		}
-		
+
 		foreach ($substring in $InputString) {
 			for ($r = 0; $r -lt 7; $r++) {
 				foreach ($c in $substring.ToCharArray()) {
 					$bitmap = 0
-					
-					if (($c -ge " ") -and ($c -le [char]"~")) {
+
+					if (($c -ge ' ') -and ($c -le [char]'~')) {
 						$offset = (([int]$c) - 32)
 						$bitmap = ($chars[$offset][$r])
 					}
-					
+
 					for ($c = 0; $c -lt 8; $c++) {
-						if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += " " }
+						if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += ' ' }
 					}
 				}
-				
+
 				$output += "`n"
 			}
 		}
 		#$output
 		$sb = ($executioncontext.invokecommand.NewScriptBlock("'$output'"))
 		$o | add-member -Force -MemberType ScriptMethod -Name ToString -Value $sb
-		
+
 		if ($IsString) {
 			$o.ToString()
 		} else {
@@ -2928,7 +2928,7 @@ function Get-AvailibleDriveLetter {
 	.LINK
 		http://www.powershellmagazine.com/2012/01/12/find-an-unused-drive-letter/
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -2936,12 +2936,12 @@ function Get-AvailibleDriveLetter {
 		[Parameter(HelpMessage = 'Get a random available Drive letter instead of the next available')]
 		[switch]$Random
 	)
-	
+
 	PROCESS {
 		if ($Random) {
 			Get-ChildItem function:[d-z]: -n | Where-Object { !(test-path $_) } | Get-Random
 		} else {
-			for ($j = 67; Get-PSDrive ($d = [char]++$j)2>0) { }$d + ":"
+			for ($j = 67; Get-PSDrive ($d = [char]++$j)2>0) { }$d + ':'
 		}
 	}
 }
@@ -2985,58 +2985,58 @@ function Get-BingSearch {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[ValidateNotNullOrEmpty()]
 		[Alias('Search')]
-		[System.String]$searchstring = $(throw "Please specify a search string.")
+		[System.String]$searchstring = $(throw 'Please specify a search string.')
 	)
-	
+
 	BEGIN {
 		# Use the native .NET Client implementation
 		$client = New-Object System.Net.WebClient
-		
+
 		# What to call?
 		$url = "http://www.bing.com/search?q={0}`&format=rss" -f $searchstring
 	}
-	
+
 	PROCESS {
 		# By the way: This is XML ;-)
 		[xml]$results = ($client.DownloadString($url))
-		
+
 		# Save the info to a variable
 		$channel = ($results.rss.channel)
-		
+
 		# Now we loop over the return
 		foreach ($item in $channel.item) {
 			# Create a new Object
 			$result = (New-Object PSObject)
-			
+
 			# Fill the new Object
 			$result | Add-Member NoteProperty Title -value $item.title
 			$result | Add-Member NoteProperty Link -value $item.link
 			$result | Add-Member NoteProperty Description -value $item.description
 			$result | Add-Member NoteProperty PubDate -value $item.pubdate
-			
+
 			$sb = {
 				$ie = New-Object -com internetexplorer.application
 				$ie.navigate($this.link)
 				$ie.visible = $true
 			}
-			
+
 			$result | Add-Member ScriptMethod Open -value $sb
 		}
 	}
-	
+
 	END {
 		# Dump it to the console
 		Write-Output $result
 	}
 }
 
-function Global:Get-Calendar {
+function Get-Calendar {
 <#
 	.SYNOPSIS
 		Dumps a Calendar to the Console
@@ -3067,7 +3067,7 @@ function Global:Get-Calendar {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -3075,33 +3075,33 @@ function Global:Get-Calendar {
 		[ValidateNotNullOrEmpty()]
 		[datetime]$StartDate = (Get-Date)
 	)
-	
+
 	BEGIN {
-		$startDay = (Get-Date (Get-Date $StartDate -Format "yyyy-MM-01"))
+		$startDay = (Get-Date (Get-Date $StartDate -Format 'yyyy-MM-01'))
 	}
-	
+
 	PROCESS {
-		Write-Host (Get-Date $startDate -Format "MMMM yyyy")
-		Write-Host "Mo Tu We Th Fr Sa Su"
-		
+		Write-Host (Get-Date $startDate -Format 'MMMM yyyy')
+		Write-Host 'Mo Tu We Th Fr Sa Su'
+
 		For ($i = 1; $i -lt (Get-date $startDay).dayOfWeek.value__; $i++) {
-			Write-Host "   " -noNewLine
+			Write-Host '   ' -noNewLine
 		}
-		
+
 		$processDate = $startDay
-		
+
 		while ($processDate -lt $startDay.AddMonths(1)) {
-			Write-Host (Get-Date $processDate -Format "dd ") -NoNewLine
-			
-			if ((Get-date $processDate).dayOfWeek.value__ -eq 0) { Write-Host "" }
+			Write-Host (Get-Date $processDate -Format 'dd ') -NoNewLine
+
+			if ((Get-date $processDate).dayOfWeek.value__ -eq 0) { Write-Host '' }
 			$processDate = $processDate.AddDays(1)
 		}
-		
-		Write-Host ""
+
+		Write-Host ''
 	}
 }
 
-function Global:Get-DiskInfo {
+function Get-DiskInfo {
 <#
 	.SYNOPSIS
 		Show free Diskspace for all Disks
@@ -3122,18 +3122,18 @@ function Global:Get-DiskInfo {
 	.NOTES
 		Internal Helper
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		$wmio = (Get-WmiObject -class win32_logicaldisk)
 		$Drives = ($wmio | Where-Object { ($_.size) } | Select-Object Deviceid, @{ name = 'Free Space'; Expression = { ($_.freespace/1gb) } })
-		$DrivesString = (0..$($drives.count - 1) | ForEach-Object { " $(($drives[$_]).Deviceid.Replace(':', ' Drive')) has $("{0:N2}" -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
+		$DrivesString = (0..$($drives.count - 1) | ForEach-Object { " $(($drives[$_]).Deviceid.Replace(':', ' Drive')) has $('{0:N2}' -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
 		$DrivesString = "`r`nLoading system disk free space information...`r`n" + $DrivesString
 	}
-	
+
 	END {
 		Write-Output $DrivesString
 	}
@@ -3188,11 +3188,11 @@ function Get-EnvironmentVariables {
 	.NOTES
 		Initial Version...
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	(Get-Childitem env: | Sort-Object name)
 }
 
@@ -3215,16 +3215,16 @@ function Get-ExternalIP {
 	.LINK
 		http://tools.bewoelkt.net/ip.php
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	BEGIN {
 		# URL to ask
-		$site = "http://tools.bewoelkt.net/ip.php"
+		$site = 'http://tools.bewoelkt.net/ip.php'
 	}
-	
+
 	PROCESS {
 		try {
 			# Use the native Web call function
@@ -3232,12 +3232,12 @@ function Get-ExternalIP {
 			$get = ($beginbrowser.downloadString($site))
 		} catch {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-			
+
 			# Done!!!
 			break
 		}
 	}
-	
+
 	END {
 		# Dump the IP info
 		Write-Output $get
@@ -3270,21 +3270,21 @@ function Get-FreeDiskSpace {
 	.LINK
 		Idea http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Array])]
 	param ()
-	
+
 	PROCESS {
 		# Get all Disks (Only logical drives of type 3)
 		$Disks = ((Get-WmiObject win32_logicaldisk | Where-Object { $_.DriveType -eq 3 }).DeviceID)
-		
+
 		# remove the ":" from the windows like Drive letter
 		$Disks = ($Disks -replace '[:]', '')
-		
+
 		# Not sexy, but it works!
 		# Base Idea is from here: http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
-		(Get-PSDrive $Disks | Format-Table Name, @{ Name = "Disk Size(GB)"; Expression = { "{0,8:N0}" -f ($_.free/1gb + $_.used/1gb) } }, @{ Name = "Free (%)"; Expression = { "{0,6:P0}" -f ($_.free / ($_.free + $_.used)) } } -AutoSize)
+		(Get-PSDrive $Disks | Format-Table Name, @{ Name = 'Disk Size(GB)'; Expression = { '{0,8:N0}' -f ($_.free/1gb + $_.used/1gb) } }, @{ Name = 'Free (%)'; Expression = { '{0,6:P0}' -f ($_.free / ($_.free + $_.used)) } } -AutoSize)
 	}
 }
 
@@ -3330,7 +3330,7 @@ function Get-Hash {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -3345,9 +3345,9 @@ function Get-Hash {
 				   HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
 		[ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Hash = "MD5"
+		[System.String]$Hash = 'MD5'
 	)
-	
+
 	PROCESS {
 		if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {
 			Return (Get-FileHash -Algorithm $Hash -Path $File).Hash
@@ -3389,30 +3389,30 @@ function Get-HostFileEntry {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Cleanup
 		$HostOutput = @()
-		
+
 		# Which File to load
-		Set-Variable -Name "HostFile" -Scope:Script -Value $($env:windir + "\System32\drivers\etc\hosts")
-		
+		Set-Variable -Name 'HostFile' -Scope:Script -Value $($env:windir + '\System32\drivers\etc\hosts')
+
 		# REGEX Filter
-		[regex]$r = "\S"
+		[regex]$r = '\S'
 	}
-	
+
 	PROCESS {
 		# Open the File from above
 		Get-Content $HostFile | Where-Object {
-			(($r.Match($_)).value -ne "#") -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)
+			(($r.Match($_)).value -ne '#') -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)
 		} | ForEach-Object {
-			[void]$_ -match "(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)"
+			[void]$_ -match '(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)'
 			$HostOutput += New-Object -TypeName PSCustomObject -Property @{ 'IP' = $matches.ip; 'Hostname' = $matches.hostname }
 		}
-		
+
 		# Dump it to the Console
 		Write-Output $HostOutput
 	}
@@ -3453,7 +3453,7 @@ function Get-HttpHead {
 	.LINK
 		Source: https://github.com/davehardy20/PowerShell-Scripts/blob/master/Get-HttpSecHead.ps1
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -3466,86 +3466,86 @@ function Get-HttpHead {
 		[Alias('link')]
 		[System.String]$url
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$webrequest = $null
 		$cookies = $null
 		$cookie = $null
 	}
-	
+
 	PROCESS {
 		$webrequest = (Invoke-WebRequest -Uri $url -SessionVariable websession)
 		$cookies = ($websession.Cookies.GetCookies($url))
-		
+
 		Write-Host -Object "`n"
 		Write-Host 'Header Information for' $url
 		Write-Host -Object ($webrequest.Headers | Out-String)
 		Write-Host
-		
+
 		Write-Host -ForegroundColor White -Object "HTTP security Headers`nConsider adding the values in RED to improve the security of the webserver. `n"
-		
+
 		if ($webrequest.Headers.ContainsKey('x-xss-protection')) {
 			Write-Host -ForegroundColor Green -Object "X-XSS-Protection Header PRESENT`n"
 		} else {
 			Write-Host -ForegroundColor Red -Object 'X-XSS-Protection Header MISSING'
 		}
-		
+
 		if ($webrequest.Headers.ContainsKey('Strict-Transport-Security')) {
 			Write-Host -ForegroundColor Green -Object 'Strict-Transport-Security Header PRESENT'
 		} else {
 			Write-Host -ForegroundColor Red -Object 'Strict-Transport-Security Header MISSING'
 		}
-		
+
 		if ($webrequest.Headers.ContainsKey('Content-Security-Policy')) {
 			Write-Host -ForegroundColor Green -Object 'Content-Security-Policy Header PRRESENT'
 		} else {
 			Write-Host -ForegroundColor Red -Object 'Content-Security-Policy Header MISSING'
 		}
-		
+
 		if ($webrequest.Headers.ContainsKey('X-Frame-Options')) {
 			Write-Host -ForegroundColor Green -Object 'X-Frame-Options Header PRESENT'
 		} else {
 			Write-Host -ForegroundColor Red -Object 'X-Frame-Options Header MISSING'
 		}
-		
+
 		if ($webrequest.Headers.ContainsKey('X-Content-Type-Options')) {
 			Write-Host -ForegroundColor Green -Object 'X-Content-Type-Options Header PRESENT'
 		} else {
 			Write-Host -ForegroundColor Red -Object 'X-Content-Type-Options Header MISSING'
 		}
-		
+
 		if ($webrequest.Headers.ContainsKey('Public-Key-Pins')) {
 			Write-Host -ForegroundColor Green -Object 'Public-Key-Pins Header PRESENT'
 		} else {
 			Write-Host -ForegroundColor Red -Object 'Public-Key-Pins Header MISSING'
 		}
-		
+
 		Write-Host -Object "`n"
-		
+
 		Write-Host 'Cookies Set by' $url
 		Write-Host -Object "Inspect cookies that don't have the HTTPOnly and Secure flags set."
 		Write-Host -Object "`n"
-		
+
 		foreach ($cookie in $cookies) {
 			Write-Host -Object "$($cookie.name) = $($cookie.value)"
-			
+
 			if ($cookie.HttpOnly -eq 'True') {
 				Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Green
 			} else {
 				Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Red
 			}
-			
+
 			if ($cookie.Secure -eq 'True') {
 				Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Green
 			} else {
 				Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Red
 			}
-			
+
 			Write-Host "Domain = $($cookie.Domain) `n"
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		$webrequest = $null
@@ -3590,30 +3590,30 @@ function Get-IsSessionElevated {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([bool])]
 	param ()
-	
+
 	BEGIN {
 		# Build the current Principal variable
 		[System.Security.Principal.WindowsPrincipal]$currentPrincipal = (New-Object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent()))
-		
+
 		# Do we have admin permission?
 		[System.Security.Principal.WindowsBuiltInRole]$administratorsRole = ([System.Security.Principal.WindowsBuiltInRole]::Administrator)
 	}
-	
+
 	PROCESS {
 		if ($currentPrincipal.IsInRole($administratorsRole)) {
 			# Set the Variable
 			Set-Variable -Name IsSessionElevated -Scope:Global -Value $true
-			
+
 			# Yep! We have some power...
 			Return $true
 		} else {
 			# Set the Variable
 			Set-Variable -Name IsSessionElevated -Scope:Global -Value $false
-			
+
 			# Nope! Regular User Session!
 			Return $false
 		}
@@ -3653,11 +3653,11 @@ function Get-IsVirtual {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param ()
-	
+
 	BEGIN {
 		# Cleanup
 		Remove-Variable SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -3665,65 +3665,65 @@ function Get-IsVirtual {
 		Remove-Variable WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		Remove-Variable WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Get some System infos via NET (WMI) call
-		Set-Variable -Name "WMI_BIOS" -Scope:Script -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
-		Set-Variable -Name "WMI_ComputerSystem" -Scope:Script -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
-		
+		Set-Variable -Name 'WMI_BIOS' -Scope:Script -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
+		Set-Variable -Name 'WMI_ComputerSystem' -Scope:Script -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
+
 		# First we try to figure out if this is a Virtual Machine based on the
 		# Bios Serial information that we get via WMI
-		if ($WMI_BIOS.SerialNumber -like "*VMware*") {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("VMWare")
-		} elseif ($WMI_BIOS.Version -like "VIRTUAL") {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Hyper-V")
-		} elseif ($WMI_BIOS.Version -like "A M I") {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Virtual PC")
-		} elseif ($WMI_BIOS.Version -like "*Xen*") {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Xen")
-		} elseif (($WMI_BIOS.Version -like "PRLS*") -and ($WMI_BIOS.SerialNumber -like "Parallels-*")) {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Parallels")
+		if ($WMI_BIOS.SerialNumber -like '*VMware*') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
+		} elseif ($WMI_BIOS.Version -like 'VIRTUAL') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
+		} elseif ($WMI_BIOS.Version -like 'A M I') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Virtual PC')
+		} elseif ($WMI_BIOS.Version -like '*Xen*') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Xen')
+		} elseif (($WMI_BIOS.Version -like 'PRLS*') -and ($WMI_BIOS.SerialNumber -like 'Parallels-*')) {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
 		}
-		
+
 		# Looks like this is not a Virtual Machine, but to make sure that figure it out!
 		# So we try some other information that we have via WMI :-)
 		if (-not ($SysInfo_IsVirtual)) {
-			if ($WMI_ComputerSystem.Manufacturer -like "*Microsoft*") {
-				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Hyper-V")
-			} elseif ($WMI_ComputerSystem.Manufacturer -like "*VMWare*") {
-				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("VMWare")
-			} elseif ($WMI_ComputerSystem.Manufacturer -like "*Parallels*") {
-				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Parallels")
-			} elseif ($wmisystem.model -match "VirtualBox") {
-				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("VirtualBox")
-			} elseif ($wmisystem.model -like "*Virtual*") {
-				Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($true)
-				Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Unknown Virtual Machine")
+			if ($WMI_ComputerSystem.Manufacturer -like '*Microsoft*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
+			} elseif ($WMI_ComputerSystem.Manufacturer -like '*VMWare*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
+			} elseif ($WMI_ComputerSystem.Manufacturer -like '*Parallels*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
+			} elseif ($wmisystem.model -match 'VirtualBox') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VirtualBox')
+			} elseif ($wmisystem.model -like '*Virtual*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Unknown Virtual Machine')
 			}
 		}
-		
+
 		# OK, this does not look like a Virtual Machine to us!
 		if (-not ($SysInfo_IsVirtual)) {
-			Set-Variable -Name "SysInfo_IsVirtual" -Scope:Script -Value $($false)
-			Set-Variable -Name "SysInfoVirtualType" -Scope:Script -Value $("Not a Virtual Machine")
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($false)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Not a Virtual Machine')
 		}
-		
+
 		# Dump the Boolean Info!
 		Write-Output "$SysInfo_IsVirtual"
-		
+
 		# Write some Debug Infos ;-)
 		Write-Verbose -Message "$SysInfoVirtualType"
 	}
-	
+
 	END {
 		# Cleanup
 		Remove-Variable SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -3784,32 +3784,32 @@ function Get-LocalIPAdresses {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(HelpMessage = 'Show IsIPv6LinkLocal?')]
 		[switch]$LinkLocal
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$Result = @()
 	}
-	
+
 	PROCESS {
 		$AllIpInfo = @()
-		
+
 		# Get the info via .NET
 		$AllIpInfo = ([Net.DNS]::GetHostAddresses([Net.DNS]::GetHostName()))
-		
+
 		# Loop over the Info
 		foreach ($SingleIpInfo in $AllIpInfo) {
 			$Object = New-Object PSObject -Property @{
 				AddressFamily = $SingleIpInfo.AddressFamily
 				IPAddressToString = $SingleIpInfo.IPAddressToString
 			}
-			
+
 			if ($LinkLocal) {
 				if (($SingleIpInfo.IsIPv6LinkLocal) -eq $true) {
 					$Object | Add-Member -Type 'NoteProperty' -name IsIPv6LinkLocal -Value $True
@@ -3817,16 +3817,16 @@ function Get-LocalIPAdresses {
 					$Object | Add-Member -Type 'NoteProperty' -name IsIPv6LinkLocal -Value $False
 				}
 			}
-			
+
 			# Add
 			$Result += $Object
-			
+
 			# Cleanup
 			$Object = $null
 		}
-		
+
 	}
-	
+
 	END {
 		# DUMP
 		Write-Output -InputObject $Result -NoEnumerate
@@ -3835,7 +3835,7 @@ function Get-LocalIPAdresses {
 	}
 }
 
-function Global:Get-LocalListenPort {
+function Get-LocalListenPort {
 <#
 	.SYNOPSIS
 		This parses the native netstat.exe output using the command line
@@ -3907,20 +3907,20 @@ function Global:Get-LocalListenPort {
 	.NOTES
 		Based on an idea of Adam Bertram
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		try {
 			# Capture the output of the native netstat.exe utility
 			# Remove the top row from the result and trim off any leading or trailing spaces from each line
 			# Replace all instances of more than 1 space with a pipe symbol.
 			# This allows easier parsing of the fields
-			$Netstat = (netstat -anb | Where-Object { $_ -and ($_ -ne 'Active Connections') }).Trim() | Select-Object -Skip 1 | ForEach-Object { $_ -replace '\s{2,}', '|' }
-			
+			$Netstat = (NETSTAT.EXE -anb | Where-Object { $_ -and ($_ -ne 'Active Connections') }).Trim() | Select-Object -Skip 1 | ForEach-Object { $_ -replace '\s{2,}', '|' }
+
 			$i = 0
-			
+
 			foreach ($Line in $Netstat) {
 				# Create the hashtable to conver to object later
 				$Out = @{
@@ -3934,24 +3934,24 @@ function Global:Get-LocalListenPort {
 					'ProcessOwner' = ''
 					'Service' = ''
 				}
-				
+
 				# If the line is a port
 				if ($Line -cmatch '^[A-Z]{3}\|') {
 					$Cols = ($Line.Split('|'))
 					$Out.Protocol = ($Cols[0])
-					
+
 					# Some ports don't have a state.
 					# If they do, there's always 4 fields in the line
 					if ($Cols.Count -eq 4) {
 						$Out.State = ($Cols[3])
 					}
-					
+
 					# All port lines that start with a [ are IPv6
 					if ($Cols[1].StartsWith('[')) {
 						$Out.IPVersion = 'IPv6'
 						$Out.LocalAddress = ($Cols[1].Split(']')[0].TrimStart('['))
 						$Out.LocalPort = ($Cols[1].Split(']')[1].TrimStart(':'))
-						
+
 						if ($Cols[2] -eq '*:*') {
 							$Out.RemoteAddress = '*'
 							$Out.RemotePort = '*'
@@ -3966,35 +3966,35 @@ function Global:Get-LocalListenPort {
 						$Out.RemoteAddress = ($Cols[2].Split(':')[0])
 						$Out.RemotePort = ($Cols[2].Split(':')[1])
 					}
-					
+
 					# Because the process owner and service are on separate lines than the port line and the number of lines between them is variable this craziness was necessary.
 					# This line starts parsing the netstat output at the current port line and searches for all lines after that that are NOT a port line and finds the first one.
 					# This is how many lines there are until the next port is defined.
 					$LinesUntilNextPortNum = ($Netstat | Select-Object -Skip $i | Select-String -Pattern '^[A-Z]{3}\|' -NotMatch | Select-Object -First 1).LineNumber
 					# Add the current line to the number of lines until the next port definition to find the associated process owner and service name
-					
+
 					$NextPortLineNum = ($i + $LinesUntilNextPortNum)
 					# This would contain the process owner and service name
-					
+
 					$PortAttribs = ($Netstat[($i + 1)..$NextPortLineNum])
 					# The process owner is always enclosed in brackets of, if it can't find the owner, starts with 'Can'
-					
+
 					$Out.ProcessOwner = ($PortAttribs -match '^\[.*\.exe\]|Can')
-					
+
 					if ($Out.ProcessOwner) {
 						# Get rid of the brackets and pick the first index because this is an array
 						$Out.ProcessOwner = (($Out.ProcessOwner -replace '\[|\]', '')[0])
 					}
-					
+
 					# A service is always a combination of multiple word characters at the start of the line
 					if ($PortAttribs -match '^\w+$') {
 						$Out.Service = (($PortAttribs -match '^\w+$')[0])
 					}
-					
+
 					$MyOut = [pscustomobject]$Out
 					Write-Output $MyOut
 				}
-				
+
 				# Keep the counter
 				$i++
 			}
@@ -4004,7 +4004,7 @@ function Global:Get-LocalListenPort {
 	}
 }
 
-function Global:Get-MicrosoftUpdateInfo {
+function Get-MicrosoftUpdateInfo {
 <#
 	.SYNOPSIS
 		Gives a list of all Microsoft Updates sorted by KB number/HotfixID
@@ -4062,7 +4062,7 @@ function Global:Get-MicrosoftUpdateInfo {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -4071,47 +4071,47 @@ function Global:Get-MicrosoftUpdateInfo {
 				   HelpMessage = 'Just dum the Objects?')]
 		[switch]$raw = $false
 	)
-	
+
 	BEGIN {
-		$wu = (New-Object -com "Microsoft.Update.Searcher")
-		
+		$wu = (New-Object -com 'Microsoft.Update.Searcher')
+
 		$totalupdates = ($wu.GetTotalHistoryCount())
-		
+
 		$all = ($wu.QueryHistory(0, $totalupdates))
-		
+
 		# Define a new array to gather output
 		$OutputCollection = @()
 	}
-	
+
 	PROCESS {
 		Foreach ($update in $all) {
 			$string = $update.title
-			
-			$Regex = "KB\d*"
+
+			$Regex = 'KB\d*'
 			$KB = ($string | Select-String -Pattern $regex | Select-Object { $_.Matches })
-			
+
 			$output = (New-Object -TypeName PSobject)
-			$output | add-member NoteProperty "HotFixID" -value $KB.' $_.Matches '.Value
-			$output | add-member NoteProperty "Title" -value $string
+			$output | add-member NoteProperty 'HotFixID' -value $KB.' $_.Matches '.Value
+			$output | add-member NoteProperty 'Title' -value $string
 			$OutputCollection += $output
-			
+
 		}
 	}
-	
+
 	END {
 		if ($raw) {
 			Write-Output $OutputCollection | Sort-Object HotFixID
 		} else {
 			# Oupput the collection sorted and formatted:
 			$OutputCollection | Sort-Object HotFixID | Format-Table -AutoSize
-			
+
 			# Return
 			Write-Host "$($OutputCollection.Count) Updates Found"
 		}
 	}
 }
 
-function Global:Get-myPROCESS {
+function Get-myPROCESS {
 <#
 	.SYNOPSIS
 		Get our own process information
@@ -4140,25 +4140,25 @@ function Global:Get-myPROCESS {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Diagnostics.Process])]
 	param ()
-	
+
 	BEGIN {
 		# Do a garbage collection
 		if ((Get-Command Invoke-GC -ErrorAction:SilentlyContinue)) {
 			Invoke-GC
 		}
 	}
-	
+
 	PROCESS {
 		# Get the info
 		[diagnostics.process]::GetCurrentProcess()
 	}
 }
 
-function Global:Get-NetFramework {
+function Get-NetFramework {
 <#
 	.SYNOPSIS
 		A detailed description of the Get-NetFramework function.
@@ -4200,7 +4200,7 @@ function Global:Get-NetFramework {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'High',
 				   SupportsShouldProcess = $true)]
 	param
@@ -4210,37 +4210,37 @@ function Global:Get-NetFramework {
 		[Parameter(HelpMessage = 'Credentials to use')]
 		$Credentials = $Credential
 	)
-	
+
 	BEGIN {
 		$Splatting = @{
 			ComputerName = $ComputerName
 		}
 	}
-	
+
 	PROCESS {
 		if ($PSBoundParameters['Credential']) {
 			$Splatting.credential = $Credentials
 		}
-		
+
 		Invoke-Command @Splatting -ScriptBlock {
 			Write-Verbose -Message "$pscomputername"
-			
+
 			# Get the Net Framework Installed
 			$netFramework = (Get-ChildItem -Path 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -recurse | Get-ItemProperty -name Version -EA 0 | Where-Object { $_.PSChildName -match '^(?!S)\p{L}' } | Select-Object -Property PSChildName, Version)
-			
+
 			# Prepare output
 			$Properties = @{
 				ComputerName = "$($env:Computername)$($env:USERDNSDOMAIN)"
 				PowerShellVersion = $psversiontable.PSVersion.Major
 				NetFramework = $netFramework
 			}
-			
+
 			New-Object -TypeName PSObject -Property $Properties
 		}
 	}
 }
 
-function Global:Get-NetStat {
+function Get-NetStat {
 <#
 	.SYNOPSIS
 		This function will get the output of netstat -n and parse the output
@@ -4273,35 +4273,35 @@ function Global:Get-NetStat {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Get the output of netstat
-		Set-Variable -Name "data" -Value $(netstat -n)
-		
+		Set-Variable -Name 'data' -Value $(NETSTAT.EXE -n)
+
 		# Keep only the line with the data (we remove the first lines)
-		Set-Variable -Name "data" -Value $($data[4..$data.count])
-		
+		Set-Variable -Name 'data' -Value $($data[4..$data.count])
+
 		# Each line need to be spitted and get rid of unnecessary spaces
 		foreach ($line in $data) {
 			# Get rid of the first whitespace, at the beginning of the line
-			Set-Variable -Name "line" -Value $($line -replace '^\s+', '')
-			
+			Set-Variable -Name 'line' -Value $($line -replace '^\s+', '')
+
 			# Split each property on whitespace block
-			Set-Variable -Name "line" -Value $($line -split '\s+')
-			
+			Set-Variable -Name 'line' -Value $($line -split '\s+')
+
 			# Define the properties
 			$properties = @{
 				Protocole = $line[0]
-				LocalAddressIP = ($line[1] -split ":")[0]
-				LocalAddressPort = ($line[1] -split ":")[1]
-				ForeignAddressIP = ($line[2] -split ":")[0]
-				ForeignAddressPort = ($line[2] -split ":")[1]
+				LocalAddressIP = ($line[1] -split ':')[0]
+				LocalAddressPort = ($line[1] -split ':')[1]
+				ForeignAddressIP = ($line[2] -split ':')[0]
+				ForeignAddressPort = ($line[2] -split ':')[1]
 				State = $line[3]
 			}
-			
+
 			# Output the current line
 			New-Object -TypeName PSObject -Property $properties
 		}
@@ -4331,24 +4331,24 @@ function Get-NewAesKey {
 				   SupportsShouldProcess = $false)]
 	[OutputType([System.String])]
 	param ()
-	
+
 	BEGIN {
 		# Cleanup
 		$NewAesKey = $Null
 	}
-	
+
 	PROCESS {
 		# Generate the Key
-		$NewAlgorithm = [System.Security.Cryptography.SymmetricAlgorithm]::Create("Rijndael")
+		$NewAlgorithm = [System.Security.Cryptography.SymmetricAlgorithm]::Create('Rijndael')
 		$KeyBytes = $NewAlgorithm.get_Key()
 		$NewAesKey = [System.Convert]::ToBase64String($keybytes)
-		
+
 	}
-	
+
 	END {
 		# Sump the Key
 		Write-Output $NewAesKey
-		
+
 		# Cleanup
 		$NewAesKey = $Null
 	}
@@ -4421,7 +4421,7 @@ function Get-NewPassword {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -4435,7 +4435,7 @@ function Get-NewPassword {
 		[Alias('Level')]
 		[System.Int32]$Complexity = '3'
 	)
-	
+
 	PROCESS {
 		# Delare an array holding what I need.  Here is the format
 		# The first number is a the number of characters (Ie 26 for the alphabet)
@@ -4443,32 +4443,32 @@ function Get-NewPassword {
 		# So 26,97 will pick a random number representing a letter in Asciii
 		# and add it to 97 to produce the ASCII Character
 		[int32[]]$ArrayofAscii = 26, 97, 26, 65, 10, 48, 15, 33
-		
+
 		# Complexity can be from 1 - 4 with the results being
 		# 1 - Pure lowercase Ascii
 		# 2 - Mix Uppercase and Lowercase Ascii
 		# 3 - Ascii Upper/Lower with Numbers
 		# 4 - Ascii Upper/Lower with Numbers and Punctuation
 		If ($Complexity -eq $NULL) {
-			Set-Variable -Name "Complexity" -Scope:Script -Value $(3)
+			Set-Variable -Name 'Complexity' -Scope:Script -Value $(3)
 		}
-		
+
 		# Password Length can be from 1 to as Crazy as you want
 		#
 		If ($PasswordLength -eq $NULL) {
-			Set-Variable -Name "PasswordLength" -Scope:Script -Value $(10)
+			Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)
 		}
-		
+
 		# Nullify the Variable holding the password
-		Remove-Variable -Name "NewPassword" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		
+		Remove-Variable -Name 'NewPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
 		# Here is our loop
 		Foreach ($counter in 1..$PasswordLength) {
-			
+
 			# What we do here is pick a random pair (4 possible)
 			# in the array to generate out random letters / numbers
-			Set-Variable -Name "pickSet" -Scope:Script -Value $((GET-Random $complexity) * 2)
-			
+			Set-Variable -Name 'pickSet' -Scope:Script -Value $((GET-Random $complexity) * 2)
+
 			# Pick an Ascii Character and add it to the Password
 			# Here is the original line I was testing with
 			# [System.Char] (GET-RANDOM 26) +97 Which generates
@@ -4479,10 +4479,10 @@ function Get-NewPassword {
 			# Random Numeric ASCII Characters
 			# [System.Char] (GET-RANDOM 15) +33 Which generates
 			# Random Punctuation ASCII Characters
-			Set-Variable -Name "NewPassword" -Scope:Script -Value $($NewPassword + [System.Char]((Get-random $ArrayOfAscii[$pickset]) + $ArrayOfAscii[$pickset + 1]))
+			Set-Variable -Name 'NewPassword' -Scope:Script -Value $($NewPassword + [System.Char]((Get-random $ArrayOfAscii[$pickset]) + $ArrayOfAscii[$pickset + 1]))
 		}
 	}
-	
+
 	END {
 		# When we're done we Return the $NewPassword
 		# BACK to the calling Party
@@ -4536,7 +4536,7 @@ function Get-Pause {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -4548,30 +4548,30 @@ function Get-Pause {
 		[Alias('Message')]
 		[System.String]$PauseMessage = 'Press any key...'
 	)
-	
+
 	BEGIN {
 		# Do we need to show the default?
-		if (($PauseMessage -eq "") -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
+		if (($PauseMessage -eq '') -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
 			# Text to show - Default text!
-			Set-Variable -Name "PauseMessage" -Value $("Press any key..." -as ([System.String] -as [type]))
+			Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([System.String] -as [type]))
 		}
 	}
-	
+
 	PROCESS {
 		# This is the Message
 		Write-Host "$PauseMessage" -ForegroundColor Yellow
-		
+
 		# Wait for the Keystroke
-		$null = ($host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown"))
+		$null = ($host.ui.RawUI.ReadKey('NoEcho,IncludeKeyDown'))
 	}
-	
+
 	END {
 		# Cleanup
-		Remove-Variable -Name "PauseMessage" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'PauseMessage' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
-function Global:Get-PendingReboot {
+function Get-PendingReboot {
 <#
 	.SYNOPSIS
 		Gets the pending reboot status on a local or remote computer.
@@ -4656,7 +4656,7 @@ function Global:Get-PendingReboot {
 	.LINK
 		SCCM 2012/CCM_ClientSDK: http://msdn.microsoft.com/en-us/library/jj902723.aspx
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -4667,55 +4667,55 @@ function Global:Get-PendingReboot {
 		[Alias('CN', 'Computer')]
 		[String[]]$ComputerName = "$env:COMPUTERNAME"
 	)
-	
+
 	PROCESS {
 		Foreach ($Computer in $ComputerName) {
 			Try {
 				# Setting pending values to false to cut down on the number of else statements
 				$CompPendRen, $PendFileRename, $Pending, $SCCM = $false, $false, $false, $false
-				
+
 				# Setting CBSRebootPend to null since not all versions of Windows has this value
-				Remove-Variable -Name "CBSRebootPend" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-				
+				Remove-Variable -Name 'CBSRebootPend' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
 				# Querying WMI for build version
 				$WMI_OS = (Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction:Stop)
-				
+
 				# Making registry connection to the local/remote computer
-				Set-Variable -Name "HKLM" -Value $([UInt32] "0x80000002")
-				Set-Variable -Name "WMI_Reg" -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
-				
+				Set-Variable -Name 'HKLM' -Value $([UInt32] '0x80000002')
+				Set-Variable -Name 'WMI_Reg' -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
+
 				# If Vista/2008 & Above query the CBS Reg Key
 				If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
-					Set-Variable -Name "RegSubKeysCBS" -Value $($WMI_Reg.EnumKey($HKLM, "SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\"))
-					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains "RebootPending")
+					Set-Variable -Name 'RegSubKeysCBS' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\'))
+					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains 'RebootPending')
 				}
-				
+
 				# Query WUAU from the registry
-				Set-Variable -Name "RegWUAURebootReq" -Value $($WMI_Reg.EnumKey($HKLM, "SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\"))
-				Set-Variable -Name "WUAURebootReq" -Value $($RegWUAURebootReq.sNames -contains "RebootRequired")
-				
+				Set-Variable -Name 'RegWUAURebootReq' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\'))
+				Set-Variable -Name 'WUAURebootReq' -Value $($RegWUAURebootReq.sNames -contains 'RebootRequired')
+
 				# Query PendingFileRenameOperations from the registry
-				Set-Variable -Name "RegSubKeySM" -Value $($WMI_Reg.GetMultiStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\Session Manager\", "PendingFileRenameOperations"))
-				Set-Variable -Name "RegValuePFRO" -Value $($RegSubKeySM.sValue)
-				
+				Set-Variable -Name 'RegSubKeySM' -Value $($WMI_Reg.GetMultiStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\', 'PendingFileRenameOperations'))
+				Set-Variable -Name 'RegValuePFRO' -Value $($RegSubKeySM.sValue)
+
 				# Query ComputerName and ActiveComputerName from the registry
-				Set-Variable -Name "ActCompNm" -Value $($WMI_Reg.GetStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\", "ComputerName"))
-				Set-Variable -Name "CompNm" -Value $($WMI_Reg.GetStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\", "ComputerName"))
-				
-				
+				Set-Variable -Name 'ActCompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\', 'ComputerName'))
+				Set-Variable -Name 'CompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\', 'ComputerName'))
+
+
 				If ($ActCompNm -ne $CompNm) {
-					Set-Variable -Name "CompPendRen" -Value $($true)
+					Set-Variable -Name 'CompPendRen' -Value $($true)
 				}
-				
+
 				# If PendingFileRenameOperations has a value set $RegValuePFRO variable to $true
 				If ($RegValuePFRO) {
-					Set-Variable -Name "PendFileRename" -Value $($true)
+					Set-Variable -Name 'PendFileRename' -Value $($true)
 				}
-				
+
 				# Determine SCCM 2012 Client Reboot Pending Status
 				# To avoid nested 'if' statements and unneeded WMI calls to determine if the CCM_ClientUtilities class exist, setting EA = 0
-				Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-				
+				Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
 				$CCMSplat = @{
 					NameSpace = 'ROOT\ccm\ClientSDK'
 					Class = 'CCM_ClientUtilities'
@@ -4723,34 +4723,34 @@ function Global:Get-PendingReboot {
 					ComputerName = $Computer
 					ErrorAction = 'Stop'
 				}
-				
-				
+
+
 				Try {
-					Set-Variable -Name "CCMClientSDK" -Value $(Invoke-WmiMethod @CCMSplat)
+					Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)
 				} Catch [System.UnauthorizedAccessException] {
-					Set-Variable -Name "CcmStatus" -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
-					
+					Set-Variable -Name 'CcmStatus' -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
+
 					If ($CcmStatus.Status -ne 'Running') {
 						Write-Warning "$Computer`: Error - CcmExec service is not running."
-						
-						Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
+						Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 					}
 				} Catch {
-					Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				}
-				
+
 				If ($CCMClientSDK) {
 					If ($CCMClientSDK.ReturnValue -ne 0) {
 						Write-Warning "Error: DetermineIfRebootPending returned error code $($CCMClientSDK.ReturnValue)"
 					}
-					
+
 					If ($CCMClientSDK.IsHardRebootPending -or $CCMClientSDK.RebootPending) {
-						Set-Variable -Name "SCCM" -Value $($true)
+						Set-Variable -Name 'SCCM' -Value $($true)
 					}
 				} Else {
-					Remove-Variable -Name "SCCM" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Remove-Variable -Name 'SCCM' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				}
-				
+
 				## Creating Custom PSObject and Select-Object Splat
 				$SelectSplat = @{
 					Property = (
@@ -4764,7 +4764,7 @@ function Global:Get-PendingReboot {
 					'RebootPending'
 					)
 				}
-				
+
 				New-Object -TypeName PSObject -Property @{
 					Computer = $WMI_OS.CSName
 					CBServicing = $CBSRebootPend
@@ -4818,7 +4818,7 @@ function Get-PhoneticSpelling {
 	.NOTES
 		Simple function to convert a string to Phonetic Spelling
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Object])]
 	param
@@ -4830,7 +4830,7 @@ function Get-PhoneticSpelling {
 		[ValidateNotNullOrEmpty()]
 		[Char[]]$Char
 	)
-	
+
 	BEGIN {
 		# Build a HashTable with the alphabet and the matching Phonetic Spelled
 		[HashTable]$PhoneticTable = @{
@@ -4904,7 +4904,7 @@ function Get-PhoneticSpelling {
 			'`' = 'Back-tick'
 		}
 	}
-	
+
 	PROCESS {
 		$Result = Foreach ($Character in $Char) {
 			if ($PhoneticTable.ContainsKey("$Character")) {
@@ -4936,26 +4936,26 @@ function Get-PhoneticSpelling {
 				}
 			}
 		}
-		
+
 		# Loop over each char
 		$InputText = -join $Char
-		
+
 		$TableFormat = ($Result | Format-Table -AutoSize | Out-String)
-		
+
 		$StringFormat = ($Result.Phonetic -join '  ')
-		
+
 		# Create the new HashTable
 		[hashtable]$Properties = @{
 			PhoneticForm = $StringFormat
 			Table = $TableFormat
 			InputText = $InputText
 		}
-		
+
 		$Object = (New-Object -TypeName PSObject -Property $Properties)
-		
+
 		$Object.PSObject.Typenames.Insert(0, 'Phonetic')
 	}
-	
+
 	END {
 		# Dump what we have
 		Write-Output $Object
@@ -5017,104 +5017,104 @@ function Get-PreReqModules {
 		Skype for Business Online Windows PowerShell Module URL
 		https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'Where to Download')]
-		[System.String]$Path = "c:\scripts\powershell\prereq"
+		[System.String]$Path = 'c:\scripts\powershell\prereq'
 	)
-	
+
 	BEGIN {
 		# Is the download path already here?
 		if (-not (Test-Path $Path)) {
 			(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1
 		} else {
-			Write-Output "Download path already exists"
+			Write-Output 'Download path already exists'
 		}
 	}
-	
+
 	PROCESS {
 		<#
 			Now download all the required software
 		#>
-		
+
 		try {
 			# Whare to download and give the Filename
-			$dlPath = (Join-Path $Path -ChildPath "NDP452-KB2901907-x86-x64-AllOS-ENU.exe")
-			
+			$dlPath = (Join-Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
+
 			# Is this file already downloaded?
 			if (Test-Path $dlPath) {
 				# It exists
 				Write-Output "$dlPath exists..."
 			} else {
 				# Download it
-				Write-Output "Processing: .NET Framework 4.5.2 Off-line Installer"
+				Write-Output 'Processing: .NET Framework 4.5.2 Off-line Installer'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
 			}
 		} catch {
 			# Aw Snap!
-			Write-Warning -Message "Unable to download: .NET Framework 4.5.2 Off-line Installer"
+			Write-Warning -Message 'Unable to download: .NET Framework 4.5.2 Off-line Installer'
 		}
-		
+
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "msoidcli_64.msi")
-			
+			$dlPath = (Join-Path $Path -ChildPath 'msoidcli_64.msi')
+
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW"
+				Write-Output 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW"
+			Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
 		}
-		
+
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "AdministrationConfig-en.msi")
-			
+			$dlPath = (Join-Path $Path -ChildPath 'AdministrationConfig-en.msi')
+
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Microsoft Azure Active Directory PowerShell Module"
+				Write-Output 'Processing: Microsoft Azure Active Directory PowerShell Module'
 				Invoke-WebRequest -Uri https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Microsoft Azure Active Directory PowerShell Module"
+			Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'
 		}
-		
+
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "sharepointonlinemanagementshell_4915-1200_x64_en-us.msi")
-			
+			$dlPath = (Join-Path $Path -ChildPath 'sharepointonlinemanagementshell_4915-1200_x64_en-us.msi')
+
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: SharePoint Online Management Shell"
+				Write-Output 'Processing: SharePoint Online Management Shell'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: SharePoint Online Management Shell"
+			Write-Warning -Message 'Unable to download: SharePoint Online Management Shell'
 		}
-		
+
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "SkypeOnlinePowershell.exe")
-			
+			$dlPath = (Join-Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
+
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Skype for Business Online Windows PowerShell Module"
+				Write-Output 'Processing: Skype for Business Online Windows PowerShell Module'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Skype for Business Online Windows PowerShell Module"
+			Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'
 		}
 	}
-	
+
 	END {
 		Write-Output "Prerequisites downloaded to $Path"
-		
+
 		Invoke-Item $Path
 	}
 }
@@ -5153,114 +5153,114 @@ function Get-Quote {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	BEGIN {
 		# The quote should include the author separated by " - ".
 		$texts = @(
-		"It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover",
+		'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover',
 		"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley",
-		"Good is the enemy of great. - Sir Jonathan Ive",
-		"There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive"
+		'Good is the enemy of great. - Sir Jonathan Ive',
+		'There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive'
 		"People's interest is in the product, not in its authorship. - Sir Jonathan Ive",
 		"I think it's really important to design things with a kind of personality. - Marc Newson",
-		"Intelligence is the ability to adapt to change. - Stephen Hawking",
-		"We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking",
-		"The best ideas start as conversations. - Sir Jonathan Ive",
-		"If something is not good enough, stop doing it. - Sir Jonathan Ive",
+		'Intelligence is the ability to adapt to change. - Stephen Hawking',
+		'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking',
+		'The best ideas start as conversations. - Sir Jonathan Ive',
+		'If something is not good enough, stop doing it. - Sir Jonathan Ive',
 		"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive",
-		"Any product that needs a manual to work is broken. - Elon Musk",
-		"Business has only two functions: marketing and innovation. - Milan Kundera",
+		'Any product that needs a manual to work is broken. - Elon Musk',
+		'Business has only two functions: marketing and innovation. - Milan Kundera',
 		"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison",
-		"Great companies are built on great products. - Elon Musk",
-		"Test fast, fail fast, adjust fast. - Tom Peters",
+		'Great companies are built on great products. - Elon Musk',
+		'Test fast, fail fast, adjust fast. - Tom Peters',
 		"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)",
-		"The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)",
-		"The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)",
-		"The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)"
-		"Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)",
+		'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)',
+		'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)',
+		'The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)'
+		'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)',
 		"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)",
-		"Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)",
+		'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)',
 		"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs",
-		"One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)",
-		"Why join the navy if you can be a pirate? - Steve Jobs",
-		"Innovation distinguishes between a leader and a follower. - Steve Jobs",
+		'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)',
+		'Why join the navy if you can be a pirate? - Steve Jobs',
+		'Innovation distinguishes between a leader and a follower. - Steve Jobs',
 		"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs",
-		"Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs",
+		'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs',
 		"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs",
 		"Things don't have to change the world to be important. - Steve Jobs",
-		"Your most unhappy customers are your greatest source of learning. - Bill Gates",
-		"Software is a great combination between artistry and engineering. - Bill Gates",
+		'Your most unhappy customers are your greatest source of learning. - Bill Gates',
+		'Software is a great combination between artistry and engineering. - Bill Gates',
 		"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates",
 		"If you can't make it good, at least make it look good. - Bill Gates",
 		"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)",
 		"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison",
 		"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)",
 		"Don't count the days, make the days count. - Muhammad Ali",
-		"Everything you can imagine is real. - Pablo Picasso",
+		'Everything you can imagine is real. - Pablo Picasso',
 		"In three words I can sum up everything I've learned about life: it goes on. - Robert Frost"
 		)
-		
+
 		# get random text
-		Set-Variable -Name "text" -Value $(Get-Random $texts)
+		Set-Variable -Name 'text' -Value $(Get-Random $texts)
 	}
-	
+
 	PROCESS {
 		# split the text to an array on ' - '
-		Set-Variable -Name "split" -Value $($text -split " - ")
-		Set-Variable -Name "quote" -Value $($split[0].Trim())
-		Set-Variable -Name "author" -Value $($split[1].Trim())
-		
+		Set-Variable -Name 'split' -Value $($text -split ' - ')
+		Set-Variable -Name 'quote' -Value $($split[0].Trim())
+		Set-Variable -Name 'author' -Value $($split[1].Trim())
+
 		# turn the quote into an array of characters
-		Set-Variable -Name "arr" -Value $($quote.ToCharArray())
-		
+		Set-Variable -Name 'arr' -Value $($quote.ToCharArray())
+
 		$arr | ForEach-Object -BEGIN {
 			# define an array of colors
 			#$colors = "Red", "Green", "White", "Magenta"
-			
+
 			# insert a few blank lines
 			write-host "`n"
-			
+
 			# insert top border
-			write-host ("*" * $($quote.length + 6))
-			
+			write-host ('*' * $($quote.length + 6))
+
 			# insert side border
-			write-host "*  " -NoNewline
+			write-host '*  ' -NoNewline
 		} -process {
-			
+
 			# write each character in a different holiday color
 			Write-Host "$_" -ForegroundColor White -NoNewline
 		} -end {
-			write-host "  *"
-			
+			write-host '  *'
+
 			# insert side border
-			Write-Host "* " -NoNewline
-			
+			Write-Host '* ' -NoNewline
+
 			# write the author
 			# Write-Host "- $author  *".padleft($quote.length + 4)
 			Write-Host "$author  *".padleft($quote.length + 4)
-			
+
 			# insert bottom border
-			write-Host ("*" * $($quote.length + 6))
+			write-Host ('*' * $($quote.length + 6))
 			Write-Host "`n"
 		}
 	}
-	
+
 	END {
 		# Cleanup
-		Remove-Variable -Name "texts" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "text" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "split" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "quote" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "author" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "arr" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'texts' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'text' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'split' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'quote' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'author' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'arr' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
-Function Global:Get-RegKeyLastWriteTime {
+function Get-RegKeyLastWriteTime {
 <#
 	.SYNOPSIS
 		Retrieves the last write time of the supplied registry key
@@ -5324,7 +5324,7 @@ Function Global:Get-RegKeyLastWriteTime {
 	.LINK
 		http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -5337,7 +5337,7 @@ Function Global:Get-RegKeyLastWriteTime {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 1,
 				   HelpMessage = 'Root Key to query, The default is HKLM')]
-		[System.String]$Key = "HKLM",
+		[System.String]$Key = 'HKLM',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2,
 				   HelpMessage = 'Registry Key to query')]
@@ -5346,27 +5346,27 @@ Function Global:Get-RegKeyLastWriteTime {
 				   Position = 3)]
 		[switch]$NoEnumKey
 	)
-	
+
 	BEGIN {
 		switch ($Key) {
-			"HKCR" { $searchKey = 0x80000000 } #HK Classes Root
-			"HKCU" { $searchKey = 0x80000001 } #HK Current User
-			"HKLM" { $searchKey = 0x80000002 } #HK Local Machine
-			"HKU"  { $searchKey = 0x80000003 } #HK Users
-			"HKCC" { $searchKey = 0x80000005 } #HK Current Config
+			'HKCR' { $searchKey = 0x80000000 } #HK Classes Root
+			'HKCU' { $searchKey = 0x80000001 } #HK Current User
+			'HKLM' { $searchKey = 0x80000002 } #HK Local Machine
+			'HKU'  { $searchKey = 0x80000003 } #HK Users
+			'HKCC' { $searchKey = 0x80000005 } #HK Current Config
 			default {
-				"Invalid Key. Use one of the following options:
-			HKCR, HKCU, HKLM, HKU, HKCC"
+				'Invalid Key. Use one of the following options:
+			HKCR, HKCU, HKLM, HKU, HKCC'
 			}
 		}
-		
+
 		#$KEYQUERYVALUE = 0x1
 		$KEYREAD = 0x19
 		#$KEYALLACCESS = 0x3F
 	}
 	PROCESS {
 		foreach ($computer in $ComputerName) {
-			
+
 			$sig0 = @'
 [DllImport("advapi32.dll", SetLastError = true)]
 public static extern int RegConnectRegistry(
@@ -5375,9 +5375,9 @@ public static extern int RegConnectRegistry(
 	ref int phkResult);
 '@
 			$type0 = (Add-Type -MemberDefinition $sig0 -Name Win32Utils -Namespace RegConnectRegistry -Using System.Text -PassThru)
-			
+
 			Write-Verbose "$type0"
-			
+
 			$sig1 = @'
 [DllImport("advapi32.dll", CharSet = CharSet.Auto)]
 public static extern int RegOpenKeyEx(
@@ -5388,7 +5388,7 @@ public static extern int RegOpenKeyEx(
 	out int hkResult);
 '@
 			$type1 = (Add-Type -MemberDefinition $sig1 -Name Win32Utils -Namespace RegOpenKeyEx -Using System.Text -PassThru)
-			
+
 			$sig2 = @'
 [DllImport("advapi32.dll", EntryPoint = "RegEnumKeyEx")]
 extern public static int RegEnumKeyEx(
@@ -5402,7 +5402,7 @@ extern public static int RegEnumKeyEx(
     out long lpftLastWriteTime);
 '@
 			$type2 = (Add-Type -MemberDefinition $sig2 -Name Win32Utils -Namespace RegEnumKeyEx -Using System.Text -PassThru)
-			
+
 			$sig4 = @'
 [DllImport("advapi32.dll")]
 public static extern int RegQueryInfoKey(
@@ -5420,29 +5420,29 @@ public static extern int RegQueryInfoKey(
 	out long lpftLastWriteTime);
 '@
 			$type4 = (Add-Type -MemberDefinition $sig4 -Name Win32Utils -Namespace RegQueryInfoKey -Using System.Text -PassThru)
-			
+
 			$sig3 = @'
 [DllImport("advapi32.dll", SetLastError=true)]
 public static extern int RegCloseKey(
 	int hKey);
 '@
 			$type3 = (Add-Type -MemberDefinition $sig3 -Name Win32Utils -Namespace RegCloseKey -Using System.Text -PassThru)
-			
+
 			$hKey = (New-Object int)
 			$hKeyref = (New-Object int)
 			#$searchKeyRemote = $type0::RegConnectRegistry($computer, $searchKey, [ref]$hKey)
 			$result = $type1::RegOpenKeyEx($hKey, $SubKey, 0, $KEYREAD, [ref]$hKeyref)
-			
+
 			if ($NoEnumKey) {
 				#initialize variables
 				$time = (New-Object Long)
 				$result = ($type4::RegQueryInfoKey($hKeyref, $null, [ref]$null, 0, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$time))
-				
+
 				#create output object
-				$o = "" | Select-Object Key, LastWriteTime, ComputerName
+				$o = '' | Select-Object Key, LastWriteTime, ComputerName
 				$o.ComputerName = "$computer"
 				$o.Key = "$Key\$SubKey"
-				
+
 				# TODO Change to use the time api
 				$o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
 				$o
@@ -5452,18 +5452,18 @@ public static extern int RegCloseKey(
 				$index = 0
 				$length = [int] 1024
 				$time = (New-Object Long)
-				
+
 				#234 means more info, 0 means success. Either way, keep reading
 				while (0, 234 -contains $type2::RegEnumKeyEx($hKeyref, $index++ , $builder, [ref]$length, $null, $null, $null, [ref]$time)) {
 					#create output object
-					$o = "" | Select-Object Key, LastWriteTime, ComputerName
+					$o = '' | Select-Object Key, LastWriteTime, ComputerName
 					$o.ComputerName = "$computer"
 					$o.Key = $builder.ToString()
-					
+
 					# TODO Change to use the time api
 					$o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
 					$o
-					
+
 					#reinitialize for next time through the loop
 					$length = [int] 1024
 					$builder = (New-Object System.Text.StringBuilder 1024)
@@ -5505,7 +5505,7 @@ function Get-RelativePath {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -5522,15 +5522,15 @@ function Get-RelativePath {
 		[Parameter(HelpMessage = 'If true, the file and folder paths must exist')]
 		[switch]$Resolve
 	)
-	
+
 	BEGIN {
 		# FROM (Compare 1)
 		$from = $Folder = (split-path $Folder -NoQualifier -Resolve:$Resolve)
-		
+
 		# TO (Compare 2)
 		$to = $filePath = (split-path $filePath -NoQualifier -Resolve:$Resolve)
 	}
-	
+
 	PROCESS {
 		# Now we compare what we have
 		while ($from -and $to -and ($from -ne $to)) {
@@ -5541,26 +5541,26 @@ function Get-RelativePath {
 				$to = (split-path $to)
 			}
 		}
-		
+
 		# Setup and fill the Variables
-		$filepath = ($filepath -replace "^" + [regex]::Escape($to) + "\\")
+		$filepath = ($filepath -replace '^' + [regex]::Escape($to) + '\\')
 		$from = ($Folder)
-		
+
 		# compare to figure out what to show
 		while ($from -and $to -and $from -gt $to) {
 			# Setup and fill the Variables
 			$from = (split-path $from)
-			$filepath = (join-path ".." $filepath)
+			$filepath = (join-path '..' $filepath)
 		}
 	}
-	
+
 	END {
 		# Do a garbage collection
 		Write-Output $filepath
 	}
 }
 
-function Global:Get-ReqParams {
+function Get-ReqParams {
 <#
 	.SYNOPSIS
 		A quick way to view required parameters on a cmdlet
@@ -5591,7 +5591,7 @@ function Global:Get-ReqParams {
 	.NOTES
 		Just a filter for Get-Help
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -5603,7 +5603,7 @@ function Global:Get-ReqParams {
 		[Alias('cmd')]
 		[System.String]$command
 	)
-	
+
 	PROCESS {
 		Get-Help $command -Parameter * | Where-Object { $_.required -eq $true }
 	}
@@ -5634,17 +5634,17 @@ function Get-ScriptDirectory {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		Split-Path $script:MyInvocation.MyCommand.Path
 	}
 }
 
-function Global:Get-ServiceStatus {
+function Get-ServiceStatus {
 <#
 	.SYNOPSIS
 		List Services Where-Object StartMode is AUTOMATIC that are NOT running
@@ -5680,7 +5680,7 @@ function Global:Get-ServiceStatus {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -5688,16 +5688,16 @@ function Global:Get-ServiceStatus {
 				   HelpMessage = 'Computer Name to execute the function')]
 		[System.String]$ComputerName = "$env:COMPUTERNAME"
 	)
-	
+
 	PROCESS {
 		# Try one or more commands
 		try {
 			# Cleanup
-			Remove-Variable -Name "ServiceStatus" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+
 			# Get the Infos
-			Set-Variable -Name "ServiceStatus" -Value $(Get-WmiObject Win32_Service -ComputerName $ComputerName | Where-Object { ($_.startmode -like "*auto*") -and ($_.state -notlike "*running*") } | Select-Object DisplayName, Name, StartMode, State | Format-Table -AutoSize)
-			
+			Set-Variable -Name 'ServiceStatus' -Value $(Get-WmiObject Win32_Service -ComputerName $ComputerName | Where-Object { ($_.startmode -like '*auto*') -and ($_.state -notlike '*running*') } | Select-Object DisplayName, Name, StartMode, State | Format-Table -AutoSize)
+
 			# Dump it to the Console
 			Write-Output -InputObject $ServiceStatus
 		} catch {
@@ -5705,12 +5705,12 @@ function Global:Get-ServiceStatus {
 			Write-Warning -Message 'Could not get the list of services for $ComputerName'
 		} finally {
 			# Cleanup
-			Remove-Variable -Name "ServiceStatus" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
 
-function Global:Get-ServiceStatusInfo {
+function Get-ServiceStatusInfo {
 <#
 	.SYNOPSIS
 		This function identifies all services that are configured to auto start
@@ -5738,18 +5738,18 @@ function Global:Get-ServiceStatusInfo {
 	.NOTES
 		Internal Helper
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		$Services = $(Get-WmiObject -Class win32_service | Where-Object { $_.startmode -eq 'Auto' -and $_.State -eq 'Stopped' } | Select-Object displayname -ExpandProperty displayname)
 		$count = ($Services.count)
 		$ServicesString = "`r`nChecking System Service status...`r`nTotal $count services identified that have startup type configured to Auto start, but are in stopped state."
 		$ServicesString = ($ServicesString + $(1..$count | ForEach-Object { "`r`n $_. $($services[$($_) - 1]) ." }))
 	}
-	
+
 	END {
 		Write-Output $ServicesString
 	}
@@ -5777,11 +5777,11 @@ function Get-ShortDate {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		(Get-Date).toShortDateString()
 	}
@@ -5816,7 +5816,7 @@ function Get-Syntax {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -5824,14 +5824,14 @@ function Get-Syntax {
 		[Alias('Command')]
 		$cmdlet
 	)
-	
+
 	PROCESS {
 		# Use Get-Command to show the syntax
 		Get-Command $cmdlet -syntax
 	}
 }
 
-function Global:Get-SysType {
+function Get-SysType {
 <#
 	.SYNOPSIS
 		Show if the system is Workstation or a Server
@@ -5878,37 +5878,37 @@ function Global:Get-SysType {
 		[Alias('detail')]
 		[switch]$d
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$role = $null
-		
+
 		# Read role
 		$Role = ((Get-WmiObject Win32_ComputerSystem).DomainRole)
 	}
-	
+
 	PROCESS {
 		if ($d) {
 			Switch ($Role) {
-				0 { Return "Standalone Workstation" }
-				1 { Return "Member Workstation" }
-				2 { Return "Standalone Server" }
-				3 { Return "Member Server" }
-				4 { Return "Backup Domain Controller" }
-				5 { Return "Primary Domain Controller" }
-				default { Return "Unknown" }
+				0 { Return 'Standalone Workstation' }
+				1 { Return 'Member Workstation' }
+				2 { Return 'Standalone Server' }
+				3 { Return 'Member Server' }
+				4 { Return 'Backup Domain Controller' }
+				5 { Return 'Primary Domain Controller' }
+				default { Return 'Unknown' }
 			}
 		} else {
-			if (($Role) -eq "0" -OR ($Role) -eq "1") {
-				Return "Workstation"
-			} elseif (($Role) -gt "1" -AND ($Role) -le "5") {
-				Return "Server"
+			if (($Role) -eq '0' -OR ($Role) -eq '1') {
+				Return 'Workstation'
+			} elseif (($Role) -gt '1' -AND ($Role) -le '5') {
+				Return 'Server'
 			} else {
-				Return "Unknown"
+				Return 'Unknown'
 			}
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		$role = $null
@@ -5967,7 +5967,7 @@ function Get-TempFile {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -5975,19 +5975,19 @@ function Get-TempFile {
 		[Parameter(HelpMessage = 'File Extension as a string. like tmp')]
 		[System.String]$Extension = 'tmp'
 	)
-	
+
 	BEGIN {
 		$elements = @()
 	}
-	
-	
+
+
 	PROCESS {
 		# Define objects
 		$elements += [System.IO.Path]::GetTempPath()
 		$elements += [System.Guid]::NewGuid()
 		$elements += $Extension.TrimStart('.')
 	}
-	
+
 	END {
 		# Here we go: This is a Teampfile
 		'{0}{1}.{2}' -f $elements
@@ -6022,7 +6022,7 @@ function Get-TimeStamp {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	PROCESS {
 		Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 	}
@@ -6052,25 +6052,25 @@ function Get-TopProcesses {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Define objects
 		Set-Variable -Name SetValX -Value $([Console]::CursorLeft)
 		Set-Variable -Name SetValY -Value $([Console]::CursorTop)
 	}
-	
+
 	PROCESS {
 		# figure out what uses the most CPU Time
 		While ($true) {
 			# Get the fist 30 items
 			(Get-Process | Sort-Object -Descending CPU | Select-Object -First 30)
-			
+
 			# Wait 2 seconds
 			Start-Sleep -Seconds 2
-			
+
 			# Dump the Info
 			[Console]::SetCursorPosition(${SetValX}, ${SetValY} + 3)
 		}
@@ -6104,18 +6104,18 @@ function Get-Uptime {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		# Define objects
 		$os = (Get-WmiObject win32_operatingsystem)
 		$uptime = ((Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime)))
-		$Display = "Uptime: " + $Uptime.Days + " days, " + $Uptime.Hours + " hours, " + $Uptime.Minutes + " minutes"
+		$Display = 'Uptime: ' + $Uptime.Days + ' days, ' + $Uptime.Hours + ' hours, ' + $Uptime.Minutes + ' minutes'
 	}
-	
+
 	END {
 		# Dump the Infos
 		Write-Output $Display
@@ -6147,18 +6147,18 @@ function Get-UUID {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		# Call NET function
 		[guid]::NewGuid().ToString('d')
 	}
 }
 
-function Global:Get-ValidateFileName {
+function Get-ValidateFileName {
 <#
 	.SYNOPSIS
 		Validates if the file name has valid characters
@@ -6194,7 +6194,7 @@ function Global:Get-ValidateFileName {
 	.INPUTS
 		System.String
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -6205,10 +6205,10 @@ function Global:Get-ValidateFileName {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Filename
 	)
-	
+
 	PROCESS {
 		$invalidChars = [System.IO.Path]::GetInvalidFileNameChars();
-		
+
 		foreach ($fileChar in $Filename) {
 			foreach ($invalid in $invalidChars) {
 				if ($fileChar -eq $invalid) {
@@ -6216,7 +6216,7 @@ function Global:Get-ValidateFileName {
 				}
 			}
 		}
-		
+
 		return $true
 	}
 }
@@ -6265,7 +6265,7 @@ function Get-ValidateIsIP {
 	.INPUTS
 		System.String
 #>
-	
+
 	[OutputType([System.Boolean])]
 	param
 	(
@@ -6275,19 +6275,19 @@ function Get-ValidateIsIP {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$IP
 	)
-	
+
 	PROCESS {
 		try {
 			return ([System.Net.IPAddress]::Parse($IP))
 		} catch {
 			Write-Debug 'Something is wrong!!!'
 		}
-		
+
 		return $false
 	}
 }
 
-function Global:Get-ValidatePath {
+function Get-ValidatePath {
 <#
 	.SYNOPSIS
 		Validates if path has valid characters
@@ -6323,7 +6323,7 @@ function Global:Get-ValidatePath {
 	.INPUTS
 		System.String
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -6334,10 +6334,10 @@ function Global:Get-ValidatePath {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Path
 	)
-	
+
 	PROCESS {
 		$invalidChars = [System.IO.Path]::GetInvalidPathChars();
-		
+
 		foreach ($pathChar in $Path) {
 			foreach ($invalid in $invalidChars) {
 				if ($pathChar -eq $invalid) {
@@ -6345,7 +6345,7 @@ function Global:Get-ValidatePath {
 				}
 			}
 		}
-		
+
 		return $true
 	}
 }
@@ -6423,7 +6423,7 @@ function Get-Whois {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -6433,7 +6433,7 @@ function Get-Whois {
 				   HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
 		[System.String]$Domain,
 		[Parameter(HelpMessage = 'Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export')]
-		[System.String]$Path = "C:\scripts\PowerShell\export",
+		[System.String]$Path = 'C:\scripts\PowerShell\export',
 		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)')]
 		[System.Int32]$RedThresold = 30,
 		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)')]
@@ -6446,138 +6446,138 @@ function Get-Whois {
 		[ValidateSet('object', 'json', 'csv', 'html', 'html', 'xml')]
 		[System.String]$OutputType = 'object'
 	)
-	
+
 	BEGIN {
 		# Be Verbose
 		Write-Verbose "$(Get-Date): Get-WhoIs script beginning."
-		
+
 		# Validate the path
 		If ($Path) {
 			If (Test-Path $Path) {
 				If (-not (Get-Item $Path).PSisContainer) {
 					# Aw Snap!
 					Write-Error  "You cannot specify a file in the Path parameter, must be a folder: $Path"
-					
+
 					# Die headers
 					exit 1
 				}
 			} Else {
 				# Aw Snap!
 				Write-Error  "Unable to locate: $Path"
-				
+
 				# Die hard!
 				exit 1
 			}
 		} Else {
 			$Path = (Split-Path $MyInvocation.MyCommand.Path)
 		}
-		
+
 		# Create the Web Proxy instance
 		$WC = (New-WebServiceProxy 'http://www.webservicex.net/whois.asmx?WSDL')
-		
+
 		# Cleanup
 		$Data = @()
 	}
-	
+
 	PROCESS {
 		# Loop over the given domains
 		$Data += ForEach ($Dom in $Domain) {
 			# Be Verbose
 			Write-Verbose "$(Get-Date): Querying for $Dom"
-			
+
 			# Cleanup
-			$DNError = ""
-			
+			$DNError = ''
+
 			Try {
 				$Raw = $WC.GetWhoIs($Dom)
 			} Catch {
 				# Some domains throw an error, I assume because the WhoIs server isn't returning standard output
 				$DNError = "$($Dom.ToUpper()): Unknown Error retrieving WhoIs information"
 			}
-			
+
 			# Test if the domain name is good or if the data coming back is ok--Google.Com just returns a list of domain names so no good
-			If ($Raw -match "No match for") {
+			If ($Raw -match 'No match for') {
 				$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"
-			} ElseIf ($Raw -notmatch "Domain Name: (.*)") {
+			} ElseIf ($Raw -notmatch 'Domain Name: (.*)') {
 				$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"
 			}
-			
+
 			If ($DNError) {
 				# Use 999899 to tell the script later that this is a bad domain and color it properly in HTML (if HTML output requested)
 				[PSCustomObject]@{
 					DomainName = $DNError
-					Registrar = ""
-					WhoIsServer = ""
-					NameServers = ""
-					DomainLock = ""
-					LastUpdated = ""
-					Created = ""
-					Expiration = ""
+					Registrar = ''
+					WhoIsServer = ''
+					NameServers = ''
+					DomainLock = ''
+					LastUpdated = ''
+					Created = ''
+					Expiration = ''
 					DaysLeft = 999899
 				}
-				
+
 				# Bad!
 				Write-Warning -message "$DNError"
 			} Else {
 				# Parse out the DNS servers
-				$NS = ForEach ($Match in ($Raw | Select-String -Pattern "Name Server: (.*)" -AllMatches).Matches) {
+				$NS = ForEach ($Match in ($Raw | Select-String -Pattern 'Name Server: (.*)' -AllMatches).Matches) {
 					$Match.Groups[1].Value
 				}
-				
+
 				#Parse out the rest of the data
 				[PSCustomObject]@{
 					# Real Objects
-					DomainName = (($Raw | Select-String -Pattern "Domain Name: (.*)").Matches.Groups[1].Value)
-					Registrar = (($Raw | Select-String -Pattern "Registrar: (.*)").Matches.Groups[1].Value)
-					WhoIsServer = (($Raw | Select-String -Pattern "WhoIs Server: (.*)").Matches.Groups[1].Value)
-					NameServers = ($NS -join ", ")
-					DomainLock = (($Raw | Select-String -Pattern "Status: (.*)").Matches.Groups[1].Value)
-					LastUpdated = [datetime]($Raw | Select-String -Pattern "Updated Date: (.*)").Matches.Groups[1].Value
-					Created = [datetime]($Raw | Select-String -Pattern "Creation Date: (.*)").Matches.Groups[1].Value
-					Expiration = [datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value
-					DaysLeft = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value)).Days)
+					DomainName = (($Raw | Select-String -Pattern 'Domain Name: (.*)').Matches.Groups[1].Value)
+					Registrar = (($Raw | Select-String -Pattern 'Registrar: (.*)').Matches.Groups[1].Value)
+					WhoIsServer = (($Raw | Select-String -Pattern 'WhoIs Server: (.*)').Matches.Groups[1].Value)
+					NameServers = ($NS -join ', ')
+					DomainLock = (($Raw | Select-String -Pattern 'Status: (.*)').Matches.Groups[1].Value)
+					LastUpdated = [datetime]($Raw | Select-String -Pattern 'Updated Date: (.*)').Matches.Groups[1].Value
+					Created = [datetime]($Raw | Select-String -Pattern 'Creation Date: (.*)').Matches.Groups[1].Value
+					Expiration = [datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value
+					DaysLeft = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value)).Days)
 				}
 			}
 		}
 	}
-	
+
 	END {
 		# Be Verbose
 		Write-Verbose "$(Get-Date): Producing $OutputType report"
-		
+
 		#
 		$WC.Dispose()
-		
+
 		# Sort the Domain Data
 		$Data = $Data | Sort-Object DomainName
-		
+
 		# What kind of output?
 		Switch ($OutputType) {
-			"object"
+			'object'
 			{
 				# Dump to Console
-				(Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } })
+				(Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = 'DaysLeft'; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } })
 			}
-			"csv"
+			'csv'
 			{
 				# Export a CSV
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.CSV")
-				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.CSV')
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation)
 			}
-			"xml"
+			'xml'
 			{
 				# Still like XML?
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.XML")
-				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.XML')
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = 'DaysLeft'; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath)
 			}
-			"json"
+			'json'
 			{
 				# I must admin: I like Json...
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.json")
-				$JsonData = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.json')
+				$JsonData = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft)
 				ConvertTo-Json -InputObject $JsonData -Depth 10 > $ReportPath
 			}
-			"html"
+			'html'
 			{
 				# OK, HTML is should be!
 				$Header = @"
@@ -6592,11 +6592,11 @@ TD {border-width: 1px;padding: 3px;border-style: solid;border-color: black;}
 WhoIS Report
 </title>
 "@
-				
+
 				$PreContent = @"
 <p><h1>WhoIs Report</h1></p>
 "@
-				
+
 				$PostContent = @"
 <p><br/><h3>Legend</h3>
 <pre><span style="background-color:red">    </span>  Expires in under $RedThreshold days
@@ -6605,46 +6605,46 @@ WhoIS Report
 <span style="background-color:#DEB887">    </span>  Problem retrieving information about domain/Domain not found</pre></p>
 <h6><br/>Run on: $(Get-Date)</h6>
 "@
-				
-				$RawHTML = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
-				
+
+				$RawHTML = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
+
 				$HTML = ForEach ($Line in $RawHTML) {
-					if ($Line -like "*<tr><td>*") {
-						$Value = [float](([xml]$Line).SelectNodes("//td").'#text'[-1])
-						
+					if ($Line -like '*<tr><td>*') {
+						$Value = [float](([xml]$Line).SelectNodes('//td').'#text'[-1])
+
 						if ($Value) {
 							if ($Value -eq 999899) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: #DEB887;""><td>").Replace("<td>999899</td>", "<td>0</td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: #DEB887;"><td>').Replace('<td>999899</td>', '<td>0</td>')
 							} elseif ($Value -lt $RedThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: red;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: red;"><td>')
 							} elseif ($Value -lt $YellowThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: yellow;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: yellow;"><td>')
 							} elseif ($Value -lt $GreyThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: #B0C4DE;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: #B0C4DE;"><td>')
 							} else {
 								$Line
 							}
 						}
-					} elseif ($Line -like "*<table>*") {
-						$Line.Replace("<table>", "<table class=""sortable"">")
+					} elseif ($Line -like '*<table>*') {
+						$Line.Replace('<table>', '<table class="sortable">')
 					} else {
 						$Line
 					}
 				}
-				
+
 				# File name
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.html")
-				
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.html')
+
 				# Dump the HTML
 				($HTML | Out-File $ReportPath -Encoding ASCII)
-				
+
 				# Immediately display the html if in debug mode
-				if ($PSCmdlet.MyInvocation.BoundParameters["Debug"].IsPresent) {
+				if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
 					& $ReportPath
 				}
 			}
 		}
-		
+
 		# Be Verbose
 		Write-Verbose "$(Get-Date): Get-WhoIs script completed!"
 	}
@@ -6700,7 +6700,7 @@ function Invoke-GnuGrep {
 		Support https://github.com/jhochwald/NETX/issues
 
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -6723,15 +6723,15 @@ function Invoke-GnuGrep {
 		[Alias('ListFilenames')]
 		[switch]$l
 	)
-	
+
 	BEGIN {
 		# Define object
 		Set-Variable -Name path -Value $($pwd)
-		
+
 		# need to add filter for files only, no directories
 		Set-Variable -Name files -Value $(Get-ChildItem $path -include "$filefilter" -recurse:$r)
 	}
-	
+
 	PROCESS {
 		# What to do?
 		if ($l) {
@@ -6776,7 +6776,7 @@ function Grant-PathFullPermission {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
@@ -6793,21 +6793,21 @@ function Grant-PathFullPermission {
 				   HelpMessage = 'User you want to grant the access to')]
 		[System.String]$user
 	)
-	
+
 	BEGIN {
 		if (-not (Test-Path -Path $path -PathType Container)) {
 			Write-Error -Message "Sorry $path does not exist!" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		} else {
 			Write-Output "Set full permission on $path for $user."
 		}
 	}
-	
+
 	PROCESS {
 		# Get the existing ACL for the Path
 		try {
@@ -6815,14 +6815,14 @@ function Grant-PathFullPermission {
 		} catch {
 			# Whoopsie
 			Write-Error -Message "Could not get existing ACL for $path" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
-		
+
 		# Do we have inheritance?
 		$inheritance = $(
 		if (Test-Path -Path $path -PathType Container) {
@@ -6830,30 +6830,30 @@ function Grant-PathFullPermission {
 		} else {
 			'None'
 		})
-		
+
 		# Build a new Rule...
-		$rule = (New-Object System.Security.AccessControl.FileSystemAccessRule($user, "FullControl", $inheritance, "None", "Allow"))
-		
+		$rule = (New-Object System.Security.AccessControl.FileSystemAccessRule($user, 'FullControl', $inheritance, 'None', 'Allow'))
+
 		# Set the new rule
 		$acl.SetAccessRule($rule)
-		
+
 		# Apply the new Rule to the Path
 		try {
 			(Set-Acl -Path $path -AclObject $acl -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 		} catch {
 			# Whoopsie
 			Write-Error -Message "Could not set new ACL for $user on $path" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
 	}
 }
 
-function Global:Compress-GZip {
+function Compress-GZip {
 <#
 	.SYNOPSIS
 		GZip Compress (.gz)
@@ -6903,7 +6903,7 @@ function Global:Compress-GZip {
 	.LINK
 		http://sushihangover.blogspot.com
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -6921,18 +6921,18 @@ function Global:Compress-GZip {
 		[Parameter(HelpMessage = 'Enforce it?')]
 		[switch]$Force
 	)
-	
+
 	PROCESS {
 		$_BufferSize = 1024 * 8
 		if (Test-Path -Path $FullName -PathType Leaf) {
 			# Be Verbose
 			Write-Verbose "Reading from: $FullName"
-			
+
 			if ($GZipPath.Length -eq 0) {
 				$tmpPath = (Get-ChildItem -Path $FullName)
 				$GZipPath = (Join-Path -Path ($tmpPath.DirectoryName) -ChildPath ($tmpPath.Name + '.gz'))
 			}
-			
+
 			if (Test-Path -Path $GZipPath -PathType Leaf -IsValid) {
 				Write-Verbose "Compressing to: $GZipPath"
 			} else {
@@ -6943,7 +6943,7 @@ function Global:Compress-GZip {
 			Write-Error -Message "$GZipPath does not exist"
 			return
 		}
-		
+
 		if (Test-Path -Path $GZipPath -PathType Leaf) {
 			If ($Force.IsPresent) {
 				if ($pscmdlet.ShouldProcess("Overwrite Existing File @ $GZipPath")) {
@@ -6955,15 +6955,15 @@ function Global:Compress-GZip {
 				Set-FileTime $GZipPath
 			}
 		}
-		
+
 		if ($pscmdlet.ShouldProcess("Creating Compress File @ $GZipPath")) {
 			# Be Verbose
-			Write-Verbose "Opening streams and file to save compressed version to..."
-			
+			Write-Verbose 'Opening streams and file to save compressed version to...'
+
 			$input = (New-Object System.IO.FileStream (Get-ChildItem -path $FullName).FullName, ([IO.FileMode]::Open), ([IO.FileAccess]::Read), ([IO.FileShare]::Read))
 			$output = (New-Object System.IO.FileStream (Get-ChildItem -path $GZipPath).FullName, ([IO.FileMode]::Create), ([IO.FileAccess]::Write), ([IO.FileShare]::None))
 			$gzipStream = (New-Object System.IO.Compression.GzipStream $output, ([IO.Compression.CompressionMode]::Compress))
-			
+
 			try {
 				$buffer = (New-Object byte[]($_BufferSize))
 				while ($true) {
@@ -6975,8 +6975,8 @@ function Global:Compress-GZip {
 				}
 			} finally {
 				# Be Verbose
-				Write-Verbose "Closing streams and newly compressed file"
-				
+				Write-Verbose 'Closing streams and newly compressed file'
+
 				$gzipStream.Close()
 				$output.Close()
 				$input.Close()
@@ -6985,7 +6985,7 @@ function Global:Compress-GZip {
 	}
 }
 
-function Global:Expand-GZip {
+function Expand-GZip {
 <#
 	.SYNOPSIS
 		GZip Decompress (.gz)
@@ -7033,7 +7033,7 @@ function Global:Expand-GZip {
 	.LINK
 		http://sushihangover.blogspot.com
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7051,17 +7051,17 @@ function Global:Expand-GZip {
 		[Parameter(HelpMessage = 'Enforce it?')]
 		[switch]$Force
 	)
-	
+
 	PROCESS {
 		if (Test-Path -Path $FullName -PathType Leaf) {
 			# Be Verbose
 			Write-Verbose "Reading from: $FullName"
-			
+
 			if ($GZipPath.Length -eq 0) {
 				$tmpPath = (Get-ChildItem -Path $FullName)
 				$GZipPath = (Join-Path -Path ($tmpPath.DirectoryName) -ChildPath ($tmpPath.BaseName))
 			}
-			
+
 			if (Test-Path -Path $GZipPath -PathType Leaf -IsValid) {
 				Write-Verbose "Decompressing to: $GZipPath"
 			} else {
@@ -7085,12 +7085,12 @@ function Global:Expand-GZip {
 		}
 		if ($pscmdlet.ShouldProcess("Creating Decompressed File @ $GZipPath")) {
 			# Be Verbose
-			Write-Verbose "Opening streams and file to save compressed version to..."
-			
+			Write-Verbose 'Opening streams and file to save compressed version to...'
+
 			$input = (New-Object System.IO.FileStream (Get-ChildItem -path $FullName).FullName, ([IO.FileMode]::Open), ([IO.FileAccess]::Read), ([IO.FileShare]::Read))
 			$output = (New-Object System.IO.FileStream (Get-ChildItem -path $GZipPath).FullName, ([IO.FileMode]::Create), ([IO.FileAccess]::Write), ([IO.FileShare]::None))
 			$gzipStream = (New-Object System.IO.Compression.GzipStream $input, ([IO.Compression.CompressionMode]::Decompress))
-			
+
 			try {
 				$buffer = (New-Object byte[](1024))
 				while ($true) {
@@ -7102,8 +7102,8 @@ function Global:Expand-GZip {
 				}
 			} finally {
 				# Be Verbose
-				Write-Verbose "Closing streams and newly decompressed file"
-				
+				Write-Verbose 'Closing streams and newly decompressed file'
+
 				$gzipStream.Close()
 				$output.Close()
 				$input.Close()
@@ -7159,7 +7159,7 @@ function Invoke-PowerHead {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7171,17 +7171,17 @@ function Invoke-PowerHead {
 		[Alias('Counter')]
 		[System.Int32]$count = 10
 	)
-	
+
 	BEGIN {
 		# Does this exist?
 		if (-not (Test-Path $file)) {
 			# Aw Snap!
 			Write-Error -Message:"Unable to locate file $file" -ErrorAction:Stop
-			
+
 			Return
 		}
 	}
-	
+
 	PROCESS {
 		# Show the fist X entries
 		Return (Get-Content $file | Select-Object -First $count)
@@ -7216,16 +7216,16 @@ function Invoke-PowerHelp {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Make the console clean
 		[System.Console]::Clear()
 		[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
 	}
-	
+
 	PROCESS {
 		# Get the FULL Help Message for the given command-let
 		Get-Help $args[0] -full
@@ -7273,11 +7273,11 @@ function Set-IgnoreSslTrust {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'High',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
 		# Set the SSL Ignore based on the configuration Value Leaves the door wide open...
 		# Think before set this Boolean to $true
@@ -7285,16 +7285,16 @@ function Set-IgnoreSslTrust {
 			# AGAIN:
 			# Think before you enable this! It could be very dangerous!!!
 			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $true }
-			
+
 			# Be Verbose
-			Write-Verbose -message:"SSL Trust IS ignored - BAD IDEA"
-			
-			Write-Warning -message:"SSL Trust IS ignored - BAD IDEA"
+			Write-Verbose -message:'SSL Trust IS ignored - BAD IDEA'
+
+			Write-Warning -message:'SSL Trust IS ignored - BAD IDEA'
 		} else {
 			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
-			
+
 			# Be Verbose
-			Write-Verbose -message:"SSL Trust is NOT ignored - GOOD IDEA"
+			Write-Verbose -message:'SSL Trust is NOT ignored - GOOD IDEA'
 		}
 	}
 }
@@ -7327,16 +7327,16 @@ function Set-NotIgnoreSslTrust {
 		Source: https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.servercertificatevalidationcallback.aspx
 		Source: https://msdn.microsoft.com/en-us/library/system.net.security.remotecertificatevalidationcallback.aspx
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Low',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
 		[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
-		
+
 		# Be Verbose
-		Write-Verbose -message:"SSL Trust is NOT ignored - GOOD IDEA"
+		Write-Verbose -message:'SSL Trust is NOT ignored - GOOD IDEA'
 	}
 }
 
@@ -7357,27 +7357,27 @@ function Initialize-Modules {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# is this a module?
 		Get-Module | Where-Object { Test-Method $_.Name $_.Name } | ForEach-Object
 		{
 			# Define object
 			Set-Variable -Name functionName -Value $($_.Name)
-			
+
 			# Show a verbose message
 			Write-Verbose "Initializing Module $functionName"
-			
+
 			# Execute
 			Invoke-Expression $functionName | Out-Null
 		}
 	}
 }
 
-function Global:Initialize-ModuleUpdate {
+function Initialize-ModuleUpdate {
 <#
 	.SYNOPSIS
 		Refresh the PowerShell Module Information
@@ -7416,7 +7416,7 @@ function Global:Initialize-ModuleUpdate {
 		these modules.
 
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7424,11 +7424,11 @@ function Global:Initialize-ModuleUpdate {
 				   HelpMessage = 'Verbosity? Default is not')]
 		[switch]$Verbosity = "$false"
 	)
-	
+
 	BEGIN {
-		Write-Output "Update..."
+		Write-Output 'Update...'
 	}
-	
+
 	PROCESS {
 		if ($Verbosity) {
 			Get-Module -ListAvailable -Refresh
@@ -7483,7 +7483,7 @@ function Invoke-AnimatedSleep {
 	.LINK
 		Source https://github.com/dwkerwin/powershell_profile/blob/master/autoload-scripts/vendor/sleepanim.ps1
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7492,26 +7492,26 @@ function Invoke-AnimatedSleep {
 		[int]$seconds = 1,
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2)]
-		[string]$title = "Sleeping"
+		[string]$title = 'Sleeping'
 	)
-	
+
 	BEGIN {
 		$blank = "`b" * ($title.length + 11)
-		$clear = " " * ($title.length + 11)
-		$anim = @("0o.......o", "o0o.......", ".o0o......", "..o0o.....", "...o0o....", "....o0o...", ".....o0o..", "......o0o.", ".......o0o", "o.......o0") # Animation sequence characters
+		$clear = ' ' * ($title.length + 11)
+		$anim = @('0o.......o', 'o0o.......', '.o0o......', '..o0o.....', '...o0o....', '....o0o...', '.....o0o..', '......o0o.', '.......o0o', 'o.......o0') # Animation sequence characters
 	}
-	
+
 	PROCESS {
 		while ($seconds -gt 0) {
 			$anim | ForEach-Object {
 				Write-Host "$blank$title $_" -NoNewline -ForegroundColor Yellow
 				Start-Sleep -m 100
 			}
-			
+
 			$seconds--
 		}
 	}
-	
+
 	END {
 		Write-Host "$blank$clear$blank" -NoNewline
 	}
@@ -7563,52 +7563,52 @@ function Invoke-baloonTip {
 	.NOTES
 		Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'Title of the Baloon Tip')]
-		[System.String]$Title = "Information",
+		[System.String]$Title = 'Information',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 1,
 				   HelpMessage = 'Message of the Baloon Tip')]
-		[System.String]$Message = "Message...",
+		[System.String]$Message = 'Message...',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2,
 				   HelpMessage = 'Type for the Ballon')]
 		[ValidateNotNullOrEmpty()]
 		[ValidateSet('Question', 'Exclamation', 'Information')]
-		[System.String]$Icon = "Information"
+		[System.String]$Icon = 'Information'
 	)
-	
+
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
 	}
-	
+
 	PROCESS {
 		$notification = (New-Object System.Windows.Forms.NotifyIcon)
-		
+
 		# Define the icon for the system tray
 		$notification.Icon = [System.Drawing.SystemIcons]::$Icon
-		
+
 		#Display title of balloon window
 		$notification.BalloonTipTitle = $Title
-		
+
 		#Type of balloon icon
-		$notification.BalloonTipIcon = "Info"
-		
+		$notification.BalloonTipIcon = 'Info'
+
 		#Notification message
 		$notification.BalloonTipText = $Message
-		
+
 		#Make balloon tip visible when called
 		$notification.Visible = $true
-		
+
 		#Call the balloon notification
 		$notification.ShowBalloonTip(15000)
 	}
-	
+
 	END {
 		if ($debug) {
 			Write-Output $notification
@@ -7637,10 +7637,10 @@ function Invoke-CreateMissingRegistryDrives {
 	.LINK
 		ALIENQuake https://github.com/ALIENQuake/WindowsPowerShell
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		New-PSDrive -Name 'HKU' -PSProvider 'Registry' -Root Registry::HKEY_USERS -EA 0 | Out-Null
 		New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root Registry::HKEY_CLASSES_ROOT -EA 0 | Out-Null
@@ -7648,7 +7648,7 @@ function Invoke-CreateMissingRegistryDrives {
 	}
 }
 
-function Global:Invoke-GC {
+function Invoke-GC {
 <#
 	.SYNOPSIS
 		Do a garbage collection
@@ -7668,17 +7668,17 @@ function Global:Invoke-GC {
 		PowerShell sometimes do not cleanup and this uses more memory then
 		it should...
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Call the .NET function
 		[void]([System.GC]::Collect())
 	}
 }
 
-function Global:Invoke-NTFSFilesCompression {
+function Invoke-NTFSFilesCompression {
 <#
 	.SYNOPSIS
 		Compress files with given extension older than given amount of time
@@ -7725,7 +7725,7 @@ function Global:Invoke-NTFSFilesCompression {
 	.NOTES
 		Based on an idea of  Wojciech Sciesinski
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7738,49 +7738,49 @@ function Global:Invoke-NTFSFilesCompression {
 		[int]$OlderThan,
 		[Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
 		[ValidateSet('minutes', 'hours', 'days', 'weeks')]
-		[string[]]$TimeUnit = "minutes",
+		[string[]]$TimeUnit = 'minutes',
 		[Parameter(HelpMessage = 'The extention of files that will be processed. The default file extenstion is log.')]
-		[string[]]$Extension = "log"
+		[string[]]$Extension = 'log'
 	)
-	
+
 	BEGIN {
-		$excludedfiles = "temp.log", "temp2.log", "source.log"
-		
+		$excludedfiles = 'temp.log', 'temp2.log', 'source.log'
+
 		# translate action to numeric value required by the method
 		switch ($TimeUnit) {
-			"minutes" {
+			'minutes' {
 				$multiplier = 1
 				break
 			}
-			"hours" {
+			'hours' {
 				$multiplier = 60
 				break
 			}
-			"days" {
+			'days' {
 				$multiplier = 1440
 				break
 			}
-			"weeks" {
+			'weeks' {
 				$multiplier = 10080
 				break
 			}
 		}
-		
+
 		$OlderThanMinutes = $($OlderThan * $multiplier)
 		$compressolder = $(Get-date).AddMinutes(- $OlderThanMinutes)
-		$filterstring = "*." + $Extension
+		$filterstring = '*.' + $Extension
 		$files = (Get-ChildItem -Path $path -Filter $filterstring)
 	}
-	
+
 	PROCESS {
 		ForEach ($i in $files) {
 			if ($i.Name -notin $excludedfiles) {
-				$filepathforquery = $($i.FullName).Replace("\", "\\")
+				$filepathforquery = $($i.FullName).Replace('\', '\\')
 				$file = (Get-WmiObject -Query "SELECT * FROM CIM_DataFile Where-Object Name='$filepathforquery'")
-				
+
 				if ((-not ($file.compressed)) -and $i.LastWriteTime -lt $compressolder) {
 					Write-Verbose "Start compressing file $i.name"
-					
+
 					#Invoke compression
 					[void]$file.Compress()
 				} #End if
@@ -7789,7 +7789,7 @@ function Global:Invoke-NTFSFilesCompression {
 	}
 }
 
-function Global:Invoke-RemoteScript {
+function Invoke-RemoteScript {
 <#
 	.SYNOPSIS
 		A brief description of the Invoke-RemoteScript function.
@@ -7818,7 +7818,7 @@ function Global:Invoke-RemoteScript {
 	.LINK
 		Idea: http://www.leeholmes.com/blog/2009/11/20/testing-for-powershell-remoting-test-psremoting/
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $false)]
 	param
@@ -7841,7 +7841,7 @@ function Global:Invoke-RemoteScript {
 		[Alias('RemoteDrive')]
 		[System.String]$Drive = 'C'
 	)
-	
+
 	BEGIN {
 		# Helper function
 		function Test-PsRemoting {
@@ -7849,15 +7849,15 @@ function Global:Invoke-RemoteScript {
 				[Parameter(Mandatory = $true)]
 				$computername
 			)
-			
+
 			try {
-				$errorActionPreference = "Stop"
+				$errorActionPreference = 'Stop'
 				$result = Invoke-Command -ComputerName $computername { 1 }
 			} catch {
 				Write-Verbose $_
 				Return $false
 			}
-			
+
 			# What?
 			if ($result -ne 1) {
 				Write-Verbose "Remoting to $computerName returned an unexpected result."
@@ -7865,10 +7865,10 @@ function Global:Invoke-RemoteScript {
 			}
 			Return $true
 		}
-		
+
 		# Be Verbose
-		Write-Verbose "Validating prereqs for remote script execution..."
-		
+		Write-Verbose 'Validating prereqs for remote script execution...'
+
 		if (-not (Test-Path $Folder)) {
 			throw 'Folder path does not exist'
 		} elseif (-not (Test-Path $Script)) {
@@ -7876,26 +7876,26 @@ function Global:Invoke-RemoteScript {
 		} elseif ((Get-ItemProperty -Path $Script).Extension -ne '.ps1') {
 			throw 'Script specified is not a Powershell script'
 		}
-		
+
 		$ScriptName = ($Script | Split-Path -Leaf)
 		$RemoteFolderPath = ($Folder | Split-Path -Leaf)
 		$RemoteScriptPath = "$Drive`:\$RemoteFolderPath\$ScriptName"
 	}
-	
+
 	PROCESS {
 		# Be Verbose
 		Write-Verbose "Copying the folder $Folder to the remote computer $Computer..."
-		
+
 		Copy-Item $Folder -Recurse "\\$Computer\$Drive`$" -Force
-		
+
 		# Be Verbose
 		Write-Verbose "Copying the script $ScriptName to the remote computer $Computer..."
-		
+
 		Copy-Item $Script "\\$Computer\$Drive`$\$RemoteFolderPath" -Force
-		
+
 		# Be Verbose
 		Write-Verbose "Executing $RemoteScriptPath on the remote computer $Computer..."
-		
+
 		([WMICLASS]"\\$Computer\Root\CIMV2:Win32_Process").create("powershell.exe -File $RemoteScriptPath -NonInteractive -NoProfile")
 	}
 }
@@ -7940,7 +7940,7 @@ function Invoke-VisualEditor {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -7948,12 +7948,12 @@ function Invoke-VisualEditor {
 		[Alias('File')]
 		[System.String]$args
 	)
-	
+
 	PROCESS {
 		# Call the newly set Editor
 		if (-not ($VisualEditor)) {
 			# Aw SNAP! The VisualEditor is not configured...
-			Write-Error -Message:"System is not configured well! The Visual Editor is not given..." -ErrorAction:Stop
+			Write-Error -Message:'System is not configured well! The Visual Editor is not given...' -ErrorAction:Stop
 		} else {
 			# Yeah! Do it...
 			if (-not ($args)) {
@@ -7967,7 +7967,7 @@ function Invoke-VisualEditor {
 	}
 }
 
-Function Global:Convert-IPToBinary {
+function Convert-IPToBinary {
 <#
 	.SYNOPSIS
 		Converts an IP address string to it's binary string equivalent
@@ -7993,7 +7993,7 @@ Function Global:Convert-IPToBinary {
 	.NOTES
 		Works with IPv4 addresses only!
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([psobject])]
 	param
@@ -8006,42 +8006,42 @@ Function Global:Convert-IPToBinary {
 		[Alias('IPAddress')]
 		[String]$IP
 	)
-	
+
 	BEGIN {
 		$Binary = $null
 		$Result = $null
 		$SingleIP = $null
 	}
-	
+
 	PROCESS {
 		foreach ($SingleIP in $IP) {
 			try {
-				$SingleIP.split(".") | ForEach-Object { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, "0")) }
+				$SingleIP.split('.') | ForEach-Object { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
 			} catch [System.Exception] {
 				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
-				
+
 				# Still here? Make sure we are done!
 				break
-				
+
 				# Aw Snap! We are still here? Fix that the hard way...
 				exit 1
 			} catch {
 				Write-Error -Message "Could not convert $SingleIP!" -ErrorAction:Stop
-				
+
 				# Still here? Make sure we are done!
 				break
-				
+
 				# Aw Snap! We are still here? Fix that the hard way...
 				exit 1
 			}
-			
+
 			$Result = New-Object PSObject -Property @{
 				IPAddress = $SingleIP
 				Binary = $Binary
 			}
 		}
 	}
-	
+
 	END {
 		Write-Output $Result
 	}
@@ -8107,7 +8107,7 @@ function Convert-IPtoDecimal {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([psobject])]
 	param
@@ -8119,16 +8119,16 @@ function Convert-IPtoDecimal {
 		[Alias('IP')]
 		[System.String]$IPAddress
 	)
-	
+
 	BEGIN {
 		# Dummy block - We so nothing here
 	}
-	
+
 	PROCESS {
 		# OK make sure the we have a string here!
 		# Then we split everthing based on the DOTs.
 		[String[]]$IP = $IPAddress.Split('.')
-		
+
 		# Create a new object and transform it to Decimal
 		$Object = New-Object -TypeName psobject -Property (@{
 			'IPAddress' = $($IPAddress)
@@ -8144,7 +8144,7 @@ function Convert-IPtoDecimal {
 			)
 		})
 	}
-	
+
 	END {
 		# Dump the info to the console
 		Write-Output $Object
@@ -8197,7 +8197,7 @@ function Check-IPaddress {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([bool])]
 	param
@@ -8213,12 +8213,12 @@ function Check-IPaddress {
 		[Alias('IP')]
 		[System.String]$IPAddress
 	)
-	
+
 	PROCESS {
 		# Use the .NET Call to figure out if the given address is valid or not.
-		Set-Variable -Name "IsValid" -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
+		Set-Variable -Name 'IsValid' -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
 	}
-	
+
 	END {
 		# Dump the bool value to the console
 		Write-Output $IsValid
@@ -8266,7 +8266,7 @@ function Get-NtpTime {
 	.LINK
 		Source: https://chrisjwarwick.wordpress.com/2012/08/26/getting-ntpsntp-network-time-with-powershell/
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([datetime])]
 	param
@@ -8275,26 +8275,26 @@ function Get-NtpTime {
 		[Alias('NETServer')]
 		[System.String]$Server = 'de.pool.ntp.org'
 	)
-	
+
 	PROCESS {
 		# Construct client NTP time packet to send to specified server
 		# (Request Header: [00=No Leap Warning; 011=Version 3; 011=Client Mode]; 00011011 = 0x1B)
 		[Byte[]]$NtpData = , 0 * 48
 		$NtpData[0] = 0x1B
-		
+
 		# Create the connection
 		$Socket = New-Object Net.Sockets.Socket([Net.Sockets.AddressFamily]::InterNetwork, [Net.Sockets.SocketType]::Dgram, [Net.Sockets.ProtocolType]::Udp)
-		
+
 		# Configure the connection
 		$Socket.Connect($Server, 123)
 		[Void]$Socket.Send($NtpData)
-		
+
 		# Returns length – should be 48
 		[Void]$Socket.Receive($NtpData)
-		
+
 		# Close the connection
 		$Socket.Close()
-		
+
 		<#
 			Decode the received NTP time packet
 
@@ -8303,23 +8303,23 @@ function Get-NtpTime {
 			integer part (top 32 bits) and a fractional part, multiplied by 2^32, in the
 			bottom 32 bits.
 		#>
-		
+
 		# Convert Integer and Fractional parts of 64-bit NTP time from byte array
 		$IntPart = 0
-		
+
 		foreach ($Byte in $NtpData[40..43]) {
 			$IntPart = ($IntPart * 256 + $Byte)
 		}
-		
+
 		$FracPart = 0
-		
+
 		foreach ($Byte in $NtpData[44..47]) {
 			$FracPart = ($FracPart * 256 + $Byte)
 		}
-		
+
 		# Convert to Milliseconds (convert fractional part by dividing value by 2^32)
 		[UInt64]$Milliseconds = $IntPart * 1000 + ($FracPart * 1000 / 0x100000000)
-		
+
 		# Create UTC date of 1 Jan 1900,
 		# add the NTP offset and convert result to local time
 		(New-Object DateTime(1900, 1, 1, 0, 0, 0, [DateTimeKind]::Utc)).AddMilliseconds($Milliseconds).ToLocalTime()
@@ -8356,11 +8356,11 @@ function Invoke-AppendClassPath {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
 		# Do we have a class path?
 		if ([System.String]::IsNullOrEmpty($env:CLASSPATH)) {
@@ -8405,51 +8405,51 @@ function Invoke-JavaLove {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	BEGIN {
 		# Where-Object do we want to search for the Java crap?
 		Set-Variable -Name baseloc -Value $("$env:ProgramFiles\Java\")
 	}
-	
+
 	PROCESS {
 		# Show Java a little love...
 		# And I have no idea why I must do that!
 		if ((Test-Path $baseloc)) {
 			# Include JDK if found
 			Set-Variable -Name sdkdir -Value $(resolve-path "$baseloc\jdk*")
-			
+
 			# Do we have a SDK?
 			if (($sdkdir) -and (Test-Path $sdkdir)) {
 				# Set the enviroment
 				$env:JDK_HOME = $sdkdir
-				
+
 				# Tweak the PATH
 				append-path "$sdkdir\bin"
 			}
-			
+
 			# Include JRE if found
 			$jredir = (resolve-path "$baseloc\jre*")
-			
+
 			# Do we have a JRE?
 			if (($jredir) -and (Test-Path $jredir)) {
 				# Set the enviroment
 				$env:JAVA_HOME = $jredir
-				
+
 				# Tweak the PATH
 				append-path "$jredir\bin"
 			}
-			
+
 			# Update the Classpath
-			Invoke-AppendClassPath "."
+			Invoke-AppendClassPath '.'
 		}
 	}
 }
 
-function Global:Get-MaskedJson {
+function Get-MaskedJson {
 <#
 	.SYNOPSIS
 		Masks all special characters within a JSON File
@@ -8472,7 +8472,7 @@ function Global:Get-MaskedJson {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -8483,13 +8483,13 @@ function Global:Get-MaskedJson {
 				   HelpMessage = 'Regular Formated JSON String or File')]
 		[System.String]$json
 	)
-	
+
 	PROCESS {
 		$json -replace '"', '\"'
 	}
 }
 
-function Global:Get-RegularJson {
+function Get-RegularJson {
 <#
 	.SYNOPSIS
 		Converts a C# dumped JSON to regular JSON
@@ -8511,7 +8511,7 @@ function Global:Get-RegularJson {
 	.NOTES
 		Additional information about the function.
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -8522,7 +8522,7 @@ function Global:Get-RegularJson {
 				   HelpMessage = 'C# formated JSON (The one with mased characters)')]
 		[System.String]$csjson
 	)
-	
+
 	PROCESS {
 		$csjson -replace '\\"', '"'
 	}
@@ -8555,21 +8555,21 @@ function Invoke-PowerLL {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Alias('Directory')]
-		$dir = ".",
+		$dir = '.',
 		[Alias('ShowAll')]
 		$all = $false
 	)
-	
+
 	BEGIN {
 		# Define object
 		Set-Variable -Name origFg -Value $($Host.UI.RawUI.ForegroundColor)
 	}
-	
+
 	PROCESS {
 		# What to do?
 		if ($all) {
@@ -8577,33 +8577,33 @@ function Invoke-PowerLL {
 		} else {
 			Set-Variable -Name toList -Value $(Get-ChildItem $dir)
 		}
-		
+
 		# Define the display colors for given extensions
 		foreach ($Item in $toList) {
 			Switch ($Item.Extension) {
-				".exe" { $Host.UI.RawUI.ForegroundColor = "DarkYellow" }
-				".hta" { $Host.UI.RawUI.ForegroundColor = "DarkYellow" }
-				".cmd" { $Host.UI.RawUI.ForegroundColor = "DarkRed" }
-				".ps1" { $Host.UI.RawUI.ForegroundColor = "DarkGreen" }
-				".html" { $Host.UI.RawUI.ForegroundColor = "Cyan" }
-				".htm" { $Host.UI.RawUI.ForegroundColor = "Cyan" }
-				".7z" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".zip" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".gz" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".rar" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
+				'.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
+				'.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
+				'.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
 				Default { $Host.UI.RawUI.ForegroundColor = $origFg }
 			}
-			
+
 			# All directories a Dark Grey
-			if ($item.Mode.StartsWith("d")) {
-				$Host.UI.RawUI.ForegroundColor = "DarkGray"
+			if ($item.Mode.StartsWith('d')) {
+				$Host.UI.RawUI.ForegroundColor = 'DarkGray'
 			}
-			
+
 			# Dump it
 			$item
 		}
 	}
-	
+
 	END {
 		$Host.UI.RawUI.ForegroundColor = $origFg
 	}
@@ -8631,32 +8631,32 @@ function Reload-PesterModule {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Lets check if the Pester PowerShell Module is installed
 		if (Get-Module -ListAvailable -Name Pester -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) {
 			try {
 				#Make sure we remove the Pester Module (if loaded)
 				Remove-Module -name [P]ester -Force -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-				
+
 				# Import the Pester PowerShell Module in the Global context
 				Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
 			} catch {
 				# Sorry, Pester PowerShell Module is not here!!!
-				Write-Error -Message:"Error: Pester Module was not imported..." -ErrorAction:Stop
-				
+				Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction:Stop
+
 				# Still here? Make sure we are done!
 				break
-				
+
 				# Aw Snap! We are still here? Fix that the hard way...
 				exit 1
 			}
 		} else {
 			# Sorry, Pester PowerShell Module is not here!!!
-			Write-Warning  "Pester Module is not installed! Go to https://github.com/pester/Pester to get it!"
+			Write-Warning  'Pester Module is not installed! Go to https://github.com/pester/Pester to get it!'
 		}
 	}
 }
@@ -8690,16 +8690,16 @@ function Invoke-PowerHelp {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Cleanup the console
 		[System.Console]::Clear()
 		[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
 	}
-	
+
 	PROCESS {
 		# get the Help for given command-let
 		Get-Help $args[0] -full | Out-Host -paging
@@ -8737,7 +8737,7 @@ function Invoke-MakeDirectory {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -8748,7 +8748,7 @@ function Invoke-MakeDirectory {
 		[Alias('dir')]
 		[System.String]$Directory
 	)
-	
+
 	PROCESS {
 		try {
 			# Do it: Create the directory
@@ -8784,17 +8784,17 @@ function Update-SysInfo {
 		Support https://github.com/jhochwald/NETX/issues
 
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Call Companion to Cleanup
 		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
-	
+
 	PROCESS {
 		# Fill Variables with values
 		Set-Variable -Name Operating_System -Scope:Global -Value $(Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -Property LastBootUpTime, TotalVisibleMemorySize, FreePhysicalMemory, Caption, Version, SystemDrive)
@@ -8804,39 +8804,39 @@ function Update-SysInfo {
 		Set-Variable -Name Get_OS_Name -Scope:Global -Value $(${Operating_System}.Caption)
 		Set-Variable -Name Get_Kernel_Info -Scope:Global -Value $(${Operating_System}.Version)
 		Set-Variable -Name Get_Uptime -Scope:Global -Value $("$((${Get_Uptime} = ${Get_Date} - $(${Operating_System}.LastBootUpTime)).Days) days, $(${Get_Uptime}.Hours) hours, $(${Get_Uptime}.Minutes) minutes")
-		Set-Variable -Name Get_Shell_Info -Scope:Global -Value $("{0}.{1}" -f ${PSVersionTable}.PSVersion.Major, ${PSVersionTable}.PSVersion.Minor)
+		Set-Variable -Name Get_Shell_Info -Scope:Global -Value $('{0}.{1}' -f ${PSVersionTable}.PSVersion.Major, ${PSVersionTable}.PSVersion.Minor)
 		Set-Variable -Name Get_CPU_Info -Scope:Global -Value $(${Processor}.Name -replace '\(C\)', '' -replace '\(R\)', '' -replace '\(TM\)', '' -replace 'CPU', '' -replace '\s+', ' ')
 		Set-Variable -Name Get_Process_Count -Scope:Global -Value $((Get-Process).Count)
 		Set-Variable -Name Get_Current_Load -Scope:Global -Value $(${Processor}.LoadPercentage)
-		Set-Variable -Name Get_Memory_Size -Scope:Global -Value $("{0}mb/{1}mb Used" -f (([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)) - ([math]::round(${Operating_System}.FreePhysicalMemory/1KB))), ([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)))
-		Set-Variable -Name Get_Disk_Size -Scope:Global -Value $("{0}gb/{1}gb Used" -f (([math]::round(${Logical_Disk}.Size/1GB)) - ([math]::round(${Logical_Disk}.FreeSpace/1GB))), ([math]::round(${Logical_Disk}.Size/1GB)))
-		
+		Set-Variable -Name Get_Memory_Size -Scope:Global -Value $('{0}mb/{1}mb Used' -f (([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)) - ([math]::round(${Operating_System}.FreePhysicalMemory/1KB))), ([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)))
+		Set-Variable -Name Get_Disk_Size -Scope:Global -Value $('{0}gb/{1}gb Used' -f (([math]::round(${Logical_Disk}.Size/1GB)) - ([math]::round(${Logical_Disk}.FreeSpace/1GB))), ([math]::round(${Logical_Disk}.Size/1GB)))
+
 		# Do we have the NET-Experts Base Module?
 		if ((Get-Command Get-NETXCoreVer -ErrorAction:SilentlyContinue)) {
 			Set-Variable -Name MyPoSHver -Scope:Global -Value $(Get-NETXCoreVer -s)
 		} else {
-			Set-Variable -Name MyPoSHver -Scope:Global -Value $("Unknown")
+			Set-Variable -Name MyPoSHver -Scope:Global -Value $('Unknown')
 		}
-		
+
 		# Are we Admin?
-		If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-			Set-Variable -Name AmIAdmin -Scope:Global -Value $("(User)")
+		If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+			Set-Variable -Name AmIAdmin -Scope:Global -Value $('(User)')
 		} else {
-			Set-Variable -Name AmIAdmin -Scope:Global -Value $("(Admin)")
+			Set-Variable -Name AmIAdmin -Scope:Global -Value $('(Admin)')
 		}
-		
+
 		# Is this a Virtual or a Real System?
 		if ((Get-Command Get-IsVirtual -ErrorAction:SilentlyContinue)) {
 			if (Get-IsVirtual) {
-				Set-Variable -Name IsVirtual -Scope:Global -Value $("(Virtual)")
+				Set-Variable -Name IsVirtual -Scope:Global -Value $('(Virtual)')
 			} else {
-				Set-Variable -Name IsVirtual -Scope:Global -Value $("(Real)")
+				Set-Variable -Name IsVirtual -Scope:Global -Value $('(Real)')
 			}
 		} else {
 			# No idea what to do without the command-let!
 			Remove-Variable IsVirtual -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
-		
+
 	<#
 		# This is the old way (Will be removed soon)
 		if (Get-adminuser -ErrorAction:SilentlyContinue) {
@@ -8849,12 +8849,12 @@ function Update-SysInfo {
 			}
 		}
 	#>
-		
+
 		# What CPU type do we have here?
 		if ((Check-SessionArch -ErrorAction:SilentlyContinue)) {
 			Set-Variable -Name CPUtype -Scope:Global -Value $(Check-SessionArch)
 		}
-		
+
 		# Define object
 		Set-Variable -Name MyPSMode -Scope:Global -Value $($host.Runspace.ApartmentState)
 	}
@@ -8878,10 +8878,10 @@ function Clean-SysInfo {
 	.NOTES
 
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Cleanup old objects
 		Remove-Variable Operating_System -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -8931,89 +8931,89 @@ function Get-MOTD {
 
 		I moved some stuff in a separate function to make it reusable
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Update the Infos
 		Update-SysInfo
 	}
-	
+
 	PROCESS {
 		# Write to the Console
-		Write-Host -Object ("")
-		Write-Host -Object ("")
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("    Date/Time: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('')
+		Write-Host -Object ('')
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('    Date/Time: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Date}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("         User: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('         User: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${env:UserName} ${AmIAdmin}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("         Host: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('         Host: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${env:ComputerName}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("           OS: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('           OS: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_OS_Name}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("       Kernel: ") -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("NT ") -NoNewline -ForegroundColor Gray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('       Kernel: ') -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('NT ') -NoNewline -ForegroundColor Gray
 		Write-Host -Object ("${Get_Kernel_Info} - ${CPUtype}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Red
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Green
-		Write-Host -Object ("       Uptime: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
+		Write-Host -Object ('       Uptime: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Uptime}") -ForegroundColor Gray
-		Write-Host -Object ("") -NoNewline
-		Write-Host -Object ("                                  NETX PoSH: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('') -NoNewline
+		Write-Host -Object ('                                  NETX PoSH: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${MyPoSHver} (${localDomain} - ${environment})") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("        Shell: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('        Shell: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("Powershell ${Get_Shell_Info} - ${MyPSMode} Mode") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("          CPU: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('          CPU: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_CPU_Info} ${IsVirtual}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("    Processes: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('    Processes: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Process_Count}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("         Load: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('         Load: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Current_Load}") -NoNewline -ForegroundColor Gray
-		Write-Host -Object ("%") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("       Memory: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('%') -ForegroundColor Gray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('       Memory: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Memory_Size}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Blue
-		Write-Host -Object (" ███████████") -NoNewline -ForegroundColor Yellow
-		Write-Host -Object ("         Disk: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
+		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
+		Write-Host -Object ('         Disk: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Disk_Size}") -ForegroundColor Gray
-		Write-Host -Object ("      ") -NoNewline
-		Write-Host -Object ("")
-		Write-Host -Object ("")
+		Write-Host -Object ('      ') -NoNewline
+		Write-Host -Object ('')
+		Write-Host -Object ('')
 	}
-	
+
 	END {
 		# Call Cleanup
 		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
@@ -9040,49 +9040,49 @@ function Get-SysInfo {
 	.NOTES
 		Based on an idea found here: https://github.com/michalmillar/ps-motd/blob/master/Get-MOTD.ps1
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Update the Infos
 		Update-SysInfo
 	}
-	
+
 	PROCESS {
 		# Write to the Console
-		Write-Host -Object ("")
-		Write-Host -Object ("  Date/Time: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('')
+		Write-Host -Object ('  Date/Time: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Date}") -ForegroundColor Gray
-		Write-Host -Object ("  User:      ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  User:      ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${env:UserName} ${AmIAdmin}") -ForegroundColor Gray
-		Write-Host -Object ("  Host:      ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Host:      ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${env:ComputerName}") -ForegroundColor Gray
-		Write-Host -Object ("  OS:        ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  OS:        ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_OS_Name}") -ForegroundColor Gray
-		Write-Host -Object ("  Kernel:    ") -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("NT ") -NoNewline -ForegroundColor Gray
+		Write-Host -Object ('  Kernel:    ') -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('NT ') -NoNewline -ForegroundColor Gray
 		Write-Host -Object ("${Get_Kernel_Info} - ${CPUtype}") -ForegroundColor Gray
-		Write-Host -Object ("  Uptime:    ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Uptime:    ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Uptime}") -ForegroundColor Gray
-		Write-Host -Object ("  NETX PoSH: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  NETX PoSH: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${MyPoSHver} (${localDomain} - ${environment})") -ForegroundColor Gray
-		Write-Host -Object ("  Shell:     ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Shell:     ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("Powershell ${Get_Shell_Info} - ${MyPSMode} Mode") -ForegroundColor Gray
-		Write-Host -Object ("  CPU:       ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  CPU:       ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_CPU_Info} ${IsVirtual}") -ForegroundColor Gray
-		Write-Host -Object ("  Processes: ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Processes: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Process_Count}") -ForegroundColor Gray
-		Write-Host -Object ("  Load:      ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Load:      ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Current_Load}") -NoNewline -ForegroundColor Gray
-		Write-Host -Object ("%") -ForegroundColor Gray
-		Write-Host -Object ("  Memory:    ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('%') -ForegroundColor Gray
+		Write-Host -Object ('  Memory:    ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Memory_Size}") -ForegroundColor Gray
-		Write-Host -Object ("  Disk:      ") -NoNewline -ForegroundColor DarkGray
+		Write-Host -Object ('  Disk:      ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${Get_Disk_Size}") -ForegroundColor Gray
-		Write-Host -Object ("")
+		Write-Host -Object ('')
 	}
-	
+
 	END {
 		# Call Cleanup
 		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
@@ -9132,14 +9132,14 @@ function Get-MyLS {
 		Support https://github.com/jhochwald/NETX/issues
 
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Alias('Location')]
 		[System.String]$loc = '.'
 	)
-	
+
 	PROCESS {
 		# Execute GCI
 		Get-ChildItem -Force -att !a "$loc"
@@ -9181,7 +9181,7 @@ function New-BasicAuthHeader {
 	.NOTES
 		Very basic for now!
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -9199,23 +9199,23 @@ function New-BasicAuthHeader {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$password
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$BasicAuthHeader = $null
 	}
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("BasicAuthHeader", "Create")) {
-			$BasicAuthHeader = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(("{0}:{1}" -f $user, $password)))
+		if ($pscmdlet.ShouldProcess('BasicAuthHeader', 'Create')) {
+			$BasicAuthHeader = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(('{0}:{1}' -f $user, $password)))
 		}
 	}
-	
+
 	END {
 		if ($BasicAuthHeader) {
 			Write-Output $BasicAuthHeader
 		}
-		
+
 		# Cleanup
 		$BasicAuthHeader = $null
 		$user = $null
@@ -9277,7 +9277,7 @@ function New-Gitignore {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -9285,52 +9285,52 @@ function New-Gitignore {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'The Source for the .gitignore')]
-		[System.String]$Source = "https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore"
+		[System.String]$Source = 'https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore'
 	)
-	
+
 	BEGIN {
 		$GitIgnore = "$PWD\.gitignore"
 	}
-	
+
 	PROCESS {
 		if (Test-Path $GitIgnore) {
-			Write-Warning "You already have a .gitignore in this dir."
-			Write-Output ""
-			Write-Output "Fetch a fresh one from GitHub?"
-			
-			$Answer = ([Console]::ReadKey("NoEcho,IncludeKeyDown"))
-			
-			if ($Answer.Key -ne "Enter" -and $Answer.Key -ne "y") {
-				Write-Output ""
-				Write-Output "Existing .gitignore will not be changed."
+			Write-Warning 'You already have a .gitignore in this dir.'
+			Write-Output ''
+			Write-Output 'Fetch a fresh one from GitHub?'
+
+			$Answer = ([Console]::ReadKey('NoEcho,IncludeKeyDown'))
+
+			if ($Answer.Key -ne 'Enter' -and $Answer.Key -ne 'y') {
+				Write-Output ''
+				Write-Output 'Existing .gitignore will not be changed.'
 				return
 			}
-			
-			Write-Output ""
-			Write-Host "Removing existing .gitignore."
-			
+
+			Write-Output ''
+			Write-Host 'Removing existing .gitignore.'
+
 			try {
 				(Remove-Item -Path "$PWD\.gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop) > $null 2>&1 3>&1
 			} catch {
-				Write-Output ""
-				Write-Output ""
+				Write-Output ''
+				Write-Output ''
 				Write-Warning "Unable to remove existing $PWD\.gitignore"
 				break
 			}
 		}
-		
-		Write-Output ""
+
+		Write-Output ''
 		Write-Output "Creating $PWD\.gitignore"
-		
+
 		try {
 			$wc = (New-Object System.Net.WebClient)
-			$wc.DownloadString($Source) | New-Item -itemtype file -Path $PWD -Name ".gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
-			
-			Write-Output ""
+			$wc.DownloadString($Source) | New-Item -itemtype file -Path $PWD -Name '.gitignore' -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
+
+			Write-Output ''
 			Write-Output "$PWD\.gitignore successfully created."
 		} catch {
-			Write-Output ""
-			Write-Output ""
+			Write-Output ''
+			Write-Output ''
 			Write-Warning "Unable to create $PWD\.gitignore"
 		}
 	}
@@ -9364,16 +9364,16 @@ function New-Guid {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	BEGIN {
 		# Define object via NET
 		[System.Guid]$guidObject = [System.Guid]::NewGuid()
 	}
-	
+
 	PROCESS {
 		# Dump the new Object
 		Write-Output "$($guidObject.Guid)"
@@ -9429,14 +9429,14 @@ function Open-InternetExplorer {
 		It needs his companion: Add-NativeHelperType
 		Based on a snippet from Crippledsmurf
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'The URL you would like to open in Internet Explorer')]
-		[System.String]$Url = "http://support.NET-Experts.net",
+		[System.String]$Url = 'http://support.NET-Experts.net',
 		[Parameter(HelpMessage = 'Should the new Internet Explorer start in the foreground? The default is YES.')]
 		[Alias('fg')]
 		[switch]$Foreground = $true,
@@ -9450,33 +9450,33 @@ function Open-InternetExplorer {
 			Add-NativeHelperType
 		}
 	}
-	
+
 	PROCESS {
 		# Initiate a new IE
-		$internetExplorer = New-Object -com "InternetExplorer.Application"
-		
+		$internetExplorer = New-Object -com 'InternetExplorer.Application'
+
 		# The URL to open
 		$internetExplorer.navigate($Url)
-		
+
 		# Should is be Visible?
 		$internetExplorer.Visible = $true
-		
+
 		# STart un fullscreen?
 		$internetExplorer.FullScreen = $FullScreen
-		
+
 		# Here is the Magic!
 		if ($Foreground) {
 			[NativeHelper]::SetForeground($internetExplorer.HWND) > $null 2>&1 3>&1
 		}
 	}
-	
+
 	END {
 		# Be verbose
 		Write-Verbose -Message "$internetExplorer"
 	}
 }
 
-function Global:Add-AppendPath {
+function Add-AppendPath {
 <#
 	.SYNOPSIS
 		Appends a given folder (Directory) to the Path
@@ -9509,22 +9509,22 @@ function Global:Add-AppendPath {
 				   HelpMessage = 'Path to add to the system path')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Folder')]
-		[System.String]$Pathlist = "C:\scripts\PowerShell\"
+		[System.String]$Pathlist = 'C:\scripts\PowerShell\'
 	)
-	
+
 	PROCESS {
 		foreach ($Path in $Pathlist) {
 			# Save the Path
 			$OriginalPaths = ($env:Path)
-			
+
 			# Check if the given Folder is already in the Path!
-			$ComparePath = ("*" + $Path + "*")
-			
+			$ComparePath = ('*' + $Path + '*')
+
 			if (-not ($OriginalPaths -like $ComparePath)) {
 				# Nope, so we add the folder to the Path!
-				$env:Path = ($env:Path + ";" + $BasePath)
+				$env:Path = ($env:Path + ';' + $BasePath)
 			}
-			
+
 			# Cleanup
 			$ComparePath = $null
 			$OriginalPaths = $null
@@ -9532,7 +9532,7 @@ function Global:Add-AppendPath {
 	}
 }
 
-function Global:Remove-FromPath {
+function Remove-FromPath {
 <#
 	.SYNOPSIS
 		Removes given Directory or Directories from the PATH
@@ -9556,7 +9556,7 @@ function Global:Remove-FromPath {
 	.NOTES
 		Just a little helper function
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -9564,18 +9564,18 @@ function Global:Remove-FromPath {
 		[ValidateNotNullOrEmpty()]
 		[System.String[]]$Pathlist
 	)
-	
+
 	PROCESS {
 		foreach ($Path in $Pathlist) {
 			$path = @() + $path
-			$paths = ($env:path -split ";")
+			$paths = ($env:path -split ';')
 			$paths = ($paths | Where-Object { $path -notcontains $_ })
-			$env:path = $paths -join ";"
+			$env:path = $paths -join ';'
 		}
 	}
 }
 
-function Global:Out-ColorMatchInfo {
+function Out-ColorMatchInfo {
 <#
 	.Synopsis
 		Highlights MatchInfo objects similar to the output from grep.
@@ -9593,7 +9593,7 @@ function Global:Out-ColorMatchInfo {
 	.LINK
 		Source http://poshcode.org/1095
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -9603,53 +9603,71 @@ function Global:Out-ColorMatchInfo {
 				   HelpMessage = 'Matching word')]
 		[Microsoft.PowerShell.Commands.MatchInfo]$match
 	)
-	
+
 	BEGIN {
-		function Get-RelativePath([string]$path) {
+		function Get-RelativePath {
+     param
+     (
+       [string]
+       $path
+     )
+
 			$path = $path.Replace($pwd.Path, '')
-			
+
 			if ($path.StartsWith('\') -and (-not $path.StartsWith('\\'))) {
 				$path = $path.Substring(1)
 			}
-			
+
 			$path
 		}
-		
-		function Write-PathAndLine($match) {
+
+		function Write-PathAndLine {
+     param
+     (
+       [Object]
+       $match
+     )
+
 			Write-Host (Get-RelativePath $match.Path) -foregroundColor White -nonewline
 			Write-Host ':' -foregroundColor Cyan -nonewline
 			Write-Host $match.LineNumber -foregroundColor DarkYellow
 		}
-		
-		function Write-HighlightedMatch($match) {
+
+		function Write-HighlightedMatch {
+     param
+     (
+       [Object]
+       $match
+     )
+
 			$index = 0
-			
+
 			foreach ($m in $match.Matches) {
 				Write-Host $match.Line.SubString($index, $m.Index - $index) -nonewline
 				Write-Host $m.Value -ForegroundColor Red -nonewline
 				$index = $m.Index + $m.Length
 			}
-			
+
 			if ($index -lt $match.Line.Length) {
 				Write-Host $match.Line.SubString($index) -nonewline
 			}
 			''
 		}
 	}
-	
+
 	PROCESS {
 		Write-PathAndLine $match
-		
+
 		$match.Context.DisplayPreContext
-		
+
 		Write-HighlightedMatch $match
-		
+
 		$match.Context.DisplayPostContext
 		''
 	}
 }
 
-function Global:Find-String {
+function Find-String {
 <#
 	.Synopsis
 		Searches text files by pattern and displays the results.
@@ -9685,27 +9703,27 @@ function Global:Find-String {
 		http://weblogs.asp.net/whaggard/archive/2007/03/23/powershell-script-to-find-strings-and-highlight-them-in-the-output.aspx
 		http://poshcode.org/426
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true)]
 		[regex]$pattern,
-		[string[]]$include = "*",
+		[string[]]$include = '*',
 		[switch]$recurse = $true,
 		[switch]$caseSensitive = $false,
-		[string[]]$directoryExclude = "x{999}",
+		[string[]]$directoryExclude = 'x{999}',
 		[int[]]$context = 0
 	)
-	
+
 	BEGIN {
-		if ((-not $caseSensitive) -and (-not $pattern.Options -match "IgnoreCase")) {
-			$pattern = New-Object regex $pattern.ToString(), @($pattern.Options, "IgnoreCase")
+		if ((-not $caseSensitive) -and (-not $pattern.Options -match 'IgnoreCase')) {
+			$pattern = New-Object regex $pattern.ToString(), @($pattern.Options, 'IgnoreCase')
 		}
 	}
-	
+
 	PROCESS {
-		$allExclude = $directoryExclude -join "|"
+		$allExclude = $directoryExclude -join '|'
 		Get-ChildItem -recurse:$recurse -include:$include | Where-Object { $_.FullName -notmatch $allExclude } | Select-String -caseSensitive:$caseSensitive -pattern:$pattern -AllMatches -context $context | Out-ColorMatchInfo
 	}
 }
@@ -9734,13 +9752,13 @@ function PoSHModuleLoader {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Load some PoSH modules
-		(Get-Module -ListAvailable | Where-Object { $_.ModuleType -eq "Script" } | Import-Module -DisableNameChecking -Force -Scope Global -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+		(Get-Module -ListAvailable | Where-Object { $_.ModuleType -eq 'Script' } | Import-Module -DisableNameChecking -Force -Scope Global -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 	}
 }
 
@@ -9783,7 +9801,7 @@ function Get-sessionfile {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -9793,7 +9811,7 @@ function Get-sessionfile {
 		[Alias('Session')]
 		[System.String]$sessionName
 	)
-	
+
 	PROCESS {
 		# DUMP
 		Return "$([io.path]::GetTempPath())$sessionName"
@@ -9846,7 +9864,7 @@ function export-session {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -9856,20 +9874,20 @@ function export-session {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$sessionName = "session-$(Get-date -f yyyyMMddhh)"
 	)
-	
+
 	BEGIN {
 		# Define object
 		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
 	}
-	
+
 	PROCESS {
 		#
 		(Get-Location).Path > "$file-pwd.ps1session"
-		
+
 		#
 		Get-history | export-csv "$file-hist.ps1session"
 	}
-	
+
 	END {
 		# Dump what we have
 		Write-Output "Session $sessionName saved"
@@ -9913,7 +9931,7 @@ function import-session {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -9923,12 +9941,12 @@ function import-session {
 		[Alias('Session')]
 		[System.String]$sessionName
 	)
-	
+
 	BEGIN {
 		# Define object
 		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
 	}
-	
+
 	PROCESS {
 		# What do we have?
 		if (-not [io.file]::Exists("$file-pwd.ps1session")) {
@@ -9940,7 +9958,7 @@ function import-session {
 	}
 }
 
-function Global:Enable-WinRM {
+function Enable-WinRM {
 <#
 	.SYNOPSIS
 		Enables Remote PowerShell
@@ -9964,36 +9982,36 @@ function Global:Enable-WinRM {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
 		try {
 			Enable-PSRemoting -Force -Confirm:$false
 		} catch {
-			Write-Error "Unable to enable PowerShell Remoting"
+			Write-Error 'Unable to enable PowerShell Remoting'
 			break
 		}
-		
+
 		try {
 			Set-Item wsman:\localhost\client\trustedhosts * -Force -Confirm:$false
 		} catch {
-			Write-Error "Unable to set trusted hosts for PowerShell Remoting"
+			Write-Error 'Unable to set trusted hosts for PowerShell Remoting'
 			break
 		}
-		
+
 		try {
 			Restart-Service WinRM -Force
 		} catch {
-			Write-Error "Restart of WinRM service failed!"
+			Write-Error 'Restart of WinRM service failed!'
 			break
 		}
 	}
 }
 
-function Global:Get-NewPsSession {
+function Get-NewPsSession {
 <#
 	.SYNOPSIS
 		Create a session and the given credentials are used
@@ -10029,7 +10047,7 @@ function Global:Get-NewPsSession {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -10043,13 +10061,13 @@ function Global:Get-NewPsSession {
 		[ValidateNotNullOrEmpty()]
 		$PsCredentials = ($credentials)
 	)
-	
+
 	PROCESS {
 		New-PSSession -ComputerName $computerName -Credential $credencial
 	}
 }
 
-function Global:Set-CurrentSession {
+function Set-CurrentSession {
 <#
 	.SYNOPSIS
 		Make the Session globally available
@@ -10075,7 +10093,7 @@ function Global:Set-CurrentSession {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -10083,13 +10101,13 @@ function Global:Set-CurrentSession {
 				   HelpMessage = 'Session to use')]
 		$session
 	)
-	
+
 	PROCESS {
-		Set-Variable -Name "remoteSession" -Scope:Global -Value $($session)
+		Set-Variable -Name 'remoteSession' -Scope:Global -Value $($session)
 	}
 }
 
-function Global:Send-Command {
+function Send-Command {
 <#
 	.SYNOPSIS
 		Obsolete command!
@@ -10103,7 +10121,7 @@ function Global:Send-Command {
 	(Set-Alias Send-Command Invoke-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
-function Global:Register-Script {
+function Register-Script {
 <#
 	.SYNOPSIS
 		Obsolete command!
@@ -10216,7 +10234,7 @@ function Send-Pushover {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -10244,45 +10262,45 @@ function Send-Pushover {
 		$url_title,
 		[Parameter(HelpMessage = 'The Push priority (-2 to +2)')]
 		[ValidateSet('-2', '-1', '0', '1', '2')]
-		$priority = "0",
+		$priority = '0',
 		[Parameter(HelpMessage = 'The name of one of the sounds supported by device clients to override the user''s default sound choice')]
 		[ValidateSet('pushover', 'bike', 'bugle', 'cashregister', 'classical', 'cosmic', 'falling', 'gamelan', 'incoming', 'intermission', 'magic', 'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat', 'alien', 'climb', 'persistent', 'echo', 'updown', 'none')]
-		$sound = "pushover"
+		$sound = 'pushover'
 	)
-	
+
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://api.pushover.net/1/messages.json")
-		
+		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/messages.json')
+
 		# Build the body as per https://pushover.net/faq#library
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			user = $User
 			message = $Message
 		})
-		
+
 		# Sent a push to a special Device? Could be a list separated by comma
 		if ($device) {
 			$TmpBody = @{ device = $device }
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Want a Title for this Push?
 		if ($title) {
 			$TmpBody = @{ title = $title }
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Attach a URL to the push?
 		if ($url) {
 			# Encode the URL if possible
@@ -10301,35 +10319,35 @@ function Send-Pushover {
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Give the URL a nice title. Just URLs suck!
 		if ($url_title) {
 			$TmpBody = @{ url_title = $url_title }
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Set a Priotity for this push
 		if ($priority) {
 			$TmpBody = @{ priority = $priority }
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Special Sound?
 		if ($sound) {
 			$TmpBody = @{ sound = $sound }
 			$body = $body + $TmpBody
 			$TmpBody = $null
 		}
-		
+
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
-		
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+
 		# Use the API via RESTful call
 		try {
 			(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
@@ -10338,7 +10356,7 @@ function Send-Pushover {
 				Argh!
 				That was an Exception...
 			#>
-			
+
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
@@ -10346,10 +10364,10 @@ function Send-Pushover {
 			Write-Warning -message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -10416,29 +10434,29 @@ function Get-PushoverUserDeviceInfo {
 	)
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://api.pushover.net/1/users/validate.json")
-		
+		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/users/validate.json')
+
 		# Build the body as per https://pushover.net/faq#library
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			user = $User
 		})
-		
+
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
-		
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+
 		# Use the API via RESTful call
 		try {
 			$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
@@ -10448,7 +10466,7 @@ function Get-PushoverUserDeviceInfo {
 
 				That was an Exception...
 			#>
-			
+
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
@@ -10456,19 +10474,19 @@ function Get-PushoverUserDeviceInfo {
 			Write-Warning -message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
-	
+
 	END {
 		Return ($PushoverUserDeviceInfo.devices)
 	}
 }
 
-function Global:Invoke-RDPSession {
+function Invoke-RDPSession {
 <#
 	.SYNOPSIS
 		Wrapper for the Windows RDP Client
@@ -10519,7 +10537,7 @@ function Global:Invoke-RDPSession {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -10534,46 +10552,46 @@ function Global:Invoke-RDPSession {
 		[Alias('RDPPort')]
 		[System.Int32]$Port = 3389
 	)
-	
+
 	BEGIN {
 		# Test RemoteDesktop Connection is valid or not
 		try {
 			$TestRemoteDesktop = New-Object System.Net.Sockets.TCPClient -ArgumentList $Server, $Port
 		} catch [System.Exception] {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		} catch {
 			# Did not see this one coming!
 			Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
 	}
-	
+
 	PROCESS {
 		# What do we have?
 		if (-not ($Server)) {
-			Write-Error -Message "Mandatory Parameter HOST is missing" -ErrorAction:Stop
+			Write-Error -Message 'Mandatory Parameter HOST is missing' -ErrorAction:Stop
 		} else {
 			if ($TestRemoteDesktop) {
-				$RDPHost2Connect = ($Server + ":" + $Port)
+				$RDPHost2Connect = ($Server + ':' + $Port)
 				Start-Process -FilePath mstsc -ArgumentList "/admin /w:1024 /h:768 /v:$RDPHost2Connect"
 			} else {
 				# Did not see this one coming!
 				Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction:Stop
-				
+
 				# Still here? Make sure we are done!
 				break
-				
+
 				# Aw Snap! We are still here? Fix that the hard way...
 				exit 1
 			}
@@ -10581,7 +10599,7 @@ function Global:Invoke-RDPSession {
 	}
 }
 
-function Global:Get-DefaultMessage {
+function Get-DefaultMessage {
 <#
 	.SYNOPSIS
 		Helper Function to show default message used in VERBOSE/DEBUG/WARNING
@@ -10621,24 +10639,24 @@ function Global:Get-DefaultMessage {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	param
 	(
 		[Parameter(HelpMessage = 'Specifies the message to show')]
 		[System.String]$Message
 	)
-	
+
 	PROCESS {
 		# Set the Variables
-		Set-Variable -Name "DateFormat" -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
-		Set-Variable -Name "FunctionName" -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
-		
+		Set-Variable -Name 'DateFormat' -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
+		Set-Variable -Name 'FunctionName' -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
+
 		# Dump to the console
 		Write-Output "[$DateFormat][$FunctionName] $Message"
 	}
 }
 
-function Global:Disable-RemoteDesktop {
+function Disable-RemoteDesktop {
 <#
 	.SYNOPSIS
 		The function Disable-RemoteDesktop will disable RemoteDesktop on a
@@ -10690,7 +10708,7 @@ function Global:Disable-RemoteDesktop {
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
 #>
-	
+
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 				   ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
@@ -10711,47 +10729,47 @@ function Global:Disable-RemoteDesktop {
 				   HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
 		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
 	)
-	
+
 	PROCESS {
 		if ($PSBoundParameters['CimSession']) {
 			foreach ($Cim in $CimSession) {
 				$CIMComputer = $($Cim.ComputerName).ToUpper()
-				
+
 				try {
 					# Parameters for Get-CimInstance
 					$CIMSplatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						CimSession = $Cim
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessGetCimInstance"
+						ErrorVariable = 'ErrorProcessGetCimInstance'
 					}
-					
+
 					# Parameters for Invoke-CimMethod
 					$CIMInvokeSplatting = @{
-						MethodName = "SetAllowTSConnections"
+						MethodName = 'SetAllowTSConnections'
 						Arguments = @{
 							AllowTSConnections = 0
 							ModifyFirewallException = 0
 						}
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessInvokeCim"
+						ErrorVariable = 'ErrorProcessInvokeCim'
 					}
-					
+
 					# Be verbose
 					Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - disable Remote Desktop (and Modify Firewall Exception")
-					
+
 					Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
 				} catch {
 					Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
-					
+
 					if ($ErrorProcessGetCimInstance) {
 						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")
 					}
 					if ($ErrorProcessInvokeCim) {
 						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")
 					}
-					
+
 					Write-Warning -Message $Error[0].Exception.Message
 				} finally {
 					$CIMSplatting.Clear()
@@ -10759,44 +10777,44 @@ function Global:Disable-RemoteDesktop {
 				}
 			}
 		}
-		
+
 		foreach ($Computer in $ComputerName) {
 			# Set a variable with the computername all upper case
-			Set-Variable -Name "Computer" -Value $($Computer.ToUpper())
-			
+			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
+
 			try {
 				# Be verbose
 				Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
-				
+
 				if (Test-Connection -Computer $Computer -count 1 -quiet) {
 					$Splatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						ComputerName = $Computer
 						ErrorAction = 'Stop'
 						ErrorVariable = 'ErrorProcessGetWmi'
 					}
-					
+
 					if ($PSBoundParameters['Credentials']) {
 						$Splatting.credential = $Credentials
 					}
-					
+
 					# Be verbose
 					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - disable Remote Desktop")
-					
+
 					# disable Remote Desktop
 					[void](Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
-					
+
 					# Disable requirement that user must be authenticated
 					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
 				}
 			} catch {
 				Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
-				
+
 				if ($ErrorProcessGetWmi) {
 					Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")
 				}
-				
+
 				Write-Warning -MEssage $Error[0].Exception.Message
 			} finally {
 				$Splatting.Clear()
@@ -10805,7 +10823,7 @@ function Global:Disable-RemoteDesktop {
 	}
 }
 
-function Global:Enable-RemoteDesktop {
+function Enable-RemoteDesktop {
 <#
 	.SYNOPSIS
 		The function Enable-RemoteDesktop will enable RemoteDesktop on a
@@ -10857,7 +10875,7 @@ function Global:Enable-RemoteDesktop {
 	.NOTES
 		Based on an idea of Francois-Xavier Cat
 #>
-	
+
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 				   ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
@@ -10878,51 +10896,51 @@ function Global:Enable-RemoteDesktop {
 				   HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
 		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
 	)
-	
+
 	PROCESS {
 		if ($PSBoundParameters['CimSession']) {
 			foreach ($Cim in $CimSession) {
 				# Create a Variable with an all upper case computer name
-				Set-Variable -Name "CIMComputer" -Value $($($Cim.ComputerName).ToUpper())
-				
+				Set-Variable -Name 'CIMComputer' -Value $($($Cim.ComputerName).ToUpper())
+
 				try {
 					# Parameters for Get-CimInstance
 					$CIMSplatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						CimSession = $Cim
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessGetCimInstance"
+						ErrorVariable = 'ErrorProcessGetCimInstance'
 					}
-					
+
 					# Parameters for Invoke-CimMethod
 					$CIMInvokeSplatting = @{
-						MethodName = "SetAllowTSConnections"
+						MethodName = 'SetAllowTSConnections'
 						Arguments = @{
 							AllowTSConnections = 1
 							ModifyFirewallException = 1
 						}
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessInvokeCim"
+						ErrorVariable = 'ErrorProcessInvokeCim'
 					}
-					
+
 					# Be verbose
 					Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Enable Remote Desktop (and Modify Firewall Exception")
-					
+
 					#
 					Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
 				} CATCH {
 					# Whoopsie!
 					Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
-					
+
 					if ($ErrorProcessGetCimInstance) {
 						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")
 					}
-					
+
 					if ($ErrorProcessInvokeCim) {
 						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")
 					}
-					
+
 					Write-Warning -Message $Error[0].Exception.Message
 				} FINALLY {
 					# Cleanup
@@ -10931,43 +10949,43 @@ function Global:Enable-RemoteDesktop {
 				}
 			}
 		}
-		
+
 		foreach ($Computer in $ComputerName) {
 			# Creatre a Variable with the all upper case Computername
-			Set-Variable -Name "Computer" -Value $($Computer.ToUpper())
-			
+			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
+
 			try {
 				Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
 				if (Test-Connection -Computer $Computer -count 1 -quiet) {
 					$Splatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						ComputerName = $Computer
 						ErrorAction = 'Stop'
 						ErrorVariable = 'ErrorProcessGetWmi'
 					}
-					
+
 					if ($PSBoundParameters['Credentials']) {
 						$Splatting.credential = $Credentials
 					}
-					
+
 					# Be verbose
 					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - Enable Remote Desktop")
-					
+
 					# Enable Remote Desktop
 					(Get-WmiObject @Splatting).SetAllowTsConnections(1, 1) | Out-Null
-					
+
 					# Disable requirement that user must be authenticated
 					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
 				}
 			} catch {
 				# Whoopsie!
 				Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
-				
+
 				if ($ErrorProcessGetWmi) {
 					Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")
 				}
-				
+
 				Write-Warning -MEssage $Error[0].Exception.Message
 			} finally {
 				# Cleanup
@@ -11004,7 +11022,7 @@ function Reload-Module {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -11016,20 +11034,20 @@ function Reload-Module {
 		[Alias('ModuleName')]
 		[System.String[]]$Module
 	)
-	
+
 	PROCESS {
 		foreach ($SingleModule in $Module) {
 			#Check if the Module is loaded
 			if (((Get-Module -Name $SingleModule -All | Measure-Object).count) -gt 0) {
 				# Unload the Module
 				(Remove-Module -name $SingleModule -Force -confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-				
+
 				# Make sure it is unloaded!
 				(Remove-Module -name $SingleModule -Force -confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 			} else {
 				Write-Warning "The Module $SingleModule was not loaded..."
 			}
-			
+
 			if (((Get-Module -Name $SingleModule -ListAvailable | Measure-Object).count) -gt 0) {
 				# Load the module
 				try {
@@ -11070,7 +11088,7 @@ function Remove-ItemSafely {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -11082,7 +11100,7 @@ function Remove-ItemSafely {
 		[Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
 		[switch]$DeletePermanently
 	)
-	
+
 	PROCESS {
 		foreach ($SingleItem in $Path) {
 			try {
@@ -11093,18 +11111,18 @@ function Remove-ItemSafely {
 					} catch {
 						Write-Warning "Unable to Delete $SingleItem, please check!"
 					}
-					
+
 					# Done!
 					return
 				}
-				
+
 				# Soft Delete
 				$item = (Get-Item $SingleItem)
 				$directoryPath = (Split-Path $item -Parent)
-				$shell = (New-Object -comobject "Shell.Application")
+				$shell = (New-Object -comobject 'Shell.Application')
 				$shellFolder = ($shell.Namespace($directoryPath))
 				$shellItem = ($shellFolder.ParseName($item.Name))
-				$shellItem.InvokeVerb("delete")
+				$shellItem.InvokeVerb('delete')
 			} catch {
 				Write-Warning "Unable to Delete $SingleItem, please check!"
 			}
@@ -11186,7 +11204,7 @@ function Remove-TempFiles {
 	.LINK
 		Source http://powershell.com/cs/blogs/tips/archive/2016/05/27/cleaning-week-deleting-temp-files.aspx
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'High',
 				   SupportsShouldProcess = $true)]
 	[OutputType([System.Object])]
@@ -11201,18 +11219,18 @@ function Remove-TempFiles {
 		[ValidateSet('System', 'User', 'All', IgnoreCase = $true)]
 		[System.String]$Context = 'All'
 	)
-	
+
 	#requires -Version 3
 	#Requires -RunAsAdministrator
-	
+
 	BEGIN {
 		# Look at temp files older than given period
 		$cutoff = ((Get-Date).AddMonths(- $Month))
-		
+
 		# Use an ordered hash table to store logging info
 		$sizes = [Ordered]@{ }
 	}
-	
+
 	PROCESS {
 		if ($Context -eq 'System') {
 			$Target = "$env:windir\temp"
@@ -11222,14 +11240,14 @@ function Remove-TempFiles {
 			$Target = "$env:windir\temp", $env:temp
 		} else {
 			Write-Error -Message "I have no idea what to clean: $($Target)" -ErrorAction:Stop
-			
+
 			# Still here? Make sure we are done!
 			break
-			
+
 			# Aw Snap! We are still here? Fix that the hard way...
 			exit 1
 		}
-		
+
 		if ($pscmdlet.ShouldProcess("$($Context)", "Remove Temp file older then $($Month)")) {
 			<#
 				Mind the Pipes. All in a very long command :-)
@@ -11247,9 +11265,9 @@ function Remove-TempFiles {
 			ForEach-Object {
 				try {
 					$fileSize = ($_.Length)
-					
+
 					Remove-Item -Path $_.FullName -Force -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
-					
+
 					$sizes['Retrieved'] += $fileSize
 				} catch [System.Exception] {
 					Write-Warning "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
@@ -11260,12 +11278,12 @@ function Remove-TempFiles {
 			}
 		}
 	}
-	
+
 	END {
 		# Turn bytes into MB
 		$Sizes['TotalSizeMB'] = [Math]::Round(($Sizes['TotalSize']/1MB), 1)
 		$Sizes['RetrievedMB'] = [Math]::Round(($Sizes['Retrieved']/1MB), 1)
-		
+
 		# Dump the info
 		New-Object -TypeName PSObject -Property $sizes
 	}
@@ -11305,36 +11323,36 @@ function Repair-DotNetFrameWorks {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		# Cleanup
 		Remove-Variable frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Get all NET framework paths and build an array with it
 		$frameworks = @("$env:SystemRoot\Microsoft.NET\Framework")
-		
+
 		# If we run on an 64Bit system (what we should), we add these frameworks to
 		If (Test-Path "$env:SystemRoot\Microsoft.NET\Framework64") {
 			# Add the 64Bit Path to the array
 			$frameworks += "$env:SystemRoot\Microsoft.NET\Framework64"
 		}
-		
+
 		# Loop over all NET frameworks that we found.
 		ForEach ($framework in $frameworks) {
 			# Find the latest version of NGEN.EXE in the current framework path
-			$ngen_path = Join-Path (Join-Path $framework -childPath (Get-ChildItem $framework | Where-Object { ($_.PSIsContainer) -and (Test-Path (Join-Path $_.FullName -childPath "ngen.exe")) } | Sort-Object Name -Descending | Select-Object -First 1).Name) -childPath "ngen.exe"
-			
+			$ngen_path = Join-Path (Join-Path $framework -childPath (Get-ChildItem $framework | Where-Object { ($_.PSIsContainer) -and (Test-Path (Join-Path $_.FullName -childPath 'ngen.exe')) } | Sort-Object Name -Descending | Select-Object -First 1).Name) -childPath 'ngen.exe'
+
 			# Execute the optimization command and suppress the output, we also prevent a new window
 			Write-Output "$ngen_path executeQueuedItems"
-			Start-Process $ngen_path -ArgumentList "executeQueuedItems" -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
+			Start-Process $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		Remove-Variable frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -11371,12 +11389,12 @@ function Reset-Prompt {
 		Set-DefaultPrompt
 		Set-ServicePrompt
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Restore the default")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
 			function Prompt {
 			<#
 				.SYNOPSIS
@@ -11390,37 +11408,37 @@ function Reset-Prompt {
 
 					# Set a default prompt
 			#>
-				
+
 				# Create a default prompt
-				Write-Host ("PS " + (Get-Location) + "> ")
-				
+				Write-Host ('PS ' + (Get-Location) + '> ')
+
 				# Blank
-				Return " "
+				Return ' '
 			}
-			
+
 			<#
 				Also Reset the Window Title
 			#>
 			# Are we elevated or administrator?
 			if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 				# Administrator Session!
-				$host.ui.RawUI.WindowTitle = "Administrator: Windows PowerShell"
+				$host.ui.RawUI.WindowTitle = 'Administrator: Windows PowerShell'
 			} else {
 				# User Session!
-				$host.ui.RawUI.WindowTitle = "Windows PowerShell"
+				$host.ui.RawUI.WindowTitle = 'Windows PowerShell'
 			}
 		}
 	}
-	
+
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Restore the default")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
 			# Execute!
 			Prompt
 		}
 	}
 }
 
-function Global:Get-EncryptSecretText {
+function Get-EncryptSecretText {
 <#
 	.SYNOPSIS
 		Encrypts a given string with a given certificate
@@ -11462,7 +11480,7 @@ function Global:Get-EncryptSecretText {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -11480,33 +11498,33 @@ function Global:Get-EncryptSecretText {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$PlainText
 	)
-	
+
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Security") > $null 2>&1 3>&1
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
 	}
-	
+
 	PROCESS {
 		#Get the certificate
-		Set-Variable -Name "Certificate" -Value $(Get-Item $CertificatePath)
-		
+		Set-Variable -Name 'Certificate' -Value $(Get-Item $CertificatePath)
+
 		# GetBytes .NET
-		Set-Variable -Name "ContentInfo" -Value $(New-Object Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
-		
+		Set-Variable -Name 'ContentInfo' -Value $(New-Object Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
+
 		# Set the secured envelope infos
-		Set-Variable -Name "SecureEnvelope" -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms $ContentInfo)
+		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms $ContentInfo)
 		$SecureEnvelope.Encrypt((New-Object System.Security.Cryptography.Pkcs.CmsRecipient($Certificate)))
-		
+
 		# And here is the secured string
-		Set-Variable -Name "SecretText" -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
+		Set-Variable -Name 'SecretText' -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
 	}
-	
+
 	END {
 		# Dump it
 		Write-Output $SecretText
 	}
 }
 
-function Global:Get-DecryptSecretText {
+function Get-DecryptSecretText {
 <#
 	.SYNOPSIS
 		Decrypts a given String, encrypted by Get-EncryptSecretText
@@ -11543,7 +11561,7 @@ function Global:Get-DecryptSecretText {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -11555,24 +11573,24 @@ function Global:Get-DecryptSecretText {
 		[ValidateNotNullOrEmpty()]
 		[System.String]$EncryptedText
 	)
-	
+
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Security") > $null 2>&1 3>&1
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
 	}
-	
+
 	PROCESS {
 		# Decode the Base64 encoded string back
-		Set-Variable -Name "SecretText" -Value $([Convert]::FromBase64String($EncryptedText))
-		
+		Set-Variable -Name 'SecretText' -Value $([Convert]::FromBase64String($EncryptedText))
+
 		# the secured envelope infos
-		Set-Variable -Name "SecureEnvelope" -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms)
+		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms)
 		$SecureEnvelope.Decode($SecretText)
 		$SecureEnvelope.Decrypt()
-		
+
 		# And here is the human readable string again!
-		Set-Variable -Name "UnicodeContent" -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
+		Set-Variable -Name 'UnicodeContent' -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
 	}
-	
+
 	END {
 		# Dump it
 		Write-Output $UnicodeContent
@@ -11660,16 +11678,16 @@ function Send-HipChat {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(HelpMessage = 'HipChat Auth Token')]
 		[Alias('AUTH_TOKEN')]
-		[System.String]$Token = "8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv",
+		[System.String]$Token = '8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv',
 		[Parameter(HelpMessage = 'HipChat Room Name that get the notification')]
 		[Alias('ROOM_ID')]
-		[System.String]$Room = "Testing",
+		[System.String]$Room = 'Testing',
 		[Parameter(HelpMessage = 'Whether this message should trigger a user notification.')]
 		[boolean]$notify = $false,
 		[Parameter(HelpMessage = 'Background color for message.')]
@@ -11683,46 +11701,46 @@ function Send-HipChat {
 		[Alias('message_format')]
 		[System.String]$Format = 'text'
 	)
-	
+
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "headers" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "post" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Set the Header Variable
-		Set-Variable -Name "headers" -Value $(@{
-			"Authorization" = "Bearer $($Token)"
-			"Content-type" = "application/json"
+		Set-Variable -Name 'headers' -Value $(@{
+			'Authorization' = "Bearer $($Token)"
+			'Content-type' = 'application/json'
 		})
-		
+
 		# Make the content of the Variable all lower case
 		$color = $color.ToLower()
 		$Format = $Format.ToLower()
-		
+
 		# Set the Body Variable, will be converted to JSON then
-		Set-Variable -Name "body" -Value $(@{
-			"color" = "$color"
-			"message_format" = "$Format"
-			"message" = "$Message"
-			"notify" = "$notify"
+		Set-Variable -Name 'body' -Value $(@{
+			'color' = "$color"
+			'message_format' = "$Format"
+			'message' = "$Message"
+			'notify' = "$notify"
 		})
-		
+
 		# Convert the Body Variable to JSON Check if the Server understands Compression, could reduce bandwidth
 		# Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
-		
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+
 		# Set the URI Variable based on the Atlassian HipChat API V2 documentation
-		Set-Variable -Name "uri" -Value $("https://api.hipchat.com/v2/room/" + $Room + "/notification")
-		
+		Set-Variable -Name 'uri' -Value $('https://api.hipchat.com/v2/room/' + $Room + '/notification')
+
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+
 		# Use the API via RESTful call
 		try {
 			# We fake the User Agent here!
@@ -11731,7 +11749,7 @@ function Send-HipChat {
 			<#
 				Argh! Catched an Exception...
 			#>
-			
+
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
@@ -11748,12 +11766,12 @@ function Send-HipChat {
 			#>
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "headers" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "post" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -11815,7 +11833,7 @@ function Send-Packet {
 	.LINK
 		Source: https://github.com/JohnLaska/PowerShell/blob/master/Send-Packet.ps1
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -11827,7 +11845,7 @@ function Send-Packet {
 		[Parameter(Position = 1,
 				   HelpMessage = 'protocol to use, default is IP')]
 		[ValidateSet('IP', 'TCP', 'UDP')]
-		[System.String]$Protocol = "IP",
+		[System.String]$Protocol = 'IP',
 		[Parameter(Mandatory = $true,
 				   Position = 2,
 				   HelpMessage = 'Target Port (against the target)')]
@@ -11844,19 +11862,19 @@ function Send-Packet {
 				   HelpMessage = 'The count, how many packets? (Default is one)')]
 		[System.Int32]$Count = 1
 	)
-	
+
 	PROCESS {
 		$packet = New-Object System.Net.Sockets.Socket(
 		[System.Net.Sockets.AddressFamily]::InterNetwork,
 		[System.Net.Sockets.SocketType]::Raw,
 		[System.Net.Sockets.ProtocolType]::$Protocol
 		)
-		
+
 		$packet.Ttl = ($Ttl)
 	}
 }
 
-function Global:Send-Prowl {
+function Send-Prowl {
 <#
 	.SYNOPSIS
 		Prowl is the Growl client for iOS.
@@ -11927,7 +11945,7 @@ function Global:Send-Prowl {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -11939,10 +11957,10 @@ function Global:Send-Prowl {
 		[System.String]$Event,
 		[Parameter(HelpMessage = 'Description of the Prowl Message')]
 		[ValidateLength(0, 10000)]
-		[System.String]$Description = "",
+		[System.String]$Description = '',
 		[Parameter(HelpMessage = 'Name your Application, e.g. BuildBot')]
 		[ValidateLength(1, 256)]
-		[System.String]$ApplicationName = "PowerShell",
+		[System.String]$ApplicationName = 'PowerShell',
 		[Parameter(HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
 		[ValidateRange(1, 2)]
 		[System.Int32]$Priority = 0,
@@ -11954,23 +11972,23 @@ function Global:Send-Prowl {
 		[ValidateScript({ $_.Length -ge 40 })]
 		[System.String]$apiKey
 	)
-	
+
 	BEGIN {
 		# URL-encode some strings
-		[Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
+		[Reflection.Assembly]::LoadWithPartialName('System.Web') | Out-Null
 		$Event = [web.httputility]::urlencode($Event.Trim())
 		$Description = [web.httputility]::urlencode($Description.Trim())
 		$ApplicationName = [web.httputility]::urlencode($ApplicationName.Trim())
 		$url = [web.httputility]::urlencode($url.Trim())
-		
+
 		# Compose the complete URL
-		$apiBaseUrl = "https://prowl.weks.net/publicapi/add"
+		$apiBaseUrl = 'https://prowl.weks.net/publicapi/add'
 		$ProwlUrl = "$($apiBaseUrl)?apikey=$($apiKey)&application=$($ApplicationName)&event=$($Event)&Description=$($Description)&priority=$($Priority)&url=$($url)"
-		
+
 		# Be Verbose
 		Write-Verbose "Complete URL: $($ProwlUrl)"
 	}
-	
+
 	PROCESS {
 		# Try to send message
 		try {
@@ -11979,22 +11997,22 @@ function Global:Send-Prowl {
 		} catch {
 			# Be Verbose
 			Write-Verbose "Error sending Prowl Message: $($error[0])"
-			
+
 			Return $false
 		}
-		
+
 		# Output what comes back from the API
 		Write-Verbose $webReturn
-		
+
 		If (([xml]$webReturn).prowl.success.code -eq 200) {
 			# Be Verbose
-			Write-Verbose "Prowl message sent OK"
-			
+			Write-Verbose 'Prowl message sent OK'
+
 			Return $true
 		} else {
 			# Be Verbose
 			Write-Verbose "Error sending Prowl Message: $((1$webReturn).prowl.error.code) - $((1$webReturn).prowl.error.innerXml)"
-			
+
 			Return $false
 		}
 	}
@@ -12058,7 +12076,7 @@ function Send-SlackChat {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -12081,34 +12099,34 @@ function Send-SlackChat {
 		[Alias('Name')]
 		[System.String]$BotName = 'Build Bot'
 	)
-	
+
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://slack.com/api/chat.postMessage")
-		
+		Set-Variable -Name 'uri' -Value $('https://slack.com/api/chat.postMessage')
+
 		# Build the body as per https://api.slack.com/methods/chat.postMessage
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			channel = $Channel
 			text = $Message
 			username = $BotName
 			parse = 'full'
 		})
-		
+
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
-		
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
-		
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+
 		# Use the API via RESTful call
 		try {
 			(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
@@ -12117,7 +12135,7 @@ function Send-SlackChat {
 				Argh!
 				That was an Exception...
 			#>
-			
+
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
@@ -12125,9 +12143,9 @@ function Send-SlackChat {
 			Write-Warning -message "Could not send notification to your Slack $Channel"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -12161,33 +12179,33 @@ function Set-AcceptProtocolViolation {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-	
+
 	PROCESS {
 		# Set the SSL Header unsafe parser based on the value from the configuration
 		if ($AcceptProtocolViolation) {
 			# Be Verbose
-			Write-Verbose -Message:"Set the SSL Header unsafe parser based on the value from the configuration"
-			
+			Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
+
 			# Read the existing settings to a variable
-			Set-Variable -Name "netAssembly" -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
-			
+			Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
+
 			# Check if we have something within the Variable
 			if ($netAssembly) {
 				# Set some new values
-				Set-Variable -Name "bindingFlags" -Value $([Reflection.BindingFlags] "Static,GetProperty,NonPublic")
-				Set-Variable -Name "settingsType" -Value $($netAssembly.GetType("System.Net.Configuration.SettingsSectionInternal"))
-				Set-Variable -Name "instance" -Value $($settingsType.InvokeMember("Section", $bindingFlags, $null, $null, @()))
-				
+				Set-Variable -Name 'bindingFlags' -Value $([Reflection.BindingFlags] 'Static,GetProperty,NonPublic')
+				Set-Variable -Name 'settingsType' -Value $($netAssembly.GetType('System.Net.Configuration.SettingsSectionInternal'))
+				Set-Variable -Name 'instance' -Value $($settingsType.InvokeMember('Section', $bindingFlags, $null, $null, @()))
+
 				# Check for the Instance variable
 				if ($instance) {
 					# Change the values if they exist
-					$bindingFlags = "NonPublic", "Instance"
-					Set-Variable -Name "useUnsafeHeaderParsingField" -Value $($settingsType.GetField("useUnsafeHeaderParsing", $bindingFlags))
-					
+					$bindingFlags = 'NonPublic', 'Instance'
+					Set-Variable -Name 'useUnsafeHeaderParsingField' -Value $($settingsType.GetField('useUnsafeHeaderParsing', $bindingFlags))
+
 					# Check for the unsafe HEader Variable
 					if ($useUnsafeHeaderParsingField) {
 						# Looks like the variable exists, set the value...
@@ -12225,7 +12243,7 @@ function Set-Culture {
 	.LINK
 		Use-Culture http://poshcode.org/2226
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -12233,18 +12251,18 @@ function Set-Culture {
 				   Position = 1,
 				   HelpMessage = 'Culture to use')]
 		[ValidateNotNullOrEmpty()]
-		[System.Globalization.CultureInfo]$culture = "en-US"
+		[System.Globalization.CultureInfo]$culture = 'en-US'
 	)
-	
+
 	PROCESS {
 		$OldCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
-		
+
 		[System.Threading.Thread]::CurrentThread.CurrentUICulture = $culture
 		[System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
-		
+
 		$TheCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
 	}
-	
+
 	END {
 		# Be Verbose
 		Write-Verbose -Message "Old: $OldCulture"
@@ -12252,7 +12270,7 @@ function Set-Culture {
 	}
 }
 
-function Global:Set-DebugOn {
+function Set-DebugOn {
 <#
 	.SYNOPSIS
 		Turn Debug on
@@ -12276,21 +12294,21 @@ function Global:Set-DebugOn {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:"Continue" -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
 		Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
 	}
-	
+
 	END {
-		Write-Output "Debug enabled"
+		Write-Output 'Debug enabled'
 	}
 }
 
-function Global:Set-DebugOff {
+function Set-DebugOff {
 <#
 	.SYNOPSIS
 		Turn Debug off
@@ -12308,17 +12326,17 @@ function Global:Set-DebugOff {
 		-----------
 		Turn Debug off
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:"SilentlyContinue" -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
 		Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
 	}
-	
+
 	END {
-		Write-Output "Debug disabled"
+		Write-Output 'Debug disabled'
 	}
 }
 
@@ -12374,7 +12392,7 @@ function Set-Encoding {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -12388,15 +12406,15 @@ function Set-Encoding {
 		[Alias('enc')]
 		[System.String]$encoding
 	)
-	
+
 	BEGIN {
 		# ensure it is a valid path
 		if (-not (Test-Path -Path $path)) {
 			# Aw, Snap!
-			throw "File or directory not found at {0}" -f $path
+			throw 'File or directory not found at {0}' -f $path
 		}
 	}
-	
+
 	PROCESS {
 		# if the path is a file, else a directory
 		if (Test-Path $path -PathType Leaf) {
@@ -12404,42 +12422,42 @@ function Set-Encoding {
 			if ($path -eq $dest) {
 				# get file extension
 				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($path))
-				
+
 				#create destination
-				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ("temp_encoded{0}" -f $ext)))
-				
+				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
+
 				# output to file with encoding
 				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
-				
+
 				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object { Write-Output -inputobject ("{0} encoded {1}" -f $encoding, $_) }
-				
+				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
+
 				# remove the extra file
 				Remove-Item $dest -Force -Confirm:$false
 			} else {
 				# output to file with encoding
 				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
 			}
-			
+
 		} else {
 			# get all the files recursively
 			foreach ($i in Get-ChildItem -Path $path -Recurse) {
 				if ($i.PSIsContainer) {
 					continue
 				}
-				
+
 				# get file extension
 				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($i))
-				
+
 				# create destination
 				Set-Variable -Name dest -Value $("$path\temp_encoded{0}" -f $ext)
-				
+
 				# output to file with encoding
 				Get-Content $i.FullName | Out-File -FilePath $dest -Encoding $encoding -Force
-				
+
 				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object { Write-Output -inputobject ("{0} encoded {1}" -f $encoding, $_) }
-				
+				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
+
 				# remove the extra file
 				Remove-Item $dest -Force -Confirm:$false
 			}
@@ -12484,7 +12502,7 @@ function Set-FolderDate {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
@@ -12493,43 +12511,43 @@ function Set-FolderDate {
 				   Position = 0,
 				   HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
 		[ValidateNotNullOrEmpty()]
-		[System.String[]]$Path = "C:\scripts\PowerShell\log"
+		[System.String[]]$Path = 'C:\scripts\PowerShell\log'
 	)
-	
+
 	BEGIN {
 		# Suppress all error messages!
 		Trap [Exception] {
-			Write-Verbose $("TRAPPED: " + $_.Exception.Message)
-			
+			Write-Verbose $('TRAPPED: ' + $_.Exception.Message)
+
 			# Be Verbose
-			Write-Verbose "Could not change date on folder (Folder open in explorer?)"
-			
+			Write-Verbose 'Could not change date on folder (Folder open in explorer?)'
+
 			# Ignore what happened and just continue with what you are doing...
 			Continue
 		}
 	}
-	
+
 	PROCESS {
 		# Get latest file date in folder
 		$LatestFile = (Get-ChildItem $Path | Sort-Object LastWriteTime -Descending | Select-Object -First 1)
-		
+
 		# Change the date, if needed
 		$Folder = Get-Item $path
-		
+
 		if ($LatestFile.LastWriteTime -ne $Folder.LastWriteTime) {
 			# Be Verbose
 			Write-Verbose "Changing date on folder '$($Path)' to '$($LatestFile.LastWriteTime)' taken from '$($LatestFile)'"
-			
+
 			$Folder.LastWriteTime = ($LatestFile.LastWriteTime)
 		}
 	}
-	
+
 	END {
 		Write-Output $Folder
 	}
 }
 
-function Global:Set-LinuxPrompt {
+function Set-LinuxPrompt {
 <#
 	.SYNOPSIS
 		Make the Prompt more Linux (bash) like
@@ -12575,17 +12593,17 @@ function Global:Set-LinuxPrompt {
 		Set-DefaultPrompt
 		Set-ServicePrompt
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	BEGIN {
 		(Get-PSProvider -PSProvider FileSystem).Home = $env:USERPROFILE
 	}
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set it to a Bash styled one")) {
-			function Global:Prompt {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
+			function Prompt {
 				# Are we elevated or administrator?
 				if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 					# Administrator Session!
@@ -12594,7 +12612,7 @@ function Global:Set-LinuxPrompt {
 					# User Session!
 					$Symbol = '$'
 				}
-				
+
 				if ($PWD.Path -eq $env:USERPROFILE) {
 					$Location = '~'
 				} elseif ($PWD.Path -like "*$env:USERPROFILE*") {
@@ -12602,25 +12620,25 @@ function Global:Set-LinuxPrompt {
 				} else {
 					$Location = "$(($PWD.Path -replace '\\', '/' -split ':')[-1])"
 				}
-				
+
 				$Prompt = "$($env:USERNAME.ToLower())@$($env:COMPUTERNAME.ToLower()) $Location $Symbol "
-				
+
 				# Mirror the Prompt to the window title
 				$Host.UI.RawUI.WindowTitle = ($Prompt)
 				$Prompt
 			}
 		}
 	}
-	
+
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set it to a Bash styled one")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
 			# Execute!
 			Prompt
 		}
 	}
 }
 
-function Global:Set-PowerPrompt {
+function Set-PowerPrompt {
 <#
 	.SYNOPSIS
 		Multicolored prompt with marker for windows started as Admin and
@@ -12674,54 +12692,54 @@ function Global:Set-PowerPrompt {
 		Set-DefaultPrompt
 		Set-ServicePrompt
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set Multicolored")) {
-			function Global:Prompt {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
+			function Prompt {
 				[CmdletBinding()]
 				[OutputType([System.String])]
 				param ()
-				
+
 				# New nice WindowTitle
-				$Host.UI.RawUI.WindowTitle = "PowerShell v" + (Get-host).Version.Major + "." + (Get-host).Version.Minor + " (" + $pwd.Provider.Name + ") " + $pwd.Path
-				
+				$Host.UI.RawUI.WindowTitle = 'PowerShell v' + (Get-host).Version.Major + '.' + (Get-host).Version.Minor + ' (' + $pwd.Provider.Name + ') ' + $pwd.Path
+
 				# Are we elevated or administrator?
 				if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 					# Admin-mark in WindowTitle
-					$Host.UI.RawUI.WindowTitle = "[Admin] " + $Host.UI.RawUI.WindowTitle
-					
+					$Host.UI.RawUI.WindowTitle = '[Admin] ' + $Host.UI.RawUI.WindowTitle
+
 					# Admin-mark on prompt
-					Write-Host "[" -nonewline -foregroundcolor DarkGray
-					Write-Host "Admin" -nonewline -foregroundcolor Red
-					Write-Host "] " -nonewline -foregroundcolor DarkGray
+					Write-Host '[' -nonewline -foregroundcolor DarkGray
+					Write-Host 'Admin' -nonewline -foregroundcolor Red
+					Write-Host '] ' -nonewline -foregroundcolor DarkGray
 				}
-				
+
 				# Show provider name if you are outside FileSystem
-				if ($pwd.Provider.Name -ne "FileSystem") {
-					Write-Host "[" -nonewline -foregroundcolor DarkGray
+				if ($pwd.Provider.Name -ne 'FileSystem') {
+					Write-Host '[' -nonewline -foregroundcolor DarkGray
 					Write-Host $pwd.Provider.Name -nonewline -foregroundcolor Gray
-					Write-Host "] " -nonewline -foregroundcolor DarkGray
+					Write-Host '] ' -nonewline -foregroundcolor DarkGray
 				}
-				
+
 				# Split path and write \ in a gray
-				$pwd.Path.Split("\") | ForEach-Object {
+				$pwd.Path.Split('\') | ForEach-Object {
 					Write-Host $_ -nonewline -foregroundcolor Yellow
-					Write-Host "\" -nonewline -foregroundcolor Gray
+					Write-Host '\' -nonewline -foregroundcolor Gray
 				}
-				
+
 				# Backspace last \ and write >
 				Write-Host "`b>" -nonewline -foregroundcolor Gray
-				
-				Return " "
+
+				Return ' '
 			}
 		}
 	}
-	
+
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set Multicolored")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
 			# Execute!
 			Prompt
 		}
@@ -12776,20 +12794,20 @@ function Set-VisualEditor {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param ()
-	
+
 	PROCESS {
 		# Do we have the Sublime Editor installed?
-		Set-Variable -Name SublimeText -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" "Sublime*") "Sublime_text*"))
-		
+		Set-Variable -Name SublimeText -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" 'Sublime*') 'Sublime_text*'))
+
 		# Check if the GNU licensed Note++ is installed
-		Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" "notepad*") "notepad*"))
-		
+		Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" 'notepad*') 'notepad*'))
+
 		# Do we have it?
 		(resolve-path "${env:ProgramFiles(x86)}\Notepad++\notepad++.exe" -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-		
+
 		# What Editor to use?
 		if (($SublimeText) -and (Test-Path $SublimeText)) {
 			# We have Sublime Editor installed, so we use it
@@ -12799,10 +12817,10 @@ function Set-VisualEditor {
 			Set-Variable -Name VisualEditor -Scope:Global -Value $($NotepadPlusPlus.Path)
 		} else {
 			# No fancy editor, so we use ISE instead
-			Set-Variable -Name VisualEditor -Scope:Global -Value $("PowerShell_ISE.exe")
+			Set-Variable -Name VisualEditor -Scope:Global -Value $('PowerShell_ISE.exe')
 		}
 	}
-	
+
 	END {
 		# Be Verbose
 		Write-Verbose "$VisualEditor"
@@ -12845,7 +12863,7 @@ function Get-ShortDate {
 	.LINK
 		Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -12854,16 +12872,16 @@ function Get-ShortDate {
 				   HelpMessage = 'Make sure it is compatible to File Dates')]
 		[Switch]$FilenameCompatibleFormat
 	)
-	
+
 	PROCESS {
 		if ($FilenameCompatibleFormat) {
 			$Date = (Get-Date)
-			
+
 			# Dump
-			Return (($Date.ToShortDateString()).Replace("/", "-"))
+			Return (($Date.ToShortDateString()).Replace('/', '-'))
 		} else {
 			$Date = (Get-Date)
-			
+
 			# Dump
 			Return ($Date.ToShortDateString())
 		}
@@ -12905,7 +12923,7 @@ function Get-ShortTime {
 	.LINK
 		Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -12914,16 +12932,16 @@ function Get-ShortTime {
 				   HelpMessage = 'Make sure it is compatible to File Timestamp')]
 		[Switch]$FilenameCompatibleFormat
 	)
-	
+
 	PROCESS {
 		if ($FilenameCompatibleFormat) {
 			$Time = (Get-date)
-			
+
 			# Dump
-			Return (($Time.ToShortTimeString()).Replace(":", "-").Replace(" ", "-"))
+			Return (($Time.ToShortTimeString()).Replace(':', '-').Replace(' ', '-'))
 		} else {
 			$Time = (Get-date)
-			
+
 			# Dump
 			Return ($Time.ToShortTimeString())
 		}
@@ -12976,7 +12994,7 @@ function Invoke-WithElevation {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
@@ -12987,15 +13005,15 @@ function Invoke-WithElevation {
 		[Alias('FileName')]
 		[System.String]$file
 	)
-	
+
 	PROCESS {
 		# Define some defaults
 		$sudo = (New-Object System.Diagnostics.ProcessStartInfo)
-		$sudo.Verb = "runas"
+		$sudo.Verb = 'runas'
 		$sudo.FileName = "$pshome\PowerShell.exe"
-		$sudo.windowStyle = "Normal"
+		$sudo.windowStyle = 'Normal'
 		$sudo.WorkingDirectory = (Get-Location)
-		
+
 		# What to execute?
 		if ($file) {
 			if (Test-Path $file) {
@@ -13008,10 +13026,10 @@ function Invoke-WithElevation {
 			$sudo.Arguments = "-executionpolicy unrestricted -NoExit -Command  &{Set-Location '" + (Get-location).Path + "'}"
 		}
 	}
-	
+
 	END {
 		# NET call to execute SuDo
-		if ($pscmdlet.ShouldProcess("$sudo", "Execute elevated")) {
+		if ($pscmdlet.ShouldProcess("$sudo", 'Execute elevated')) {
 			[System.Diagnostics.Process]::Start($sudo) | out-null
 		}
 	}
@@ -13055,7 +13073,7 @@ function tail {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -13066,7 +13084,7 @@ function tail {
 		[ValidateNotNullOrEmpty()]
 		$file
 	)
-	
+
 	PROCESS {
 		if ($f) {
 			# Follow is enabled, dump the last 10 lines and follow the stream
@@ -13117,7 +13135,7 @@ function tail2 {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -13127,12 +13145,12 @@ function tail2 {
 		[Alias('FileName')]
 		$file
 	)
-	
+
 	PROCESS {
 		# Is the File given?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:"Error: File to tail is missing..." -ErrorAction:Stop
+			Write-Error -Message:'Error: File to tail is missing...' -ErrorAction:Stop
 		} else {
 			# tailing the file for you, Sir! ;-)
 			Get-Content $file -Wait
@@ -13181,7 +13199,7 @@ function Test-Method {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -13199,7 +13217,7 @@ function Test-Method {
 		[Alias('functionName')]
 		[System.String]$Function
 	)
-	
+
 	PROCESS {
 		if ($pscmdlet.ShouldProcess("$Function", "Check if loaded from $Module")) {
 			((Get-Command -module $Module | Where-Object { $_.Name -eq "$Function" } | Measure-Object).Count -eq 1)
@@ -13246,7 +13264,7 @@ function Test-ModuleAvailableToLoad {
 	.NOTES
 		Quick helper function
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -13256,12 +13274,12 @@ function Test-ModuleAvailableToLoad {
 				   Position = 0)]
 		[string[]]$modname
 	)
-	
+
 	BEGIN {
 		# Easy, gust check if it exists
 		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 	}
-	
+
 	PROCESS {
 		if (-not ($modtest)) {
 			Return $false
@@ -13313,7 +13331,7 @@ function Test-ProxyBypass {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -13323,22 +13341,22 @@ function Test-ProxyBypass {
 				   HelpMessage = 'URL to check for Proxy Bypass')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('uri')]
-		[System.String]$url = "http://support.NET-Experts.net"
+		[System.String]$url = 'http://support.NET-Experts.net'
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$webclient = $null
 	}
-	
+
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("$url", "Check if direct access is possible")) {
+		if ($pscmdlet.ShouldProcess("$url", 'Check if direct access is possible')) {
 			$webclient = (New-Object System.Net.WebClient)
-			
+
 			Write-Output "$($webclient.Proxy.IsBypassed($url))"
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		$webclient = $null
@@ -13393,7 +13411,7 @@ function Test-RemotePOSH {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -13404,51 +13422,51 @@ function Test-RemotePOSH {
 		[Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
 		[pscredential]$POSHcred
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "ScriptBlock" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "InvokeArgs" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Failures" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Item" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		# Define a dummy ScriptBlock
 		$ScriptBlock = { $env:COMPUTERNAME }
-		
+
 		# Define the Argument List
 		$InvokeArgs = @{
 			ComputerName = $Computer
 			ScriptBlock = $ScriptBlock
 		}
-		
+
 		# Do we have credentials?
 		If ($null -ne $POSHcred) {
 			# Yeah!
 			$InvokeArgs.Credential = $POSHcred
 		}
-		
+
 		# Try to connect
 		Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
-		
+
 		# Loop over the Problems, if we have one... or more?
 		ForEach ($Failure in $Failures) {
 			# Warn the user
 			Write-Warning -Message "Unable to establish remote session with $($Failure.TargetObject)."
 		}
 	}
-	
+
 	END {
 		# Cleanup
-		Remove-Variable -Name "ScriptBlock" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "InvokeArgs" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Failures" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Item" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
-function Global:Test-TCPPort {
+function Test-TCPPort {
 <#
 	.SYNOPSIS
 		TCP Port Ping
@@ -13491,7 +13509,7 @@ function Global:Test-TCPPort {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Boolean])]
 	param
@@ -13513,7 +13531,7 @@ function Global:Test-TCPPort {
 		[ValidateNotNullOrEmpty()]
 		[System.Int32]$TimeOut = 1000
 	)
-	
+
 	BEGIN {
 		# Cleanup
 		$Address = $null
@@ -13521,7 +13539,7 @@ function Global:Test-TCPPort {
 		$Connect = $null
 		$Wait = $null
 	}
-	
+
 	PROCESS {
 		Try {
 			$IP = ([System.Net.Dns]::GetHostAddresses($target))
@@ -13531,13 +13549,13 @@ function Global:Test-TCPPort {
 		} catch {
 			Write-Warning -Message 'Host unreachable'
 		}
-		
+
 		# Wait a few ticks (Just a few!!!)
 		Start-Sleep -m 10
-		
+
 		if ($Connect.IsCompleted) {
 			$Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $false))
-			
+
 			if ($Wait) {
 				$Socket.EndConnect($Connect)
 				$Socket.Close()
@@ -13550,7 +13568,7 @@ function Global:Test-TCPPort {
 			Return $false
 		}
 	}
-	
+
 	END {
 		# Cleanup
 		$Address = $null
@@ -13616,7 +13634,7 @@ function Get-Time {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -13626,12 +13644,12 @@ function Get-Time {
 		[Alias('Command')]
 		$file
 	)
-	
+
 	PROCESS {
 		# Does the file exist?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:"Error: Input is missing but mandatory..." -ErrorAction:Stop
+			Write-Error -Message:'Error: Input is missing but mandatory...' -ErrorAction:Stop
 		} else {
 			# Measure the execution for you, Sir! ;-)
 			Measure-Command { $file }
@@ -13720,7 +13738,7 @@ function Set-FileTime {
 	.LINK
 		Based on this: http://ss64.com/ps/syntax-touch.html
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param
@@ -13739,38 +13757,38 @@ function Set-FileTime {
 		[Parameter(HelpMessage = 'Date to set')]
 		[datetime]$Date
 	)
-	
+
 	PROCESS {
 		# Let us test if the given file exists
 		if (Test-Path $Path) {
 			if ($Path -is [System.IO.FileSystemInfo]) {
-				Set-Variable -Name "FileSystemInfoObjects" -Value $($Path)
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path)
 			} else {
-				Set-Variable -Name "FileSystemInfoObjects" -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
 			}
-			
+
 			# Now we loop over all objects
 			foreach ($fsInfo in $FileSystemInfoObjects) {
-				
-				if (($Date -eq $null) -or ($Date -eq "")) {
+
+				if (($Date -eq $null) -or ($Date -eq '')) {
 					$Date = Get-Date
 				}
-				
+
 				# Set the Access time
 				if ($AccessTime) {
 					$fsInfo.LastAccessTime = $Date
 				}
-				
+
 				# Set the Last Write time
 				if ($WriteTime) {
 					$fsInfo.LastWriteTime = $Date
 				}
-				
+
 				# Set the Creation time
 				if ($CreationTime) {
 					$fsInfo.CreationTime = $Date
 				}
-				
+
 				# On, no parameter given?
 				# We set all time stamps!
 				if (-not ($AccessTime -and $ModificationTime -and $CreationTime)) {
@@ -13782,13 +13800,13 @@ function Set-FileTime {
 		} elseif (-not $NoCreate) {
 			# Let us create the file for ya!
 			Set-Content -Path $Path -Value $null
-			Set-Variable -Name "fsInfo" -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
-			
+			Set-Variable -Name 'fsInfo' -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
+
 			# OK, now we set the date to the given one
 			# We ignore all given parameters here an set all time stamps!
 			# If you want to change it, re-run the command!
-			if (($Date -ne $null) -and ($Date -ne "")) {
-				Set-Variable -Name "Date" -Value $(Get-Date)
+			if (($Date -ne $null) -and ($Date -ne '')) {
+				Set-Variable -Name 'Date' -Value $(Get-Date)
 				$fsInfo.CreationTime = $Date
 				$fsInfo.LastWriteTime = $Date
 				$fsInfo.LastAccessTime = $Date
@@ -13797,7 +13815,7 @@ function Set-FileTime {
 	}
 }
 
-function Global:ConvertTo-UnixDate {
+function ConvertTo-UnixDate {
 <#
 	.SYNOPSIS
 		Convert from DateTime to Unix date
@@ -13835,7 +13853,7 @@ function Global:ConvertTo-UnixDate {
 		Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
 		Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Int32])]
 	param
@@ -13848,21 +13866,21 @@ function Global:ConvertTo-UnixDate {
 				   HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to skip this step.')]
 		[System.Boolean]$UTC = $true
 	)
-	
+
 	BEGIN {
 		# Do we use UTC as Time-Zone?
 		if ($UTC) {
 			$Date = $Date.ToUniversalTime()
 		}
 	}
-	
+
 	PROCESS {
 		$unixEpochStart = (New-Object DateTime 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
 		[System.Int32]($Date - $unixEpochStart).TotalSeconds
 	}
 }
 
-function Global:ConvertFrom-UnixDate {
+function ConvertFrom-UnixDate {
 <#
 	.SYNOPSIS
 		Convert from Unix time to DateTime
@@ -13946,7 +13964,7 @@ function Global:ConvertFrom-UnixDate {
 		Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
 		Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -13958,15 +13976,15 @@ function Global:ConvertFrom-UnixDate {
 				   HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to Return local time.')]
 		[System.Boolean]$UTC = $true
 	)
-	
+
 	BEGIN {
 		# Create the Object
 		$unixEpochStart = (New-Object DateTime 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
-		
+
 		# Default is UTC
 		$Output = ($unixEpochStart.AddSeconds($Date))
 	}
-	
+
 	PROCESS {
 		# Convert to non UTC?
 		if (-not $UTC) {
@@ -13974,7 +13992,7 @@ function Global:ConvertFrom-UnixDate {
 			$Output = ($Output.ToLocalTime())
 		}
 	}
-	
+
 	END {
 		# Dump
 		Write-Output $Output
@@ -14064,7 +14082,7 @@ function ConvertFrom-UrlEncoded {
 	.LINK
 		Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/
 #>
-	
+
 	[CmdletBinding(ConfirmImpact = 'None',
 				   HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/',
 				   SupportsShouldProcess = $true)]
@@ -14077,24 +14095,24 @@ function ConvertFrom-UrlEncoded {
 		[ValidateNotNullOrEmpty()]
 		$InputObject
 	)
-	
+
 	BEGIN {
 		$datBegin = [datetime]::Now
 		[System.String]$fn = ($MyInvocation.MyCommand.Name)
 		$OutputParameter = $null
 	}
-	
+
 	PROCESS {
 		foreach ($Object in $InputObject) {
 			$fReturn = $false
 			$OutputParameter = $null
-			
+
 			$OutputParameter = [System.Web.HttpUtility]::UrlDecode($InputObject)
 			$OutputParameter
 		}
 		$fReturn = $true
 	}
-	
+
 	END {
 		$datEnd = [datetime]::Now
 	}
@@ -14112,20 +14130,20 @@ function ConvertTo-UrlEncoded {
 				   Position = 0)]
 		[System.String]$InputObject
 	)
-	
+
 	BEGIN {
 		$datBegin = [datetime]::Now
 		[System.String]$fn = $MyInvocation.MyCommand.Name;
 	}
-	
+
 	PROCESS {
 		$fReturn = $false
 		$OutputParameter = $null
-		
+
 		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject)
 		Write-Output $OutputParameter
 	}
-	
+
 	END {
 		$datEnd = [datetime]::Now
 	}
@@ -14160,7 +14178,7 @@ function Get-TinyURL {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -14172,17 +14190,17 @@ function Get-TinyURL {
 		[Alias('URL2Tiny')]
 		[System.String]$URL
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "tinyURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'tinyURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "tinyURL" -Value $(Invoke-WebRequest -Uri "http://tinyurl.com/api-create.php?url=$URL" | Select-Object -ExpandProperty Content)
-			
+			Set-Variable -Name 'tinyURL' -Value $(Invoke-WebRequest -Uri "http://tinyurl.com/api-create.php?url=$URL" | Select-Object -ExpandProperty Content)
+
 			# Do we have the TinyURL?
 			if (($tinyURL)) {
 				# Dump to the Console
@@ -14230,7 +14248,7 @@ function Get-IsGdURL {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -14242,17 +14260,17 @@ function Get-IsGdURL {
 		[Alias('URL2GD')]
 		[System.String]$URL
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "isgdURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'isgdURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "isgdURL" -Value $(Invoke-WebRequest -Uri "http://is.gd/api.php?longurl=$URL" | Select-Object -ExpandProperty Content)
-			
+			Set-Variable -Name 'isgdURL' -Value $(Invoke-WebRequest -Uri "http://is.gd/api.php?longurl=$URL" | Select-Object -ExpandProperty Content)
+
 			# Do we have the short URL?
 			if (($isgdURL)) {
 				# Dump to the Console
@@ -14263,7 +14281,7 @@ function Get-IsGdURL {
 			}
 		} catch {
 			# Something bad happed
-			Write-Output "Whoopsie... Houston, we have a problem!"
+			Write-Output 'Whoopsie... Houston, we have a problem!'
 		} finally {
 			# Cleanup
 			Remove-Variable isgdURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -14298,7 +14316,7 @@ function Get-TrImURL {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -14310,17 +14328,17 @@ function Get-TrImURL {
 		[Alias('URL2Trim')]
 		[System.String]$URL
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "trimURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'trimURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "trimURL" -Value $(Invoke-WebRequest -Uri "http://api.tr.im/api/trim_simple?url=$URL" | Select-Object -ExpandProperty Content)
-			
+			Set-Variable -Name 'trimURL' -Value $(Invoke-WebRequest -Uri "http://api.tr.im/api/trim_simple?url=$URL" | Select-Object -ExpandProperty Content)
+
 			# Do we have a trim URL?
 			if (($trimURL)) {
 				# Dump to the Console
@@ -14368,7 +14386,7 @@ function Get-LongURL {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param
@@ -14380,17 +14398,17 @@ function Get-LongURL {
 		[Alias('URL2Exapnd')]
 		[System.String]$URL
 	)
-	
+
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "longURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'longURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
-	
+
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "longURL" -Value $(Invoke-WebRequest -Uri "http://untiny.me/api/1.0/extract?url=$URL&format=text" | Select-Object -ExpandProperty Content)
-			
+			Set-Variable -Name 'longURL' -Value $(Invoke-WebRequest -Uri "http://untiny.me/api/1.0/extract?url=$URL&format=text" | Select-Object -ExpandProperty Content)
+
 			# Do we have the long URL?
 			if (($longURL)) {
 				# Dump to the Console
@@ -14409,7 +14427,7 @@ function Get-LongURL {
 	}
 }
 
-function Global:wc {
+function wc {
 <#
 	.SYNOPSIS
 		Word, line, character, and byte count
@@ -14435,7 +14453,7 @@ function Global:wc {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.Int32])]
 	param
@@ -14443,17 +14461,17 @@ function Global:wc {
 		[Alias('File')]
 		$object
 	)
-	
+
 	BEGIN {
 		# initialize counter for counting number of data from
 		$counter = 0
 	}
-	
+
 	# Process is invoked for every pipeline input
 	PROCESS {
 		if ($_) { $counter++ }
 	}
-	
+
 	END {
 		# if "wc" has an argument passed, ignore pipeline input
 		if ($object) {
@@ -14468,7 +14486,7 @@ function Global:wc {
 	}
 }
 
-function Global:which {
+function which {
 <#
 	.SYNOPSIS
 		Locate a program file in the user's path
@@ -14489,7 +14507,7 @@ function Global:which {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -14498,7 +14516,7 @@ function Global:which {
 		[ValidateNotNullOrEmpty()]
 		$command
 	)
-	
+
 	PROCESS {
 		# Easy: Just use Get-Command ;-)
 		(Get-Command -All $command).Definition
@@ -14531,11 +14549,11 @@ function whoami {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	[OutputType([System.String])]
 	param ()
-	
+
 	PROCESS {
 		# Call the NET function
 		[System.Security.Principal.WindowsIdentity]::GetCurrent().Name
@@ -14564,7 +14582,7 @@ function Write-ToLog {
 	.LINK
 		Support https://github.com/jhochwald/NETX/issues
 #>
-	
+
 	[CmdletBinding()]
 	param
 	(
@@ -14572,13 +14590,13 @@ function Write-ToLog {
 		[Alias('Log')]
 		[System.String]$LogFile
 	)
-	
+
 	BEGIN {
 		# No Logfile?
 		If ($LogFile -ne '') {
 			# UTC Time-stamp
-			Set-Variable -Name "UtcTime" -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
-			
+			Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
+
 			# Check for the LogFile
 			If (Test-Path $LogFile) {
 				# OK, we have a LogFile
@@ -14589,42 +14607,42 @@ function Write-ToLog {
 				Write-Output "Logfile: $LogFile"
 				New-Item -Path $LogFile -ItemType file | Out-Null
 			}
-			
+
 			# Here is our LogFile
-			Set-Variable -Name "MyLogFileName" -Scope:Script -Value $($LogFile)
-			
+			Set-Variable -Name 'MyLogFileName' -Scope:Script -Value $($LogFile)
+
 			# Create a start Header
 			Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
 		}
-		
+
 		# Have a buffer?
 		If (-not ($Script:MyLogBuffer)) {
 			# Nope!
 			$Script:MyLogBuffer = @()
 		}
 	}
-	
+
 	PROCESS {
 		# UTC Time-stamp
-		Set-Variable -Name "UtcTime" -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
-		
+		Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
+
 		# Create the Message Array
 		$messages = @()
-		
+
 		# Fill the messages
 		$messages += ('' + ($_ | Out-String)).TrimEnd().Split("`n")
-		
+
 		# Loop over the messages
 		foreach ($message in $messages) {
 			# Write a line
-			Set-Variable -Name "LogMsg" -Value $($UtcTime + ': ' + ($message -replace "`n|`r", "").TrimEnd())
-			
+			Set-Variable -Name 'LogMsg' -Value $($UtcTime + ': ' + ($message -replace "`n|`r", '').TrimEnd())
+
 			# Inform
 			Write-Output $LogMsg
 			$Script:MyLogBuffer += $LogMsg
 		}
 	}
-	
+
 	END {
 		try {
 			# Dump the buffers
@@ -14633,9 +14651,9 @@ function Write-ToLog {
 			# Whoopsie!
 			Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction:Stop
 		}
-		
+
 		# Remove the Variable
-		Remove-Variable -Name "MyLogBuffer" -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 #endregion Functions
@@ -14644,8 +14662,8 @@ function Write-ToLog {
 
 # Get public function definition files.
 if (Test-Path -Path (Join-Path $PSScriptRoot 'Public')) {
-	$Public = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Public') -Exclude "*.tests.*" -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-	
+	$Public = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Public') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+
 	# Dot source the files
 	foreach ($import in @($Public)) {
 		try {
@@ -14657,13 +14675,13 @@ if (Test-Path -Path (Join-Path $PSScriptRoot 'Public')) {
 }
 
 if ($loadingModule) {
-	Export-ModuleMember -Function "*" -Alias "*" -Cmdlet "*" -Variable "*"
+	Export-ModuleMember -Function '*' -Alias '*' -Cmdlet '*' -Variable '*'
 }
 
 if (Test-Path -Path (Join-Path $PSScriptRoot 'Private')) {
 	# Get public and private function definition files.
-	$Private = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private') -Exclude "*.tests.*" -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-	
+	$Private = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+
 	foreach ($import in @($Private)) {
 		try {
 			. $import.fullname
@@ -14686,108 +14704,136 @@ Pop-Location
 #>
 
 # SIG # Begin signature block
-# MIITegYJKoZIhvcNAQcCoIITazCCE2cCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
+# MIIYpQYJKoZIhvcNAQcCoIIYljCCGJICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmHurP8D8RheVxTdVzo3tXfpf
-# MOeggg4LMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
-# VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
-# BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
-# MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
-# ExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIFRpbWVzdGFt
-# cGluZyBDQSAtIEcyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlO9l
-# +LVXn6BTDTQG6wkft0cYasvwW+T/J6U00feJGr+esc0SQW5m1IGghYtkWkYvmaCN
-# d7HivFzdItdqZ9C76Mp03otPDbBS5ZBb60cO8eefnAuQZT4XljBFcm05oRc2yrmg
-# jBtPCBn2gTGtYRakYua0QJ7D/PuV9vu1LpWBmODvxevYAll4d/eq41JrUJEpxfz3
-# zZNl0mBhIvIG+zLdFlH6Dv2KMPAXCae78wSuq5DnbN96qfTvxGInX2+ZbTh0qhGL
-# 2t/HFEzphbLswn1KJo/nVrqm4M+SU4B09APsaLJgvIQgAIMboe60dAXBKY5i0Eex
-# +vBTzBj5Ljv5cH60JQIDAQABo4HlMIHiMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMB
-# Af8ECDAGAQH/AgEAMB0GA1UdDgQWBBRG2D7/3OO+/4Pm9IWbsN1q1hSpwTBHBgNV
-# HSAEQDA+MDwGBFUdIAAwNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFs
-# c2lnbi5jb20vcmVwb3NpdG9yeS8wMwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2Ny
-# bC5nbG9iYWxzaWduLm5ldC9yb290LmNybDAfBgNVHSMEGDAWgBRge2YaRQ2XyolQ
-# L30EzTSo//z9SzANBgkqhkiG9w0BAQUFAAOCAQEATl5WkB5GtNlJMfO7FzkoG8IW
-# 3f1B3AkFBJtvsqKa1pkuQJkAVbXqP6UgdtOGNNQXzFU6x4Lu76i6vNgGnxVQ380W
-# e1I6AtcZGv2v8Hhc4EvFGN86JB7arLipWAQCBzDbsBJe/jG+8ARI9PBw+DpeVoPP
-# PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
-# IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
-# SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
-# MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
-# R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
-# TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
-# AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
-# oi5fE2IQqVvmc9aSJbF9I+MGs4c6DkPw1wCJU6IRMVIobl1AcjzyCXenSZKX1GyQ
-# oHan/bjcs53yB2AsT1iYAGvTFVTg+t3/gCxfGKaY/9Sr7KFFWbIub2Jd4NkZrItX
-# nKgmK9kXpRDSRwgacCwzi39ogCq1oV1r3Y0CAikDqnw3u7spTj1Tk7Om+o/SWJMV
-# TLktq4CjoyX7r/cIZLB6RA9cENdfYTeqTmvT0lMlnYJz+iz5crCpGTkqUPqp0Dw6
-# yuhb7/VfUfT5CtmXNd5qheYjBEKvAgMBAAGjggFfMIIBWzAOBgNVHQ8BAf8EBAMC
-# B4AwTAYDVR0gBEUwQzBBBgkrBgEEAaAyAR4wNDAyBggrBgEFBQcCARYmaHR0cHM6
-# Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADAWBgNV
-# HSUBAf8EDDAKBggrBgEFBQcDCDBCBgNVHR8EOzA5MDegNaAzhjFodHRwOi8vY3Js
-# Lmdsb2JhbHNpZ24uY29tL2dzL2dzdGltZXN0YW1waW5nZzIuY3JsMFQGCCsGAQUF
-# BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
-# bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
-# uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
-# FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
-# MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
-# GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
-# b2RlIFNpZ25pbmcgQ0EwHhcNMTUwNzE3MDAwMDAwWhcNMTgwNzE2MjM1OTU5WjCB
-# kDELMAkGA1UEBhMCREUxDjAMBgNVBBEMBTM1NTc2MQ8wDQYDVQQIDAZIZXNzZW4x
-# EDAOBgNVBAcMB0xpbWJ1cmcxGDAWBgNVBAkMD0JhaG5ob2ZzcGxhdHogMTEZMBcG
-# A1UECgwQS3JlYXRpdlNpZ24gR21iSDEZMBcGA1UEAwwQS3JlYXRpdlNpZ24gR21i
-# SDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK8jDmF0TO09qJndJ9eG
-# Fqra1lf14NDhM8wIT8cFcZ/AX2XzrE6zb/8kE5sL4/dMhuTOp+SMt0tI/SON6BY3
-# 208v/NlDI7fozAqHfmvPhLX6p/TtDkmSH1sD8AIyrTH9b27wDNX4rC914Ka4EBI8
-# sGtZwZOQkwQdlV6gCBmadar+7YkVhAbIIkSazE9yyRTuffidmtHV49DHPr+ql4ji
-# NJ/K27ZFZbwM6kGBlDBBSgLUKvufMY+XPUukpzdCaA0UzygGUdDfgy0htSSp8MR9
-# Rnq4WML0t/fT0IZvmrxCrh7NXkQXACk2xtnkq0bXUIC6H0Zolnfl4fanvVYyvD88
-# qIECAwEAAaOCAbIwggGuMB8GA1UdIwQYMBaAFCmRYP+KTfrr+aZquM/55ku9Sc4S
-# MB0GA1UdDgQWBBSeVG4/9UvVjmv8STy4f7kGHucShjAOBgNVHQ8BAf8EBAMCB4Aw
-# DAYDVR0TAQH/BAIwADATBgNVHSUEDDAKBggrBgEFBQcDAzARBglghkgBhvhCAQEE
-# BAMCBBAwRgYDVR0gBD8wPTA7BgwrBgEEAbIxAQIBAwIwKzApBggrBgEFBQcCARYd
-# aHR0cHM6Ly9zZWN1cmUuY29tb2RvLm5ldC9DUFMwQwYDVR0fBDwwOjA4oDagNIYy
-# aHR0cDovL2NybC5jb21vZG9jYS5jb20vQ09NT0RPUlNBQ29kZVNpZ25pbmdDQS5j
-# cmwwdAYIKwYBBQUHAQEEaDBmMD4GCCsGAQUFBzAChjJodHRwOi8vY3J0LmNvbW9k
-# b2NhLmNvbS9DT01PRE9SU0FDb2RlU2lnbmluZ0NBLmNydDAkBggrBgEFBQcwAYYY
-# aHR0cDovL29jc3AuY29tb2RvY2EuY29tMCMGA1UdEQQcMBqBGGhvY2h3YWxkQGty
-# ZWF0aXZzaWduLm5ldDANBgkqhkiG9w0BAQsFAAOCAQEASSZkxKo3EyEk/qW0ZCs7
-# CDDHKTx3UcqExigsaY0DRo9fbWgqWynItsqdwFkuQYJxzknqm2JMvwIK6BtfWc64
-# WZhy0BtI3S3hxzYHxDjVDBLBy91kj/mddPjen60W+L66oNEXiBuIsOcJ9e7tH6Vn
-# 9eFEUjuq5esoJM6FV+MIKv/jPFWMp5B6EtX4LDHEpYpLRVQnuxoc38mmd+NfjcD2
-# /o/81bu6LmBFegHAaGDpThGf8Hk3NVy0GcpQ3trqmH6e3Cpm8Ut5UkoSONZdkYWw
-# rzkmzFgJyoM2rnTMTh4ficxBQpB7Ikv4VEnrHRReihZ0zwN+HkXO1XEnd3hm+08j
-# LzGCBNkwggTVAgEBMIGRMH0xCzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVy
-# IE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBD
-# QSBMaW1pdGVkMSMwIQYDVQQDExpDT01PRE8gUlNBIENvZGUgU2lnbmluZyBDQQIQ
-# FtT3Ux2bGCdP8iZzNFGAXDAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
-# AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU3C+DNs82yZESY5PTDiKe
-# x4sCTeQwDQYJKoZIhvcNAQEBBQAEggEAqEJ2Ulfwik9J4yHSxwcYh8h+nP5S7t9l
-# /zGMOU+sPhrvczc4ETSIJewyCHExh3jpt5WW/VA1zB3MJWo0CMEsRDQ4OjIPYkkC
-# AMU5DhamL766A2oAjEM61X/xffdEYTl2ZOlgDvFfmn8KOx09onzwdu0cFlL+eDuG
-# 4yKQFiKR6youQUHeCc+EqFvFRjjAfGVMy9PjagO+8WfPYQLrepvo/q8QMSgItJRD
-# 2nT04D5CL1TiE1Ul2ScGrHbjg6c40ifMdEfcsfVvHev5L4vmoi8Ez6NrnQjddJFM
-# i9uCtJ87tkmcIJIcopzX1OhHBqwHNQswxZ8TcDlLxKGVUUZXNlGgjqGCAqIwggKe
-# BgkqhkiG9w0BCQYxggKPMIICiwIBATBoMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
-# ExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIFRpbWVzdGFt
-# cGluZyBDQSAtIEcyAhIRIQaggdM/2HrlgkzBa1IJTgMwCQYFKw4DAhoFAKCB/TAY
-# BgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNjA1Mjgx
-# NTAyMzNaMCMGCSqGSIb3DQEJBDEWBBRNxU9kpaKnEZVMzjtNsSAY6HLkAzCBnQYL
-# KoZIhvcNAQkQAgwxgY0wgYowgYcwgYQEFLNjCLTUze1Pz71muVX647+xLCnmMGww
-# VqRUMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSgw
-# JgYDVQQDEx9HbG9iYWxTaWduIFRpbWVzdGFtcGluZyBDQSAtIEcyAhIRIQaggdM/
-# 2HrlgkzBa1IJTgMwDQYJKoZIhvcNAQEBBQAEggEAUdhQGO0ZgLbd297riIabuJi6
-# REUS1aqaAXAJ5RCLFKBv2SEvUgHzhnuoY4s5CVq80GP1zR+ZkHboDZtMDU31z0kA
-# jEhIp6r5z5NXm2jUPv7mkClzUe8mGfDkB+j/hkITUHdFRrgGBLgcpg6+/EwPMMPt
-# TN3DWQZU1NrFoGj2ITZ7dkNkVnN5R3bIgXxNtZBGp0ZvsRksX6aLPBzbbZhe5YKf
-# LQ8cH6wOzBFTt0PnsoZX5NKbwN/Ioiy315FKQYKNgpbP2/32vtUerWqSD/9gQz0E
-# iOBrW+p5kKTVlvuP5qMCxEL3Oxyi+LRGN3gcee98hBNQJtxGotoGTealrPA9gw==
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8tc6dUUuXEsdYQAET6k5Pwe/
+# k9SgghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
+# A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
+# d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
+# Q0EwHhcNMTIxMjIxMDAwMDAwWhcNMjAxMjMwMjM1OTU5WjBeMQswCQYDVQQGEwJV
+# UzEdMBsGA1UEChMUU3ltYW50ZWMgQ29ycG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFu
+# dGVjIFRpbWUgU3RhbXBpbmcgU2VydmljZXMgQ0EgLSBHMjCCASIwDQYJKoZIhvcN
+# AQEBBQADggEPADCCAQoCggEBALGss0lUS5ccEgrYJXmRIlcqb9y4JsRDc2vCvy5Q
+# WvsUwnaOQwElQ7Sh4kX06Ld7w3TMIte0lAAC903tv7S3RCRrzV9FO9FEzkMScxeC
+# i2m0K8uZHqxyGyZNcR+xMd37UWECU6aq9UksBXhFpS+JzueZ5/6M4lc/PcaS3Er4
+# ezPkeQr78HWIQZz/xQNRmarXbJ+TaYdlKYOFwmAUxMjJOxTawIHwHw103pIiq8r3
+# +3R8J+b3Sht/p8OeLa6K6qbmqicWfWH3mHERvOJQoUvlXfrlDqcsn6plINPYlujI
+# fKVOSET/GeJEB5IL12iEgF1qeGRFzWBGflTBE3zFefHJwXECAwEAAaOB+jCB9zAd
+# BgNVHQ4EFgQUX5r1blzMzHSa1N197z/b7EyALt0wMgYIKwYBBQUHAQEEJjAkMCIG
+# CCsGAQUFBzABhhZodHRwOi8vb2NzcC50aGF3dGUuY29tMBIGA1UdEwEB/wQIMAYB
+# Af8CAQAwPwYDVR0fBDgwNjA0oDKgMIYuaHR0cDovL2NybC50aGF3dGUuY29tL1Ro
+# YXd0ZVRpbWVzdGFtcGluZ0NBLmNybDATBgNVHSUEDDAKBggrBgEFBQcDCDAOBgNV
+# HQ8BAf8EBAMCAQYwKAYDVR0RBCEwH6QdMBsxGTAXBgNVBAMTEFRpbWVTdGFtcC0y
+# MDQ4LTEwDQYJKoZIhvcNAQEFBQADgYEAAwmbj3nvf1kwqu9otfrjCR27T4IGXTdf
+# plKfFo3qHJIJRG71betYfDDo+WmNI3MLEm9Hqa45EfgqsZuwGsOO61mWAK3ODE2y
+# 0DGmCFwqevzieh1XTKhlGOl5QGIllm7HxzdqgyEIjkHq3dlXPx13SYcqFgZepjhq
+# IhKjURmDfrYwggSjMIIDi6ADAgECAhAOz/Q4yP6/NW4E2GqYGxpQMA0GCSqGSIb3
+# DQEBBQUAMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQKExRTeW1hbnRlYyBDb3Jwb3Jh
+# dGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBTdGFtcGluZyBTZXJ2aWNlcyBD
+# QSAtIEcyMB4XDTEyMTAxODAwMDAwMFoXDTIwMTIyOTIzNTk1OVowYjELMAkGA1UE
+# BhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9uMTQwMgYDVQQDEytT
+# eW1hbnRlYyBUaW1lIFN0YW1waW5nIFNlcnZpY2VzIFNpZ25lciAtIEc0MIIBIjAN
+# BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAomMLOUS4uyOnREm7Dv+h8GEKU5Ow
+# mNutLA9KxW7/hjxTVQ8VzgQ/K/2plpbZvmF5C1vJTIZ25eBDSyKV7sIrQ8Gf2Gi0
+# jkBP7oU4uRHFI/JkWPAVMm9OV6GuiKQC1yoezUvh3WPVF4kyW7BemVqonShQDhfu
+# ltthO0VRHc8SVguSR/yrrvZmPUescHLnkudfzRC5xINklBm9JYDh6NIipdC6Anqh
+# d5NbZcPuF3S8QYYq3AhMjJKMkS2ed0QfaNaodHfbDlsyi1aLM73ZY8hJnTrFxeoz
+# C9Lxoxv0i77Zs1eLO94Ep3oisiSuLsdwxb5OgyYI+wu9qU+ZCOEQKHKqzQIDAQAB
+# o4IBVzCCAVMwDAYDVR0TAQH/BAIwADAWBgNVHSUBAf8EDDAKBggrBgEFBQcDCDAO
+# BgNVHQ8BAf8EBAMCB4AwcwYIKwYBBQUHAQEEZzBlMCoGCCsGAQUFBzABhh5odHRw
+# Oi8vdHMtb2NzcC53cy5zeW1hbnRlYy5jb20wNwYIKwYBBQUHMAKGK2h0dHA6Ly90
+# cy1haWEud3Muc3ltYW50ZWMuY29tL3Rzcy1jYS1nMi5jZXIwPAYDVR0fBDUwMzAx
+# oC+gLYYraHR0cDovL3RzLWNybC53cy5zeW1hbnRlYy5jb20vdHNzLWNhLWcyLmNy
+# bDAoBgNVHREEITAfpB0wGzEZMBcGA1UEAxMQVGltZVN0YW1wLTIwNDgtMjAdBgNV
+# HQ4EFgQURsZpow5KFB7VTNpSYxc/Xja8DeYwHwYDVR0jBBgwFoAUX5r1blzMzHSa
+# 1N197z/b7EyALt0wDQYJKoZIhvcNAQEFBQADggEBAHg7tJEqAEzwj2IwN3ijhCcH
+# bxiy3iXcoNSUA6qGTiWfmkADHN3O43nLIWgG2rYytG2/9CwmYzPkSWRtDebDZw73
+# BaQ1bHyJFsbpst+y6d0gxnEPzZV03LZc3r03H0N45ni1zSgEIKOq8UvEiCmRDoDR
+# EfzdXHZuT14ORUZBbg2w6jiasTraCXEQ/Bx5tIB7rGn0/Zy2DBYr8X9bCT2bW+IW
+# yhOBbQAuOA2oKY8s4bL0WqkBrxWcLC9JG9siu8P+eJRRw4axgohd8D20UaF5Mysu
+# e7ncIAkTcetqGVvP6KUwVyyJST+5z3/Jvz4iaGNTmr1pdKzFHTx/kuDDvBzYBHUw
+# ggVMMIIENKADAgECAhAW1PdTHZsYJ0/yJnM0UYBcMA0GCSqGSIb3DQEBCwUAMH0x
+# CzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNV
+# BAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMSMwIQYDVQQD
+# ExpDT01PRE8gUlNBIENvZGUgU2lnbmluZyBDQTAeFw0xNTA3MTcwMDAwMDBaFw0x
+# ODA3MTYyMzU5NTlaMIGQMQswCQYDVQQGEwJERTEOMAwGA1UEEQwFMzU1NzYxDzAN
+# BgNVBAgMBkhlc3NlbjEQMA4GA1UEBwwHTGltYnVyZzEYMBYGA1UECQwPQmFobmhv
+# ZnNwbGF0eiAxMRkwFwYDVQQKDBBLcmVhdGl2U2lnbiBHbWJIMRkwFwYDVQQDDBBL
+# cmVhdGl2U2lnbiBHbWJIMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+# ryMOYXRM7T2omd0n14YWqtrWV/Xg0OEzzAhPxwVxn8BfZfOsTrNv/yQTmwvj90yG
+# 5M6n5Iy3S0j9I43oFjfbTy/82UMjt+jMCod+a8+Etfqn9O0OSZIfWwPwAjKtMf1v
+# bvAM1fisL3XgprgQEjywa1nBk5CTBB2VXqAIGZp1qv7tiRWEBsgiRJrMT3LJFO59
+# +J2a0dXj0Mc+v6qXiOI0n8rbtkVlvAzqQYGUMEFKAtQq+58xj5c9S6SnN0JoDRTP
+# KAZR0N+DLSG1JKnwxH1GerhYwvS399PQhm+avEKuHs1eRBcAKTbG2eSrRtdQgLof
+# RmiWd+Xh9qe9VjK8PzyogQIDAQABo4IBsjCCAa4wHwYDVR0jBBgwFoAUKZFg/4pN
+# +uv5pmq4z/nmS71JzhIwHQYDVR0OBBYEFJ5Ubj/1S9WOa/xJPLh/uQYe5xKGMA4G
+# A1UdDwEB/wQEAwIHgDAMBgNVHRMBAf8EAjAAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+# MBEGCWCGSAGG+EIBAQQEAwIEEDBGBgNVHSAEPzA9MDsGDCsGAQQBsjEBAgEDAjAr
+# MCkGCCsGAQUFBwIBFh1odHRwczovL3NlY3VyZS5jb21vZG8ubmV0L0NQUzBDBgNV
+# HR8EPDA6MDigNqA0hjJodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9DT01PRE9SU0FD
+# b2RlU2lnbmluZ0NBLmNybDB0BggrBgEFBQcBAQRoMGYwPgYIKwYBBQUHMAKGMmh0
+# dHA6Ly9jcnQuY29tb2RvY2EuY29tL0NPTU9ET1JTQUNvZGVTaWduaW5nQ0EuY3J0
+# MCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wIwYDVR0RBBww
+# GoEYaG9jaHdhbGRAa3JlYXRpdnNpZ24ubmV0MA0GCSqGSIb3DQEBCwUAA4IBAQBJ
+# JmTEqjcTIST+pbRkKzsIMMcpPHdRyoTGKCxpjQNGj19taCpbKci2yp3AWS5BgnHO
+# SeqbYky/AgroG19ZzrhZmHLQG0jdLeHHNgfEONUMEsHL3WSP+Z10+N6frRb4vrqg
+# 0ReIG4iw5wn17u0fpWf14URSO6rl6ygkzoVX4wgq/+M8VYynkHoS1fgsMcSliktF
+# VCe7GhzfyaZ341+NwPb+j/zVu7ouYEV6AcBoYOlOEZ/weTc1XLQZylDe2uqYfp7c
+# KmbxS3lSShI41l2RhbCvOSbMWAnKgzaudMxOHh+JzEFCkHsiS/hUSesdFF6KFnTP
+# A34eRc7VcSd3eGb7TyMvMIIF4DCCA8igAwIBAgIQLnyHzA6TSlL+lP0ct800rzAN
+# BgkqhkiG9w0BAQwFADCBhTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIg
+# TWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENB
+# IExpbWl0ZWQxKzApBgNVBAMTIkNPTU9ETyBSU0EgQ2VydGlmaWNhdGlvbiBBdXRo
+# b3JpdHkwHhcNMTMwNTA5MDAwMDAwWhcNMjgwNTA4MjM1OTU5WjB9MQswCQYDVQQG
+# EwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxm
+# b3JkMRowGAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RP
+# IFJTQSBDb2RlIFNpZ25pbmcgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+# AoIBAQCmmJBjd5E0f4rR3elnMRHrzB79MR2zuWJXP5O8W+OfHiQyESdrvFGRp8+e
+# niWzX4GoGA8dHiAwDvthe4YJs+P9omidHCydv3Lj5HWg5TUjjsmK7hoMZMfYQqF7
+# tVIDSzqwjiNLS2PgIpQ3e9V5kAoUGFEs5v7BEvAcP2FhCoyi3PbDMKrNKBh1SMF5
+# WgjNu4xVjPfUdpA6M0ZQc5hc9IVKaw+A3V7Wvf2pL8Al9fl4141fEMJEVTyQPDFG
+# y3CuB6kK46/BAW+QGiPiXzjbxghdR7ODQfAuADcUuRKqeZJSzYcPe9hiKaR+ML0b
+# tYxytEjy4+gh+V5MYnmLAgaff9ULAgMBAAGjggFRMIIBTTAfBgNVHSMEGDAWgBS7
+# r34CPfqm8TyEjq3uOJjs2TIy1DAdBgNVHQ4EFgQUKZFg/4pN+uv5pmq4z/nmS71J
+# zhIwDgYDVR0PAQH/BAQDAgGGMBIGA1UdEwEB/wQIMAYBAf8CAQAwEwYDVR0lBAww
+# CgYIKwYBBQUHAwMwEQYDVR0gBAowCDAGBgRVHSAAMEwGA1UdHwRFMEMwQaA/oD2G
+# O2h0dHA6Ly9jcmwuY29tb2RvY2EuY29tL0NPTU9ET1JTQUNlcnRpZmljYXRpb25B
+# dXRob3JpdHkuY3JsMHEGCCsGAQUFBwEBBGUwYzA7BggrBgEFBQcwAoYvaHR0cDov
+# L2NydC5jb21vZG9jYS5jb20vQ09NT0RPUlNBQWRkVHJ1c3RDQS5jcnQwJAYIKwYB
+# BQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTANBgkqhkiG9w0BAQwFAAOC
+# AgEAAj8COcPu+Mo7id4MbU2x8U6ST6/COCwEzMVjEasJY6+rotcCP8xvGcM91hoI
+# lP8l2KmIpysQGuCbsQciGlEcOtTh6Qm/5iR0rx57FjFuI+9UUS1SAuJ1CAVM8bdR
+# 4VEAxof2bO4QRHZXavHfWGshqknUfDdOvf+2dVRAGDZXZxHNTwLk/vPa/HUX2+y3
+# 92UJI0kfQ1eD6n4gd2HITfK7ZU2o94VFB696aSdlkClAi997OlE5jKgfcHmtbUIg
+# os8MbAOMTM1zB5TnWo46BLqioXwfy2M6FafUFRunUkcyqfS/ZEfRqh9TTjIwc8Jv
+# t3iCnVz/RrtrIh2IC/gbqjSm/Iz13X9ljIwxVzHQNuxHoc/Li6jvHBhYxQZ3ykub
+# Ua9MCEp6j+KjUuKOjswm5LLY5TjCqO3GgZw1a6lYYUoKl7RLQrZVnb6Z53BtWfht
+# Kgx/GWBfDJqIbDCsUgmQFhv/K53b0CDKieoofjKOGd97SDMe12X4rsn4gxSTdn1k
+# 0I7OvjV9/3IxTZ+evR5sL6iPDAZQ+4wns3bJ9ObXwzTijIchhmH+v1V04SF3Awpo
+# bLvkyanmz1kl63zsRQ55ZmjoIs2475iFTZYRPAmK0H+8KCgT+2rKVI2SXM3CZZgG
+# ns5IW9S1N5NGQXwH3c/6Q++6Z2H/fUnguzB9XIDj5hY5S6cxggRCMIIEPgIBATCB
+# kTB9MQswCQYDVQQGEwJHQjEbMBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAw
+# DgYDVQQHEwdTYWxmb3JkMRowGAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEG
+# A1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczRR
+# gFwwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwxCjAIoAKAAKECgAAwGQYJKoZI
+# hvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcC
+# ARUwIwYJKoZIhvcNAQkEMRYEFOz2L0aCtTfMv7M7k+ggkcyl/EMkMA0GCSqGSIb3
+# DQEBAQUABIIBAKHsIMigN+W/SBuP3lnRta0cC+BuX4ex178TJSSYDn9xkUhF+zlv
+# jZ9uDEZHDQWp4uQ5mbcvHdd76Nmgxq/3rE++q+WnsBE2LI8NflHEjwgfzledcNZ4
+# wmF5Cyd3BC8Wh1eVA1CbigQn8LD55mR7YhIJ19k8OAXvwLLi42TL1gy9j+Kgl1vN
+# Jrr9szWUIkXEZ1hewVCPmKSB1It3iRvO7cqxfCc/jgyLn6yO4upy76438XTweNPo
+# qbn/UFkB16Mv81X4IqKMcvuSAxsUuMt+KYeb9e8ASOzs1oYLarF4E5YEVavozMea
+# N2u2NQhuu9rbZsHWCV266hnogBVs53ZAqzihggILMIICBwYJKoZIhvcNAQkGMYIB
+# +DCCAfQCAQEwcjBeMQswCQYDVQQGEwJVUzEdMBsGA1UEChMUU3ltYW50ZWMgQ29y
+# cG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFudGVjIFRpbWUgU3RhbXBpbmcgU2Vydmlj
+# ZXMgQ0EgLSBHMgIQDs/0OMj+vzVuBNhqmBsaUDAJBgUrDgMCGgUAoF0wGAYJKoZI
+# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA1MTcwMjUx
+# WjAjBgkqhkiG9w0BCQQxFgQUoocdYhL59UHUWR9bP7lNzCKWL44wDQYJKoZIhvcN
+# AQEBBQAEggEAI4uRBWX2enrRuZmUN3BP9XKYV2EcfCuhdBY4i9F+/v/51zKrcF3p
+# emTU9qOUyh+35vPT6vBpLyNYhsl++cfgM4KvawWvLQPYZj8zCIgNm7GeH9sqnorX
+# y8KcJN/fQd+4F4CZOh3j2zvaDEm1yX/EznKb89BzY8R8+Yzo7VilxGigOOfLfCLX
+# R1fMgBTIfcWY6lcnVgXPUMDRkdnKvMFmFoZQEsJtg4nfS8G9oGBjBEfBibETX6HY
+# y2gOZXIkVjuFqtjLII2ngxHZy6hEfPaSGYVOzn4nVOm6OYDJke0BMGUPfcnFXH4U
+# CuNW7MRqMMvh5OeUAWKDdKTRSBdaYOMcLw==
 # SIG # End signature block

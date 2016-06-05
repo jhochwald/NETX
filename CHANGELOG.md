@@ -1,4 +1,7 @@
-### No code change - Signature updated by Build Server (HEAD -> master)
+### Refactoring (HEAD -> master)
+>*Sun, 5 Jun 2016 19:06:40 +0200*
+
+### No code change - Signature updated by Build Server (origin/master, origin/HEAD)
 >*Sun, 29 May 2016 23:48:30 +0200*
 
 ### Minor Update
@@ -25,7 +28,7 @@
 ### New function
 >*Sun, 29 May 2016 23:45:29 +0200*
 
-### Provice all Functions combined in a Module (origin/master, origin/HEAD)
+### Provice all Functions combined in a Module
 >*Sat, 28 May 2016 17:07:40 +0200*
 
 ### Minor update and refactoring
