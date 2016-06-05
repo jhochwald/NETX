@@ -1,7 +1,10 @@
-### Refactoring (HEAD -> master)
+### Distribution Snapshot 1.2.3.78 (HEAD -> master)
+>*Sun, 5 Jun 2016 19:33:00 +0200*
+
+### Refactoring (origin/master, origin/HEAD)
 >*Sun, 5 Jun 2016 19:06:40 +0200*
 
-### No code change - Signature updated by Build Server (origin/master, origin/HEAD)
+### No code change - Signature updated by Build Server
 >*Sun, 29 May 2016 23:48:30 +0200*
 
 ### Minor Update
