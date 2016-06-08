@@ -87,26 +87,26 @@ function Global:Get-NetStat {
 
 	PROCESS {
 		# Get the output of netstat
-		Set-Variable -Name "data" -Value $(netstat -n)
+		Set-Variable -Name 'data' -Value $(NETSTAT.EXE -n)
 
 		# Keep only the line with the data (we remove the first lines)
-		Set-Variable -Name "data" -Value $($data[4..$data.count])
+		Set-Variable -Name 'data' -Value $($data[4..$data.count])
 
 		# Each line need to be spitted and get rid of unnecessary spaces
 		foreach ($line in $data) {
 			# Get rid of the first whitespace, at the beginning of the line
-			Set-Variable -Name "line" -Value $($line -replace '^\s+', '')
+			Set-Variable -Name 'line' -Value $($line -replace '^\s+', '')
 
 			# Split each property on whitespace block
-			Set-Variable -Name "line" -Value $($line -split '\s+')
+			Set-Variable -Name 'line' -Value $($line -split '\s+')
 
 			# Define the properties
 			$properties = @{
 				Protocole = $line[0]
-				LocalAddressIP = ($line[1] -split ":")[0]
-				LocalAddressPort = ($line[1] -split ":")[1]
-				ForeignAddressIP = ($line[2] -split ":")[0]
-				ForeignAddressPort = ($line[2] -split ":")[1]
+				LocalAddressIP = ($line[1] -split ':')[0]
+				LocalAddressPort = ($line[1] -split ':')[1]
+				ForeignAddressIP = ($line[2] -split ':')[0]
+				ForeignAddressPort = ($line[2] -split ':')[1]
 				State = $line[3]
 			}
 
@@ -119,8 +119,8 @@ function Global:Get-NetStat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIAFupOTUAGuTjCQeWuJuanjo
-# 5wWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1rn0xY7tdX6oomYXzAZ0fRJN
+# qs+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +263,25 @@ function Global:Get-NetStat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQseyXIsnnHMVZ0w6pWGd/ks3eSVDANBgkqhkiG9w0B
-# AQEFAASCAQCupLyTWQ85PO8zL22ggcdV6y6JzFw5DX8HJqaqIfb3csYrb9xia4br
-# /yIlxXOYt1bB4CURY0+mHjy+csJkxQ90R/Tn7cl9TSUMI++ulpTR/BUNnpeNVOa+
-# HlCMpc9gjsSwLX9GKmMq9sw6H2BqGxQ/BUisPAd++i094Y7ciU2+AeVFzHj4Evd9
-# oPDo5XmGTP/oeMgOW+0CaM7xE0sRcb9N49LyCg/8DYxB83dO93U+S6SpBkNv4uMf
-# n9gUpaX5+7QswVLuOb61gO5Iyz1XqNaJ30vKMBggwd0SqMwnyiIKZD/WRdAP6RZ3
-# C2r/QSjIu1RJBo4ZyOcZ6Hh0rKyW/SFmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSycVyB1lTOC+2LafM3II9TaCR2yzANBgkqhkiG9w0B
+# AQEFAASCAQA3ttCGHyRMC5+5tptO00C+3+fTvvnFQn0K+Lw3iQO6yW1Esbez9lRP
+# FK7Z9CQTA5ksUPt4WoVa5BvSQ46XleA2YDqq+OiCPBmAdFNR3GNmn76W7yG763vs
+# RnBLkPcd96xFd8okCHIYcHq0EZVnj9sDd0bHomj6mO8SQcPHjUUJLmUHrYeKJQhi
+# 3q/SgiZzh6AbuUKZ5CvMa2RZDxYJ2WMYQMNLqO9tHI/T/brU8msFfDFL6vWDt0Nb
+# Ux8Edx0AXyF/6+zzP/LPGvADo5yZZofpwHqWCe83BysXA5mDk85BcvEh4yX7wsWQ
+# 0ggCil39DrCqZoM9y1hCr+XWC6g+bmC3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxMVowIwYJKoZIhvcN
-# AQkEMRYEFKcBJhP6XwGa/BC4HvFWR+rKjAM7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyMVowIwYJKoZIhvcN
+# AQkEMRYEFNz+2a5lKt80hVn86vwxaAFY2c7cMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAP49EhlCH6WcoWWk4+Z0Ajvr3v/NObFeCnILSJE8OKpj9Z
-# dvAbNLPecjW3Exjfox+1DncnT/FsUCk4DL5nWd/WKqU/jG2USNK4ZZ0KOvVy9ITb
-# hQdC/rCEmdm9jd9zFXsuZU3GCitKAb+X0IZNOaNvbNmEbB1i+Zwfv939UdlBn3EO
-# fr4J2iLzSInpGJd5pSeefKjZkff8TW2fMLe/Uco6aozHs76hUQVg30OASB+t/g0I
-# ePl+/LAVIkuZovIlaaHVztjowIVbGu+FtPXVnTCq41yT5pp5nL+5ijMjSwIAoBs6
-# DL/8E/wpNWohxcFpcZXxwbLHjU718nnVsMZTGMnN
+# hkiG9w0BAQEFAASCAQABa4C8q/E8qh4WOg2CyDKA/mQme9q2Py6zLp5dMXcj0xOo
+# K3JCC35tIQgkJdI7T+hL+DSAH4ttMKMat9whGDTk8SLFdaV64GAOYA6wxK1Ccrxa
+# 8TIch1w37B3hnxi2dYUod9nFs3pKAip+9gW7weU/N9vIlXAswsrdDxvLY7SOnmNb
+# rrvrRR0iWbXhEw5dMWy6y5c144DUA/7vXO71cm8/a8oJHlkfZ085pxHvUIFeOIqw
+# dCU7o0WqGBVtN4kYKAwXmQgf6SjwWV6BbYRdjXU4jQVbcU9uJkB2XEuviQJaRt2p
+# rhw2yZgRPrN+jrpwRm1Nlo/ModG1pHwjPhzfwAQC
 # SIG # End signature block

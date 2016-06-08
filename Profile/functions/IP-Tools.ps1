@@ -97,7 +97,7 @@ Function Global:Convert-IPToBinary {
 	PROCESS {
 		foreach ($SingleIP in $IP) {
 			try {
-				$SingleIP.split(".") | ForEach-Object { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, "0")) }
+				$SingleIP.split('.') | ForEach-Object { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
 			} catch [System.Exception] {
 				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
 
@@ -297,7 +297,7 @@ function global:Check-IPaddress {
 
 	PROCESS {
 		# Use the .NET Call to figure out if the given address is valid or not.
-		Set-Variable -Name "IsValid" -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
+		Set-Variable -Name 'IsValid' -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
 	}
 
 	END {
@@ -412,8 +412,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQ1krty6BqxmiI7emguJkl7GC
-# GlygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3GO4vf6FHQPE/GXLi7gRSq9w
+# CuugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -556,25 +556,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRL3KalZ38AZ6a/HBrfvoYFwt+OwDANBgkqhkiG9w0B
-# AQEFAASCAQCRtR0J6QopGoXGCNIVH3gSeO40F/RAYqXzWtcTfjc87dcjFwW4kW1j
-# ujHjGSf7pg5VmbT3P+yEBTh7t0ApX5dTpaN2lrT4wH52F1iZ+gpimwti3sh6rEyi
-# eo+30pWOfMHovKnXHVmv67mCrW5XNWp6wPv0BzBO3Ozd+0drTy/FSscFxVtYhebB
-# OZTQToTuLjfCmPEfCDUqaLwrtYSzFlRXNBC1WU3BAKmbe5KdxEggupB4WO63oOJY
-# yG/jr9kgtn9ziD5too2A1FAIzSpsCh7gwuapp1v1ntf5NJOi2p7MfhDxnmtWa0Hf
-# usgBHwRSHhV3Wvb0649lvbuIr4rtcrByoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQDcN8MBVXZYw5YYTlT72/QlCcVgjANBgkqhkiG9w0B
+# AQEFAASCAQAX2w5sSCYngnuX8YZjBrN2SC/yXKrhPPo2gHadecqrZfPtDWG4uklI
+# 82NXtHoeXh6azNJvLU1XlMJQfMGn6MKH76LKN3cTBzWNvUf+4iJhQctcFsCIOaXg
+# YNUoZnf2L7XmU42TWXSc+wjc3Tp7cBzFrY/m9WPsTHIzTkFxCmQ6RLxFPIgf7woY
+# Ax0eo0lXPwvsMqvLqE53+5J9M2iNS24pQvOZlqhftqf0KrIhMCf69ySXA02sZVzo
+# vo7YaRvbkRi66XHHbGwG07fEDKh0S7pepwoQiOXpsjTL50ZRbknvfcLe6k9FPn41
+# QV7ReEC1cJXpEC0z6Y0niq1ikJCfkgveoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyN1owIwYJKoZIhvcN
-# AQkEMRYEFJE7YkIaOt/TbQlM5O/6McOXDToQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzNlowIwYJKoZIhvcN
+# AQkEMRYEFNdUUMY6i+v9r7RRdvTq+N3maKoXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA1MDbGFVSVLIISQC8twR8bTuvL24XBpZzURZHtljEUObOT
-# 7IGHvyvpFLAT1agLcsKE8WN7/4QLWSSbdIEwlak00Nn2UTXNwhpbP17j6tv8Ptjh
-# s/eLsqgYgpyxRhWbbgKzrPoQRUHW4ZJcyFuol9GShEYcIQG5HjxpElmK24m2DRID
-# kmiVqMBEDu8CYPwZUUo89szph3uRQ01uxrv1LnGqpjLwmXLyJdgwQPeRh21c8EqC
-# MIG7GZ9lJegQ66qd27VaHmor9B4yf6emIHCdV6ht2TJtIHEWCPyWU6CKsFY7WCxe
-# 70kZzETmTnL9QPtXoSB4uO3c9jOI+Vwt6macSOn+
+# hkiG9w0BAQEFAASCAQBsc+j02QD8OtHFD6WJUnyD6ZiaLv/LvRAURV2O/a9b7x7+
+# Z1cloeZu0h58DGdkXj98eS4j+YcMbuTMBQDpTuFIcuEbGhdH7/sWctvRgu3z1R96
+# UvlQhCwv8vXBmK+N4CBpGy+NdYu5X5Kw3nlcbHD41Zueadl2Lo8Qb9SV32aPcbbG
+# MeqUg7N0ypcfY1q7sbkv0pC3rjAa2Qd9Zjg2uPIjqI/fVHPdVxnGeLJ2byqt7gsk
+# 7+DWwbIIEqqEt3vjSwR1h/OvYpe+S4raPogACt3W2V9V2/OucK0qtd7Jkp82Mqko
+# cWV+V/2nHk107UJMS3vI04YU9+NTbifx1dE0IcEK
 # SIG # End signature block

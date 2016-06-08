@@ -103,7 +103,7 @@ function Global:Set-LinuxPrompt {
 	}
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set it to a Bash styled one")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
 			function Global:Prompt {
 				# Are we elevated or administrator?
 				if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -132,7 +132,7 @@ function Global:Set-LinuxPrompt {
 	}
 
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set it to a Bash styled one")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
 			# Execute!
 			Prompt
 		}
@@ -142,8 +142,8 @@ function Global:Set-LinuxPrompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBhLH1s0Y1J8Gf9aAiQ5pjVBi
-# PEWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrXftgkdbivHBgJDf0gr8Jg02
+# bUCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -286,25 +286,25 @@ function Global:Set-LinuxPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSGcVx715o7SyVEvIziz20g/ow5jzANBgkqhkiG9w0B
-# AQEFAASCAQBM957QuyqtiRSHGTx+sdDGWD3/QS7xSOZJWsoKAWf+lYLc3NrO9l6v
-# CmWZ976o/jd70/3cZpv6LIQpsRaeArwmvlgdbq6nla+0aHFJDvRUUhoGBBT40rj1
-# Z+hRjOvN5lXnoGDq+65uu9ET6FrB7sn1LgdNp84P8+JwFO6q3nyx39dbtOSYxL6X
-# 1pYCGLLSK7sNMRx/0hBFWVImSi//eaaEnd9EqQbVAyCF6haKX7/XVuvb7cXdgK9b
-# g4oBxwqV2zf04pwV7WbZW4w4cXPFdg8DbA7akBonrVZcdngt7JV3eEDJmw1Ob7qQ
-# poeRqgmbZ1xn5Ujgcdc7kHpWQqkZDsnvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBST1VvhHdPeSUOS5N6WmKlceJi1hjANBgkqhkiG9w0B
+# AQEFAASCAQAIH9HQN686x8oqPrVRazpkFa7BioD7kwbeSpyx1Qg5pZGw88FN6Gv5
+# E+cKLH/L3rOlyZAYIkjFBRENOtTpaV61tTbVCR8Jif3kCSmZnHI6XPNTkUS81V8C
+# yKNDetxx0vpTdnKHGV8HgsaGh3u321XFAHUarks2q87U7Vf/sddtwyG0amfjrDvm
+# 9Nncrq+buY77jiHgTXccyf5hLsfgGphXfkghgf5q5aBQ4fp7xjantXdA41uXsF9x
+# p8yeRyWdEOabrxzuMTv8pkTW+6cFwYPFlrtDdNNg5hYI3+jtfrGBfpnI/xw5qMep
+# kfCg0ELX60jAQRf0JPzpJT79EZ4TYEE/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0MlowIwYJKoZIhvcN
-# AQkEMRYEFLOSwlNotAk0s1x69mcaKmD8yxAxMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1MFowIwYJKoZIhvcN
+# AQkEMRYEFHpEumQu+d6vqvgDlWuhfR2LRrJrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAxbWC0gju28aBn5ZHw0YnDS8VfJQeBuZ9YQf/AT47kHQQC
-# /fWCgvm0dr2yIBwXRIgMrXP9pp5HCJM5ajao3UvJvit2gAy+dj8OTJUrM53tcF4b
-# 8/BeZqQCdcklVyZqBWYEt6jNlBEYBRt2xAyJn1D4b9EunryzvptK1a/OfcXVU9Vn
-# Xe6hLN+7xD+vENPw8F+lD4jQHJ3YaW9R0GQkoKxhXgCv7tKV6IdocLzXu5KR1Req
-# hz98iRFN3quvTyAOJWugmlhuZCiJ6CzK3kMGGHdtIRBdy6vFo4/a9DVBgCrdm02K
-# MJPHUjCVrYyGwLywQvADzpGaDVr2dYAlHOmpeg72
+# hkiG9w0BAQEFAASCAQCdMPvLw29c4l1QKbR8jh9zhIdAhZSMmXYTKlnrOEq91NfM
+# bN073vPZPtospueWIvWSomoWTRtAno2f3qGOrkRt7vpn3yhxgClpGu5kwcIMOzMW
+# +oUkFviRSdPnx9ti6CzYDGgUZjnVrtC7Dzwc7JBbEcsy2JLF2+COm5luA48G+esq
+# CvmnW4TWub1ATPYm/XGfBbT9Wtx0cDAucESgytMD5blDk/KO0L/rRD0DJguyRUIz
+# 0Rk2idsNi/s4aYtqnWXKOKgbXanVCQCkBY+2K1fLixHJZ8U9EQwMTR8sKcESW8f0
+# b0hmWSumBWlQPBhwCENn4l+/y2LWrgqJQ0OQcDiL
 # SIG # End signature block

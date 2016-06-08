@@ -94,16 +94,16 @@ function global:Set-FolderDate {
 				   Position = 0,
 				   HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
 		[ValidateNotNullOrEmpty()]
-		[System.String[]]$Path = "C:\scripts\PowerShell\log"
+		[System.String[]]$Path = 'C:\scripts\PowerShell\log'
 	)
 
 	BEGIN {
 		# Suppress all error messages!
 		Trap [Exception] {
-			Write-Verbose $("TRAPPED: " + $_.Exception.Message)
+			Write-Verbose $('TRAPPED: ' + $_.Exception.Message)
 
 			# Be Verbose
-			Write-Verbose "Could not change date on folder (Folder open in explorer?)"
+			Write-Verbose 'Could not change date on folder (Folder open in explorer?)'
 
 			# Ignore what happened and just continue with what you are doing...
 			Continue
@@ -133,8 +133,8 @@ function global:Set-FolderDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3U/6424Z6WL1MtXp7uebw4Hw
-# x8ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5+Tur2QL6VplzLJJ7YuCDNbb
+# abegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -277,25 +277,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSUO7KVcCp/DZx8hm8m3gLktxlyITANBgkqhkiG9w0B
-# AQEFAASCAQCFCPDTX3o70dTNFgfwmchEHL4YLlMuzMxl0JGRi1bw+xWtAxfebCVO
-# Z4UJ2vhsWY52Ofv4OyePBeQIhGZ7C8U7V282vhC3r+VfTJZ162xihz+t7S43mcAz
-# 2C84FHagT+IMMlh926OnQs7Shuf4q0DP8kzBS3by2+jMOqKpJMETOpAc8RDkc9X1
-# AcOtE6AsMhwzS3tSTdjxdF/LdrQYYlqbCPnN/AFJoRmlrKQ8AblGOvNaoKMlolsB
-# Rl3Ab6BXrPwFJbM30pBFoZNZvbbChCGzEYk9jXpVUUKNrP8BZHs/Vg+Fd4vq70pB
-# lYShXi+MDe/IKHIZCt+LqEOMcRTdgFCkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ1Uc/cBVC2ix34MXoTkc3Z9qPLFzANBgkqhkiG9w0B
+# AQEFAASCAQCcVe34O2BfuC9gxv7+NKKAINVA/lMzj3mkk6Ivvyo9Mwk8yGKG7caF
+# qk9eKa99cK9h6TD4b7TUtIDv3piocuQ3QoXGVQjNmEkUfgV2VR85vr1UG5Wxkhq9
+# VR01psDTXN8Q/2dpk7I/Mu5wnMtFdelHuXGWQ+TuxZmNo9dULjTbaxoKu6Pf+AS3
+# uHwBsUddrp+cA00nft33odfw+G9M+jiJ1oWrVDKDShi8WkFK501Xa9/jgOtQMa9v
+# GQusnrNIKt3SOK8s2YmmBMtmxFRimoIrDDtXZTnTyK9qQ/WWBkHlzRI2rAAMaLc/
+# 4qmVBuRE3GxLF7cYbzM/0zO1+R464+bUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0MVowIwYJKoZIhvcN
-# AQkEMRYEFKCE5XkJBjiD0EGNRIIrG6HvFuZiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0OVowIwYJKoZIhvcN
+# AQkEMRYEFPuMgD8ed+v56Q5l4h26uyoFFBKxMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQASCijui6tIFMN6ZUC20HNwgKrhxUqTYYjwiygFHBSDetOy
-# OEAy0+oK2V/94/Yif9v55rpGcsCoqwa/MyWJ8vHoK4pNxYcCHdgz3HVra0hpRx3M
-# LgZY8JDmqoNvQpJ1IQo6+FwN9FYSWmeqs0Wc/Q8UGYCTjcc/oefqavDv+hSv6qWj
-# zCA2NGtHuazjs416aha82ePUBZfU9Y9NGXrx9l9AFTajMsTmjWYgX3q+QJAd4j66
-# cbGXIfiFws/Ttsu318d2DaSn8z8GgmGD155rzWrouj62uuYA77F2KuxJGtxsYr/7
-# /aze1RxUpZbEj8lltTwX1ClSUPxY4sQAL4A4mCHt
+# hkiG9w0BAQEFAASCAQAlZfImGYD/pTHq5IMvPuZ6WCkRvTBqPNLyMt3H0DLCUh86
+# YPuMsqoDJXuBrbivw9HDpD9/kGDhUADTnCL1h3OF02PXCNNRfxU5fJAaT2F9eeRA
+# TNVktf/TDxq2CPByI8ebobZid4My8BabuvZt62xkZf4Acx1q4klgwCyVQ/asQYhu
+# TBgXksTQSqpIJiSIfWjwtXr4R0W02s+4jgZLphAjk/FDCw0ccrBaBFoGW93Nfx2M
+# 9leFHJ+VLtZZYfU4NGMtWxD4EMt2D0RuXDAso9I34QTmdKkI95pje3IQIh9M3oSv
+# WOZ57FMi8Hyurw/rkJVCk0iAX9w00FT7XgUmQxao
 # SIG # End signature block

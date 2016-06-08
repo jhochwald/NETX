@@ -172,18 +172,18 @@ function global:Create-ZIP {
 		}
 
 		# Append the ZIP extension
-		Set-Variable -Name OutputFile -Value $($OutputFile + ".zip")
+		Set-Variable -Name OutputFile -Value $($OutputFile + '.zip')
 
 		# Is the OutputPath Parameter given?
 		if (-not ($OutputPath)) {
 			# Build the new Path Variable
-			Set-Variable -Name MyFilePath -Value $((Split-Path -Path $InputFile -Parent) + "\")
+			Set-Variable -Name MyFilePath -Value $((Split-Path -Path $InputFile -Parent) + '\')
 		} else {
 			# Strip the trailing backslash if it exists
-			Set-Variable -Name OutputPath -Value $($OutputPath.TrimEnd("\"))
+			Set-Variable -Name OutputPath -Value $($OutputPath.TrimEnd('\'))
 
 			# Build the new Path Variable based on the given OutputPath Parameter
-			Set-Variable -Name MyFilePath -Value $(($OutputPath) + "\")
+			Set-Variable -Name MyFilePath -Value $(($OutputPath) + '\')
 		}
 
 		# Build a new Filename with Path
@@ -200,15 +200,15 @@ function global:Create-ZIP {
 
 		# The ZipFile class is not available by default in Windows PowerShell because the
 		# System.IO.Compression.FileSystem assembly is not loaded by default.
-		Add-Type -AssemblyName "System.IO.Compression.FileSystem"
+		Add-Type -AssemblyName 'System.IO.Compression.FileSystem'
 
 		# Create a new Archive
 		# We use the native .NET Call to do so!
-		Set-Variable -Name zip -Value $([System.IO.Compression.ZipFile]::Open($OutArchiv, "Create"))
+		Set-Variable -Name zip -Value $([System.IO.Compression.ZipFile]::Open($OutArchiv, 'Create'))
 
 		# Add input to the Archive
 		# We use the native .NET Call to do so!
-		$null = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, "optimal")
+		$null = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, 'optimal')
 
 		# Close the archive file
 		$zip.Dispose()
@@ -216,7 +216,7 @@ function global:Create-ZIP {
 		# Waiting for compression to complete...
 		do {
 			# Wait 1 second and try again if working entries are not null
-			Start-Sleep -Seconds:"1"
+			Start-Sleep -Seconds:'1'
 		} while (($zip.Entries.count) -ne 0)
 
 		# Extended Support for unattended mode
@@ -248,8 +248,8 @@ function global:Create-ZIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBYm/diTbiYJE7F+ffd+XS96m
-# 0HqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9AMvYsUkxFmdfO13Mh50bcHN
+# 8nCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -392,25 +392,25 @@ function global:Create-ZIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSkvfdN0HAUpPO6xLRpd94kr8zGCTANBgkqhkiG9w0B
-# AQEFAASCAQBkUg1D9Lw2s0AoCLqMllPjCQPwInc9qJeXensPZoMIniectHtjZf5b
-# WYtbWliSVT2z3kwIgm5kPcW7LSyPfme5z2cINasVzKrdLtGF9hqcyIqE7JmSDzMT
-# AeauTPz9d6i5+gbVxTeipPjqNSXUn4kjOJQrQ/jnJQQ0j7TwWCQKs4adVhapYpa4
-# zRU4JB3WPvjhuTUdKOUTOX6sy9gPbzzMroOhN1VDdEgUV7phiRi/v5mxH47HzzlH
-# m1HG50TjKWn1LkYnTBF2G+HLwRFMpClhefJhFuUw7FkvCoU+1bEWsNV4dKZmL+6r
-# aKpqDl1GsnIXlEjXPq23Sdv4+ffsksapoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSAqTdW+lLQ6fiFQMWM6ClYKJWdeTANBgkqhkiG9w0B
+# AQEFAASCAQAharOEggohQ/FT9xOL8TfOtnZN8lluIAt9+CFTbfvZHNWBcaXl+GPs
+# ijkLbsIt4IJc3dQd34DZfJvcPmetjV1JUJLOuixeYnTl58UDL18kfTZ6n5Llgh8Q
+# GXEWF19JN5clsNneygLqZVjVtxbQomM1HS1ry9ZbdEIBqM6nVsuKRsHZBWeR/TUe
+# y/gBbrF+JjlrNYRS80BJmR6RFVCZDjcvieHynRAxTUvgQ6ZRcJ2vbmz1NLQlaAmY
+# Lj2TDRunZeJNvHoxrp3gGzAWyCbWPZb3mn+g+vFDIJm+WZI1jxKnr0kjb11FSJd3
+# tdjiI6JGRxHk82YYkWAma3p5cCVlgKOZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwMVowIwYJKoZIhvcN
-# AQkEMRYEFBfv+gGEbxGKX660HsBDC2z2kOtTMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxMFowIwYJKoZIhvcN
+# AQkEMRYEFKbSC2C7Cny0vKRxJarsNzmU7fB2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAAC8WqaYt+vTbZx7qXKjAnbC1w0AS9EGLhfEj68UKje8sO
-# Rqkebb5H5mjqyHj0i+SK+npYed3X1qd4Srk0HSHlpN2vdYoUPQaE0MP9fqhnl6LS
-# bwJcY84evR1UQ97UDA2tAsXQJm7+j1p0focf0rgygR+KcZqIm6BJnWZE2lBstEiK
-# RhNNAOZzjWXuYbI5/SagxEEhfTInKwEFf3UPCANg30RAe4zntmr1Ml5YbesidcPW
-# zKiOo4ClfTyETq63W1txmgz/yKqvxBgfdPcgpeOM3jZpUl5+mCJnEQD02wwpGFjk
-# +tUBrn63ix2+TagJOAco+Gw5v5KaVkx4Zcpf5Bs1
+# hkiG9w0BAQEFAASCAQA1tCMlYsMaQBuhqPmcUAGFqbOm0fs9iXhVg3+MMvFe0n66
+# egfXnUsI76JORytYmsZKm2gDzs0/H0mbZqHGpis65Pl8ZVrDPtcYGfWJ1d/kmXPH
+# C8444SLl5zv3wOlyBEAmDKg3qauOhBY/PgSe7lTqDeI2wuqvXlJ3wsLGXthvjEhS
+# 2CaZ+Aw5Kc8nPaEvReqFtwzb+gzorJhD/mYO3/2ih/DnrWZgKZDBaT9Wup6gutGN
+# 5Fsg++IEr0aDjaPAgcgTHDe14U7RwWRzM/uQqrPL8WqUn/bS5vxrvtxdAPekH1l4
+# q+vHiiQ0GRjcMmOlqoyD7N/vSHh7hW+eIB/T9Kbf
 # SIG # End signature block

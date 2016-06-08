@@ -83,7 +83,7 @@ function global:Write-ToLog {
 		# No Logfile?
 		If ($LogFile -ne '') {
 			# UTC Time-stamp
-			Set-Variable -Name "UtcTime" -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
+			Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
 
 			# Check for the LogFile
 			If (Test-Path $LogFile) {
@@ -97,7 +97,7 @@ function global:Write-ToLog {
 			}
 
 			# Here is our LogFile
-			Set-Variable -Name "MyLogFileName" -Scope:Script -Value $($LogFile)
+			Set-Variable -Name 'MyLogFileName' -Scope:Script -Value $($LogFile)
 
 			# Create a start Header
 			Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
@@ -112,7 +112,7 @@ function global:Write-ToLog {
 
 	PROCESS {
 		# UTC Time-stamp
-		Set-Variable -Name "UtcTime" -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
+		Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
 
 		# Create the Message Array
 		$messages = @()
@@ -123,7 +123,7 @@ function global:Write-ToLog {
 		# Loop over the messages
 		foreach ($message in $messages) {
 			# Write a line
-			Set-Variable -Name "LogMsg" -Value $($UtcTime + ': ' + ($message -replace "`n|`r", "").TrimEnd())
+			Set-Variable -Name 'LogMsg' -Value $($UtcTime + ': ' + ($message -replace "`n|`r", '').TrimEnd())
 
 			# Inform
 			Write-Output $LogMsg
@@ -141,15 +141,15 @@ function global:Write-ToLog {
 		}
 
 		# Remove the Variable
-		Remove-Variable -Name "MyLogBuffer" -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcLFUhoQg773l8nNvL0OAyG8e
-# K4agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBpuUsYXeph/MRZ4Zk0wuJgzd
+# tCCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -171,10 +171,10 @@ function global:Write-ToLog {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -190,12 +190,12 @@ function global:Write-ToLog {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -292,25 +292,25 @@ function global:Write-ToLog {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQSQVWogaC6dJfWIliqnfxN4PcH/zANBgkqhkiG9w0B
-# AQEFAASCAQBHB/yCN8NL/n+1CXtAbJH+ut+7tqRaGBjfkcKVTjzBnduWBzGfQUu4
-# e8P6Q+lxzNVwn627KTPi5vREZwrMwMOUqzGXzqruGD9ILAY9EHIcqr9uEREsOAMu
-# hfoN+xqogG4ZKapC86CyfDfV640UBv5sCq281unGB0MH3XOmengBpWOXfnZVHCxd
-# lXFKhXW+gcH9mMfahVpPKzzPHIwDlIPIPiicm3txRsEQjb3uil/BbgXPdLB8TyqF
-# iZWhFZMtZeIxroMCZnwjFuiTM3OpzuN14UFCoFSzuHaMLo5Z/bN8UothF3L4/kec
-# YBn0q8JOFAXaR1v3o5UKmuU71G7FB2PwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRy7QuQGVf07xUMRIhj3/5vVzc49TANBgkqhkiG9w0B
+# AQEFAASCAQCuoSjahedt8Nbwi4HrniFP0oTzIkqQZdxEtL3nDn9msikgjGapf+Gt
+# aw/RlKiMBP9OcyUQ/V8tBORlYn0X1iG9XeB7C9Cf5yV6U+/D+V+iu07WegKSky81
+# OsdKw2qwTtNiqpoG3G62q3FtQ7obUQZZgapHMqxUzW5gQz2pvQCQ0y7YXHEoRvZY
+# tXqKvUjbonzjOPiAxrNvp+aBS9gHiZQmbHH2uq8Qaxnb7TAGaccREwf0g0WP4iV1
+# RDQjdppSy5miL081/k4LD/Jq41QgY/axZCFzTBmPRCQwL9nLn5kNXHmFAfxOdFjX
+# JxtMZaxxvVTOJHffWA5S0DVZ+iOVVNiXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0OVowIwYJKoZIhvcN
-# AQkEMRYEFMEcal3vFV1Kv2VWUEzHjd+9UQ94MIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1N1owIwYJKoZIhvcN
+# AQkEMRYEFGl6n7ebP1hRRfbchPN6ioC4ocLMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBQ0dJC8IZY2dNqgbVy2+V6NMlmbkJPmcREGZnfqrDrnBPl
-# EhOwZLOcEwETtoWUO/WTWRu8ZxGwk0jQNDmJa71V61G8LRLJQSZI9l33wXZst946
-# vJy4LeP9SL0CXeRYbeMJg+j+NAwKBElIDe9QNQ9t70RzogPWXOg8qKUeUpAC/Qbm
-# Bm0gx04jqq6WygZKXUM5pX6Cu0B6E7LMNhiNY8s0ncmSubPrRpxm6BWj8HRaPg/j
-# +y5a3ydjVfIiMu5MsMQcrEvL3ZSps0epEwzheWY2shzeUHaAs0w9DYxWnDHNyXDm
-# HrWDnW05tV3vvSL1NLlPfkzDbBU0cdSGP+kzf8Of
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCKn72N8quvFZNn6RPhM3oXKQS5WxCtHvv/7E7oDk/g+GCH
+# jjcXlFBJtDRY4Vx6SXnEy/NIUnAJ73ZmF2kWFoL5ntQU7ArvnbGs5kC3QnSLU7f7
+# mAqoq9tBG/N7dPyqm50KIRbePopaMV5Ff95IBCyVHfDRTlOxMZzbfXWeswYsfWOY
+# iLcOieiRhjEgkQp2ltALprTr8a6RvNEN9/w+V+Kdl4VBTJNhxI7RLpsZaEpboJBa
+# mZYHcgnexdB/v61XKJNEJPEQMILb9cyIlWGugRvAfpzCU3KGko7ckDHIvS0W0ScS
+# H8fu3XGvqzT8MoaMGVO+2BPx4wbJrgLmhQt6JTbx
 # SIG # End signature block

@@ -102,13 +102,13 @@ function global:Invoke-AnimatedSleep {
 		[int]$seconds = 1,
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2)]
-		[string]$title = "Sleeping"
+		[string]$title = 'Sleeping'
 	)
 
 	BEGIN {
 		$blank = "`b" * ($title.length + 11)
-		$clear = " " * ($title.length + 11)
-		$anim = @("0o.......o", "o0o.......", ".o0o......", "..o0o.....", "...o0o....", "....o0o...", ".....o0o..", "......o0o.", ".......o0o", "o.......o0") # Animation sequence characters
+		$clear = ' ' * ($title.length + 11)
+		$anim = @('0o.......o', 'o0o.......', '.o0o......', '..o0o.....', '...o0o....', '....o0o...', '.....o0o..', '......o0o.', '.......o0o', 'o.......o0') # Animation sequence characters
 	}
 
 	PROCESS {
@@ -130,8 +130,8 @@ function global:Invoke-AnimatedSleep {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPBz8TO16A0zVI35eoLoqoOMP
-# JfigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU45aYe+foqPC0vcvOae0axIw6
+# 6/ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +274,25 @@ function global:Invoke-AnimatedSleep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRa7nrlOVbaW6Jz9QjQBNhMBpYLsjANBgkqhkiG9w0B
-# AQEFAASCAQCtgMYSHh7zd5GWjQwYWInMJCD630aBgsI/NeutgkiWQzi6hbe4fbbX
-# joFKbvZ9ebQx+LMfxwMFoqipaXAgGJa7QEyPxDnF0cz0Zvo/uX3MCA+46Xm4hLLl
-# 0M1vkdb/a4LvNg6lpyJaL7TmdxZlY84r8BDsyKih7hqlqaqXzvpd45/INhfo8J14
-# xDh6Wt63KhSwIrtlqs1OW66zj66Y5ZLPRC9ulGva9DMsczlDj775HHtkEwt9dg+K
-# MDCPPAlB0JTf7eKTUlYXtTQrCne/FBm05aYIGXb7rN+z6Ww4U4mRkIkrAoCDveLd
-# jrc65qI+LcodxkBrN3LrO6kLcJbvuvJVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTfKxgGwNPW1ihHlLU1BX5weDDcFzANBgkqhkiG9w0B
+# AQEFAASCAQATLt3cYRZ8HSMAz5oVL3omT0R2gLwBh5cwXhxTkXLfz8rxLXPwrPpt
+# Gn9zIjnltD+3VxIQOt+SkpRoYZGJVx+TOFaaOLlAkoii7eM5ha9PsC5MGAkdlbVR
+# 8tzmY9dQkj6P6qQ2sknF42oaiolSobFt4AEZ9cXRZKBjSxmrcMtfY6dK0rUqbp28
+# wuo2K8Jhcvd5pFnezvaWX7PlzPjNgin3yXjCVUe+SMcc22HQUqCEqc9KiHJRXEs+
+# //l9QpgHYoHyCsSdjkisWErzk/KlcIs5evJaANqxXkXR6hAAUW7gD2EWuujk14bC
+# PxtW4FKZxZD6PWXnzcVsm/Eb51boDVI4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyNFowIwYJKoZIhvcN
-# AQkEMRYEFJd+rMiMyjQ2bq31pghsN2jLJkPwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzNFowIwYJKoZIhvcN
+# AQkEMRYEFC+IRu/VkuD9LpFarlei79a9OtlsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCMRXmNHXan13BAZ5tZZJDG+VbdKUwBiGik3qjaTWZQ2J5y
-# hWyDXoKf6HC8ZtPSY7M5AUpPpVCjJb+Cf1SKbH9JMBxesrn9F0bUNue2cPIXG+BN
-# BgYdihtpvuCP5ol+p/PJ73G46D1G7vSP11VPXdkzx539JaAX+iwGYqRmyPaAaE4S
-# cnNG/e5geXm+29Z5wTqlcqhI7LMhyqXeGhbdPOao+oYCFQKoeYpTUEbIeQHzBLol
-# dU7KvNdrfN9G2D05V8Bj5wvOojHwqoonsmTnMMTqcTcTb1D8kDtWqF2fqQBSykMP
-# eIPAeLZHqCKgMEKRqmbVU5Tcdok4Z0nKG/2vAC3p
+# hkiG9w0BAQEFAASCAQBIuGAFU1SKRuC1FQ/gu5JIRUz5a5ZPHIa8+cjk/QLk68Dj
+# +m4sQWkx4km64701Mbi/Hxr8zRinCyFJoBFnlLyvbGV6NS3U2Q7zQH+yActJkG7A
+# 0EwXI70hM4f8JLjtXgqMwd8BFHbB8/a0QNXdYMoDcUeJR9mfSGdrzL/TiObW7alc
+# wReU/R3dThcuTp9GTetdrrJTslU1RlU+9omBbHBwx8eqM7zU6CkoL/u1q7DSjDW3
+# Tc3ZiMdUHfTVAGAaAIr6fOviR1PqMlsxPygPnUb26b1XN4ijTIoL443OAV+p9u6T
+# kte/ZbvU/LBdkWLb0livpQHmSYglEdYaeGzJMbW1
 # SIG # End signature block

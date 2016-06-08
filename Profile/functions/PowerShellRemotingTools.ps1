@@ -81,21 +81,21 @@ function Global:Enable-WinRM {
 		try {
 			Enable-PSRemoting -Force -Confirm:$false
 		} catch {
-			Write-Error "Unable to enable PowerShell Remoting"
+			Write-Error 'Unable to enable PowerShell Remoting'
 			break
 		}
 
 		try {
 			Set-Item wsman:\localhost\client\trustedhosts * -Force -Confirm:$false
 		} catch {
-			Write-Error "Unable to set trusted hosts for PowerShell Remoting"
+			Write-Error 'Unable to set trusted hosts for PowerShell Remoting'
 			break
 		}
 
 		try {
 			Restart-Service WinRM -Force
 		} catch {
-			Write-Error "Restart of WinRM service failed!"
+			Write-Error 'Restart of WinRM service failed!'
 			break
 		}
 	}
@@ -193,7 +193,7 @@ function Global:Set-CurrentSession {
 	)
 
 	PROCESS {
-		Set-Variable -Name "remoteSession" -Scope:Global -Value $($session)
+		Set-Variable -Name 'remoteSession' -Scope:Global -Value $($session)
 	}
 }
 
@@ -228,8 +228,8 @@ function Global:Register-Script {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUptPfwgO2qGAeNj8PYJO9trcz
-# ZZigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn1arGOBu+Zfqts06npBVDcky
+# WT2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -372,25 +372,25 @@ function Global:Register-Script {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQnPt4Kg4jHHOpaz7RyRiSc6BUcCzANBgkqhkiG9w0B
-# AQEFAASCAQB+VbuX+oSUWNqZfWsZU0y+MH/IPUwLOm6x3DlTK3ulSg/SdKfPBVU8
-# ENoewqXvrJNHoPye9+7Z4/psZCsPq2xsHp0TYNYvxl6bsRl5wsBJuo38HTnPY+wI
-# R7elhUF/0vZ9B6ULt5dwJIFzmNZg64Q/SAjhyTHRUXcywjdkNVNV5bHfUuSP2vVM
-# QlKOSz1mGFbny5iKULvOSE6/5Fy3Xl0jad+i4IISj40UhhbxE5nD4XxCCnKmzOUA
-# AzyJKkVrqqaMvxya9dzLRa5XVu/l9DLmIjZGbhoD1TmL1dB3/pcdPXoEp+X9beOU
-# bXPURjOYw3+wuEZmeAuIYqhWKlFOJv8MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSHa2f5txnFJsiidpq7v77dfA8pbTANBgkqhkiG9w0B
+# AQEFAASCAQBDYqXpguKnjjTqvbp1geL9GRAP8e/FOWWf3EZQA9F5sM3IFtGdYSqV
+# Z6bDjBPVVZDOk9SdSOFqGKoUVDwI95aSGxewHSHGlsN0YYV1sfIw2Zvab7b2v2HE
+# Oe1rZqjspX6RUfSzUn7KoYgUtb3Ocg5GhFsyITILHXuexTX30LHqyR8iI769yvqB
+# PBvJ/pToXGnADEszgxQSYq3BboDyP5kXaf6pkFL8kkC46qPSHo9uWmBt7+924GXn
+# QdpsiNZESDEDiFeCpCw1gPaQhOz+3cqn7vj1ADsnkE/8FHl/myRLxQNGLLzud0uH
+# ZdaHdLr/nY/v6dlt9lME0fxDMHgpNVhYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzNFowIwYJKoZIhvcN
-# AQkEMRYEFOugFdU1Lc7bvCQxEG1fsofVkdOCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0M1owIwYJKoZIhvcN
+# AQkEMRYEFCo6r8+ajuCGeB8iNH42Y76E71anMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA5XO/Cjvsfsk1HisV16ln+NN8pm9NcvLuSOLQskbkqEfpk
-# bCxMyP7PmE2ZAkCV8GkZiXZNra/vg9kWI96JXPfrzYLp4i2TWCnTCZ0BD5cTTv2/
-# vw8M52ZO9YYS0y34nm4Hoso8HtRDqD2i35cVDEZYqcSp+W6EbeGcCfuPrtTc+dAN
-# ZbvBU6jRkefFEK4QAfmDHfaEEylOpY8gOgehjiW83wFgDCD0UA/ouDZP1dZfZCBf
-# tfNpxm297qas/O9vHFxwPTTjpM889K4Ve30wec3iv46E0MNEeWQDvLbUqqGpl+Yk
-# M+jX+8D10l0+X25V2kwz87OH1AamAbSoMuLti7AQ
+# hkiG9w0BAQEFAASCAQAFvBIdAXo0v4nUnAUWAOsErxnYx10u2t+3Iwt+6Qr5VFQl
+# W9bn9J6XEi6dHJTaEUUsCHupFKALPm73PyE2YjdTbtBPNWA9JgUVHhw0suc7rDT+
+# HpGeER8a3jcINDunzeZ6oDwyECTeAG2bERxMkOncFMFlaW7fqvquBGpoBdZfrfZn
+# RFwD434ZCuCRrE1nE9e8esYfRApNpu9u/775itF7P52/PVEAnUExD+ym4YkQYh/V
+# wxH5cSdt/zxoBcAAIMXzXW/SxYHb8+Y0epinnw4SVoV12NXSNWupvksLh2SdFA9M
+# mRcYG1ltihEAq4Nu8ooykMOI5I1xCNqC01lJ3RXv
 # SIG # End signature block

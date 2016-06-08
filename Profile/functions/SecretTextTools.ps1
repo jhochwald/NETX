@@ -110,22 +110,22 @@ function Global:Get-EncryptSecretText {
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Security") > $null 2>&1 3>&1
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
 	}
 
 	PROCESS {
 		#Get the certificate
-		Set-Variable -Name "Certificate" -Value $(Get-Item $CertificatePath)
+		Set-Variable -Name 'Certificate' -Value $(Get-Item $CertificatePath)
 
 		# GetBytes .NET
-		Set-Variable -Name "ContentInfo" -Value $(New-Object Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
+		Set-Variable -Name 'ContentInfo' -Value $(New-Object Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
 
 		# Set the secured envelope infos
-		Set-Variable -Name "SecureEnvelope" -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms $ContentInfo)
+		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms $ContentInfo)
 		$SecureEnvelope.Encrypt((New-Object System.Security.Cryptography.Pkcs.CmsRecipient($Certificate)))
 
 		# And here is the secured string
-		Set-Variable -Name "SecretText" -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
+		Set-Variable -Name 'SecretText' -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
 	}
 
 	END {
@@ -185,20 +185,20 @@ function Global:Get-DecryptSecretText {
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Security") > $null 2>&1 3>&1
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
 	}
 
 	PROCESS {
 		# Decode the Base64 encoded string back
-		Set-Variable -Name "SecretText" -Value $([Convert]::FromBase64String($EncryptedText))
+		Set-Variable -Name 'SecretText' -Value $([Convert]::FromBase64String($EncryptedText))
 
 		# the secured envelope infos
-		Set-Variable -Name "SecureEnvelope" -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms)
+		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms)
 		$SecureEnvelope.Decode($SecretText)
 		$SecureEnvelope.Decrypt()
 
 		# And here is the human readable string again!
-		Set-Variable -Name "UnicodeContent" -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
+		Set-Variable -Name 'UnicodeContent' -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
 	}
 
 	END {
@@ -210,8 +210,8 @@ function Global:Get-DecryptSecretText {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSXEoM7QtWJZnESI2RTVjUDCJ
-# 1tGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO/r40wMx8WbO0mgzGa+zQlVj
+# ZBqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -354,25 +354,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSdQV8OqRZSnF1Loy0cQOVmbXFl9zANBgkqhkiG9w0B
-# AQEFAASCAQAEvrs/klaQ9J9t7huYjjFJFXrC2/t8zFUAMC3+dqA1pBstLLsG0XSb
-# 1VDeFBaeCehsvsFMlAFe+RZznH4Mq61ttpyON/1zTxvFHISNIl5Wil3WZgMVEq8/
-# MNyf6At9Vi6c97ji+sd4AayaZyoaT7wwWb446NIzObksG7qU5Kq0qxtf9lGhOPr+
-# mghaxbz3GeEMLI7eN29zOF7eQpuaSOKzns3zLX0dn1cnXgu3LnvoX/wREn3bW20n
-# EKxPSZZOzAipbiK6JE+GpGSJIapIsBAauy4kz5wpfndQQ5a2B66RtTqUUhhsYip4
-# XE3nENA4S46TrKIpi5SRpYLP+kyoQAfPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTPBqEuSGOvlybivtrh+sQRCozyoDANBgkqhkiG9w0B
+# AQEFAASCAQCammytLoQyitnsOYVKvWFpSV/jXMRj7Nz4NExv3Gu3r9jhkjliEJsK
+# I7mvSox5VIcP5VfDYzlHWpCGP23XvcwSXN10FaoSyNrKapMcrT2NL5OTCaokGQiD
+# UBXYELU55GF+G87QWRQdW/oaN1Qvbm+SOkjl6m+3boFnzT/jy0YYER4A1vXYBogp
+# N7azoFjg2wZAYKxDfvwBUHb4eBvu9TgfhqXqQsg9WfjBklBfQ+KCfjNrtx4yDKGZ
+# 5qaTIE3X070NYR74kYJ1XccTuNO6fZ0g9zR93aKrKkYM3CIrAfZL5BOFUQmgCgi+
+# +7RoqfC38MB1LRmCMjuIS/TANIk1/hxpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzN1owIwYJKoZIhvcN
-# AQkEMRYEFF3eUgOywewUsoa3Xo+zn9w9EmFhMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0NlowIwYJKoZIhvcN
+# AQkEMRYEFCOkzl6zrwdPxmO+VE3b/kEO4pPKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBY58gNMXbtnqkmAbyeA5vfIL2Dq0Uk0OL+Yf1cDXoXp+hG
-# 3CmbS2U11KjTfd+nQRoftV7p+G1Al5WyrddSC3ceilNc7+4LIehk+whil32SNjcL
-# nWKRYTWqbF2dmpQuqx2dyqoMHywdU7zVOuN012zxDDiUui/5ph3n9lHFKvJmOiJr
-# +61fTPViNw/WBm/x+hhz8WNa1/AUUYiviVXKIuOIl6dNWq5qReUrt+/NAWpM6ixr
-# aDOFpX7dk+BNKjmkx6bqJyNoE2jgAOYWQr4eKwQNMa5SkeQNIJQvSzgUpsjAZ52F
-# Q3U34FNOJYUx8NMz6JUIw49vydG1NFAc4hLJgO/z
+# hkiG9w0BAQEFAASCAQCu0dQDsO/zOtmdBhf6uZfXECujp+6Nc8JDj7P892wfZRKA
+# 1NkBmS0xUZFR7l4YT1eG2waul8tZ8CPbOwDxOKSzzy8VjM542lhN7KhICKoNndiD
+# c0t/xcKMAs9wfxIYO+4iCy173JfWS9ZM6pF79lExfZWvfkaxVq8TKVZ/9Ljvrgdj
+# FkocYwtu5920eXAde5Z5TUnxLQf0bbeTrdIp9yry9bM+LTcR4WfCW+l6hHUACmki
+# uM22EqcY8QAOBIfCRZOmcL5Mizb9yOPsXOgkFzQjKyx1agv64Wy3CnGfb07o7vKa
+# Kv/HpLsgGrwXM2tE/m1cPhotGal6vtW8uWCHYKKL
 # SIG # End signature block

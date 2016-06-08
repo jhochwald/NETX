@@ -110,10 +110,10 @@ function global:Test-RemotePOSH {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "ScriptBlock" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "InvokeArgs" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Failures" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Item" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -144,18 +144,18 @@ function global:Test-RemotePOSH {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name "ScriptBlock" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "InvokeArgs" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Failures" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "Item" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkNHqfJo8vL2mPgUbRneBASnc
-# Q4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4ZZG6i2N01+1BQp+neUtx04H
+# BIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -298,25 +298,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTHs9CVbMj3l4O96TC/Q2gXAXb+CDANBgkqhkiG9w0B
-# AQEFAASCAQCt9Ap4E14/LGDsiwGcu+hnpueEhJYMdDZlWYateV12Br82twkkL9Bj
-# S/lgMHPinVCRGOB4CYvzQxC3ndySndoGjOwD1rWM7DbkuRbgkjGxerAx803XaOBi
-# DIZUCpJSjMEYP5mvcoqP0s9ctg0/OTCulmBGkZ0PWWcFu1OOMjHSXQLo2J0Jq85C
-# D/NcMsNZwWh2Eo6tuLkdYAdCsjpbMRCMQL0mjeZS0kEwodCikWEuEdptaOnWI35w
-# 1kV3lBKMk1ABY19wtYfmvO1CbjAN2XjjfqWNuQlM16IvLFopIjW23O1uHTpfJtM2
-# 72mOYDANsxqItJvYdAGXfkeXtktNJ+6hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQym389Lzc86jYdHFOad2ZVBgwkeDANBgkqhkiG9w0B
+# AQEFAASCAQBJkhXu+R1qUiRTsgvIryJGsm1Z4t5R5IXhka92EhH2Y6cU50NrgsaP
+# 2SKQ0R1X0fgt4Y1kpdbcV3Nai+2cSADdZs45sTT6HqrFxLtu5ExXJ/lGqKAALizz
+# j5ApU/wP0X6c+TAC3X54wsjYOJMxf/4W/uZdl+3ZPFXuB9Io8NLZX8HAlvlloZ7d
+# 9X+/uQ8gH/msmDU9VIzr+ztvydrQDo/nUVSmRHtx8Q3S3O/zOZTmud4DazrRJjp6
+# NkNV9MeWerrhQHLxQ+ED2TbutyHrmofsUUWkJ2pb0BMmkF0E2o7HXIwq7AWOCQkJ
+# TGGbhRgpA7vsTfcxDFVTuxKV+gM2781xoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0NVowIwYJKoZIhvcN
-# AQkEMRYEFCjKteJaeCUZAsDKF3y+LYMuQj8nMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1M1owIwYJKoZIhvcN
+# AQkEMRYEFLqL0t0Zh2KyZkNjE6GwJVEEYnj4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAz+LB3u4MDDKaQrNCpBKxd2hdpbUK4wHoIkZUPeA7Q1zDO
-# MSfi2BIOuyvFsZS9wj2a8MLSiKU5r3RURNI82ouEQ9aIXXBQDlccw3lfOGak98bd
-# fWOXNPKJJFZ0VhhyemtBpdQeUQOhqbGymLsS1zf3grjrRsh4b3vm9Q2FijpBvK+v
-# 9ZXe29/5j10fz2fiMliGMeONcmY/vZ69PrqSCDOPKCKjnk0OkzZYW9lgobp7Abrk
-# mTEcg+dARfc+YFVAb8K+oObt3yEcFDgcO/Tta6IjfoCfG+IAFP6pZ9GBR0CTCMuv
-# s3WSh8TF5lmUqr8jSCf3TAxqQWF00acRlQBAOKS+
+# hkiG9w0BAQEFAASCAQCboWoy9hbveSSc+MBslPbk0yR+fqmksI4podxQVx0uVowN
+# gUhIaoWRaO//7u5NgbEl+zqDUCX/ZjFkoQEQee+Km/W4vMliBSUkrRU1CjG1X88Q
+# nLgh9DRNqVo3HZGEywNUA+IKw0qLQ65FqmsZhANLUMPfb52SZYqboRG8d8Hdx5zi
+# DlLG8rmyKW02zTRL9Z1I2RxBvqRXinRjDCDwxNXbQw/LTxxb/VpDvcHewiZvovhE
+# GhGUU8tzoQ3+FgrWbrCZbW3+YO+xYCGvAHT8aWLD/Sm2AWMtyPQlc5jUjLVc9FZ7
+# yyQadZhNxuDdG/m8bIvmw4qx7IJVD7iaXvd34ctJ
 # SIG # End signature block

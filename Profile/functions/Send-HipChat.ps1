@@ -135,10 +135,10 @@ function global:Send-HipChat {
 	(
 		[Parameter(HelpMessage = 'HipChat Auth Token')]
 		[Alias('AUTH_TOKEN')]
-		[System.String]$Token = "8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv",
+		[System.String]$Token = '8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv',
 		[Parameter(HelpMessage = 'HipChat Room Name that get the notification')]
 		[Alias('ROOM_ID')]
-		[System.String]$Room = "Testing",
+		[System.String]$Room = 'Testing',
 		[Parameter(HelpMessage = 'Whether this message should trigger a user notification.')]
 		[boolean]$notify = $false,
 		[Parameter(HelpMessage = 'Background color for message.')]
@@ -155,19 +155,19 @@ function global:Send-HipChat {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "headers" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "post" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
 		# Set the Header Variable
-		Set-Variable -Name "headers" -Value $(@{
-			"Authorization" = "Bearer $($Token)"
-			"Content-type" = "application/json"
+		Set-Variable -Name 'headers' -Value $(@{
+			'Authorization' = "Bearer $($Token)"
+			'Content-type' = 'application/json'
 		})
 
 		# Make the content of the Variable all lower case
@@ -175,22 +175,22 @@ function global:Send-HipChat {
 		$Format = $Format.ToLower()
 
 		# Set the Body Variable, will be converted to JSON then
-		Set-Variable -Name "body" -Value $(@{
-			"color" = "$color"
-			"message_format" = "$Format"
-			"message" = "$Message"
-			"notify" = "$notify"
+		Set-Variable -Name 'body' -Value $(@{
+			'color' = "$color"
+			'message_format' = "$Format"
+			'message' = "$Message"
+			'notify' = "$notify"
 		})
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression, could reduce bandwidth
 		# Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
 
 		# Set the URI Variable based on the Atlassian HipChat API V2 documentation
-		Set-Variable -Name "uri" -Value $("https://api.hipchat.com/v2/room/" + $Room + "/notification")
+		Set-Variable -Name 'uri' -Value $('https://api.hipchat.com/v2/room/' + $Room + '/notification')
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
 		try {
@@ -217,12 +217,12 @@ function global:Send-HipChat {
 			#>
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "headers" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "post" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -230,8 +230,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUv/14slz3++1GLf7YoA6aGZT6
-# qVygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMhnIAOtEgNnKa6Is+bmBuDgq
+# aLWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -374,25 +374,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRhiRpeBYy+oeivZySHzMfoCJxCozANBgkqhkiG9w0B
-# AQEFAASCAQBkecs8ZarMAAF7UyeBiPYb1f5rc7aZ2kanpK7XkJQwwaO5PJ3O4Ytb
-# UxV9lHFyR3O4C8Zac4X0ksY6A9e1HIirbQ3iOHK31WGaZmoGUTwZP1oOd/XyTzz/
-# gzmvnoGKGzf9mjAnyDOsUbS7/Jb/nbmbHtuvNeQhOjHkG4hc6gsEJza1ldOlm10p
-# kmD63ApKWJ9G5wrEGLzj+gGQJnrE3zh5iB03IzIj2AWUJ75YhTKx14FWoQkI6T0v
-# lo3eUN8rn2bHfP2DsFSrs+Ur6QPCskqcCB8pQUsPNaL2DKKhm+aorh6pSF98gq7D
-# D7U5WvNDNqOlKqoSeDmJxQZDBpLG0R4woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQXMAyLNAnXHol2DHN/U0uoTln8SjANBgkqhkiG9w0B
+# AQEFAASCAQAkDrfQ00QrWoAlsIpTWyw4kCHX/MMLIqUG5rDzoNnDwTG4wIVRaX7Y
+# xO73fbgsPQgLuHeY3NJfdMbSrQ88buTd1kkGgEShC0UPAwMV9YxvG6TxVL4D8g3T
+# lQfi8clbtZ9whSYxWhnx3mXxYfjeG1ZlJGausNAgxkE7DJNvS921bXviqJyQfhTn
+# sn/EsXm4tCMhQ0ejKElQyleoGmto7Mk0kmQYHPNYXN7NNcNxO2QT0MSMnYSzdoVU
+# Fu1FRDFd0lW9VVXEzBoYasLpKrWJJtDBC9Xuko8NkZgID9pdMfcr9kc74G0stoEu
+# Rjm25kKm8oNVsOzp50XepUyUTwPFwW59oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzN1owIwYJKoZIhvcN
-# AQkEMRYEFMfknAg5BW13jPWG1pqtcAukCdbNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0N1owIwYJKoZIhvcN
+# AQkEMRYEFIKpK5mx7dyFJD9f7DrVNfz8XgJ4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCBt1wgE60g+yXSqe6lgW7PjUZurZBYdWSkzYpM95cgkO1c
-# mFJvLSXnpWESemw2YOzCuaZlEoE4SjC4XV0DNf7LFIjT7gSTCO8MjbR9bynP2g4B
-# KY9S4kJvjCc/EVlL49bZlQEup1fWH4zgDESgmRuJOXX8PEg+Rfx4CjFn29+tfdzo
-# b9Zzgck9mClHJL30TwyPQax7T3C676qI37o0zICj9Cm6Xh4PMIxnw9O9hDxrPcU2
-# JQAsTxEAUgmVYQKlhrGRi4Ejbof4x//tuetzKdv5cuEwEEooEofBlTJ2eohCgZF5
-# k82ug3QdfCE9cFdJUn+zRQlrDZqF/MJxfJKo0BYB
+# hkiG9w0BAQEFAASCAQCmlL8VQ/1A81CPCBv+Dl3h6C+HHX94H3T74xy9tXzfm91v
+# j4AU3PJI2gtmRkSBdjdVK6/DawZ7zt7uwfXJ1iJVtsuPPTCA7bYkOT7fRkQyOzlg
+# VMvcsw1XU45xp0sg2Yov3rGwz8aD/FCwMWWcUe/ZS5rLZDgaLzv4CKHlEJciLIET
+# Av5P4E04aJKuCUMYaW8RMvOQAg3eZ7C5Bo2NqzByVdrHROPRBbFqAm5BFMXAfBv1
+# uvU1tlhQ6w1BgGiwWSbTzwc/UJqk4SVmGaBkqYmJGNmFPp2Ry8Z3ct+L2FEL5HUn
+# /TAH5+1UuSbEqxzYV6y1r2jUwEwQOwEP22Fo5IdU
 # SIG # End signature block

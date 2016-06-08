@@ -144,24 +144,24 @@ function global:Get-NewPassword {
 		# 3 - Ascii Upper/Lower with Numbers
 		# 4 - Ascii Upper/Lower with Numbers and Punctuation
 		If ($Complexity -eq $NULL) {
-			Set-Variable -Name "Complexity" -Scope:Script -Value $(3)
+			Set-Variable -Name 'Complexity' -Scope:Script -Value $(3)
 		}
 
 		# Password Length can be from 1 to as Crazy as you want
 		#
 		If ($PasswordLength -eq $NULL) {
-			Set-Variable -Name "PasswordLength" -Scope:Script -Value $(10)
+			Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)
 		}
 
 		# Nullify the Variable holding the password
-		Remove-Variable -Name "NewPassword" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'NewPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 		# Here is our loop
 		Foreach ($counter in 1..$PasswordLength) {
 
 			# What we do here is pick a random pair (4 possible)
 			# in the array to generate out random letters / numbers
-			Set-Variable -Name "pickSet" -Scope:Script -Value $((GET-Random $complexity) * 2)
+			Set-Variable -Name 'pickSet' -Scope:Script -Value $((GET-Random $complexity) * 2)
 
 			# Pick an Ascii Character and add it to the Password
 			# Here is the original line I was testing with
@@ -173,7 +173,7 @@ function global:Get-NewPassword {
 			# Random Numeric ASCII Characters
 			# [System.Char] (GET-RANDOM 15) +33 Which generates
 			# Random Punctuation ASCII Characters
-			Set-Variable -Name "NewPassword" -Scope:Script -Value $($NewPassword + [System.Char]((Get-random $ArrayOfAscii[$pickset]) + $ArrayOfAscii[$pickset + 1]))
+			Set-Variable -Name 'NewPassword' -Scope:Script -Value $($NewPassword + [System.Char]((Get-random $ArrayOfAscii[$pickset]) + $ArrayOfAscii[$pickset + 1]))
 		}
 	}
 
@@ -187,8 +187,8 @@ function global:Get-NewPassword {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUh83TsIMLQt178nFXxxmgegFz
-# uIigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFKp9I6pJESy0BylhGVizawAZ
+# efygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -210,10 +210,10 @@ function global:Get-NewPassword {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -229,12 +229,12 @@ function global:Get-NewPassword {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -331,25 +331,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5P4n7ppFGkI1YOSS8ewV4WP8YVjANBgkqhkiG9w0B
-# AQEFAASCAQCkNYIJO5AMvvJiu+gnolDKhTAyivYx/a4aBCOwfcKKAbKRWx3h5foY
-# /00QDIugm9AFBDEKLONFpZAlXRcxgzoxPxTtLDFXzff65nACPtrWDCC9uV5uDzE/
-# 7AeDcU2f/EycBPtqL3+9CdIAUiOnCxTCDkfdu2CcnnVeE/O7njTh94GKy4UQ4d1i
-# TF70VH6Jrrt+4Ushe3LMZCaDHmZd6HcKYVn4LOa7hHEGrlLmmCnU4vboSBzhgpKf
-# AMARFvwL2gFtMeoPwxpt1UUHBXkXadQjidmNYxxgTSGQMgwzUkhJVYLYnmlaWOiz
-# /fkve5HU3mAYv9ujH46P2jKgWBcr3q9QoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR9o2FycviLKxx83kBX6p8INKv7jzANBgkqhkiG9w0B
+# AQEFAASCAQAcRt+9ZmYH4p55rWgu6t0L3FJus6olKTGq8nBTXgFF1ra3efPgH4uV
+# mnBqclkwB3xCh2YtUsy8MftZ529aCgpVLVaU6h/ko09dYhxON+4e1qezmLn5foe3
+# 4qCf4ZCGYhRxJxf0YRSPM7I5GnI/nE+ta4F1ax5iswOMU9G6BMBrzZu8FirTeobT
+# 4MvdB7Afriaq7dhgyk46bsm7FqbcglRbRvDuS0y2el1eoO6yxBQO/5XETI17c2Yz
+# 9NkZuuC2Ic3pAl8w6QJW2tMvxhMu0BAswLE8XMDYxx+gdvA/9fhIq9ItbohbGqhL
+# C1QomAdRl12w7iUiQPpoX+m+tZITGMa0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxMlowIwYJKoZIhvcN
-# AQkEMRYEFD4T3sbAbcgmp/lS85MH3qAn6VyoMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyMVowIwYJKoZIhvcN
+# AQkEMRYEFEpuTrvyU8NA5K84KcKDWVR0POCbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCRRk6DvBt4XWZHr80REy88Psf2loKXx342WrXAShdVcBfI
-# CuNAzyV+Q9HLJuaB1jqgXmrKAc/biLhz9v+fuzpuXka5kq/cknsgdnqjqWITaDqm
-# KA2vQNnlEsfljXGYlpwhyVt6SAucOGbeaEQBCcFJsMs0ITVp9tZSiGMTNoA8Qbhc
-# eOy0lmVU2mXaBv4I9A7y+SLrJr82LdPuwGjcjDaXUmJg6VIlVGIzbTeZKlSreVmF
-# gGrM9JIlCO1iBeNwWfS5DAOi2oPhjyApQLlajfp5fG2JCYex55/ULw/X1e5AaIkG
-# 25t/v2U1pt1w0exMSXjmAE9+hz6YWHM3xqwBFy/n
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQA5Q/ea2KmDNMu34Am7yQBcvwJToVKQlmC5SsSlxG58B3Bd
+# j69DJtpfekTwD0HRG5J3P6Mk4VkYlvM8FuLXwvvJkTNwxoi6YRLSB0qZoJIlCzfN
+# 0Nd0KVrl0iY+YonjyQoaw0Qd1XgXzsovzzuVf+slRgSMAcOvn+wB3YaThr7TISDN
+# +3cDR8kd0rOzGXmVbUTXn+p1ONbq4yh59MiRXHupSEPOrjoX2OZkiZ8r9XFptvGu
+# 4CWRBw75oBSsZ0NI+KxGwYw4bAnRhbdy9S47+noxNvPnl7HaT+tTwCoUTgamRdIi
+# JKDP4c0lFDxC5BYgv15YX59x14Row99irJW0lCB8
 # SIG # End signature block

@@ -79,7 +79,13 @@ function Global:Out-ColorMatchInfo {
 	)
 
 	BEGIN {
-		function Get-RelativePath([string]$path) {
+		function Get-RelativePath {
+     param
+     (
+       [string]
+       $path
+     )
+
 			$path = $path.Replace($pwd.Path, '')
 
 			if ($path.StartsWith('\') -and (-not $path.StartsWith('\\'))) {
@@ -89,13 +95,25 @@ function Global:Out-ColorMatchInfo {
 			$path
 		}
 
-		function Write-PathAndLine($match) {
+		function Write-PathAndLine {
+     param
+     (
+       [Object]
+       $match
+     )
+
 			Write-Host (Get-RelativePath $match.Path) -foregroundColor White -nonewline
 			Write-Host ':' -foregroundColor Cyan -nonewline
 			Write-Host $match.LineNumber -foregroundColor DarkYellow
 		}
 
-		function Write-HighlightedMatch($match) {
+		function Write-HighlightedMatch {
+     param
+     (
+       [Object]
+       $match
+     )
+
 			$index = 0
 
 			foreach ($m in $match.Matches) {
@@ -165,21 +183,21 @@ function Global:Find-String {
 	(
 		[Parameter(Mandatory = $true)]
 		[regex]$pattern,
-		[string[]]$include = "*",
+		[string[]]$include = '*',
 		[switch]$recurse = $true,
 		[switch]$caseSensitive = $false,
-		[string[]]$directoryExclude = "x{999}",
+		[string[]]$directoryExclude = 'x{999}',
 		[int[]]$context = 0
 	)
 
 	BEGIN {
-		if ((-not $caseSensitive) -and (-not $pattern.Options -match "IgnoreCase")) {
-			$pattern = New-Object regex $pattern.ToString(), @($pattern.Options, "IgnoreCase")
+		if ((-not $caseSensitive) -and (-not $pattern.Options -match 'IgnoreCase')) {
+			$pattern = New-Object regex $pattern.ToString(), @($pattern.Options, 'IgnoreCase')
 		}
 	}
 
 	PROCESS {
-		$allExclude = $directoryExclude -join "|"
+		$allExclude = $directoryExclude -join '|'
 		Get-ChildItem -recurse:$recurse -include:$include | Where-Object { $_.FullName -notmatch $allExclude } | Select-String -caseSensitive:$caseSensitive -pattern:$pattern -AllMatches -context $context | Out-ColorMatchInfo
 	}
 }
@@ -189,8 +207,8 @@ function Global:Find-String {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUftkEWwimN2LnP7+kmzJ6S/Em
-# gRSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7PzaPNr5td9L7U3zL6RDr9Ce
+# yaWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -333,25 +351,25 @@ function Global:Find-String {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS/UXmEaBlYr7NqUOaHZqjrYjsLGTANBgkqhkiG9w0B
-# AQEFAASCAQAOBG465sATHVHkXD615o35e2MXoU79zZR0pRapjXjdI+VyWKWUJc8Z
-# FtRG0s+uSBcb3AiMkhmpwNb0g1NS3j4gILA8jCkcGrClEBipNDUELsgimQxD+h9q
-# USQRM73INgdp6eiyIc4iT0O4am5+qqhZxfuEPWUZ2yFw3XxjBC7Mk+d3fao63Zdk
-# 4xPuiW9fPd6Q86Mdq5LK/5XV8xyr+4ViQvfWGSxEtH1UPdtbmiqfBBEFEk6ShiQY
-# YHopcfAFMJxEQ2dHHQVy2FiVbKUXLp4gZh8mZPQ4RC1zMxjVSplW2+XCTGG2ZC+5
-# ZlCeF8Zxs47Y7tdu5Qe/IE+DsYwGktujoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSWsBbcpPwGePbHVe0/IcnQM1ZYHDANBgkqhkiG9w0B
+# AQEFAASCAQCLCJMVdXJkyYdTgciJMqA3l6yG8hVlYCpZ/LLqGXtRE4uUEtlEYueR
+# aKMW5BjcCod3EcD7RhVEuXTuaD+MGzQiQBDW7UDtsKrHNQcCo3kdRL4zt/v4Eapw
+# 50QpbE/7MUnW5Lvu1Gz1HBPuqb/DdcefusjAXgyyvtrjLmB0wCORnLi7f9/QcCoI
+# wAifXEZlHp5Mlfq9w76Hp4Je110JDXa2V6XnvVP/kS4JI7zSmWGoovTcegbe6yRr
+# 3b7+kDCLnWWojSeOkOlTliUA9b4jpHe77gbRSP1bWoR3COcB88qfP3shnS6/HxMl
+# cPMSfMLVbGvf7vHgxp59vZElnk/bIsH5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzM1owIwYJKoZIhvcN
-# AQkEMRYEFP+KE3+hv2Ph3XZCVe3jIhvEYyMfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0MlowIwYJKoZIhvcN
+# AQkEMRYEFAO4nNY8/OoerPqNSuIYupRE7dI8MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBSHHOezZe2g93CZC2FBi7gwj0BWLhMKlmev07ILEubbCJw
-# 7fZdq2Rx6BCOJzEYDBQo6as03yo98+/KkSRab76vIbkEAR7Jnm1LZaN7NmVUEW7R
-# LFBdEr2zcocHJKTEa1imyKAtDDWpTVbY5QkNKmi/DoAO85VQcrryB1fqVTCokgNT
-# ovi8Fu+ybGdVc9f+EtnJ2s5oiK0rB/v+zutul0HT99kUqyHf3h9MfnLV06NHd4/j
-# jSo+uR390OnDjHSlaBDCNQBDOY5Su5gJHf4LPKltzUaH+EzBZjVmf8l2f2rx2TfU
-# MofUt2nrFY57iusyL5o1Xs6Kbct4Biq6p/ztG602
+# hkiG9w0BAQEFAASCAQAWihynqmDiNsecPbOO3H9EOwbghF9TcuxAZGTmBilFQjTP
+# L42eq9K39xkcHzoZJSrthAPOM9f541QYYloFaqwYDCGO0OiTi12j5+iYRY++/Q80
+# cqL2EXulxsz8J57APQoM8qAui8cmGrA+Isns0cl3Q9EgmT7sTLbhzl69lN/+O23d
+# Na4NyK8NJZ1t29+jsez5+8tlH8W/KYspTEk26EUjpMRpSzIVZGpGhvWD22wK4fnI
+# 0o+cXeVGgPBV0k0a850/w4F56ph2bC4X0JWc/aF68MedVYx2wkYoOxx36H5HnCoY
+# EDSPbYCgIOyekpxjF/Kq+ZxrtYM7vW6DVDl+LupB
 # SIG # End signature block

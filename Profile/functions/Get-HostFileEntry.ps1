@@ -89,18 +89,18 @@ function Get-HostFileEntry {
 		$HostOutput = @()
 
 		# Which File to load
-		Set-Variable -Name "HostFile" -Scope:Script -Value $($env:windir + "\System32\drivers\etc\hosts")
+		Set-Variable -Name 'HostFile' -Scope:Script -Value $($env:windir + '\System32\drivers\etc\hosts')
 
 		# REGEX Filter
-		[regex]$r = "\S"
+		[regex]$r = '\S'
 	}
 
 	PROCESS {
 		# Open the File from above
 		Get-Content $HostFile | Where-Object {
-			(($r.Match($_)).value -ne "#") -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)
+			(($r.Match($_)).value -ne '#') -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)
 		} | ForEach-Object {
-			[void]$_ -match "(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)"
+			[void]$_ -match '(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)'
 			$HostOutput += New-Object -TypeName PSCustomObject -Property @{ 'IP' = $matches.ip; 'Hostname' = $matches.hostname }
 		}
 
@@ -112,8 +112,8 @@ function Get-HostFileEntry {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4CMx7J8cRfKzbGgNszcf2P6a
-# DU6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtJKA3uRQYEwG2aMt12kNIrYM
+# TzqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +256,25 @@ function Get-HostFileEntry {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRkm9AfPwNfj09fh6Z4GIP9jjs1CDANBgkqhkiG9w0B
-# AQEFAASCAQAoILt63pEutqWMW2MaPKFUdC5LjI+fN90zy6mV+eSQ4ZkGJXBoZ1l8
-# +hZtgpI3QOByl1347oh/ISiL0VR36fyDVL0siICx+YHQLDGdCwBORQ7N3luy6rm2
-# gAL8eKL2kkCw3Dc9CQVwENVUPoM5VoxYZoB1225/SqKvhUtnKq4B1bWvqTDnr37l
-# n0tp9SoBFH4OtaUmFDa5Kpp4NWOaquz7j7QDq3wVXyDiMvh7sIoZ5sIYwxk/rmtM
-# 8xBi4LYA2BhNOUxtWfC2jwoDadFNkl6OCQvjt3EcZ9Fq5eCn/atoRR+Tma8P+aQX
-# 5YnCW7WCIl1X6NDTkkBeQdd55CBl5LgjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQWugFBYaW2m2eLdQYMYmNhuMD4ITANBgkqhkiG9w0B
+# AQEFAASCAQAkDV1tOpjyWabw2Msf79rwgP5NrS/NAX5diPDpBUviSY9whsMRhhFZ
+# 4cRh3weNzwlQE3Bb9PNR3wKhg7dRegsZewVwLbF0Z01ZBa7ztVC9LvL/CpD2+e9r
+# sNPt2r88EAEwY7MaouXLSYqyK7ho1Y7yrIRre0AWfQPrGG2oJTXXI3h17etkYmUK
+# psSaNP9TVU32FLZhywY8PksAVUdPCUOVJPxHwmbQ73ukQtAzTdCvI7+/c2lgDgs7
+# zTy9Fvf/42NDEV8s9Q0LrkrIqwFl3YM20bnDCkn4NOzRfTlHjve2LMwJuNiYOAs1
+# JiR+JV9IQf3at5x0YStGPB9f2kHYg9ZIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwOFowIwYJKoZIhvcN
-# AQkEMRYEFHGwyoqQjZbWQNdQ11jp/KkOGQ3LMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxN1owIwYJKoZIhvcN
+# AQkEMRYEFFH7b+CoDv1TEvlEnSG1q2pM0/ymMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB40i+jriWWe0ckYJUibPY92plkEEIdR86fNy1iKwX6zaMb
-# uSht/q3EsGRqX7QcqGIaHJc08Eq3IhwuSnTLkjJA7RjYgz8IOLbBS8MR6LlfFAjk
-# rV2kDTgfZ/o+9xjHKuOnGqngCrmsSzltZNBKBnryZOKVJrnWPOAgFTW0c50X/737
-# c24fGM+tU5Mydg2JDtqxdKB/yp2qVVx6iNfxwf1ONJUWlCSgNTFHM/rCOyaD+WMg
-# hZJ2uWBFD5F0MPnhYAv2cRRy0H5CwhA+y0188HWt2VtVm0hEApoOHGsgNIiEJUJJ
-# YRkYLn8GjFr/QZ/8cCRLaVDKsNpa010VFLBxySEW
+# hkiG9w0BAQEFAASCAQB839nSfPg7TasJ7B2Ybg7d+38APnMijGqSgf5d/77pL3J0
+# udDuxrr1SUxfIJ8X+ksNZv/eydH1OhIouIzlvKOocoBDuLQY9owGCIs6rqKNCUIj
+# KuGQ0Q3LI8k6BVcHlVBVTggv4VrrzzRut/u6F88zHrLlpRVm06Hc3lsCp78w6ikz
+# dQhQJlAmzF6GDtflMn3QaPA6Vup46LO/4Nb16Bk6uNu6BwuWfx8KgOjrKYLpF914
+# ra3Xp+HC2jcA8I+411LEjOK+chRPKtEi+PHMAqCyymKx7Mb4zUQ6bFL0NwO3Uw38
+# +VhMhkODEG1tg4MnE17HqKHfv68BZkHxErkf7swR
 # SIG # End signature block

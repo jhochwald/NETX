@@ -99,10 +99,10 @@ function global:Get-RelativePath {
 
 	BEGIN {
 		# FROM (Compare 1)
-		$from = $Folder = (split-path $Folder -NoQualifier -Resolve:$Resolve)
+		$from = $Folder = (Split-Path $Folder -NoQualifier -Resolve:$Resolve)
 
 		# TO (Compare 2)
-		$to = $filePath = (split-path $filePath -NoQualifier -Resolve:$Resolve)
+		$to = $filePath = (Split-Path $filePath -NoQualifier -Resolve:$Resolve)
 	}
 
 	PROCESS {
@@ -110,21 +110,21 @@ function global:Get-RelativePath {
 		while ($from -and $to -and ($from -ne $to)) {
 			# Check the Length of both
 			if ($from.Length -gt $to.Length) {
-				$from = (split-path $from)
+				$from = (Split-Path $from)
 			} else {
-				$to = (split-path $to)
+				$to = (Split-Path $to)
 			}
 		}
 
 		# Setup and fill the Variables
-		$filepath = ($filepath -replace "^" + [regex]::Escape($to) + "\\")
+		$filepath = ($filepath -replace '^' + [regex]::Escape($to) + '\\')
 		$from = ($Folder)
 
 		# compare to figure out what to show
 		while ($from -and $to -and $from -gt $to) {
 			# Setup and fill the Variables
-			$from = (split-path $from)
-			$filepath = (join-path ".." $filepath)
+			$from = (Split-Path $from)
+			$filepath = (Join-Path '..' $filepath)
 		}
 	}
 
@@ -137,8 +137,8 @@ function global:Get-RelativePath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpsQLYKE9efjfgvwL2bBt2eb9
-# 2wWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbOCc2a7WnfvEFy+Nlf3gYejf
+# 9HygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -281,25 +281,25 @@ function global:Get-RelativePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTGLJ/zIcS6ENcQmn069jOQIHFVEDANBgkqhkiG9w0B
-# AQEFAASCAQBDnWKUmTqa2fV0M3jEsO12KcFqPEuiw+g1w7Ciqllc/EV+MCXXbr2l
-# AVZcgtPuQLkgnmVoAs/5VmEbAoD5Zzm1bBl6bU6s3uBfSjpeixwszEM/OPBq+gqr
-# xScQohQVN5pxqEmKpwY2oub5N7Rr1e6XXR8ntK/gsUhjLvNVHBuOOHTC9CPzaZg5
-# nEUYkWll5erI+VJAi5iFwOs7UVZpxWmOJCT56wv6emRAdurWfDoHJnD1+++0hUXA
-# pd6/osbT5vvreikl0IvFQ07onz1obcoaVHas6V11z/z/ByVp41gZKkHDGNnsrrUf
-# 6krNCiyJEgtW1NFhJFnSI0OIbJbUT7jWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTRJzB8uga/T4Zytd7LuvDq8CYobDANBgkqhkiG9w0B
+# AQEFAASCAQCN+9dW0F5UijJZo1O+qWQxOauXRWI4KAWcss1Rw1D6vZDYQ0G0gkKk
+# 8E4KEhE92PYpVJOe7BUtiOHtoo+Ls4jZUgzHv3G1yospUAeFF2Re8hqr8FKy6stt
+# mHg+swFeD/SlAcaE3PdJRTAOTDxSMI6khjXlbATZI1I1/JnehU2tgCTXIvUyJpse
+# 98MaU446M9CpER6GFG/RufeTIZqrRIwu199bXlhfOrSmmBD3J3QciUk8fv7nu1Az
+# D/Zmorb34yRBIJvHiVCDj2YDHNTwg+xFNQ3OrVEjXUoxMpaj64NFwpjii3jAkMMZ
+# ujXjeIX93qqLAeRDZqyw23jU8wC0yWHhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxNVowIwYJKoZIhvcN
-# AQkEMRYEFDT+trbYWADgX08isopHewVETGLVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyNFowIwYJKoZIhvcN
+# AQkEMRYEFOPySlXutwnc/12Vesm/3bskNru2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBLKj9U0OAD2ZggNfAIXI2SVW3xIi0fwdFOnc/awbirfXog
-# 3IGGwC6xrRb14y/s2VZuhuLppn6W6PdGxR+FeNr4cXUt3YtBNm/w5c4XrxCqDcpU
-# oCAn4YRWa0mScm2XNkkhcjVGi1GuASHJHoVXE9GsvSSH42qXgogft3NluE7qeYdI
-# EfN/Jx+mG3IuRb0JR26EADKBrlk/3uVwIfI0x38i8fYr9Hw/24kSsKe2AFhGca3m
-# 3KZD/LZKAlXW1FzHZJuZLuLLG4BR9oAlg7LVchh2Obl35o/v3KqHWvvnAIL5/Xgw
-# 7IkhR+/lt08VIHnI1agKtUyXOHW3rWInwky6exCH
+# hkiG9w0BAQEFAASCAQA5aTVcAbAmSe22Ir7JmojSSqxOSHopowqy0qftzm25OZ0V
+# Zbmxt0MQ2PNps2v+t8BTSwgxoN3xrE40WXu/MMXM7HEWGiuuDhLz3YRM3SadJxTR
+# ibgxgXF3tE4EfgDrxPBUFR7DK9je/uT/SMn+paeW3VHajBpgm3xUD4eYW9iUjZZo
+# S79L+f/Uw9bF8jbQJG8WPHFKwNScAxuq9gmYhoEXCPWWtbb709RK1mR11cjBXXO1
+# e9oaKI12+zazg6v5dOaQBX2J56DSOi1gnddYBD8LdBiR5+2PvD2d0vSg5zoJtG9h
+# rztNlZiMurc6OczvmGqUbRugrHm+KxCgx61SqZcH
 # SIG # End signature block

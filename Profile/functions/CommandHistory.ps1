@@ -78,7 +78,7 @@ function Global:Save-CommandHistory {
 
 	PROCESS {
 		# Where-Object to store the XML History Dump
-		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
 
 		# Be verbose
 		Write-Verbose -Message "Save History to $($CommandHistoryDump)"
@@ -117,10 +117,10 @@ function Global:Load-CommandHistory {
 
 	PROCESS {
 		# Where-Object to Find the XML History Dump
-		Set-Variable -Name "CommandHistoryDump" -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) "commandHistory.xml") -as ([System.String] -as [type]))
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
 
 		# Be verbose
-		Write-Verbose -Message "Clear History to keep things clean"
+		Write-Verbose -Message 'Clear History to keep things clean'
 
 		# Clear History to keep things clean
 		# UP (Cursor) will sill show the existing command history
@@ -137,8 +137,8 @@ function Global:Load-CommandHistory {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMjjAQgJzkoJ85eXPcdiXPVKN
-# fVqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPNoN0DM6/WkwT5Kf2F7b2n7I
+# Jt+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -160,10 +160,10 @@ function Global:Load-CommandHistory {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -179,12 +179,12 @@ function Global:Load-CommandHistory {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -281,25 +281,25 @@ function Global:Load-CommandHistory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSU1N/8VQgcAZqLcGSWe82rG4UZszANBgkqhkiG9w0B
-# AQEFAASCAQCRQS9+NA4msTZRH95PNfPLHBOYsGHjRCB8g19Za7z/vSf/3w62hqNe
-# BVb9F4BLiBeo2YKj/XX6rLvymbZ70Mfa3vtgWyPoOAz6QZ8lyK0qDqojsmDP8Hgi
-# RhAXG44zd3gah+fDAa+meQ80rvrlaugPuE8q/Cz7RScz2sDr9oows9PeR0fnaUij
-# k5ZW8NmsXoFrCKcsRCu11Mm0Kdn95cRN2molRZpToNDKaAK8Q+WJUjLG1+/GmD2B
-# F0mIWidRSv6EG8dO4Nc5oROY3WNdiIM4AyPuF4ylCtzgQc07eIuLgZPmkeG6V5ca
-# GjHZJfNWT6FBRcvbt67gcRSfPIsjd/iAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTy1NbKPCoVWhlb6iGGnIauE8mJBDANBgkqhkiG9w0B
+# AQEFAASCAQCPi4DbuCHvZpPOrbOGMrMcxIvMNFZjgOsRnCVJ4TOlD7+04skCZpCc
+# JKt3sSnvCf1auRFlFFW85UwvORVlSuv8rSpumC06+xDek9RhMGlqrt4wvbbmZazy
+# Wa2m1vxwIrtc3iX17LNRKmWdvh1EJOjXGAc74+6anDst7aC/V9ESGtWyiThctbGu
+# dqmOz7UOqtuoqI6fkQkpoMZXaGCcBje2s4GFcSqemqVh88SUqwLHMhCE1h1pyS6O
+# J8m+CHZis9R+Nu+SdrVPMit+wXL0NuXRraum9FIGpgdhlodr520x73zSk4Fpq2rt
+# TaroE0H50w4+B0P3lgnnENNE399jfsSpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MTk1N1owIwYJKoZIhvcN
-# AQkEMRYEFJM3UtxZ4J1e+rGbG5cqVopNz9UfMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMwNlowIwYJKoZIhvcN
+# AQkEMRYEFNOVnyDvLobkpFcH9006Wx5a0XbgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQByJUKxq3LTgR63WhiGRZg7sak3OvCzFK6gQM0oDcODyVd9
-# Oy/mBtaicjeHsxpvhPn0JK0wkdUOT1woZYnfhTdw18WEAWraXzmyO6raZ79qrdju
-# uJ9w4ZpLUPhwPlAe4b9BuCCA9/vAYCUQA7r7paBi77zDeVj5mjlecLQzKK4r5UeA
-# lbsjNesLdqLwNAnjCWh1g0PGQDb42hM5aDZz5D4WnXWBT/wvgOe/LYaIgY7FwEq0
-# 4RDTQti72k5+xcuqwmL6JYyF0mL8623xSFVLdzHnuBUKnzxpMM78bfoMNUqobNY1
-# XKHdoI6JUsTHCYunYhzvMoQGuU4YVpwnHsw2IpNs
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQB87GpnXDxnJ8PkOGIRrkdzGCXmGBFXU+SQhsYqPqPCNla7
+# n3htSC8LnX4eRri9eAJav8vRuBPp95MO6e+LToZgNviaEv+820yy4XHkddAaGxof
+# guTVu8L4Nz56CjI2/oYpdm17MPGAsvybwr3BBI0uQGzVy8qEYQl4czJnhG8chujF
+# o3fc3K8LPHjiKzWO/E7GR9TW8MmZuk5tKpJIHmQZo4li6JLvDG1zzkbg1M2XJwXr
+# CNBmPSVRi5yNLLabvYi1knD5/51NlypHng5EVgdaKX1xVJMV8UfWdinNe8WD+F9l
+# AIaHGdDtJ8WxgS0wnFFcCplmMJDmGNjuUtHxKDsx
 # SIG # End signature block

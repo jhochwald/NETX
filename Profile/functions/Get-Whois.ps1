@@ -131,7 +131,7 @@ function global:Get-Whois {
 				   HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
 		[System.String]$Domain,
 		[Parameter(HelpMessage = 'Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export')]
-		[System.String]$Path = "C:\scripts\PowerShell\export",
+		[System.String]$Path = 'C:\scripts\PowerShell\export',
 		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)')]
 		[System.Int32]$RedThresold = 30,
 		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)')]
@@ -184,7 +184,7 @@ function global:Get-Whois {
 			Write-Verbose "$(Get-Date): Querying for $Dom"
 
 			# Cleanup
-			$DNError = ""
+			$DNError = ''
 
 			Try {
 				$Raw = $WC.GetWhoIs($Dom)
@@ -194,9 +194,9 @@ function global:Get-Whois {
 			}
 
 			# Test if the domain name is good or if the data coming back is ok--Google.Com just returns a list of domain names so no good
-			If ($Raw -match "No match for") {
+			If ($Raw -match 'No match for') {
 				$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"
-			} ElseIf ($Raw -notmatch "Domain Name: (.*)") {
+			} ElseIf ($Raw -notmatch 'Domain Name: (.*)') {
 				$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"
 			}
 
@@ -204,13 +204,13 @@ function global:Get-Whois {
 				# Use 999899 to tell the script later that this is a bad domain and color it properly in HTML (if HTML output requested)
 				[PSCustomObject]@{
 					DomainName = $DNError
-					Registrar = ""
-					WhoIsServer = ""
-					NameServers = ""
-					DomainLock = ""
-					LastUpdated = ""
-					Created = ""
-					Expiration = ""
+					Registrar = ''
+					WhoIsServer = ''
+					NameServers = ''
+					DomainLock = ''
+					LastUpdated = ''
+					Created = ''
+					Expiration = ''
 					DaysLeft = 999899
 				}
 
@@ -218,22 +218,22 @@ function global:Get-Whois {
 				Write-Warning -message "$DNError"
 			} Else {
 				# Parse out the DNS servers
-				$NS = ForEach ($Match in ($Raw | Select-String -Pattern "Name Server: (.*)" -AllMatches).Matches) {
+				$NS = ForEach ($Match in ($Raw | Select-String -Pattern 'Name Server: (.*)' -AllMatches).Matches) {
 					$Match.Groups[1].Value
 				}
 
 				#Parse out the rest of the data
 				[PSCustomObject]@{
 					# Real Objects
-					DomainName = (($Raw | Select-String -Pattern "Domain Name: (.*)").Matches.Groups[1].Value)
-					Registrar = (($Raw | Select-String -Pattern "Registrar: (.*)").Matches.Groups[1].Value)
-					WhoIsServer = (($Raw | Select-String -Pattern "WhoIs Server: (.*)").Matches.Groups[1].Value)
-					NameServers = ($NS -join ", ")
-					DomainLock = (($Raw | Select-String -Pattern "Status: (.*)").Matches.Groups[1].Value)
-					LastUpdated = [datetime]($Raw | Select-String -Pattern "Updated Date: (.*)").Matches.Groups[1].Value
-					Created = [datetime]($Raw | Select-String -Pattern "Creation Date: (.*)").Matches.Groups[1].Value
-					Expiration = [datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value
-					DaysLeft = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern "Expiration Date: (.*)").Matches.Groups[1].Value)).Days)
+					DomainName = (($Raw | Select-String -Pattern 'Domain Name: (.*)').Matches.Groups[1].Value)
+					Registrar = (($Raw | Select-String -Pattern 'Registrar: (.*)').Matches.Groups[1].Value)
+					WhoIsServer = (($Raw | Select-String -Pattern 'WhoIs Server: (.*)').Matches.Groups[1].Value)
+					NameServers = ($NS -join ', ')
+					DomainLock = (($Raw | Select-String -Pattern 'Status: (.*)').Matches.Groups[1].Value)
+					LastUpdated = [datetime]($Raw | Select-String -Pattern 'Updated Date: (.*)').Matches.Groups[1].Value
+					Created = [datetime]($Raw | Select-String -Pattern 'Creation Date: (.*)').Matches.Groups[1].Value
+					Expiration = [datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value
+					DaysLeft = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value)).Days)
 				}
 			}
 		}
@@ -251,31 +251,31 @@ function global:Get-Whois {
 
 		# What kind of output?
 		Switch ($OutputType) {
-			"object"
+			'object'
 			{
 				# Dump to Console
-				(Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } })
+				(Write-Output $Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = 'DaysLeft'; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } })
 			}
-			"csv"
+			'csv'
 			{
 				# Export a CSV
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.CSV")
-				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.CSV')
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | Export-Csv $ReportPath -NoTypeInformation)
 			}
-			"xml"
+			'xml'
 			{
 				# Still like XML?
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.XML")
-				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = "DaysLeft"; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.XML')
+				($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{ Name = 'DaysLeft'; Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } } } | Export-Clixml $ReportPath)
 			}
-			"json"
+			'json'
 			{
 				# I must admin: I like Json...
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.json")
-				$JsonData = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft)
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.json')
+				$JsonData = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft)
 				ConvertTo-Json -InputObject $JsonData -Depth 10 > $ReportPath
 			}
-			"html"
+			'html'
 			{
 				# OK, HTML is should be!
 				$Header = @"
@@ -304,40 +304,40 @@ WhoIS Report
 <h6><br/>Run on: $(Get-Date)</h6>
 "@
 
-				$RawHTML = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = "LastUpdated"; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Created"; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = "Expiration"; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
+				$RawHTML = ($Data | Select-Object DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{ Name = 'LastUpdated'; Expression = { Get-Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Created'; Expression = { Get-Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, @{ Name = 'Expiration'; Expression = { Get-Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern } }, DaysLeft | ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
 
 				$HTML = ForEach ($Line in $RawHTML) {
-					if ($Line -like "*<tr><td>*") {
-						$Value = [float](([xml]$Line).SelectNodes("//td").'#text'[-1])
+					if ($Line -like '*<tr><td>*') {
+						$Value = [float](([xml]$Line).SelectNodes('//td').'#text'[-1])
 
 						if ($Value) {
 							if ($Value -eq 999899) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: #DEB887;""><td>").Replace("<td>999899</td>", "<td>0</td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: #DEB887;"><td>').Replace('<td>999899</td>', '<td>0</td>')
 							} elseif ($Value -lt $RedThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: red;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: red;"><td>')
 							} elseif ($Value -lt $YellowThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: yellow;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: yellow;"><td>')
 							} elseif ($Value -lt $GreyThreshold) {
-								$Line.Replace("<tr><td>", "<tr style=""background-color: #B0C4DE;""><td>")
+								$Line.Replace('<tr><td>', '<tr style="background-color: #B0C4DE;"><td>')
 							} else {
 								$Line
 							}
 						}
-					} elseif ($Line -like "*<table>*") {
-						$Line.Replace("<table>", "<table class=""sortable"">")
+					} elseif ($Line -like '*<table>*') {
+						$Line.Replace('<table>', '<table class="sortable">')
 					} else {
 						$Line
 					}
 				}
 
 				# File name
-				$ReportPath = (Join-Path -Path $Path -ChildPath "WhoIs.html")
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.html')
 
 				# Dump the HTML
 				($HTML | Out-File $ReportPath -Encoding ASCII)
 
 				# Immediately display the html if in debug mode
-				if ($PSCmdlet.MyInvocation.BoundParameters["Debug"].IsPresent) {
+				if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
 					& $ReportPath
 				}
 			}
@@ -351,8 +351,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUX1QjVKX7KL9RAqyA/BxB5JKL
-# c0qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9H5Mu7pqUpWvutvgGWc+7E+R
+# TxegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -495,25 +495,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQUuWdIf3iYGsBkh2cTSZPYB0zn2zANBgkqhkiG9w0B
-# AQEFAASCAQA7Aoii9wX1RcTGkpk0Uj9CgXqPU52r0LeUzaQWhfMSAsDNbXtzS29X
-# LEP+3rqB58lUxXc3zB8njQ2+mEKGZagh8djPoCVEVvLYzEhEqGZr2MFkIMTXMIfL
-# PTotrptyKCL620shVDu7SQjmPe9bHsF2V1uMrz8PPetWGuwvnr+mNl1qbyks7Sve
-# TeutuMfO45vOr5QNgrY+/zbsZVxJfWgqOaPRP8XXwZEKKRTlZTB1nDLXpQyj4wWL
-# 29vPQzvCc8H4HGNgCBI28FOJ8qo6EscTKRY16zfUt9e6/cOpjpvFGBh6Op0jybjJ
-# kzkfiAaZNZm+MkPnQ/3DxgnMnKTdwd6zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHTyeikO8ks+a1GszNe2hDRv5ZNDANBgkqhkiG9w0B
+# AQEFAASCAQCN61+LQL/be8+LcA7ID15q7nk/Uv2swzlgERPVTaby8I574L3cx6/b
+# U0lZGu/Y/Q3b/jt6UcVwQ5HRJ9EuMiMyjPKbO95ZvwmFS6tjT12V21n21ClizhU1
+# F3j1kBB0p2sc0CoOLKiKLSVp5Ugdn+rNsj0aRm5Yj2Qe/rX4vRrFn+Gak3LL4zSG
+# wAsCyY/y7tCwhpefRb0cfrsP5/JbgsB+K2JE6PzYP0P000Qh6e+FM4fy/sy1u3rQ
+# c/cwtY6ZoTAPEPrapaShCYyp6xodvKdMS55NIB3k3eoORhKHpnqVrU9Ii3v4uDJA
+# WLutI0VhnOlnSvnr7EJKsbsozSH8GbWeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyMFowIwYJKoZIhvcN
-# AQkEMRYEFBN4xumpy2qiQpbFlDNpBVGyOG6xMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzMFowIwYJKoZIhvcN
+# AQkEMRYEFEFmNCa/X6pUgczbtbFpv+fRm4JoMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB7dNCUshllTaiHgdcU0Ck1/cMp1T3GC5JAtlaIQ8zrV3LZ
-# IDx+x2HnCNHLuZhJ/GFFLZTwpFWABQJpY8whept/guipPFh/MGdota42xFNc0dHM
-# 3euUxXxe1ljoao4fsLQZLjkzvWR23jPxj+G6MkhOuFhkFgrzDxMwnDrtPqNcXUtK
-# depwcGXNtXj0E/gpSulG/MaIgwDjT+8OAAPCopOiyr4BKpaBGb8TOy5Bbir40ylU
-# lra59nfgs6s8EET0ceFbArX8AqiAlDurrV9d5biWdn9h96bOlAnO7XJNHbcJhBgR
-# GhiFp3S6oaZRgHhYr199PIA4hBXnh8gYyMEDnCJE
+# hkiG9w0BAQEFAASCAQCgBJZ78avYRW9pxGLXHntcvRvf4wix3okhrEIWCR71NbTB
+# eVvs0+HP38W+9+/VQRmhtXIoRP8a/paLeIZFb+Fc98U9sgdnk53Qtqn9a751SFq6
+# V0WsP6Ez56OGpa5Zyk9yYfGYk1b1ioDTUyYlbA7wrzNZBYCBN/FTF0ZXhDSkapQ0
+# Gwy2clQg4ND+Yz+E/TKkZPQW+uCYi69OZaQ5TMjhQCS1xpWTonEMG5sGdAyHS+cx
+# pEF2mw/xMsKb66EstJpRD4aSq5OTDt186+/I20DRV2Qojhl81IFpHfAQL0HkMRvX
+# jRM9pIMTzgXCNJTxTeIMr1hoh1434LKkfkv22ZD+
 # SIG # End signature block

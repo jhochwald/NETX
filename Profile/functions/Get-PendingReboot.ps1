@@ -152,46 +152,46 @@ function Global:Get-PendingReboot {
 				$CompPendRen, $PendFileRename, $Pending, $SCCM = $false, $false, $false, $false
 
 				# Setting CBSRebootPend to null since not all versions of Windows has this value
-				Remove-Variable -Name "CBSRebootPend" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+				Remove-Variable -Name 'CBSRebootPend' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 				# Querying WMI for build version
 				$WMI_OS = (Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction:Stop)
 
 				# Making registry connection to the local/remote computer
-				Set-Variable -Name "HKLM" -Value $([UInt32] "0x80000002")
-				Set-Variable -Name "WMI_Reg" -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
+				Set-Variable -Name 'HKLM' -Value $([UInt32] '0x80000002')
+				Set-Variable -Name 'WMI_Reg' -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
 
 				# If Vista/2008 & Above query the CBS Reg Key
 				If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
-					Set-Variable -Name "RegSubKeysCBS" -Value $($WMI_Reg.EnumKey($HKLM, "SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\"))
-					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains "RebootPending")
+					Set-Variable -Name 'RegSubKeysCBS' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\'))
+					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains 'RebootPending')
 				}
 
 				# Query WUAU from the registry
-				Set-Variable -Name "RegWUAURebootReq" -Value $($WMI_Reg.EnumKey($HKLM, "SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\"))
-				Set-Variable -Name "WUAURebootReq" -Value $($RegWUAURebootReq.sNames -contains "RebootRequired")
+				Set-Variable -Name 'RegWUAURebootReq' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\'))
+				Set-Variable -Name 'WUAURebootReq' -Value $($RegWUAURebootReq.sNames -contains 'RebootRequired')
 
 				# Query PendingFileRenameOperations from the registry
-				Set-Variable -Name "RegSubKeySM" -Value $($WMI_Reg.GetMultiStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\Session Manager\", "PendingFileRenameOperations"))
-				Set-Variable -Name "RegValuePFRO" -Value $($RegSubKeySM.sValue)
+				Set-Variable -Name 'RegSubKeySM' -Value $($WMI_Reg.GetMultiStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\', 'PendingFileRenameOperations'))
+				Set-Variable -Name 'RegValuePFRO' -Value $($RegSubKeySM.sValue)
 
 				# Query ComputerName and ActiveComputerName from the registry
-				Set-Variable -Name "ActCompNm" -Value $($WMI_Reg.GetStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\", "ComputerName"))
-				Set-Variable -Name "CompNm" -Value $($WMI_Reg.GetStringValue($HKLM, "SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\", "ComputerName"))
+				Set-Variable -Name 'ActCompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\', 'ComputerName'))
+				Set-Variable -Name 'CompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\', 'ComputerName'))
 
 
 				If ($ActCompNm -ne $CompNm) {
-					Set-Variable -Name "CompPendRen" -Value $($true)
+					Set-Variable -Name 'CompPendRen' -Value $($true)
 				}
 
 				# If PendingFileRenameOperations has a value set $RegValuePFRO variable to $true
 				If ($RegValuePFRO) {
-					Set-Variable -Name "PendFileRename" -Value $($true)
+					Set-Variable -Name 'PendFileRename' -Value $($true)
 				}
 
 				# Determine SCCM 2012 Client Reboot Pending Status
 				# To avoid nested 'if' statements and unneeded WMI calls to determine if the CCM_ClientUtilities class exist, setting EA = 0
-				Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+				Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 				$CCMSplat = @{
 					NameSpace = 'ROOT\ccm\ClientSDK'
@@ -203,17 +203,17 @@ function Global:Get-PendingReboot {
 
 
 				Try {
-					Set-Variable -Name "CCMClientSDK" -Value $(Invoke-WmiMethod @CCMSplat)
+					Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)
 				} Catch [System.UnauthorizedAccessException] {
-					Set-Variable -Name "CcmStatus" -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
+					Set-Variable -Name 'CcmStatus' -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
 
 					If ($CcmStatus.Status -ne 'Running') {
 						Write-Warning "$Computer`: Error - CcmExec service is not running."
 
-						Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+						Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 					}
 				} Catch {
-					Remove-Variable -Name "CCMClientSDK" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				}
 
 				If ($CCMClientSDK) {
@@ -222,10 +222,10 @@ function Global:Get-PendingReboot {
 					}
 
 					If ($CCMClientSDK.IsHardRebootPending -or $CCMClientSDK.RebootPending) {
-						Set-Variable -Name "SCCM" -Value $($true)
+						Set-Variable -Name 'SCCM' -Value $($true)
 					}
 				} Else {
-					Remove-Variable -Name "SCCM" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Remove-Variable -Name 'SCCM' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				}
 
 				## Creating Custom PSObject and Select-Object Splat
@@ -262,8 +262,8 @@ function Global:Get-PendingReboot {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAEfs/n/6R0BRp1HGwkkG+N1w
-# 4FegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpCR1WxNi04qR8EtjfbnPCcnK
+# nf+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -406,25 +406,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxJQAGjhcaE0mqgjZdF7ikXYbqOzANBgkqhkiG9w0B
-# AQEFAASCAQAysvokw8rC2MDUSIu8QhIKtsuiyz1GiPgzTlY1IsxFT/U24epejZ8U
-# gLgecXRG1Z+xd58HHLR3TqoQoRuv7UJ+kRDQAglh1NMPhpe4vjOfv8aBILtguxCW
-# XpM9ZaOcS5wgC/2V7lPOrer9ahZvt6Ul2k5sQS+Fa227w+u0Gn+JsstACYwB/MeX
-# BMAzFRqoZFGIlUX8lvG9GVBhs6seknKe8HB9mtWOSviSykHN430XkrfM8Gq3tdTz
-# 6HOuzKWygZfDZup38t5JDl3Bae9T6tmuoBw9a4KWMIIIJhvBwyUT7wWOn0c3vVXr
-# 3V0E79KnKEOBe2TPJlvKE4AZDLCfmXTqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRBHFQFvjCz89c5jwaAtiS8znOLUzANBgkqhkiG9w0B
+# AQEFAASCAQCU74T3pCWU2lw8Rp088v8ZmED+a5kRAsBI6LezYFep5Rc47fgsUI/6
+# 7IA9NXVqeGhxVgQ8DIIuuFloed3hazw38a943sfhE3s+bzXfUZXocGKae+j7I0Md
+# szwXB60b0q2Ew07tAA3zjURx6M3rb9mv+yNSk8SN4PWJPfTa4jRLshawPeczaMgv
+# v6elFCB5ZdC6ZRqb5U1q+Jm0LPTK9LEcGyX2CoxkfBNbgNQyfTAfYdyvqNhLFd6i
+# RaYH0qQYFHN0anvc+I+XOsGW+EMOiS3AErYnsFYMbCqisbUZfT8rzxzh0Xa0285k
+# ZM9wsVXo6gRgAUgEBd+OUVxcos2qXhP9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxM1owIwYJKoZIhvcN
-# AQkEMRYEFLbe4V+cYrACjVSz4JgTJwKAKmoaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyMlowIwYJKoZIhvcN
+# AQkEMRYEFLrZ/mTtdWMR7DTFtY6pYcMPxB1yMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAWTZFEqbdH0qfZGt9hPhvjzf8jq0pl7DysUkNXFAy37rYM
-# I9McJxk98+rL1YdPoPLQaDr/+4JEjjeDGjf45L+/BMKEIz1Oa4v17XERvG88tv1m
-# 6Ezs1H2NLDwJam0l5Fz1z9BGDqmlyV7d1UK9FK4uiYp4BxapGJG5mtps1ggr1UMs
-# lLyiX7EGIq3++rEkBfAuY1sRXQpY3beSEuhDAl1wqFCi12bGnTqaOnD0IazyrumI
-# ByutbozKsEMe+wJT+vmejV9BZqfV34dbf6HBNOBuur8dSL0r5ZALAg1l6TpI5zyK
-# uXiFElKCO1lDTsQl+1IgIUsI+kASUFC0bGT3Zqr5
+# hkiG9w0BAQEFAASCAQA7FgLuUFAZt4hUh7jgYgDMTGlKdlclOKlITEY5G8qpk+4o
+# XjhOXWkoLYdjd8739tleW8vejxAPjPo2RxvCCBH4C6ZtQEAAb+Xd1g4xPwgnrhOR
+# gIizLeF5JoKKaMWhPa1+i5QodMGCnKihnFfFDZzR2P3mRrWekIruT1Ix+bV+Km/9
+# h49IA/rgTe7MgcW0QMHcPOrTbFlqUlDCQCbu/Sc3SVOO6eUZvzeFerPl4KPEmxbt
+# fyBpfiOcrqtQtsDguTOtCCyHaeWwxtpyS5ZdYY5uo9ZW6p7h7N8NEkPJMd6w6hia
+# a22nimOdhY4OGK/p09CbbulX/xb0nX3gPilCl5hX
 # SIG # End signature block

@@ -83,7 +83,7 @@ function global:Reset-Prompt {
 	param ()
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Restore the default")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
 			function global:Prompt {
 			<#
 				.SYNOPSIS
@@ -99,10 +99,10 @@ function global:Reset-Prompt {
 			#>
 
 				# Create a default prompt
-				Write-Host ("PS " + (Get-Location) + "> ")
+				Write-Host ('PS ' + (Get-Location) + '> ')
 
 				# Blank
-				Return " "
+				Return ' '
 			}
 
 			<#
@@ -111,16 +111,16 @@ function global:Reset-Prompt {
 			# Are we elevated or administrator?
 			if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 				# Administrator Session!
-				$host.ui.RawUI.WindowTitle = "Administrator: Windows PowerShell"
+				$host.ui.RawUI.WindowTitle = 'Administrator: Windows PowerShell'
 			} else {
 				# User Session!
-				$host.ui.RawUI.WindowTitle = "Windows PowerShell"
+				$host.ui.RawUI.WindowTitle = 'Windows PowerShell'
 			}
 		}
 	}
 
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Restore the default")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
 			# Execute!
 			Prompt
 		}
@@ -130,8 +130,8 @@ function global:Reset-Prompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOK6tVFBj4oBHora40drqt1Ta
-# EZigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUS1/BSTnlIEkZVHE8qK4jjQ8T
+# tyygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -153,10 +153,10 @@ function global:Reset-Prompt {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -172,12 +172,12 @@ function global:Reset-Prompt {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -274,25 +274,25 @@ function global:Reset-Prompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTnIZrNGUnNKmrqMTW+0VHsLa3LnzANBgkqhkiG9w0B
-# AQEFAASCAQCXgmYoGowx/4SkLhQcLq7X27mnUjCjh1rz7L7/OrsX1aU/lIZAkFNU
-# ahA6nT+L+d9ZnuJJNmbXJbUP9PfTJIIZsc3bO3hsQcbeFFTsSsgRhSt2t8XKZ12x
-# jWsuur10o78v3ztXkbuNZVvCpAW4s1qmLlVRoR2r4eiUHx7z4XImjMuDiMSYUVup
-# b2105cPX2JhrVXHxq8bAYvXYB3YvngT8pefEo/0XUUvIyLzeOTXy91YGQyeoOkWs
-# rrt/Au6lNOo5Rs8LdsQAsEOxbTzVta7cTMOSPeemnTchj241B2kDVLrHyoOF7UEi
-# FnASQzccsc+oqVahe4N6P1jLoZGPR7/CoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR0leN/ebKw3k0x/XzBLJv8EawpdTANBgkqhkiG9w0B
+# AQEFAASCAQBrOHXSN4wfj+SUa2yADXmjXqc5A6EkEuaCXRtUiehgc4TFEwTM08qD
+# 0kRUCgsqj4PFFX9XCI2tWXyuRPSwPTJmY1a50Wa3VI92SGU6AZZ2M9Kt68w+5g6x
+# iYD9EkPmf+ke0G256MAcoQZXSrBBQ63WO502Fl6XwZcndnsoRMgWpf0akLFkTl+q
+# 3Uxxd/DkUHdcbVhFtxr5WvPgvjLMwtSJEI4g1gW0cJuy4dEjgftA5JkQYv4eJq4d
+# K2EJllP76IWvnbs6g8gt0kN0g4x0aVR5IvZnIjGTm4Zh7vXdBPlHdMCPE6oGG9MS
+# Iqe4THjX/La5aJlCTfiMRkp9U/zizjZ6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzN1owIwYJKoZIhvcN
-# AQkEMRYEFKdxzSxonYZoFblz/X722zidLRNxMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0NlowIwYJKoZIhvcN
+# AQkEMRYEFJeKr6ZuwWqUoK3B2jjPz6hIXDwoMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB6fYcaLHZgb9aHa4tJTjGbIrTuvMFmtyfUgrfOj8fHG1AJ
-# lMtKqKDP5FTe+LYh+HEpDaVpUFzsNZL1+eXjZLPhW7H3zl1L1+jmvOiEeYwGbV/N
-# HcqLnrRDVmm6bT4Lvm37sL46VuCW+l1YMZOIwFFchsgLXji89ZHx+PNyKmXr+XTs
-# +yTS01kAvfRUUleX/6K8mIQmybd8bUnGVwNZoEA4pDS1QZuj9G3ZOz638ELJ3A4w
-# VTNK4cvaKYZodcqeOrwh/gbE50wvLUJDibFhsAray0fhGAMmFFQkISMs0hRLRjap
-# Aa2DZqo69Xcb3CV/wOXXOyW1f6+k9dbmwKDRYx3n
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAKiiCJfCc72FTdqguYneJ2ntp8AGr86h7LrzJWS064tnd/
+# 70yJ98b3DDO8R79lGpaFiucZQz2MHwSrWV6/UU9DZyG6aoqiOGAR0d6u6e5ENYW/
+# peaZWdYIxxhd/1ExST2lDPL04mpxfkBNTxKhQvyq1DLSRO5dsntFkEY78X6CmTmY
+# S7Eyi4kDThz1nHOzQIdkEovIO7lLXvPWOYdMB6V4GZc96dhePiNQFTndueSUSh1V
+# AxIRPP7qkwRuUZmqKfKF+KaetethgQMYUcUnavKDW1Jw73gpgmni/ssKZAbgqmSH
+# WsEk1eff2uGjllATTd4r1l8/JfUdZcTWFvTHmhgH
 # SIG # End signature block

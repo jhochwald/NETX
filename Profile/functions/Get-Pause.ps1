@@ -109,9 +109,9 @@ function global:Get-Pause {
 
 	BEGIN {
 		# Do we need to show the default?
-		if (($PauseMessage -eq "") -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
+		if (($PauseMessage -eq '') -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
 			# Text to show - Default text!
-			Set-Variable -Name "PauseMessage" -Value $("Press any key..." -as ([System.String] -as [type]))
+			Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([System.String] -as [type]))
 		}
 	}
 
@@ -120,12 +120,12 @@ function global:Get-Pause {
 		Write-Host "$PauseMessage" -ForegroundColor Yellow
 
 		# Wait for the Keystroke
-		$null = ($host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown"))
+		$null = ($host.ui.RawUI.ReadKey('NoEcho,IncludeKeyDown'))
 	}
 
 	END {
 		# Cleanup
-		Remove-Variable -Name "PauseMessage" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'PauseMessage' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 # Set a compatibility Alias
@@ -134,8 +134,8 @@ function global:Get-Pause {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrgjGRoKCtgx5o8K1lZBr2uwl
-# ZoygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwRpdhCXnzRssewCl+sVQFjVK
+# AVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -278,25 +278,25 @@ function global:Get-Pause {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQAGqogEUag4v5x0Y+TD1FRY7bbIzANBgkqhkiG9w0B
-# AQEFAASCAQCTQEkmKfOhst/9Hy6kCpBfyDGdeVa7xA2s6yzhxjYLhzbzlK1BTPV2
-# AGcLLi9yM/RD2H4PitqAtnYjVjTYkpeFXS5Q8nWufquwyltioP60dBLmEQCi14IJ
-# O1pRa64DtEz5I1vLZ4LPrhaSyiGlS+iDwvfAlnOHQ0cGnXLkU9OoAkuMTGpZmI/k
-# 4EtkjBlh9SNMaB/M0n/U4x8MP3892Je2ZuhdMAukd02nYzcExRZIMYnpUGpnexdW
-# ieFe0TIMY5YiKB31RYWCFfKYvJ+LcKdInxPVhx8FTlnJAFDcvKYeo83+0RqX6ltb
-# kbywkDaxyUaKnBnuORA3qvy04S26W3I6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTSE0js1Smc6t/1VtSfG9I+koDSYjANBgkqhkiG9w0B
+# AQEFAASCAQBvUViQ7qj1bjRrz/PXQSltB1xfPwrZTDJFxqLGXopKZh+c8oIUVpDc
+# 39uEVkNu28pKY/IHZOTX+59jZhzec9vG6zCa3wnxlhEqutMLHcdYIUDytyfVb0KV
+# QJCsLUE8WAXlGD8461pidKLWhBctH/NYsxX7o85oNiwDT6nC5ruL1mNfGuzQPOsO
+# SkYSEIbfD+8HE/+zy+E6NDjBXCsdfmQd2MjTA2xgePV2WH2Ux49YEws4xhiKGeOy
+# YMdG8Wl6rWMt7Zs1aZQ1Z1qlzQfX14ufu+Jzx4JgogKtReCCtSPDMjYe/lHxVCvC
+# RWzlSmmRYg+ciVBPWi6nIogJtsvI4l/hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxM1owIwYJKoZIhvcN
-# AQkEMRYEFDOZ3iHsIgmeq8nIMCfMEoSkm9NCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyMlowIwYJKoZIhvcN
+# AQkEMRYEFKvuIRUSHK9odDhh/j7VEzgJWMGpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBAW+oNrT2JtnJPr7poBPQ6i8FRSaET7w4d2I2nBT9skS4y
-# iXo1Ab8/Va60FVJ8QMitNfNyBHZrG+GwG+Z7FWQPp7PX1/lIy4nZf2i91ekYjZD2
-# eh4ISgdrM4e+P9zOexfaq5KdAmpMW+E1oKbqV66I8UNqZNKQkeMSbfMXEVMWclOQ
-# dtQ3tB/1wxahlG7DePQXwvKdBK2NlNmCFaZbO+AuKKYFuiWTK7UU3Iag2Fl/JPWg
-# qIIicrlZvZVFGVg3XMIi5i3F32v1SGD4LNqHl6g2KGcfhZ/E9yDhYZpKONAL4nhM
-# DE0ncdWLXVs5jnk8JvDO9oLVikDqF+r7LgUPSdmq
+# hkiG9w0BAQEFAASCAQB9VWBolLLpfUWM4dKGiWaiuUccWlADQ2opzV0maHelbmqK
+# mDkaNGOmfUh+7cNEyYWfaTCkt9EWyIRrAjq8PQR9RlYkhbFmRWKTXkpHh4d1Li81
+# zYZfy2cCHxB6GXKi30NTlD1x6CHJcqB3u4iR1YQzQVzzlYk+AtZFFnZnnIlFdy1s
+# +kRQ1HlXD3fLZKhrbTaQEtaMm3b8tNL/ggGvlcf/oPOaK9sObT9NOgH+tiVWGqk5
+# ZiNqDZpyBlN4HA7Vrq6DEO6gItxE28wp70WM7pNlkGyxmCBpg5U9I44x063jn9tI
+# EjcBBD5n/RycgDq47JIrheY9VNKVlpg6hiWz5KeI
 # SIG # End signature block

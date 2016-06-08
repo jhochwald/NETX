@@ -77,7 +77,7 @@ function Global:Get-DiskInfo {
 	PROCESS {
 		$wmio = (Get-WmiObject -class win32_logicaldisk)
 		$Drives = ($wmio | Where-Object { ($_.size) } | Select-Object Deviceid, @{ name = 'Free Space'; Expression = { ($_.freespace/1gb) } })
-		$DrivesString = (0..$($drives.count - 1) | ForEach-Object { " $(($drives[$_]).Deviceid.Replace(':', ' Drive')) has $("{0:N2}" -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
+		$DrivesString = (0..$($drives.count - 1) | ForEach-Object { " $(($drives[$_]).Deviceid.Replace(':', ' Drive')) has $('{0:N2}' -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
 		$DrivesString = "`r`nLoading system disk free space information...`r`n" + $DrivesString
 	}
 
@@ -89,8 +89,8 @@ function Global:Get-DiskInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUw3W6CJHHlSQgEjw7/lbBoZLx
-# PrOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/8alKkp63S/a5kQ85QOJNWRG
+# F0igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -233,25 +233,25 @@ function Global:Get-DiskInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSBo42PDgewoVmcfxdkoDzjdKDpkDANBgkqhkiG9w0B
-# AQEFAASCAQByFhLPScGUAvUN3ZYcZ2HOJ8p+uPPtGnAJYL9jlkJeK5RGKxDowQCo
-# 9jREhbXeRxjw+/tMw4KKbWnIl5HwekWlue59nZUCJoPF6K8dOVkFaUAQoeaAiO+3
-# 3NNS1RRvyX9ha4C5Qz63DdIikgpktpvvhkhhebgmDU9PXICYZXlq8mmFaD3Lwdmp
-# Bd1u3CQ4vRcnC4PTnZxFMX1UQ6ypAWtBB9ykWF04b/Dwods+8OnJ5IhCXRf2o4lj
-# 6AMqaVSxptsv5Ym8SPFuDmUVGCcZH91Ic5uu3WKRScdUnBzSpSsnZJQyrP64tYSr
-# gul62rHqhkRo8DpwTh+zw6hGfhY8bXmdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQn2luXk0MvqyvOPLrr2d6Vd0q1yDANBgkqhkiG9w0B
+# AQEFAASCAQCJ/dyz+Mm8WUfhAVGf9v3YsEk00asM6NmxEjVZF78GKwRWUzvDepHQ
+# VwVeFfe2W2KRApzPeZIGqcNFAHZrDQS4kaMpyyI/xcp4ocVK4lbzjI1hct1pbT7D
+# sadl6Dm2WUfs+ZweKRoT9M6AYbB5Bq5NafJeFoAs+DkK2N+R0dYmGuo1LJUehfS7
+# dX4Wg/s9Yb7ghk1Cl5aj/SWCcBziCRyGg46zZEgD11gP34YogVlM/3SFstB1gSxP
+# T1bO1txhpO1U9FIyF3jdVDm2evkeUhP7tLYU7r7yBwz7R7s+CCBbetd4oVrVHJZP
+# 5P44X25s7TxeWZuA8ssS+R1+LHTrFJVQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwNlowIwYJKoZIhvcN
-# AQkEMRYEFCrDgS78evxT27GmcK9+8M2XoyowMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxNVowIwYJKoZIhvcN
+# AQkEMRYEFGeEq9CP04uv3kmc1T9FUQQTmohbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBISEHvsJALpVNSEPAJXm2csfk8Hoq4tsbwurGseh+UWYpo
-# tWt3ubNFRgL3OhaNnrRG3tKgvB6amRFME/zr+lnpUXqNBuxSN2Okp59ot3fHvntX
-# c65os+qYiW9qT7OoS+d2G7Blz6F6zSVNZ0d/zl0AxhIJJ2abkvGoWcpWUNMj29PS
-# 1PV1R2+IOrzre9FWPHmcxSxCZV+ZS+IsWydIUOEcCxpLGxnK4Iyl2W6z4bOf2F3d
-# oB7fjLWMb8d+MB6OvVquyJCAvBMkmeaHZHRIdZI02FKy9uxRC1rw6v62DR7dAr4R
-# A/xDr79+8OO+kY/AnxOOaAFwtGnKEt3/3XrMQpJ3
+# hkiG9w0BAQEFAASCAQCpKj5f8WVpfbFuQyG1XpxGJMGXM5K5T8qd11XVyADNOyXE
+# bdm03HpNGkr+482XCFWDhWT4FDPQLyjseIJLsHVsHo03N4YM0eu2Sg9PfouETfg/
+# 8k7Zpy/qE+TbK4YGu/PMdk+FJpFhMTkGlC9XfgqC5AOZE2wl1MEiVwyj22aYfbqU
+# Vt2J2FrVJj+DLRa39hhwc4hznrdoiN3oELYccj7mrBrVy10VaTO0RKiA6IrPi96s
+# bhQFwo62XFgq/Ou716s7GvKbecbcE1ih6E5/MJwqvWzq0O2FOrfNWYkcLo/hLqRQ
+# Sh+rk9SxSRixgDuhqfd4z7+zUG054M8qJS/0j6QU
 # SIG # End signature block

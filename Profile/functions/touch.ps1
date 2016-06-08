@@ -153,15 +153,15 @@ function global:Set-FileTime {
 		# Let us test if the given file exists
 		if (Test-Path $Path) {
 			if ($Path -is [System.IO.FileSystemInfo]) {
-				Set-Variable -Name "FileSystemInfoObjects" -Value $($Path)
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path)
 			} else {
-				Set-Variable -Name "FileSystemInfoObjects" -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
 			}
 
 			# Now we loop over all objects
 			foreach ($fsInfo in $FileSystemInfoObjects) {
 
-				if (($Date -eq $null) -or ($Date -eq "")) {
+				if (($Date -eq $null) -or ($Date -eq '')) {
 					$Date = Get-Date
 				}
 
@@ -191,13 +191,13 @@ function global:Set-FileTime {
 		} elseif (-not $NoCreate) {
 			# Let us create the file for ya!
 			Set-Content -Path $Path -Value $null
-			Set-Variable -Name "fsInfo" -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
+			Set-Variable -Name 'fsInfo' -Value $($Path | Resolve-Path -ErrorAction:SilentlyContinue | Get-Item)
 
 			# OK, now we set the date to the given one
 			# We ignore all given parameters here an set all time stamps!
 			# If you want to change it, re-run the command!
-			if (($Date -ne $null) -and ($Date -ne "")) {
-				Set-Variable -Name "Date" -Value $(Get-Date)
+			if (($Date -ne $null) -and ($Date -ne '')) {
+				Set-Variable -Name 'Date' -Value $(Get-Date)
 				$fsInfo.CreationTime = $Date
 				$fsInfo.LastWriteTime = $Date
 				$fsInfo.LastAccessTime = $Date
@@ -211,8 +211,8 @@ function global:Set-FileTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2u9Utyk+FPKTLABrnzAgiin2
-# N4mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrUy5Okzij1Rg7Yl4yn5xuB/+
+# JUWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -355,25 +355,25 @@ function global:Set-FileTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSgbhTZ22tguqIvkbOcwJaRiUDXHjANBgkqhkiG9w0B
-# AQEFAASCAQBnxWIpW9L96ByvM8WXAQdrrEJDdqnarCyaX1c+uqvisN6vaeTdczkR
-# r4nxTrGY8KcLqIUBONmxImbtXq5/kPBVB50SB6owIqQ/eIyEvi31KX8hFc7Bud+j
-# y36jm1+IvBxqDoWX21n1cLAW2xqXEYI2CW4dcNVcy93hvTJHO1gV789FF6HAzVM7
-# gGo2MDQrLmykK2LODMmvUfwSYuIxqNe9JQY3yiUIE3aQlIa3LcYTANAmO1eBfUmd
-# 2iqnoP8AoULsQrY7g0tJxNlR5SSYxlNfjmCOnulAFbqRZxDQaTy6wpEMQtk7ciXU
-# 8unJnkv7Ovz3zPdU4WLTqPnyjJNQMlCLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSHOLtZ5ZHjcJco3vHtmGm5mis3mzANBgkqhkiG9w0B
+# AQEFAASCAQCgEAE8MlfdDWCCkJYho35tbfGp78LmMh3seJs6wcqS6g8WaAtH6rn8
+# 7NscvnqxTLazklw1u6AM6ZRKSD/iCylbkyFPUEEAwRYDkXgy3HPjF48fsUQZqKSB
+# pkLUw2gCBNs7M9B2TqMmV4cmd0MG5VnlBXduoV6x0rXZ7aaGmjywOMbVDLFMi2FX
+# Lu3jx1IqWXo+qU8ovo884e71YcyNUAav18x+frsQxFHRA3vFi8yEunZD25Io2NJw
+# mOiis81x83TN0GIo/qXWuP32QONuYk8+0N3Dh0sMfU2Sdy1RB40n1kYjdPhS3tUm
+# H4sKrK1mnqs1oB7DGJa0aLF2paIhb6mmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0NlowIwYJKoZIhvcN
-# AQkEMRYEFCVnN/9fRe3a3cUY2UOAryIcHxKSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1NFowIwYJKoZIhvcN
+# AQkEMRYEFMUMLlvZ8thCIZYun2AcylGCPebcMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCBCrPR3PbijPfcBa1lLg88a5J4xy6eLy2aSrA+3LRJS/+F
-# QAI/KnY+wD451WeeqiUqlJBFYDrfibor0sH4PQAdBeXa3sF9aLS75EUr8BW96wu0
-# KougeH7+kzKduNYp3gNWsytjgpT+YeaD3Ljpp41EFu3AamikQLmOstbVpuC0vwxX
-# rrpCpkBKbKZnCOfZVYS9lUee53v++7XLSPvhLjzVaZxuTm49/obLMs0q/S7kFI6I
-# tKksYiDsgvyvtzj/L4H8u94hSww4wOY18N+eq0vM1zzxfXAtMEoKN9TA33IjiBGw
-# LvelN8ymeWzi7j5aa9S5WU1tLFO/Yf7oetof0fYK
+# hkiG9w0BAQEFAASCAQAxi6opnsxiGFh8BapYlGVdvn4XNyQxX1vMN1VlsVKKgwjt
+# 1ePmR6eLy7xJ2VzA0rX1Mv7RsyV9Cy3HUE1k6IqlvFOqpkxKV1AenuvXvZuo5m5C
+# u0P68KxP/ATZaLjl8YB1ti41cpx/BV0J5FCG8hI6g5F/2h9X3bMsjanJ+ufu04Dy
+# ++DTHGhnZGoKp6NPMKiTu+V9zLS54198GtCC8nbmjkgLk3fpyCK2H7+K9bZjMit5
+# rPcUEaWE6VaYO7lL4WsJOYnYcryqF/49CMTrtl3OBvqSqVTd61vMjZvLLrZkrFbj
+# NME3Mcjdrs/fW5+nEDgEJNBxgohcao9NLtDwllGf
 # SIG # End signature block

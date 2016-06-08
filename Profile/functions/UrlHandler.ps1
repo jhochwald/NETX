@@ -92,13 +92,13 @@ function global:Get-TinyURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "tinyURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'tinyURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "tinyURL" -Value $(Invoke-WebRequest -Uri "http://tinyurl.com/api-create.php?url=$URL" | Select-Object -ExpandProperty Content)
+			Set-Variable -Name 'tinyURL' -Value $(Invoke-WebRequest -Uri "http://tinyurl.com/api-create.php?url=$URL" | Select-Object -ExpandProperty Content)
 
 			# Do we have the TinyURL?
 			if (($tinyURL)) {
@@ -162,13 +162,13 @@ function global:Get-IsGdURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "isgdURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'isgdURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "isgdURL" -Value $(Invoke-WebRequest -Uri "http://is.gd/api.php?longurl=$URL" | Select-Object -ExpandProperty Content)
+			Set-Variable -Name 'isgdURL' -Value $(Invoke-WebRequest -Uri "http://is.gd/api.php?longurl=$URL" | Select-Object -ExpandProperty Content)
 
 			# Do we have the short URL?
 			if (($isgdURL)) {
@@ -180,7 +180,7 @@ function global:Get-IsGdURL {
 			}
 		} catch {
 			# Something bad happed
-			Write-Output "Whoopsie... Houston, we have a problem!"
+			Write-Output 'Whoopsie... Houston, we have a problem!'
 		} finally {
 			# Cleanup
 			Remove-Variable isgdURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -230,13 +230,13 @@ function global:Get-TrImURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "trimURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'trimURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "trimURL" -Value $(Invoke-WebRequest -Uri "http://api.tr.im/api/trim_simple?url=$URL" | Select-Object -ExpandProperty Content)
+			Set-Variable -Name 'trimURL' -Value $(Invoke-WebRequest -Uri "http://api.tr.im/api/trim_simple?url=$URL" | Select-Object -ExpandProperty Content)
 
 			# Do we have a trim URL?
 			if (($trimURL)) {
@@ -300,13 +300,13 @@ function global:Get-LongURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name "longURL" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'longURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
 		try {
 			# Request
-			Set-Variable -Name "longURL" -Value $(Invoke-WebRequest -Uri "http://untiny.me/api/1.0/extract?url=$URL&format=text" | Select-Object -ExpandProperty Content)
+			Set-Variable -Name 'longURL' -Value $(Invoke-WebRequest -Uri "http://untiny.me/api/1.0/extract?url=$URL&format=text" | Select-Object -ExpandProperty Content)
 
 			# Do we have the long URL?
 			if (($longURL)) {
@@ -329,8 +329,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUB6Unnk+Au33WNGRcJv0L/Hq6
-# sZqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmeFoOjqI33swQ/ketTerz/vE
+# t6ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -473,25 +473,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTVXO2LRtHnxzWX9MA6tMXAm2XL2TANBgkqhkiG9w0B
-# AQEFAASCAQAhjEArQThHb4wsttgQ9isaXDeUik5k2ZpO6TRExc8LYG4WSX+WTeu9
-# T8TFmcD6QHBV9sqeHvarWPbmrOauIjZBiP096CtuecutbrQPdOabmFhSB7cbUayH
-# onn0CR6ZxTGn9pDXaAJyU9FNg8NAQviqqrTrN0IDw8J/kTUWWRDvG2+nD79Bi159
-# QhDTAJpZKMWAti1xxFRsqFFRZs6LLU2Uk5gWR4lbDMmEjiOh4084fZo/E0SeeMM8
-# /bCyJVIjTBi3KoX8thc4ufCoiCwdlrfsdivEObDxNikFcObLWyCJmCHNWwY6W2pX
-# szFxNPTkL12qOTOa1jBc5gHkYFVJ1h0ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTiVpnhLET9ySdnTjPYMNm/hpvjijANBgkqhkiG9w0B
+# AQEFAASCAQAiaOR9pgUscw3gGt8qMns/oSumSjkWCjGl7pDpOuBEH1zq7d82vLnc
+# E2pBJiSTWF7hHfBJWzD9meDWdQn1f+EvSE4Z4FnDR+xz2AZyWN4m6K7ynXudckzO
+# ekIIV38Ojor1VChtZ/O2uRTbKz+9dWstx88vfFGDXaRwg9K1N6Kbcur+G2HUQZtT
+# b3sWbh3kuTPUO7CbXR97dG2gorhc+h/73nGwZkXR//wOVfz4mj+rpdys7XMVdTEy
+# stxU3sHzPrxlDVwS5DlvlNZiY8Hsj4ZtRsYkoxqA+9pUTOF8POMjm2OpzGS+6d7u
+# YCRnbbAD+rdr4A/CvlrJoxiYmRJ7+wq3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0OFowIwYJKoZIhvcN
-# AQkEMRYEFGE7lJMTbujEd2836gnGrenuRlCOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1NlowIwYJKoZIhvcN
+# AQkEMRYEFBd1MvTPVkTgCophHAvGUugvTLnyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCLNazToioyfHLzTRSRwC9RR1P/qrWW/tWPx82eskwo3mC1
-# WTtBCo6hwGlJ4Tmxa2hGRH7wEEKOGKG4xOaZ/0bPrA6T8KqiHiBGJQ0EQb0rzF3c
-# Kd9KW3Rs8Kx/oSr7saiscb1xVNH8CiE6c8I2MXGUoC66hFEMyhST4Y5UAnqmLONR
-# cbykYKzPbr/hI2brSQAEKlsklM408BO5VK0o8I3TCDlVoNk7CBdW2LrkMlzKayHh
-# /OHNFaVit7sNA6125JjsJfyAX5XZ4jwDPnVHSfBtNy1cR1KCYcbgP+wyveS3jT9y
-# d0OJagi3IogyeH/qzptUq4R2derxiZSzxXKHgaTI
+# hkiG9w0BAQEFAASCAQAZaN2GoIShQhy7PIcNxgt7cQyawysKVZduxqFy/mYhVYs5
+# msXd/cFfl/I80Tmg2GgkXdGIT25+ljfvYMF2c/8XyS0wPge9KbpTMiaDG8ln96Dq
+# piKA6/3T3b7B62R+kywqLzIZdjSS++aabTZlscYYkmcMN74zzWGXxs5ipXqopM61
+# YTT5b0AQExxn0DpLCROa+UIxfsBQ3QN7qjwKPCBWG/pFbP4j6QH9mO2rj0zy/O1V
+# N9EM/h8gRpRgI8bdHEn2ayZO+oVgKGPMNi9QE1Fw+Grb7K02b/0pbfHIkQTh1MnZ
+# /0Q5C86X014S0RDDOcTYgySlwSGN54pj7wQY+kLA
 # SIG # End signature block

@@ -80,7 +80,7 @@ function global:Invoke-PowerLL {
 	param
 	(
 		[Alias('Directory')]
-		$dir = ".",
+		$dir = '.',
 		[Alias('ShowAll')]
 		$all = $false
 	)
@@ -101,22 +101,22 @@ function global:Invoke-PowerLL {
 		# Define the display colors for given extensions
 		foreach ($Item in $toList) {
 			Switch ($Item.Extension) {
-				".exe" { $Host.UI.RawUI.ForegroundColor = "DarkYellow" }
-				".hta" { $Host.UI.RawUI.ForegroundColor = "DarkYellow" }
-				".cmd" { $Host.UI.RawUI.ForegroundColor = "DarkRed" }
-				".ps1" { $Host.UI.RawUI.ForegroundColor = "DarkGreen" }
-				".html" { $Host.UI.RawUI.ForegroundColor = "Cyan" }
-				".htm" { $Host.UI.RawUI.ForegroundColor = "Cyan" }
-				".7z" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".zip" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".gz" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
-				".rar" { $Host.UI.RawUI.ForegroundColor = "Magenta" }
+				'.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
+				'.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
+				'.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
 				Default { $Host.UI.RawUI.ForegroundColor = $origFg }
 			}
 
 			# All directories a Dark Grey
-			if ($item.Mode.StartsWith("d")) {
-				$Host.UI.RawUI.ForegroundColor = "DarkGray"
+			if ($item.Mode.StartsWith('d')) {
+				$Host.UI.RawUI.ForegroundColor = 'DarkGray'
 			}
 
 			# Dump it
@@ -133,8 +133,8 @@ function global:Invoke-PowerLL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUw36ZkU2YS9FVcBrw6CZ7qOWg
-# qiOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQIr8MqswOY6q2v6cDKDM5KsJ
+# e2mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -277,25 +277,25 @@ function global:Invoke-PowerLL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRAEQ7ySShsPFjg/+nP+xb9evA9MzANBgkqhkiG9w0B
-# AQEFAASCAQA/UhylmB8Gq087v1PeO/e9YAj8hog+GGNFHGRq6cCKhUYdCneJCsQX
-# PVswv8XkqFSMcwO9xqVENMbvg5MJ7oJoNKYM+C2IOof8u8VdebNP/EJ+EWSngHKj
-# bKi0uuG+P5V4I8Rb0p4PyU1Ve/dfitngv1lri7SZmOv1IQg1Moyx03gvpHj8Ovee
-# NvLewpdproiNcBQFpkKAdASaSoim6JIJJXah7Ii7XDVF59QUOqJ23EoT7QSO68gm
-# vlGWH0RU3tP6kWgUrOFd5YwK/od01JlkB6fwRJNkRPTAKoAq3K3+JaZyw8UEIxUQ
-# uqQtzsQ/CWlVfB1cY6Pzg9mTGvyZdAS+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTxwJNW32AFj9S6FbPUHVw1bd/e2DANBgkqhkiG9w0B
+# AQEFAASCAQCd2f29um8t3lPcYddIEg0xW9OW7UENdph3m78ApctGbgAMcDAztmc8
+# CEgzPyrya3qeKGenntQSOcqW2tOyp6LdJcKu9XGJz5ymn1r1/RblD+RSKwOkAB5C
+# 4FWf7A7qQhgQDAeMVrkE6t7tZdFVftc67sz199EApRUE228nKrhXfQP3e2PhZetM
+# RPyjGukjWqLdUAXm4boiVyM06wqAKk/zKOnTWwztqzQvHjxFVoALiZHKuK8S//jJ
+# Sw1AzcFQly9HSvh10MGNbcHZASnmw0MZYLl31pC3NTtZu7c3AwL79DliIRLZ+Cnj
+# Ct7WUJ9xdeWPnwwiSdR3QCw7LufMq0qboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyOFowIwYJKoZIhvcN
-# AQkEMRYEFDt0wMhxX9fXJRWnrbW+k2vjNWWWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzOFowIwYJKoZIhvcN
+# AQkEMRYEFBLDTjmH8Txp7FoVBWeKUhPQ05fFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBEsyg8UR5t41Mv6TGvR62w+xY+CpQblKMuY/40naXx+6M0
-# gd32c9x3Dmtm8J/90W57HDCt2IZxt02w/+ZI+qfiVvv0HVEQ2UHr4CWT6ttHpeGF
-# ZH/DqVLejyc05jJHHrj36p6bXlf3y8QTd0JOWzjNF80gCO6mJCFiOqiLeZpGVYtE
-# nddwFCfAaaX0wlzgL0VrNG6rsnU9YXcaYEZ4yR0I3kg8TW0hEZevlTMzHbRlRM0t
-# lvMt3/ibCFvOf5XLHbyzGjbdNfkxt3tjajFaEMLK8tKiGsLiOHZia+KmDY8Tn38e
-# PzQRXYiDWMyaviheNanB/pT13EQA0AJBysdi1H4d
+# hkiG9w0BAQEFAASCAQBAJIEoBjhAXh+0tjLG7iuHDKLwGNS2WGq9xs1r/XyD6joG
+# DxBXkeREC2hi+D5mfIATPo0I1rQ7pB8yx45Wepybc80tp+NA1dTkTFfT71KuX6EU
+# SYoikr6VXpCb1g1sySvbpPVGL7pMVzF7NYTcGQahd4HQDfOquxJzuPMH6zUzoKlU
+# PjmL6dycBgRLzDD2RlSLqXSl3CNHOuDvbMfoU8YvZLwLen68A5r1QzFI263Ix+YS
+# pgxI8+iBfT0JslgeBn6AVrzODXlZwA/UcTzPB8U3jQkN8vtk0H3kLPowNITL/LaG
+# hAAn/BKiMyhlxWYVrR+hofegKcEuHBL5iJyPAalT
 # SIG # End signature block

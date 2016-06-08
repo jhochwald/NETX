@@ -97,8 +97,8 @@ function Global:Get-DefaultMessage {
 
 	PROCESS {
 		# Set the Variables
-		Set-Variable -Name "DateFormat" -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
-		Set-Variable -Name "FunctionName" -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
+		Set-Variable -Name 'DateFormat' -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
+		Set-Variable -Name 'FunctionName' -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
 
 		# Dump to the console
 		Write-Output "[$DateFormat][$FunctionName] $Message"
@@ -187,22 +187,22 @@ function Global:Disable-RemoteDesktop {
 				try {
 					# Parameters for Get-CimInstance
 					$CIMSplatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						CimSession = $Cim
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessGetCimInstance"
+						ErrorVariable = 'ErrorProcessGetCimInstance'
 					}
 
 					# Parameters for Invoke-CimMethod
 					$CIMInvokeSplatting = @{
-						MethodName = "SetAllowTSConnections"
+						MethodName = 'SetAllowTSConnections'
 						Arguments = @{
 							AllowTSConnections = 0
 							ModifyFirewallException = 0
 						}
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessInvokeCim"
+						ErrorVariable = 'ErrorProcessInvokeCim'
 					}
 
 					# Be verbose
@@ -229,7 +229,7 @@ function Global:Disable-RemoteDesktop {
 
 		foreach ($Computer in $ComputerName) {
 			# Set a variable with the computername all upper case
-			Set-Variable -Name "Computer" -Value $($Computer.ToUpper())
+			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
 
 			try {
 				# Be verbose
@@ -237,8 +237,8 @@ function Global:Disable-RemoteDesktop {
 
 				if (Test-Connection -Computer $Computer -count 1 -quiet) {
 					$Splatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						ComputerName = $Computer
 						ErrorAction = 'Stop'
 						ErrorVariable = 'ErrorProcessGetWmi'
@@ -350,27 +350,27 @@ function Global:Enable-RemoteDesktop {
 		if ($PSBoundParameters['CimSession']) {
 			foreach ($Cim in $CimSession) {
 				# Create a Variable with an all upper case computer name
-				Set-Variable -Name "CIMComputer" -Value $($($Cim.ComputerName).ToUpper())
+				Set-Variable -Name 'CIMComputer' -Value $($($Cim.ComputerName).ToUpper())
 
 				try {
 					# Parameters for Get-CimInstance
 					$CIMSplatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						CimSession = $Cim
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessGetCimInstance"
+						ErrorVariable = 'ErrorProcessGetCimInstance'
 					}
 
 					# Parameters for Invoke-CimMethod
 					$CIMInvokeSplatting = @{
-						MethodName = "SetAllowTSConnections"
+						MethodName = 'SetAllowTSConnections'
 						Arguments = @{
 							AllowTSConnections = 1
 							ModifyFirewallException = 1
 						}
 						ErrorAction = 'Stop'
-						ErrorVariable = "ErrorProcessInvokeCim"
+						ErrorVariable = 'ErrorProcessInvokeCim'
 					}
 
 					# Be verbose
@@ -401,14 +401,14 @@ function Global:Enable-RemoteDesktop {
 
 		foreach ($Computer in $ComputerName) {
 			# Creatre a Variable with the all upper case Computername
-			Set-Variable -Name "Computer" -Value $($Computer.ToUpper())
+			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
 
 			try {
 				Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
 				if (Test-Connection -Computer $Computer -count 1 -quiet) {
 					$Splatting = @{
-						Class = "Win32_TerminalServiceSetting"
-						NameSpace = "root\cimv2\terminalservices"
+						Class = 'Win32_TerminalServiceSetting'
+						NameSpace = 'root\cimv2\terminalservices'
 						ComputerName = $Computer
 						ErrorAction = 'Stop'
 						ErrorVariable = 'ErrorProcessGetWmi'
@@ -447,8 +447,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcCNgT1sZGgsdRqX4P0Xb5Wut
-# G5igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZM7CVUmFmB42QH2vWP+ohJkb
+# f1CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -470,10 +470,10 @@ function Global:Enable-RemoteDesktop {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -489,12 +489,12 @@ function Global:Enable-RemoteDesktop {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -591,25 +591,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSSfUL7lDuhiiUqo1evvCgtHUrauTANBgkqhkiG9w0B
-# AQEFAASCAQArABEvh5Mo04fkQAHncVr6h4pb+2r2XVEe/ycUloVWGp5z5q21lLW9
-# Fd769yqnF3t48yS1qh+KNyiaPgk9kkE9KA5u0fiyt8/SxmXUcT7morrYR8kbTgby
-# DLcBnI8VTALpR7VaryhZhyaDLtDTBezT9LxLnZ9c1Q0kITisC9bbdleM4rNgKk+5
-# Tyou3eEgGNbrGNvPcbAH+uPvfqwvOxrNjQlPXC7u1jDFki89J3jtIqKRLshdhTZt
-# xQbZyAfJGvQ5/SWSgIwLt5P0CIRob23Mov4belhL13CrUgQZRUzz+kdztjBOlggG
-# +QdcQpJbVwqT44n5HR+5I/gme7+0DW+soYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQDHK6iSjWOoXKTGHXKKkIAKcchXzANBgkqhkiG9w0B
+# AQEFAASCAQBATfI0CDpLrjJKa01v9JAEJlte91eJPEHnZ52Lx9Q61d+5rMlM5uTF
+# 74foWg7IzFyemz7C4Lxb1sYk2Y/ekaLCbA2sF30muRR0jzf4d2pgjFs+vmDtb9rw
+# aVj7QVg8JtDTXKvSCk2X6sy3YDd9hJew4OIyPmHEP4QBQKqwMK8MGMPjfasvRxTw
+# 4u5MDJa3K8OlKtKjSz9sBnAktQaGLzJon7qGN18E9BE9GUyUwXLzSPtQGnIoWGXC
+# xDOWQDfFN6D9Ily05TCBc5ndH3J/wOfTAiKuQ9pSGw+aDkBuWPTqKldHP63OaKbP
+# YeFz73GldS80E3Akwzg4B2DX3Wx9L3TQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzNVowIwYJKoZIhvcN
-# AQkEMRYEFKyOtAOIqEqIQyWwrs/PJp3Qke+wMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0NFowIwYJKoZIhvcN
+# AQkEMRYEFOm1boBt/M8nU/RgD/HFgJ9rrRk4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAC6y/mTg+7QHg3i80uAB1kSe5pyIVXl6OgADhoVleHJJ+D
-# KeXPCIkvxRG+Opr3qat1FaR2Q4+Qyr9DXkY+4jkqTTR3be5pqSYLe89YxA9TY5DP
-# XURMapZ11h/f794esvNe50PGsdj0wVKE9cKkTu4hslDFpIBRLhkELbKFs6yEXK/e
-# dPZP73Y/x3H0gKLOhvkPpoZKvEHYk/lTK1tT1gInCg3arPOq7NBXUVTh+k9yigfw
-# NmahWoci9Kx+9pgNPUpJf90Cx9sxklWfHfrgd9AK4KwJs0Ofh//CRzIHEXM0ZHzu
-# kNxR2t5iJpuhiIOZwKGo5P9FYRLOi5MktzW66zbe
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBsMi2MkXuFDLpx9DfEB21gW1VNyo4c4IvFRzLHtk7jdiZ4
+# gzuSU5CAcaYqVNUrhct/pIfZWIFQLEkROnl1AGE6xvknmZubXnS6pSog1GFQ4QwT
+# 8u/pG53cr5vjlpMxRSSf0lfKdn2gsQB4/oN438ERQ8klOKN+S6OnWDbUo7owv707
+# ZmJyY8OaeFsPsQ/NuYCRXOly03Gk8Q5EKCqzKL18PIv1ujE+t0Wc5tmfkkNEan0m
+# SktZv2DRXt9zJv05dZOFKUqawt1UrNDxzzCHt5vAxMqsr9ILYqVl3vdZGa9LT+c4
+# LrD0uLaWw3GYhMgdE1+ILgyHWnC1vJWYkeIEMgO3
 # SIG # End signature block

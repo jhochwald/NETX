@@ -86,7 +86,7 @@ Function Global:Get-RegKeyLastWriteTime {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 1,
 				   HelpMessage = 'Root Key to query, The default is HKLM')]
-		[System.String]$Key = "HKLM",
+		[System.String]$Key = 'HKLM',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2,
 				   HelpMessage = 'Registry Key to query')]
@@ -98,14 +98,14 @@ Function Global:Get-RegKeyLastWriteTime {
 
 	BEGIN {
 		switch ($Key) {
-			"HKCR" { $searchKey = 0x80000000 } #HK Classes Root
-			"HKCU" { $searchKey = 0x80000001 } #HK Current User
-			"HKLM" { $searchKey = 0x80000002 } #HK Local Machine
-			"HKU"  { $searchKey = 0x80000003 } #HK Users
-			"HKCC" { $searchKey = 0x80000005 } #HK Current Config
+			'HKCR' { $searchKey = 0x80000000 } #HK Classes Root
+			'HKCU' { $searchKey = 0x80000001 } #HK Current User
+			'HKLM' { $searchKey = 0x80000002 } #HK Local Machine
+			'HKU'  { $searchKey = 0x80000003 } #HK Users
+			'HKCC' { $searchKey = 0x80000005 } #HK Current Config
 			default {
-				"Invalid Key. Use one of the following options:
-			HKCR, HKCU, HKLM, HKU, HKCC"
+				'Invalid Key. Use one of the following options:
+			HKCR, HKCU, HKLM, HKU, HKCC'
 			}
 		}
 
@@ -188,7 +188,7 @@ public static extern int RegCloseKey(
 				$result = ($type4::RegQueryInfoKey($hKeyref, $null, [ref]$null, 0, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$time))
 
 				#create output object
-				$o = "" | Select-Object Key, LastWriteTime, ComputerName
+				$o = '' | Select-Object Key, LastWriteTime, ComputerName
 				$o.ComputerName = "$computer"
 				$o.Key = "$Key\$SubKey"
 
@@ -205,7 +205,7 @@ public static extern int RegCloseKey(
 				#234 means more info, 0 means success. Either way, keep reading
 				while (0, 234 -contains $type2::RegEnumKeyEx($hKeyref, $index++, $builder, [ref]$length, $null, $null, $null, [ref]$time)) {
 					#create output object
-					$o = "" | Select-Object Key, LastWriteTime, ComputerName
+					$o = '' | Select-Object Key, LastWriteTime, ComputerName
 					$o.ComputerName = "$computer"
 					$o.Key = $builder.ToString()
 
@@ -226,8 +226,8 @@ public static extern int RegCloseKey(
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3yi8zwSa4w5PCrm+/oacrCPN
-# v1SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkhRgmhsOAl3OXbN9jrvnXgLa
+# 4X6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,10 +249,10 @@ public static extern int RegCloseKey(
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -268,12 +268,12 @@ public static extern int RegCloseKey(
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -370,25 +370,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQMMVb2iOc8TvTAEKTDj9CLaH3OlTANBgkqhkiG9w0B
-# AQEFAASCAQCVhHfbBUNRmplShe1uqvWR5PbBBpWryF+bSW8SyYw+7l8cGPguInkx
-# jKE2zIayIgrwbvwezWG9fmEc1g1f1nsOKegLV0M9jBRayDQyl6JMQtwn5g7a1hkt
-# wPZ7lGFwcS6I7VkuA4BjLB8oej4D8aRXDA/Blv/ggCvvhJgKc/gIjasIdOhcZ8Fc
-# J7F4yxG6bP5aA0YQoOdhUTa4q79UxwWjeScmcTnkonAe/d+Cu8Vz/OamY7C3tidf
-# 3JyCdB3D7tLsGxFXR+chuESuYMjY5CMNWxv7cb1mH6wJhM5UV89KtF5ffin9tx87
-# guvtDQHVwQGsDFh7EOKDpqIAW/UAHI0voYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ8uh9r3Vh9YPNi+bMX5mQ1/qa0OTANBgkqhkiG9w0B
+# AQEFAASCAQCsKNuX29GK0ND1snfWbEPosQP5BZUxpBzYzjpAOeh+GhKXQSsUKHpw
+# vQ6Qao0Hwm+Mxty3Y20b/cRgsZa6sKHveCRPp0mWKAGC8RML3T6+KIT9UYjBRX8X
+# xWH8/7tlVPZUW0cDbWskBYkGykQSIRRuvBc6egoIgAoBb3s3hssCwwWhPpFgG+lT
+# HX4VwxIDd9sODlybL9JM+I2kv+/XPGlIcnsC6UBuv7ve+P6xklb4J63w2nZdrw88
+# mjcs3Lf7Bld1BE5Z7ejJ4OnwS+1XyhmSA8860WqNZyI3nW1DBF3OeLG49Lnjrk4w
+# XABSuk0cwI4AbmuAP/I1HQzLFcbZ+iezoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxNFowIwYJKoZIhvcN
-# AQkEMRYEFBnaP+itY8j81oSWQEPc5AJYEkWlMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyNFowIwYJKoZIhvcN
+# AQkEMRYEFCV33cKW+sUzHSqeQZSBfCe/fMXgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAs39HKRugvW5Ypjab8g6fZiXyLvmicpXeZVYe0B47R8bMJ
-# huLUje96+an6H/ZoLCDBpoOG9Hi0kQAMpz3OYtMxyfx3vtD4+nnEvei+igPiVWSQ
-# mnFfC0muMNQsRcK3qssdW2+Cra+Kr0o6F87+oHx+H0buzn0jESuWXE3jQ/mbcXCQ
-# nyyL8/Ym54q69+MykH+dpA8OlX/tJdDw1nIlKar+KfcZxjZQHQalt/TzDSI8n8RP
-# M9B+p8kqIssMpO7CuwSZEQGRpClmEbW/IcE/2K+jHmbPpYCGi6rIUOpfLkh7RhET
-# conlsu2y65A5vzhcbBZipCV5vSPSdZHDh4+rVdrl
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAeoKjLrGuWDpVJlPTttOjOfvuK4EN+rb9/GPa0t2712u5W
+# p0jGwIrbc/OalDVRcI/QRgBfl6s4M88CkkJiO3seDamwvi/w8DRuf5FS6WDTy7nu
+# KFUAMI3L0RXyI9qqIF/g4Yk4YwdcKzN+2QdxfIf4hWfymfCGvpDmsEW1tEd/j3NC
+# ACjg2GLxGrPUpkX2mgDrnOuFmddd5o6VldLjeykjsiJdznylcGc8FEwUcpzMG1ml
+# GHjKdorY6yZ7Opi5Vpav4gvHjvrjd7OaG9kUvjELcuh/HFy4wIlpb0zVQa7IfZDB
+# lnFP9A1AgsjnjNcuT1oK6Iz6fvrglDVzguwa52iE
 # SIG # End signature block

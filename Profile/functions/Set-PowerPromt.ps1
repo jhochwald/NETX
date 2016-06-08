@@ -107,49 +107,49 @@ function Global:Set-PowerPrompt {
 	param ()
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set Multicolored")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
 			function Global:Prompt {
 				[CmdletBinding()]
 				[OutputType([System.String])]
 				param ()
 
 				# New nice WindowTitle
-				$Host.UI.RawUI.WindowTitle = "PowerShell v" + (Get-host).Version.Major + "." + (Get-host).Version.Minor + " (" + $pwd.Provider.Name + ") " + $pwd.Path
+				$Host.UI.RawUI.WindowTitle = 'PowerShell v' + (Get-host).Version.Major + '.' + (Get-host).Version.Minor + ' (' + $pwd.Provider.Name + ') ' + $pwd.Path
 
 				# Are we elevated or administrator?
 				if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 					# Admin-mark in WindowTitle
-					$Host.UI.RawUI.WindowTitle = "[Admin] " + $Host.UI.RawUI.WindowTitle
+					$Host.UI.RawUI.WindowTitle = '[Admin] ' + $Host.UI.RawUI.WindowTitle
 
 					# Admin-mark on prompt
-					Write-Host "[" -nonewline -foregroundcolor DarkGray
-					Write-Host "Admin" -nonewline -foregroundcolor Red
-					Write-Host "] " -nonewline -foregroundcolor DarkGray
+					Write-Host '[' -nonewline -foregroundcolor DarkGray
+					Write-Host 'Admin' -nonewline -foregroundcolor Red
+					Write-Host '] ' -nonewline -foregroundcolor DarkGray
 				}
 
 				# Show provider name if you are outside FileSystem
-				if ($pwd.Provider.Name -ne "FileSystem") {
-					Write-Host "[" -nonewline -foregroundcolor DarkGray
+				if ($pwd.Provider.Name -ne 'FileSystem') {
+					Write-Host '[' -nonewline -foregroundcolor DarkGray
 					Write-Host $pwd.Provider.Name -nonewline -foregroundcolor Gray
-					Write-Host "] " -nonewline -foregroundcolor DarkGray
+					Write-Host '] ' -nonewline -foregroundcolor DarkGray
 				}
 
 				# Split path and write \ in a gray
-				$pwd.Path.Split("\") | ForEach-Object {
+				$pwd.Path.Split('\') | ForEach-Object {
 					Write-Host $_ -nonewline -foregroundcolor Yellow
-					Write-Host "\" -nonewline -foregroundcolor Gray
+					Write-Host '\' -nonewline -foregroundcolor Gray
 				}
 
 				# Backspace last \ and write >
 				Write-Host "`b>" -nonewline -foregroundcolor Gray
 
-				Return " "
+				Return ' '
 			}
 		}
 	}
 
 	END {
-		if ($pscmdlet.ShouldProcess("Prompt", "Set Multicolored")) {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
 			# Execute!
 			Prompt
 		}
@@ -159,8 +159,8 @@ function Global:Set-PowerPrompt {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUW6V+O5mpXuG65TOeuHn2BO+0
-# AuagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdxAJfg5li9h9snpG0avcOfAf
+# xr6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -182,10 +182,10 @@ function Global:Set-PowerPrompt {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -201,12 +201,12 @@ function Global:Set-PowerPrompt {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -303,25 +303,25 @@ function Global:Set-PowerPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQa3dCVcmylh8yjIiyK5T3FdEDE6jANBgkqhkiG9w0B
-# AQEFAASCAQAxUIO30uFRlAuNNHamAM2ZqzapRFBv1iGSsbb/TtxCeaydUvE4vHpD
-# BfMCHTfDn8Vac2aPUdQ1lHksz1cw4MlJq5C9BonbMt7mtUWZhg9c2K9OnE/na0xm
-# ACSmmNvB2GpOLfg2IATSzwuBgxZOeyiOllOFXt94YL2DXjs/2SuG0It1YCsaiI+O
-# 8UhKXACCb676I1V9jQlN51oz+RWpcuPU0aLcKgVBJUTfh/CKNyYZkTA48Lk0DPdO
-# 6O2UP11B6B6yAN4STlXasEQd4kdKrX6/u5k/3CoqznUSv9WYMf1OVNxvqmxgstp9
-# olbJcRo+Scb+F0De84pMigJX8T6rujOOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT9bGSLezAxHCf6b9++0kbpywBdwjANBgkqhkiG9w0B
+# AQEFAASCAQCpVDoCRWIy1LPWQ5QN0UmLXHffwkcd3Yodha9EwADpX0D6Ei70ukas
+# sX7FQJIjyAgnr6w+4Rv+9LBcTJZVWjEjQpdbLqnU79ctdaji3/oMqJLiY3BKKzBE
+# o3S2MijN7qHs7EJGGQArYWfPtVm49/Xu7nO19kn83+j8Set2OJB0DjOLBoGwX5tR
+# zcr6Fem9uZwdPOfdAWF2YGXTXiWXQaslpUKiFYg0gl74PKX88u+4lCF08+wD/sL/
+# YChWStuNIAQuQGPVy8YzPV8AQ9Qn9vaY/fKviSS7K86uYvhNx/afJN4cgNcZvkKi
+# OXRCajdeVfmyXaiYA35WjDHWuh5Z8RkdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0MlowIwYJKoZIhvcN
-# AQkEMRYEFDmO7dMV6mu8/ntoQ/Jp+ey1urpQMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1MFowIwYJKoZIhvcN
+# AQkEMRYEFAfnQDcA4gMEJOmVsbgn1IEbJaNiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAB6A7hEqpsa0QpvJwW6S+VM7Nt/yeP5jRLa3MNDWomCB+z
-# qPk6ItkVsEsZL1uGX4ofDUEHOxMI2znX6lGZ1ej/+Ydj0VQOLelEfAz5IimV4c6x
-# viwnmS73R7JBgr0GbP+66PhRHfHXZX89i3/A91W9/U9efifF4kx0QVsah658RAm6
-# cc7byB3oqA1Cr8EItGVqiYcnCPwTf41xhugZ4Ywnai3hR7GOFD9UE0zl7pwG4yP3
-# +QuSPCKmaB6O7Z4pq2KQL2fEw4iCdAMFOdPbf/dVspVffxQeLdqyc/SwN4JW/cUf
-# 0zqgDJmW4KiEmkiIhED2bW4+dlCvXfyGfmEQHIJZ
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQB++XCT+sBfEX6HAmWBnA3n7VTU2qCbD11MsjdyW9YnPQo2
+# ehrh8vOBKYXUOFLKqO/2AUpUCV9y8+7htkmC3BeDR6dDZ9LZ+Vx4mfcaPHVzW4WZ
+# qGssPjWLyiZxoWHhwAazcgAOv2NiVItrphSibyJzKC5m+wWvlwdOm/CJjLFxQMPB
+# EVK8f/ffCk2lmxXpJH8u3wSe47glkYWmgKD7rkDWPM4A6j2D/kDO63DoXfXEVDK7
+# RkN9brO0IR4eQbKMsM4s/ZkVOa5VMEN7eiCqQNJGJfBoaSWi8M6qsWdJjrulIu3G
+# 6rtemGNfEkjgOrC7cVEg8qDrwH5KQ3iAPLH8CuKI
 # SIG # End signature block

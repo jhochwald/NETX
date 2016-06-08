@@ -119,7 +119,7 @@ function global:Set-Encoding {
 		# ensure it is a valid path
 		if (-not (Test-Path -Path $path)) {
 			# Aw, Snap!
-			throw "File or directory not found at {0}" -f $path
+			throw 'File or directory not found at {0}' -f $path
 		}
 	}
 
@@ -132,13 +132,13 @@ function global:Set-Encoding {
 				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($path))
 
 				#create destination
-				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ("temp_encoded{0}" -f $ext)))
+				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
 
 				# output to file with encoding
 				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
 
 				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object { Write-Output -inputobject ("{0} encoded {1}" -f $encoding, $_) }
+				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
 				Remove-Item $dest -Force -Confirm:$false
@@ -164,7 +164,7 @@ function global:Set-Encoding {
 				Get-Content $i.FullName | Out-File -FilePath $dest -Encoding $encoding -Force
 
 				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object { Write-Output -inputobject ("{0} encoded {1}" -f $encoding, $_) }
+				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
 				Remove-Item $dest -Force -Confirm:$false
@@ -178,8 +178,8 @@ function global:Set-Encoding {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlO9CEzxYQyf45YDN/OrkqTY0
-# iBqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbFtFsRD3WH9Ln46woE6w3wz+
+# ofmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -201,10 +201,10 @@ function global:Set-Encoding {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -220,12 +220,12 @@ function global:Set-Encoding {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -322,25 +322,25 @@ function global:Set-Encoding {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQweyj5VRWj3DjmoV1OrYFjF+TewjANBgkqhkiG9w0B
-# AQEFAASCAQAqCimFoWq79pMhqb72TiyDKds/FV7G4Rz+7aGjsP6Cah17flSU7OMG
-# SN47TE968JVMRdxxmKSs4+tqBF1ndPqCVjwdov0vSmpQ3hbCUbKbr+ti+abkPdWQ
-# 3S8H6P1Ee4Adr/xIrquJmQn+/Cbnitswf6ppVQ/pfDWPm9yNETY7FPrJwpnmm0ds
-# e4qULJOvig0lDVJ3y8ryPMhoGP6DFz4yb4UUi9+mWahP73LfFP4iPTQ5+VMnFvG9
-# BZOVr/jV67kRiOisGKVwMTJcLySpGjY3XcmAaE2mM8dkaQirlsZzNWwGcwRdGzqU
-# 3V7FSVUG62aZLfVF0giKYYJn/SeithPaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQwW4LE85CJZx5goWy+fqJ7oBok9zANBgkqhkiG9w0B
+# AQEFAASCAQCmxeEdo6S325PpduwhuF4t3pkBiYZHydnhyHxPljQRcqctbWu4LDYk
+# cj4FlGNQE7cWrT9H/fUtZpqfnJBAypa8wNaQzR0vxrU+mfUQy9brQvssf0cEZe/H
+# LKNmtRizs2nwUA4aZV2GXuN7pK0VKE6HHv9Bw1kEb8lh8pEQm+L5MBmcL1uh05Nf
+# xclfq5mW1abLMbeOthlgoPBPfqHei6lqXgHaQuqgkBfWg1z3Dsf7ehmMZ2ItHH1c
+# UTJPJmY6JqVxB6Ws3I3d0UJNOMz6wf9Wb1TH2CUO/v9+rn7abYXtYeP+me0L4ote
+# 5hvnr4ha65r2u2kIVjeD2IQ+PIymRwGeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0MVowIwYJKoZIhvcN
-# AQkEMRYEFApKpXFQzZTOz0usWT2Wl2FHOyHnMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0OVowIwYJKoZIhvcN
+# AQkEMRYEFFhJM+0O/UXQCxUqyKCNpqOwC4pVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA3Dk1oOp8+++Yl7ny/79KtubTC1p5OQo4KV2aN9lBrVQxK
-# P1+aLu79S/0gDPTGlPMFdOgw+SgGDz1Ft3meBtTjvXvUReyjeb0hFBpnmCYgjh9z
-# pRjzm+aibDHar41LEFlO3xqcaQopuCc5i3Vz277n0P+qOVyHqyOZdA62u6U992Nh
-# s2X2FXEMeqIDhiD4rRPLP+t1XyqNFGYjxYGM5i2d7K5nofE3+U1BH1mX0oOzmdbR
-# cb0E2o2jEnEMvoODtJIJXvD8QwkBrIezb908R5PCx+6DyCXAOGCA8ijF6aVaIY29
-# 9Y0wLbYXafSjUj26cUA21iqaoQqNRnGv0Ely0fCG
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCL32SR7mS1ogfPtc7qElSznACg+RQ9XAFe+z8mE3XEfk9B
+# kgFivtbijcQwf6IdjTNXiWZvqowjVO63/0Zr8yLRxR4pM69yMdMZe7QbqTcQNO2O
+# 4auKw78GfCxexMB02fqzLwqRIBaPYu016Ckl8pfqZuzYHcy71qr5dvzyfwB8mRQ5
+# cdcT0g9WBiTMQ+XRpy7DJUzkpCGTW/MVQUWpp//D4ttEZZyOV95TPzybHHlYE1Ld
+# ZNH1fMtuUK2REQdKV8hhBM9PKEG359IgDJcLzalT5r2rPQj/wA/ebpmbyT01nplB
+# SWhVaZPGX4I/TXwu+cEpA9DN1QpdgJ/g0FnErLG+
 # SIG # End signature block

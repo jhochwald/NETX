@@ -108,7 +108,7 @@ function global:Get-ASCBanner {
 		[switch]$IsString = ($true),
 		[Parameter(Position = 2,
 				   HelpMessage = 'Character for the ASC Banner, * is the default')]
-		[char]$ASCChar = "*"
+		[char]$ASCChar = '*'
 	)
 
 	BEGIN {
@@ -212,11 +212,11 @@ function global:Get-ASCBanner {
 		);
 		$o = (New-Object -TypeName psobject)
 		$o | add-member -MemberType NoteProperty -Name OriginalStrings -Value @()
-		$o.psobject.typenames.Insert(0, "Banner")
+		$o.psobject.typenames.Insert(0, 'Banner')
 	}
 	PROCESS {
 		$o.OriginalStrings += $InputString
-		$output = ""
+		$output = ''
 		$width = [math]::floor(($host.ui.rawui.buffersize.width - 1)/8)
 		# check and bail if a string is too long
 		foreach ($substring in $InputString) {
@@ -230,13 +230,13 @@ function global:Get-ASCBanner {
 				foreach ($c in $substring.ToCharArray()) {
 					$bitmap = 0
 
-					if (($c -ge " ") -and ($c -le [char]"~")) {
+					if (($c -ge ' ') -and ($c -le [char]'~')) {
 						$offset = (([int]$c) - 32)
 						$bitmap = ($chars[$offset][$r])
 					}
 
 					for ($c = 0; $c -lt 8; $c++) {
-						if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += " " }
+						if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += ' ' }
 					}
 				}
 
@@ -258,8 +258,8 @@ function global:Get-ASCBanner {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSMx1yaDT7uFhm1UoIOrXCLT+
-# DY2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTv7lDnUOHqnl5Oc+LP6aOzM9
+# gNGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -402,25 +402,25 @@ function global:Get-ASCBanner {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQC4Dv1M3jQ0q7deQxTaJfYhnFMjDANBgkqhkiG9w0B
-# AQEFAASCAQBCOautAmFahz6ygGmsMEx0xgQBxdsLJwGxi9972Ir3rBx4KWajADkm
-# c8iGWlmodgO/K5VLDhpwQVVwl6MGHAsNsA/2H2Sz3kNB5suNTfvHU/NL9LArTSvU
-# VpDltcysFjMFclPDztXyr9THm1JZD77YQ+NITckR/O8S+OoGb2OMeH3ZN87tx9dB
-# vQbfM1r6bWcJ4InEKLR8UfSG5et/GlIDsW4biBvGrtPFumZfY+xpdqdiRMFLQTVX
-# VkwDRp/e0r9xUhcHNvVOY1Gzo5drq3qeAWTs1QJr7H5U7gxbvNDJPwdRKEiCZSAR
-# n9XEXHRTl0fGVsy/0seH0UCwKY9A4C5FoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQjUzcWegeYVMUMXDgdWjOkye2F6TANBgkqhkiG9w0B
+# AQEFAASCAQBKwy+830ytdHLfamOpH4kEJjd8gBneWPLqSJ6ku2ntmYgMywHOoe1K
+# r/IAdaO+4fidiKDp2p62B1pkXgnB6CyJHcWXaysLR17F0qmuoKXfQ7R49kEQdBOr
+# HUwJeLl+YgxIE1gzC4/nMn7HvAkFchxMOKs7pseDO2EVpCQPP8oNZS6CkYFizufh
+# u8hg0jdvtTFBaEoI9sSks24F7vEXUkqpDOQOEqkBEvJwuSkoGCHBCfi1KL+O8BHd
+# Ht7wHCpgAaOyWCi0J9mfumP7AiowWxm0vXeJFThgagVv6XuhV8MoZB3F1xPA5s9N
+# g29iIT+SBGHcKXJ8w2ZIKNEp61oMpY1WoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwNVowIwYJKoZIhvcN
-# AQkEMRYEFFmRrDVYj9ef8pUnU7B44bYJ9vrUMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxNFowIwYJKoZIhvcN
+# AQkEMRYEFOpFDIfurna96iKJS0yFTDWeFzWgMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA+GaadWiDCzLfs/R0cfvNCZxMTWDw+drejuoG/HZsufd/J
-# V+z1LceU4nOLe6ogEdT+ZXe8i1Xob77gK8/9fY72NtvaiMaEpLPkn+U/bGBVHFlx
-# 6KYKuuywEgA4vIdWGLSO+q7tvI3bbaM8FYuBDiBIBEadeDUL9SqFsW3c9Wx46uSC
-# +X8K6BjGnmDBVkgTQFrgBqYj+IsRwDd7HktSenj0hy6KCCYzZ5c4HGZu1W0foc0D
-# 9LM9nQTrHzCuwvlqlmLHl+Oc8yDh3By683Mp9uZa3SI7VsKSqCMFuLjimLbMkEDM
-# faLLpYTceCs829A080g+euVmHG5M1vNlmaWfu5rT
+# hkiG9w0BAQEFAASCAQBmS+0E+/9T8OLbL6d3kh69Pqz3uzrjK6d+MdfLngKK+ecd
+# 1DuRE8S4H2Mu+JlqKnszz0zl7149X5+AmYKSp6QJjcUkhhqjPKc10vpOMDdgfu5f
+# NgCeXffResZgx82TJvwQFyRbfTJmI1XaQTU5Rh/HCQEG2G1S0NsKgpcHKMgClZcC
+# ROlX17sfNS7iqpdc82L9q2esApS7bYUbhsBZRvInduQ8cX9YyT6axy+LiNnGi9t1
+# Aa5dtz+Mv4D1I+R1R5zEGIjZ41GaTNrSyQmwjZDvfuyqz3B6nM3M1I9G3WQl7+3Y
+# Rah3w6TbOGENx0uCLe707SeWBXO6lyuifMm0J5c9
 # SIG # End signature block

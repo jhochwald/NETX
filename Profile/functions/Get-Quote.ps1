@@ -90,61 +90,61 @@ function global:Get-Quote {
 	BEGIN {
 		# The quote should include the author separated by " - ".
 		$texts = @(
-		"It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover",
+		'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover',
 		"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley",
-		"Good is the enemy of great. - Sir Jonathan Ive",
-		"There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive"
+		'Good is the enemy of great. - Sir Jonathan Ive',
+		'There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive'
 		"People's interest is in the product, not in its authorship. - Sir Jonathan Ive",
 		"I think it's really important to design things with a kind of personality. - Marc Newson",
-		"Intelligence is the ability to adapt to change. - Stephen Hawking",
-		"We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking",
-		"The best ideas start as conversations. - Sir Jonathan Ive",
-		"If something is not good enough, stop doing it. - Sir Jonathan Ive",
+		'Intelligence is the ability to adapt to change. - Stephen Hawking',
+		'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking',
+		'The best ideas start as conversations. - Sir Jonathan Ive',
+		'If something is not good enough, stop doing it. - Sir Jonathan Ive',
 		"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive",
-		"Any product that needs a manual to work is broken. - Elon Musk",
-		"Business has only two functions: marketing and innovation. - Milan Kundera",
+		'Any product that needs a manual to work is broken. - Elon Musk',
+		'Business has only two functions: marketing and innovation. - Milan Kundera',
 		"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison",
-		"Great companies are built on great products. - Elon Musk",
-		"Test fast, fail fast, adjust fast. - Tom Peters",
+		'Great companies are built on great products. - Elon Musk',
+		'Test fast, fail fast, adjust fast. - Tom Peters',
 		"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)",
-		"The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)",
-		"The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)",
-		"The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)"
-		"Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)",
+		'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)',
+		'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)',
+		'The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)'
+		'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)',
 		"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)",
-		"Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)",
+		'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)',
 		"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs",
-		"One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)",
-		"Why join the navy if you can be a pirate? - Steve Jobs",
-		"Innovation distinguishes between a leader and a follower. - Steve Jobs",
+		'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)',
+		'Why join the navy if you can be a pirate? - Steve Jobs',
+		'Innovation distinguishes between a leader and a follower. - Steve Jobs',
 		"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs",
-		"Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs",
+		'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs',
 		"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs",
 		"Things don't have to change the world to be important. - Steve Jobs",
-		"Your most unhappy customers are your greatest source of learning. - Bill Gates",
-		"Software is a great combination between artistry and engineering. - Bill Gates",
+		'Your most unhappy customers are your greatest source of learning. - Bill Gates',
+		'Software is a great combination between artistry and engineering. - Bill Gates',
 		"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates",
 		"If you can't make it good, at least make it look good. - Bill Gates",
 		"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)",
 		"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison",
 		"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)",
 		"Don't count the days, make the days count. - Muhammad Ali",
-		"Everything you can imagine is real. - Pablo Picasso",
+		'Everything you can imagine is real. - Pablo Picasso',
 		"In three words I can sum up everything I've learned about life: it goes on. - Robert Frost"
 		)
 
 		# get random text
-		Set-Variable -Name "text" -Value $(Get-Random $texts)
+		Set-Variable -Name 'text' -Value $(Get-Random $texts)
 	}
 
 	PROCESS {
 		# split the text to an array on ' - '
-		Set-Variable -Name "split" -Value $($text -split " - ")
-		Set-Variable -Name "quote" -Value $($split[0].Trim())
-		Set-Variable -Name "author" -Value $($split[1].Trim())
+		Set-Variable -Name 'split' -Value $($text -split ' - ')
+		Set-Variable -Name 'quote' -Value $($split[0].Trim())
+		Set-Variable -Name 'author' -Value $($split[1].Trim())
 
 		# turn the quote into an array of characters
-		Set-Variable -Name "arr" -Value $($quote.ToCharArray())
+		Set-Variable -Name 'arr' -Value $($quote.ToCharArray())
 
 		$arr | ForEach-Object -BEGIN {
 			# define an array of colors
@@ -154,38 +154,38 @@ function global:Get-Quote {
 			write-host "`n"
 
 			# insert top border
-			write-host ("*" * $($quote.length + 6))
+			write-host ('*' * $($quote.length + 6))
 
 			# insert side border
-			write-host "*  " -NoNewline
+			write-host '*  ' -NoNewline
 		} -process {
 
 			# write each character in a different holiday color
 			Write-Host "$_" -ForegroundColor White -NoNewline
 		} -end {
-			write-host "  *"
+			write-host '  *'
 
 			# insert side border
-			Write-Host "* " -NoNewline
+			Write-Host '* ' -NoNewline
 
 			# write the author
 			# Write-Host "- $author  *".padleft($quote.length + 4)
 			Write-Host "$author  *".padleft($quote.length + 4)
 
 			# insert bottom border
-			write-Host ("*" * $($quote.length + 6))
+			write-Host ('*' * $($quote.length + 6))
 			Write-Host "`n"
 		}
 	}
 
 	END {
 		# Cleanup
-		Remove-Variable -Name "texts" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "text" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "split" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "quote" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "author" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "arr" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'texts' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'text' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'split' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'quote' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'author' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'arr' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
@@ -262,8 +262,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUB0CFLWbSL3OI1EcZt/BZpiub
-# P6+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwQn0+sziRlnNhgdLgVnbMcSp
+# dEegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -406,25 +406,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRKH8Qctb+xH0XIg7lZLDtJydfX7TANBgkqhkiG9w0B
-# AQEFAASCAQCde11Q9u1nUSFU9AkXXEszYZWGuj1Xj92BBYbkR168YPGK3ihamrJu
-# f93v8xkQ4MZBhedTUvOthsMJFUOhNk869abdaQ4jlPfJr+IU52oaDvXdDqDNZI+E
-# f8zOhXtK8Ugxh9D0RbBYVVcoI4EgehyX6tj7A4/kA2tLRYXHhlML7OtltvV23lzq
-# RpMVoYUx4riM5TRrzIiJ49w8IJwKDzosnXXLJAR4ltfrwXyuUyNl76W0Hrok0Vk7
-# Gv/NQzY9ByQE/Pe27VBd65wBhPORYP04OlfU0/Gji1h4UhbCZOcd9wviXiITI3RX
-# q89jjLfpT6iawQeByhdZWXcI20/2ujyOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS3pilxeBkPSBhkq/7cFd5A6hDOOjANBgkqhkiG9w0B
+# AQEFAASCAQCgwZmuphv0iqExvnslmMMKaiZg9sZM8jVo78/AHQtagr/zTkZA8vDQ
+# NFNC62LyJiQIlxzeSEIGYsI2soPoAQQd4i0WpKOqnPJ3tT9RqgDyfKKHbpTxpc14
+# pd/c8Wa/wDztSOly+1LMWskWhiXZHUTme8SxZv7pn1eElvPS6jR++dw1eL0vtLNP
+# LDEnyO/3j75wjQKJPSP2iTlNqIK6AbTU3URSWmZtuAjo4Qcz5OZZVAuEUWlBalnA
+# FOGeoLyIrz2ldCzMhqcB6mvcDTEMWXG6r9SJU0xoSkzILhxOVx5gbv8s9GDp+GhU
+# TlMSi0GmkJ9ZPytFJKvQCOicNUQOFt0poYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxNFowIwYJKoZIhvcN
-# AQkEMRYEFPFlxn16gOmP6kyIXv/7HZsTgN47MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyM1owIwYJKoZIhvcN
+# AQkEMRYEFMhzAlnTG0ibC8YCPzQ70Hq6IIVPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBHCvPgWHAwKLToE3pdUUUq5yfc5PpLbpEOeY/ufXhwdCZ1
-# 0feYQZWoVJMH9xifis/BEsK4s96n2U7EZdIM7P+D0XPc7Jmio39hgDcGPK6FGrUq
-# Jiac/QUSC5FRl1BRZAz+Gg0J/QHRUqzmESNGNKSUjpeC6BbaBbNkK/S8HL+Wgd7V
-# jj7ZbfNntfm3lcY0p7DvTm+LIMl70m4eLwkfqewtNkNXDC2/39Eo5EECZwK4Bh85
-# HfOIGQ+o9qxz9JFZWUUHba1zSfa2qv7EsYn2fVYmIVhERQ1+Kk9UTspCorgHJimD
-# A/6kBMU6H3lXZ5xYCpCd72Ujci/YGovEdwC5norp
+# hkiG9w0BAQEFAASCAQAo6ZYhcktzFLuJMLj3WJC9ggGRKtDFao3yOWNqtGgmy2sM
+# 9+xcEuV/MhJJQ0l9ebNld05IRwG+xxBejR3tVZ5+zAJC/Kn+FxJkKyngTwwx6Twl
+# TVWfp+WO9SKuNzWbKfwQz0EpILkccJkKiRkrGmO7AYfuTdRk1Ftym6q+t+blkLQ7
+# Y543CzlkBt8wmEs2AFDMowUOMabtPI1vot0Y0UzLFhPwRNka4j6j50KzJ1tQBjDY
+# ZbUcpd1sTW3G0fp6pdqmk9z+1I5EV6jUQl3HavxKqOe3O03rcU0LY026pv2QCEKy
+# Hqq8MYG27QjYin0SICYRFwItTPOC+eB+w1t9H/XP
 # SIG # End signature block

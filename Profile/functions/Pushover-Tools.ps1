@@ -175,26 +175,26 @@ function global:Send-Pushover {
 		$url_title,
 		[Parameter(HelpMessage = 'The Push priority (-2 to +2)')]
 		[ValidateSet('-2', '-1', '0', '1', '2')]
-		$priority = "0",
+		$priority = '0',
 		[Parameter(HelpMessage = 'The name of one of the sounds supported by device clients to override the user''s default sound choice')]
 		[ValidateSet('pushover', 'bike', 'bugle', 'cashregister', 'classical', 'cosmic', 'falling', 'gamelan', 'incoming', 'intermission', 'magic', 'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat', 'alien', 'climb', 'persistent', 'echo', 'updown', 'none')]
-		$sound = "pushover"
+		$sound = 'pushover'
 	)
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://api.pushover.net/1/messages.json")
+		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/messages.json')
 
 		# Build the body as per https://pushover.net/faq#library
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			user = $User
 			message = $Message
@@ -256,10 +256,10 @@ function global:Send-Pushover {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
 		try {
@@ -277,10 +277,10 @@ function global:Send-Pushover {
 			Write-Warning -message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -347,28 +347,28 @@ function global:Get-PushoverUserDeviceInfo {
 	)
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://api.pushover.net/1/users/validate.json")
+		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/users/validate.json')
 
 		# Build the body as per https://pushover.net/faq#library
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			user = $User
 		})
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
 		try {
@@ -387,10 +387,10 @@ function global:Get-PushoverUserDeviceInfo {
 			Write-Warning -message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myMethod" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 
@@ -402,8 +402,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9HCmfmGej23sKzAw/IUzPTx/
-# XEygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVW0eQylhHhI71y9JN3P/fTmH
+# +XWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -546,25 +546,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS+JHnbEK5nHkGQ/liRkJTpKn2+KTANBgkqhkiG9w0B
-# AQEFAASCAQAgI7iQKw67aXWF64gKTDIDp3TWNTr+prUL8da8XgRZENnbbFuQqhUl
-# wGjkrM5+GBMTOQyBnHrdpMbEXRmNt6YKAHiP4EOGiAUiUiBHFJppVY8dZq+R6Ft+
-# NCXHQTsOiPjP5G00ZVMdo+E49DnhQs8ixbtVgzG1Aw/uIqUhuwDOWuVk0gA7/tzL
-# TRbabBqMnWyLDckVVsY1JZIsU43y3m7YA6uygAUSgOFuH+bZHexfyG7mw7gquK0J
-# KtLoIIQekyIpl3QXfJZh07vg0NM5290wcSW8d4u2C6pyGCINYT/NalJfzoQm8yBo
-# krvq3byyzpWdnFmtCGj5yWHEPucq7pe1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSIUXRgMZsBOGmLio2LfBFQchmOvzANBgkqhkiG9w0B
+# AQEFAASCAQCWYU6y1zNjfk1EspBEgvvQ63521p3MRP3y4MNd5Tg8PUfdM0iPhqDK
+# bqOon5npvBdsf5lUJZ2YaBi5yV9PaiyXwARfB1y5klblLjkCxnvdKBLISBGURftH
+# q908phOGYcBaXonXBzwPvaBW0AXYahN7l+VPSohsnKCLUARvLcvj5bhWsX6+YFZi
+# M0/l+3h2aYALwKYCnKeB0oS7xLUAxly3YqlzVCJx2sMEfaMvS2OPtOTVHfkMQLmM
+# R2aq/zGZppyTb9upuxjIqnt2ee92+Ueie2NpI5EIPZtZNl7b9XOFpakaV2/IWWux
+# qUtmhYwVXLO+9mLITDawP3DEw9JtuIbpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzNFowIwYJKoZIhvcN
-# AQkEMRYEFH128acYlbfrPZMwFcDexR3VRELXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0M1owIwYJKoZIhvcN
+# AQkEMRYEFOWHOywRN05PZSJWGWGFaraA7HomMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCMoMMDG+zAjZg5xE16DePL2mxwxaHPf9jeXiKmRMjrRfVN
-# h7z9DLJZqZyu+DkIyaSVjxDLAOsj/i796S7/zsxWrF99L1PHW4TAtOV0XS3+57TS
-# VsYodi5hUzQJn6QfF6Nt9eL+ANuXfrHybjKz3Vpfpf3U6iIgKm+NTWGgJaG2jIID
-# GwD9TlGZMHMrXhXR7nNBNkrMJo1CAMMDh5ADGrH+uJOBCq/r9qd2QE0AjroCbeI1
-# +e24VXEpStEStf5kpHBK19np196Yxxhd+RB+8RUbIJ4oFd0pjjO7yZWMJBAnLPiV
-# Z+OodJqZr6Frx4ikIzNZksVxZMi4zYFpGusrhwS8
+# hkiG9w0BAQEFAASCAQADEKyNWcftj9RqAAiCL1mEGzPAkQLWXAbR8v5AITqbsIx0
+# tdGU42xHos522Rj5zR6INr9Sw9VXfHr/5VI+X1+f3wD+lV5zAqtSIr4/u5d95ktj
+# Hb4VfQr9ohExKBIdGNU25WtA7xvtjkVQhu51GsNaBg3GXMHIC1Z4aZvCKjOjJlCW
+# hNApZRwWMm77sXdrTRLPiwSJkSEO5LTSx3Zv9MTcB4n0ovH3HkdH7wolFl8sNcCF
+# 0aQcR7BPkMgMj0u6HuhHy1m0YSlJTbaFcV9UlAQhuw/o3k9C9rMZOPeh1JrS3WWd
+# OtZYX+dlGkBpQSRh1JH6A9rLFk5d5sKXI7XveV6n
 # SIG # End signature block

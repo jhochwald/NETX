@@ -109,9 +109,9 @@ function global:Invoke-WithElevation {
 	PROCESS {
 		# Define some defaults
 		$sudo = (New-Object System.Diagnostics.ProcessStartInfo)
-		$sudo.Verb = "runas"
+		$sudo.Verb = 'runas'
 		$sudo.FileName = "$pshome\PowerShell.exe"
-		$sudo.windowStyle = "Normal"
+		$sudo.windowStyle = 'Normal'
 		$sudo.WorkingDirectory = (Get-Location)
 
 		# What to execute?
@@ -129,7 +129,7 @@ function global:Invoke-WithElevation {
 
 	END {
 		# NET call to execute SuDo
-		if ($pscmdlet.ShouldProcess("$sudo", "Execute elevated")) {
+		if ($pscmdlet.ShouldProcess("$sudo", 'Execute elevated')) {
 			[System.Diagnostics.Process]::Start($sudo) | out-null
 		}
 	}
@@ -140,8 +140,8 @@ function global:Invoke-WithElevation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPp9B9F4VitirjjIOEQ57HukC
-# 2VGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7HwnPqvrkFkSwqFX/c3bVsQq
+# 1ZmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +284,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQbfx68HKjjCHv31HK0+xexDblCCzANBgkqhkiG9w0B
-# AQEFAASCAQCn06ymwkwHYj65Dp4WncguRRf7WWB+qwe9qaHNdFAmbAH1qYWQAg+U
-# URBuSG10eGY/k0F3igP8/O/favw7mpkiAztxKOm+rHzwxnxJA3p9xXSpBWHA+TWq
-# cDDVpp9ocVmhIvrLml+Y6mZWeGI7MmvNan8G/25k3jLuzVHREQNzzPBkciwsH+bx
-# agHzVL14SBaIMDV8BdpcTnFURyxN7vXxSUm68VBVLrajhQNSZ6a3WKfJmGeruqaj
-# kIjV23WIwJPMpRchb0XZNqnss3ogxnOFK6UZDlXsNeQQ0K33Mxwg0m/vVO916Jqf
-# euVnC3vGlS+p754GXECqk8BjHorHIgDioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSD06QNpVrOa/paMPMFgvmm5O83VjANBgkqhkiG9w0B
+# AQEFAASCAQAnV+c1VGD1Ck/sVetivIVts6WOkpyUShmSAsCBf/8soTx0updyFkrH
+# jywwOfWipCpSqcV5eePcV6BO0Nl+kPYtdpoRYen8mgGlXSPxQEnVl6+u0C0uOlvF
+# Vynd6dwWcbCy1v9N5tcb2XXpgTUGvBceiT9FXGa0ReFO9D509yuotV+MsS2+5F5T
+# 5ro8+qZ6+UpGALDmJ8C7OsGFo0u2A+PH925PS2HruLS7WKZh/rz4r/geu3aetyNs
+# yavTE4ccFshlgftb/EXzTtN72q5cs4lxtSFOcG4xXa6ctMhvhBY4jv6tXABzhRjk
+# Me+pziVvOOvuAMJ4nbLRWogWC17Bql5GoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjA0M1owIwYJKoZIhvcN
-# AQkEMRYEFHWTNFR1FsKkg4d/hB2VLJSfHmYyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM1MVowIwYJKoZIhvcN
+# AQkEMRYEFBO0hW4fFj6Ch00XhZYbf4nI8kTDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBGL1il8L4qRsi/b+eljoF4AK1uVHYTfoX7B22pUrGwkWV8
-# b2gWmJoOoj1BZPzYKBYSk5IyoRv4bG5sTUgoBL41tQAUJ2jhrSr10od3fI7Xql1Y
-# ugIFEC2IcqgrNQfBu+mzhsq4VluUaQntEUkm3iPBH3282BYHkDix2bblwleFsB7D
-# CGBiOsd0sPIT2SsEjHmJ/ey9vYymMXmPzlQe28F88qvXEmZgswCZXNK58gX6vaMf
-# q+hIH6G4xOorJocboMyN2Le+RyZiOSp3m7PnH6lNGDn4v08GkwGxtLHhMyYTZBue
-# j1UPn+L4gVtl3WcdLx/TjDCq0gyKrDHTHcmjqvfS
+# hkiG9w0BAQEFAASCAQBjpZY47tG4Y4RNubcjHHPPldFd7R/tRyFym1AkHeEd89dl
+# Fto7ZWm+Kq1JQCW9NcnAewAnBFMcuMgp2qUrY9o8MMOCPSIO96MLVMsX2pA+9rJu
+# s2CGD+xTmlhjSiX6XrrxISwylL3Y6Bhptk2nVu+3ziy+34veehyGgW6sDhP6o0Gj
+# dBVG19U4W9brBtEAuYpqCFvFw1jtmkFIcqda4/mlYx0hwbHhMJymXSiUyYhpkoGc
+# iYxRzI/Ha4UrmoRAvJFDTedE+TvgvRQsTOiDMnAs46Q4GjY+9+ePoDATp6mQK4LD
+# kYHv9zWjfMTsJB+Xnfh/xIU+ewmhv9ihM9urOlPS
 # SIG # End signature block

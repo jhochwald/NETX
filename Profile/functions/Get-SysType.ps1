@@ -107,21 +107,21 @@ function Global:Get-SysType {
 	PROCESS {
 		if ($d) {
 			Switch ($Role) {
-				0 {Return "Standalone Workstation"}
-				1 {Return "Member Workstation"}
-				2 {Return "Standalone Server"}
-				3 {Return "Member Server"}
-				4 {Return "Backup Domain Controller"}
-				5 {Return "Primary Domain Controller"}
-				default {Return "Unknown"}
+				0 {Return 'Standalone Workstation'}
+				1 {Return 'Member Workstation'}
+				2 {Return 'Standalone Server'}
+				3 {Return 'Member Server'}
+				4 {Return 'Backup Domain Controller'}
+				5 {Return 'Primary Domain Controller'}
+				default {Return 'Unknown'}
 			}
 		} else {
-			if (($Role) -eq "0" -OR ($Role) -eq "1") {
-				Return "Workstation"
-			} elseif (($Role) -gt "1" -AND ($Role) -le "5") {
-				Return "Server"
+			if (($Role) -eq '0' -OR ($Role) -eq '1') {
+				Return 'Workstation'
+			} elseif (($Role) -gt '1' -AND ($Role) -le '5') {
+				Return 'Server'
 			} else {
-				Return "Unknown"
+				Return 'Unknown'
 			}
 		}
 	}
@@ -135,8 +135,8 @@ function Global:Get-SysType {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHXC/q37iysb+75cRYIMum14g
-# XYmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMHfBP/jXeKOGlPMStcOdhuoC
+# V5WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -279,25 +279,25 @@ function Global:Get-SysType {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQIU9Ezlkh8uGaZC4DWwokNNGNndTANBgkqhkiG9w0B
-# AQEFAASCAQBapOgAGNRZFyVa3L/U2axFzCTdMzgo8xOBRk9zFrOVgojKuE2+mTQL
-# NaJqqqtNC7hygO2CZzlwr28vwiYT/XBvB/jQT6dvmsHRAJ295JEMyOXSb80QKSR+
-# QBk4O7l+4ZZR/10pdN0AfYZt/BVdnRRE/n0nZCgBkaKceavqaqPH/sIl6pmMdNiK
-# NRPkoYZ4VKyRVMU0oT6/L6EifMtW6ikgLvzWSS1isdQLP2TZu68mYym2HsRXnavO
-# j95rT2XaQqBi2wOqHPLr4wbsfennFM6v4jViXJc9RiZxfiyG34jelbjEuRluyTWj
-# oRoDhu+ghM9c5wW+lZMD+OQ67OI21UVUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQjNY88lPDacsDjGDYm/0o0ShDVRjANBgkqhkiG9w0B
+# AQEFAASCAQB+5P/1Pquo/vwRihwJBgf1ar+oHIc1Pcr0CxmFUiHKKN5zZ0t8EYN5
+# qRx1fwDp76gEy3AZqxUrDqvixnKl2sZOWbvY539EfsXUQZuxqUuMiraVrvnlYouB
+# T90Quy9qbIx6o6nMpBDLaz7hSd3O/ng7Ctjm2l/ILJ0Z1BR/iQReyg/HBGtMQzEL
+# bma7nNrVnSz9AtBVKtMS7BTPFFj61gsQMPjw0EvVuJmKkIkIBqosWLy5xp3CiR3r
+# 5U/lOO2oYMZgLtAt8inAY0XrRTLGUHzurOtaqVo1jzCifL1M/uWM01PNAaaU+AxZ
+# BCx23HpYoNxX/mqAI/cs12SJQww1OgMaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxN1owIwYJKoZIhvcN
-# AQkEMRYEFMiL5hiBoGgT3XJOA++6sOp32dgoMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyNlowIwYJKoZIhvcN
+# AQkEMRYEFINrZEI0y3aWBVorDIagIB1JAGYWMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBDYkiW7DOg+yRqOFFdzbY+Ogs+QAxZxfkJ/Iq+da7Fyuf8
-# J8BalFSCWW7ghPSBukQKEACSkcnbbNtLG2pcpu5vXX6hSR3yj8h++Y8RsKrt3sS2
-# J9iS/QiH+kR4QgUI18FS/Erfa00SjLUwU6VZacokUAjn1nG6pPGXI3ocSpJMrHu/
-# I3muhtNXGoEXpiu44Buw0ERYCtUnP+xOlCftlepjGALVaG/eG91EJgPFY9Bu/tVJ
-# +i0+tfNLgEcfOslaNFsaR0gTKlXYAeikWW8K1TIfPQJLqmkrNZUx1uoqfTOQxAPA
-# 9Tn8VxmR/cucn1s6VVAIry2WReKcKF5fog61G8GB
+# hkiG9w0BAQEFAASCAQB5zctYOFZXA8ejZDl5QBDGpAEbGnEQmHybJhyT5PkI9NZk
+# JjaKwTdths0+FwFCMfSV4Qt5KVNSYA6OBFXhdIUTM9ZYcYsgQdHsAMVrWbv3E7rG
+# 6oflwqVH8aP4Ls3QOcIuAQvr8q6Fn7sN6PbXMoHbNDhRH1Oe5cwB101hBXDf43ie
+# dwvr5ZI1gd7iRCVeAuYxq1b7TTG22ksYlceG7j6rGyV/fe6W3qeRU7nqpHjdGl5e
+# gbglY/X1+oqW0V2yBvEltkYAVffEUJTEVvIQ4+FXgFzFnzlFfU3QXXvMXCCPOZSz
+# WP6H00lZrFdIgQEzVeBesPaGZ6lxWpzZZc7NA7Yo
 # SIG # End signature block

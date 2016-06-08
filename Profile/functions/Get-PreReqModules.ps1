@@ -110,7 +110,7 @@ function global:Get-PreReqModules {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'Where to Download')]
-		[System.String]$Path = "c:\scripts\powershell\prereq"
+		[System.String]$Path = 'c:\scripts\powershell\prereq'
 	)
 
 	BEGIN {
@@ -118,7 +118,7 @@ function global:Get-PreReqModules {
 		if (-not (Test-Path $Path)) {
 			(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1
 		} else {
-			Write-Output "Download path already exists"
+			Write-Output 'Download path already exists'
 		}
 	}
 
@@ -129,7 +129,7 @@ function global:Get-PreReqModules {
 
 		try {
 			# Whare to download and give the Filename
-			$dlPath = (Join-Path $Path -ChildPath "NDP452-KB2901907-x86-x64-AllOS-ENU.exe")
+			$dlPath = (Join-Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
 
 			# Is this file already downloaded?
 			if (Test-Path $dlPath) {
@@ -137,69 +137,69 @@ function global:Get-PreReqModules {
 				Write-Output "$dlPath exists..."
 			} else {
 				# Download it
-				Write-Output "Processing: .NET Framework 4.5.2 Off-line Installer"
+				Write-Output 'Processing: .NET Framework 4.5.2 Off-line Installer'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
 			}
 		} catch {
 			# Aw Snap!
-			Write-Warning -Message "Unable to download: .NET Framework 4.5.2 Off-line Installer"
+			Write-Warning -Message 'Unable to download: .NET Framework 4.5.2 Off-line Installer'
 		}
 
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "msoidcli_64.msi")
+			$dlPath = (Join-Path $Path -ChildPath 'msoidcli_64.msi')
 
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW"
+				Write-Output 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW"
+			Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
 		}
 
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "AdministrationConfig-en.msi")
+			$dlPath = (Join-Path $Path -ChildPath 'AdministrationConfig-en.msi')
 
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Microsoft Azure Active Directory PowerShell Module"
+				Write-Output 'Processing: Microsoft Azure Active Directory PowerShell Module'
 				Invoke-WebRequest -Uri https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Microsoft Azure Active Directory PowerShell Module"
+			Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'
 		}
 
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "sharepointonlinemanagementshell_4915-1200_x64_en-us.msi")
+			$dlPath = (Join-Path $Path -ChildPath 'sharepointonlinemanagementshell_4915-1200_x64_en-us.msi')
 
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: SharePoint Online Management Shell"
+				Write-Output 'Processing: SharePoint Online Management Shell'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: SharePoint Online Management Shell"
+			Write-Warning -Message 'Unable to download: SharePoint Online Management Shell'
 		}
 
 		try {
-			$dlPath = (Join-Path $Path -ChildPath "SkypeOnlinePowershell.exe")
+			$dlPath = (Join-Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
 
 			if (Test-Path $dlPath) {
 				Write-Output "$dlPath exists..."
 			} else {
-				Write-Output "Processing: Skype for Business Online Windows PowerShell Module"
+				Write-Output 'Processing: Skype for Business Online Windows PowerShell Module'
 				Invoke-WebRequest -Uri https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe -OutFile $dlPath
 			}
 		} catch {
-			Write-Warning -Message "Unable to download: Skype for Business Online Windows PowerShell Module"
+			Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'
 		}
 	}
 
 	END {
-		Write-Output "Prerequisites downloaded to $Path"
+		Write-Output "Prerequisites downloaded to $($Path)"
 
 		Invoke-Item $Path
 	}
@@ -208,8 +208,8 @@ function global:Get-PreReqModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVlW+yqWOA+sW890fFir5cBxG
-# JsugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiZVA6xCHLANGfk4iw4rok7jQ
+# G5ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -352,25 +352,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSEpcTzHYjYD1bbINcgNkyn8arn+TANBgkqhkiG9w0B
-# AQEFAASCAQCsDEVD5dM+5nVlj8uXQQ5Ad7wumu3DOWZUT3vbjCpdkaOCQGn3dUpJ
-# 5DKlbwruoCql5UZs+3YwoG7q2v0Z70mAfpDwn+k4/6hGiA6hjzWBhUMLi69mHjXm
-# NyAP5/9tWCwBYBAVdv0ouw+DF8j86UD8CXxcqZpbFjWPFl/D6bT494JmHTzxIUkA
-# daZRP/itXaBqPRZhaWhPZXXZBOSRmk+ITMjxS5wPTyQykiy8KZAsJt35UyD+xbca
-# g6ATmVALD2SwH6cOlv00oQT/SsivssTjCAZZLtNa/dfuW1zL7tJTrinrJTXW3n2F
-# MzOgRNYBXSocg4Vy8AHbNiqiLnSFLk3LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR6pL9yYKbMvH3BAyulo1tQoIKvazANBgkqhkiG9w0B
+# AQEFAASCAQAMRCYAOCUVxGt9LrQf6QEoWLAHSYzEbmFhxBvFjvO4kWij4ipYvsQF
+# YvGRAHct56NnpvLNOkH+xCCU4QoN043thiOW5dYcGnWiaGQxagbMC/x45ypH5o2M
+# k6hIu/awgUxjp1+MTsv8h6xTy31hjr/dg/qoyRgsDexvpJzX8GiAZpdHoMTRlhsN
+# wodV5pfifLZQwMvdD41GSRIQ33VN2wc7VaKvkUDkd2wOW6P9MG5IKB3f+WLwwwHl
+# wh01xd9kHuipTF/Eia/GiPqzDvIbRx6CF8n9FrW2Ka2nVEj1yYyKcyY3FPG0agF2
+# t+jIJNjnyYauMVHvrYeA/BcyfYRC2IovoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxNFowIwYJKoZIhvcN
-# AQkEMRYEFEaBBH8P4DsBsSPOjl5I8M9FpLmRMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMyM1owIwYJKoZIhvcN
+# AQkEMRYEFBfIWhHNywyw/Nr+YG/DYg/25N0xMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCUVHEOLGQZdduvMnIoh0HXw3FQIhECMdkeYE6nFn2O+C2K
-# 6JnXhDqnCGcSU6GNa7ANKGm9d+1kU1WuySTgxm789xVvJwoM2EqQsNmuXvvW213N
-# VbuqxRA/DmATXQ1mqC0kLR6R7sTTeMF/t8aXuFwBdNqFDoV9A67cGEx4ns/zF4e0
-# A0xURndDYjaAM4Ckgi/kqCyigT0JNbvZ/nSK189j5brnpMz+EWlPE920jByYPR2z
-# rGewNRqtSpCY1cDooOwQS2heeTvgCYl53xwqsThTvcSDlSkWAnBcdbG98sZ+g3Sp
-# 93KLjFY2IZbLEmzKM8YtwozMhv8NCzG9ysovrZxE
+# hkiG9w0BAQEFAASCAQCnOasy2QCKFe+izkOxvzfSAMeC9hEl3ieRSgixQKkxHBoK
+# /bXwJQlMQQRD9MAXiwbWXDjqbnMn/dLLLMbQQhSJ5ULj1HO2+M1HalX/gK3c+QyT
+# i6b65XuJjJeXUQ29KcHajpFJGV40IT6v5ZGAmqdCOoGCAP3r6r/Z75QlThjd/FeI
+# DyWs++waQqh7B7IXE+mgjlBiCEGcLdjgnbpgwcA6zWuZH5mNtrfS3ky9FkLdIP51
+# fO+kJqedBisZzv2VIDvo1fnW5RjFOpDZs6AoJ22l/c1sa2C1WujO5XWULR14jjWc
+# znHgU9w+pa3nl4AN9rShy0PiqJcFZddfnZOrH32Z
 # SIG # End signature block

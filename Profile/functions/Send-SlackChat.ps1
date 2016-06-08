@@ -132,17 +132,17 @@ function global:Send-SlackChat {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
-		Set-Variable -Name "uri" -Value $("https://slack.com/api/chat.postMessage")
+		Set-Variable -Name 'uri' -Value $('https://slack.com/api/chat.postMessage')
 
 		# Build the body as per https://api.slack.com/methods/chat.postMessage
 		# We convert this to JSON then...
-		Set-Variable -Name "body" -Value $(@{
+		Set-Variable -Name 'body' -Value $(@{
 			token = $token
 			channel = $Channel
 			text = $Message
@@ -152,10 +152,10 @@ function global:Send-SlackChat {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name "myBody" -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name "myMethod" -Value $("POST" -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
 		try {
@@ -173,9 +173,9 @@ function global:Send-SlackChat {
 			Write-Warning -message "Could not send notification to your Slack $Channel"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name "uri" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "body" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name "myBody" -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -183,8 +183,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3bF+IV9PmNqZIpf7I5erCJQR
-# IVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaGxAUA7SW+VLHsen+ue2iFVK
+# vr2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRV54ZjsYn9fcQ73GX5wE6Xni4RPDANBgkqhkiG9w0B
-# AQEFAASCAQBlAPJ4/IUj/BaW9AnTo2Vxuqf0zzz8DM31Td4bno6b7M5L0nPBigHo
-# 6I3kOpKpfm6HASo2mrmUlDjEinXIbJfeTWcMu24UlGRN4A8finGWzZYGRc5fLuit
-# MUnkQq9o607TyPHI+H8VC719XiJdLeuW5iDrzB2eIdBgtVWHW5tIbVCbUb9eBymG
-# dBr2zag9eDU5hkqv0F5aNS5+blKVUZy0hHLyXRk56rABIBmDXej9XzPMwXUQs6q+
-# quCbHFOrP6iS+PVXc82hL4HTJv9wB3OHvmnelbT+T9yqsjn/wwz+YXViUkIlmVo6
-# WQHoyGxTa/x13uE+JrlUNNEMdZ3RFjOCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS0QOtCz9juTGAAH85mjMfpl9kjhjANBgkqhkiG9w0B
+# AQEFAASCAQBNPkSqcHI4vpCtOWifqyk5Xpsun2CTuTUIT/ozEP4z0sRiRkPOfgeJ
+# 52wLCBoiX0gnHBDgtiq0yz2AY7bVb1CVkDNspFovY6YfK2rP8hMKQUuoupMIc94h
+# 57+4HL7tDebug6uS5ONQMOhDBAjjPEOpgTjrYvrDo2GHKaEI+8I23VCAWdmHmC7W
+# L4sqmse3dEZ0QquA8rWveYEbGYesqJvJAgmzZVTy7QKkde8QXNz9ADQyLG3iMKcR
+# ySplCQOep6Luhu0KU2gwRIC9DOsv3U69KofArUf/s/487ZDjApjK1TwdrvJDl1qE
+# pRYihLpCwDEm0Lyp+RPDBs3qBYbTNN8WoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzOFowIwYJKoZIhvcN
-# AQkEMRYEFN7tmXNUYavjEGaICrLE0AJf41SvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0OFowIwYJKoZIhvcN
+# AQkEMRYEFFWASR/ueaMeUSGI8h5l7t3MsF7tMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBTLuGnPrugnYTbeONkYj1F/dVYSYxc8WPJpwTcO6xi7TIw
-# +Fp4blmI1nye7yqm8qaZUAQotvNyDNg7g1KATW1H2YtP3kg5rmE4OgD4DkWERj0T
-# toXmpKZGhGd8u30fko8vD4Pp8Dt45ZLXT3Ld7cKq1ek5icxUZoLHbpJ6PQpdty6y
-# Ph4qitKGCWDQUNjuPaXD0FBFxIlJGy38eBFDjaG5aEUTrl8YBfMj/m9HZFs4NBTE
-# y1KvmV7BCzxzchc3NjAW4JZsnTEGYdkp5AsiOxMVwkKbPGcuopIzcVVh10+4R9tC
-# evJHtE9O9qKxfgaDEhNupG4xVAme8lLKSnQcM9Pz
+# hkiG9w0BAQEFAASCAQCR1XBXKVayhjyuJNTSW5VKiTXGedoXoJElWl+qb9glR6Fj
+# vK3cx+We8ilVtqwSFedTG9VLNUjdfJfWINgsq61NsRURQqzCba9JXnQ9wrimH6mq
+# waJ6/hvYk+XFHYmLdciN+ism+u18hwiJT0vD4bIkUcz9fBeLAeUg7MVl5xDM5M8e
+# WpHxR0hGB7hWXG2RAxR/bVXKtyW1IlcSBc0DTkobj0eJtmORPPtjmNDrWY7bMYXl
+# xyp1PTGbNATX3ZyCM7n0QzosTwL+45S5Kv1MZtCtuUCz9tNUqJCxPmnyjUC2+jST
+# /En/ZdUHVSXxg9eCKG3hSlHEpSOBJ2VgQ1XQmKv/
 # SIG # End signature block

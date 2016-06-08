@@ -120,26 +120,26 @@ function global:Disable-IEESEC {
 	}
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("IE Enhanced Security Configuration", "Set the new value: Disable")) {
+		if ($pscmdlet.ShouldProcess('IE Enhanced Security Configuration', 'Set the new value: Disable')) {
 			# Set the new value for Admins
 			if ($Admins) {
-				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
+				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
 				try {
-					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Verbose "Minor Exception catched!"
+					Write-Verbose 'Minor Exception catched!'
 				}
 			}
 
 			# Set the new value for Users
 			if ($Users) {
-				$Key = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
+				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}'
 				try {
-					Set-ItemProperty -Path $Key -Name "IsInstalled" -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 				} catch {
 					# Do nothing
-					Write-Verbose "Minor Exception catched!"
+					Write-Verbose 'Minor Exception catched!'
 				}
 			}
 
@@ -152,8 +152,8 @@ function global:Disable-IEESEC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUatSdK3wSisLqMGvM+axyuaif
-# fUegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDoq3QtviQAI87Yl4ZGowiHKC
+# BhigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +296,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS+FDheyBl7GeOppsYRdlNRWbkLGDANBgkqhkiG9w0B
-# AQEFAASCAQCjWIr5aDPrySJEKtcoRSNnLvBft0g0BDdw+MGGVSLAu3KXxGONU5uW
-# sUoyr/vA4WKYJQipUX+oA7oO6TWr51VR5wqOWF89pFq9Tr6/iJIAEcKfKcrUps4Z
-# uqgij5DX9vOAFBGXGPgsH6fXWq2B27mh7cZZlrhq8jqDlhHMlezBko9+eDEzzkZh
-# zbheDpNpFRAx+uvfutkd2lVL2Imzt0STowdSlqWr2y9U6Esv0SksMTHfDPenInWf
-# +ELPFZwRjuSXqqrCuAI2ZGeWJNh6F8tjsM85DlPOVfXMgd+HJlo/f2MdoS5+dkD4
-# 4yjjdWdqhcMdSRnA+FgUNQlXS4cIViBXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTT/rN7kCh754zp5vaSFwOW8j7mfjANBgkqhkiG9w0B
+# AQEFAASCAQAFXA7hVpLISM/xs4fkzUiCahk1Wl7q+NkRWkKdoJQ4hfOY0tFq3Du9
+# 2t/SKJ8JT2uVj6woYfrMTUxVdnGM0FCvVZ3s+9Q2yYI2HEYSjey3NWa/28lQ1te2
+# DWH4zHe14zeEN4OVya+enyVSNh68SFEmZqFBfFDttB/MXjpQtYn8SeIdbYCh8XOV
+# t+oFlLTndgFCvWwUIeCPpTcagZ1L5iLz9Wn0tncS0h6kolLUCQo5z+XMQfY3aqe9
+# MN0kd3ph4LbpIBM+ZzqgVcpRPhj0yUq3orX+50FOOBY3vlabrjH0JTaz+AYUgIZP
+# bfgkP7PVm85MpapunRaabYMsxT/ANswdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwMVowIwYJKoZIhvcN
-# AQkEMRYEFIs5F0wrHD5w8OcSbhoJwXk/BQ8YMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxMFowIwYJKoZIhvcN
+# AQkEMRYEFLz60LyOXC0pZ4Y8DO/tyC6v4qfHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCY1rOX2qZA3xxSg0G9FLSUsqidJ713X0MzhE4yvmBrVmx+
-# dSbR15dxSQdFCSfqTMH0P+0xkUcapxMqZIhdr3MQ7dfjx7CNCyxYKROMkRN7difH
-# bEW2FIF/OqN0Nx0vzwgj/p53Tx9jkaGq10ysT41nsPCTcvUO2i7Rw68PLTkb+BP2
-# 3xyRnpEq5XtopnclyeWZ2TJEQL0qzy1z9YHvxz8Uj9eJ2qlxjvPiOqPp9z2Q2nVu
-# s6eHJVXFmzkjQFmwTCFc1f3k1J71Z9RU3V8M9pe5D2oW2pGy5658o8ayFObau6wb
-# CZQnHfSSOvOse4ZBsvI25pk968gYwyg263lPfoEu
+# hkiG9w0BAQEFAASCAQBkY09hU05Br4LxoM+o+AjdKhTCbz7BB0B9X9XqUKa/lnUR
+# B3jwlMs14cmZ1wkjwlgKJKPmFimf6wgHDDqyvmXbxD1ndHnJE1lehOGqwTZRRvqO
+# YzmU/1aiqb+8nZGtrmnchj9HyPfGLmMJbAdcJGVfPr+CilcyOUdr+5pnj0zMZuIw
+# 9VzaXDDeCIinobFQuZkGvJ57++i6eDNdjDa4QL77CPBZ3nY+RjrVJzKsYdk7Hy1q
+# MuMmk6DKrCFBC6GiuhLScV1XecoXOkMKHkNG60hXzo6Do38NEORYib/y7l2PiskQ
+# s78tlJsoHM/0lggjrotJSQFRZSf2SphNZETSE2VF
 # SIG # End signature block

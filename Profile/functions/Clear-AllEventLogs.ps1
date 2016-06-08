@@ -81,22 +81,22 @@ function global:Clear-AllEventLogs {
 
 	BEGIN {
 		if (-not (Get-AdminUser)) {
-			Write-Output "Would clean all EventLog entires"
-			Write-Output ""
-			Write-Output "But you need to be Admin to do that!"
+			Write-Output 'Would clean all EventLog entires'
+			Write-Output ''
+			Write-Output 'But you need to be Admin to do that!'
 
 			break
 		}
 	}
 
 	PROCESS {
-		if ($pscmdlet.ShouldProcess("Target", "Operation")) {
+		if ($pscmdlet.ShouldProcess('Target', 'Operation')) {
 			Get-EventLog -list | ForEach-Object {
 				Write-Host "Clearing $($_.Log)"
 				Clear-EventLog -LogName $_.Log -Confirm:$false
 			}
 		} else {
-			Write-Output "You denied to clean the EventLog entires..."
+			Write-Output 'You denied to clean the EventLog entires...'
 		}
 	}
 }
@@ -104,8 +104,8 @@ function global:Clear-AllEventLogs {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2bN3dZ0psJ4Sgns06AnsN2Yd
-# GQWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQOZrajDPjKKYUbgg+OZUBPUJ
+# m3+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -248,25 +248,25 @@ function global:Clear-AllEventLogs {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTInTlL+6BNWsz9a4woah1J6VblJTANBgkqhkiG9w0B
-# AQEFAASCAQA8FtSQLQTcv3nPYV+PBMsbjTjqFoxMDPp7WGpvsXXC919t+5nn1Qpe
-# dn9smABUfvKVTw9QijWbKHSBMszxIDV0xE7tUdX5edZitIEC9925U+4XrCT+2c6J
-# QC0CebHa4JcGm05eRtkNiq2JMc9WfgPgMSqiZoV6pOOPUlZ6++uozhNIN/bc02QK
-# ksbx1lEv//9+SwVBlRFJ0hH2KXuR7LadjkPIhuJEuI9Vylw5S+ZfCYPgICXAll54
-# YBhUz6WzulNnGZWSMtuXQxMEHgPCSAYiB6a+Da0m8r3UOap5RrKNo+e4hUoA1CqJ
-# QVcj0dQVgxdFk2OIJbpf/eAD2tIpmFmyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSyZLcgFGXgVEvOLujne3UgFJLNDzANBgkqhkiG9w0B
+# AQEFAASCAQAeyeBvfyS4Rq/qETiXzz54VxVsAJphfcfUPObMjc05KeLHHeUSNzpZ
+# LFwsES56aHDGFNT7QuAf24QksJXGnUtuGFTnryW/7tMVLA/HEAfx50Vve1lK8Sr3
+# D3JVkzupyoy/ctuiaKRtgOncR/lt1KHj0GYbXvWjgZR8c/aJZUHVGxNSmHz1ssBy
+# G22Zq3Nn3kV5pvkLQqUiaPCzFRU2Uk5k9MmS0N6hzI0dPkTEU+z86MQxFVC8/zAX
+# IdejdCWsvwllGUGmWVtB9hWtdDLCYLlNNSwlV868Tb9X0CSPXfLavooHMB9p03Or
+# Ny6NuOwGANcgQDGdFZ5iBrDwmAUMQs4hoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MTk1NVowIwYJKoZIhvcN
-# AQkEMRYEFF2SOvzgyZsWERQebnwSh4I0wgVgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMwNVowIwYJKoZIhvcN
+# AQkEMRYEFCvJT4qWZ85I7QKt7YfzZxio6qoSMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAsJpm6/gyj5IhxmQxJJr547ReUGokDBOWP+cDuXGaPiZeu
-# VR2rPKyJiTepHV55dU/Lcz76j3BHV+jkw1ng9akmeH3yUCcXFNXXMqEGmY0jyEos
-# SYSw1DC1HB0DX28dtgM5yL4hF7JiUMVtfJqvEssHnB6k/IbwqIvY7Cqqfby1bzKh
-# ecDPqnkxF9Z/Sjy3YHQeSx0Ikdij4Ic1XosFLUk8leUa/Un4Z33vJheV9oRqnXzc
-# WjxDOlZc26TOdWIWVcUQ83DZiww7IRBfsd9n5HUDvy07kvHiJkQ532GturTGphLc
-# gpvdnfIkIVY1jRY9AF0YW21mzYedU9ddGqZCTFNb
+# hkiG9w0BAQEFAASCAQBM/nAJoThJJ6yIQb8sf8R0r7vBzS/8UM3LWial5kee7X5b
+# LllxAF6QsLJVmUT17/9qE0OHTPHpTDUygfMSyinJHKUDSViGWKvea98csbCCGHmd
+# 45KlLq7iVu3cQ66QPqnTqmd8193AElvXsDivOZFUQI87Xsxe6VvdnpVBUZy7ePhR
+# L3tcM0d1yRpV2xm9ec+7rk0+W5o9yKfNmxuiLR0dR79IZ0vnVeWoa+WdEiz3/vYj
+# DkTZIena+qqg5eYPxUzSmnHt3nOq7MImrCxd+WJshyOUyX9gumsJiGapg9CcZilX
+# bWfrxE8iEPqs7eMQD6TGoQU8mW+dz4FdSZB/WfHz
 # SIG # End signature block

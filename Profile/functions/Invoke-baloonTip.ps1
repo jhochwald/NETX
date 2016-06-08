@@ -101,21 +101,21 @@ function global:Invoke-baloonTip {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'Title of the Baloon Tip')]
-		[System.String]$Title = "Information",
+		[System.String]$Title = 'Information',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 1,
 				   HelpMessage = 'Message of the Baloon Tip')]
-		[System.String]$Message = "Message...",
+		[System.String]$Message = 'Message...',
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 2,
 				   HelpMessage = 'Type for the Ballon')]
 		[ValidateNotNullOrEmpty()]
 		[ValidateSet('Question', 'Exclamation', 'Information')]
-		[System.String]$Icon = "Information"
+		[System.String]$Icon = 'Information'
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
 	}
 
 	PROCESS {
@@ -128,7 +128,7 @@ function global:Invoke-baloonTip {
 		$notification.BalloonTipTitle = $Title
 
 		#Type of balloon icon
-		$notification.BalloonTipIcon = "Info"
+		$notification.BalloonTipIcon = 'Info'
 
 		#Notification message
 		$notification.BalloonTipText = $Message
@@ -150,8 +150,8 @@ function global:Invoke-baloonTip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPCmi3dBl6o9YQ5TL1Hyh9YjS
-# wXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU82bwzR8UWwmU3rTzFdB6D4vi
+# pT6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ5qPzEjrtBEAbya+KjqPOKwLrPXzANBgkqhkiG9w0B
-# AQEFAASCAQAZq2NAHGKmqs/H0b0bWShEWa/HRHG+ve1GYyQtPF10zsQPxrECH5GP
-# Pl5Z02hF3pkP4EnFKkSS+Lg+wsmgjdoliA9bAxcJWdCdDRfafrLYAN9Sh+9ttm1+
-# jIEMktC26fBkArGBycoh+1Lm1DGKYqa5Lg6pJ1A8L5faFAXuEne3Fi3YvdgKxC7p
-# xfisACySrTW7spMlsEORogVF2k4CyVnXG+ueLoRALwnK7Ed/GMSAH9UibRZN5Mkk
-# hno9d7sd8Q1DEq9kO2Fplda85g7bA29A9UhgGWZWALIt/T3HdreRYdt1T9xPpkpG
-# +DX9B2uLJPaNmGsvpFWYcYm6jqOWYTMsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTqDP9KF/5ZpHg28xMKD8STflB/ATANBgkqhkiG9w0B
+# AQEFAASCAQCCSdGJARxqH87bso2VCboNPCYlnG59aS6w1lygCLztFuLI1iOsSS1d
+# TjLHCwRpSTDdXGtyPRdfVf4Cy8lFa8idoIleTXxrGDfjZN6NrXORuFO8/yV6ejaF
+# Trk6Xbdsi8K4i18IsmFTrOWgcK0kOhyP0T3yCHpeCfRdnoj4ceDrrTkSb0Wjq8rU
+# hUoG+LllrInzbfbcxnpamTUQXDT8c+EKz2LGyHvbL2S6S+WyFLMyNZP/HGz0Ga0E
+# ucuxWuoRg+q9wmYIJfvXJ6BCOXPqnvGnd59QCQ0G58oF35Hwq0a+LmYR7mpcEcwM
+# GTzuGK6FszDx7LixS6p9IuJiFFG+jJ+uoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyNFowIwYJKoZIhvcN
-# AQkEMRYEFMWwLZx7IqhgzMzQd41VSdlmRm7LMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzNFowIwYJKoZIhvcN
+# AQkEMRYEFIMPIo1l3ekOVbB1/mv6k4iwnwXHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCnJu4ByxyUrOJYHB5BKl90GOhv/53G9TMGNCFzBdyWjm1a
-# bTvPw/lTGZN4SLsjC7jM48xxHPL2dwlbbDqWrxshcpfvDCF866Oe0pmruoNrBrvg
-# +Mtw/8aXSx8l/wVEm3hD1bW8D0zn/oPjC5rnvg4tkS3VKylRJkHu2vdtYBNmIZ9b
-# uK9dUd2YMYDUSK2CELmJX2YeqdJCOs1fiwRrLmEg9xt7msjgnG0U3bWKngjY/eZo
-# AOr0GpD5i4WBTtTxzkvkuQ55iWnmZ7Zt9tUBfTJGGLLa0BZ9h9X7wpkFQery1cAT
-# wZIxNGGIKvU0opGI8rp4SNXzNPYbnXrcu5K7PJZq
+# hkiG9w0BAQEFAASCAQAmogOK7zCwtx0pTsw+vmQlZih0dhrleri0fCR/1E5gCA96
+# kjpbPEope0TPDdUoCmpKe8ugHSPQB6ChK0enbEd4b3R+osa/7/KHYinVya6C+JWg
+# kX1cKRB831q0HHSLqrSPezg1N3BSMCXIMSa7MURT5C6IAf1d1GFcceoiy0LzkB4k
+# TEsuAMW2T2At7PpznpenFkeEr1MVmHOOdzkNLxPAJWmSGoYyGTyxG7M+Pj/gY8/e
+# WjZEyhpH22gjCP8JSlA5wu0OzgAyEVZSezK0Iu4UZ7DUlVHvxM95oNAAjQvgAtfC
+# dzcK8qrPD4YH+takiCDTY52ZAm5i+zDeTTiBRazb
 # SIG # End signature block

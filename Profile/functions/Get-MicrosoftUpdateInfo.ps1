@@ -74,7 +74,7 @@ function Global:Get-MicrosoftUpdateInfo {
 	)
 
 	BEGIN {
-		$wu = (New-Object -com "Microsoft.Update.Searcher")
+		$wu = (New-Object -com 'Microsoft.Update.Searcher')
 
 		$totalupdates = ($wu.GetTotalHistoryCount())
 
@@ -88,12 +88,12 @@ function Global:Get-MicrosoftUpdateInfo {
 		Foreach ($update in $all) {
 			$string = $update.title
 
-			$Regex = "KB\d*"
+			$Regex = 'KB\d*'
 			$KB = ($string | Select-String -Pattern $regex | Select-Object { $_.Matches })
 
 			$output = (New-Object -TypeName PSobject)
-			$output | add-member NoteProperty "HotFixID" -value $KB.' $_.Matches '.Value
-			$output | add-member NoteProperty "Title" -value $string
+			$output | add-member NoteProperty 'HotFixID' -value $KB.' $_.Matches '.Value
+			$output | add-member NoteProperty 'Title' -value $string
 			$OutputCollection += $output
 
 		}
@@ -115,8 +115,8 @@ function Global:Get-MicrosoftUpdateInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZN7B8ODLKHcAX4KUc9nBExpS
-# 71agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQZ3RRGaAB2KQBLgeHojG///Q
+# tRWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +259,25 @@ function Global:Get-MicrosoftUpdateInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTlI68ndu4gZoGvpJ1lJd2fU0CnhzANBgkqhkiG9w0B
-# AQEFAASCAQBApNgB5MB6FyFdxLaxKfh5AFnHTEU9Y6lJEqIgVZIkZJb1m1iIrZdl
-# 49TjAjzauq1k+gkRyCqYwnfekKIAgHxSyyssZNSBT1tXwiqZZ4HrAcwOlWM0StbA
-# uY6+uJqD3lNLv04XoBV4C/SXlBF9mfDjzkOX0KBkaw50DyN3vVxxE+W/IZYQOlGZ
-# wxm3oVeqCO3xKofL/kcSfp3HheZ/UzFL7LJzzCt7gXmCB3YDvtmbKKycaP2xCpPH
-# kH+2qFwkuyNpqKgn49zw91rsdtpAJwLs78+5381YnbyLwWU0CMyP67S4UatnFJEF
-# GYfmBxrJlfVp7rDET04vKPFvkaJS7LZhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTF/mLwg+TRnvyduuF8cP3H5MnHaTANBgkqhkiG9w0B
+# AQEFAASCAQAcukL1FKgr10wAWYsobq61UIX2UazaTroeTmr+5s+DV/j3rWh64/4t
+# BYrvmX5sjsvLSGU1jR9qkG440aj7SXJoMgRGb5aSgDQGjaim/l1CVWtU6LC2fkXN
+# ReCNjlnUeEcqSNQr8Z1pcXUW9zLrAXNKZTp/dauLXjzj8arOKg5wbTWBcGkRK+zO
+# UHtOn1gn/o9knB67trjdRBHFAej6+57rBOrOlzYBSIEOBGbmoPgTUxHcBtSV/Puq
+# 0roSXhFbz5gkrY8P18gzuy+UrsT06cgm+/PM9MA4eUtXE+Y5SzEN7ixRXbACxEWw
+# 1UlSgczshyg9cJ20seru8VtJnHmyv+qdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAxMFowIwYJKoZIhvcN
-# AQkEMRYEFJgU4Acihn5zkAdSGHzq/bRM52KtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxOVowIwYJKoZIhvcN
+# AQkEMRYEFAGZHZi9eHATaEiPIXG7pq1acN9sMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBZChraA7WhSazJfctRqIw+5WKTTCFFfUvRujZrsxKcYHLr
-# h31rKyGxfnOfWt4Uu6o+5eRcva+aAG1Dqy3pEcjw0JPxkflgkLEd9mqvpi0FG/VN
-# 40Dm7e7oh3NOdTOYQjitT0E4DI0/wGWzwhgyn0PTtayQj7Ro5m8vFRQUWgGioM1Z
-# IVTeRv6pGXdejQf79imlJs2ZnTp5aZQn99cC1T9RQdT80iEZ9KQIzLVCdFR+QowE
-# BxL0cNoujAikOZba6cGrHYD0dHifhj7m0WeVcbmOx7aNFvaCbocUKH5+phWNrDfZ
-# hwiQJHH5lHJKeSE2qBz/HhFDp5dvMPASUudstE7Q
+# hkiG9w0BAQEFAASCAQCnbusEV1y2mEF1bS1T5QArgdLLxRPx+d2CI2rc4bVDjZCL
+# 4LVE+3sWFGzQ9of25iuTSVJaoy9EqFByzZkQNMOyNAg6SjP4nZL6U0Cex8g7ZEdS
+# o/1qD0uSS6w2uCo2nFTkNHzV1ogjJ9+qCYRpE6gIZBH9wX3RL3NFvkEs64k7fzut
+# ayT4HTfZtID6rQ4il0DqJorsXu04g5P7y3dDKCtVzJ7TCFGF9GmpoUrnOf9nA1td
+# jU8NKaS5y5kpG6h0T832C1a8JYXwzOWcjsqvGJ8v9uE74QyV2gz5OSNyDQIT7In0
+# KLfGdKTk1XkIwMkLeG0ladO+Q1CELKXMKOt3B3dk
 # SIG # End signature block

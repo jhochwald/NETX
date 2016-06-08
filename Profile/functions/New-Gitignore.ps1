@@ -110,7 +110,7 @@ function global:New-Gitignore {
 		[Parameter(ValueFromPipeline = $true,
 				   Position = 0,
 				   HelpMessage = 'The Source for the .gitignore')]
-		[System.String]$Source = "https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore"
+		[System.String]$Source = 'https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore'
 	)
 
 	BEGIN {
@@ -119,43 +119,43 @@ function global:New-Gitignore {
 
 	PROCESS {
 		if (Test-Path $GitIgnore) {
-			Write-Warning "You already have a .gitignore in this dir."
-			Write-Output ""
-			Write-Output "Fetch a fresh one from GitHub?"
+			Write-Warning 'You already have a .gitignore in this dir.'
+			Write-Output ''
+			Write-Output 'Fetch a fresh one from GitHub?'
 
-			$Answer = ([Console]::ReadKey("NoEcho,IncludeKeyDown"))
+			$Answer = ([Console]::ReadKey('NoEcho,IncludeKeyDown'))
 
-			if ($Answer.Key -ne "Enter" -and $Answer.Key -ne "y") {
-				Write-Output ""
-				Write-Output "Existing .gitignore will not be changed."
+			if ($Answer.Key -ne 'Enter' -and $Answer.Key -ne 'y') {
+				Write-Output ''
+				Write-Output 'Existing .gitignore will not be changed.'
 				return
 			}
 
-			Write-Output ""
-			Write-Host "Removing existing .gitignore."
+			Write-Output ''
+			Write-Host 'Removing existing .gitignore.'
 
 			try {
 				(Remove-Item -Path "$PWD\.gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop) > $null 2>&1 3>&1
 			} catch {
-				Write-Output ""
-				Write-Output ""
+				Write-Output ''
+				Write-Output ''
 				Write-Warning "Unable to remove existing $PWD\.gitignore"
 				break
 			}
 		}
 
-		Write-Output ""
+		Write-Output ''
 		Write-Output "Creating $PWD\.gitignore"
 
 		try {
 			$wc = (New-Object System.Net.WebClient)
-			$wc.DownloadString($Source) | New-Item -itemtype file -Path $PWD -Name ".gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
+			$wc.DownloadString($Source) | New-Item -itemtype file -Path $PWD -Name '.gitignore' -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
 
-			Write-Output ""
+			Write-Output ''
 			Write-Output "$PWD\.gitignore successfully created."
 		} catch {
-			Write-Output ""
-			Write-Output ""
+			Write-Output ''
+			Write-Output ''
 			Write-Warning "Unable to create $PWD\.gitignore"
 		}
 	}
@@ -164,8 +164,8 @@ function global:New-Gitignore {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2+yY5KScYGTCBvotSZbh1qot
-# rOugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUz9tJEJyOXZjsoLdEMCZYK3bR
+# JT6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function global:New-Gitignore {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTiIfu0YjGi1ZRmdRqfeR8+cffiqzANBgkqhkiG9w0B
-# AQEFAASCAQAi+r1QiaAiv0JIg8wlncF6A/wuPOpz0zyo2AQYVrNn+/6XOGkKW5Qj
-# uUvqGKSd2W3h6GdwjBgqGCb2Z15wKRPyKYX83QCMkwl9ImDiAFq079tyiDDJsUwo
-# Ko0DRCdH7wnILcGmPy3KaTpYQVYqpEoNcPhxJf+zA/AkeDz7551N9IsCsqggQoZz
-# xgCbA+immgLEh2U3XeFpAfTDo9RM5Jvld83bmB7iFqyNzNA1KlOOLtMhYGTCPvlR
-# 6ehdLtNqAjXZ3AnL5yBZ5b+pU4Xqal332bfol42QxiNfIduE44wnpXUZpJv7Sdcl
-# 9Z/pFvzpD4kkfwVAFrFw2FhVgaR/blE6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRuZCQwhR9+7dq+Q8Bl6ipNoe/q9TANBgkqhkiG9w0B
+# AQEFAASCAQAQvmOLmuMhKmVYZuMAltiYnWJIYVOEHz7qAa9wYUWR5vhOvpr2TVI2
+# G50DOZlZoGiq4tDS0A10a26KvCgf1qpG/N/C2CWzUUXXdKxX7unSlGF3LCbSHz6Z
+# LZEeaN1RqmjGZv9IVSug6KWUMVXCZm9oVg4pAwUpKCoHXLmxYZDKeY3o+BYIlCas
+# NpU5+roMAWHr9KZdEb2YkahsslfBfaDdq3bqhX/35jJ8TA5PCDah4rCPoyM62h5r
+# ridH8e593rd/65+A1RjUVgynQ6Ps6KQL2XdqpN0yAFziUnPSmN9mQtPbzDNuCMq4
+# fP1XsIJk5uwF2e78Ri0c6hVL7jRXPDEXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzMFowIwYJKoZIhvcN
-# AQkEMRYEFL/OwX092btcoLV+9bMCxPtXZFIhMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0MFowIwYJKoZIhvcN
+# AQkEMRYEFEerSCrdgmAaEpYBgW/xlf/nHalYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBTfI/x+xzNy/UtWeb0VDf7lBxx2yBSLNgHRHJooQjW/UWc
-# 9lF2nDzlfD7q8Gp+VYiS968gsV4VYgvAmhSYbGr+8vnVCVoSCG/ymfqY5epritq1
-# +2R7M5A04qX1apPdB4KFCrI44Z+ojxWKBjIIjDZHNUYBDhH5PzRxEXTP6KcdouG9
-# vPCOgkXwx7kTtozuwcaz52Fmb9+Js8G7cXcrxsB8/Sfiqes8HWWfX7gH7eK4Eakb
-# kv+kg2Z680Enh8K3QxD1LI9L3uAgkwbn0zkBNCCr4kswxYtezDmS0BA8JcQ8sjyO
-# zLs7AFw0wYQR1Ub5+fBNbB/3FHH9LiZHta1n+ZF2
+# hkiG9w0BAQEFAASCAQBRR6k4mEhAr8KQIBfmz7tNqMcNJuMOMDXQUrYmEdeLQo5J
+# bDwDp9R2uOSRAV0AFuRhOkdXXYEhAVdQmUyje24vL2l6+bc1Uxeejl5R7x0BlY4D
+# YSZhfP+j522lIA7UXgsR9BJCNV2OV0a6QkcnpWbsZYOwNMHmqnsr81oT9GwNpvxI
+# up9wvlDDzmf4ll/U3DhN74Tpoh7mmFC4LjnM9CGmdhLWBTebSVmgGFQvJwjnE9MF
+# KhEQqIs00/YbmH+HerpC3h40hqmc7IJshgPc02zpVNyJX3zXc/YKegqQv7WIIP8e
+# rc5Lb/GX5IwNxZRAnVwZCg+tVW5gwR6MvGA+8XMd
 # SIG # End signature block

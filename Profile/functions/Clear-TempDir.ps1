@@ -98,23 +98,23 @@ function global:Clear-TempDir {
 
 	# Do we want to confirm?
 	if (-not ($confirm)) {
-		Set-Variable -Name "_Confirm" -Value $($false -as ([bool] -as [type]))
+		Set-Variable -Name '_Confirm' -Value $($false -as ([bool] -as [type]))
 	} elseif ($confirm) {
-		Set-Variable -Name "_Confirm" -Value $($true -as ([bool] -as [type]))
+		Set-Variable -Name '_Confirm' -Value $($true -as ([bool] -as [type]))
 	}
 
 	# Is there a WhatIf?
 	if (-not ($Whatif)) {
-		Set-Variable -Name "_WhatIf" -Value $("#")
+		Set-Variable -Name '_WhatIf' -Value $('#')
 	} elseif ($Whatif) {
-		Set-Variable -Name "_WhatIf" -Value $("-WhatIf")
+		Set-Variable -Name '_WhatIf' -Value $('-WhatIf')
 	}
 
 	# Set the Cut Off Date
-	Set-Variable -Name "cutoff" -Value $((Get-Date) - (New-TimeSpan -Days $Days))
+	Set-Variable -Name 'cutoff' -Value $((Get-Date) - (New-TimeSpan -Days $Days))
 
 	# Save what we have before we start the Clean up
-	Set-Variable -Name "before" -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
+	Set-Variable -Name 'before' -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
 
 	# Find all Files within the TEMP Directory and process them
 	Get-ChildItem $env:temp |
@@ -123,7 +123,7 @@ function global:Clear-TempDir {
 	Remove-Item -Recurse -Force -ErrorAction:SilentlyContinue -Confirm:$_Confirm
 
 	# How much do we have now?
-	Set-Variable -Name "after" -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
+	Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object Length -Sum).Sum)
 
 	'Freed {0:0.00} MB disk space' -f (($before - $after)/1MB)
 }
@@ -131,8 +131,8 @@ function global:Clear-TempDir {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHYnZE0adJuRINRAindJq3/vB
-# u8+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMxiACrxocFFbSi4dPF8cSUQ1
+# dpygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -275,25 +275,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT8/I9MsgGIEyaDDoBG+zM7Tbd4oTANBgkqhkiG9w0B
-# AQEFAASCAQCPxS2QpUCqqyqutUffuFGPjQUDAnDMZ46z0OFY9VZ6rqElqnjabhvB
-# VBkm8DJTGTQ7sU60hF1l8twL95Wgq55VXwr2wtArnZCRWXQ58NwX1PoyjGjXTyFS
-# pW9wzPdwxXndxREKtSR9LuQ4dTkG1rBIMuc/M/RdEWtlCAyu/K9dya/dmRis4YkE
-# dwmXS9jxnVVtT1zjIDGOFpSRf3TtTtO7M47aSqd/zvGJd67sQE4io/9r6GFsxir5
-# vxbZNOLoMBmtTX/ARY3JFPP2/2x6bzjrS/EasLNssj8BX9g/jKuauNM5SKLTyhSP
-# tbeRNpbvYtI6rDgwr7+JawmXLxCjb5nyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRADqU+xqv6diCwXBiiBIl1eL9M+TANBgkqhkiG9w0B
+# AQEFAASCAQCJ49PVk27jUr1p1hoR/x6lC83VY7zXmoBTtarLG3PeSG2P8ZZ/H8aJ
+# Vmmu9r13tziUjIZ6Nbs9jV/qB+89Mf46aIZVZ1dnfXJZL32O59nKUBHRa8+dWXvz
+# cAJh3DVnDsHzPm+obYO+bhckToenc61NrtUOmxiiVPAyA+4v/DcYF74Ap9NjBwfE
+# wJeQSUaSV2yiTJNyqOa4/I4K/tCQ0kcdrXnxDzxzhxqniyBIQFKmF+gNYv58isJS
+# +xFX4UD6osTXiYfuKL5swmsfA+sW5+WvLfM+X5u2Zb5E5TXN2B/sWYHEdMnAgAOm
+# rDtV5jWkgla5Prn/Av5EAyklwuoVMrFZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MTk1NlowIwYJKoZIhvcN
-# AQkEMRYEFLla+juxKrkb5dkH5nkcWHmydm/fMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMwNlowIwYJKoZIhvcN
+# AQkEMRYEFApmsulWnSg9lbzoJDwnfBq4bKj3MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCi5T3tbM/8Fuhke6qaeVtBBSZBUuL0MDdGmvRxuK994QOv
-# TbDRpkIA7xvd/J07DKA330AerckrIzOoZBKXWMqd5dRV8EEDAUjGHn7uZaw/F9wv
-# /VrW1tZDAT3ue9klhcM7fSGKV4kf6ZvuKLf7Vr6SIIBSGYjpA865NlmhKXQSMgUR
-# 5UmzDTvtW+BNAw+nOVd8H/o5BF07yxB+Kc4/ihXcqqtIlBne0BVaOpRVgZUibdJ4
-# CB3gC7fBpbMO9kgkyVsLkY2CDtF3rSTJ/SSgj+e57Kg4mCFKuu6Gy5UMpFHn19wd
-# mHzMXGoS1pzmILcM8VAHEeaUS09a7eD9ZLDBlEFM
+# hkiG9w0BAQEFAASCAQB5sJ4UnUKZl2eSoHm3KjgWIcLbLGpOUjbiORD96cp1x5FM
+# en9MBB/40HYykIdhiilyXlAVGfmS69MYRIdbgVC2OONZk74zLpyKEehEY8UVW+Ew
+# g4pyMjuQUH2p4bCe+lNcunMDhQY//t6BDSWgUlBK5lAEPdbe0C+DfAOWIQUnk3uK
+# 3cPMW6cOoEvzrPBdLMpvIBue9a/8F2nOydS8d2FEll0PmuWz1x66lbDwGRDyYA0/
+# z2oYI/cfDruojafZsf0Ak+B9r2+khkVF62J8nt6u0kWw7qYrZSSf78VCV3Rveg+a
+# H9kzSBsVFIdTivKApEwswBbBQH3yMAmY+l96tBkF
 # SIG # End signature block

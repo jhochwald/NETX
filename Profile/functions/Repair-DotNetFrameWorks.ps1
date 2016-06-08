@@ -104,11 +104,11 @@ function global:Repair-DotNetFrameWorks {
 		# Loop over all NET frameworks that we found.
 		ForEach ($framework in $frameworks) {
 			# Find the latest version of NGEN.EXE in the current framework path
-			$ngen_path = Join-Path (Join-Path $framework -childPath (Get-ChildItem $framework | Where-Object { ($_.PSIsContainer) -and (Test-Path (Join-Path $_.FullName -childPath "ngen.exe")) } | Sort-Object Name -Descending | Select-Object -First 1).Name) -childPath "ngen.exe"
+			$ngen_path = Join-Path (Join-Path $framework -childPath (Get-ChildItem $framework | Where-Object { ($_.PSIsContainer) -and (Test-Path (Join-Path $_.FullName -childPath 'ngen.exe')) } | Sort-Object Name -Descending | Select-Object -First 1).Name) -childPath 'ngen.exe'
 
 			# Execute the optimization command and suppress the output, we also prevent a new window
 			Write-Output "$ngen_path executeQueuedItems"
-			Start-Process $ngen_path -ArgumentList "executeQueuedItems" -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
+			Start-Process $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
 		}
 	}
 
@@ -121,8 +121,8 @@ function global:Repair-DotNetFrameWorks {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyHZRYjbTacGylo0KLlQFX5IZ
-# S6KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkwupDffvoYR456x2LRwOisM3
+# 0GOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +265,25 @@ function global:Repair-DotNetFrameWorks {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQvDY5+WIMr1HbOngtsweJO8OnQkTANBgkqhkiG9w0B
-# AQEFAASCAQA/k+0nbHkSRwXIWXmDLvm4YHbvWlajfzyP6/RMKlVkimgnD3L4CEFW
-# T4EOIfS2xDJZeYs0OSfppkE0+zebUiC16LK9OUeqIbexfI1a7OLkHmiGKI3NlBQU
-# wWBcAHI9/coa9Zl7P8crE6/3OCx9+l8gAQhYhxTCeMutMYbA6ytxOl9ZMlqQHm3Q
-# a+7LrYsNZn4c38HpGMD5Q0kfRVWhLETrR1xh7BxqYDhgAHdhH8gfKoN/28jwYnGv
-# 21H5C60nk2zm4QufG3RY56po0lMnwW20OHrt1ZAgBnZi0GdXG6K0s85H3pc+2LPA
-# mdnYh3/RIk857rxEBZoh9niS2804u/PzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTMzPNADlFo5U6VPLDQIdyQPzk2hzANBgkqhkiG9w0B
+# AQEFAASCAQBDFna83Q8rzY9caRrmpFoBpen36KtpDeXzKNvHKb8e3HVC8CARQsiq
+# 4ICz5+pPXaGuTU/YlxavvoiUDjqMnJVY31BEezJx2OHsGvHnNz/ju884axJb7vRU
+# qpgS/e7ny6Kfpy9TwisH+WtHS6qMASULFpS7UlfBAJqjnHG9pSG+uwuVc78eJTd/
+# 8u0+qlvL3eNaIqx41cocBQA82EI9CuNa/V3oaJqj6eLaIUWbe/uqcm3/MYHg5o6a
+# OjPMgELijWuQ7uwcjv6WezUV+M4BTa/JbID8WLZMFm+uFd/Y85NlqWW/GFiSjQBZ
+# TZcfAY/tzCK0BcSmF0lrRMCCfA1sALFUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzNlowIwYJKoZIhvcN
-# AQkEMRYEFCRLdv3A5d04vxD+ZBdB5m2NQkmeMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0NVowIwYJKoZIhvcN
+# AQkEMRYEFL4XRngtVUTqeY4yOrR0ZmxVWfOmMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBN6u2+TCAdZevO0d0cP/TR+8nKEL48nZ5sq7VzgGz9QR1q
-# MTZYLPX+j8N/nD2/cR/OI+l3x7012FfdHbskjyEhBmyuOYXnx2t6zMgTwGg/5PhW
-# cTvXGu3snM1oLzXV7cSXjdqs63nAW52FDUZ4903mkMmTNIg0B1mAZT817Gu4z6LQ
-# /wBu1p/aUrZohFKktIFoH1atPuQ/XmscsnkWdVbwt+RC2KbgJgy9dj6pgLmh4gtt
-# i3Gnl7+PW+0bS62ABQfagNO0aUGnWVfbmdM1C5KDleh5O5s1nqORU9i3LZBakSun
-# WNH64Mw2RHGBgkIfynPrQL4LMuJlEZ3yM8DbPjN+
+# hkiG9w0BAQEFAASCAQCcqkaBJLd7laiZPjcTD0XuLXTudNzcuTInYehZgVGa2dej
+# KHIWF1K21ub2sm3sn7ihetWYeih0LMbbt3Yi2LQzgM/hzvORpWFZ1Sh5hRgjtXM1
+# ZK8mDTAk5DgDlR6luIIutnnsWVY6wyy572R/xOIzRb4N/QBIjwUfEzrdVQEBt6sc
+# LbWle0mAL/FGoDsvntNPd8/R1hvwRd7R52ciHtxcfTUCkgiBZFY9QA959QKlURY+
+# TXP6k/i3cDIucbzUFnr7u8jnEIRI9rbIFWcqSjN5ffoqjUguzznrQ93ZmpMVNeMk
+# 1hXPC2jy/bdZi/JTgTiXu1rwHOQJpsZ5rfGihZYb
 # SIG # End signature block

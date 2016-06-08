@@ -88,7 +88,7 @@ function Get-FreeDiskSpace {
 
 		# Not sexy, but it works!
 		# Base Idea is from here: http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
-		(Get-PSDrive $Disks | Format-Table Name, @{ Name = "Disk Size(GB)"; Expression = { "{0,8:N0}" -f ($_.free/1gb + $_.used/1gb) } }, @{ Name = "Free (%)"; Expression = { "{0,6:P0}" -f ($_.free / ($_.free + $_.used)) } } -AutoSize)
+		(Get-PSDrive $Disks | Format-Table Name, @{ Name = 'Disk Size(GB)'; Expression = { '{0,8:N0}' -f ($_.free/1gb + $_.used/1gb) } }, @{ Name = 'Free (%)'; Expression = { '{0,6:P0}' -f ($_.free / ($_.free + $_.used)) } } -AutoSize)
 	}
 }
 # Set a compatibility Alias
@@ -97,8 +97,8 @@ function Get-FreeDiskSpace {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGzDRVtz0anXyyj4GqXbyyyAZ
-# 8XmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWug7FtVq2uLyIvqptutL1gh3
+# x1SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -241,25 +241,25 @@ function Get-FreeDiskSpace {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS2FICunLlZaqL9C+3UXP2ruj8X2jANBgkqhkiG9w0B
-# AQEFAASCAQCN9qLEYKyfCxrzdjF+btX31/2TT+j1SQyh8V0W35rnQdbSiogHTpky
-# OUFIf2/jdXs1tskDKbgIap2JxLBvVAiNMyiPASVOputIzfGXFRyA7OSIjXQ7HwLG
-# djD8HxmcVpLckOHH+papAuOfik8AgyS0b0WMIAa8uEvvnBY4Nccyf72zsmAi196R
-# IIhNSiHj9BNB77Cn/OfPP2JydsTub1bVyWJ+mMYC2OVjrpsYRoyKUh9B1cDMI8s8
-# CGJIW3hV46ew6CbWwsWD6cH6ioSgZQbCL/pqf/sBJPXYrJtAcUANF1v02eWRBcPn
-# IqTmelH3sCiKS5ybV30NH+FUiazKICLEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQEzBGObE5Yx7VPZRZhh3sasKs1fDANBgkqhkiG9w0B
+# AQEFAASCAQA/27DQGz1zkyaFPr2xoeI6pihd9i26iwaoNriPJbNLV+EXegwFuB5z
+# Fu91KPcGBQ6tJSi2rlO6mT0PQKhsmTot+2I/TbHncDphktDBuA8/O0g5726ub+FK
+# PEVrnUnz8yBP0lhLrgX06QtKqKjhzTRFIja2l2qJs9niULhmQyI5ExzppZcBb0je
+# 2CpsOJhAQQrCBi7hafinp2LKBFF55HmW+uTuKEgZacEiUXyb1cTZCMlumzVEuske
+# /n+AMiBNi+oNnAT27J6zow7NIvV68j74ApY3rL+TkFRwHrLaxQwd1x1xPXlxCD11
+# s1/qKbSoa4MV644Pap2U5hoWu3MPfgE2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAwN1owIwYJKoZIhvcN
-# AQkEMRYEFLao1nTpJn7iaA5A+C5PRg9au72gMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMxN1owIwYJKoZIhvcN
+# AQkEMRYEFK13H2+45iuHfrI+ole9lHlhaKwqMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQATuIuB6eXXaueDiLIK9/5dRMdgpHXF7KDBwbqRgvYqx5dr
-# CDpw43omEioK5XLsBjcOUIwjrSXULbrci9uKpVkmWPOnkHoVDGx6XUXhnbjWBlDK
-# oIEKKBp8SvydklM4tKTrcGsuWq5zbTVdfXUq8kYdwMV+Owrr27cBgF5+mGDKW9pe
-# KtMFwKjHQcGwO6Hqan0OrlJcAJOHA3CNrCp1kmI43EgXlEjRiFnE6R9DIOaqO/uS
-# jvxH3xlhYCUuTv/UD7sF+FNaubkO58KmMFBHO4D2SO1dTAJ9K4/7VjIATwZq1jfa
-# xmbPSrXVoqje24yE3srSK0hx2dyUsn3gigMRb503
+# hkiG9w0BAQEFAASCAQAUL32b0T2q/V24WNoKAh6nGMfMLcuZu7d+1QYH2/ME7XDl
+# iFbQ2km5DWC2lR/tzjNvxvCrQdJjxA/J0V2LysOse/KihYP8PT7Q6Vo+he7sWVLB
+# sXxENVczd+471nu9GGYNy+KjmG9rDLxlmnDr9KXsRX+x6IfJo0exEtDJHlkzs7IX
+# PAZ7b99sFC7PZAmm4gTLd4dicoL1AhBOj7tzUB1wN9EGiqiOPQAaUSyI/F/hIK1F
+# tIJReErdudsosauUUu3BMoTNikOPOFbcP4RoeCMGqaMlMXpq/6pWd4BGMm0Z7D9N
+# GBjsvI8JlQS7PDoqEcgufGmZSEJFxvH+v6wIhVUO
 # SIG # End signature block

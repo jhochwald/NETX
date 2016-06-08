@@ -108,29 +108,29 @@ function Global:Invoke-NTFSFilesCompression {
 		[int]$OlderThan,
 		[Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
 		[ValidateSet('minutes', 'hours', 'days', 'weeks')]
-		[string[]]$TimeUnit = "minutes",
+		[string[]]$TimeUnit = 'minutes',
 		[Parameter(HelpMessage = 'The extention of files that will be processed. The default file extenstion is log.')]
-		[string[]]$Extension = "log"
+		[string[]]$Extension = 'log'
 	)
 
 	BEGIN {
-		$excludedfiles = "temp.log", "temp2.log", "source.log"
+		$excludedfiles = 'temp.log', 'temp2.log', 'source.log'
 
 		# translate action to numeric value required by the method
 		switch ($TimeUnit) {
-			"minutes" {
+			'minutes' {
 				$multiplier = 1
 				break
 			}
-			"hours" {
+			'hours' {
 				$multiplier = 60
 				break
 			}
-			"days" {
+			'days' {
 				$multiplier = 1440
 				break
 			}
-			"weeks" {
+			'weeks' {
 				$multiplier = 10080
 				break
 			}
@@ -138,14 +138,14 @@ function Global:Invoke-NTFSFilesCompression {
 
 		$OlderThanMinutes = $($OlderThan * $multiplier)
 		$compressolder = $(Get-date).AddMinutes(- $OlderThanMinutes)
-		$filterstring = "*." + $Extension
+		$filterstring = '*.' + $Extension
 		$files = (Get-ChildItem -Path $path -Filter $filterstring)
 	}
 
 	PROCESS {
 		ForEach ($i in $files) {
 			if ($i.Name -notin $excludedfiles) {
-				$filepathforquery = $($i.FullName).Replace("\", "\\")
+				$filepathforquery = $($i.FullName).Replace('\', '\\')
 				$file = (Get-WmiObject -Query "SELECT * FROM CIM_DataFile Where-Object Name='$filepathforquery'")
 
 				if ((-not ($file.compressed)) -and $i.LastWriteTime -lt $compressolder) {
@@ -162,8 +162,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC8J/5yBuj3s7qCfUhOEI2RF/
-# n4igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1mCkDWRJtFib52ozspIhb/YH
+# oKmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -306,25 +306,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRZxDGvXajgVYJV7IdkOgrI0V+HPDANBgkqhkiG9w0B
-# AQEFAASCAQAmZUQLPHHB3uA0V56PzqwIcfhA0FlsxQJhU3VXyc/Pgb/0/afkrPgy
-# 5KIwv0p8trN3ttJI/cpIUbGRYDDunlYb59UmPl4qgjYq6pmf5TszAnMIRstTks3J
-# bd6Unz03oemX67suNZRJdROYkaXb6Vp8HE4lJBNXxyKv4f78JEO6GgVnS+Y+ZmBQ
-# yT1gzZkhmeV6nOfRd41u1YuaArtpDMt/M0Z5b9pcpDI9c/jzngUTC89XuJDfmfSx
-# tsP6nSVZkVGi4jEtuBnl4hMXw0Y6co3vB0fxs2Km2Jmvv4f9ShwYZEsruoA6dYSI
-# 0TQka4gQ73oYBSSnnZaWldDmrxD7gLt2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRn/ESKRENDt6ryAYFEPzXxFEWTtDANBgkqhkiG9w0B
+# AQEFAASCAQA59eGnjdZMf/A3R8ujQMayo0ySo2XraiUCzQLfw54kXvOjVm88AQMN
+# tt4vHimuvftXd1GRaQz17umwhDELUw3oIzmv29L3xBOEe1nAztH8Zivxp6XA6UZ0
+# C+JIy1V4ZHAEw9ruK117TEWH7frFRup0oQ18JQIUQr0cPIiT4ZWG2VcPH0qMB0Sd
+# UrrfDb//vi71sXEA6OldgtG0MAAjtqIKB7g/gnvU/4Mig4qNFTuN85+9DE7dGfal
+# 7jsoINDDP86/ybEp7nbGC0oOu/LQOoMGNBNMc/9WzPYwakc0iuw4g4sXnTOJXCgQ
+# rcPHk1Dz0+ZRmZTmDGirRkXEAQX9xZkCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAyNVowIwYJKoZIhvcN
-# AQkEMRYEFIzdUsuVaiNG/DNVDB3z6jblwO4bMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjMzNVowIwYJKoZIhvcN
+# AQkEMRYEFOOAOmGEikknZJPBnx4GISYdYHGXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCG67tBXYS8mKBTQQl/sPOtaRfZaQRp9LTQWQDMPe13y9oC
-# 81nd7cfrvPh3IygK9npOduroaqxL14KqEA4+cXZmV0HdfcQQqP38Mzz57Eeb3sY9
-# bMCCFfNr6wbRrYbIuY4Gj96mvjzqmdhATPhKBnZ4DnUjmmcb4VpzsT+wrhUcsfoE
-# Id7ddZRpoRyICAqtSeSgJ1PynEycafHmKMLlp3wceLxDVhmyqNKTAoozORt+Flua
-# 0iB/VVbJyji2u0X50VS4+aoC0cKQfJ9p2HBn4sENr5iI+pL6UTSCzU4wAQfxTCN2
-# TR4Wp7SDBJo//VQ/r8hsKba3vXoPCQMtWeD2tMve
+# hkiG9w0BAQEFAASCAQCSbXSy9WdEqNi7LiN0016HVqixAnleQ3Q2PiWnncvje++u
+# LrCfXWqfOIa6zsMGKI/IT6h7OHTGP3+NwTC9vnmb9hjhsozkR5b12N2NTkXpg6QT
+# uz25CyMrR0fRpf+KIU11SZ2VNG6Sg0T0umyUkLxozP0aqgRfNXLzPSZsp/xQAWw+
+# kNJzEhK/kIl3/z7dwzUCRGQ+gmr50DzSR7T0u1pAxa+wAaHXmUBZJ03QAAr8htWB
+# g9bTtu3o7GXlUcLS4P+wbmXnnt6UlGBbrJYiMI5uYi0Xz2fAuiv6FxhmhWlHyL96
+# vsbVG9VNfS3kEnrxPTpC3p5uNGVKfy9KKWdReDYx
 # SIG # End signature block

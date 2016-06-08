@@ -77,12 +77,12 @@ function Global:Set-DebugOn {
 	param ()
 
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:"Continue" -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
 		Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
 	}
 
 	END {
-		Write-Output "Debug enabled"
+		Write-Output 'Debug enabled'
 	}
 }
 
@@ -109,20 +109,20 @@ function Global:Set-DebugOff {
 	param ()
 
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:"SilentlyContinue" -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
 		Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
 	}
 
 	END {
-		Write-Output "Debug disabled"
+		Write-Output 'Debug disabled'
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZrtG421Ql3V91GLAdscziiXt
-# tAqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUv5YmlsxWs7BD5/rNZ19ZLW/X
+# KOigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +265,25 @@ function Global:Set-DebugOff {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTrUSsCyUGUivgsVsSC2Ta8ckBEdDANBgkqhkiG9w0B
-# AQEFAASCAQBTo/sUzqI+1+H36PVf8QaegACXJjAWo6HbRkphQN5wnw3DaJ8wIdbz
-# 9HCciU6gQKQqiDcpNilNhAt1n+9+Ttjs3PaQG8k11bouysdWh93jJrfcwX8MoPqm
-# MKm5UYJ1WGZFNtFPtVb3j3WB4Hent55l+/7D9Nias1zab/tiZCpUapJmttb9JCsu
-# h2PbIDakleaaFesC1ObQgDi67sOxqpLPUO/Ut4dyMqkmVlDWjL7eaxBj6teNL8Y3
-# n4p4p8yFOzM5IPk5gj0eOdIq4LsOIoi38h42arxdQczeGxyAC4pf3UO1k7TTFLuo
-# O9SYc0YyDDiBdfmMFlJm4ZqJomSMeNhYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT5tPNrk2MaXMqzjOYnRWgdY/L6mTANBgkqhkiG9w0B
+# AQEFAASCAQCpKo8EVdB+Pc9iexaTi7GMRCwtncqh7ykgI97MJsD+jMrleX+vHm7o
+# 7VSxyK4jO2g/hpPZyW1mEDiXLSwcvkEg5qeLiEd1fqSshGgt9f3j8Qboj6GSwP28
+# csqmA73wEQ2xj7kogynMhlqH8M63i4eQflwdvRTu49mIQN5toHa/4jw9CFn3/adx
+# 4sOgUSyuwoA/9LhxGyRX7ft9UXHNddRD4Wjjnr61LzfD08t3hVV8fyG5DbTCHhzL
+# q4CNXxAz0AkBqVRqUzLtQLk5W4gnNIxpS79kzt+wPsfTeEIGJpeFnkkUKSQ8MNUo
+# WCILbSq5J/LgGdXJswDnnw4ymw/i4iUFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwNTE3MjAzOVowIwYJKoZIhvcN
-# AQkEMRYEFN4jUhdCSOe5yjdElppXQbhdV5+hMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwODE1MjM0OVowIwYJKoZIhvcN
+# AQkEMRYEFC6RSXZwy6OMSZHXF39ksXDn0INLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCQf50o7mBKzP6uDL94z6rW1I9QWJcN8DKXG+ZUcvj6iE5B
-# FX2ahAS6rfH7Xy7SfUl09zbO+2JKrx8nNQarwOQmwHWnsbSOgNZTpp/kxb5XPhlB
-# Px3zz7WfpBO26hZk8mi9/uPGM0tWJvSbRep2/fTm97FkYPpyTWwYLiYt7EyHVd+t
-# ZL6KcmC3Wp5jqAt92oUhB8kPdsdgrc5Ehonzb9onClFPeaeMNoDna+v/aYZj/e4+
-# OJE0h/THHMpORIZOfCLwqPVIYNk/BCg9UImDFkgzrSXpgsHtUcRQ4M29LSrPA097
-# sznMAwOqyUrFSS4hI1ySrORlf/8nOHD4J7jXYISR
+# hkiG9w0BAQEFAASCAQCtf8BX42eGr2wDDBTaGE9SvwbMlXSr7ths2sWXZsU54Bjz
+# PP5hLnkJFOt/Tj2GCDoWDYUGRJTZbKSHTrAbg+1USCcsfUd0hsaB0SMepoP1WnnK
+# 7XJX083aC1U3jlEdZ81fxpxVWSWUgfImpjzLHmpzFihkBJzJWsCG3J9hBWRuNWIe
+# axPGaT2QIXEUGOT5kTSONWCO+fcQnyG7dJ75TfRH+z+ePSrrLCoZ268M6mV+V3zw
+# +PV6Ucioq2wHsdwqUhlhf0hBHqKAljDyA3Zo3/Feeh4+D5MYpT54prnJkpLVYA9E
+# I5tVwtfbByBZdyfE14TnTPVVpL8KFHC2yXVuQgbW
 # SIG # End signature block
