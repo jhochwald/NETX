@@ -147,12 +147,12 @@ function Get-NETXYouTrackVersion {
     if ($s) {
       if ($pscmdlet.ShouldProcess('Version', 'Get Version Number')) {
         # This is just the Build/Version
-        Write-Output "$BuildNumber"
+        Write-Output -InputObject "$BuildNumber"
       }
     } else {
       if ($pscmdlet.ShouldProcess('Version', 'Get Version Number and details')) {
         # This is the full String
-        Write-Output "NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version $BuildNumber"
+        Write-Output -InputObject "NET-Experts PowerShell Support for JetBrains YouTrack Rest API Version $BuildNumber"
       }
     }
   }
@@ -227,7 +227,7 @@ function Initialize-YouTrackConnection {
   BEGIN {
     # Does we have a URI set?
     if ($YouTrackURIGlobal) {
-      Set-Variable -Name 'YouTrackURI' -Scope:Global -Value $($YouTrackURIGlobal)
+      Set-Variable -Name 'YouTrackURI' -Scope:Global -Value -Value $($YouTrackURIGlobal)
     } elseif (-not ($YouTrackURI)) {
       Write-Error -Message 'The URL is mandatory!' -ErrorAction:Stop
 
@@ -283,7 +283,7 @@ function Initialize-YouTrackConnection {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri/rest/user/login", 'Login')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI/rest/user/login", 'Login')) {
       try {
         # Cleanup
         Remove-Variable -Name 'YouTrackWebSessionTemp' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -296,16 +296,16 @@ function Initialize-YouTrackConnection {
         Remove-Variable -Name 'YouTrackPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
         # Fire it up!
-        $null = (Invoke-RestMethod -Method 'Post' -Uri "$YouTrackUri/rest/user/login" -Body $YouTrackWebBody -SessionVariable 'YouTrackWebSessionTemp' -ContentType 'application/x-www-form-urlencoded' -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $null = (Invoke-RestMethod -Method 'Post' -Uri "$YouTrackURI/rest/user/login" -Body $YouTrackWebBody -SessionVariable 'YouTrackWebSessionTemp' -ContentType 'application/x-www-form-urlencoded' -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
 
         # Save the Session as persistant info for all other calls
         if ($YouTrackWebSessionTemp) {
-          Set-Variable -Name 'YouTrackWebSession' -Scope:Global -Value $($YouTrackWebSessionTemp)
+          Set-Variable -Name 'YouTrackWebSession' -Scope:Global -Value -Value $($YouTrackWebSessionTemp)
 
           # Remove the temp variable
           Remove-Variable -Name 'YouTrackWebSessionTemp' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
         } else {
-          Write-Error 'Unable to Autheticate' -ErrorAction:Stop
+          Write-Error -Message 'Unable to Autheticate' -ErrorAction:Stop
 
           # Still here? Make sure we are done!
           break
@@ -362,11 +362,11 @@ function Initialize-YouTrackConnection {
 
     # Save the URI for other calls!
     Remove-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Set-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Value $($YouTrackURI)
+    Set-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Value -Value $($YouTrackURI)
   }
 }
 # Set a compatibility Alias
-(Set-Alias Initialize-YTCon Initialize-YouTrackConnection -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Initialize-YTCon -Value Initialize-YouTrackConnection -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function New-YouTrackItem {
   <#
@@ -534,7 +534,7 @@ function New-YouTrackItem {
   }
 }
 # Set a compatibility Alias
-(Set-Alias New-YTItem New-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name New-YTItem -Value New-YouTrackItem -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Approve-YouTrackItemExists {
   <#
@@ -662,7 +662,7 @@ function Approve-YouTrackItemExists {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Approve-YTItem Approve-YouTrackItemExists -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Approve-YTItem -Value Approve-YouTrackItemExists -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemList {
   <#
@@ -749,9 +749,9 @@ function Get-YouTrackItemList {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'List items')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'List items')) {
       try {
-        $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackUri/rest/issue" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackURI/rest/issue" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -795,7 +795,7 @@ function Get-YouTrackItemList {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItemList Get-YouTrackItemList -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItemList -Value Get-YouTrackItemList -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemListInProject {
   <#
@@ -905,12 +905,12 @@ function Get-YouTrackItemListInProject {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", "List items in $YouTrackProject")) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", "List items in $YouTrackProject")) {
       try {
         if ($wikify) {
-          $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+          $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackURI/rest/issue/byproject/$YouTrackProject/?wikifyDescription=true" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
         } else {
-          $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackUri/rest/issue/byproject/$YouTrackProject/" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+          $YouTrackItemList = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackURI/rest/issue/byproject/$YouTrackProject/" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
         }
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
@@ -955,7 +955,7 @@ function Get-YouTrackItemListInProject {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTProjectItems Get-YouTrackItemListInProject -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTProjectItems -Value Get-YouTrackItemListInProject -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItem {
   <#
@@ -1107,7 +1107,7 @@ function Get-YouTrackItem {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItem Get-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItem -Value Get-YouTrackItem -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 
 function Get-YouTrackItemHistory {
@@ -1251,7 +1251,7 @@ function Get-YouTrackItemHistory {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItemHistory Get-YouTrackItemHistory -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItemHistory -Value Get-YouTrackItemHistory -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemChanges {
   <#
@@ -1394,7 +1394,7 @@ function Get-YouTrackItemChanges {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItemChanges Get-YouTrackItemChanges -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItemChanges -Value Get-YouTrackItemChanges -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Remove-YouTrackItem {
   <#
@@ -1537,7 +1537,7 @@ function Remove-YouTrackItem {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Remove-YTItem Remove-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Remove-YTItem -Value Remove-YouTrackItem -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Update-YouTrackItem {
   <#
@@ -1737,7 +1737,7 @@ function Update-YouTrackItem {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Update-YTItem Update-YouTrackItem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Update-YTItem -Value Update-YouTrackItem -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemCount {
   <#
@@ -1838,11 +1838,11 @@ function Get-YouTrackItemCount {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'List items')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'List items')) {
       try {
         # Fire up the Rest Request, this time we use ab Bit XML
         # Note: Convert this to  Json to get rid of XML soon - JH
-        $YouTrackItemCount = (Invoke-RestMethod -Method 'Post' -Uri "$YouTrackUri/rest/issue/counts" -ContentType 'application/xml' -Body $YouTrackItemCountBody -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackItemCount = (Invoke-RestMethod -Method 'Post' -Uri "$YouTrackURI/rest/issue/counts" -ContentType 'application/xml' -Body $YouTrackItemCountBody -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -1886,13 +1886,13 @@ function Get-YouTrackItemCount {
       Return ($YouTrackItemCount).counts
     } else {
       # Dump the info human readable
-      Write-Output "Resolved: $(($YouTrackItemCount).counts.count[0])"
-      Write-Output "Open: $(($YouTrackItemCount).counts.count[1])"
+      Write-Output -InputObject "Resolved: $(($YouTrackItemCount).counts.count[0])"
+      Write-Output -InputObject "Open: $(($YouTrackItemCount).counts.count[1])"
     }
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItemCount Get-YouTrackItemCount -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItemCount -Value Get-YouTrackItemCount -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemProjectCount {
   <#
@@ -1990,10 +1990,10 @@ function Get-YouTrackItemProjectCount {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'List items')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'List items')) {
       try {
         # Fire up the Rest Request, this time we use ab Bit XML
-        $YouTrackItemCount = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackUri/rest/issue/count?filter=$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackItemCount = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackURI/rest/issue/count?filter=$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -2037,7 +2037,7 @@ function Get-YouTrackItemProjectCount {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTProjectCount Get-YouTrackItemProjectCount -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTProjectCount -Value Get-YouTrackItemProjectCount -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemFiltered {
   <#
@@ -2156,10 +2156,10 @@ function Get-YouTrackItemFiltered {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'List items')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'List items')) {
       try {
         # Fire up the Rest Request, this time we use ab Bit XML
-        $YouTrackItemCount = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackUri/rest/issue?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackItemCount = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackURI/rest/issue?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -2208,7 +2208,7 @@ function Get-YouTrackItemFiltered {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTFilterItem Get-YouTrackItemFiltered -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTFilterItem -Value Get-YouTrackItemFiltered -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackItemIntellisense {
   <#
@@ -2327,10 +2327,10 @@ function Get-YouTrackItemIntellisense {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'List items')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'List items')) {
       try {
         # Fire up the Rest Request, this time we use ab Bit XML
-        $YouTrackItemIntellisense = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackUri/rest/issue/intellisense?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackItemIntellisense = (Invoke-RestMethod -Method 'GET' -Uri "$YouTrackURI/rest/issue/intellisense?$YouTrackItemCountFilter" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -2379,7 +2379,7 @@ function Get-YouTrackItemIntellisense {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTItemIntelli Get-YouTrackItemIntellisense -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTItemIntelli -Value Get-YouTrackItemIntellisense -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Set-YouTrackItemCommand {
   <#
@@ -2535,7 +2535,7 @@ function Set-YouTrackItemCommand {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Set-YTItemCmd Set-YouTrackItemCommand -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Set-YTItemCmd -Value Set-YouTrackItemCommand -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackStatus {
   <#
@@ -2658,9 +2658,9 @@ function Get-YouTrackStatus {
   }
 
   PROCESS {
-    if ($pscmdlet.ShouldProcess("$YouTrackUri", 'Telemetry')) {
+    if ($pscmdlet.ShouldProcess("$YouTrackURI", 'Telemetry')) {
       try {
-        $YouTrackTelemetry = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackUri/rest/admin/statistics/telemetry" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+        $YouTrackTelemetry = (Invoke-RestMethod -Method 'Get' -Uri "$YouTrackURI/rest/admin/statistics/telemetry" -WebSession $YouTrackWebSession -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts PowerShell Service $(Get-NETXYouTrackVersion -s)" -ErrorAction:Stop -WarningAction:SilentlyContinue)
       } catch [System.Management.Automation.PSArgumentException] {
         # Something is wrong with the command-line
         Write-Debug -Message 'Caught a Argument Exception'
@@ -2698,7 +2698,7 @@ function Get-YouTrackStatus {
     }
 
     # Save the infos to new variables
-    $YouTrackTelemetry1 = (($YouTrackTelemetry).telemetry | Select-Object availableMemory, allocatedMemory, uptime, usedMemory, databaseSize)
+    $YouTrackTelemetry1 = (($YouTrackTelemetry).telemetry | Select-Object -Property availableMemory, allocatedMemory, uptime, usedMemory, databaseSize)
     $YouTrackTelemetry2 = (($YouTrackTelemetry).telemetry.onlineUsers | Format-List)
   }
 
@@ -2727,7 +2727,7 @@ function Get-YouTrackStatus {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTStatus Get-YouTrackStatus -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTStatus -Value Get-YouTrackStatus -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function New-YouTrackSubsystem {
   <#
@@ -2902,7 +2902,7 @@ function New-YouTrackSubsystem {
   }
 }
 # Set a compatibility Alias
-(Set-Alias New-YTSubsystem New-YouTrackSubsystem -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name New-YTSubsystem -Value New-YouTrackSubsystem -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Approve-YouTrackProjectExists {
   <#
@@ -3030,7 +3030,7 @@ function Approve-YouTrackProjectExists {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Approve-YTProjectExists Approve-YouTrackProjectExists -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Approve-YTProjectExists -Value Approve-YouTrackProjectExists -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function Get-YouTrackProject {
   <#
@@ -3172,7 +3172,7 @@ function Get-YouTrackProject {
       }
     }
 
-    $YouTrackProjectDetailsPrint = (($YouTrackProjectDetails).project | Select-Object name, id, description, archived, lead)
+    $YouTrackProjectDetailsPrint = (($YouTrackProjectDetails).project | Select-Object -Property name, id, description, archived, lead)
   }
 
   END {
@@ -3181,15 +3181,15 @@ function Get-YouTrackProject {
   }
 }
 # Set a compatibility Alias
-(Set-Alias Get-YTProject Get-YouTrackProject -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-YTProject -Value Get-YouTrackProject -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion Functions
 
 #region ExportModuleStuff
 
 # Get public function definition files.
-if (Test-Path -Path (Join-Path $PSScriptRoot 'Public')) {
-  $Public = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Public') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+if (Test-Path -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Public')) {
+  $Public = @(Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Public') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 
   # Dot source the files
   foreach ($import in @($Public)) {
@@ -3201,13 +3201,13 @@ if (Test-Path -Path (Join-Path $PSScriptRoot 'Public')) {
   }
 }
 
-if ($loadingModule) {
+if ($LoadingModule) {
   Export-ModuleMember -Function '*' -Alias '*' -Cmdlet '*' -Variable '*'
 }
 
-if (Test-Path -Path (Join-Path $PSScriptRoot 'Private')) {
+if (Test-Path -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Private')) {
   # Get public and private function definition files.
-  $Private = @(Get-ChildItem -Path (Join-Path $PSScriptRoot 'Private') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+  $Private = @(Get-ChildItem -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Private') -Exclude '*.tests.*' -Recurse -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 
   foreach ($import in @($Private)) {
     Try {
@@ -3233,8 +3233,8 @@ Pop-Location
 # SIG # Begin signature block
 # MIIYpQYJKoZIhvcNAQcCoIIYljCCGJICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQaU2yq026YqMiP6cOlbVnROf
-# BzmgghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoYdceYqC4C7OzquVMHpwMY/4
+# C2SgghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -3345,22 +3345,22 @@ Pop-Location
 # A1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczRR
 # gFwwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwxCjAIoAKAAKECgAAwGQYJKoZI
 # hvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcC
-# ARUwIwYJKoZIhvcNAQkEMRYEFDD+v3oO3Ox4HEIjAil8u7LdIIYTMA0GCSqGSIb3
-# DQEBAQUABIIBABVJf5o19DMoKh6nnI3qPB9s3b+RU0sPVvd68fTBTYLuTxNXdHv2
-# W0QEosDLinyotatd7MEd2TWJDA8JA1G9jAewjPXANF+0sRSbCWkR+wPAeea867xq
-# k41HfV89vhj6cel17D/ws/wn0QoJ3N416HKwr/uUz3WhWJJgRWaMzScn0dGD0jF0
-# aAmREmS2nhK5ljLV82cdOwhIyfQh+HOYFQcrs/H79OBKesIFFBBhqPu7tUgk9dHX
-# tjdPUO/RDfQPXzZoUJD/oeXGJ5DtQlyJNdspIu8DW+pk5bOvQbVppLtSfISQrlSR
-# O0iWTNzKwMIMormF1v+HxjVk3fLfq90v/1uhggILMIICBwYJKoZIhvcNAQkGMYIB
+# ARUwIwYJKoZIhvcNAQkEMRYEFF3kUl+f88+9fi9Y6yewi49Ltwz9MA0GCSqGSIb3
+# DQEBAQUABIIBAGEbhcn6efnHO1BiG7sJESGj9OTW5/JXs0TeiHoZ7hp8zwCXSuKY
+# tuLgb735U71J9C8R5sG3xAktd4QaMLOqorBfjYSAIZp+hkayWm4Lbf4w80au7uMR
+# iEJAHQcEMUxhPTH6gsNcEMOppu3TY6O7b3pvyp/Vxn7+SD2CVHFyv6jDxzGMef55
+# l0vt6syETpcR/IvrAqSo6uY/tT2rWCQ+8PLtdNY+vRx9yf8nR0Ss2ZW/RIxy6+XS
+# Nsl7zRfmPYFyHVLjD+k6weX5LYXROBE7f0HvbefgUApvlxLKup9ZV+9Ai9I5gkYH
+# krGulmQa1B1ThKi8H6Pl4hjpE7hSfhTXa8mhggILMIICBwYJKoZIhvcNAQkGMYIB
 # +DCCAfQCAQEwcjBeMQswCQYDVQQGEwJVUzEdMBsGA1UEChMUU3ltYW50ZWMgQ29y
 # cG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFudGVjIFRpbWUgU3RhbXBpbmcgU2Vydmlj
 # ZXMgQ0EgLSBHMgIQDs/0OMj+vzVuBNhqmBsaUDAJBgUrDgMCGgUAoF0wGAYJKoZI
-# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTgwNDAx
-# WjAjBgkqhkiG9w0BCQQxFgQUDXlPGyMp7gA7jz5XeS5XRMQXrokwDQYJKoZIhvcN
-# AQEBBQAEggEAJbdYOT/kZqrkP7iuJI1YFLXBVuLXgTQ4XWKoHBQIs88ALIsljBhx
-# z10GLp24tjMh8i8iWinyuNLcfDFByKqMDSm5NzctQXECp/q8OcpCqr3LUQRZYGFW
-# NjgbMADy6F2f1K5A99XketEL+cojv9t7CQMnjWuRa2TedQ+LreHMb93vylJ6acIF
-# 93hAxqo/oI6FGv57ODy2uLP81ONlk5rWBNjBDE1jH8cfvrQECPTJ6NWY5Gdx5i0A
-# yHIUl5wjjs85FiK3qgyjE0A4KzPTbBm27jeOKHwwIfgAol4/BTUCZ2sbxa7pHomH
-# XYLTA6CZ8fhfSzrQtO9vpi/fuquqEeD+Gg==
+# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTgwNTQ4
+# WjAjBgkqhkiG9w0BCQQxFgQUShcfEF9dGdbnCzir5zfgvD0VYuAwDQYJKoZIhvcN
+# AQEBBQAEggEAA3ygB+Ye5jDPLjPkJR80Prc4m8BkXLfIzHqsBcuUkudEezvDHLvl
+# QsRBoN9oFXDjvaFaoE/RkhpliB+bFaZ2+fyffz4D/l1kL+97MMlRqRkErblyeN6h
+# 5ZhpUBtGi0DiHuosjYY/zhopkBXzYnqdhC8A34wDt+ZRHgiBD/fy6s/4GBT6z05x
+# JjuvRkT6bHVeTPs2JNFxCLGSygKBfETPQNTTS/loLzcHz5eDdCxJ/7wVnsbFc9l9
+# N+HanrPABG+jI4Zkc0/E2xLH5R2/sHeNn3Z221eh1edLSJidgLxhH4AVEy1fsfMd
+# YMqCXz/PjhdKE7S9iaPrfnbogW8OkcXHsQ==
 # SIG # End signature block

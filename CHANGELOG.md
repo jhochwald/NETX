@@ -1,4 +1,7 @@
-### Reformated (HEAD -> master)
+### Refactoring (HEAD -> master)
+>*Thu, 9 Jun 2016 20:07:02 +0200*
+
+### Reformated
 >*Thu, 9 Jun 2016 20:04:18 +0200*
 
 ### Distribution Snapshot 1.2.3.80
