@@ -3426,7 +3426,7 @@ function Get-HostFileEntry {
     $HostOutput = @()
 
     # Which File to load
-    Set-Variable -Name 'HostFile' -Scope:Script -Value -Value $($env:windir + '\System32\drivers\etc\hosts')
+    Set-Variable -Name 'HostFile' -Scope:Script -Value $($env:windir + '\System32\drivers\etc\hosts')
 
     # REGEX Filter
     [regex]$r = '\S'
@@ -3639,13 +3639,13 @@ function Get-IsSessionElevated {
   PROCESS {
     if ($currentPrincipal.IsInRole($administratorsRole)) {
       # Set the Variable
-      Set-Variable -Name IsSessionElevated -Scope:Global -Value -Value $true
+      Set-Variable -Name IsSessionElevated -Scope:Global -Value $true
 
       # Yep! We have some power...
       Return $true
     } else {
       # Set the Variable
-      Set-Variable -Name IsSessionElevated -Scope:Global -Value -Value $false
+      Set-Variable -Name IsSessionElevated -Scope:Global -Value $false
 
       # Nope! Regular User Session!
       Return $false
@@ -3701,53 +3701,53 @@ function Get-IsVirtual {
 
   PROCESS {
     # Get some System infos via NET (WMI) call
-    Set-Variable -Name 'WMI_BIOS' -Scope:Script -Value -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
-    Set-Variable -Name 'WMI_ComputerSystem' -Scope:Script -Value -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
+    Set-Variable -Name 'WMI_BIOS' -Scope:Script -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
+    Set-Variable -Name 'WMI_ComputerSystem' -Scope:Script -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
 
     # First we try to figure out if this is a Virtual Machine based on the
     # Bios Serial information that we get via WMI
     if ($WMI_BIOS.SerialNumber -like '*VMware*') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('VMWare')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
     } elseif ($WMI_BIOS.Version -like 'VIRTUAL') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Hyper-V')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
     } elseif ($WMI_BIOS.Version -like 'A M I') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Virtual PC')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Virtual PC')
     } elseif ($WMI_BIOS.Version -like '*Xen*') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Xen')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Xen')
     } elseif (($WMI_BIOS.Version -like 'PRLS*') -and ($WMI_BIOS.SerialNumber -like 'Parallels-*')) {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Parallels')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
     }
 
     # Looks like this is not a Virtual Machine, but to make sure that figure it out!
     # So we try some other information that we have via WMI :-)
     if (-not ($SysInfo_IsVirtual)) {
       if ($WMI_ComputerSystem.Manufacturer -like '*Microsoft*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Hyper-V')
+        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
       } elseif ($WMI_ComputerSystem.Manufacturer -like '*VMWare*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('VMWare')
+        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
       } elseif ($WMI_ComputerSystem.Manufacturer -like '*Parallels*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Parallels')
+        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
       } elseif ($wmisystem.model -match 'VirtualBox') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('VirtualBox')
+        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VirtualBox')
       } elseif ($wmisystem.model -like '*Virtual*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Unknown Virtual Machine')
+        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Unknown Virtual Machine')
       }
     }
 
     # OK, this does not look like a Virtual Machine to us!
     if (-not ($SysInfo_IsVirtual)) {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value -Value $($false)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value -Value $('Not a Virtual Machine')
+      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($false)
+      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Not a Virtual Machine')
     }
 
     # Dump the Boolean Info!
@@ -4800,13 +4800,13 @@ function Get-PendingReboot {
         ## Creating Custom PSObject and Select-Object Splat
         $SelectSplat = @{
           Property = (
-            'Computer', 
-            'CBServicing', 
-            'WindowsUpdate', 
-            'CCMClientSDK', 
-            'PendComputerRename', 
-            'PendFileRename', 
-            'PendFileRenVal', 
+            'Computer',
+            'CBServicing',
+            'WindowsUpdate',
+            'CCMClientSDK',
+            'PendComputerRename',
+            'PendFileRename',
+            'PendFileRenVal',
             'RebootPending'
           )
         }
@@ -5209,46 +5209,46 @@ function Get-Quote {
   BEGIN {
     # The quote should include the author separated by " - ".
     $texts = @(
-      'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover', 
-      "Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley", 
-      'Good is the enemy of great. - Sir Jonathan Ive', 
+      'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover',
+      "Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley",
+      'Good is the enemy of great. - Sir Jonathan Ive',
       'There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive'
-      "People's interest is in the product, not in its authorship. - Sir Jonathan Ive", 
-      "I think it's really important to design things with a kind of personality. - Marc Newson", 
-      'Intelligence is the ability to adapt to change. - Stephen Hawking', 
-      'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking', 
-      'The best ideas start as conversations. - Sir Jonathan Ive', 
-      'If something is not good enough, stop doing it. - Sir Jonathan Ive', 
-      "There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive", 
-      'Any product that needs a manual to work is broken. - Elon Musk', 
-      'Business has only two functions: marketing and innovation. - Milan Kundera', 
-      "Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison", 
-      'Great companies are built on great products. - Elon Musk', 
-      'Test fast, fail fast, adjust fast. - Tom Peters', 
-      "Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)", 
-      'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)', 
-      'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)', 
+      "People's interest is in the product, not in its authorship. - Sir Jonathan Ive",
+      "I think it's really important to design things with a kind of personality. - Marc Newson",
+      'Intelligence is the ability to adapt to change. - Stephen Hawking',
+      'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking',
+      'The best ideas start as conversations. - Sir Jonathan Ive',
+      'If something is not good enough, stop doing it. - Sir Jonathan Ive',
+      "There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive",
+      'Any product that needs a manual to work is broken. - Elon Musk',
+      'Business has only two functions: marketing and innovation. - Milan Kundera',
+      "Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison",
+      'Great companies are built on great products. - Elon Musk',
+      'Test fast, fail fast, adjust fast. - Tom Peters',
+      "Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)",
+      'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)',
+      'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)',
       'The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)'
-      'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)', 
-      "Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)", 
-      'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)', 
-      "Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs", 
-      'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)', 
-      'Why join the navy if you can be a pirate? - Steve Jobs', 
-      'Innovation distinguishes between a leader and a follower. - Steve Jobs', 
-      "Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs", 
-      'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs', 
-      "We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs", 
-      "Things don't have to change the world to be important. - Steve Jobs", 
-      'Your most unhappy customers are your greatest source of learning. - Bill Gates', 
-      'Software is a great combination between artistry and engineering. - Bill Gates', 
-      "Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates", 
-      "If you can't make it good, at least make it look good. - Bill Gates", 
-      "If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)", 
-      "I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison", 
-      "If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)", 
-      "Don't count the days, make the days count. - Muhammad Ali", 
-      'Everything you can imagine is real. - Pablo Picasso', 
+      'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)',
+      "Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)",
+      'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)',
+      "Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs",
+      'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)',
+      'Why join the navy if you can be a pirate? - Steve Jobs',
+      'Innovation distinguishes between a leader and a follower. - Steve Jobs',
+      "Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs",
+      'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs',
+      "We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs",
+      "Things don't have to change the world to be important. - Steve Jobs",
+      'Your most unhappy customers are your greatest source of learning. - Bill Gates',
+      'Software is a great combination between artistry and engineering. - Bill Gates',
+      "Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates",
+      "If you can't make it good, at least make it look good. - Bill Gates",
+      "If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)",
+      "I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison",
+      "If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)",
+      "Don't count the days, make the days count. - Muhammad Ali",
+      'Everything you can imagine is real. - Pablo Picasso',
       "In three words I can sum up everything I've learned about life: it goes on. - Robert Frost"
     )
 
@@ -11982,8 +11982,8 @@ function Send-Packet {
 
   PROCESS {
     $packet = New-Object System.Net.Sockets.Socket -ArgumentList (
-      [System.Net.Sockets.AddressFamily]::InterNetwork, 
-      [System.Net.Sockets.SocketType]::Raw, 
+      [System.Net.Sockets.AddressFamily]::InterNetwork,
+      [System.Net.Sockets.SocketType]::Raw,
       [System.Net.Sockets.ProtocolType]::$Protocol
     )
 
@@ -14831,8 +14831,8 @@ Pop-Location
 # SIG # Begin signature block
 # MIIYpQYJKoZIhvcNAQcCoIIYljCCGJICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbWCISwCpQp6HXhbDJzPYZX9H
-# qyegghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhIiFI8gidXNykksYPssWBq93
+# qFagghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -14943,22 +14943,22 @@ Pop-Location
 # A1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczRR
 # gFwwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwxCjAIoAKAAKECgAAwGQYJKoZI
 # hvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcC
-# ARUwIwYJKoZIhvcNAQkEMRYEFP1yvhReU5NHwQfJ6tV+EUVkHgvgMA0GCSqGSIb3
-# DQEBAQUABIIBACRZDzaqb/9M8JcWhWlNMhwc2sdriIij/ZLGOJFL3lqlBJbrZZ/Q
-# Vg+f3WbrVoN/cuOD7yqCJHLsQh7h7/4Ulq1CYogKv/B4M7Q8VEW/TRl4AFep/RJT
-# 3a+4t5OVWj7MOa3ZwfH5Mj2IH9956khUv3DeBXJpQ6/JbwSGcPqi9KzEsE7vrJ9a
-# 7LP0c733pJaZd9dytwjRqVOtSaqMbXMcvVZdoJlmEuZ+xnSoVVE9DXNORyL5ZSbE
-# w32x7G/jmZt30Hx9PSX9saHnojuLdW8MUx7ooT2/4n6wvGi3vrXiIPwULk5EncPx
-# ItFF9obmcnZwC3bg8hZ2gGOENrbZ0nFt2COhggILMIICBwYJKoZIhvcNAQkGMYIB
+# ARUwIwYJKoZIhvcNAQkEMRYEFJH0/N3DdhJNPx9DLIpjXzTNytM1MA0GCSqGSIb3
+# DQEBAQUABIIBAIdLc1pBvzpd17pA6OXrjdt8XnzG5ZfVhFV2mNkaDrHwlK1035v5
+# 04LtoiEswzSoxxUioHtXRl7z6xXcL0B3v1b261ht2Tyhy6Y4Y2io8GkBgK6qyAGa
+# WFuGaQVRhvhipxUajI9fh/svd0doQIkYz/sR/TFmy9E7F0r+H3SJSIYvGsBWrxe/
+# FNBbFMdGvAV31qKXg72+J83xtYV82JICxA6W4Tq4NjPG08Raz5RfkeoX6yu6B1zr
+# QvjpcREvZlz1TPntnNC00Ex3FyqS6tLPguspxg6J3bGeO+T6KUNQX8OxTx/ir/oq
+# LihiS9FKJNPnNqp5BhiV0pwno18y4Bf8snKhggILMIICBwYJKoZIhvcNAQkGMYIB
 # +DCCAfQCAQEwcjBeMQswCQYDVQQGEwJVUzEdMBsGA1UEChMUU3ltYW50ZWMgQ29y
 # cG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFudGVjIFRpbWUgU3RhbXBpbmcgU2Vydmlj
 # ZXMgQ0EgLSBHMgIQDs/0OMj+vzVuBNhqmBsaUDAJBgUrDgMCGgUAoF0wGAYJKoZI
-# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTgwNTU2
-# WjAjBgkqhkiG9w0BCQQxFgQUV81BNZTAXZRwXj+pZlanetXVAaowDQYJKoZIhvcN
-# AQEBBQAEggEAElHLobSnJ+BX0QbKiA/nPJJ7KNjj2Ju1r3DZfRfG8osVwCwKUMKe
-# rSi/llN247IJM1hvNFgIGa6y2rM2HP/gms+pnA7sMqii1a9aM2zr7n3i14h2hNB2
-# Cf6WU6R6M3k9G8gnuNZpqnjlQKvB8mrcSHkv+J6SqcEP3BZJ7XcJKeOVOCanANeb
-# WKKWNPLg3deRBIHh+rNoAGdMk5fe36/zxLHTfxE52jL/GWUMmtNA4P0ObnGWyZAQ
-# t1yJzsumZ9AxEgq2oZP0c+HofE3FA9PAbu7UF83qMN6TKAEZleamxzpbBomsRgXx
-# 9/edYPrT0UzeaJm3RbskVth6p7LkudDPFw==
+# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTk1MTI2
+# WjAjBgkqhkiG9w0BCQQxFgQUdiTpqRfwh6Uo0ohx6Cr2B+jOFhwwDQYJKoZIhvcN
+# AQEBBQAEggEAmoPTFFTAb4UKhF12YOvz0loZz6cXCa/DB2jO92RsUsXYoP+6Znh4
+# 4q5Ww9MW6gLDzo2XN/a5icnynt9n7ijJnPxIYK6LR0ccIcWIKd+04yMJo+jFdlDU
+# pOyJ1PY5HUdxu/QjGzGfEmvIEsJv4jZ3fIS8SHLweNbee4aZU+i8TEsiSyI/x4qN
+# nwKGRKqEku+2bNgvVSXn70aMPX6KxwenSVQfV3I7oYmcItMAxRDTiX+tjfuMQts3
+# iZrOpy8Jg++OrSsIgYziC/Gu/0MbQf5XNewhcsCLtuK+Eir+W7+NSZHJlHW2xXFU
+# 6Q7caRhDT4l8tRzBiHqXmqgOirDiFtkVCg==
 # SIG # End signature block

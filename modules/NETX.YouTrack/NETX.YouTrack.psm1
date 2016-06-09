@@ -26,7 +26,7 @@
     BuildNumber = "1.2.3.0"
 
     modified by     : Joerg Hochwald
-    last modified   : 2016-04-25
+    last modified   : 2016-06-09
 
     .LINK
     NET-Experts http:/www.net-experts.net
@@ -227,7 +227,7 @@ function Initialize-YouTrackConnection {
   BEGIN {
     # Does we have a URI set?
     if ($YouTrackURIGlobal) {
-      Set-Variable -Name 'YouTrackURI' -Scope:Global -Value -Value $($YouTrackURIGlobal)
+      Set-Variable -Name 'YouTrackURI' -Scope:Global -Value $($YouTrackURIGlobal)
     } elseif (-not ($YouTrackURI)) {
       Write-Error -Message 'The URL is mandatory!' -ErrorAction:Stop
 
@@ -300,7 +300,7 @@ function Initialize-YouTrackConnection {
 
         # Save the Session as persistant info for all other calls
         if ($YouTrackWebSessionTemp) {
-          Set-Variable -Name 'YouTrackWebSession' -Scope:Global -Value -Value $($YouTrackWebSessionTemp)
+          Set-Variable -Name 'YouTrackWebSession' -Scope:Global -Value $($YouTrackWebSessionTemp)
 
           # Remove the temp variable
           Remove-Variable -Name 'YouTrackWebSessionTemp' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
@@ -362,7 +362,7 @@ function Initialize-YouTrackConnection {
 
     # Save the URI for other calls!
     Remove-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Set-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Value -Value $($YouTrackURI)
+    Set-Variable -Name 'YouTrackURIGlobal' -Scope:Global -Value $($YouTrackURI)
   }
 }
 # Set a compatibility Alias
@@ -3233,8 +3233,8 @@ Pop-Location
 # SIG # Begin signature block
 # MIIYpQYJKoZIhvcNAQcCoIIYljCCGJICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoYdceYqC4C7OzquVMHpwMY/4
-# C2SgghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUh9gyGnSIfyz/65FSMudHsNqs
+# 6KmgghPNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -3345,22 +3345,22 @@ Pop-Location
 # A1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczRR
 # gFwwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwxCjAIoAKAAKECgAAwGQYJKoZI
 # hvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcC
-# ARUwIwYJKoZIhvcNAQkEMRYEFF3kUl+f88+9fi9Y6yewi49Ltwz9MA0GCSqGSIb3
-# DQEBAQUABIIBAGEbhcn6efnHO1BiG7sJESGj9OTW5/JXs0TeiHoZ7hp8zwCXSuKY
-# tuLgb735U71J9C8R5sG3xAktd4QaMLOqorBfjYSAIZp+hkayWm4Lbf4w80au7uMR
-# iEJAHQcEMUxhPTH6gsNcEMOppu3TY6O7b3pvyp/Vxn7+SD2CVHFyv6jDxzGMef55
-# l0vt6syETpcR/IvrAqSo6uY/tT2rWCQ+8PLtdNY+vRx9yf8nR0Ss2ZW/RIxy6+XS
-# Nsl7zRfmPYFyHVLjD+k6weX5LYXROBE7f0HvbefgUApvlxLKup9ZV+9Ai9I5gkYH
-# krGulmQa1B1ThKi8H6Pl4hjpE7hSfhTXa8mhggILMIICBwYJKoZIhvcNAQkGMYIB
+# ARUwIwYJKoZIhvcNAQkEMRYEFBT77fg5ExGulhcDx6lUwEleweCvMA0GCSqGSIb3
+# DQEBAQUABIIBAFqEy5BCAk6htxOKW/TfaxNm341Z7WGunMpXqF8JIaVjIsIfDGNU
+# vxWio4XjdK4VJblBYHZwp1+Cc98LvryrpwQwIOLyxaTg4EOc8wYUsw3aLUEqWGbu
+# 1Xcy5+PYZiuGOZ5dp6Qgkzm56hCPwyOYVslEGN/CBGLNzC4YSHDy3s+2NJGoA1d/
+# agW6iHfFBtloTi7MSPn1X5b2KFeXe1tKbXVdrX1/Q7TBeEM06CYGVf5GQ3An0X1U
+# Y3CVZFeLIGch1R+WYEZQkPSjsfasFJ8NE08uLE5+2LaK5JynxtBLj87jsE3M+xVT
+# 2hOKrd6DqNGuO1TxfZKKswLH5QmB1HvdVKShggILMIICBwYJKoZIhvcNAQkGMYIB
 # +DCCAfQCAQEwcjBeMQswCQYDVQQGEwJVUzEdMBsGA1UEChMUU3ltYW50ZWMgQ29y
 # cG9yYXRpb24xMDAuBgNVBAMTJ1N5bWFudGVjIFRpbWUgU3RhbXBpbmcgU2Vydmlj
 # ZXMgQ0EgLSBHMgIQDs/0OMj+vzVuBNhqmBsaUDAJBgUrDgMCGgUAoF0wGAYJKoZI
-# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTgwNTQ4
-# WjAjBgkqhkiG9w0BCQQxFgQUShcfEF9dGdbnCzir5zfgvD0VYuAwDQYJKoZIhvcN
-# AQEBBQAEggEAA3ygB+Ye5jDPLjPkJR80Prc4m8BkXLfIzHqsBcuUkudEezvDHLvl
-# QsRBoN9oFXDjvaFaoE/RkhpliB+bFaZ2+fyffz4D/l1kL+97MMlRqRkErblyeN6h
-# 5ZhpUBtGi0DiHuosjYY/zhopkBXzYnqdhC8A34wDt+ZRHgiBD/fy6s/4GBT6z05x
-# JjuvRkT6bHVeTPs2JNFxCLGSygKBfETPQNTTS/loLzcHz5eDdCxJ/7wVnsbFc9l9
-# N+HanrPABG+jI4Zkc0/E2xLH5R2/sHeNn3Z221eh1edLSJidgLxhH4AVEy1fsfMd
-# YMqCXz/PjhdKE7S9iaPrfnbogW8OkcXHsQ==
+# hvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwNjA5MTk1MTE3
+# WjAjBgkqhkiG9w0BCQQxFgQUfnA5P2Lr4CMZ7aklPfGul7SmYlcwDQYJKoZIhvcN
+# AQEBBQAEggEAH9zeFQhOI9t/aiBLJh+TN47k34+xfwhUGxLHSgYCwxUcv2vFCMZX
+# ccqNRgGeDnRd38wQxFdWBVzV6qlgr0cAevaLb2YZ+6QWOyfkpFMTrIvbeVSYSX9N
+# jS1vZ9Gp5S+QZ/1wjzOmjf2YFDCJYRr39IGfqQNG3CKV364reUgQiJFqfJSBea2p
+# wNcUqFs4zyL2xCQEX0vw/Y/qGLj21AxrZuTq2URw60GO9XwMhSVTF9wwJA9X4PVN
+# IUg8G7+3vfkVKwXJSVW7eyszPwiugDcNZhRS9l/rADMOLJ2v533Yfj2ORnYhvOpJ
+# agYX7OmrUHfkACtoNwGZtcsslkwk8olVRQ==
 # SIG # End signature block
