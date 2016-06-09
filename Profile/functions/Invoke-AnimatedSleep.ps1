@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,124 +14,124 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-AnimatedSleep {
-<#
-	.SYNOPSIS
-		Animated sleep
+  <#
+      .SYNOPSIS
+      Animated sleep
 
-	.DESCRIPTION
-		Takes the title and displays a looping animation for a given number of
-		seconds.
-		The animation will delete itself once it's finished,
-		to save on console scrolling.
+      .DESCRIPTION
+      Takes the title and displays a looping animation for a given number of
+      seconds.
+      The animation will delete itself once it's finished,
+      to save on console scrolling.
 
-	.PARAMETER seconds
-		A number of seconds to sleep for
+      .PARAMETER seconds
+      A number of seconds to sleep for
 
-	.PARAMETER title
-		Some words to put next to the thing
+      .PARAMETER title
+      Some words to put next to the thing
 
-	.EXAMPLE
-		PS C:\> Invoke-AnimatedSleep
+      .EXAMPLE
+      PS C:\> Invoke-AnimatedSleep
 
-		Description
-		-----------
-		Will display a small animation for 1 second
+      Description
+      -----------
+      Will display a small animation for 1 second
 
-	.EXAMPLE
-		PS C:\> Invoke-AnimatedSleep 5
+      .EXAMPLE
+      PS C:\> Invoke-AnimatedSleep 5
 
-		Description
-		-----------
-		Will display a small animation for 5 seconds
+      Description
+      -----------
+      Will display a small animation for 5 seconds
 
-	.EXAMPLE
-		PS C:\> Invoke-AnimatedSleep 10 "Waiting for domain sync"
+      .EXAMPLE
+      PS C:\> Invoke-AnimatedSleep 10 "Waiting for domain sync"
 
-		Description
-		-----------
-		Will display "Waiting for domain sync " and a small animation for
-		10 seconds
+      Description
+      -----------
+      Will display "Waiting for domain sync " and a small animation for
+      10 seconds
 
-	.NOTES
-		Based on an idea of Doug Kerwin
+      .NOTES
+      Based on an idea of Doug Kerwin
 
-	.LINK
-		Source https://github.com/dwkerwin/powershell_profile/blob/master/autoload-scripts/vendor/sleepanim.ps1
-#>
+      .LINK
+      Source https://github.com/dwkerwin/powershell_profile/blob/master/autoload-scripts/vendor/sleepanim.ps1
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 1)]
-		[int]$seconds = 1,
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 2)]
-		[string]$title = 'Sleeping'
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+    Position = 1)]
+    [int]$seconds = 1,
+    [Parameter(ValueFromPipeline = $true,
+    Position = 2)]
+    [string]$title = 'Sleeping'
+  )
 
-	BEGIN {
-		$blank = "`b" * ($title.length + 11)
-		$clear = ' ' * ($title.length + 11)
-		$anim = @('0o.......o', 'o0o.......', '.o0o......', '..o0o.....', '...o0o....', '....o0o...', '.....o0o..', '......o0o.', '.......o0o', 'o.......o0') # Animation sequence characters
-	}
+  BEGIN {
+    $blank = "`b" * ($title.length + 11)
+    $clear = ' ' * ($title.length + 11)
+    $anim = @('0o.......o', 'o0o.......', '.o0o......', '..o0o.....', '...o0o....', '....o0o...', '.....o0o..', '......o0o.', '.......o0o', 'o.......o0') # Animation sequence characters
+  }
 
-	PROCESS {
-		while ($seconds -gt 0) {
-			$anim | ForEach-Object {
-				Write-Host "$blank$title $_" -NoNewline -ForegroundColor Yellow
-				Start-Sleep -m 100
-			}
+  PROCESS {
+    while ($seconds -gt 0) {
+      $anim | ForEach-Object -Process {
+        Write-Host "$blank$title $_" -NoNewline -ForegroundColor Yellow
+        Start-Sleep -Milliseconds 100
+      }
 
-			$seconds--
-		}
-	}
+      $seconds--
+    }
+  }
 
-	END {
-		Write-Host "$blank$clear$blank" -NoNewline
-	}
+  END {
+    Write-Host "$blank$clear$blank" -NoNewline
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU45aYe+foqPC0vcvOae0axIw6
-# 6/ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4QVYPR6+DqbbbNbIXlXZLybE
+# GTOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +274,25 @@ function global:Invoke-AnimatedSleep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTfKxgGwNPW1ihHlLU1BX5weDDcFzANBgkqhkiG9w0B
-# AQEFAASCAQATLt3cYRZ8HSMAz5oVL3omT0R2gLwBh5cwXhxTkXLfz8rxLXPwrPpt
-# Gn9zIjnltD+3VxIQOt+SkpRoYZGJVx+TOFaaOLlAkoii7eM5ha9PsC5MGAkdlbVR
-# 8tzmY9dQkj6P6qQ2sknF42oaiolSobFt4AEZ9cXRZKBjSxmrcMtfY6dK0rUqbp28
-# wuo2K8Jhcvd5pFnezvaWX7PlzPjNgin3yXjCVUe+SMcc22HQUqCEqc9KiHJRXEs+
-# //l9QpgHYoHyCsSdjkisWErzk/KlcIs5evJaANqxXkXR6hAAUW7gD2EWuujk14bC
-# PxtW4FKZxZD6PWXnzcVsm/Eb51boDVI4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRAq7DKeOSINkH/ew5z5xOh4eiy5TANBgkqhkiG9w0B
+# AQEFAASCAQB7g2tdPnLx/dg4JYwDq2ZI6E2k0/1QtzDvqW3G6BmFfH+s0r0vQZSW
+# YOrKGaIG3st7n3luinqIW8wgguX0vLAi8vrzgrHc0hDchec5jZCgV6eAUk25PcjL
+# RqjyCqy11LEcEb06rMYwl0NtdIdPKPjYo6SWVkMREjjCE2hstU6+IuVRxMgNBElz
+# KVbrR6WYuy9af5H887QSHTkhLqTvlJ6B/3N/7ryITwpgnEYuE6AjQqjL9UQhcY5e
+# 6aKvQCuWwbkGlwR7+02CHiiW/RgvR5tGHRvVgrLsNm6q9vlX7luFIjllImm9VN2+
+# jg8F7DRRcaN7mAy87J8kU3I8xGcDIumNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0MFowIwYJKoZIhvcN
-# AQkEMRYEFC+IRu/VkuD9LpFarlei79a9OtlsMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0N1owIwYJKoZIhvcN
+# AQkEMRYEFNSZewlyuM5390L/9qsdjiKzZ+1QMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAj8g0eCVbT5BYMMfJxtxyowTo3U01zTdg3iBZUpKlvV4Fg
-# 9ZFR7v0OsS65HIe2ggkUzlhsDM3bLij5WMILEN9QYWKrQX72p3jq1uXzd0XGwZ70
-# NXQYUpYbe4zuzzJ0VWVB9fZ9qXD+DMwsI3MBwlOk03sKf/+0WwTNrdYfudHvEgeI
-# TIqJ+tE0HsMFFci6rSx62f1TfwOB+d7llehTIRPQKXkyEecLUCLfBUjatRB3Rjuh
-# BCUlFzaQZeOS6Lf+LHd1wKkjKLNzttOXrAX6xDI4pXwYNt+q0GchBfj+Le+PydY3
-# 8YCaUkcz2IUP8v7rCR5RN6b/liCqbAhj65iT8N0h
+# hkiG9w0BAQEFAASCAQBCViAFUjI8xvlwMUmnc9qgodZ2AXKdU10H8Zi+DT4r8ZBG
+# wit4iQCGaq58XJo8i2zzFMrOK7oM+Osw1GU4AxbE1A8Kwfrq17h0i5PZ3VC+ddEN
+# T3mslAKgIHoLa6Gcd35E2FAZyq0sC5ethepeIn9H0XNEuDBMexZUw8OwnL2yt8Mt
+# lNHe40odZvZop9y6dteqMNfo0rNDasVqEXATADwcT3K0ozanBzyc5Ek+pb/+pd2q
+# viJcDLUYtF+jKlzAsSyoT+Xc7bu0SWUfoI/OxEdmAhZ6d+QDxAzcntNqdeSy5u7r
+# rGYfASVAtpk33IQ6Z0DSXkgyXYs9VJkTWC2bPVIt
 # SIG # End signature block

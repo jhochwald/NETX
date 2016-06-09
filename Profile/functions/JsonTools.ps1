@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,124 +14,124 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-MaskedJson {
-<#
-	.SYNOPSIS
-		Masks all special characters within a JSON File
+  <#
+      .SYNOPSIS
+      Masks all special characters within a JSON File
 
-	.DESCRIPTION
-		Masks all special characters within a JSON File.
-		mostly used with C# or some other windows tools.
+      .DESCRIPTION
+      Masks all special characters within a JSON File.
+      mostly used with C# or some other windows tools.
 
-	.PARAMETER json
-		Regular Formated JSON String or File
+      .PARAMETER json
+      Regular Formated JSON String or File
 
-	.EXAMPLE
-		Get-MaskedJson '{"name":"John", "Age":"21"}'
-		{\"name\":\"John\", \"Age\":\"21\"}
+      .EXAMPLE
+      Get-MaskedJson '{"name":"John", "Age":"21"}'
+      {\"name\":\"John\", \"Age\":\"21\"}
 
-		Description
-		-----------
-		Masks all special characters within a JSON File
+      Description
+      -----------
+      Masks all special characters within a JSON File
 
-	.NOTES
-		Additional information about the function.
-#>
+      .NOTES
+      Additional information about the function.
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Regular Formated JSON String or File')]
-		[System.String]$json
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Regular Formated JSON String or File')]
+    [System.String]$json
+  )
 
-	PROCESS {
-		$json -replace '"', '\"'
-	}
+  PROCESS {
+    $json -replace '"', '\"'
+  }
 }
 
 function Global:Get-RegularJson {
-<#
-	.SYNOPSIS
-		Converts a C# dumped JSON to regular JSON
+  <#
+      .SYNOPSIS
+      Converts a C# dumped JSON to regular JSON
 
-	.DESCRIPTION
-		A detailed description of the Get-RegularJson function.
+      .DESCRIPTION
+      A detailed description of the Get-RegularJson function.
 
-	.PARAMETER csjson
-		C# formated JSON (The one with mased characters)
+      .PARAMETER csjson
+      C# formated JSON (The one with mased characters)
 
-	.EXAMPLE
-		Get-RegularJson '{\"name\":\"John\", \"Age\":\"21\"}'
-		{"name":"John", "Age":"21"}
+      .EXAMPLE
+      Get-RegularJson '{\"name\":\"John\", \"Age\":\"21\"}'
+      {"name":"John", "Age":"21"}
 
-		Description
-		-----------
-		Converts a C# dumped JSON to regular JSON
+      Description
+      -----------
+      Converts a C# dumped JSON to regular JSON
 
-	.NOTES
-		Additional information about the function.
-#>
+      .NOTES
+      Additional information about the function.
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'C# formated JSON (The one with mased characters)')]
-		[System.String]$csjson
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'C# formated JSON (The one with mased characters)')]
+    [System.String]$csjson
+  )
 
-	PROCESS {
-		$csjson -replace '\\"', '"'
-	}
+  PROCESS {
+    $csjson -replace '\\"', '"'
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNhOa3njgmtcUfIUMtQg1eyat
-# mLKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP+HmC/gQOTOZDjZKDJDrRXpf
+# JR2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +274,25 @@ function Global:Get-RegularJson {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTXK17Ufv15r1sSVIlZJbVppsy9ODANBgkqhkiG9w0B
-# AQEFAASCAQALQeIa5TXHphDV0nE+tER2X3tlHljTpj/vMn/iYu96uj3hxzTCkGzT
-# 2Sm4sPWHPWP8euVnbW9tG/mrALHv7+IfMKyMkKNfobJyrEEPIzUXcz1mo7j8jLBe
-# +IF5gqkpxNMcK1UXjOjSwlMltEaKmUP9CsWWrxhqOTYUrnH3YZLE7tyTcHvggJTt
-# cDtcur+RgQ7pMm6DVYqqSg6ujBL3YwugPvTibjNVnVgYO9k1DCWFs+OPzl3IZrlr
-# J22CwZwiMpxRffpYNb1BCXEjE1EFVi4V9GHt4hK+gjeijRUfZ74WejRGqp+RlUhg
-# WttB4xfJZHJ1RBmrxtu9PA+2LDv6i0YCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBREK7ppQ/evmCL891UJD3KG4cgmPzANBgkqhkiG9w0B
+# AQEFAASCAQBTOmOEViQZoL++oEGv7Ykpi8uTEd6Bgp5LL52Bb0J/Ed1HW7mVDe8d
+# h8WKYEbW1kTnHBhyrTeXPCcpS5JuAdmLjzrpIja1V8feEdgjBU53ljEFf97IJWIz
+# +MbGCFCXjwlIArAQHF0WUnLCZBdrycv460XURcaL8X0J+/aWH05EdUgELT8KFaVN
+# +0Fj7fcYPiohWpR00wo9jwBOjZuKNfu9OOfWZ3kYh9gfGIEpRNnBfiTCy7x3ilD9
+# JS/1jYBbR0y4sbhBM5PmqzXWLO65SaK6VUZyGeVWqAID5HjAJ9KiXgiNrHZQcDfD
+# /CUmwUtM/X7nQg5ldp2kNGKilm2OO/VGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0M1owIwYJKoZIhvcN
-# AQkEMRYEFGWM1fesjvhQS+bz0SV9EUMxkXkFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1MVowIwYJKoZIhvcN
+# AQkEMRYEFDrxukah0TbSjGjfKUhGuwOx4D/iMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB5m3q2exQUAO9EyEJ356vgCg/e2CuAI7j96BhEfh9JlTPL
-# 47nPrtGD960TuzRB/fZO01ca5fHLoP4eUvmHwAX/+sUK9kjAxcO4zIuZjJRZ/GOE
-# diEnhzrFEMGt6VHcHnVL33PiJpTJPYwW0Sp9I0s6+BNIZTKAI8lF/qdwvo07WDXR
-# 53eXMppJROcIRHwtck5lM9eOtVViATGFOUo+Wge27wfFQGcS3ueBbwdBmExJSxLZ
-# P3+qtykXfGVo7bJuzsZystZan8hyeQM12Jy5EhTJjL9FFf2oIp4D1ZUKeLH/3C+h
-# qMMWxkYR3qSftLZ04wtoDNO1XIBt7sLdbbKXtD4Y
+# hkiG9w0BAQEFAASCAQCC3n7E9VoU5eoFN2F9PGhSD1FEdjNG+12cN1qRwJLXlrPf
+# ozPgiHbPpUWn476lVDXIUxWjwKz8rOuMz6ZwkKo1n3WElkjeDQ7R/d6vVZTtJUCz
+# p2POIZng33cu1WB3u3NiQise+2WGg5p5hoIAiOrGygov58wz6ZxCA2cmZxDBZefS
+# g07irq6vKv4RLN4xMnbQHoDMVEYpHY3FL9oDg3Ysir/wR9NoGSUUSFMa75535G1w
+# iP76H+QhTfziQpwCuQgkSjTE0UWBDML8auiaPy/abgeL2ee0B3++edGfozJogbyD
+# a5PrNKXhx9cB9XbWpxbA/iusfkZtomXYE9uytA79
 # SIG # End signature block

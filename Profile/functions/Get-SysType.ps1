@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,129 +14,123 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-SysType {
-<#
-	.SYNOPSIS
-		Show if the system is Workstation or a Server
+  <#
+      .SYNOPSIS
+      Show if the system is Workstation or a Server
 
-	.DESCRIPTION
-		This function shows of the system is a server or a workstation.
-		Additionally it can show more detailed infos (like Domain Membership)
+      .DESCRIPTION
+      This function shows of the system is a server or a workstation.
+      Additionally it can show more detailed infos (like Domain Membership)
 
-	.PARAMETER d
-		Shows a more detailed information, including the domain level
+      .PARAMETER d
+      Shows a more detailed information, including the domain level
 
-	.EXAMPLE
-		PS C:\> Get-SysType
-		Workstation
+      .EXAMPLE
+      PS C:\> Get-SysType
+      Workstation
 
-		Description
-		-----------
-		The system is a Workstation (with or without Domain membership)
+      Description
+      -----------
+      The system is a Workstation (with or without Domain membership)
 
-	.EXAMPLE
-		PS C:\>  Get-SysType -d
-		Standalone Server
+      .EXAMPLE
+      PS C:\>  Get-SysType -d
+      Standalone Server
 
-		Description
-		-----------
-		The system is a non domain joined server.
+      Description
+      -----------
+      The system is a non domain joined server.
 
-	.NOTES
-		Wrote this for myself to see what system I was connected to via
-		Remote PowerShell
+      .NOTES
+      Wrote this for myself to see what system I was connected to via
+      Remote PowerShell
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Position = 0,
-				   HelpMessage = 'Displays a more detailed info')]
-		[Alias('detail')]
-		[switch]$d
-	)
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Position = 0,
+    HelpMessage = 'Displays a more detailed info')]
+    [Alias('detail')]
+    [switch]$d
+  )
 
-	BEGIN {
-		# Cleanup
-		$role = $null
+  BEGIN {
+    # Cleanup
+    $role = $null
 
-		# Read role
-		$Role = ((Get-WmiObject Win32_ComputerSystem).DomainRole)
-	}
+    # Read role
+    $role = ((Get-WmiObject -Class Win32_ComputerSystem).DomainRole)
+  }
 
-	PROCESS {
-		if ($d) {
-			Switch ($Role) {
-				0 {Return 'Standalone Workstation'}
-				1 {Return 'Member Workstation'}
-				2 {Return 'Standalone Server'}
-				3 {Return 'Member Server'}
-				4 {Return 'Backup Domain Controller'}
-				5 {Return 'Primary Domain Controller'}
-				default {Return 'Unknown'}
-			}
-		} else {
-			if (($Role) -eq '0' -OR ($Role) -eq '1') {
-				Return 'Workstation'
-			} elseif (($Role) -gt '1' -AND ($Role) -le '5') {
-				Return 'Server'
-			} else {
-				Return 'Unknown'
-			}
-		}
-	}
+  PROCESS {
+    if ($d) {
+      Switch ($role) {
+        0 {Return 'Standalone Workstation'}
+        1 {Return 'Member Workstation'}
+        2 {Return 'Standalone Server'}
+        3 {Return 'Member Server'}
+        4 {Return 'Backup Domain Controller'}
+        5 {Return 'Primary Domain Controller'}
+        default {Return 'Unknown'}
+      }
+    } else {
+      if (($role) -eq '0' -OR ($role) -eq '1') {Return 'Workstation'} elseif (($role) -gt '1' -AND ($role) -le '5') {Return 'Server'} else {Return 'Unknown'}
+    }
+  }
 
-	END {
-		# Cleanup
-		$role = $null
-	}
+  END {
+    # Cleanup
+    $role = $null
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMHfBP/jXeKOGlPMStcOdhuoC
-# V5WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8VE5vlx+qQXPgDFniPWXruYS
+# 3E+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -279,25 +273,25 @@ function Global:Get-SysType {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQjNY88lPDacsDjGDYm/0o0ShDVRjANBgkqhkiG9w0B
-# AQEFAASCAQB+5P/1Pquo/vwRihwJBgf1ar+oHIc1Pcr0CxmFUiHKKN5zZ0t8EYN5
-# qRx1fwDp76gEy3AZqxUrDqvixnKl2sZOWbvY539EfsXUQZuxqUuMiraVrvnlYouB
-# T90Quy9qbIx6o6nMpBDLaz7hSd3O/ng7Ctjm2l/ILJ0Z1BR/iQReyg/HBGtMQzEL
-# bma7nNrVnSz9AtBVKtMS7BTPFFj61gsQMPjw0EvVuJmKkIkIBqosWLy5xp3CiR3r
-# 5U/lOO2oYMZgLtAt8inAY0XrRTLGUHzurOtaqVo1jzCifL1M/uWM01PNAaaU+AxZ
-# BCx23HpYoNxX/mqAI/cs12SJQww1OgMaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR1e2MtG8GTXlBDSXkrNcovGCxRXjANBgkqhkiG9w0B
+# AQEFAASCAQCbXLTv74cBqa1E2i3FlbozEneDZlqGwnNXTizl6ipTH0+IvZihnMO+
+# SBvHKVW3sLKVsE9FMGoRbX/2rP2qyy0ymtkoFr2EzQsBAuiJ43zVRZTUD+s33+2C
+# rsllyJ/BludMpJVAyic4BQ0nKMI+v+n3YcZeaFZPrZGCzywgFVKtwUiHtq9tdHjM
+# s8OWq0MlKvrkWZwp9v8sWyZ3ecrb8g5+QbVw/QmCapkq5bSzRZWFaf4Hb9j6V4tu
+# Bp2AJObTSPWb+pESeYqhCVGSp3gdMymvx56oJFyJJo1IGrTCkaC7KTsRQAY1L2/u
+# FbAY+h19jzINSHXEVIDAE0sjNSTq4kWVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzM1owIwYJKoZIhvcN
-# AQkEMRYEFINrZEI0y3aWBVorDIagIB1JAGYWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0MFowIwYJKoZIhvcN
+# AQkEMRYEFGPoYbXgQGJVNEDEKPd31bnHT7PLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQATOgjiVlm7QL8sYKLN9muQtw9aZ72TzgELprkgWxI31EeM
-# cmqcJHVr7dl0FRMlbW1K+liaxZJgg5mbziy8hd9ufqt4wG/uxcN3Nv4wHr/4z6O4
-# 35KkCUPZiqdttRj+sun5WUM8CZPlYfx5KS5p9i1KZ7P222SrIxZGaipEMZtgfA24
-# S140zJzYzXvo/MJ54TtAHN8uKnzKkRsi+CMIHkQNnvy7zuu5dSTBULERCZzL3Bfg
-# A4m7xjGA5pf16gRtxWvBvvdLYorarD3C2Fai8829N3jGKVnP3Ipjj5csD54byyqH
-# GnSJQ2S/pdUbuqsK5XIqx0pQESPuowqmH0oKj+is
+# hkiG9w0BAQEFAASCAQCUSqszx15nCvDmf3Fl8mcsWX6yy8B1tIzN8ro1zA+xDGH6
+# vKlP5YR/iNqHS+BHFeH3CDO0bpsV7GY1en42tgqPpAEVxyR0e4qGPh1N8LdD80wm
+# 42CYi2Fp7bU0HH0p9KkjiR3n7gxx9MgOY8DfG5OoVowlYA5QnEZaH3KaZK8drmWT
+# 4Ol5QIinKrpkXauFi7kYhsYEC6YeNxM2EEvjXIi/SzlteknJb+3KneDxnTWeguTW
+# Ady/f23n+sVbP+mhgtkU0fMpDQy5llniQaHXiAiy42jPDllRviKPcDFZWYK2sZdn
+# D+Oyb/zK1s2xZ5HJzJ+77+LiEo+sOMUwrwIPvfN7
 # SIG # End signature block

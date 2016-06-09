@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,168 +14,168 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:tail {
-<#
-	.SYNOPSIS
-		Make the PowerShell a bit more *NIX like
+  <#
+      .SYNOPSIS
+      Make the PowerShell a bit more *NIX like
 
-	.DESCRIPTION
-		Wrapper for the PowerShell command Get-Content. It opens a given
-		file and shows the content...
-		Get-Content normally exists as soon as the end of the given file is
-		reached, this wrapper keeps it open and display every new informations
-		as soon as it appears. This could be very useful for parsing log files.
+      .DESCRIPTION
+      Wrapper for the PowerShell command Get-Content. It opens a given
+      file and shows the content...
+      Get-Content normally exists as soon as the end of the given file is
+      reached, this wrapper keeps it open and display every new informations
+      as soon as it appears. This could be very useful for parsing log files.
 
-		Everyone ever used Unix or Linux known tail ;-)
+      Everyone ever used Unix or Linux known tail ;-)
 
-	.PARAMETER f
-		Follow
+      .PARAMETER f
+      Follow
 
-	.PARAMETER file
-		File to open
+      .PARAMETER file
+      File to open
 
-	.EXAMPLE
-		PS C:\> tail C:\scripts\PowerShell\logs\create_new_OU_Structure.log
+      .EXAMPLE
+      PS C:\> tail C:\scripts\PowerShell\logs\create_new_OU_Structure.log
 
-		Description
-		-----------
-		Opens the given Log file
-		(C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
-		every new entry until you break it (CTRL + C)
+      Description
+      -----------
+      Opens the given Log file
+      (C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
+      every new entry until you break it (CTRL + C)
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(HelpMessage = 'Follow')]
-		[switch]$f,
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'File to open')]
-		[ValidateNotNullOrEmpty()]
-		$file
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(HelpMessage = 'Follow')]
+    [switch]$f,
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'File to open')]
+    [ValidateNotNullOrEmpty()]
+    $file
+  )
 
-	PROCESS {
-		if ($f) {
-			# Follow is enabled, dump the last 10 lines and follow the stream
-			Get-Content $file -Tail 10 -Wait
-		} else {
-			# Follow is not enabled, just dump the last 10 lines
-			Get-Content $file -Tail 10
-		}
-	}
+  PROCESS {
+    if ($f) {
+      # Follow is enabled, dump the last 10 lines and follow the stream
+      Get-Content $file -Tail 10 -Wait
+    } else {
+      # Follow is not enabled, just dump the last 10 lines
+      Get-Content $file -Tail 10
+    }
+  }
 }
 
 <#
-	This is the former version...
-	Deprecated and will be removed soon!
+    This is the former version...
+    Deprecated and will be removed soon!
 #>
 function global:tail2 {
-<#
-	.SYNOPSIS
-		Make the PowerShell a bit more *NIX like
+  <#
+      .SYNOPSIS
+      Make the PowerShell a bit more *NIX like
 
-	.DESCRIPTION
-		Wrapper for the PowerShell command Get-Content. It opens a given file
-		and shows the content...
-		Get-Content normally exists as soon as the end of the given file is
-		reached, this wrapper keeps it open and display every new informations a
-		s soon as it appears. This could be very useful for parsing log files.
+      .DESCRIPTION
+      Wrapper for the PowerShell command Get-Content. It opens a given file
+      and shows the content...
+      Get-Content normally exists as soon as the end of the given file is
+      reached, this wrapper keeps it open and display every new informations a
+      s soon as it appears. This could be very useful for parsing log files.
 
-		Everyone ever used Unix or Linux known tail ;-)
+      Everyone ever used Unix or Linux known tail ;-)
 
-	.PARAMETER file
-		File to open
+      .PARAMETER file
+      File to open
 
-	.EXAMPLE
-		PS C:\> tail2 C:\scripts\PowerShell\logs\create_new_OU_Structure.log
+      .EXAMPLE
+      PS C:\> tail2 C:\scripts\PowerShell\logs\create_new_OU_Structure.log
 
-		Description
-		-----------
-		Opens the given Log file
-		(C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
-		every new entry until you break it (CTRL + C)
+      Description
+      -----------
+      Opens the given Log file
+      (C:\scripts\PowerShell\logs\create_new_OU_Structure.log) and shows
+      every new entry until you break it (CTRL + C)
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'File to open')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('FileName')]
-		$file
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'File to open')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('FileName')]
+    $file
+  )
 
-	PROCESS {
-		# Is the File given?
-		if (-not ($file)) {
-			# Aw SNAP! That sucks...
-			Write-Error -Message:'Error: File to tail is missing...' -ErrorAction:Stop
-		} else {
-			# tailing the file for you, Sir! ;-)
-			Get-Content $file -Wait
-		}
-	}
+  PROCESS {
+    # Is the File given?
+    if (-not ($file)) {
+      # Aw SNAP! That sucks...
+      Write-Error -Message:'Error: File to tail is missing...' -ErrorAction:Stop
+    } else {
+      # tailing the file for you, Sir! ;-)
+      Get-Content $file -Wait
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1NrO9OrvuDfJ3+0YEYdL6T6n
-# EPugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUu78QjLw+RknLyMCAuPNrmgqo
+# 1lqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -318,25 +318,25 @@ function global:tail2 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTygR9+0sB3VCzkYacMMN2VZv8UHzANBgkqhkiG9w0B
-# AQEFAASCAQBPri/hTMaVwfWsrwCn+MRiZ7KspRohAjNnAB/Vqr1kAidoJ/+cTaBw
-# L6AGUuUNtrjolbtWbNWtohTVLfWIGii4+VyiwzpjtPQG11TQJaSY9YvJavmq54tx
-# mLlOHXuSq3CTQYG2yufwVSih+2YcVOAS56QHeaoyoBCoQ6bfLTdwrFPxLxp0e8O6
-# pIjSZtW9jf4dHiU9SIG6MkQOI9wVsu5cjHsw6a7rMPbuOoD3LTE+NGb4rdSYjsc+
-# CztnMml6p0/2frkUUby92c5Qs/azN2NCx4YXXxijiGwZDZwKudm7me3qeht+Lbnb
-# RnBsSfqOzj8uj7mrRi9usENJewlWwcqboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTXamj6XhlCr2rXazC8AEkG9oRT1zANBgkqhkiG9w0B
+# AQEFAASCAQBPyqmklWmDh6u5pW1Bmb41gApVb1ca5NBVFddvgyWZvjgX57+nd61S
+# ZWGhX/LbWCEFckof4hItGCCJqZoqzN5yz4Rch8OM1PPbU5GU7JWXBGugANFfwFZ2
+# xHyZYpfTZmGOKCo//vQbmadSksulaawy8+zYlVhI6hoQ3bgqVjabIdaX38ZQFxeA
+# zlTdoknXkDTD3aKuHUe8r76SzMWDETJhmoB/2xPJHjCrR+JrDeSdHIlUsm8a+0GU
+# di00cl/hRLwrQpCPJoFXtgESVCi7qSZWrc8yU7/jAMzu8MJyC1E2N/aybUryb2IB
+# d4zubZoKXzrFy8HMmAtz78DVycPzayk7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1OVowIwYJKoZIhvcN
-# AQkEMRYEFPxRBw1y2mwsCdOX0kMI0IvgxjgCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwNlowIwYJKoZIhvcN
+# AQkEMRYEFA2AO6w139yFisoOjOS5QzIiE1gtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA0RKmv1fudCaPWTkkdAxmbfKuWPMvGlmWUbD5ypGuPjuUt
-# ZPod9OGq+ggriejkMKeoAOw2/eIP/Y2tKd8SoXfMlrxsnBLDisZ7XoIqwnnLL+Ud
-# iZ755zw/iXvbZEellVSfJBUTYehWMC8fY+gxKtNEdd+6YYMCrSp2xOlQo/VVgkff
-# xEYzx9MwooR8fSv2hOWIBwUhohMI+pA6GrzKeJ33V/nuZ5hAlW56WT92hPO7/aVA
-# V7H4Ei2adV6N61XXrLjuH01i57q/bubKQz0/71rVE8YWCjf3aRZLkq0kvB7gIyax
-# TYbOf12Jng4e+q+DXC3ExUkuqfl4lIKdjmqsdn/9
+# hkiG9w0BAQEFAASCAQB9JXfrlVIsBbneGG/4wSCSSSczmdKSpHACdWxYT4gWSqn+
+# AkWHKYnQOydqxortE4+UmiPk6UFOn7vGfakYB8VRNIbY4AuM3GZ5MrAwo+hw8M1b
+# KpnRqNwnm6ZjAAN9W3AfE34Zm7Q9BEPNzm3MNUq7P4kAkoJfM1sGuCysTAyo56AA
+# 1DKkA25OTFi4zQEsXIv7xn1xpWI1vtFo7RiXg5t4PXuQ2laYQXZAHmiFaCbZW8rz
+# njDX9NiFNbV3S4M7WF0tAyHpQVQrjcE4elkPmdlRfLRGKCjMMfY+RwkXDW+m9xIf
+# w5Pin5xzrVQpgYKDXa4Ui3+fpnEp1e+NFOB8/nFb
 # SIG # End signature block

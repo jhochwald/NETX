@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,84 +14,84 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-UUID {
-<#
-	.SYNOPSIS
-		Generates a UUID String
+  <#
+      .SYNOPSIS
+      Generates a UUID String
 
-	.DESCRIPTION
-		Generates a UUID String and is a uuidgen.exe replacement
+      .DESCRIPTION
+      Generates a UUID String and is a uuidgen.exe replacement
 
-	.EXAMPLE
-		PS C:\> Get-UUID
-		a08cdabe-f598-4930-a537-80e7d9f15dc3
+      .EXAMPLE
+      PS C:\> Get-UUID
+      a08cdabe-f598-4930-a537-80e7d9f15dc3
 
-		Description
-		-----------
-		Generates a UUID String
+      Description
+      -----------
+      Generates a UUID String
 
-	.NOTES
-		Just a little helper function
+      .NOTES
+      Just a little helper function
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param ()
 
-	PROCESS {
-		# Call NET function
-		[guid]::NewGuid().ToString('d')
-	}
+  PROCESS {
+    # Call NET function
+    [guid]::NewGuid().ToString('d')
+  }
 }
 
 # Set a compatibility Alias
-(Set-Alias uuidgen Get-uuid -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name uuidgen -Value Get-uuid -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTQsptyrIVGFV2ezH0B3sdZh2
-# U12gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUasYRNT5qb07XhmIQ5ZsXwDGD
+# naWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -234,25 +234,25 @@ function global:Get-UUID {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQiiQSEfr0hYgb4gyVwTWVjRuNR6zANBgkqhkiG9w0B
-# AQEFAASCAQAzQy8+qU96/8t08waC5K0Zn/hHgGJ8TLdP1g53ulsfp8ug0FnuNvbB
-# KO3gDGkh6XkWl1m5N1PVMQpmSx//QGcMAmQO0NASQwnKLVySbWKFmkmrp7vYxr1T
-# pCUKE6YT3iGDoLJ1LgefMCpzb7J8NqlgjsS0HwqIgIPx1Ww+lYDuHPrE1GWuE6Hn
-# u7Kxne2TjLV6Ju1y40IY4Cze5EzYN6biac+OHObwno7XOWRhwoqvlmck1nCAOoy4
-# SugBd2dGYHTamsKNKLx3vJttaOPStOEtOB+dfRee3e8AX3lZnTENWCclW8vr/rYV
-# TNvJHBf27UhgJcIaqH/1X1tsEYBQfs86oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBShHBRoTYzFf1J98fMSlzvnbcQ2JzANBgkqhkiG9w0B
+# AQEFAASCAQB2auPcEaZWuxCbCyWhmioU3/tL2bceJ0azlYOd9XtagnL57IgPDlzc
+# j6LuaTzKInOEIgbqbOb5BkxjzhoEUPTsLsLp6ztC9GPLv8DF9r0zpE/F73mMpmJ0
+# BGOXdzEJGLx2IuqrIlFzjUyMh/3o1XA/lpVxgJAb9aopx94gkMHfsaT+LbB6IZME
+# psOBVz8Fao0Y7POepXJoeIcwBFxitFnsYxZxAEZAyA26RaX0nr2aZbkfcB0tvRqD
+# nSWUXbDkDgWjvzBJYSXf51rv6jzDsaEA4mXGM7wFdrqNKBHnHxRRAEJXaCYYPpZb
+# ehENqHRqyv2g8Tn+lUyhMxhxeCl1Uub+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzNVowIwYJKoZIhvcN
-# AQkEMRYEFKmyZc7cWvZ/gP/+j+XwiW2YbVSQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0MVowIwYJKoZIhvcN
+# AQkEMRYEFEx1vl8ksIIdVcEQWzTdFT/UYLc9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCZbi7fEgwrjOn0mCVkKAhEFNNEw7fB0eXoCwN9eUJ7gMMt
-# DEah5pEu+RUCuqH8j8sryJcwHNZPsWyueGAT4XPNCe0NhWeclLOh0hmdToJnjSYc
-# G0BJRCeSdVGd8esqIhilvQ4dSC2bW10sAqlvB4dSew3dF0Haf+sOM69Jmbfgw/JC
-# Wi9asnTC0AHB3UuXi0GfPe4DLiyuDWHdllQlF0fXp2TXoApiZ64Na6xBwGRHbjr+
-# JwpQSsOkpfBbUxyJV0DsxdbcollbcIYiXs7gRWh27TxPS3NixnLLLT47eCQm7tdR
-# 7R0u6di/Qsd56zmsYqvcmjMiK8QCLFOgCpf8R8Dv
+# hkiG9w0BAQEFAASCAQB5IvwTVmVJGw8VjSHNhC3P0T3FtjSSTtA7QOwc9TFV5dnM
+# WqivxBb6Hw1Ijw2aT9bt49joxyuBGYnIY2za3Uk2rNt30GV+mtgm/Km0PvZASWvy
+# E/SOANATHroHfifee+KGdNLbM1lcdHf3VAnpputBHyEpw9fJSPpkwuktg8qQ61DF
+# KUw/t04DlWJuYFKjPyuyETegpvZTX7z4r3QyImFRdci5qWmBrfxwBc+BHzYYsnD8
+# cm4at2w9s6rlb3FrJcd2k1c0Zfxr++38ijp2c+McTPiSjXRQkF5iN3ou0uaMmwC+
+# dl5U6KYteaPq1y4PSq1anHFDFmc/2all4i6EBJMJ
 # SIG # End signature block

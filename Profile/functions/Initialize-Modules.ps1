@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,82 +14,84 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Initialize-Modules {
-<#
-	.SYNOPSIS
-		Initialize PowerShell Modules
+  <#
+      .SYNOPSIS
+      Initialize PowerShell Modules
 
-	.DESCRIPTION
-		Initialize PowerShell Modules
+      .DESCRIPTION
+      Initialize PowerShell Modules
 
-	.NOTES
-		Needs to be documented (Issue NETXDEV-23 opened)
+      .NOTES
+      Needs to be documented (Issue NETXDEV-23 opened)
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		# is this a module?
-		Get-Module | Where-Object { Test-Method $_.Name $_.Name } | ForEach-Object
-		{
-			# Define object
-			Set-Variable -Name functionName -Value $($_.Name)
+  PROCESS {
+    # is this a module?
+    Get-Module |
+    Where-Object -FilterScript { Test-Method $_.Name $_.Name } |
+    ForEach-Object
+    {
+      # Define object
+      Set-Variable -Name functionName -Value $($_.Name)
 
-			# Show a verbose message
-			Write-Verbose "Initializing Module $functionName"
+      # Show a verbose message
+      Write-Verbose -Message "Initializing Module $functionName"
 
-			# Execute
-			Invoke-Expression $functionName | Out-Null
-		}
-	}
+      # Execute
+      $null = Invoke-Expression -Command $functionName
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJyD24dZWTM8W4+TZ3yC6dIxy
-# is6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU666Lc4v1D+AgruNIeJ410m/9
+# w1qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -232,25 +234,25 @@ function global:Initialize-Modules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTsPbTshf5PqLOeYQyHrcXIVeSIOzANBgkqhkiG9w0B
-# AQEFAASCAQAFGHmPppxN74fFh8VqbvsjwOsZl7Ni2QNXKgEReYcj5+YBUPKYHHXc
-# fYGL5uzO8VIE+DowxuffHi4H9ELPvwYXymsHbNDlSC1Rt0lz8UiL71V8KKglCbLD
-# Mc2DycH9R/DgwxaLkVInkMXz/XskyoMn3VzRgJ1M0VjS1bZSXVg902CJTrEY2PY0
-# X3941NTUStrzSr/D6099GKJ7t7137OMjuFyrooMG9TnmpKK6XmUoXR3BC3FXwrdW
-# NBNAWzf58Rd6+Xo0Dqn/XWog4FS+DhhZ1o5Nyrz6epGDY73hGRmMjNTSdVOg0sd1
-# 0R1xlk86UuUX40QBjjinOIkrDMcJyLYSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQnyiOUYy1LA3spCLf86H5Cb74raTANBgkqhkiG9w0B
+# AQEFAASCAQCubuzHNK/bZznjgFEdd5KwTY/wFdnrzrefyFTNFjXTS7XJpUQahJGm
+# w6UQqADafA98ZRd/FUWxuvt3p7Eg4HSO7QhG2AbZzdW/nWSfhAhNfZeNSQlqD2A8
+# 4nPk5AMlKiMCoJ+Zowyux6osYupVWg+m9yLdFshbiizoXx6+NiQ0KmJrLwhQHmoa
+# CCrtPRDNIdW9HJ3F32Y6y9h3GLXxp665uQeNsJuBO+nie7x3QPnIzYsytL9oMKQ2
+# UvLx7/FI1HOwMtCYhGUt5/I4XKjevv/sA3MtpGz2FX1wDAKFjrkwUJT/Oa/Tj9pb
+# /jZ7rvktxPo4sJeq6elvwe9BN1LliLIRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzOVowIwYJKoZIhvcN
-# AQkEMRYEFIHZawgzCMEozJLTvW59S8lCoZCPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0NlowIwYJKoZIhvcN
+# AQkEMRYEFLluLZac5kMYs1BdII4cV+E5m+TsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB/9lQouIr/bdISAdIT49U6UYVCEa48WmRSEEZaBza8qSzE
-# lmIt5xBo/psymhYE6FJD8HmFZsw9aewD21F9n8bxh4LwLLB3e80H0Bfh1TsRB/24
-# D8rmE/8AGQ5tQgq7LPR1OXGSbcEEExf/nNUASW7bDn9pS4Jtk5MEOJ5lYNWoCuRp
-# YqFD3kWAZnO8E2Z4HAPCJlVm83XSNW+2pV8u7ETKRAuqp4vEFe2SCvnGm5pFuPYu
-# ZXXwSnPDafN1sm2TSpQieTTfdnYGvtH8efNGoP6Tw9pFHj99gltP8nYmY4ee/xkQ
-# v2BYD+cqiAFF3fselchjyZzhuEzmNXS8k0TuVOq8
+# hkiG9w0BAQEFAASCAQBjzresrYvENgufOHJj+VILsgZo9xbYPxa/XnTjIBXW79zB
+# pvx0C/JdfVwUeKmUrOduvzp/Jhbj/yawATC3WKnsn25q4S45ENyDKijZ66kNKf4x
+# PrOHpGlprZl1h25alkLgaGk7jwyutEY32X0x0L3dRWAcmRVcffjnUne3RZzGb+h/
+# VXZ/p3HQax4xkqDu3CLb9qj6zMb7t+WDGxSdG3uozpaUhHDaT+/9d48iNyTR+aIZ
+# 4kwDU5RELwyINNJabNDcqvdMnXS6wSNoEwwAa4eHIzPEe7d9oJUjKrJrKevcURKj
+# Q18u8UdL28nO/CFbevf7ogxCQoV1tWxokl1V2fU/
 # SIG # End signature block

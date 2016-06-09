@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,93 +14,93 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-ExternalIP {
-<#
-	.Synopsis
-		Gets the current external IP address.
+  <#
+      .Synopsis
+      Gets the current external IP address.
 
-	.Description
-		Gets the current external IP address.
+      .Description
+      Gets the current external IP address.
 
-	.Example
-		PS C:\> Get-ExternalIP
-		84.132.180.143
+      .Example
+      PS C:\> Get-ExternalIP
+      84.132.180.143
 
-		Description
-		-----------
-		Gets the current external IP address.
+      Description
+      -----------
+      Gets the current external IP address.
 
-	.LINK
-		http://tools.bewoelkt.net/ip.php
-#>
+      .LINK
+      http://tools.bewoelkt.net/ip.php
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param ()
 
-	BEGIN {
-		# URL to ask
-		$site = 'http://tools.bewoelkt.net/ip.php'
-	}
+  BEGIN {
+    # URL to ask
+    $site = 'http://tools.bewoelkt.net/ip.php'
+  }
 
-	PROCESS {
-		try {
-			# Use the native Web call function
-			$beginbrowser = (New-Object System.Net.WebClient)
-			$get = ($beginbrowser.downloadString($site))
-		} catch {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+  PROCESS {
+    try {
+      # Use the native Web call function
+      $beginbrowser = (New-Object -TypeName System.Net.WebClient)
+      $get = ($beginbrowser.downloadString($site))
+    } catch {
+      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 
-			# Done!!!
-			break
-		}
-	}
+      # Done!!!
+      break
+    }
+  }
 
-	END {
-		# Dump the IP info
-		Write-Output $get
-	}
+  END {
+    # Dump the IP info
+    Write-Output -InputObject $get
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuTBpYYt5KNIbjHOO8SxwmLTG
-# ggKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUN7C4hoCx0BcD9kkn1FpniTTX
+# xoegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +243,25 @@ function global:Get-ExternalIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTs1x1MwX9rSLp2bQwRzIY1YKxlpTANBgkqhkiG9w0B
-# AQEFAASCAQASC9Y2Ty6wFX445x7tf5H9ecVXuWvihowgc7W1zHZjo2fPXhRTkAM3
-# Corig6LzxLKPhrcXe8F1K+VKj9UPCK/YPGxSGBjd5ACMLYe3ojCEIClj6nOVEVFh
-# H2fLgTePuqljCG3hP2K3cOpzBhf2k9YDNnfvFHM2IS4hu0nHofRIJlNFVamg6OLh
-# O+VDH61jHQ3DH4iRwChE435dy28NFsu5kCaLpPWUycpbj8+EHPw2zIJ7w2zVoy2I
-# QGEiF5X0PIe/+hsJ/L/SHcHbri/n1MzFdPl40f65Mjjbn6zAZUWjKYcoPPM1eNHn
-# M7X65Sbc+s5z+Mm9SepLpL47siS6uYv8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSD1hLPIw9jC1qq5mgjeIKW6jroaDANBgkqhkiG9w0B
+# AQEFAASCAQBo0mM0F3MxNSyM8CApT3GfLzLA7UXyld4KdSKhvbzAM84FnUAHvOjF
+# L+qr1JsyRdlOQkEtyTvcxSwC4WT4iqzX24EpHdQgGtJ90mn3Vwny0FurBVWMkWOd
+# 2uI3egeYq0odwdalSeOl+IWGEuLofoeSfKJYA6G9pxQK78H2a4jBkTrZKZ5TMGLQ
+# LPRokg9omsPPFH4JkjWUj+0+Vd/tKxb1AZC1C850DMpyEKp8ZPVH36l0MBwDyB0z
+# jwLj4KsIofxKdrV+RBI1lH5dQg6g/jQMdCGvOAUQao3FvE4l64l0tkASJ76bELy0
+# DJOkQTuQJDTBkg6gw+rSz7kvHrBIyvjloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyM1owIwYJKoZIhvcN
-# AQkEMRYEFHSDI7T9OyZvauD7R8jjr1yo4C/XMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyOFowIwYJKoZIhvcN
+# AQkEMRYEFMV1DSJbGKm9BtKo+uWQICy6KN1CMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQANKrCo2SLqMjQEKclbmxGxBV27jfRkOZzIGcyV9+Nu45sN
-# UNUhpbw5TD7KmBDog9NzVXefbH7YL4xFwOCKs+hxPJelcxodFtU2zDKMEkU7vqO5
-# 3n6A654zChqL+cShjk/NrxF7eMGDHejvDVkdcTjSGNRIn/GN9hiGXAsVagTif0t3
-# mpr7h6RC9qumjiD3CZiW4E1hwFf3w5SN4z2W4F3BnKhZodE0is2PioUgP514ihX2
-# UFOSobDcLlHd1paJrXUF+hZKuHC3fKhktJW4FoiY01epCPzd7Rj2k9z91ZJ+U/IT
-# 3M6IDcrLbNLYsbSCgVfyjpzKC0argx6jaqM+MpiQ
+# hkiG9w0BAQEFAASCAQBznC7tgIHuDNsqklp5UdUpS7lSm+EIRh8KHNaHiQ8jhagH
+# TcBT26HzRzIvvz6BxkOEGVnt6dvWjezZ64yyJ1Ae7iYk3naziY6j1FOqVceutmaR
+# arIGynhVaqpDx5PNfOKJoyluaW99qzyygYaZrTC52yvXlugNdYnH8w03rxE9X2I0
+# EqoWAAypjUQNBVo+GGx3UW4HUHdpj58zLOOeLkmQQ7INDCttGbE8/LYlEJgf0fkj
+# jWc6HIoQ42TlpUl0PgZRPE2DXipwTaZUJZ+uysMpGItTidg0qABmCQF2jMCZQCgQ
+# MwXEyUAGFAeHpnbchOvsL4R1k5DogzMr4DAv1ey5
 # SIG # End signature block

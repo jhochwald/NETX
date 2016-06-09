@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,127 +14,128 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-NetFramework {
-<#
-	.SYNOPSIS
-		A detailed description of the Get-NetFramework function.
+  <#
+      .SYNOPSIS
+      A detailed description of the Get-NetFramework function.
 
-	.DESCRIPTION
-		This function will retrieve the list of Framework Installed on
-		the computer.
+      .DESCRIPTION
+      This function will retrieve the list of Framework Installed on
+      the computer.
 
-	.PARAMETER ComputerName
-		Computer Name
+      .PARAMETER ComputerName
+      Computer Name
 
-	.PARAMETER Credentials
-		Credentials to use
+      .PARAMETER Credentials
+      Credentials to use
 
-	.EXAMPLE
-		PS C:\> Get-NetFramework
+      .EXAMPLE
+      PS C:\> Get-NetFramework
 
-		PSChildName                                   Version
-		-----------                                   -------
-		v2.0.50727                                    2.0.50727.4927
-		v3.0                                          3.0.30729.4926
-		Windows Communication Foundation              3.0.4506.4926
-		Windows Presentation Foundation               3.0.6920.4902
-		v3.5                                          3.5.30729.4926
-		Client                                        4.5.51641
-		Full                                          4.5.51641
-		Client                                        4.0.0.0
+      PSChildName                                   Version
+      -----------                                   -------
+      v2.0.50727                                    2.0.50727.4927
+      v3.0                                          3.0.30729.4926
+      Windows Communication Foundation              3.0.4506.4926
+      Windows Presentation Foundation               3.0.6920.4902
+      v3.5                                          3.5.30729.4926
+      Client                                        4.5.51641
+      Full                                          4.5.51641
+      Client                                        4.0.0.0
 
-		Description
-		-----------
-		This function will retrieve the list of Framework Installed on the
-		computer.
+      Description
+      -----------
+      This function will retrieve the list of Framework Installed on the
+      computer.
 
-	.NOTES
+      .NOTES
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'High',
-				   SupportsShouldProcess = $true)]
-	param
-	(
-		[Parameter(HelpMessage = 'Computer Name')]
-		[String[]]$ComputerName = "$env:COMPUTERNAME",
-		[Parameter(HelpMessage = 'Credentials to use')]
-		$Credentials = $Credential
-	)
+  [CmdletBinding(ConfirmImpact = 'High',
+  SupportsShouldProcess = $true)]
+  param
+  (
+    [Parameter(HelpMessage = 'Computer Name')]
+    [String[]]$ComputerName = "$env:COMPUTERNAME",
+    [Parameter(HelpMessage = 'Credentials to use')]
+    $Credentials = $Credential
+  )
 
-	BEGIN {
-		$Splatting = @{
-			ComputerName = $ComputerName
-		}
-	}
+  BEGIN {
+    $Splatting = @{
+      ComputerName = $ComputerName
+    }
+  }
 
-	PROCESS {
-		if ($PSBoundParameters['Credential']) {
-			$Splatting.credential = $Credentials
-		}
+  PROCESS {
+    if ($PSBoundParameters['Credential']) {$Splatting.credential = $Credentials}
 
-		Invoke-Command @Splatting -ScriptBlock {
-			Write-Verbose -Message "$pscomputername"
+    Invoke-Command @Splatting -ScriptBlock {
+      Write-Verbose -Message "$pscomputername"
 
-			# Get the Net Framework Installed
-			$netFramework = (Get-ChildItem -Path 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -recurse | Get-ItemProperty -name Version -EA 0 | Where-Object { $_.PSChildName -match '^(?!S)\p{L}' } | Select-Object -Property PSChildName, Version)
+      # Get the Net Framework Installed
+      $netFramework = (Get-ChildItem -Path 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse |
+        Get-ItemProperty -Name Version -EA 0 |
+        Where-Object { $_.PSChildName -match '^(?!S)\p{L}' } |
+      Select-Object -Property PSChildName, Version)
 
-			# Prepare output
-			$Properties = @{
-				ComputerName = "$($env:Computername)$($env:USERDNSDOMAIN)"
-				PowerShellVersion = $psversiontable.PSVersion.Major
-				NetFramework = $netFramework
-			}
+      # Prepare output
+      $Properties = @{
+        ComputerName      = "$($env:COMPUTERNAME)$($env:USERDNSDOMAIN)"
+        PowerShellVersion = $psversiontable.PSVersion.Major
+        NetFramework      = $netFramework
+      }
 
-			New-Object -TypeName PSObject -Property $Properties
-		}
-	}
+      New-Object -TypeName PSObject -Property $Properties
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU66Jzka5dJlGirJ9ABV4PQYMc
-# rxCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpDJ9E6zinz5Ayy20/QiaB4b+
+# IvSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -277,25 +278,25 @@ function Global:Get-NetFramework {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ85SN7t4aPpjuQdnncsqTCNtkG6zANBgkqhkiG9w0B
-# AQEFAASCAQBsn4TbEMWDfmf0aNAaPHHthZdZnrL4FF2SXOdpb+WUFc0+ohMAfWt5
-# puWWFDuG3Pzhx7WU9n6KvL3xIYHi1DzU71fSRY2E79YvLcBeht78VZL1+IN2f04Q
-# WysWNa38WIdcsI62bOX1z9I6Mu/YNxTziQYAP/JcoFL8Dxl/sEeTM2c7DJAqcvgg
-# dMZOCSkWC/nACAQlLZ1hR5ONYdIEHxeUScPo/LuepMbz7xamkgG4+M9lVvukaeDa
-# tdzRXVM+WZxb39TMSYSNM53liRvuoo+gpKXtukpZ7PygRAGn+SfeDI7vTw2ph9mv
-# GfuHERxEQqJhX91hwulvWqRcjRYFsha1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTJ2wwlRMjJNEsxWhcHxab5Z2ORSjANBgkqhkiG9w0B
+# AQEFAASCAQB0tsRpiZ94lKUvmtLcpie5Ud8lVZsa9Z8hJynVUDaOHMt20P+VhlnN
+# 8g01Jg4vpTHa23bGaJXXjSXb3pxS1StSx2h8+MpvvXSWqR7xE1LRyhtmCPCY6aPn
+# BWvmJjrs/Dw2FucscePk8cmLgxfGQgntnXFr2slLyqO4jM+XLvVDeNRyUz6B1MQ9
+# zxoy9FO4KNx5q4DGtwlN10W2MwUN3YHVoiWgrhhfFsPoTKcGLkbUR4Injzd2yhRJ
+# DUGnLrOUBoZ6l8l6CFsy/GEDFnMKZG4AiOgU4fr2vfHnKzqjjJTc5HmEnESahOhS
+# 8vioFw9oYdj47AqZeV0ZYCEnqCTZylkboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyN1owIwYJKoZIhvcN
-# AQkEMRYEFG76yxIA/js3qn7i8s8DzX+sKIIqMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzMlowIwYJKoZIhvcN
+# AQkEMRYEFF6PnVzFsKgwwUjHhX18yvTmqLfCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB10F3f/hOnsY4CrQ/OOLrwQhst37AQ0gIyZ7vKh3UYV5cB
-# OQcP7mHU6GuxxJiWECdPoxYxKpGI1Q7tCXKEmX3ld9Xj0w0mF0rhltY6DcmLMKcZ
-# kxtd2jvzb7qCimJbBDAqakm+Bpw7qm8B+Mi3xICIyufTO5hrFDQGDs2NqNKtdJ9d
-# M8ODmRqVQm6LGyhpvhzNzdQVQNwtI7QwiH5uUtgfH0qySy1Ku0lzqDkMICuFYYGO
-# dmEEdIyuyzJEH0ZAqOB6Wady6cxcn67ZDc34aHK7yMLiVu4AF8Am0BRWNJvvHhUU
-# lnwqqsiOwR4JMbiRL/TcNuMyK926H/PKNk9Cr0Sr
+# hkiG9w0BAQEFAASCAQCmHOYHbMpVkfkREW/H43TaK+E4lP/o28z1J9ztB6pzIPTy
+# Xtwadw7NPI51HdN+JgV0xhHlejKuqf/zclFzyVLaXC9YputdL/VedbarxzzZ3/a7
+# wlHUJuImlHIcc5DlszZhkRXCSPtUFioQAIDekKRATplBKZzGEFgUTNvo6sskeP3p
+# sPJWeYtCiGv5oTvghfRAZJ7jgDvCeHUjSwnB9xihPqEOUa7c2m+/D7LsLApCYRkS
+# n8C9H9MHqYsaLwVpa5PB269h7ODNn2Avhj2lVTdQ6deNi4PdUUzB/AiWpZP0gIF9
+# QXsFaUgtK8AZigdBreQ5RY/EfDS98e2bTJFu8wk/
 # SIG # End signature block

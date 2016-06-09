@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,142 +14,142 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Write-ToLog {
-<#
-	.SYNOPSIS
-		Write Log to file and screen
+  <#
+      .SYNOPSIS
+      Write Log to file and screen
 
-	.DESCRIPTION
-		Write Log to file and screen
-		Each line has a UTC Time-stamp
+      .DESCRIPTION
+      Write Log to file and screen
+      Each line has a UTC Time-stamp
 
-	.PARAMETER LogFile
-		Name of the Log-file
+      .PARAMETER LogFile
+      Name of the Log-file
 
-	.NOTES
-		Early Beta Version...
-		Based on an idea/script of Michael Bayer
+      .NOTES
+      Early Beta Version...
+      Based on an idea/script of Michael Bayer
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(HelpMessage = 'Name of the Logfile')]
-		[Alias('Log')]
-		[System.String]$LogFile
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(HelpMessage = 'Name of the Logfile')]
+    [Alias('Log')]
+    [System.String]$LogFile
+  )
 
-	BEGIN {
-		# No Logfile?
-		If ($LogFile -ne '') {
-			# UTC Time-stamp
-			Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
+  BEGIN {
+    # No Logfile?
+    If ($LogFile -ne '') {
+      # UTC Time-stamp
+      Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
 
-			# Check for the LogFile
-			If (Test-Path $LogFile) {
-				# OK, we have a LogFile
-				Write-Warning -Message "$LogFile already exists"
-				Write-Output "Logging will append to $LogFile"
-			} Else {
-				# Create a brand new LogFile
-				Write-Output "Logfile: $LogFile"
-				New-Item -Path $LogFile -ItemType file | Out-Null
-			}
+      # Check for the LogFile
+      If (Test-Path $LogFile) {
+        # OK, we have a LogFile
+        Write-Warning -Message "$LogFile already exists"
+        Write-Output -InputObject "Logging will append to $LogFile"
+      } Else {
+        # Create a brand new LogFile
+        Write-Output -InputObject "Logfile: $LogFile"
+        $null = New-Item -Path $LogFile -ItemType file
+      }
 
-			# Here is our LogFile
-			Set-Variable -Name 'MyLogFileName' -Scope:Script -Value $($LogFile)
+      # Here is our LogFile
+      Set-Variable -Name 'MyLogFileName' -Scope:Script -Value $($LogFile)
 
-			# Create a start Header
-			Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
-		}
+      # Create a start Header
+      Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
+    }
 
-		# Have a buffer?
-		If (-not ($Script:MyLogBuffer)) {
-			# Nope!
-			$Script:MyLogBuffer = @()
-		}
-	}
+    # Have a buffer?
+    If (-not ($Script:MyLogBuffer)) {
+      # Nope!
+      $Script:MyLogBuffer = @()
+    }
+  }
 
-	PROCESS {
-		# UTC Time-stamp
-		Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
+  PROCESS {
+    # UTC Time-stamp
+    Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M:%S')
 
-		# Create the Message Array
-		$messages = @()
+    # Create the Message Array
+    $messages = @()
 
-		# Fill the messages
-		$messages += ('' + ($_ | Out-String)).TrimEnd().Split("`n")
+    # Fill the messages
+    $messages += ('' + ($_ | Out-String)).TrimEnd().Split("`n")
 
-		# Loop over the messages
-		foreach ($message in $messages) {
-			# Write a line
-			Set-Variable -Name 'LogMsg' -Value $($UtcTime + ': ' + ($message -replace "`n|`r", '').TrimEnd())
+    # Loop over the messages
+    foreach ($message in $messages) {
+      # Write a line
+      Set-Variable -Name 'LogMsg' -Value $($UtcTime + ': ' + ($message -replace "`n|`r", '').TrimEnd())
 
-			# Inform
-			Write-Output $LogMsg
-			$Script:MyLogBuffer += $LogMsg
-		}
-	}
+      # Inform
+      Write-Output -InputObject $LogMsg
+      $Script:MyLogBuffer += $LogMsg
+    }
+  }
 
-	END {
-		try {
-			# Dump the buffers
-			$Script:MyLogBuffer | Add-Content $Script:MyLogFileName
-		} catch {
-			# Whoopsie!
-			Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction:Stop
-		}
+  END {
+    try {
+      # Dump the buffers
+      $Script:MyLogBuffer | Add-Content $Script:MyLogFileName
+    } catch {
+      # Whoopsie!
+      Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction:Stop
+    }
 
-		# Remove the Variable
-		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+    # Remove the Variable
+    Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBpuUsYXeph/MRZ4Zk0wuJgzd
-# tCCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHgnNjpyZWO8PuZCb5VT05XD2
+# qLOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +292,25 @@ function global:Write-ToLog {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRy7QuQGVf07xUMRIhj3/5vVzc49TANBgkqhkiG9w0B
-# AQEFAASCAQCuoSjahedt8Nbwi4HrniFP0oTzIkqQZdxEtL3nDn9msikgjGapf+Gt
-# aw/RlKiMBP9OcyUQ/V8tBORlYn0X1iG9XeB7C9Cf5yV6U+/D+V+iu07WegKSky81
-# OsdKw2qwTtNiqpoG3G62q3FtQ7obUQZZgapHMqxUzW5gQz2pvQCQ0y7YXHEoRvZY
-# tXqKvUjbonzjOPiAxrNvp+aBS9gHiZQmbHH2uq8Qaxnb7TAGaccREwf0g0WP4iV1
-# RDQjdppSy5miL081/k4LD/Jq41QgY/axZCFzTBmPRCQwL9nLn5kNXHmFAfxOdFjX
-# JxtMZaxxvVTOJHffWA5S0DVZ+iOVVNiXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQeap2swkzQKxh9fapdt7gqODIcmTANBgkqhkiG9w0B
+# AQEFAASCAQAUuYOJyto31xQ7JX1XqJW9DDfwCIaGw35z6V1uW4ueEDW1UUWD7Whz
+# o0SoIzo7+YeLmSRsAVP2N7wV2zEhputSSGQG6AF+kX6eA+jkB6onl2iLUzCogf/A
+# x2DtX1Uj9UrVNWV1+t7ddrOQe+X/urO0kWVsMyuJF4OUyY+Jtpbpdadi5TDsW4Hd
+# o2ohtYd8wSCM0eun6TtCzIXkZnsYDhSSskMrwDeG7Yci7JlnfWnLZ1SJBQZ0ceRJ
+# PaU8j0zxGCc1iHhtqzjvIqxHKxQfheZNsU03Zpms3/mj7kUklkgWd2LGDNS99Ou2
+# QC2EZcsolDJXkg/Fed8ehd5P5aBMNZv7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzUwNFowIwYJKoZIhvcN
-# AQkEMRYEFGl6n7ebP1hRRfbchPN6ioC4ocLMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcxMVowIwYJKoZIhvcN
+# AQkEMRYEFJ8D8gETVITHAkEAHCoziEc7AJ2RMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBwCQ/jRf55y06QWuifyFFsWp2+kZvNH9O0lRLk2NauO30q
-# UNhrhYvgxn6YK2rU0wUejKlW0eCKHDX/KHSQ2bEBPJjnHpb6KR37U4qRjBrhJ3jZ
-# Lcy3fECT4BdeK/cg62USFF40bEKBAPp7OHrfmgrKpthKQ5dRp9xWjSURl11rtcim
-# d5PAe2ZQu0JumKJNMZXB95MfHlMxkkZDaPP20TXrD6yrgL8kEuYpkgVQ586sVxOo
-# /N6fePP+3iITAZSb66325goqXzcKazURxEKtWJdSE1syoGf2njdM+wKk5YYFiDwM
-# IStU9YUo/6QUy9zVM3/whw7Fi4pqqCOMlhOplesN
+# hkiG9w0BAQEFAASCAQBWp8PWSi5uOMrQqaHg6XARTMz76fRkyS4usW8AfWwNI+BK
+# dm2h64VFr1bDjsEYhqeUBpQ+k2yJcOdrgFBjjnaqIydRfZU7GeOkHS7J3yg8UyGr
+# JMjshQCTxwSD/5SIaXZPs/sXZFko8VajsD9JQ966Nb1sGkE0kqc6U8jBaG6ORvYe
+# k8cQ2rluVj9jIlP1JNs6axY208EMFf4qzgGE1jdozJssB2qd6AK+rrprvMbURDHK
+# 0cBCg8t+dJXHysajUjY/mnbwzKK+poHudSJZKky4o6I13G+vdFLLc+Az524IBGtk
+# YmRTZw+V8Z4/2+BWAOL0T4V/DVhBUV6VDil9QdRF
 # SIG # End signature block

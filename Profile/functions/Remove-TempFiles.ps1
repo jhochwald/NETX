@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-28
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,204 +14,196 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Remove-TempFiles {
-<#
-	.SYNOPSIS
-		Removes all temp files older then a given time period
+  <#
+      .SYNOPSIS
+      Removes all temp files older then a given time period
 
-	.DESCRIPTION
-		Removes all temp files older then a given time period from the system or the user environment.
+      .DESCRIPTION
+      Removes all temp files older then a given time period from the system or the user environment.
 
-	.PARAMETER Month
-		Remove temp files older then X month.
-		The default is 1
+      .PARAMETER Month
+      Remove temp files older then X month.
+      The default is 1
 
-	.PARAMETER Context
-		Remove the System or User Temp Files?
-		The default is All.
+      .PARAMETER Context
+      Remove the System or User Temp Files?
+      The default is All.
 
-	.EXAMPLE
-		PS C:\> Remove-TempFiles -Confirm:$false
+      .EXAMPLE
+      PS C:\> Remove-TempFiles -Confirm:$false
 
-		TotalSize                     Retrieved                   TotalSizeMB                   RetrievedMB
-		---------                     ---------                   -----------                   -----------
-		518485778                     417617315                         494,5                         398,3
+      TotalSize                     Retrieved                   TotalSizeMB                   RetrievedMB
+      ---------                     ---------                   -----------                   -----------
+      518485778                     417617315                         494,5                         398,3
 
-		Description
-		-----------
-		Removes all 'User' and 'System' temp file older then one month,
-		without asking if you are sure! This could be dangerous...
+      Description
+      -----------
+      Removes all 'User' and 'System' temp file older then one month,
+      without asking if you are sure! This could be dangerous...
 
-	.EXAMPLE
-		PS C:\> Remove-TempFiles -Confirm:$false
-		WARNING: The process cannot access the file 'C:\Users\josh\AppData\Local\Temp\FXSAPIDebugLogFile.txt' because it is being used by another process. - Line Number: 96
+      .EXAMPLE
+      PS C:\> Remove-TempFiles -Confirm:$false
+      WARNING: The process cannot access the file 'C:\Users\josh\AppData\Local\Temp\FXSAPIDebugLogFile.txt' because it is being used by another process. - Line Number: 96
 
-		TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
-		---------                       ---------                     -----------                     -----------
-		264147489                       214105710                           251,9                           204,2
+      TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
+      ---------                       ---------                     -----------                     -----------
+      264147489                       214105710                           251,9                           204,2
 
-		Description
-		-----------
-		Removes all 'User' and 'System' temp file older then one month,
-		without asking if you are sure! This could be dangerous...
+      Description
+      -----------
+      Removes all 'User' and 'System' temp file older then one month,
+      without asking if you are sure! This could be dangerous...
 
-		One file is locked by another process! Just a warning will show up,
-		the cleanup will continue.
+      One file is locked by another process! Just a warning will show up,
+      the cleanup will continue.
 
-	.EXAMPLE
-		PS C:\> Remove-TempFiles -Month 3 -Context 'System'
-		[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y")
+      .EXAMPLE
+      PS C:\> Remove-TempFiles -Month 3 -Context 'System'
+      [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y")
 
-		TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
-		---------                       ---------                     -----------                     -----------
-		264147489                       214105710                           251,9                           204,2
+      TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
+      ---------                       ---------                     -----------                     -----------
+      264147489                       214105710                           251,9                           204,2
 
-		Description
-		-----------
-		Removes all 'System' temp files older then 3 month
+      Description
+      -----------
+      Removes all 'System' temp files older then 3 month
 
-	.EXAMPLE
-		PS C:\> Remove-TempFiles -Month 3 -Context 'User'
-		[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y")
+      .EXAMPLE
+      PS C:\> Remove-TempFiles -Month 3 -Context 'User'
+      [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y")
 
-		TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
-		---------                       ---------                     -----------                     -----------
-		151519609                       145693231                           144,5                           138,9
+      TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
+      ---------                       ---------                     -----------                     -----------
+      151519609                       145693231                           144,5                           138,9
 
-		Description
-		-----------
-		Removes all 'User' temp files older then 3 month.
+      Description
+      -----------
+      Removes all 'User' temp files older then 3 month.
 
-	.NOTES
-		Adopted from a snippet found on Powershell.com
+      .NOTES
+      Adopted from a snippet found on Powershell.com
 
-	.LINK
-		Source http://powershell.com/cs/blogs/tips/archive/2016/05/27/cleaning-week-deleting-temp-files.aspx
-#>
+      .LINK
+      Source http://powershell.com/cs/blogs/tips/archive/2016/05/27/cleaning-week-deleting-temp-files.aspx
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'High',
-				   SupportsShouldProcess = $true)]
-	[OutputType([System.Object])]
-	param
-	(
-		[Parameter(Position = 1,
-				   HelpMessage = 'Remove temp files older then X month.')]
-		[System.Int64]$Month = 1,
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 2,
-				   HelpMessage = 'Remove the System or User Temp Files?')]
-		[ValidateSet('System', 'User', 'All', IgnoreCase = $true)]
-		[System.String]$Context = 'All'
-	)
+  [CmdletBinding(ConfirmImpact = 'High',
+  SupportsShouldProcess = $true)]
+  [OutputType([System.Object])]
+  param
+  (
+    [Parameter(Position = 1,
+    HelpMessage = 'Remove temp files older then X month.')]
+    [System.Int64]$Month = 1,
+    [Parameter(ValueFromPipeline = $true,
+        Position = 2,
+    HelpMessage = 'Remove the System or User Temp Files?')]
+    [ValidateSet('System', 'User', 'All', IgnoreCase = $true)]
+    [System.String]$Context = 'All'
+  )
 
-	#requires -Version 3
-	#Requires -RunAsAdministrator
+  #requires -Version 3
+  #Requires -RunAsAdministrator
 
-	BEGIN {
-		# Look at temp files older than given period
-		$cutoff = ((Get-Date).AddMonths(- $Month))
+  BEGIN {
+    # Look at temp files older than given period
+    $cutoff = ((Get-Date).AddMonths(- $Month))
 
-		# Use an ordered hash table to store logging info
-		$sizes = [Ordered]@{ }
-	}
+    # Use an ordered hash table to store logging info
+    $sizes = [Ordered]@{ }
+  }
 
-	PROCESS {
-		if ($Context -eq 'System') {
-			$Target = "$env:windir\temp"
-		} elseif ($Context -eq 'User') {
-			$Target = "$env:temp"
-		} elseif ($Context -eq 'All') {
-			$Target = "$env:windir\temp", $env:temp
-		} else {
-			Write-Error -Message "I have no idea what to clean: $($Target)" -ErrorAction:Stop
+  PROCESS {
+    if ($Context -eq 'System') {$Target = "$env:windir\temp"} elseif ($Context -eq 'User') {$Target = "$env:temp"} elseif ($Context -eq 'All') {$Target = "$env:windir\temp", $env:temp} else {
+      Write-Error -Message "I have no idea what to clean: $($Target)" -ErrorAction:Stop
 
-			# Still here? Make sure we are done!
-			break
+      # Still here? Make sure we are done!
+      break
 
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
-		}
+      # Aw Snap! We are still here? Fix that the hard way...
+      exit 1
+    }
 
-		if ($pscmdlet.ShouldProcess("$($Context)", "Remove Temp file older then $($Month)")) {
-			<#
-				Mind the Pipes. All in a very long command :-)
-			#>
-			# Find all files in both temp folders recursively
-			Get-ChildItem $Target -Recurse -Force -File |
-			# calculate total size before cleanup
-			ForEach-Object {
-				$sizes['TotalSize'] += $_.Length
-				$_
-			} |
-			# take only outdated files
-			Where-Object { $_.LastWriteTime -lt $cutoff } |
-			# Try to delete. Add retrieved file size only if the file could be deleted
-			ForEach-Object {
-				try {
-					$fileSize = ($_.Length)
+    if ($pscmdlet.ShouldProcess("$($Context)", "Remove Temp file older then $($Month)")) {
+      <#
+          Mind the Pipes. All in a very long command :-)
+      #>
+      # Find all files in both temp folders recursively
+      Get-ChildItem $Target -Recurse -Force -File |
+      # calculate total size before cleanup
+      ForEach-Object -Process {
+        $sizes['TotalSize'] += $_.Length
+        $_
+      } |
+      # take only outdated files
+      Where-Object -FilterScript { $_.LastWriteTime -lt $cutoff } |
+      # Try to delete. Add retrieved file size only if the file could be deleted
+      ForEach-Object -Process {
+        try {
+          $fileSize = ($_.Length)
 
-					Remove-Item -Path $_.FullName -Force -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
+          Remove-Item -Path $_.FullName -Force -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
 
-					$sizes['Retrieved'] += $fileSize
-				} catch [System.Exception] {
-					Write-Warning "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-				} catch {
-					# Did not see this one coming!
-					Write-Warning "Unable to remove $($_.FullName)"
-				}
-			}
-		}
-	}
+          $sizes['Retrieved'] += $fileSize
+        } catch [System.Exception] {Write-Warning -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"} catch {
+          # Did not see this one coming!
+          Write-Warning -Message "Unable to remove $($_.FullName)"
+        }
+      }
+    }
+  }
 
-	END {
-		# Turn bytes into MB
-		$Sizes['TotalSizeMB'] = [Math]::Round(($Sizes['TotalSize']/1MB), 1)
-		$Sizes['RetrievedMB'] = [Math]::Round(($Sizes['Retrieved']/1MB), 1)
+  END {
+    # Turn bytes into MB
+    $sizes['TotalSizeMB'] = [Math]::Round(($sizes['TotalSize']/1MB), 1)
+    $sizes['RetrievedMB'] = [Math]::Round(($sizes['Retrieved']/1MB), 1)
 
-		# Dump the info
-		New-Object -TypeName PSObject -Property $sizes
-	}
+    # Dump the info
+    New-Object -TypeName PSObject -Property $sizes
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvsyCb6Yi4dncrryelpiQSu79
-# ZymgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUalv1/9csFCn0DhvaLYAHKyD0
+# hBmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -354,25 +346,25 @@ function global:Remove-TempFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTgdjJWbltyXvkZbtIiaw2N40tt0TANBgkqhkiG9w0B
-# AQEFAASCAQBDZya9sS8An5DtXE1Snumms6LooqImOy1hcv1SZgvYrH3HfV+FhKCZ
-# gtuwh3bOG7d9LJ9ilPR+mBjL3HL3cZupljUWfzfWQxHkAAF1dzRqfeyjri8kCS+n
-# 5nDY6+SQmyqaSBeNJEA9g1l+UdA1xs3rCxaxNIbnoc44fTY6H0u2BLOCY3NGw3Sj
-# iejwo/8R9gfr4tIp8w+t8oqu6X/d6BS/i19fwMYbYo1iD4llf5Aq7SZ6/eJJ0Q1P
-# DPdb+3KmQiz5cVl93rwNQ3sF9LoBP2u/gjnNcZOEcKXYT72crX3xRdDP1hOL+6tD
-# cj1NCP7pf5KdsqJiCU2Qa2IAPVlXHltsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQx974eVqGSUUs6bKz4p3VdqqPXRjANBgkqhkiG9w0B
+# AQEFAASCAQA8Et0fgqTSSpGtY6C/taXYmqtWv1eqV70LepODrJxHJStzE43XfVBd
+# rzG5xMCBSls9DsUmJjiZ1IKKvX/XoPyjhmDSu9thoyTfGHYF9rAA8+TmCmGQDzeH
+# nGC46/3IRfArGNw602J9gHBInzqtAfM5TEhFqG6pmyny0nKYFFvuGyY2ny55NSbO
+# PJHF8c8zt8k9/hMRCXsRQ34uV754DTaZBLqGePdl4xvhOkYFkAKIN9gZ4mmkBxh/
+# TvBFC39KckQRjJWAX1Etrwc0YiqAPAvkxc4rHgBv8X3Q0orne26Xp8FMZR92ka6N
+# hGLnWYMTv4dZQcADXH6k1pLlYBQxbf4MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1MlowIwYJKoZIhvcN
-# AQkEMRYEFHmNtaiTEotQ1XoKrV7OUnjpmYU/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1OVowIwYJKoZIhvcN
+# AQkEMRYEFO6WSiFcNCPjlAXA0SHQKXpRnC9oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAVgJFaUOotzcdR6OqR/vFsCsUMOe4lG+OAgHFEmO9CBT/I
-# XeZB7Rc55xbDp7aIiGB4B6mCNZ6URPRhj990kt8f2IVl7XTKbYPcTKqaLYh8CAWh
-# 5bYZHW3Zgfq6xLqH2CD58XLgZHFDF5WLAyN4MAw5yNIJiYJmSXYT07rCPbFt/FU7
-# 2RXBGAtDMfnAsvd84DHoPGs4o+kB5gh5Q86a0AFHih9oljf5sAvqgaAw1AnUQohP
-# 3ysmd3tJ6w4TSAyNP34n5pZci+CYii1jgBmOWQfqYyrEoSxXjB/Nt8Jv9qGgJJ5G
-# BnBsVp9fqvwgSzeLh/FRhliBJORqM5E3TGW2j6k5
+# hkiG9w0BAQEFAASCAQBSlSwDiEvKZXk1+RLTKWIINxKmAX906eMvCr/BhU93FE5H
+# bDslEDXMDLuOkOzEmFtgAUIFOfZHVt3OyDjM6FofvisvU0Ew2HWgYnX5vXZcxYn1
+# vptm45Z6khMEJ0qE7S+aF66ZcGvcKr5RhWjKmkf0BxJFnhqGpbtKmoQHsoqRKEXZ
+# 0DeO5TJWdof3LvqGkBfK/52601/nPDPysucNBWXmahKLIJuyloDK0Syu0nShLIlj
+# hpLGYCRNPGG09YwjpwOM2WS6inSPXFAOynilX5NNdtBqNEoRBG5IklQx7jOn1b+b
+# /sIyXfjICwvwgnMugASXwlyv0fv3IK8ypOmB6bKY
 # SIG # End signature block

@@ -1,122 +1,123 @@
 ﻿<#
-	Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
-	By Tom Arbuthnot. Lyncdup.com
+    Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
+    By Tom Arbuthnot. Lyncdup.com
 
-	We just adopted and tweaked it.
+    We just adopted and tweaked it.
 #>
 
 function Global:Get-MicrosoftUpdateInfo {
-<#
-	.SYNOPSIS
-		Gives a list of all Microsoft Updates sorted by KB number/HotfixID
+  <#
+      .SYNOPSIS
+      Gives a list of all Microsoft Updates sorted by KB number/HotfixID
 
-	.DESCRIPTION
-		Gives a list of all Microsoft Updates sorted by KB number/HotfixID
+      .DESCRIPTION
+      Gives a list of all Microsoft Updates sorted by KB number/HotfixID
 
-	.PARAMETER raw
-		Just dum the Objects?
+      .PARAMETER raw
+      Just dum the Objects?
 
-	.EXAMPLE
-		PS C:\> Get-MicrosoftUpdateInfo
+      .EXAMPLE
+      PS C:\> Get-MicrosoftUpdateInfo
 
-		Description
-		-----------
-		Return the installed Microsoft Updates
+      Description
+      -----------
+      Return the installed Microsoft Updates
 
-	.EXAMPLE
-		PS C:\> $MicrosoftUpdateInfo = (Get-MicrosoftUpdateInfo -raw)
-		$MicrosoftUpdateInfo | Where-Object { $_.HotFixID -eq "KB3121461" }
+      .EXAMPLE
+      PS C:\> $MicrosoftUpdateInfo = (Get-MicrosoftUpdateInfo -raw)
+      $MicrosoftUpdateInfo | Where-Object { $_.HotFixID -eq "KB3121461" }
 
-		Description
-		-----------
-		Return the installed Microsoft Updates in a more raw format, this might
-		be handy if you want to reuse it!
-		In this example we search for the Update "KB3121461" only and
-		displays that info.
+      Description
+      -----------
+      Return the installed Microsoft Updates in a more raw format, this might
+      be handy if you want to reuse it!
+      In this example we search for the Update "KB3121461" only and
+      displays that info.
 
-	.EXAMPLE
-		PS C:\> $MicrosoftUpdateInfo = (Get-MicrosoftUpdateInfo -raw)
-		[System.String](($MicrosoftUpdateInfo | Where-Object { $_.HotFixID -eq "KB3121461" }).Title)
+      .EXAMPLE
+      PS C:\> $MicrosoftUpdateInfo = (Get-MicrosoftUpdateInfo -raw)
+      [System.String](($MicrosoftUpdateInfo | Where-Object { $_.HotFixID -eq "KB3121461" }).Title)
 
-		Description
-		-----------
-		Return the installed Microsoft Updates in a more raw format, this might
-		be handy if you want to reuse it!
-		In this example we search for the Update "KB3121461" only and
-		displays the info about that Update as String.
+      Description
+      -----------
+      Return the installed Microsoft Updates in a more raw format, this might
+      be handy if you want to reuse it!
+      In this example we search for the Update "KB3121461" only and
+      displays the info about that Update as String.
 
-	.NOTES
-		Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
-		By Tom Arbuthnot. Lyncdup.com
+      .NOTES
+      Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
+      By Tom Arbuthnot. Lyncdup.com
 
-		We just adopted and tweaked it.
+      We just adopted and tweaked it.
 
-	.LINK
-		Source: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
+      .LINK
+      Source: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
 
-	.LINK
-		http://blogs.technet.com/b/tmintner/archive/2006/07/07/440729.aspx
+      .LINK
+      http://blogs.technet.com/b/tmintner/archive/2006/07/07/440729.aspx
 
-	.LINK
-		http://www.gfi.com/blog/windows-powershell-extracting-strings-using-regular-expressions/
+      .LINK
+      http://www.gfi.com/blog/windows-powershell-extracting-strings-using-regular-expressions/
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Position = 0,
-				   HelpMessage = 'Just dum the Objects?')]
-		[switch]$raw = $false
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Position = 0,
+    HelpMessage = 'Just dum the Objects?')]
+    [switch]$raw = $false
+  )
 
-	BEGIN {
-		$wu = (New-Object -com 'Microsoft.Update.Searcher')
+  BEGIN {
+    $wu = (New-Object -ComObject 'Microsoft.Update.Searcher')
 
-		$totalupdates = ($wu.GetTotalHistoryCount())
+    $totalupdates = ($wu.GetTotalHistoryCount())
 
-		$all = ($wu.QueryHistory(0, $totalupdates))
+    $all = ($wu.QueryHistory(0, $totalupdates))
 
-		# Define a new array to gather output
-		$OutputCollection = @()
-	}
+    # Define a new array to gather output
+    $OutputCollection = @()
+  }
 
-	PROCESS {
-		Foreach ($update in $all) {
-			$string = $update.title
+  PROCESS {
+    Foreach ($update in $all) {
+      $string = $update.title
 
-			$Regex = 'KB\d*'
-			$KB = ($string | Select-String -Pattern $regex | Select-Object { $_.Matches })
+      $Regex = 'KB\d*'
+      $KB = ($string |
+        Select-String -Pattern $Regex |
+      Select-Object { $_.Matches })
 
-			$output = (New-Object -TypeName PSobject)
-			$output | add-member NoteProperty 'HotFixID' -value $KB.' $_.Matches '.Value
-			$output | add-member NoteProperty 'Title' -value $string
-			$OutputCollection += $output
+      $output = (New-Object -TypeName PSobject)
+      $output | Add-Member -MemberType NoteProperty -Name 'HotFixID' -Value $KB.' $_.Matches '.Value
+      $output | Add-Member -MemberType NoteProperty -Name 'Title' -Value $string
+      $OutputCollection += $output
+    }
+  }
 
-		}
-	}
+  END {
+    if ($raw) {Write-Output -InputObject $OutputCollection | Sort-Object -Property HotFixID} else {
+      # Oupput the collection sorted and formatted:
+      $OutputCollection |
+      Sort-Object -Property HotFixID |
+      Format-Table -AutoSize
 
-	END {
-		if ($raw) {
-			Write-Output $OutputCollection | Sort-Object HotFixID
-		} else {
-			# Oupput the collection sorted and formatted:
-			$OutputCollection | Sort-Object HotFixID | Format-Table -AutoSize
-
-			# Return
-			Write-Host "$($OutputCollection.Count) Updates Found"
-		}
-	}
+      # Return
+      Write-Host "$($OutputCollection.Count) Updates Found"
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQZ3RRGaAB2KQBLgeHojG///Q
-# tRWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUH1YeLnouh+qOFhTG00hyhre+
+# EWigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +260,25 @@ function Global:Get-MicrosoftUpdateInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTF/mLwg+TRnvyduuF8cP3H5MnHaTANBgkqhkiG9w0B
-# AQEFAASCAQAcukL1FKgr10wAWYsobq61UIX2UazaTroeTmr+5s+DV/j3rWh64/4t
-# BYrvmX5sjsvLSGU1jR9qkG440aj7SXJoMgRGb5aSgDQGjaim/l1CVWtU6LC2fkXN
-# ReCNjlnUeEcqSNQr8Z1pcXUW9zLrAXNKZTp/dauLXjzj8arOKg5wbTWBcGkRK+zO
-# UHtOn1gn/o9knB67trjdRBHFAej6+57rBOrOlzYBSIEOBGbmoPgTUxHcBtSV/Puq
-# 0roSXhFbz5gkrY8P18gzuy+UrsT06cgm+/PM9MA4eUtXE+Y5SzEN7ixRXbACxEWw
-# 1UlSgczshyg9cJ20seru8VtJnHmyv+qdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSH47ecCsvkysK111a09mXDlZkEbjANBgkqhkiG9w0B
+# AQEFAASCAQCfDXjSw5APPjnAWryji7btduQA0CTHJ+bZvGnoUscISbGi9j96yKJU
+# dPTIgdHTko8ISAB8D/6I8EWqvdSNH/WDFnIt/PauQ+LmxRcKFtYAHxoZIQ5GZIdo
+# wNN+WYbQRoUZvFJbk1efifLQYB+jiqGd5lQq6AX6+3YYocWRzeUJy/0aiY7yPxCq
+# SMwJaO99sSfaM3DNNi/tIUdoDGq0fyF37wDIYHxBTx2YZoo9aPEux8hBo8SrgpFM
+# PhiGQSVnKjOocBmd28isVA0IwXQWWcUjIjls4ZJeh6YdK1kd67HseNCn8wqGulOc
+# 9Z1EBGnfGQCJZeZrkABFYV10szBFRRKUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyN1owIwYJKoZIhvcN
-# AQkEMRYEFAGZHZi9eHATaEiPIXG7pq1acN9sMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzMVowIwYJKoZIhvcN
+# AQkEMRYEFAFv5A7YppNvntKGqL5h2g2cpn20MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBM/elfNIy/aHnf4XH5jJ9+90pWH+AeC9a5sk0fLiRaWajP
-# 9s2RVmOsiMkRQdc/b6KW73XymLIlfs5MA1Dul2tf0Q50ZesFdyJHNJVygP0Jm4U9
-# 5CWwfFskNwHKn3hF9mSN9cRviIvcKPjIaUeCYZYnXDskXgtSRRbU5bmG9tCrEEtk
-# O+ikqPuhs/NNfU5R5BB3yhteZUaWeNiquQ0yHcBCsUlvejktUL3VhcVRzcp3Aacu
-# uJVmEPpV79HEnZRDX6c5XWcpxK6HDdSo7pEydGqoRGWnmIFUTxte9ihKQBB0wnxb
-# +BWQV6KRlVJ5yQEMNIq2q25n4DgnG1cmhUCGqibu
+# hkiG9w0BAQEFAASCAQAXtlyQ97ojfxC9c2z5YCLTdvG6xubkDh1M9+vYCKYUamsS
+# pZ69q6PN5PjrdKalqB/Vs+FBSzbo9Crl4tinVClsTyeJupt73vOqIKDJgbwoC22i
+# PXerZMkmb//TI55sApSkY0fOX6mF2AVGg2RSZTAoGZkpOEOkfgUTl8ZS3n8INvEJ
+# 6aOIe//PPFjBRKx3QCI3Q4hdkqIRSaOawlKnAjjkgjjzrVdB/LY4a/Oii8ITwXvs
+# HuVWRVz15iVt3QVBqcA7j53jvdEr3Mkj/hgJcTUUWMQX+qX/hC16LWot5EDB14E8
+# 8rkE0rLYUYtzSJ2UnfTi2HBkzVrJMMqc2ziSwqQZ
 # SIG # End signature block

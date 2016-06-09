@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,83 +14,88 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-DiskInfo {
-<#
-	.SYNOPSIS
-		Show free Diskspace for all Disks
+  <#
+      .SYNOPSIS
+      Show free Diskspace for all Disks
 
-	.DESCRIPTION
-		This function gets your System Disk Information
+      .DESCRIPTION
+      This function gets your System Disk Information
 
-	.EXAMPLE
-		PS C:\> Get-DiskInfo
-		Loading system disk free space information...
-		 C Drive has 24,77 GB of free space.
-		  D Drive has 1,64 GB of free space.
+      .EXAMPLE
+      PS C:\> Get-DiskInfo
+      Loading system disk free space information...
+      C Drive has 24,77 GB of free space.
+      D Drive has 1,64 GB of free space.
 
-		Description
-		-----------
-		Show free Diskspace for all Disks
+      Description
+      -----------
+      Show free Diskspace for all Disks
 
-	.NOTES
-		Internal Helper
-#>
+      .NOTES
+      Internal Helper
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param ()
 
-	PROCESS {
-		$wmio = (Get-WmiObject -class win32_logicaldisk)
-		$Drives = ($wmio | Where-Object { ($_.size) } | Select-Object Deviceid, @{ name = 'Free Space'; Expression = { ($_.freespace/1gb) } })
-		$DrivesString = (0..$($drives.count - 1) | ForEach-Object { " $(($drives[$_]).Deviceid.Replace(':', ' Drive')) has $('{0:N2}' -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
-		$DrivesString = "`r`nLoading system disk free space information...`r`n" + $DrivesString
-	}
+  PROCESS {
+    $wmio = (Get-WmiObject -Class win32_logicaldisk)
+    $Drives = ($wmio |
+      Where-Object -FilterScript { ($_.size) } |
+      Select-Object -Property Deviceid, @{
+        name       = 'Free Space'
+        Expression = { ($_.freespace/1gb) }
+    })
+    $DrivesString = (0..$($Drives.count - 1) | ForEach-Object -Process { " $(($Drives[$_]).Deviceid.Replace(':', ' Drive')) has $('{0:N2}' -f $(($Drives[$_]).'free space')) GB of free space.`r`n" })
+    $DrivesString = "`r`nLoading system disk free space information...`r`n" + $DrivesString
+  }
 
-	END {
-		Write-Output $DrivesString
-	}
+  END {
+    Write-Output -InputObject $DrivesString
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/8alKkp63S/a5kQ85QOJNWRG
-# F0igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMvp4gquTIOCJHlvrrQJziLA4
+# ZASgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -233,25 +238,25 @@ function Global:Get-DiskInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQn2luXk0MvqyvOPLrr2d6Vd0q1yDANBgkqhkiG9w0B
-# AQEFAASCAQCJ/dyz+Mm8WUfhAVGf9v3YsEk00asM6NmxEjVZF78GKwRWUzvDepHQ
-# VwVeFfe2W2KRApzPeZIGqcNFAHZrDQS4kaMpyyI/xcp4ocVK4lbzjI1hct1pbT7D
-# sadl6Dm2WUfs+ZweKRoT9M6AYbB5Bq5NafJeFoAs+DkK2N+R0dYmGuo1LJUehfS7
-# dX4Wg/s9Yb7ghk1Cl5aj/SWCcBziCRyGg46zZEgD11gP34YogVlM/3SFstB1gSxP
-# T1bO1txhpO1U9FIyF3jdVDm2evkeUhP7tLYU7r7yBwz7R7s+CCBbetd4oVrVHJZP
-# 5P44X25s7TxeWZuA8ssS+R1+LHTrFJVQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQydwHpMncA+zdho5ZGp/0OuDsUADANBgkqhkiG9w0B
+# AQEFAASCAQBR8ApXh8I8NHISqMORImej+cJzoFdPwTM3juzk0DQWvaTcim5w6ddu
+# zAZwiA6T9ix9gEXWQZYtjByquvKIEnJhkHhO6o+l0ZvriTTlKySQzq8N26MD0jiT
+# Tn9QmPZUgKifnzMnuOH8P56WoPTu2+O45vokO6a9yexUYUXh0A1kyKIMg8PF7cpO
+# bJssTTwJX+DLv51QuFoiP9NX9pU5XuMUgXBALHaRDBJUJJXc8y1Eant5OlACOHYY
+# ylct+XFfLeQVlnk/jpkFOflGcOGv+9+vPq6VTsxZe8Gze3t7gk59kgZRCuOYrIO6
+# Iz7vHbFKrQ802k/Fb8Htas/RAfsTw4SLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyM1owIwYJKoZIhvcN
-# AQkEMRYEFGeEq9CP04uv3kmc1T9FUQQTmohbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyN1owIwYJKoZIhvcN
+# AQkEMRYEFDW3D0m3aI6/mA5wXiZ3kiGnKZVYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAPkGcMYuf1dDquVzVtsZwYSSeJRnBjGvyILjrsoVYoxnle
-# O9ZbYH4zZH7cxSCjxuq1MfrJgPcJIkPtpaqRKUdpKNjeumnB5NAMtewXTDpbVcSr
-# I+xw90ixxmmG/9R3teHoX/Y01s+YH9LeQ2P1Xwlez18E2DCnhvy1YcxNoHY230gM
-# A8gUwXfeJqyc5GUDuOK530ySnRQ2HtgyPr0SzYCd3nHJkQ+S2nm2MBw9Yiy5JVlz
-# PqfoCKzfMEnMb8RXkjAIQTlUSuuVM4h7hcjLMJXjdZhBqAMEEqr7EZzCTnR4sZZM
-# ZSjFvvrrPXEG8F1n6ulJml2CD7klz3OxMg9JhV/i
+# hkiG9w0BAQEFAASCAQCbs78dhKP6h7qR05aa2v8p3mrS5SmVMCZo7U6Sy428/cUr
+# v4ixz+AnvZmKLg/AfWKuxC625UTdKtlhULHDB6Y9dWeWvsUkCUEXoNtYKW0KGj6H
+# v6fOTAFkJlBmSgUhWq+OPt2t1hUz35Q4/7p9bu656x+Z02P/C+TWCScsOgafsUv9
+# 09XJWndOZzSdIMVeOBHOcW4V4nCnKVSDY9DNWy7I/VqUgEvZvvvtzH3ReLLeYYql
+# e9ocjxUX4ma5OPAMQa9WFGGZ/SHi9QZnsbOZaZ0B4dwNV6RAdvT3Npw8dNQMqb6Y
+# GjArHoW7wKew6GllW0BSfDGoM1DLLMPdUX4raaUn
 # SIG # End signature block

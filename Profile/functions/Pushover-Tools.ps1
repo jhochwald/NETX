@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,396 +14,402 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Send-Pushover {
-<#
-	.SYNOPSIS
-		Sends a push message via Pushover
+  <#
+      .SYNOPSIS
+      Sends a push message via Pushover
 
-	.DESCRIPTION
-		We established a lot of automated messaging and push services,
-		Pushover was missing!
+      .DESCRIPTION
+      We established a lot of automated messaging and push services,
+      Pushover was missing!
 
-		We do not use Pushover that much, but sometimes it is just nice to
-		have the function ready...
+      We do not use Pushover that much, but sometimes it is just nice to
+      have the function ready...
 
-	.EXAMPLE
-		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test"
+      .EXAMPLE
+      PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test"
 
-		Description
-		-----------
-		Send the message "Test" to all your devices. The App Name is
-		displayed a title of the push
+      Description
+      -----------
+      Send the message "Test" to all your devices. The App Name is
+      displayed a title of the push
 
-	.EXAMPLE
-		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -device "Josh-iPadPro"
+      .EXAMPLE
+      PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -device "Josh-iPadPro"
 
-		Description
-		-----------
-		Send the message "Test" to the device with the name "Josh-iPadPro".
-		The App Name is displayed a title of the push
+      Description
+      -----------
+      Send the message "Test" to the device with the name "Josh-iPadPro".
+      The App Name is displayed a title of the push
 
-	.EXAMPLE
-		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -title "Hello!" -sound "cosmic"
+      .EXAMPLE
+      PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Test" -title "Hello!" -sound "cosmic"
 
-		Description
-		-----------
-		Send the message "Test" to all your devices. It will have the
-		Title "Hello!" and use the notification sound "cosmic"
+      Description
+      -----------
+      Send the message "Test" to all your devices. It will have the
+      Title "Hello!" and use the notification sound "cosmic"
 
-	.EXAMPLE
-		PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Nice URL for you" -title "Hello!" -url "http://net-experts.net" -url_title "My Site"
+      .EXAMPLE
+      PS C:\> Send-Pushover -User "USERTOKEN" -token "APPTOKEN" -Message "Nice URL for you" -title "Hello!" -url "http://net-experts.net" -url_title "My Site"
 
-		Description
-		-----------
-		Send the message "Nice URL for you" with the title "Hello!" to all
-		your devices.
-		The Push contains a link to "http://net-experts.net" with the
-		URL title "My Site"
+      Description
+      -----------
+      Send the message "Nice URL for you" with the title "Hello!" to all
+      your devices.
+      The Push contains a link to "http://net-experts.net" with the
+      URL title "My Site"
 
-	.PARAMETER User
-		The user/group key (not e-mail address) of your user (or you),
-		viewable when logged into our Pushover dashboard
+      .PARAMETER User
+      The user/group key (not e-mail address) of your user (or you),
+      viewable when logged into our Pushover dashboard
 
-	.PARAMETER Message
-		Your message, can be HTML like formated
+      .PARAMETER Message
+      Your message, can be HTML like formated
 
-	.PARAMETER token
-		Your Pushover application API token
+      .PARAMETER token
+      Your Pushover application API token
 
-	.PARAMETER device
-		Your device name to send the message directly to that device,
-		rather than all of the devices (multiple devices may be separated by
-		a comma). You can use Get-PushoverUserDeviceInfo to get a list of
-		 all registered devices.
+      .PARAMETER device
+      Your device name to send the message directly to that device,
+      rather than all of the devices (multiple devices may be separated by
+      a comma). You can use Get-PushoverUserDeviceInfo to get a list of
+      all registered devices.
 
-	.PARAMETER title
-		Your message title, otherwise your app name is used
+      .PARAMETER title
+      Your message title, otherwise your app name is used
 
-	.PARAMETER url
-		A supplementary URL to show with your message
+      .PARAMETER url
+      A supplementary URL to show with your message
 
-	.PARAMETER url_title
-		A title for your supplementary URL, otherwise just the URL is shown
+      .PARAMETER url_title
+      A title for your supplementary URL, otherwise just the URL is shown
 
-	.PARAMETER priority
-		The Push priority (-2 to +2)
+      .PARAMETER priority
+      The Push priority (-2 to +2)
 
-	.PARAMETER sound
-		The name of one of the sounds supported by device clients to override
-		the user's default sound choice
+      .PARAMETER sound
+      The name of one of the sounds supported by device clients to override
+      the user's default sound choice
 
-	.NOTES
-		Based on our Send-SlackChat function
+      .NOTES
+      Based on our Send-SlackChat function
 
-	.LINK
-		Get-PushoverUserDeviceInfo
+      .LINK
+      Get-PushoverUserDeviceInfo
 
-	.LINK
-		Info: https://pushover.net
+      .LINK
+      Info: https://pushover.net
 
-	.LINK
-		API: https://pushover.net/api
+      .LINK
+      API: https://pushover.net/api
 
-	.LINK
-		Send-SlackChat
+      .LINK
+      Send-SlackChat
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   Position = 0,
-				   HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$User,
-		[Parameter(Mandatory = $true,
-				   Position = 1,
-				   HelpMessage = 'Your message, can be HTML like formated')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$Message,
-		[Parameter(Position = 2,
-				   HelpMessage = 'Your Pushover application API token')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$token,
-		[Parameter(HelpMessage = 'Your device name to send the message directly to that device, rather than all of the devices')]
-		$device,
-		[Parameter(HelpMessage = 'Your message title, otherwise your app name is used')]
-		$title,
-		[Parameter(HelpMessage = 'A supplementary URL to show with your message')]
-		$url,
-		[Parameter(HelpMessage = 'A title for your supplementary URL, otherwise just the URL is shown')]
-		$url_title,
-		[Parameter(HelpMessage = 'The Push priority (-2 to +2)')]
-		[ValidateSet('-2', '-1', '0', '1', '2')]
-		$priority = '0',
-		[Parameter(HelpMessage = 'The name of one of the sounds supported by device clients to override the user''s default sound choice')]
-		[ValidateSet('pushover', 'bike', 'bugle', 'cashregister', 'classical', 'cosmic', 'falling', 'gamelan', 'incoming', 'intermission', 'magic', 'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat', 'alien', 'climb', 'persistent', 'echo', 'updown', 'none')]
-		$sound = 'pushover'
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        Position = 0,
+    HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$User,
+    [Parameter(Mandatory = $true,
+        Position = 1,
+    HelpMessage = 'Your message, can be HTML like formated')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$Message,
+    [Parameter(Position = 2,
+    HelpMessage = 'Your Pushover application API token')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$token,
+    [Parameter(HelpMessage = 'Your device name to send the message directly to that device, rather than all of the devices')]
+    $device,
+    [Parameter(HelpMessage = 'Your message title, otherwise your app name is used')]
+    $title,
+    [Parameter(HelpMessage = 'A supplementary URL to show with your message')]
+    $url,
+    [Parameter(HelpMessage = 'A title for your supplementary URL, otherwise just the URL is shown')]
+    $url_title,
+    [Parameter(HelpMessage = 'The Push priority (-2 to +2)')]
+    [ValidateSet('-2', '-1', '0', '1', '2')]
+    $priority = '0',
+    [Parameter(HelpMessage = 'The name of one of the sounds supported by device clients to override the user''s default sound choice')]
+    [ValidateSet('pushover', 'bike', 'bugle', 'cashregister', 'classical', 'cosmic', 'falling', 'gamelan', 'incoming', 'intermission', 'magic', 'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat', 'alien', 'climb', 'persistent', 'echo', 'updown', 'none')]
+    $sound = 'pushover'
+  )
 
-	BEGIN {
-		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  BEGIN {
+    # Cleanup all variables...
+    Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/messages.json')
+  PROCESS {
+    Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/messages.json')
 
-		# Build the body as per https://pushover.net/faq#library
-		# We convert this to JSON then...
-		Set-Variable -Name 'body' -Value $(@{
-			token = $token
-			user = $User
-			message = $Message
-		})
+    # Build the body as per https://pushover.net/faq#library
+    # We convert this to JSON then...
+    Set-Variable -Name 'body' -Value $(@{
+        token   = $token
+        user    = $User
+        message = $Message
+    })
 
-		# Sent a push to a special Device? Could be a list separated by comma
-		if ($device) {
-			$TmpBody = @{ device = $device }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Sent a push to a special Device? Could be a list separated by comma
+    if ($device) {
+      $TmpBody = @{
+        device = $device
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Want a Title for this Push?
-		if ($title) {
-			$TmpBody = @{ title = $title }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Want a Title for this Push?
+    if ($title) {
+      $TmpBody = @{
+        title = $title
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Attach a URL to the push?
-		if ($url) {
-			# Encode the URL if possible
-			if ((Get-Command ConvertTo-UrlEncoded -ErrorAction:SilentlyContinue)) {
-				try {
-					$url = (ConvertTo-UrlEncoded $url)
-				} catch {
-					# Argh! Use a unencoded URL
-					$UrlEncoded = ($url)
-				}
-			} else {
-				# Use a unencoded URL
-				$UrlEncoded = ($url)
-			}
-			$TmpBody = @{ url = $UrlEncoded }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Attach a URL to the push?
+    if ($url) {
+      # Encode the URL if possible
+      if ((Get-Command ConvertTo-UrlEncoded -ErrorAction:SilentlyContinue)) {
+        try {$url = (ConvertTo-UrlEncoded $url)} catch {
+          # Argh! Use a unencoded URL
+          $UrlEncoded = ($url)
+        }
+      } else {
+        # Use a unencoded URL
+        $UrlEncoded = ($url)
+      }
+      $TmpBody = @{
+        url = $UrlEncoded
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Give the URL a nice title. Just URLs suck!
-		if ($url_title) {
-			$TmpBody = @{ url_title = $url_title }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Give the URL a nice title. Just URLs suck!
+    if ($url_title) {
+      $TmpBody = @{
+        url_title = $url_title
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Set a Priotity for this push
-		if ($priority) {
-			$TmpBody = @{ priority = $priority }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Set a Priotity for this push
+    if ($priority) {
+      $TmpBody = @{
+        priority = $priority
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Special Sound?
-		if ($sound) {
-			$TmpBody = @{ sound = $sound }
-			$body = $body + $TmpBody
-			$TmpBody = $null
-		}
+    # Special Sound?
+    if ($sound) {
+      $TmpBody = @{
+        sound = $sound
+      }
+      $body = $body + $TmpBody
+      $TmpBody = $null
+    }
 
-		# Convert the Body Variable to JSON Check if the Server understands Compression,
-		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+    # Convert the Body Variable to JSON Check if the Server understands Compression,
+    # could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
+    Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
 
-		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+    # Method to use for the RESTful Call
+    Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
-		# Use the API via RESTful call
-		try {
-			(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
-		} catch [System.Exception] {
-			<#
-				Argh!
-				That was an Exception...
-			#>
+    # Use the API via RESTful call
+    try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+      <#
+          Argh!
+          That was an Exception...
+      #>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-		} catch {
-			# Whoopsie!
-			# That should not happen...
-			Write-Warning -message "Could not send notification to your Slack $User"
-		} finally {
-			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		}
-	}
+      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+    } catch {
+      # Whoopsie!
+      # That should not happen...
+      Write-Warning -Message "Could not send notification to your Slack $User"
+    } finally {
+      # Cleanup all variables...
+      Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    }
+  }
 }
 
 function global:Get-PushoverUserDeviceInfo {
-<#
-	.SYNOPSIS
-		Retrieves a list of registered devices with Pushover
+  <#
+      .SYNOPSIS
+      Retrieves a list of registered devices with Pushover
 
-	.DESCRIPTION
-		Perfect in combination with the Send-Pushover command to send a
-		notification using the "device" parameter of Send-Pushover
+      .DESCRIPTION
+      Perfect in combination with the Send-Pushover command to send a
+      notification using the "device" parameter of Send-Pushover
 
-	.PARAMETER User
-		The user/group key (not e-mail address) of your user (or you),
-		viewable when logged into our Pushover dashboard
+      .PARAMETER User
+      The user/group key (not e-mail address) of your user (or you),
+      viewable when logged into our Pushover dashboard
 
-	.PARAMETER token
-		Your Pushover application API token
+      .PARAMETER token
+      Your Pushover application API token
 
-	.EXAMPLE
-		PS C:\> Get-PushoverUserDeviceInfo -User "John" -token "APPTOKEN"
+      .EXAMPLE
+      PS C:\> Get-PushoverUserDeviceInfo -User "John" -token "APPTOKEN"
 
-		John-Mac
-		John-iPadMini
-		John-iPhone5S
-		John-S5
+      John-Mac
+      John-iPadMini
+      John-iPhone5S
+      John-S5
 
-		Description
-		-----------
-		Get all Devices for User 'John'
+      Description
+      -----------
+      Get all Devices for User 'John'
 
-	.LINK
-		Send-Pushover
+      .LINK
+      Send-Pushover
 
-	.LINK
-		Info: https://pushover.net
+      .LINK
+      Info: https://pushover.net
 
-	.LINK
-		API: https://pushover.net/api
+      .LINK
+      API: https://pushover.net/api
 
-	.LINK
-		Send-SlackChat
+      .LINK
+      Send-SlackChat
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
 
-#>
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   Position = 0,
-				   HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$User,
-		[Parameter(Position = 2,
-				   HelpMessage = 'Your Pushover application API token')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$token
-	)
-	BEGIN {
-		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  #>
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        Position = 0,
+    HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$User,
+    [Parameter(Position = 2,
+    HelpMessage = 'Your Pushover application API token')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$token
+  )
+  BEGIN {
+    # Cleanup all variables...
+    Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/users/validate.json')
+  PROCESS {
+    Set-Variable -Name 'uri' -Value $('https://api.pushover.net/1/users/validate.json')
 
-		# Build the body as per https://pushover.net/faq#library
-		# We convert this to JSON then...
-		Set-Variable -Name 'body' -Value $(@{
-			token = $token
-			user = $User
-		})
+    # Build the body as per https://pushover.net/faq#library
+    # We convert this to JSON then...
+    Set-Variable -Name 'body' -Value $(@{
+        token = $token
+        user  = $User
+    })
 
-		# Convert the Body Variable to JSON Check if the Server understands Compression,
-		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+    # Convert the Body Variable to JSON Check if the Server understands Compression,
+    # could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
+    Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
 
-		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+    # Method to use for the RESTful Call
+    Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
-		# Use the API via RESTful call
-		try {
-			$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
-		} catch [System.Exception] {
-			<#
-				Argh!
+    # Use the API via RESTful call
+    try {$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+      <#
+          Argh!
 
-				That was an Exception...
-			#>
+          That was an Exception...
+      #>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-		} catch {
-			# Whoopsie!
-			# That should not happen...
-			Write-Warning -message "Could not send notification to your Slack $User"
-		} finally {
-			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		}
-	}
+      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+    } catch {
+      # Whoopsie!
+      # That should not happen...
+      Write-Warning -Message "Could not send notification to your Slack $User"
+    } finally {
+      # Cleanup all variables...
+      Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    }
+  }
 
-	END {
-		Return ($PushoverUserDeviceInfo.devices)
-	}
+  END {
+    Return ($PushoverUserDeviceInfo.devices)
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVW0eQylhHhI71y9JN3P/fTmH
-# +XWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUr3LuGnUgsngYIHOFaCvylbxl
+# eeCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -425,10 +431,10 @@ function global:Get-PushoverUserDeviceInfo {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -444,12 +450,12 @@ function global:Get-PushoverUserDeviceInfo {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -546,25 +552,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSIUXRgMZsBOGmLio2LfBFQchmOvzANBgkqhkiG9w0B
-# AQEFAASCAQCWYU6y1zNjfk1EspBEgvvQ63521p3MRP3y4MNd5Tg8PUfdM0iPhqDK
-# bqOon5npvBdsf5lUJZ2YaBi5yV9PaiyXwARfB1y5klblLjkCxnvdKBLISBGURftH
-# q908phOGYcBaXonXBzwPvaBW0AXYahN7l+VPSohsnKCLUARvLcvj5bhWsX6+YFZi
-# M0/l+3h2aYALwKYCnKeB0oS7xLUAxly3YqlzVCJx2sMEfaMvS2OPtOTVHfkMQLmM
-# R2aq/zGZppyTb9upuxjIqnt2ee92+Ueie2NpI5EIPZtZNl7b9XOFpakaV2/IWWux
-# qUtmhYwVXLO+9mLITDawP3DEw9JtuIbpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRS5I/x4E3LYewVM57SHdV4W9V04TANBgkqhkiG9w0B
+# AQEFAASCAQBlMdh52VCAKMqvcVaClAFFx1SKNOd/W6katqW/KehZJziGHaBfDegt
+# UQEWUJoVs4e+J11m+TYb5ZLWNbQqT26N7mzhBT+1G/cXABxtOc7fk9sigglgOhlZ
+# tgO5eTdZvEMivZkkBp0cf0cZVuPfdyNOClDN5geEocTxAE6k0hIQd3CJejBNJOcB
+# Iis67CAzTF5VmRMnR5fUdF8ihSZ/aNXDn0xNN74FS+zgydnRoWN3hVi1IsAHIe7k
+# KM2rf725rdzzciMzvMDxzgbT+9cGE1GCYQbFyXRRoR5h81EMz0ymzlmhWTaOe+Zh
+# IuHF49lXb5hhWhqjOimDCN6HkrE79h3AoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1MVowIwYJKoZIhvcN
-# AQkEMRYEFOWHOywRN05PZSJWGWGFaraA7HomMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1N1owIwYJKoZIhvcN
+# AQkEMRYEFDvLmyf6RRMfWGwjja98hZM04F/0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBd7a3o3oYldZnbcH/4q2+guGcOOuUucugevycyZO0GhVuQ
-# gTf1CSKujQ18wCUtOpmV68RcKLe0kYNMTCr56iWAPUmuqYXNe93QkMH7YMH9h0c4
-# qbiBmZ/rP62aimz0hJsEWylLlRjEOGfCsTL6PFTpX4faNOBLcIqSxNLTSNLlctDx
-# 97fuKY1rLbRDBfXWSFFkHNHB+bwF7UuBX9HLtZc1BItkPeEI9Wy8+dfMXe1i2lAw
-# XaHEH5fvocIp0ZTpeibKkxmYEuHS6nShucd/TZr/H6x9UrfhJRjysFs/KFEn2f02
-# cDxVligdqKOVAerC2MUeOBWMn7n8NR0HZc4x/95A
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBrjWHNsOubNAx+T2BmW0j7ckdEI+fYe9yqJeKG784rA/O6
+# fSwDdxKU2QbQ1NCNVCFzhWkRCdaaIrG9mVdqPqZo4X+J52EyxLujq8+VHkHsgQ7u
+# 8i+NwV5bFVYSW/D3jk4u9VZFDZv84RahB3PoPChjl9KnGN8vuGnIe7VlZCzGIOnh
+# Y+qtsEcWSweBvoBFu53aH814YGlNkIJ+ziejLmrAHCfQ2UZLrjSFHfkjffqrupC4
+# MAWzEzL/VEpvGsdmxAaL5T4lN9hH+fWicDaMySDGx3UiViK+s4V+FlADRi1f+IdK
+# 16S+6bSOgbTTSjK7B1l5R4t75N0ZOZvalvqWp8zt
 # SIG # End signature block

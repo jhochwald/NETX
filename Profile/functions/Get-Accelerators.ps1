@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-23
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,90 +14,90 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Accelerators {
-<#
-	.SYNOPSIS
-		Get a list of all .NET functions
+  <#
+      .SYNOPSIS
+      Get a list of all .NET functions
 
-	.DESCRIPTION
-		Get a list of all .NET functions
+      .DESCRIPTION
+      Get a list of all .NET functions
 
-	.EXAMPLE
-		PS C:\> Get-Accelerators
-		Key                                                             Value
-		---                                                             -----
-		Alias                                                           System.Management.Automation.AliasAttribute
+      .EXAMPLE
+      PS C:\> Get-Accelerators
+      Key                                                             Value
+      ---                                                             -----
+      Alias                                                           System.Management.Automation.AliasAttribute
 
-		Description
-		-----------
-		Get a list of all .NET functions
+      Description
+      -----------
+      Get a list of all .NET functions
 
-		.EXAMPLE
-		PS C:\> Get-Accelerators | Format-List
-		Key   : Alias
-		Value : System.Management.Automation.AliasAttribute
+      .EXAMPLE
+      PS C:\> Get-Accelerators | Format-List
+      Key   : Alias
+      Value : System.Management.Automation.AliasAttribute
 
-		Key   : AllowEmptyCollection
-		Value : System.Management.Automation.AllowEmptyCollectionAttribute
+      Key   : AllowEmptyCollection
+      Value : System.Management.Automation.AllowEmptyCollectionAttribute
 
-		Description
-		-----------
-		Get a list of all .NET functions
+      Description
+      -----------
+      Get a list of all .NET functions
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		[psobject].Assembly.GetType('System.Management.Automation.TypeAccelerators')::get
-	}
+  PROCESS {
+    [psobject].Assembly.GetType('System.Management.Automation.TypeAccelerators')::get
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUejWiRZvY8p63cyQAxX1mAbKA
-# p1agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4kuFHHtg8tAXTKQRzbtNGP+p
+# URygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -240,25 +240,25 @@ function global:Get-Accelerators {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRaVJIAH31uW7mBdPRyw/ci0xa7RjANBgkqhkiG9w0B
-# AQEFAASCAQA83d4kG9o/QC6P4IhkhCGaGMLqbvJ54WeTeDncRsJaRaP3iAHy+D7W
-# 15CbA+fnVVL1kjJ/xePvwRsxyGoG3TXaqF0M522Fd22wuR7djASzBi1XXMuyWirw
-# aDM1WOa3dI9WFH+DRSvVQIV+dOffwPtYw6a5i5QVwPC+IHbiJpCmLMYRiGnc0szE
-# Oec/cmyzkIRRb+f7Qg2ly0xbDx8Rg7ThihyX+Tu/mvtm3IllkfwTqebAASSxLUR3
-# AlXBsdX1mk5tCeiZlYQtvVQBdoPBDPqdi6qIQpvL/XndFOWA+eD21sIheyqBl9wx
-# WWWt62m4U7lHYDxkrh0kD+Phgqg48r1NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTeFqGRX9NiRYhKEMGhZWUjUAdLMjANBgkqhkiG9w0B
+# AQEFAASCAQB0xCw8jTxgKa1XFRLeoT3F0Sk2gZdAx+Wb5sES9MthCI6wroNl+aDY
+# 0K7koyJgtnyQTVAi9T6xBqDi156bP/tkt29EnJjGTR92IKo8riE+/EyOQFWkJ1Ot
+# Pq3wmE0rKVMQy7s6w2n9Z+EWCR53hEkZB6Vdmv+1hGg2n+m2/QsC0ZgtW7F3UhG9
+# nucgBLcL4hTvI4XN+icab1918f/Og4f1PmAEp7TY327tRbSfNN4GvOJHfwvXuGds
+# PMv3aUVBV3RXKPjFi6c6c5uCg8Ca9L5HwR6Cz5hGvBmNPwwcktZtjHiCFpdLdzIL
+# h03ThPfrkxX5xOGtaSxr7tu16R4m6zfYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyMVowIwYJKoZIhvcN
-# AQkEMRYEFKKOBvXKWaPpDx2m4mSAkjZcDnEJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyNVowIwYJKoZIhvcN
+# AQkEMRYEFKFmyDyOghyrbB7PSnk4XB3lk45uMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBh+C+K3eIX/JyyPq+NOXTkaje/uri/6VbZEJIti6FpnnqD
-# alpVQ22htVFFUZYEWkHJ2k6XVgIZljyYSEqDNql+9RkNXuoiznT22CThL4/8Vjnt
-# tPYa5QY146wMAzaMhGj62FZPNrnkPwbEFEJByvTjySw6xraJNLuItBkW/+jV49lD
-# D9hkK28maua/pewrBBTbVILDYxzv+4UH/Q4MoMqRf7T3Qb+Oa0HVRUK752Cx77kh
-# Dq1bwjPBLJVzIP/rEskn63sc5xPMDNrao8Lop1jyOg7HfOVXjFAFo9Fq2dDfR3Zf
-# BMPO2STKtPVdH5coSdFPCz3JUWrH9SDZuwlg9an1
+# hkiG9w0BAQEFAASCAQARmFEU1qjEWkn/WYTlkYH8ce8+ccKxWrFAYC37ok/GBBLM
+# fP0HOrJucDLDVmkudl/RZoFa0WTE21ZYepdXrBe87kH181tdZUs/P74NwZZOUpuL
+# HybNedb2+Ie2gXWr6XXPh3udvW8uPUdpLjZ7wTiK6/7JmN/Cg479GZF/x0BfUU8q
+# G/AL+s0EsWgATsxJoXdJnTWUwEkx3hMa9gDoYTM2SDvosDojXllbfd304I5o39Ih
+# va6ijvZF95dhLL+WvmSxZROvMbLLQt6WOjzGIeCzySUIYKWX3IIutMbV3wRVVLNw
+# c8KrFEHPzDkd0X7h1ELrI9hcn3/FI/3MG2gAzmnP
 # SIG # End signature block

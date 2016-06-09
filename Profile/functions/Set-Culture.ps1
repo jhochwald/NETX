@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,98 +14,98 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-Culture {
-<#
-	.SYNOPSIS
-		Set the PowerShell culture to a given culture
+  <#
+      .SYNOPSIS
+      Set the PowerShell culture to a given culture
 
-	.DESCRIPTION
-		Set the PowerShell culture to a given culture
+      .DESCRIPTION
+      Set the PowerShell culture to a given culture
 
-	.PARAMETER culture
-		Culture to use
+      .PARAMETER culture
+      Culture to use
 
-	.EXAMPLE
-		PS C:\> Set-Culture -culture "en-US" | ConvertFrom-UnixDate -Date 1458205878
-		Thursday, March 17, 2016 9:11:18 AM
+      .EXAMPLE
+      PS C:\> Set-Culture -culture "en-US" | ConvertFrom-UnixDate -Date 1458205878
+      Thursday, March 17, 2016 9:11:18 AM
 
-		Description
-		-----------
-		Returns the date in the given culture (en-US) format instead of
-		the system culture.
+      Description
+      -----------
+      Returns the date in the given culture (en-US) format instead of
+      the system culture.
 
-	.NOTES
-		Inspired by Use-Culture.ps1 by Lee Holmes
+      .NOTES
+      Inspired by Use-Culture.ps1 by Lee Holmes
 
-	.LINK
-		Use-Culture http://poshcode.org/2226
-#>
+      .LINK
+      Use-Culture http://poshcode.org/2226
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'Culture to use')]
-		[ValidateNotNullOrEmpty()]
-		[System.Globalization.CultureInfo]$culture = 'en-US'
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 1,
+    HelpMessage = 'Culture to use')]
+    [ValidateNotNullOrEmpty()]
+    [System.Globalization.CultureInfo]$culture = 'en-US'
+  )
 
-	PROCESS {
-		$OldCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
+  PROCESS {
+    $OldCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
 
-		[System.Threading.Thread]::CurrentThread.CurrentUICulture = $culture
-		[System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
+    [System.Threading.Thread]::CurrentThread.CurrentUICulture = $culture
+    [System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
 
-		$TheCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
-	}
+    $TheCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
+  }
 
-	END {
-		# Be Verbose
-		Write-Verbose -Message "Old: $OldCulture"
-		Write-Verbose -Message "New: $TheCulture"
-	}
+  END {
+    # Be Verbose
+    Write-Verbose -Message "Old: $OldCulture"
+    Write-Verbose -Message "New: $TheCulture"
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3HvY4MTDJFPpqLczFs+rCHJK
-# 9dqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0Ov/eZJnwtT0Y4zLLw8Irns8
+# KCGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -127,10 +127,10 @@ function global:Set-Culture {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -146,12 +146,12 @@ function global:Set-Culture {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -248,25 +248,25 @@ function global:Set-Culture {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ7jAsPo4nzfT2rmC4I2k9OQJrWQzANBgkqhkiG9w0B
-# AQEFAASCAQCXVv3UKpfwn1YicbYg13ZMXOvJ65VyY/VEkEHt2PbtvcmBzE/YmW0C
-# 3cCYpDzVJOM7RuDE+SwF2D3qgTK6+65ZAYtrRYRVxb22bxULLzR6vB1AOF9k+Pr2
-# R0S0mC9aMdZOSWVb6jjxgmh6RLOHAQV70hWr1sCuZWFNiIg8hmxNt5BcQqwonyPq
-# RwtHAb2A242APmgp6laM+SwXQlVd/Ilwaxptq2SSCSqtqqkTT2843YXXELC5k0a3
-# 3qGQSaMWnDGLhfD3h1fwQh4/kTQ69hddv/ovi2s8A7fDDKcxS/PjR9qh1cMjLMvH
-# a6BwHyJhNoRyY0t2MxGLTOqfD646u0vgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBStUOce5IpuPVFknBrUjIlx2qZ0/zANBgkqhkiG9w0B
+# AQEFAASCAQBI2LaWPiBUnrDTFdH1B9wNm1vjpswRMfJBFdJVoGHXZkuw11repIx9
+# YV5KoLheRtN+b3Z+Mc2RkR1WuhHQe8xTosTsDuuSnfN2rLp+tcHuEvwGtl5dWXIO
+# gS+stUp//M808Qci7V8fz5eMiLzzL0JX5cx54uXkpYvTW05DcYB0axd+IVTZJ2NF
+# HW/ldW+Uk1uVWH8sqxW8ggLgzQIDK6y0VheSPrEGzPgGy+s3yI1X9fAcpShAq1CQ
+# 9ekBnE409zPxfVRRfsbZnvLhAwM8YMx2dIZv5EqQAdfxjPE7zO+nQ06BWCdAsshP
+# 3FRmy6WSOg+qdeG0IAxzm18nz81fBw7VoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFJnb+hquE0RrlsWjnCBYMpV4C0LsMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMlowIwYJKoZIhvcN
+# AQkEMRYEFL1/MdQm7pa6usH9P9wIGW3L3Wc4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBjM9qlN3Yx20mkOXJctr5MrMmDe1FsvRuJ8aThwVTst89U
-# bFSys40THND5wFOy+kiskF1Fekq/PdiL01PSRzXL2fws+sRVHGOHN57emU8bni0G
-# ngTvyHNDyg79Me6ZJ0cg8K8dY2g0Iv+56Aj2/lE49HNw87N+7HGffjrF8AXOyROW
-# EqPUFjGK1xi4InaRvQswOskOQp4mP0sYVoFg4AZv2zW4EaRxIJRNyAVZbQPyZ3xC
-# 9/w3mVs9RZh88BAY+gkaryz51XJslCyZ/4U8IzNEmZxavZ9s9gjCo/XoKJhYn7EU
-# aLRNksBImgUVgWUViYJiXoTfhbvU+yskeA1EbrYi
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQA+eVMnyV0HyJ6TXF1I5PI+36jfvT7vhjzA01lIjFW6Wodd
+# JtEM4+CC7Z9oGtGS6pT0/XZxJwbzNrhkwSdOWNAFYBNEbw+Vwe2RVB5iIDO3Gd7p
+# XUYGqJbTOKApNxRo9rX6vWt/1mCfs1scCiRvVZo6CvbVi5Lx3/NH+kASVt6jNYxa
+# D7HE2NmJtHQBAZBVmWKQpe1DaIyNcFS49pMy++CEKRKWSVliorWI9mWbx5scSDA5
+# yWQ2SJcepPy+lNvgR8CJH+wWyDQ6eDCFX/L4HLukHnGNRzxQ5hmp6Xjme5NSixTB
+# iM8Uz9lArr/P/zp2AjSC/8HgqGI7JBAobq2pyIy2
 # SIG # End signature block

@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,148 +14,148 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Test-RemotePOSH {
-<#
-	.SYNOPSIS
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on
-		a given Host
+  <#
+      .SYNOPSIS
+      Check if PSRemoting (Remote execution of PowerShell) is enabled on
+      a given Host
 
-	.DESCRIPTION
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on
-		a given Host
+      .DESCRIPTION
+      Check if PSRemoting (Remote execution of PowerShell) is enabled on
+      a given Host
 
-	.PARAMETER ComputerName
-		Hostname of the System to perform, default is the local system
+      .PARAMETER ComputerName
+      Hostname of the System to perform, default is the local system
 
-	.PARAMETER POSHcred
-		The credentials to use!
+      .PARAMETER POSHcred
+      The credentials to use!
 
-		Default is the credentials that we use for Azure, Exchange...
+      Default is the credentials that we use for Azure, Exchange...
 
-	.EXAMPLE
-		PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN01'
-		WARNING: Unable to establish remote session with NXLIMCLN01.
+      .EXAMPLE
+      PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN01'
+      WARNING: Unable to establish remote session with NXLIMCLN01.
 
-		Description
-		-----------
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on
-		'NXLIMCLN01'. It uses the default credentials (Same that we use to
-		administer Exchange Online and Azue)
+      Description
+      -----------
+      Check if PSRemoting (Remote execution of PowerShell) is enabled on
+      'NXLIMCLN01'. It uses the default credentials (Same that we use to
+      administer Exchange Online and Azue)
 
-	.EXAMPLE
-		PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN02' -POSHcred (Get-Credential)
-		NXLIMCLN02
+      .EXAMPLE
+      PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN02' -POSHcred (Get-Credential)
+      NXLIMCLN02
 
-		Description
-		-----------
-		Check if PSRemoting (Remote execution of PowerShell) is enabled on
-		'NXLIMCLN02'.
+      Description
+      -----------
+      Check if PSRemoting (Remote execution of PowerShell) is enabled on
+      'NXLIMCLN02'.
 
-		And is asks for the credentials to use.
+      And is asks for the credentials to use.
 
-	.NOTES
-		Initial Beta based on an idea of Adrian Rodriguez (adrian@rdrgz.net)
+      .NOTES
+      Initial Beta based on an idea of Adrian Rodriguez (adrian@rdrgz.net)
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Hostname of the System to perform, default is the local system')]
-		[string[]]$Computer = ($Env:computername),
-		[Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
-		[pscredential]$POSHcred
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Hostname of the System to perform, default is the local system')]
+    [string[]]$Computer = ($Env:computername),
+    [Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
+    [pscredential]$POSHcred
+  )
 
-	BEGIN {
-		# Cleanup
-		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  BEGIN {
+    # Cleanup
+    Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		# Define a dummy ScriptBlock
-		$ScriptBlock = { $env:COMPUTERNAME }
+  PROCESS {
+    # Define a dummy ScriptBlock
+    $ScriptBlock = { $Env:computername }
 
-		# Define the Argument List
-		$InvokeArgs = @{
-			ComputerName = $Computer
-			ScriptBlock = $ScriptBlock
-		}
+    # Define the Argument List
+    $InvokeArgs = @{
+      ComputerName = $Computer
+      ScriptBlock  = $ScriptBlock
+    }
 
-		# Do we have credentials?
-		If ($null -ne $POSHcred) {
-			# Yeah!
-			$InvokeArgs.Credential = $POSHcred
-		}
+    # Do we have credentials?
+    If ($null -ne $POSHcred) {
+      # Yeah!
+      $InvokeArgs.Credential = $POSHcred
+    }
 
-		# Try to connect
-		Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
+    # Try to connect
+    Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
 
-		# Loop over the Problems, if we have one... or more?
-		ForEach ($Failure in $Failures) {
-			# Warn the user
-			Write-Warning -Message "Unable to establish remote session with $($Failure.TargetObject)."
-		}
-	}
+    # Loop over the Problems, if we have one... or more?
+    ForEach ($Failure in $Failures) {
+      # Warn the user
+      Write-Warning -Message "Unable to establish remote session with $($Failure.TargetObject)."
+    }
+  }
 
-	END {
-		# Cleanup
-		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  END {
+    # Cleanup
+    Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4ZZG6i2N01+1BQp+neUtx04H
-# BIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpWEUnAZXlZy6BScirs0NwIWy
+# Z8WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -177,10 +177,10 @@ function global:Test-RemotePOSH {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -196,12 +196,12 @@ function global:Test-RemotePOSH {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -298,25 +298,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQym389Lzc86jYdHFOad2ZVBgwkeDANBgkqhkiG9w0B
-# AQEFAASCAQBJkhXu+R1qUiRTsgvIryJGsm1Z4t5R5IXhka92EhH2Y6cU50NrgsaP
-# 2SKQ0R1X0fgt4Y1kpdbcV3Nai+2cSADdZs45sTT6HqrFxLtu5ExXJ/lGqKAALizz
-# j5ApU/wP0X6c+TAC3X54wsjYOJMxf/4W/uZdl+3ZPFXuB9Io8NLZX8HAlvlloZ7d
-# 9X+/uQ8gH/msmDU9VIzr+ztvydrQDo/nUVSmRHtx8Q3S3O/zOZTmud4DazrRJjp6
-# NkNV9MeWerrhQHLxQ+ED2TbutyHrmofsUUWkJ2pb0BMmkF0E2o7HXIwq7AWOCQkJ
-# TGGbhRgpA7vsTfcxDFVTuxKV+gM2781xoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSz8ZVQJplcNVvX9RupgOSWFOnt9TANBgkqhkiG9w0B
+# AQEFAASCAQA5noxZbdehkMmNxqI/cvZtbZ+5aCoHSd+qaxnZKDMd3EBVa7RvoqDM
+# LJve5rg9FAZr9k2yGnctbTz98K2O9RRLIxTEvNiKea/8KgrcWnJw7R6f/T2bEB3I
+# C6YtRXwvr5+xIo9SqhiStD0+DfZhlTq8W6p+XE8PDLfkq5qodYDmaLUt6/UBX2jg
+# iZSfbOnXMR3Zj1kyxXq4/ZUEeFfaqi/WE4zZH+TX/Elf7GG1Ba4NTnRS9/3ZVP6/
+# hll7c6RHi1r5XgSjUMx16Mv+bMryn6rTgk4aKFPgVHoqbzrH7F4LAzidkj84qU1q
+# CRqdj1W7++sHxGIk+ijyODTiQdQ3unqNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzUwMFowIwYJKoZIhvcN
-# AQkEMRYEFLqL0t0Zh2KyZkNjE6GwJVEEYnj4MIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwN1owIwYJKoZIhvcN
+# AQkEMRYEFLV0Vm3ByrtdxRHxPKe5I3gJVjrQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBE7TaK/uWpi26NHAnAiuduV2jAMeEhQrqL5IASubrC3xAm
-# JnnjJcNVJg3O8hfz2exD9zOgShqrkIwYO11LfGnrP4plw3b8ogX01tqozMKC8ns+
-# TxxvHjZI5ZZQDrg45ERp8RtKo3oKQdZzIbgSKuHO/bG9O1bbo3fwSQfJuDiKa4NK
-# l36Y4rsrW0BG2RFNODeUqM8UaZOKHZZfklxG+AykA976ABCOLtXgp+2mgfWRkS1u
-# kkP4j/pzB0DZPDZ0HyWiqra0b7pNL0RigcN9i1Y80ih+QR3/YQ8xtIgAzvlkUKN3
-# uIqj6KOQ3xYl9ZczFSZ+9EzFqjuoYpFgak+GiBB/
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQA2IvPcw3JfQXMlM1xEHn0khuRiKMOeuSp1qIe90+Z33WW+
+# eHc6s4MgLnB7Ni1wRDKwj0IQ1Lx5r6nYeGv76zduvE7By/nb/PHXE9IsgerVpMAj
+# CO3m7HNS1R4Ob7uEUeQk9D2CTToYM9zGGR7pIyhq8AivQyCmwK6MzSOU664ki8la
+# 9BajdtehKi7ZYdBeOoOlpqMnZ7ukTrQE8DsJtFGsOIFn58QG9hA+L+H70jj2aWvg
+# JYD2VlE/PdLKT8I8T7SYOr7f2nwhHWF6uQk0UDCjZoUOR1/VTdhO9beXQcKr1Lq4
+# OtTMGDUtBT2K4MfCNVVdCsVo6VrRlMa8jlAj0rtt
 # SIG # End signature block

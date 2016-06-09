@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,77 +14,77 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-CreateMissingRegistryDrives {
-<#
-	.SYNOPSIS
-		Create Missing Registry Drives
+  <#
+      .SYNOPSIS
+      Create Missing Registry Drives
 
-	.DESCRIPTION
-		Create Missing Registry Drives
+      .DESCRIPTION
+      Create Missing Registry Drives
 
-	.EXAMPLE
-		PS C:\> Invoke-CreateMissingRegistryDrives
+      .EXAMPLE
+      PS C:\> Invoke-CreateMissingRegistryDrives
 
-		Description
-		-----------
-		Create Missing Registry Drives
+      Description
+      -----------
+      Create Missing Registry Drives
 
-	.NOTES
-		Based on an idea of ALIENQuake
+      .NOTES
+      Based on an idea of ALIENQuake
 
-	.LINK
-		ALIENQuake https://github.com/ALIENQuake/WindowsPowerShell
-#>
+      .LINK
+      ALIENQuake https://github.com/ALIENQuake/WindowsPowerShell
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		New-PSDrive -Name 'HKU' -PSProvider 'Registry' -Root Registry::HKEY_USERS -EA 0 | Out-Null
-		New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root Registry::HKEY_CLASSES_ROOT -EA 0 | Out-Null
-		New-PSDrive -Name 'HKCC' -PSProvider 'Registry' -Root Registry::HKEY_CURRENT_CONFIG -EA 0 | Out-Null
-	}
+  PROCESS {
+    $null = New-PSDrive -Name 'HKU' -PSProvider 'Registry' -Root Registry::HKEY_USERS -EA 0
+    $null = New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root Registry::HKEY_CLASSES_ROOT -EA 0
+    $null = New-PSDrive -Name 'HKCC' -PSProvider 'Registry' -Root Registry::HKEY_CURRENT_CONFIG -EA 0
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaHVzjMPfVl7y38F6JrH3WQJM
-# juagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2rD7LPUsJlHnUoykuTgSypYU
+# wXWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -227,25 +227,25 @@ function global:Invoke-CreateMissingRegistryDrives {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRss4dZbPy58qZDbe68MbMS3JdsYTANBgkqhkiG9w0B
-# AQEFAASCAQBmM2iyGxFd3hPcXJCP0f797FBVCQN+sKt0kyGue0kxQtCvH/1gz+vj
-# 02fBJJs1RWu18WeEMo/wyi59gIxSy32SIDFaZZQbfl5jeC3FgX2ZGfKjqNfGboOL
-# QGguxrNHqjU82AxfmogFbyEyQ4HVjv3m7NM00xOPof9kBYqVHSPx/mgTpi9Qp4Gx
-# o7vRQ8WnebuCNse7xidsw96uWkMjr2nQfdqkwy/3sKAucybRINmU7xO0AxYNMxx2
-# DlrYnxKc40ReLyjPWRXY1gK0mCXdsdR36ARtFLH8051MJzO9DPZTLtEuFkQwDvkJ
-# qiooQSur49sxlPLoTP4tRf4zC2rMqH0UoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR3CcgRKd0PFR5dbyPGiTkf2Yx0CjANBgkqhkiG9w0B
+# AQEFAASCAQA5P2GzFHzV3ngPUPNidyC6xsy5EgriK+wPzXYP1d1x/blrngvLlWqc
+# hh0A+ywJmrWSR4U4JAGQ3r0k+W13OMDpWToEh3oTlDTF0wq/LrrcCduIyEdWsJks
+# 9ALuvvMUlnW2eWayi+QlB9MDLCkTwjzF4HOCG6VsSuWbAXoB1B1jEeKhhtQZ87RL
+# NOujZdfDSl8qxi7JvILTj6UKE/H3nWxLZzrecFgHr65LMlXjHwHOENZ3kWncnsBs
+# cqrxTFNTp5IJ9q1sqXKdklenUzXfwCS5Vvgdsvn2hu6vhuJQtTJQ8ztyIt6MIbI5
+# LvnMDQVU1jcv/Y85pA+EyRO9DhebQAAroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0MVowIwYJKoZIhvcN
-# AQkEMRYEFDAjRkaNeNypRMOQSv/qVdj4ayuPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0OFowIwYJKoZIhvcN
+# AQkEMRYEFPJDQuu0bblsw6fTAOXmqIz+JKyQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBFO99cwWVI9d1C5qA/ThdwYINxO0N9bptJDydElm1j4QAR
-# ry1LDKgCdeCdkK6MyY817vFy0uQhQIb5Lal1HpG9z3pwNLT/gOg16PQm9RpjaifR
-# vp5Qp56JwB/Gjo7weJTPlx84lgdWf1OraTPZVpkmQz6E9V59lY4rOId9zl44xHe9
-# 4DVXmLP90xXais5vfv96QKW65clgKcbn8Ej0XKOIIbN2wRTQZx8aJ2Z0Mw/1fe1Q
-# O4HNiSgpnLakvLlMBAhjXlZ5L8te0fOiLbKSj+4M8vtqOSy1CooeBPY1DNCR8gb2
-# H0hD0l5hGVs2OptJz2vpCZKxA/Y7eO1XskVqfmuS
+# hkiG9w0BAQEFAASCAQB3gXN0+4kvFEiXZH5V1qV081DegF6k1ar0Hrd/Hzx1FfaO
+# 7A3cJhkT4DPjY/rVnzRZ3NBvKY0WQPk5BgbyGgqO0r5sbQFnvAx6mBNbVWk0L6oK
+# mJWKQhTAKQk/lp5DMDSznr1G71uTayM158arDddyAIU5I2pDDYZRi2gZGzh9nXdo
+# Lh0oFyUPWlTGd/uY8uIgsVt9cDBZi7HOh7lp2x4LY8dsM55zdb2xejce8MfXvzyd
+# MnawAkOVASUCuH8m+qWJt5s0y+jtVQL+NmUVaF1IwFoGNfOKeF+5gHCiuubzP5LW
+# i1zTs68x49/cHxLp+IvDFXKZbLMdbK+rsg51tS1V
 # SIG # End signature block

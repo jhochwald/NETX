@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,141 +14,138 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
-function global:Open-InternetExplorer {
-<#
-	.SYNOPSIS
-		Workaround for buggy internetexplorer.application
+function global:Open-InternetExplorer
+{
+  <#
+      .SYNOPSIS
+      Workaround for buggy internetexplorer.application
 
-	.DESCRIPTION
-		This Workaround is neat, because the native implementation is unable to
-		bring the new Internet Explorer Window to the front (give em focus).
-		It needs his companion: Add-NativeHelperType
+      .DESCRIPTION
+      This Workaround is neat, because the native implementation is unable to
+      bring the new Internet Explorer Window to the front (give em focus).
+      It needs his companion: Add-NativeHelperType
 
-	.PARAMETER Url
-		The URL you would like to open in Internet Explorer
+      .PARAMETER Url
+      The URL you would like to open in Internet Explorer
 
-	.PARAMETER Foreground
-		Should the new Internet Explorer start in the foreground?
+      .PARAMETER Foreground
+      Should the new Internet Explorer start in the foreground?
 
-		The default is YES.
+      The default is YES.
 
-	.PARAMETER FullScreen
-		Should the new Internet Explorer Session start in Full Screen
+      .PARAMETER FullScreen
+      Should the new Internet Explorer Session start in Full Screen
 
-		The Default is NO
+      The Default is NO
 
-	.EXAMPLE
-		PS C:\> Open-InternetExplorer -Url 'http://net-experts.net' -FullScreen -InForeground
+      .EXAMPLE
+      PS C:\> Open-InternetExplorer -Url 'http://net-experts.net' -FullScreen -InForeground
 
-		Description
-		-----------
-		Start Internet Explorer in Foreground and fullscreen,
-		it also opens http://net-experts.net
+      Description
+      -----------
+      Start Internet Explorer in Foreground and fullscreen,
+      it also opens http://net-experts.net
 
-	.EXAMPLE
-		PS C:\> Open-InternetExplorer -Url 'https://portal.office.com'
+      .EXAMPLE
+      PS C:\> Open-InternetExplorer -Url 'https://portal.office.com'
 
-		Description
-		-----------
-		Start Internet Explorer in Foreground with the URL
-		https://portal.office.com
+      Description
+      -----------
+      Start Internet Explorer in Foreground with the URL
+      https://portal.office.com
 
-	.LINK
-		Source: http://superuser.com/questions/848201/focus-ie-window-in-powershell
+      .LINK
+      Source: http://superuser.com/questions/848201/focus-ie-window-in-powershell
 
-	.LINK
-		Info: https://msdn.microsoft.com/en-us/library/windows/desktop/ms633539(v=vs.85).aspx
+      .LINK
+      Info: https://msdn.microsoft.com/en-us/library/windows/desktop/ms633539(v=vs.85).aspx
 
-	.NOTES
-		It needs his companion: Add-NativeHelperType
-		Based on a snippet from Crippledsmurf
-#>
+      .NOTES
+      It needs his companion: Add-NativeHelperType
+      Based on a snippet from Crippledsmurf
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'The URL you would like to open in Internet Explorer')]
-		[System.String]$Url = 'http://support.NET-Experts.net',
-		[Parameter(HelpMessage = 'Should the new Internet Explorer start in the foreground? The default is YES.')]
-		[Alias('fg')]
-		[switch]$Foreground = $true,
-		[Parameter(HelpMessage = 'Should the new Internet Explorer Session start in Full Screen, the Default is NO')]
-		[Alias('fs')]
-		[switch]$FullScreen = $false
-	)
-	BEGIN {
-		# If we want to start in Foreground, we use our helper
-		if ($Foreground) {
-			Add-NativeHelperType
-		}
-	}
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'The URL you would like to open in Internet Explorer')]
+    [System.String]$Url = 'http://support.NET-Experts.net',
+    [Parameter(HelpMessage = 'Should the new Internet Explorer start in the foreground? The default is YES.')]
+    [Alias('fg')]
+    [switch]$Foreground = $true,
+    [Parameter(HelpMessage = 'Should the new Internet Explorer Session start in Full Screen, the Default is NO')]
+    [Alias('fs')]
+    [switch]$FullScreen = $false
+  )
+  BEGIN {
+    # If we want to start in Foreground, we use our helper
+    if ($Foreground) {Add-NativeHelperType}
+  }
 
-	PROCESS {
-		# Initiate a new IE
-		$internetExplorer = New-Object -com 'InternetExplorer.Application'
+  PROCESS {
+    # Initiate a new IE
+    $internetExplorer = New-Object -ComObject 'InternetExplorer.Application'
 
-		# The URL to open
-		$internetExplorer.navigate($Url)
+    # The URL to open
+    $internetExplorer.navigate($Url)
 
-		# Should is be Visible?
-		$internetExplorer.Visible = $true
+    # Should is be Visible?
+    $internetExplorer.Visible = $true
 
-		# STart un fullscreen?
-		$internetExplorer.FullScreen = $FullScreen
+    # STart un fullscreen?
+    $internetExplorer.FullScreen = $FullScreen
 
-		# Here is the Magic!
-		if ($Foreground) {
-			[NativeHelper]::SetForeground($internetExplorer.HWND) > $null 2>&1 3>&1
-		}
-	}
+    # Here is the Magic!
+    if ($Foreground) {[NativeHelper]::SetForeground($internetExplorer.HWND) > $null 2>&1 3>&1}
+  }
 
-	END {
-		# Be verbose
-		Write-Verbose -Message "$internetExplorer"
-	}
+  END {
+    # Be verbose
+    Write-Verbose -Message "$internetExplorer"
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5+HYfFoVZTk6TuqsaYgue2ER
-# i8SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuYK+nRgxqAzRuLuQnmcUyqTb
+# yOWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -291,25 +288,25 @@ function global:Open-InternetExplorer {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSGXnUNrsNHAEHNOGl0UG144jLdYDANBgkqhkiG9w0B
-# AQEFAASCAQBTQ9ytSTicM1D6CcJb0HuTwmpo2R5Cf9p9JOowpi9Ho5O3tWGP99v+
-# Rh2R59y+YU1V+/Pn3di/i1KRW3cjln8zXc7zTt2xSzOU+Qi4ClGNGPkWFPUrj9b0
-# FLmBkOYKvJwWCykT+NmM3593oUvA7z3UbEluj6mQxQK8qRnBhprjsU0W8obAFqv/
-# AVhCP7p51tQSQFY+DUqbkVPGSPfgQXYIpJs9td117hSc2AuyCjDJ5rs0XpPnkoZj
-# Aw/NYV1s9ZY9BIi+0GX86xkG0laDLTiLtXR7hia8VFE0ShYDNlQiTgMPKMeKHC0k
-# i+jQMHXd+8ZvgSQ3C/Sc7f0DCfu8UGXZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSx/PJ0z24tnhK1EwHF+P+3TaeoyjANBgkqhkiG9w0B
+# AQEFAASCAQA4/UmvvEzDhKqFm5a8UzjIIhp0J7V5PzkBfN1t1KdvK1SZ4hIsrjVF
+# jOeWfeCA2g7vGFiBazdV1xnoEA9ol3mDtoVMf1Ha0k7LD5T0BMpwMJh9otBVlPp5
+# dXAdiTlI7D7tF313UJyJ84nx8d5eW3zdRX8mr2CtpSXzzX6MOP5w69NNJd3v10Ea
+# neOlY7o8wjdJeTRoG/A0lstap2s4Ac6mekCq1q4QFH7WkfuYwpgWuCBKb/FQs2NY
+# R3AW9V+VGs7tKOuL4+T3FXmys6Om/UoSZCYevp6wUYeDsuXFCGhbafkm2AXlTVgB
+# 2sfJr5Jn5ecV5nv9xPkn5o1BoiCYM98NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0N1owIwYJKoZIhvcN
-# AQkEMRYEFDOpXAeEwzwXWHOtXx/L92Dv1lbQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1NVowIwYJKoZIhvcN
+# AQkEMRYEFC3ShF5RePaYqyGh7ky9sJLM9SVmMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBAOv/7W0GL7SL1A6XEyIxBRHnemkc7dngd2Ky/PHc9ARuM
-# W2eQnnP8qyxi5dq4QqAuZxsL0AV/bTOL2J9uaQu8BAThhcnA2eRFDhb1Sb85CBei
-# +Jg2BlnncvMSugjaoInPpU68uLdISAPj6kwzmqEQWUQsJvlpK7NrQkGKI223uIBV
-# pDLf3RJqp2DUXhCoFcT4v3vHhOb5XSkD76cvIXFsc3TKXzoawhw16Nohpy03R3g8
-# AuyVQmlbacfaTc3rE24ycBl7fZXWfCyAt4gHKAO0Ibvr4dc/DpO8qlxh9NqZ30qx
-# +gyqLFC1NrMToYv4f2adDGYhfBPNSaWAyC51MK6G
+# hkiG9w0BAQEFAASCAQBV7iiy5nvDHyvqqb2gRnmOVJlO3GXPBaS6ET5chLHWfPE+
+# SdRRTgi8nLlVNfqB49GS7R22gjQ6fYNvHZ9do6qVxdC3VYpep22vO4kX7F47yhCW
+# G0KaV4AMSBqPVp/GxcR8gshDOE/2QqIdnKNqrRVHCbSCggmPVBWJOQkenznKH3WW
+# i5YzIsuZnesGQIGWZ192mrS02oaWn/gJygHBDzDcSE9nX9F6LnVzgVyFm1LiB/xI
+# qwmkrCXYU997IpmV9C9mWsxZaeREss0wnB/d6Vc9xgsrhklnX5ZaO5RgPoEngSSb
+# uUstznmfw0W3a0ycL7t00I/s+Oz0NC6WH5Xh/F8k
 # SIG # End signature block

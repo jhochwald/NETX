@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,104 +14,104 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:wc {
-<#
-	.SYNOPSIS
-		Word, line, character, and byte count
+  <#
+      .SYNOPSIS
+      Word, line, character, and byte count
 
-	.DESCRIPTION
-		The wc utility displays the number of lines, words, and bytes
-		contained in each input file, or standard input (if no file is
-		specified) to the standard output.
-		A line is defined as a string of characters delimited by a <newline>
-		character.
-		Characters beyond the final <newline> character will not be
-		included in the line count.
+      .DESCRIPTION
+      The wc utility displays the number of lines, words, and bytes
+      contained in each input file, or standard input (if no file is
+      specified) to the standard output.
+      A line is defined as a string of characters delimited by a <newline>
+      character.
+      Characters beyond the final <newline> character will not be
+      included in the line count.
 
-	.PARAMETER object
-		The input File, Object, or Array
+      .PARAMETER object
+      The input File, Object, or Array
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Int32])]
-	param
-	(
-		[Alias('File')]
-		$object
-	)
+  [CmdletBinding()]
+  [OutputType([System.Int32])]
+  param
+  (
+    [Alias('File')]
+    $object
+  )
 
-	BEGIN {
-		# initialize counter for counting number of data from
-		$counter = 0
-	}
+  BEGIN {
+    # initialize counter for counting number of data from
+    $counter = 0
+  }
 
-	# Process is invoked for every pipeline input
-	PROCESS {
-		if ($_) { $counter++ }
-	}
+  # Process is invoked for every pipeline input
+  PROCESS {
+    if ($_) { $counter++ }
+  }
 
-	END {
-		# if "wc" has an argument passed, ignore pipeline input
-		if ($object) {
-			if (Test-Path $object) {
-				(Get-Content $object | Measure-Object).Count
-			} else {
-				($object | Measure-Object).Count
-			}
-		} else {
-			$counter
-		}
-	}
+  END {
+    # if "wc" has an argument passed, ignore pipeline input
+    if ($object) {
+      if (Test-Path $object) {
+        (Get-Content $object | Measure-Object).Count
+      } else {
+        ($object | Measure-Object).Count
+      }
+    } else {
+      $counter
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWkkLb6NMSfEBrElRm+Gy6st/
-# vq2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWqaF6pKpqaYNy4Dq2iG3xTqh
+# QwKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -133,10 +133,10 @@ function Global:wc {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -152,12 +152,12 @@ function Global:wc {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -254,25 +254,25 @@ function Global:wc {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQlHH7PjtgcS6BnEo/dXz0tsb49qTANBgkqhkiG9w0B
-# AQEFAASCAQAInslpuab7eEhEQ+YVGwuzTfL7/p4HU+zPA87XSb+o/7h1ANTH9TFj
-# ji42HpAS83QWFhTUarXBQ5fQ9rCCFQSvch5B383XklTyWPTwCwtaLfHgkK/VSDq6
-# GWOu6cp0cKIVXhJscYTzV9ldzWUTthgh9xEiVsIHfMM5ChRkFtL0VEU86W+p4kWm
-# ZPbz5xykyBn/yalHlDNbki52yC7EOBQWJRpi6NLl92GaS0wU6PCS7wLetLyODWai
-# s+g9h6GRx21dZSO7nW1zMX9DGt639qXxtDzU5oBj6s3usoTDEYCu0aNgELG8uex2
-# Dc9k4tTXKmLXfRxnu7fLI3Ar4pH1hJ2eoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSV+4SVxKXuv4DkTOsEh4l3l4KghDANBgkqhkiG9w0B
+# AQEFAASCAQBq9Yiu6uyaqYdUMYmS38fUSdJnqqZS8n9QNg29CEEJSVkkAddiyykt
+# 68y7RIt/s6dM9+IVmYOHoSMsWcaVCqNIhX7INk8NXZG0ASVwCcTCqsZn2OLymWAv
+# x8h/wAtq827uwlZg57eg4HlNyk12LYvbyg9JlaUVOgGE/yvfkLHtm38JAQXVs2+K
+# iC7Ou6KmwoCL2phenZx6somvMUBDxpDx3qW69CRqA5THMv/b2LVOkERrGJY6dD+J
+# Me8l2dFp6YrEPr+WPVCqv9FN40q66QKFFNfw8sB1UfBmmuJPOA7GAjeOIvDbPUrD
+# +1N1RMyO9E150GwJB+NnbOb4uJTvaLHvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzUwM1owIwYJKoZIhvcN
-# AQkEMRYEFDngVWklUkA/rR8Flrvu13AaEd5nMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcxMFowIwYJKoZIhvcN
+# AQkEMRYEFOdRb0l6RwVsGL42N9kY9YrvRP/2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAsh6l1S3J50kmAYNC9YUklJopkQdmSBrZqHtqPrCDewS+R
-# ExrskV8dI8qBk0Q7OOJlYF7EVKN9V9frO4En2KhuuX/TWGF5CPWlf/SiHVV4ABcA
-# gBLrBCcxPE2nDY2Dqi/PntN0jUEwjJv+QjKqDou3mijWqlBm1c7jbMGdIpv7e7RV
-# KSD1Mh4aPGI0krMlolLx9+TzAEdghG6uetYEYdDDoIMhoyqKADx8PXtoAk0oPH5T
-# W0vVdfKqH6Uk/FpaGj+bwB4Jgb9LHbj52HTgfjSBP93hN52JofoRJtcSIeHhl7JB
-# K9gVt4hGRdAkdz+eK+tBQNjZYPXy/IMhDXEdX9Ep
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAWIRGOJQ1broEdL+aN+gdzns1rmDjpfuyT9h2clyEz07vL
+# LywBXs0krURljo5HLv3TlxNEjJY9ijEkjmjIaNv5dON5Yu6netO4Vhy8ZZpVxoBc
+# qFKdgQWB7tINK1UXEYkGGF7nGGP+rVMaAMRroOYPZJ0UlQFZ1isJyr8Iy6/HA8V0
+# EMBqq/FFPfVoAuZ0DFPK3LLNTTW79520/9Hsl/7B7LZrm6BtGCBy1q5ld9LED/Zh
+# pjzhwnKC2UtYQWnfpscdBcGbzq7DYYsXM8ka1Mjuu7FceAmUm+x2JbXt+qUFqRrm
+# NwDjOHFNTQmbgZcQa9EusQgdVnqBfnIM9odH7Kvg
 # SIG # End signature block

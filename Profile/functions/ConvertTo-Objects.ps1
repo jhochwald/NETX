@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,110 +14,110 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:ConvertTo-Objects {
-<#
-	.SYNOPSIS
-		You receive a result of a query and converts it to an array of objects
-		which is
+  <#
+      .SYNOPSIS
+      You receive a result of a query and converts it to an array of objects
+      which is
 
-	.DESCRIPTION
-		You receive a result of a query and converts it to an array of objects
-		which is
-		more legible to understand
+      .DESCRIPTION
+      You receive a result of a query and converts it to an array of objects
+      which is
+      more legible to understand
 
-	.PARAMETER Input
-		Input Objects
+      .PARAMETER Input
+      Input Objects
 
-	.EXAMPLE
-		$input = Select-SqlCeServer 'SELECT * FROM TABLE1' 'Data Source=C:\Users\cdbody05\Downloads\VisorImagenesNacional\VisorImagenesNacional\DIVIPOL.sdf;'
-		$input | ConvertTo-Objects
+      .EXAMPLE
+      $input = Select-SqlCeServer 'SELECT * FROM TABLE1' 'Data Source=C:\Users\cdbody05\Downloads\VisorImagenesNacional\VisorImagenesNacional\DIVIPOL.sdf;'
+      $input | ConvertTo-Objects
 
-		Description
-		-----------
-		You receive a result of a query and converts it to an array of objects
-		which is
+      Description
+      -----------
+      You receive a result of a query and converts it to an array of objects
+      which is
 
-	.NOTES
-		Additional information about the function.
-#>
+      .NOTES
+      Additional information about the function.
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Object[]])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Input Objects')]
-		[Object[]]$Input
-	)
+  [CmdletBinding()]
+  [OutputType([System.Object[]])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Input Objects')]
+    [Object[]]$Input
+  )
 
-	BEGIN {
-		# Cleanup
-		$arr = @()
-		$count = 0
-	}
+  BEGIN {
+    # Cleanup
+    $arr = @()
+    $count = 0
+  }
 
-	PROCESS {
-		if ($Input) {
-			# We load the results in order and loop over what we have then
-			foreach ($item in $Input) {
-				$count++
-				$obj = (new-Object PSObject)
+  PROCESS {
+    if ($Input) {
+      # We load the results in order and loop over what we have then
+      foreach ($item in $Input) {
+        $count++
+        $obj = (New-Object -TypeName PSObject)
 
-				# List all the fields that are in the query
-				$obj | Add-Member Noteproperty N $count
-				for ($i = 0; $i -lt $item.FieldCount; $i++) { $obj | Add-Member Noteproperty $item.GetName($i) $item[$i] }
-				$arr += $obj
-			}
-		}
-	}
+        # List all the fields that are in the query
+        $obj | Add-Member Noteproperty N $count
+        for ($i = 0; $i -lt $item.FieldCount; $i++) { $obj | Add-Member Noteproperty $item.GetName($i) $item[$i] }
+        $arr += $obj
+      }
+    }
+  }
 
-	END {
-		# Dump
-		$arr
-	}
+  END {
+    # Dump
+    $arr
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4+Su3LUxWnW3T6v4eQNewT2+
-# XLegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx3U85ZdAVrvbXsRQZCYKFKUy
+# ZDigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +260,25 @@ function Global:ConvertTo-Objects {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR2vk18F1sUWYOIHccvergYJiNQqDANBgkqhkiG9w0B
-# AQEFAASCAQAwzZK1Zt7AUfhQ38apidnhY2sbY8D/HdGZ17BDOaWUL+/kERIb+WJ9
-# Hyr2jL1Y48QNj38i7nb61/1SI76s1ZRArbA/slB17sbG/Khg+pciTmTXeJ1UrUzk
-# Pj7Czaavzdwmi0FYFlnAdLAx/8At560oNOwpDPv2DwVsLvzWRckIiS2XmPE91etr
-# PewgBKFKFvFQ4ZNiysLcpXtbrqGNAuixRQhkDpatcQC8UGcpF1Cjo7Fb14FjLDRB
-# Pf9bSuls7tkJIPxMlZpSrQRI4GBj/2SmXI7AqzATLybhySvWVpb50E6NEL3QZrqG
-# BG5W4f03jjtv+qe7lHIPx1orY/RfJwhyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTlRH1xTk0GoECxEQMWvdBvJ224/jANBgkqhkiG9w0B
+# AQEFAASCAQCk5uTB0Mjw1FZ7xpfnzZlsSsgtj+I9jislLqpSNKmEEzoWDenAL8HD
+# iBKESwVcFxp+x8gsEcAWDpEiQfCWUliuUPdue5ls0YSxNKy1WCWRNLbyWfTDqG6s
+# vcVFQBTcB/HRUc0Bk66HjcZqdi0PWAmgz5r3Ppq+Lg8gUKUp82EALSjstCzIwFSN
+# Pfr82SQoNR+2K9k+F25GW2XThMdBq6X0hbPfis50F98jYiLC7roUKgvcsLvpBAsd
+# mQKzFGtmY8+kb0TOUxONK7ENpbZiFzdZnGx4uM7KK+Vj1RSOx4u9aAjRh9NH6l18
+# 9bWkWTwKe29mU7sZ7tzrgiMinkqL+KVKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxNlowIwYJKoZIhvcN
-# AQkEMRYEFO+zJodfKVKHnjbZB1gZelDR/jK4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyMVowIwYJKoZIhvcN
+# AQkEMRYEFL5HKURadzUkHRaUgrrJViRuGqZKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAhrJf2eooCNie3Vr5ewOw/411vmpkdo28VT/Pvm39AUPZb
-# tbb1W9piqnhtNSOKbwtKDtK7l9YYuaQzQaIn2xAR4o+yWGIdWudG/G1kiH5C2Ltx
-# Ae+iEFrDQgSFW6n+3o/yuOIwO6CPsu8sRrTUahaGsqEn6BsgdjlCO4cdKAz6TQv3
-# BrtnRGly8+tl3Cktlsi6a4t1WH1q4+REgQb7bmetNQhjYlEXwirwKn36I3khu6p1
-# miKGPnchS9nNIsfSIagt1q/OoMWtiW9ny30njDVvTvIl/JOOqPYf3LfmxB8B8gn+
-# yKhA6Ia0m0BuDfKa7t21pLQM7/CaoTRWtzl5kMlR
+# hkiG9w0BAQEFAASCAQCFj/oIvpgvDnPKQbB8+4ve088XMu2Q7R3Egw87Yed04MJE
+# SUv/ulztVB96zpLbnQNcbmjBmrGD7Q2RoegRMtN7s/fZeyo+Nww9q/WOb96ClWSc
+# BlsJm7HXCpzECDjOuhJXLSnu2HeiD1sDnkcBTbm7B5wOD1xXj5TFQM6hNfPd74D9
+# clmtg9IsMyz5gwhEZ+FmQI/39bt3WozlrdWzLihwi2BqYPPLwfIMkGPItYqYja1w
+# /OOM1G52I9K1CjNwjEELafRg5rMvAYH/CCJVpUrl4Vr/NnnZvF4Qw5XTAODwocZ7
+# 6J+NaNLIEOutICSxh/oa9zoEQIKBd8QJc5wTZucy
 # SIG # End signature block

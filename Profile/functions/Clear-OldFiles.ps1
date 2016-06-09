@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,130 +14,130 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Clear-OldFiles {
-<#
-	.SYNOPSIS
-		Removes old Logfiles
+  <#
+      .SYNOPSIS
+      Removes old Logfiles
 
-	.DESCRIPTION
-		Convenience function to cleanup old Files (House Keeping)
+      .DESCRIPTION
+      Convenience function to cleanup old Files (House Keeping)
 
-	.PARAMETER days
-		Files older then this will be deleted, the Default is 7 (For 7 Days)
+      .PARAMETER days
+      Files older then this will be deleted, the Default is 7 (For 7 Days)
 
-	.PARAMETER Path
-		The Path Where-Object the Logs are located,
-		default is C:\scripts\PowerShell\log
+      .PARAMETER Path
+      The Path Where-Object the Logs are located,
+      default is C:\scripts\PowerShell\log
 
-	.PARAMETER Extension
-		The File Extension that you would like to remove,
-		the default is ALL (*)
+      .PARAMETER Extension
+      The File Extension that you would like to remove,
+      the default is ALL (*)
 
-	.EXAMPLE
-		PS C:\> Clear-OldFiles
+      .EXAMPLE
+      PS C:\> Clear-OldFiles
 
-		Description
-		-----------
-		Will remove all files older then 7 days from C:\scripts\PowerShell\log
-		You need to confirm every action!
+      Description
+      -----------
+      Will remove all files older then 7 days from C:\scripts\PowerShell\log
+      You need to confirm every action!
 
-	.EXAMPLE
-		PS C:\> Clear-OldFiles -Confirm:$false
+      .EXAMPLE
+      PS C:\> Clear-OldFiles -Confirm:$false
 
-		Description
-		-----------
-		Will remove all files older then 7 days from C:\scripts\PowerShell\log
-		You do not need to confirm any action!
+      Description
+      -----------
+      Will remove all files older then 7 days from C:\scripts\PowerShell\log
+      You do not need to confirm any action!
 
-	.EXAMPLE
-		PS C:\> Clear-OldFiles -days:"30" -Confirm:$false
+      .EXAMPLE
+      PS C:\> Clear-OldFiles -days:"30" -Confirm:$false
 
-		Description
-		-----------
-		Will remove all files older then 30 days from C:\scripts\PowerShell\log
-		You do not need to confirm any action!
+      Description
+      -----------
+      Will remove all files older then 30 days from C:\scripts\PowerShell\log
+      You do not need to confirm any action!
 
-	.EXAMPLE
-		PS C:\> Clear-OldFiles -Extension:".csv" -days:"365" -Path:"C:\scripts\PowerShell\export" -Confirm:$false
+      .EXAMPLE
+      PS C:\> Clear-OldFiles -Extension:".csv" -days:"365" -Path:"C:\scripts\PowerShell\export" -Confirm:$false
 
-		Description
-		-----------
-		Will remove all csv files older then 365 days from
-		C:\scripts\PowerShell\export
+      Description
+      -----------
+      Will remove all csv files older then 365 days from
+      C:\scripts\PowerShell\export
 
-		You do not need to confirm any action!
+      You do not need to confirm any action!
 
-	.NOTES
-		Want to clean out old logfiles?
-#>
+      .NOTES
+      Want to clean out old logfiles?
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $false)]
-	param
-	(
-		[Parameter(HelpMessage = 'Files older then this will be deleted, the Default is 7 (For 7 Days)')]
-		[ValidateNotNullOrEmpty()]
-		[System.Int32]$Days = 7,
-		[Parameter(HelpMessage = 'The Path Where-Object the Logs are located, default is C:\scripts\PowerShell\log')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$Path = 'C:\scripts\PowerShell\log',
-		[Parameter(HelpMessage = 'The File Extension that you would like to remove, the drfault is ALL (*)')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('ext')]
-		[System.String]$Extension = '*'
-	)
+  [CmdletBinding(ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $false)]
+  param
+  (
+    [Parameter(HelpMessage = 'Files older then this will be deleted, the Default is 7 (For 7 Days)')]
+    [ValidateNotNullOrEmpty()]
+    [System.Int32]$Days = 7,
+    [Parameter(HelpMessage = 'The Path Where-Object the Logs are located, default is C:\scripts\PowerShell\log')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$Path = 'C:\scripts\PowerShell\log',
+    [Parameter(HelpMessage = 'The File Extension that you would like to remove, the drfault is ALL (*)')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('ext')]
+    [System.String]$Extension = '*'
+  )
 
-	PROCESS {
-		Get-ChildItem $Path -Recurse -Include $Extension | Where-Object { $_.CreationTime -lt (Get-Date).AddDays(0 - $days) } | ForEach-Object {
-			try {
-				Remove-Item $_.FullName -Force -ErrorAction:Stop
-				Write-Output "Deleted $_.FullName"
-			} catch {
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-			}
-		}
-	}
+  PROCESS {
+    Get-ChildItem $Path -Recurse -Include $Extension |
+    Where-Object -FilterScript { $_.CreationTime -lt (Get-Date).AddDays(0 - $Days) } |
+    ForEach-Object -Process {
+      try {
+        Remove-Item -Path $_.FullName -Force -ErrorAction:Stop
+        Write-Output -InputObject "Deleted $_.FullName"
+      } catch {Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"}
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsRdGBG+LGi45ZcIeof5R1Hek
-# mTGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSu3CAt/MlL0JzeF1TPSczX8O
+# pxygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -159,10 +159,10 @@ function Global:Clear-OldFiles {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -178,12 +178,12 @@ function Global:Clear-OldFiles {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -280,25 +280,25 @@ function Global:Clear-OldFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTzD+CqJulFmJAM33YCp/v0XZQh0DANBgkqhkiG9w0B
-# AQEFAASCAQBI6qQOdWkIKH8gHSpTuZnvE9uXweA8WUJntrb5YjE/CdFvS/oVfoR1
-# YcGckNVz0Yd94NK4C0ut21AYIm7B49IRzvp23t0tc/aeS0rNud2D7yPj7PyOdPM7
-# s+IF6E2LV5LBU9luUatgua3uPUUvogFsJMlpZlryAj4DFBx9cnzlJVJp2wZ89igr
-# NzxdIVv9IzIKlembYNSQg7zrygOwb/ikNqwfGvc2AgG9Oa4ObIQMfutwqnZUMf4z
-# +H3GBaMTryrUHESzoRW64U+D8RktNDrIbWMNrUUAj7yjVOvqvBPBtvNdwZmHznbZ
-# dzXGZccZ8w+k/8lkRLju3vpm9pe2NrddoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRc32unWQb92nG0UoSJC/3tXBDQHjANBgkqhkiG9w0B
+# AQEFAASCAQB3iujiivf6si5gkKaUVxrF7P+5nT5njEXGBi20vwFoqq2+wZVX62Oi
+# skAQK2wjgJkceK9n4AXsDbBiBz7OeCYxTB7UwxNB0RrmFCZZMeQ3nFWUCyjyC7Ar
+# exKRcoM+fIenqmYK6xnQN1gFW6m8Sx8dEXkzbg909J0MFgvukHI1jiZ3EjdFi6Og
+# 7zB539X4AKtzpirEGx5+qv/Zogry6t3/HVIqM7QUG8AR+nv1SUpZAlXUHXrXendm
+# 7x0XiBA7FJZibOgSZ8Xqj33a2nTRgSI/wTWkK41sAAYs/8hfCunu+YlhsKaETOyw
+# a2rEtDJzDmqlg45l/+utDlNjMD7LSj0VoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxM1owIwYJKoZIhvcN
-# AQkEMRYEFDbqVKX1SY/mMW2oxJ8u0cTi8eQDMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYxN1owIwYJKoZIhvcN
+# AQkEMRYEFLfyRW1mPOCXt2ChYK/4JpHGzQt7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQClUaFRJhgDvthLwSrVzH3IgGTC2x0nrp5LjhXHJdLHBfRS
-# fpZ/EWNBoWvfEIsvQ8N0nVbj0XKV8m9prNiJ6uJexUOTFpQzui0pNHj6v2ZIfmQa
-# AVqXs87ibRYAgG7ul4Ttrd+zijuVq9zggAG2tN3gl4gfbFK36DgtHsV/LzU2wXMX
-# uM/lXLOOICVURwRByUR8XTsKCj1MrSve2qlQOtDGTEPowSQorwGX4Al1MYOmSLVY
-# 99ILWjsMVZbIFw2gcPG4pzS3YhCwubF7IdpOM2SU1QLgppImzZWCra/uvX5PNyjh
-# bmgeNYkVgv53sHkjrRb3zoJZq5NUBwtrcfWpWa0t
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBq1XGx5E+mi9kJRW7gl3RKUZrYLw4SWCtU3lx79vZE/hIM
+# 7EuaFhWkHHHUkynbAcjcgZn8IHJWOW9uhfiZQiPPJU+PzJFaawvLz2ekxQ+iJfG8
+# Ib8BidKPv/KOpQG14LqbT5r3bchGcKDwgIL1EG+AkRBh+ZgvriN3PsNPdh96Bfo5
+# 9kvNIrk08dTnpEhDR3kGF7FaMzcqgyjFq57L79IxAqbqYx6Y2hpVpURi0VcmBMPR
+# k8SOgKP8WH3G+g6wd7SnIWFGVlAensQha2oB9k3+FJ/VK1NDN1z5SYSn2GMy0vWG
+# /ywbHCMjcxlH7Q4QwrYf8u0Iepmbi/q+WMHkJWxA
 # SIG # End signature block

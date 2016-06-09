@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,93 +14,93 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:ConvertTo-hex {
-<#
-	.SYNOPSIS
-		Converts a given integer to HEX
+  <#
+      .SYNOPSIS
+      Converts a given integer to HEX
 
-	.DESCRIPTION
-		Converts any given Integer (INT) to Hex and dumps it to the Console
+      .DESCRIPTION
+      Converts any given Integer (INT) to Hex and dumps it to the Console
 
-	.PARAMETER dec
-		N.A.
+      .PARAMETER dec
+      N.A.
 
-	.EXAMPLE
-		PS C:\> ConvertTo-hex "100"
-		0x64
+      .EXAMPLE
+      PS C:\> ConvertTo-hex "100"
+      0x64
 
-		Description
-		-----------
-		Converts a given integer to HEX
+      Description
+      -----------
+      Converts a given integer to HEX
 
-	.NOTES
-		Renamed function
-		Just a little helper function
+      .NOTES
+      Renamed function
+      Just a little helper function
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([long])]
-	param
-	(
-		[Parameter(Mandatory = $true)]
-		[ValidateNotNullOrEmpty()]
-		[long]$dec
-	)
+  [CmdletBinding()]
+  [OutputType([long])]
+  param
+  (
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullOrEmpty()]
+    [long]$dec
+  )
 
-	PROCESS {
-		# Print
-		Return '0x' + $dec.ToString('X')
-	}
+  PROCESS {
+    # Print
+    Return '0x' + $dec.ToString('X')
+  }
 }
 
 # Set a compatibility Alias
-(Set-Alias To-hex ConvertTo-hex -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name To-hex -Value ConvertTo-hex -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6FFG7qAY/JKUFY6Svj5CVZgJ
-# lnugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdDhRtW/76V3bKrvOI6LjanG3
+# GMygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +243,25 @@ function global:ConvertTo-hex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRhw+b07n/GB7krrjunx/4bhQRjrTANBgkqhkiG9w0B
-# AQEFAASCAQChSMV4qdNF6YoCY1bP1BM+c+nLZtnqrFwfYNCWkPQJvFxmCBvqwyFo
-# R53GWottELk0qmibTRfvqMdxEOJIyfcCYdpmyV+/ls0k0p79QNyPjZYH19gseoiM
-# E5dyl7Y/rGSJkWSNHb0YT8KGjFEX+5fxDVCsQXOs6qW1lijxoNtgmzxMYjdu1tZT
-# UtI64OWW7U/QUx6iPCivtjZLHbyHWsMPg9lKdx3tURCBy6NTB1tbkp0ZRKNQ6ITO
-# zU1fD5jrqo36Zt79HZKa5M9z5IAr69HFOmPQsXTEAwiSvuM7F7E9zn82zSbulGjJ
-# n/KdlQher3DzNLHyIjr/dOtl8MpjZcWtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS4NfEavhmYhCiI0L2yWwhH/SeHdDANBgkqhkiG9w0B
+# AQEFAASCAQBRK8bS+aIvzVypLXvstSdaS/KVwcLCRUU5l62mzVZ4HR8yw8tLQu8s
+# uvj975RYBWp+XQi0NbBrdN/vy6i85BPJQynG1UQaTGJnpMRd6ammWKywul4eWaDB
+# Ah5JpT8CPeu7C2RQ4qHeBi242wuIYuJL/osNBUbWISWnnqbCJ2q/mUowVLLEgizk
+# gp4wVJ0CAtLfIaYGBBhPSWG5EQSyw9H4wYGlc34+GH95q4jkkGbXSIv6RVLvPw2D
+# zhi5cWCxAc4yE6RGjpfe0zEetfUtjQWfdGoz3A5KaGrmnW+8YvOV/riZUi7oFynf
+# kmnLntQWdWBv1jITcIK5tUs5raFMs8x3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxNlowIwYJKoZIhvcN
-# AQkEMRYEFJTWVOJ9YGkOT9rTYyd/JhvnbxPxMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyMFowIwYJKoZIhvcN
+# AQkEMRYEFKlghlLpL7cG6zPRugPNZx4lUaI5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCFNgYDVjeCH3hiQS1qRmf1CVHu6sp/qStvdVh2dxXipPGO
-# AXig+i5W5bi6DqwYa5JcYxB3Kh0WqTE1deLIide6DhXsnltyaBGVfSNxUkQJRqOX
-# lNnnhGA09ecBnbV2sLxlGoQ8r4Iq68XvACe7b4hAbFxRdC9pJcF7wvbb/94/HhEA
-# dUW0h0Hp70OOb5cWzerg9nWO+Udpgy2EK1aIzF5JkbDrO8syo1ZvmQR69E1YfsTw
-# qzYqctZiyzSmO6ul+ZH8hQTTlxJgZSeEj6RyfOsi/kqAsEeyaCfe30+RYPwywiqW
-# oSmXEL99kmr1gJns5X7V2+mn89hD74KAWkVGIoSN
+# hkiG9w0BAQEFAASCAQBX4z3KO/vF3Pv/i7f1iqTYSgPpF0XhW8vfIdoq2vWmMy6X
+# meG0prv4NrcnBEHBWSqG/lz1/8fXedq5gofevkH/Y0z/9kgJNTMeJEy4Ig4CTlpn
+# 86kWlYUArioirZ7JUP4aoHug53YYAKK2K4Z9c0jo/aIaVokOc5hDpMPmL1wXY1jV
+# 7+cTJ7wYXsobWGrm3VmwjzRRgNbW/doFVus9WYR80oiBsf03CRE4vJl4j5ZCWyNc
+# GkA1UfPSaIaCRf4vXzZRmmi5lE69CQHoMT5Yyy9/QFe5966oVFfsM5ligNMj+Eet
+# BDTxQIgHAqi1Yu+WRN4wGTkWZStinHKa+HvXnREb
 # SIG # End signature block

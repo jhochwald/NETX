@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,156 +14,156 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Invoke-RemoteScript {
-<#
-	.SYNOPSIS
-		A brief description of the Invoke-RemoteScript function.
+  <#
+      .SYNOPSIS
+      A brief description of the Invoke-RemoteScript function.
 
-	.DESCRIPTION
-		A detailed description of the Invoke-RemoteScript function.
+      .DESCRIPTION
+      A detailed description of the Invoke-RemoteScript function.
 
-	.PARAMETER Computer
-		The remote computer to execute files on.
+      .PARAMETER Computer
+      The remote computer to execute files on.
 
-	.PARAMETER Folder
-		Any folders (on the local computer) that need copied to the remote
-		computer prior to execution
+      .PARAMETER Folder
+      Any folders (on the local computer) that need copied to the remote
+      computer prior to execution
 
-	.PARAMETER Script
-		The Powershell script path (on the local computer) that needs
-		executed on the remote computer
+      .PARAMETER Script
+      The Powershell script path (on the local computer) that needs
+      executed on the remote computer
 
-	.PARAMETER Drive
-		The remote drive letter the script will be executed on and the
-		folder will be copied to
+      .PARAMETER Drive
+      The remote drive letter the script will be executed on and the
+      folder will be copied to
 
-	.NOTES
-		Additional information about the function.
+      .NOTES
+      Additional information about the function.
 
-	.LINK
-		Idea: http://www.leeholmes.com/blog/2009/11/20/testing-for-powershell-remoting-test-psremoting/
-#>
+      .LINK
+      Idea: http://www.leeholmes.com/blog/2009/11/20/testing-for-powershell-remoting-test-psremoting/
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-				   SupportsShouldProcess = $false)]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   ValueFromPipelineByPropertyName = $true,
-				   HelpMessage = 'The remote computer to execute files on.')]
-		[Alias('Computername')]
-		[System.String]$Computer,
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'Any folders (on the local computer) that need copied to the remote computer prior to execution')]
-		[Alias('FolderPath')]
-		[System.String]$Folder,
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'The Powershell script path (on the local computer) that needs executed on the remote computer')]
-		[Alias('ScriptPath')]
-		[System.String]$Script,
-		[Parameter(HelpMessage = 'The remote drive letter the script will be executed on and the folder will be copied to')]
-		[Alias('RemoteDrive')]
-		[System.String]$Drive = 'C'
-	)
+  [CmdletBinding(ConfirmImpact = 'None',
+  SupportsShouldProcess = $false)]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        ValueFromPipelineByPropertyName = $true,
+    HelpMessage = 'The remote computer to execute files on.')]
+    [Alias('Computername')]
+    [System.String]$Computer,
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'Any folders (on the local computer) that need copied to the remote computer prior to execution')]
+    [Alias('FolderPath')]
+    [System.String]$Folder,
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'The Powershell script path (on the local computer) that needs executed on the remote computer')]
+    [Alias('ScriptPath')]
+    [System.String]$Script,
+    [Parameter(HelpMessage = 'The remote drive letter the script will be executed on and the folder will be copied to')]
+    [Alias('RemoteDrive')]
+    [System.String]$Drive = 'C'
+  )
 
-	BEGIN {
-		# Helper function
-		function Test-PsRemoting {
-			param (
-				[Parameter(Mandatory = $true)]
-				$computername
-			)
+  BEGIN {
+    # Helper function
+    function Test-PsRemoting {
+      param (
+        [Parameter(Mandatory = $true)]
+        $computername
+      )
 
-			try {
-				$errorActionPreference = 'Stop'
-				$result = Invoke-Command -ComputerName $computername { 1 }
-			} catch {
-				Write-Verbose $_
-				Return $false
-			}
+      try {
+        $errorActionPreference = 'Stop'
+        $result = Invoke-Command -ComputerName $computername -ScriptBlock { 1 }
+      } catch {
+        Write-Verbose -Message $_
+        Return $false
+      }
 
-			# What?
-			if ($result -ne 1) {
-				Write-Verbose "Remoting to $computerName returned an unexpected result."
-				Return $false
-			}
-			Return $true
-		}
+      # What?
+      if ($result -ne 1) {
+        Write-Verbose -Message "Remoting to $computername returned an unexpected result."
+        Return $false
+      }
+      Return $true
+    }
 
-		# Be Verbose
-		Write-Verbose 'Validating prereqs for remote script execution...'
+    # Be Verbose
+    Write-Verbose -Message 'Validating prereqs for remote script execution...'
 
-		if (-not (Test-Path $Folder)) {
-			throw 'Folder path does not exist'
-		} elseif (-not (Test-Path $Script)) {
-			throw 'Script path does not exist'
-		} elseif ((Get-ItemProperty -Path $Script).Extension -ne '.ps1') {
-			throw 'Script specified is not a Powershell script'
-		}
+    if (-not (Test-Path $Folder)) {
+      throw 'Folder path does not exist'
+    } elseif (-not (Test-Path $Script)) {
+      throw 'Script path does not exist'
+    } elseif ((Get-ItemProperty -Path $Script).Extension -ne '.ps1') {
+      throw 'Script specified is not a Powershell script'
+    }
 
-		$ScriptName = ($Script | Split-Path -Leaf)
-		$RemoteFolderPath = ($Folder | Split-Path -Leaf)
-		$RemoteScriptPath = "$Drive`:\$RemoteFolderPath\$ScriptName"
-	}
+    $ScriptName = ($Script | Split-Path -Leaf)
+    $RemoteFolderPath = ($Folder | Split-Path -Leaf)
+    $RemoteScriptPath = "$Drive`:\$RemoteFolderPath\$ScriptName"
+  }
 
-	PROCESS {
-		# Be Verbose
-		Write-Verbose "Copying the folder $Folder to the remote computer $Computer..."
+  PROCESS {
+    # Be Verbose
+    Write-Verbose -Message "Copying the folder $Folder to the remote computer $Computer..."
 
-		Copy-Item $Folder -Recurse "\\$Computer\$Drive`$" -Force
+    Copy-Item $Folder -Recurse -Destination "\\$Computer\$Drive`$" -Force
 
-		# Be Verbose
-		Write-Verbose "Copying the script $ScriptName to the remote computer $Computer..."
+    # Be Verbose
+    Write-Verbose -Message "Copying the script $ScriptName to the remote computer $Computer..."
 
-		Copy-Item $Script "\\$Computer\$Drive`$\$RemoteFolderPath" -Force
+    Copy-Item $Script -Destination "\\$Computer\$Drive`$\$RemoteFolderPath" -Force
 
-		# Be Verbose
-		Write-Verbose "Executing $RemoteScriptPath on the remote computer $Computer..."
+    # Be Verbose
+    Write-Verbose -Message "Executing $RemoteScriptPath on the remote computer $Computer..."
 
-		([WMICLASS]"\\$Computer\Root\CIMV2:Win32_Process").create("powershell.exe -File $RemoteScriptPath -NonInteractive -NoProfile")
-	}
+    ([WMICLASS]"\\$Computer\Root\CIMV2:Win32_Process").create("powershell.exe -File $RemoteScriptPath -NonInteractive -NoProfile")
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVfvAlbdzbeZ/MMDFyyX9KG+7
-# Hn2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0ZkYKExaP1JrioSI124Yy7dK
+# bMigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -306,25 +306,25 @@ function Global:Invoke-RemoteScript {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSnHYRqXgCM+0SatVl3ylGPbzhQ2jANBgkqhkiG9w0B
-# AQEFAASCAQCon+Wtn3Kx4jxTRJx3YV0A15/s77fBAqlj86PePP9FE2wNvSf13UME
-# X2EbUDdmEYTZ6eTN//0T8h6o5OQJIlfL1l/0W6UBJdBoXfTLJpNIQ/htrF0iCSiW
-# RYKzbPZ0bbl5o2hvqbeJz3E3i4UR1vlPaxKG0lXYwkQZ3IkPh48U7mjSDZC9EAau
-# FwM4tRF8sKLDqEdci8S32uZG41ip4qm/lr/UQAky/MgPzVL1jr4kBXHuFA23e95z
-# Yx2BnK70BhYUa4ssiJyXqr6U+/P1Dl7HYb0+ckxGM6tXXlzCpfBhw4knhhmoRaSY
-# SsCKGi1/vNYFzZL1iEDszzDxT5t5lhjtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ3jqDLljoB2xXi7XMCJcdkvkiGdjANBgkqhkiG9w0B
+# AQEFAASCAQAH+/iti+etaUqIGJv25Wju2kNbPeImtdf8L7kJejSVi/Vi3dyuaTKr
+# SNkyebcqYyy+KyImxi60jznmsBu/XxnPMky55VzqvaTJ1mHVG3lqI3IpLl0uNwd/
+# DS4Dw7aU1ErkcOaGkTbrslFonXI5bsWpyFEY2FYJbdhTf5GwCPtoG5lOisZYYr6i
+# RTs9lp8m/NiIAB81zvpfCGg1Cag4EUJxqCvujukyWQ5UvnWF979etTIdBK7mCM7b
+# OB7TVFXvOV5DVOXMf3sqFOmAgSmOUdw+70KrHkc94+ugEpud7EWPuPmVUE2IIuH/
+# YGNiKI58ZN/7vo5752XtoaKxwhVrZ5UuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0MlowIwYJKoZIhvcN
-# AQkEMRYEFFrC9ZMHY8XaNveoBtkUekg+ESEyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0OVowIwYJKoZIhvcN
+# AQkEMRYEFPSkeCzV1dGkDtfYynZwCbMK6QV6MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBNZu9JQ++2jbnTTXOgzPahPZQOWJbRaGyq6iEz3NJBEQMK
-# BYrsOniNM9nSd5NAcFvBd0m19mZZcw7BZs70Wa8VOgGpNgp/YPsl00A3JVn2VTfL
-# iKXYfBFBAqD/OWI7fXa0HtlHZtqaZRXp/4HjibsvtP6ixlc6hZBCQRafNd5VX4k4
-# 3W75pebRcf/f+8fsTfxfB8jk0yxmecaDE6QPIf7zF3os03zd478EElOwAeW/7nwc
-# mQ2p+xqMt8nZPqGrhAuXNEenJzKaWLf6t3LcI/ffBNkynTYzykj6FLODbMDKCtHW
-# 12jvKdwZgpEneWl8PPk0lohC/wwVPgshwkm7avnL
+# hkiG9w0BAQEFAASCAQAHHiJ2CXptD5+Ne7dYCvZOKp8aODtyo3FqO5seHRUA4GtD
+# xZ7zdCxNRnATMFfSD71Rpv3icSAJirPlgJkezWrCV+jd250XHJaQFIh9ndNdOaUx
+# pPa2o2eoZhaMmo+kzwJZ2YtqAlKUmH8cMprrE9SGZAkonqnENzLcUrB+tbdFqCWN
+# wdHE/FmDHjpUCE0REhr/NWvZNlCmDVR9eFd5H/zpQGSiXzdo5+cv5zMvR+SuzUxx
+# 06CdqYxPRmeLjJE+S5cHIx6oIfg4tRxIDhfVsC3UrtMRkqWHgNh9vwx6itQLqMc0
+# dyVRCVs8hnydz52yRPA+zOqsbZxp45VxCrpATnJJ
 # SIG # End signature block

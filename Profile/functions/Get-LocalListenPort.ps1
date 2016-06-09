@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,214 +14,214 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-LocalListenPort {
-<#
-	.SYNOPSIS
-		This parses the native netstat.exe output using the command line
-		"netstat -anb" to find all of the network ports in use on a local
-		machine and all associated processes and services
+  <#
+      .SYNOPSIS
+      This parses the native netstat.exe output using the command line
+      "netstat -anb" to find all of the network ports in use on a local
+      machine and all associated processes and services
 
-	.DESCRIPTION
-		This parses the native netstat.exe output using the command line
-		"netstat -anb" to find all of the network ports in use on a local
-		machine and all associated processes and services
+      .DESCRIPTION
+      This parses the native netstat.exe output using the command line
+      "netstat -anb" to find all of the network ports in use on a local
+      machine and all associated processes and services
 
-	.EXAMPLE
-		PS> Get-LocalListenPort
+      .EXAMPLE
+      PS> Get-LocalListenPort
 
-		This example will find all network ports in uses on the local
-		computer with associated processes and services
+      This example will find all network ports in uses on the local
+      computer with associated processes and services
 
-	.EXAMPLE
-		PS> Get-LocalListenPort | Where-Object {$_.ProcessOwner -eq 'svchost.exe'}
-		RemotePort    : 0
-		ProcessOwner  : svchost.exe
-		IPVersion     : IPv4
-		LocalPort     : 135
-		State         : LISTENING
-		LocalAddress  : 0.0.0.0
-		RemoteAddress : 0.0.0.0
-		Protocol      : TCP
-		Service       : RpcSs
+      .EXAMPLE
+      PS> Get-LocalListenPort | Where-Object {$_.ProcessOwner -eq 'svchost.exe'}
+      RemotePort    : 0
+      ProcessOwner  : svchost.exe
+      IPVersion     : IPv4
+      LocalPort     : 135
+      State         : LISTENING
+      LocalAddress  : 0.0.0.0
+      RemoteAddress : 0.0.0.0
+      Protocol      : TCP
+      Service       : RpcSs
 
-		Description
-		-----------
-		This example will find all network ports in use on the local computer
-		that were opened by the svchost.exe process. (Example output trimmed)
+      Description
+      -----------
+      This example will find all network ports in use on the local computer
+      that were opened by the svchost.exe process. (Example output trimmed)
 
-	.EXAMPLE
-		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv4'}
-		RemotePort    : 0
-		ProcessOwner  : svchost.exe
-		IPVersion     : IPv4
-		LocalPort     : 135
-		State         : LISTENING
-		LocalAddress  : 0.0.0.0
-		RemoteAddress : 0.0.0.0
-		Protocol      : TCP
-		Service       : RpcSs
+      .EXAMPLE
+      PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv4'}
+      RemotePort    : 0
+      ProcessOwner  : svchost.exe
+      IPVersion     : IPv4
+      LocalPort     : 135
+      State         : LISTENING
+      LocalAddress  : 0.0.0.0
+      RemoteAddress : 0.0.0.0
+      Protocol      : TCP
+      Service       : RpcSs
 
-		Description
-		-----------
-		This example will find all network ports in use on the local computer
-		using IPv4 only. (Example output trimmed)
+      Description
+      -----------
+      This example will find all network ports in use on the local computer
+      using IPv4 only. (Example output trimmed)
 
-	.EXAMPLE
-		PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv6'}
-		RemotePort    : 0
-		ProcessOwner  : svchost.exe
-		IPVersion     : IPv6
-		LocalPort     : 135
-		State         : LISTENING
-		LocalAddress  : ::
-		RemoteAddress : ::
-		Protocol      : TCP
-		Service       : RpcSs
+      .EXAMPLE
+      PS> Get-LocalListenPort | Where-Object {$_.IPVersion -eq 'IPv6'}
+      RemotePort    : 0
+      ProcessOwner  : svchost.exe
+      IPVersion     : IPv6
+      LocalPort     : 135
+      State         : LISTENING
+      LocalAddress  : ::
+      RemoteAddress : ::
+      Protocol      : TCP
+      Service       : RpcSs
 
-		Description
-		-----------
-		This example will find all network ports in use on the local computer
-		using IPv6 only. (Example output trimmed)
+      Description
+      -----------
+      This example will find all network ports in use on the local computer
+      using IPv6 only. (Example output trimmed)
 
-	.NOTES
-		Based on an idea of Adam Bertram
-#>
+      .NOTES
+      Based on an idea of Adam Bertram
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		try {
-			# Capture the output of the native netstat.exe utility
-			# Remove the top row from the result and trim off any leading or trailing spaces from each line
-			# Replace all instances of more than 1 space with a pipe symbol.
-			# This allows easier parsing of the fields
-			$Netstat = (NETSTAT.EXE -anb | Where-Object { $_ -and ($_ -ne 'Active Connections') }).Trim() | Select-Object -Skip 1 | ForEach-Object { $_ -replace '\s{2,}', '|' }
+  PROCESS {
+    try {
+      # Capture the output of the native netstat.exe utility
+      # Remove the top row from the result and trim off any leading or trailing spaces from each line
+      # Replace all instances of more than 1 space with a pipe symbol.
+      # This allows easier parsing of the fields
+      $Netstat = (NETSTAT.EXE -anb |
+      Where-Object -FilterScript { $_ -and ($_ -ne 'Active Connections') }).Trim() |
+      Select-Object -Skip 1 |
+      ForEach-Object -Process { $_ -replace '\s{2,}', '|' }
 
-			$i = 0
+      $i = 0
 
-			foreach ($Line in $Netstat) {
-				# Create the hashtable to conver to object later
-				$Out = @{
-					'Protocol' = ''
-					'State' = ''
-					'IPVersion' = ''
-					'LocalAddress' = ''
-					'LocalPort' = ''
-					'RemoteAddress' = ''
-					'RemotePort' = ''
-					'ProcessOwner' = ''
-					'Service' = ''
-				}
+      foreach ($Line in $Netstat) {
+        # Create the hashtable to conver to object later
+        $Out = @{
+          'Protocol'    = ''
+          'State'       = ''
+          'IPVersion'   = ''
+          'LocalAddress' = ''
+          'LocalPort'   = ''
+          'RemoteAddress' = ''
+          'RemotePort'  = ''
+          'ProcessOwner' = ''
+          'Service'     = ''
+        }
 
-				# If the line is a port
-				if ($Line -cmatch '^[A-Z]{3}\|') {
-					$Cols = ($Line.Split('|'))
-					$Out.Protocol = ($Cols[0])
+        # If the line is a port
+        if ($Line -cmatch '^[A-Z]{3}\|') {
+          $Cols = ($Line.Split('|'))
+          $Out.Protocol = ($Cols[0])
 
-					# Some ports don't have a state.
-					# If they do, there's always 4 fields in the line
-					if ($Cols.Count -eq 4) {
-						$Out.State = ($Cols[3])
-					}
+          # Some ports don't have a state.
+          # If they do, there's always 4 fields in the line
+          if ($Cols.Count -eq 4) {$Out.State = ($Cols[3])}
 
-					# All port lines that start with a [ are IPv6
-					if ($Cols[1].StartsWith('[')) {
-						$Out.IPVersion = 'IPv6'
-						$Out.LocalAddress = ($Cols[1].Split(']')[0].TrimStart('['))
-						$Out.LocalPort = ($Cols[1].Split(']')[1].TrimStart(':'))
+          # All port lines that start with a [ are IPv6
+          if ($Cols[1].StartsWith('[')) {
+            $Out.IPVersion = 'IPv6'
+            $Out.LocalAddress = ($Cols[1].Split(']')[0].TrimStart('['))
+            $Out.LocalPort = ($Cols[1].Split(']')[1].TrimStart(':'))
 
-						if ($Cols[2] -eq '*:*') {
-							$Out.RemoteAddress = '*'
-							$Out.RemotePort = '*'
-						} else {
-							$Out.RemoteAddress = ($Cols[2].Split(']')[0].TrimStart('['))
-							$Out.RemotePort = ($Cols[2].Split(']')[1].TrimStart(':'))
-						}
-					} else {
-						$Out.IPVersion = 'IPv4'
-						$Out.LocalAddress = ($Cols[1].Split(':')[0])
-						$Out.LocalPort = ($Cols[1].Split(':')[1])
-						$Out.RemoteAddress = ($Cols[2].Split(':')[0])
-						$Out.RemotePort = ($Cols[2].Split(':')[1])
-					}
+            if ($Cols[2] -eq '*:*') {
+              $Out.RemoteAddress = '*'
+              $Out.RemotePort = '*'
+            } else {
+              $Out.RemoteAddress = ($Cols[2].Split(']')[0].TrimStart('['))
+              $Out.RemotePort = ($Cols[2].Split(']')[1].TrimStart(':'))
+            }
+          } else {
+            $Out.IPVersion = 'IPv4'
+            $Out.LocalAddress = ($Cols[1].Split(':')[0])
+            $Out.LocalPort = ($Cols[1].Split(':')[1])
+            $Out.RemoteAddress = ($Cols[2].Split(':')[0])
+            $Out.RemotePort = ($Cols[2].Split(':')[1])
+          }
 
-					# Because the process owner and service are on separate lines than the port line and the number of lines between them is variable this craziness was necessary.
-					# This line starts parsing the netstat output at the current port line and searches for all lines after that that are NOT a port line and finds the first one.
-					# This is how many lines there are until the next port is defined.
-					$LinesUntilNextPortNum = ($Netstat | Select-Object -Skip $i | Select-String -Pattern '^[A-Z]{3}\|' -NotMatch | Select-Object -First 1).LineNumber
-					# Add the current line to the number of lines until the next port definition to find the associated process owner and service name
+          # Because the process owner and service are on separate lines than the port line and the number of lines between them is variable this craziness was necessary.
+          # This line starts parsing the netstat output at the current port line and searches for all lines after that that are NOT a port line and finds the first one.
+          # This is how many lines there are until the next port is defined.
+          $LinesUntilNextPortNum = ($Netstat |
+            Select-Object -Skip $i |
+            Select-String -Pattern '^[A-Z]{3}\|' -NotMatch |
+          Select-Object -First 1).LineNumber
+          # Add the current line to the number of lines until the next port definition to find the associated process owner and service name
 
-					$NextPortLineNum = ($i + $LinesUntilNextPortNum)
-					# This would contain the process owner and service name
+          $NextPortLineNum = ($i + $LinesUntilNextPortNum)
+          # This would contain the process owner and service name
 
-					$PortAttribs = ($Netstat[($i + 1)..$NextPortLineNum])
-					# The process owner is always enclosed in brackets of, if it can't find the owner, starts with 'Can'
+          $PortAttribs = ($Netstat[($i + 1)..$NextPortLineNum])
+          # The process owner is always enclosed in brackets of, if it can't find the owner, starts with 'Can'
 
-					$Out.ProcessOwner = ($PortAttribs -match '^\[.*\.exe\]|Can')
+          $Out.ProcessOwner = ($PortAttribs -match '^\[.*\.exe\]|Can')
 
-					if ($Out.ProcessOwner) {
-						# Get rid of the brackets and pick the first index because this is an array
-						$Out.ProcessOwner = (($Out.ProcessOwner -replace '\[|\]', '')[0])
-					}
+          if ($Out.ProcessOwner) {
+            # Get rid of the brackets and pick the first index because this is an array
+            $Out.ProcessOwner = (($Out.ProcessOwner -replace '\[|\]', '')[0])
+          }
 
-					# A service is always a combination of multiple word characters at the start of the line
-					if ($PortAttribs -match '^\w+$') {
-						$Out.Service = (($PortAttribs -match '^\w+$')[0])
-					}
+          # A service is always a combination of multiple word characters at the start of the line
+          if ($PortAttribs -match '^\w+$') {$Out.Service = (($PortAttribs -match '^\w+$')[0])}
 
-					$MyOut = [pscustomobject]$Out
-					Write-Output $MyOut
-				}
+          $MyOut = [pscustomobject]$Out
+          Write-Output -InputObject $MyOut
+        }
 
-				# Keep the counter
-				$i++
-			}
-		} catch {
-			Write-Error "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-		}
-	}
+        # Keep the counter
+        $i++
+      }
+    } catch {Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"}
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeqL9Q6mzkPuaS70KYJn0CHgX
-# xbmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUVaZXQN+OW33fKyZ7Lj+X9My
+# N5GgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,10 +243,10 @@ function Global:Get-LocalListenPort {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -262,12 +262,12 @@ function Global:Get-LocalListenPort {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -364,25 +364,25 @@ function Global:Get-LocalListenPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRlVwJDQh1Rf/WdyYGiDCyF1KbiqDANBgkqhkiG9w0B
-# AQEFAASCAQBkg1NuNqPf0GBtD1Rm9YjoKranR4BuDFoYEyL6WR+sQMTtwAYwdMRF
-# gmaQjdXYwVv6EqN8fVHtey5BZN2B/J4fivZ/Rs+beGYKi6VNk+ZeZDhxjxo0kXhE
-# x3uSP/hmh7RKgmTahFenpBAN8PwvYkowWvcdzDuvr4Wnq8AlRv1CwNWTV5R/5BuP
-# Iz1AOkiGPScqEIE3Vdyrorn/l+vZPp0FTlijcJvq5aMVglniHzqN2eP91l6EsYJR
-# XPsvkEakMn5QlYxPnxF1Wc8t5buP9gxJGojbA6+5v24eMNxKYhIeWu4SxheOCdwA
-# 4N4y2RoYokamx7BondyEmB+rUuxjWxNeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSOJmGcZNpv8XsG8UD0JpS6lr5/bDANBgkqhkiG9w0B
+# AQEFAASCAQCRw24QDv5+Yj8mKQ352TmsCnbimGuuuSUb5RrTdb8iXWS/FNtAxGBJ
+# B1gtLDAHB2glZQLKnBM/bk5W4cfkoRv5agbE5xtciqkhDbtqWWGWoxjgZTjQ8Oqc
+# azDFHI82e668L3QGSSQFYb65WENxbgxS+iJTXLYo86B3qJpL/rY0IwVLFyXSNGD+
+# TQqP/q9JtkJMgpF3188UGYK0N7OV6BGMwPcqqZKgDgLirZNEpz3MBeeEbreqrx4R
+# WHhjzr5yp+BwGuZgsRYhZwKO7Hxy3csOI18nihVQYxSCjavYRVXsPR+lpAsMZoIk
+# Gh8JoE5JvXO1P5SswF2UXwefyujuNEyAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyNlowIwYJKoZIhvcN
-# AQkEMRYEFKxIDqOMIPsGQ+b9P8PO2loyydLqMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzMVowIwYJKoZIhvcN
+# AQkEMRYEFIxh7UYxtuwyJkWLb2AYmAod/SPyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAyxr15VW8P8Pl5YTy4RNMEcZN/WVb3VPPjGbdYC7yHXyzq
-# 1z/3FBRt0gHYseaDyTzR2NIVdhQo2rB3sQAEvaTUG0uGl+8v3LLh7fdsZCrjvo+Y
-# suzTrTBlvfkPUYApOF03cbMgsiujzb+08fHFbjJH3hlyAtvszFr9JafMACS6Wxvj
-# IynrLvEQLapQUfpXDe/Po0oryon5OPHeqlNmpzhkgxnv5+qM4FO6jeaXRlxzv6ZD
-# xMbwRdhlxH7tz7RDIiYeUk4Twwx0DI8rL7ozjKWWBCXN959KlPFlXp8NBOexNsWX
-# EqOJ4bdxiGyUmmXZMFrJDbDVahbOVDGoLNa4bm4U
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBDnlZ3EsPrTvtRnQwUXAslYHKTL8Y8dK+GUqhtUZwVWzMP
+# Rr9IG+JeuMyGy/jM6Q25fo0FvmUBHVfVBZv+siakKRRoJ8oaOHKNxBJD9AiXZ7kL
+# PextcFervBr6jaJbd8ZOm3MZ1zcUUtt886VxXmJC2XU8i9PJUC1nBmvK1UziGf/e
+# p2Tcf9bxEDIgdvwsGuo1pDe9ejGYnJqco2hBpCi5Q0ktI+YakatrUIWetjkAPBg2
+# MCtn2UmXzpCIcuW7LYrNT2S474XcBejlZu/m5u8ALUn5/1KKbinkD4pVjQ3wANme
+# iiTdads1sWnSQH15/oW8O2LUP9yo0DUGTYaP5zFc
 # SIG # End signature block

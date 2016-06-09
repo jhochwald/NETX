@@ -1,4 +1,7 @@
-### Refactoring (HEAD -> master)
+### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82 (HEAD -> master)
+>*Thu, 9 Jun 2016 22:30:06 +0200*
+
+### Refactoring (origin/master, origin/HEAD)
 >*Thu, 9 Jun 2016 21:52:07 +0200*
 
 ### Refactoring
@@ -10,7 +13,7 @@
 ### Distribution Snapshot 1.2.3.80
 >*Thu, 9 Jun 2016 16:55:34 +0200*
 
-### PsGet package management Tools (origin/master, origin/HEAD)
+### PsGet package management Tools
 >*Wed, 8 Jun 2016 17:38:04 +0200*
 
 ### Distribution Snapshot 1.2.3.79

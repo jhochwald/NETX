@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-09
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,146 +14,142 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Disable-IEESEC {
-<#
-	.SYNOPSIS
-		Disabling IE Enhanced Security Configuration (IE ESC)
+  <#
+      .SYNOPSIS
+      Disabling IE Enhanced Security Configuration (IE ESC)
 
-	.DESCRIPTION
-		Disabling IE Enhanced Security Configuration (IE ESC)
+      .DESCRIPTION
+      Disabling IE Enhanced Security Configuration (IE ESC)
 
-	.PARAMETER Users
-		Apply for Users?
+      .PARAMETER Users
+      Apply for Users?
 
-	.PARAMETER Admins
-		Apply for Admins?
+      .PARAMETER Admins
+      Apply for Admins?
 
-	.PARAMETER All
-		Apply for Users and Admins?
+      .PARAMETER All
+      Apply for Users and Admins?
 
-	.EXAMPLE
-		PS C:\> Disable-IEESEC -Admins
+      .EXAMPLE
+      PS C:\> Disable-IEESEC -Admins
 
-		Description
-		-----------
-		Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
+      Description
+      -----------
+      Remove the IE Enhanced Security Configuration (IE ESC) for Admin Users
 
-	.EXAMPLE
-		PS C:\> Disable-IEESEC -Users
+      .EXAMPLE
+      PS C:\> Disable-IEESEC -Users
 
-		Description
-		-----------
-		Remove the IE Enhanced Security Configuration (IE ESC) for regular
-		Users
+      Description
+      -----------
+      Remove the IE Enhanced Security Configuration (IE ESC) for regular
+      Users
 
-	.EXAMPLE
-		PS C:\> Disable-IEESEC -All
+      .EXAMPLE
+      PS C:\> Disable-IEESEC -All
 
-		Description
-		-----------
-		Remove the IE Enhanced Security Configuration (IE ESC) for Admin and
-		regular Users
+      Description
+      -----------
+      Remove the IE Enhanced Security Configuration (IE ESC) for Admin and
+      regular Users
 
-	.EXAMPLE
-		PS C:\> Disable-IEESEC -WhatIf
-		What if: Performing the operation "Set the new value: Disable" on target "IE Enhanced Security Configuration".
+      .EXAMPLE
+      PS C:\> Disable-IEESEC -WhatIf
+      What if: Performing the operation "Set the new value: Disable" on target "IE Enhanced Security Configuration".
 
-		Description
-		-----------
-		Show what would be changed without doing it!
+      Description
+      -----------
+      Show what would be changed without doing it!
 
-	.NOTES
-		Additional information about the function.
-#>
+      .NOTES
+      Additional information about the function.
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $true)]
-	param
-	(
-		[Parameter(HelpMessage = 'Apply for Users?')]
-		[switch]$Users = ($false),
-		[Parameter(HelpMessage = 'Apply for Admins?')]
-		[switch]$Admins = ($true),
-		[Parameter(HelpMessage = 'Apply for Users and Admins?')]
-		[switch]$All = ($false)
-	)
+  [CmdletBinding(ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $true)]
+  param
+  (
+    [Parameter(HelpMessage = 'Apply for Users?')]
+    [switch]$Users = ($false),
+    [Parameter(HelpMessage = 'Apply for Admins?')]
+    [switch]$Admins = ($true),
+    [Parameter(HelpMessage = 'Apply for Users and Admins?')]
+    [switch]$All = ($false)
+  )
 
-	BEGIN {
-		if ($All) {
-			$Admins = ($true)
-			$Users = ($true)
-		}
-	}
+  BEGIN {
+    if ($All) {
+      $Admins = ($true)
+      $Users = ($true)
+    }
+  }
 
-	PROCESS {
-		if ($pscmdlet.ShouldProcess('IE Enhanced Security Configuration', 'Set the new value: Disable')) {
-			# Set the new value for Admins
-			if ($Admins) {
-				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
-				try {
-					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-				} catch {
-					# Do nothing
-					Write-Verbose 'Minor Exception catched!'
-				}
-			}
+  PROCESS {
+    if ($pscmdlet.ShouldProcess('IE Enhanced Security Configuration', 'Set the new value: Disable')) {
+      # Set the new value for Admins
+      if ($Admins) {
+        $Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
+        try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue} catch {
+          # Do nothing
+          Write-Verbose -Message 'Minor Exception catched!'
+        }
+      }
 
-			# Set the new value for Users
-			if ($Users) {
-				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}'
-				try {
-					Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-				} catch {
-					# Do nothing
-					Write-Verbose 'Minor Exception catched!'
-				}
-			}
+      # Set the new value for Users
+      if ($Users) {
+        $Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}'
+        try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue} catch {
+          # Do nothing
+          Write-Verbose -Message 'Minor Exception catched!'
+        }
+      }
 
-			# Enforce the new settings
-			Stop-Process -Name Explorer
-		}
-	}
+      # Enforce the new settings
+      Stop-Process -Name Explorer
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDoq3QtviQAI87Yl4ZGowiHKC
-# BhigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2oaVE3ZhRO2zlosThI3sBUwh
+# 2iSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +292,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTT/rN7kCh754zp5vaSFwOW8j7mfjANBgkqhkiG9w0B
-# AQEFAASCAQAFXA7hVpLISM/xs4fkzUiCahk1Wl7q+NkRWkKdoJQ4hfOY0tFq3Du9
-# 2t/SKJ8JT2uVj6woYfrMTUxVdnGM0FCvVZ3s+9Q2yYI2HEYSjey3NWa/28lQ1te2
-# DWH4zHe14zeEN4OVya+enyVSNh68SFEmZqFBfFDttB/MXjpQtYn8SeIdbYCh8XOV
-# t+oFlLTndgFCvWwUIeCPpTcagZ1L5iLz9Wn0tncS0h6kolLUCQo5z+XMQfY3aqe9
-# MN0kd3ph4LbpIBM+ZzqgVcpRPhj0yUq3orX+50FOOBY3vlabrjH0JTaz+AYUgIZP
-# bfgkP7PVm85MpapunRaabYMsxT/ANswdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSedzL0QTDSdt5Jgq7+wKE9QFZ9WzANBgkqhkiG9w0B
+# AQEFAASCAQAPJDKGbkUT2YUmAoC5a9kBKwzqCGVvDeNK3F/l5gZLSymn02JigdRy
+# iLOlwCvqjlfiabJ77yDrJSI2rm6t4jwBgrHRAsYhdn07CKjw6M5A+JWoGL+AOxRB
+# MHDj1DkNg3WFVFjkUoKxpD40MUXKUkXp7Fxrf/ctmTJ5GEUpmx8X8aZkktG/56+5
+# UovxZMizHaqjzHMdioTw/tQ0WQJGeYMxOYQx0YXV5rJc4ssG5ZUMp+XWQVmx8esv
+# g0giS7FxtR38zO7G3ZeKpwS2ex81AKNQYuejL5dwBTn0k0Htlccv285Pby8WCXeO
+# 2F7Moz5UeFUvmK0MeCw7b2NLqHWUsGDvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxOFowIwYJKoZIhvcN
-# AQkEMRYEFLz60LyOXC0pZ4Y8DO/tyC6v4qfHMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyMlowIwYJKoZIhvcN
+# AQkEMRYEFIBHHFldGkyEQlbM2LZGX1KR38doMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCjzjzSEo576PC0GVTsJXlovUxBu1QY5iBnkM6fYKWgDvLl
-# IVkCzOfWndEUfnndhL9KmMAsnNftuood9orB4CxqkRNOLS8bdR5DuXaDdGTMDVJF
-# NLTKBgCc4cr9PMxPYwCRYs8P0WL8/PGQ38cvByKVLrdJlj3I88o7xwuOh/N1RhaM
-# omJBgAAodOh5TLXAgHe2i4d2dA8XHxkD/iVToJrfndnof8vrsvW+lP4HNvmK56Sg
-# 8AnBeAPAcMa3n1DKHuOsQNUtuPzjJRoEzi1XKQZawTEUqItyo2jLqA76i2/lhGdd
-# qMjbPpqrhg7RUoAr8bq884vmp7a4K2tro7Y9V3St
+# hkiG9w0BAQEFAASCAQCYP5gzWOzKX0fj+//LTGki+1Xr/LRRal+57N1O8gsoh/J9
+# cp0H5JQHDWifwOhunxt9RZRXZdLvr3MO+yaRfgKVNiEjgdCjPWe2QUwAZ/ULLUcC
+# QEHn4PdhFq6ubK+njomjDGp8W0hJb42IhdSVMM90JCVX71uD+Hfyu7c7w4RtD8+B
+# bNtGis4Ggtr6GxOYzzsE18DKENNGpMHrOSvP9zvYERAH+EUmjQ1LC3P/k4fKtP5Y
+# MJCoYK7krBzWjJAB9kPFxP/3JgVVcI3dcBSrf/TEbSamG7fCn5UxVjcAcIXH1Ka3
+# vBghH0SDbbipP9EoXeaiCgCw2KLsGSh8HU0cJVBC
 # SIG # End signature block

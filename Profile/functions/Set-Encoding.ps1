@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,172 +14,172 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-Encoding {
-<#
-	.SYNOPSIS
-		Converts Encoding of text files
+  <#
+      .SYNOPSIS
+      Converts Encoding of text files
 
-	.DESCRIPTION
-		Allows you to change the encoding of files and folders.
-		It supports file extension agnostic
+      .DESCRIPTION
+      Allows you to change the encoding of files and folders.
+      It supports file extension agnostic
 
-		Please note: Overwrites original file if destination equals the path
+      Please note: Overwrites original file if destination equals the path
 
-	.PARAMETER path
-		Folder or file to convert
+      .PARAMETER path
+      Folder or file to convert
 
-	.PARAMETER dest
-		If you want so save the newly encoded file/files to a new location
+      .PARAMETER dest
+      If you want so save the newly encoded file/files to a new location
 
-	.PARAMETER encoding
-		Encoding method to use for the Patch or File
+      .PARAMETER encoding
+      Encoding method to use for the Patch or File
 
-	.EXAMPLE
-		PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -encoding "UTF8"
+      .EXAMPLE
+      PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -encoding "UTF8"
 
-		Description
-		-----------
-		Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format
+      Description
+      -----------
+      Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8 format
 
-	.EXAMPLE
-		PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -dest "c:\windows\temps\folder2" -encoding "UTF8"
+      .EXAMPLE
+      PS C:\> Set-Encoding -path "c:\windows\temps\folder1" -dest "c:\windows\temps\folder2" -encoding "UTF8"
 
-		Description
-		-----------
-		Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8
-		format and save them to c:\windows\temps\folder2
+      Description
+      -----------
+      Converts all Files in the Folder c:\windows\temps\folder1 in the UTF8
+      format and save them to c:\windows\temps\folder2
 
-	.EXAMPLE
-		PS C:\> (Get-Content -path "c:\temp\test.txt") | Set-Content -Encoding UTF8 -Path "c:\temp\test.txt"
+      .EXAMPLE
+      PS C:\> (Get-Content -path "c:\temp\test.txt") | Set-Content -Encoding UTF8 -Path "c:\temp\test.txt"
 
-		Description
-		-----------
-		This converts a single File via hardcore PowerShell without a Script.
-		Might be useful if you want to convert this script after a transfer!
+      Description
+      -----------
+      This converts a single File via hardcore PowerShell without a Script.
+      Might be useful if you want to convert this script after a transfer!
 
-	.NOTES
-		BETA!!!
+      .NOTES
+      BETA!!!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true)]
-		[ValidateNotNullOrEmpty()]
-		[Alias('PathName')]
-		[System.String]$path,
-		[Alias('Destination')]
-		[System.String]$dest = $path,
-		[Parameter(Mandatory = $true)]
-		[Alias('enc')]
-		[System.String]$encoding
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullOrEmpty()]
+    [Alias('PathName')]
+    [System.String]$path,
+    [Alias('Destination')]
+    [System.String]$dest = $path,
+    [Parameter(Mandatory = $true)]
+    [Alias('enc')]
+    [System.String]$encoding
+  )
 
-	BEGIN {
-		# ensure it is a valid path
-		if (-not (Test-Path -Path $path)) {
-			# Aw, Snap!
-			throw 'File or directory not found at {0}' -f $path
-		}
-	}
+  BEGIN {
+    # ensure it is a valid path
+    if (-not (Test-Path -Path $path)) {
+      # Aw, Snap!
+      throw 'File or directory not found at {0}' -f $path
+    }
+  }
 
-	PROCESS {
-		# if the path is a file, else a directory
-		if (Test-Path $path -PathType Leaf) {
-			# if the provided path equals the destination
-			if ($path -eq $dest) {
-				# get file extension
-				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($path))
+  PROCESS {
+    # if the path is a file, else a directory
+    if (Test-Path $path -PathType Leaf) {
+      # if the provided path equals the destination
+      if ($path -eq $dest) {
+        # get file extension
+        Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($path))
 
-				#create destination
-				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
+        #create destination
+        Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
 
-				# output to file with encoding
-				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
+        # output to file with encoding
+        Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
 
-				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
+        # copy item to original path to overwrite (note move-item loses encoding)
+        Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
-				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$false
-			} else {
-				# output to file with encoding
-				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
-			}
+        # remove the extra file
+        Remove-Item $dest -Force -Confirm:$false
+      } else {
+        # output to file with encoding
+        Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
+      }
 
-		} else {
-			# get all the files recursively
-			foreach ($i in Get-ChildItem -Path $path -Recurse) {
-				if ($i.PSIsContainer) {
-					continue
-				}
+    } else {
+      # get all the files recursively
+      foreach ($i in Get-ChildItem -Path $path -Recurse) {
+        if ($i.PSIsContainer) {
+          continue
+        }
 
-				# get file extension
-				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($i))
+        # get file extension
+        Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($i))
 
-				# create destination
-				Set-Variable -Name dest -Value $("$path\temp_encoded{0}" -f $ext)
+        # create destination
+        Set-Variable -Name dest -Value $("$path\temp_encoded{0}" -f $ext)
 
-				# output to file with encoding
-				Get-Content $i.FullName | Out-File -FilePath $dest -Encoding $encoding -Force
+        # output to file with encoding
+        Get-Content -Path $i.FullName | Out-File -FilePath $dest -Encoding $encoding -Force
 
-				# copy item to original path to overwrite (note move-item loses encoding)
-				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object { Write-Output -inputobject ('{0} encoded {1}' -f $encoding, $_) }
+        # copy item to original path to overwrite (note move-item loses encoding)
+        Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
-				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$false
-			}
-		}
-	}
+        # remove the extra file
+        Remove-Item $dest -Force -Confirm:$false
+      }
+    }
+  }
 }
 # Set a compatibility Alias
-(Set-Alias Set-TextEncoding Set-Encoding -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Set-TextEncoding -Value Set-Encoding -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbFtFsRD3WH9Ln46woE6w3wz+
-# ofmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrv+qj1k4OyfHIDFZ2cUxHp2f
+# TCigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -322,25 +322,25 @@ function global:Set-Encoding {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQwW4LE85CJZx5goWy+fqJ7oBok9zANBgkqhkiG9w0B
-# AQEFAASCAQCmxeEdo6S325PpduwhuF4t3pkBiYZHydnhyHxPljQRcqctbWu4LDYk
-# cj4FlGNQE7cWrT9H/fUtZpqfnJBAypa8wNaQzR0vxrU+mfUQy9brQvssf0cEZe/H
-# LKNmtRizs2nwUA4aZV2GXuN7pK0VKE6HHv9Bw1kEb8lh8pEQm+L5MBmcL1uh05Nf
-# xclfq5mW1abLMbeOthlgoPBPfqHei6lqXgHaQuqgkBfWg1z3Dsf7ehmMZ2ItHH1c
-# UTJPJmY6JqVxB6Ws3I3d0UJNOMz6wf9Wb1TH2CUO/v9+rn7abYXtYeP+me0L4ote
-# 5hvnr4ha65r2u2kIVjeD2IQ+PIymRwGeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSRw2xidWeDpOLjGZjCvaBqm/0mojANBgkqhkiG9w0B
+# AQEFAASCAQArwf3lueoKh4oQEoXNyxfd2zISCZDNrbTWlqJv8y74ZZFHhMbIArl/
+# QHAIMl4u7se9FBFqJlbwEjL+drizVmtrzReVFrV9WFS4NbpYL/3/1TkXxmu6QaNO
+# mRyFUM28of39iO+x6rMHrPcrAorOvhyfgReLS6lz69rdN9IqsiE/ogZnwtP7CvAz
+# ZmeuOlDcXWVfjcW8P70u54cqI1a7REv4J/TC3rYRnJraDDrcjoJvVBQk5exiNZnv
+# r9IqdZ7b4m11/lCDqLqd3dpPYNGSpc4J/uNB5Y7WTjSEo0+VRZpgVfKZ3n2QnNYt
+# IMgfXdTsqbeFQyl7Eg8iwUM1RqBdXip8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFFhJM+0O/UXQCxUqyKCNpqOwC4pVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwM1owIwYJKoZIhvcN
+# AQkEMRYEFNouY3i634gpU/0NGLZFZCcc5q0oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA1GHYJcMKgT5T+qXbYmEr8F9hm++cLQIDp2jvIDOWKHLn+
-# pzUMP+l1HYDiltyuYPQsyIROwygdK4v8hb+IyGnehJxE6vMOEIaizqtUXz5ubhOT
-# wLMB7bkonwYX0+pWTXKsUA1Sc7hfI/rhrCPekxyP/huRhDBmzk8dP7JvuJ6V0mcI
-# kZu+TEgH4rlpQp7XoHwQ58ukIa6miiB4JlzOAnYO93c1KzoNn0h7ctSqBrYJjXJo
-# O+WKS7jcdFgByHwKXpMk3kBtl4Ezm666a7pZnqlfouQF9VPbYpouatFXKy7Vcj7O
-# nKHCcEH8M1bl4lvlAqUI1gJ4G29nW/jAHu62UO9Q
+# hkiG9w0BAQEFAASCAQB7QXDoCaWmzgtxnhprrF/lsSlterFjQh4VRpLG629UlbwF
+# g37xBOZZQ2yyiHl1Z7Xu7Abe2v/zoaMQZEYl08WneD9seqxqI6zaSETFVOFbWCW2
+# LsiiUgbH29XNbpR9EqJkbG9DNcnwUlOCQTF10cuhJ2m6NxVrl69AV5XuxUINpJN5
+# +od+48IevkCwxsJcSnTBnCcurmZoT96+q9cN3u11OP49wqXmDKp/+LkMDE1P1glg
+# EA3IPE+VdfN2PrtjWkIPh9oqosL2bD618c+ENjq+JdNyTu0OWaRKceM1bmp2IcWn
+# ykyc65ngcg7f/2tzTGB4fQriceeFkmwC7FqJYASI
 # SIG # End signature block

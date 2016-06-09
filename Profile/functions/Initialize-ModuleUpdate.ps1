@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,106 +14,106 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Initialize-ModuleUpdate {
-<#
-	.SYNOPSIS
-		Refresh the PowerShell Module Information
+  <#
+      .SYNOPSIS
+      Refresh the PowerShell Module Information
 
-	.DESCRIPTION
-		Refresh the PowerShell Module Information
-		Wrapper for the following command: Get-Module -ListAvailable -Refresh
+      .DESCRIPTION
+      Refresh the PowerShell Module Information
+      Wrapper for the following command: Get-Module -ListAvailable -Refresh
 
-	.PARAMETER Verbosity
-		Verbose output, default is not
+      .PARAMETER Verbosity
+      Verbose output, default is not
 
-	.EXAMPLE
-		PS C:\> Initialize-ModuleUpdate -Verbose
+      .EXAMPLE
+      PS C:\> Initialize-ModuleUpdate -Verbose
 
-		Description
-		-----------
-		Refresh the PowerShell Module Information
+      Description
+      -----------
+      Refresh the PowerShell Module Information
 
-	.EXAMPLE
-		PS C:\> Initialize-ModuleUpdate -Verbose
+      .EXAMPLE
+      PS C:\> Initialize-ModuleUpdate -Verbose
 
-		Description
-		-----------
-		Refresh the PowerShell Module Information
+      Description
+      -----------
+      Refresh the PowerShell Module Information
 
-	.NOTES
-		PowerShell will auto-load modules. However, with some modules, this
-		technique may fail.
+      .NOTES
+      PowerShell will auto-load modules. However, with some modules, this
+      technique may fail.
 
-		Their cmdlets will still only be available after you manually import
-		the module using Import-Module.
+      Their cmdlets will still only be available after you manually import
+      the module using Import-Module.
 
-		The reason most likely is the way these modules were built.
+      The reason most likely is the way these modules were built.
 
-		PowerShell has no way of detecting which cmdlets are exported by
-		these modules.
+      PowerShell has no way of detecting which cmdlets are exported by
+      these modules.
 
-#>
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Position = 0,
-				   HelpMessage = 'Verbosity? Default is not')]
-		[switch]$Verbosity = "$false"
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Position = 0,
+    HelpMessage = 'Verbosity? Default is not')]
+    [switch]$Verbosity = "$false"
+  )
 
-	BEGIN {
-		Write-Output 'Update...'
-	}
+  BEGIN {
+    Write-Output -InputObject 'Update...'
+  }
 
-	PROCESS {
-		if ($Verbosity) {
-			Get-Module -ListAvailable -Refresh
-		} else {
-			(Get-Module -ListAvailable -Refresh) > $null 2>&1 3>&1
-		}
-	}
+  PROCESS {
+    if ($Verbosity) {
+      Get-Module -ListAvailable -Refresh
+    } else {
+      (Get-Module -ListAvailable -Refresh) > $null 2>&1 3>&1
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6PEbG+17LHi2zWdvvdzTUehw
-# PzCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUifzFWM7tO2Frg0Q9u2iQSGlR
+# gYGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +256,25 @@ function Global:Initialize-ModuleUpdate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTkT0kkAKGD9gjN2gcEEOLNmhdv3zANBgkqhkiG9w0B
-# AQEFAASCAQBMrLqQHhNKWY2v71NGTZEdEacj4Pn0DwaTLDDSxR8EbFlI2jbKxiBM
-# HhTdMi/TeS7NBkwKJ8AQ39XFLDyIwihpO9IwzY/XAcYqRmrO7wjomkbmM69Icp/B
-# ULPadVntUngJ63AXVgW25xcV8PuYoipk9aOP12DbYaaV5M3HsjG/iL0nnFMbTYRG
-# +IcXMu0Q1FznWqxCcao4kfhBYZdlkvCD8AoHmEGW1pGgjzjpPKUdOAPHohtM8njc
-# QbKdwqbWcAV+leY6Big5i/XNh/8Zqcglnz4MtW+I6BPSeQNAwqxl/kxPpkKeIuqV
-# kYZ6kXKrS1emN/+shIGY3MRLo03KUeL8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQbM//IKvuDF3lXWo5Rs9GKbY3jVTANBgkqhkiG9w0B
+# AQEFAASCAQCPXJDp1pdXt2YuagLGdLI4qfwo+fOA6QwevPKP1eC1unDSmh/cfk6l
+# CN6cr3M2euYkiAYS2UqTm7XAyJkiIt4LstwIIa2d5CJCHW6xCX9QdOZOQh2nwneP
+# Ihoz41H6JYLtSU6EGcL78YpiBCGyYa27r8WZoHK183CP5EkA5IkKt/thyz73Mr7f
+# Q4PdEmuf6iJzJxGy0MrvGfbGdP33gFrnmv8vwhEiuJSAzebMqm4GNUGK4dyVYhxw
+# AITD+8C9LildxqzsdCc/j0SEKjbqIfEfKATs+OCprEvhCBxgs7+WY980U94POJD8
+# FnoAsfWMZ7A/x1wEry0y8ntRZDCcrfiOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0MFowIwYJKoZIhvcN
-# AQkEMRYEFPYhTKgTB80EzeGcQR8M2sSyXO/AMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0N1owIwYJKoZIhvcN
+# AQkEMRYEFD3ZpzWYTK1P7yYnhn0hAmLMlZybMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAGi0Lx3WpLgkdO0ntYFplYuvk/uZleAlfLjICQ3nFBuRS0
-# GPaqJuer7dh9X/82yu+5AI3hbMK+8HR5Op74dusE3Xbw2H/w6NlYwo+F25OUyEhJ
-# ZttPSbFoD1rJ2R/aBs6pus5YRDCRm7nIRJ+ytrLv8qQzt+IO5R+Pkcx9gUJVJyRT
-# Sl49/qMjsZR/7AtiCfJsFoLmuz8b+4OWvpACc3dP3Gctex0kya41KBQXO4Y23UYu
-# LGedxXVrOzX8CHn5Yz7dBHEWNXBdfjwgQozIZaNWQay8OXFvvCq7udIjjBpTqi9b
-# KTQdhTEnAqduRnzy/kweyhzi7kChvJd71VBlnnDg
+# hkiG9w0BAQEFAASCAQA2t4DbtyhMl3kI1CY+IYT2xHfRxOp0PV29UQU8HHfhUaEQ
+# YFfs2NGc0UcK/+HclvZqElJwM7NUNHAeUrgruNCD59tPcR2Q2thqWNB5d+6PVZLc
+# niNeXF8fTynzOrxnrqUPU67WT02FR3sCIRIiZVqHUPRlhfDdyfkoir8C6ZMyATTo
+# 1g2T9Kqw1EK2AXkkdE3zMSpNp4qffHd33ZGSP0kjyFux72JJQrQTDLaeSZdZEoFP
+# 5QScK9xorULZp4OXhvSXOBJRRofhqgBz1p2v5JNgojYR+t7Nnpnh+ZzE5WE9niU+
+# GKwBv64jPZclphiNAxAoagWReKQxmj7AYoyOkGDG
 # SIG # End signature block

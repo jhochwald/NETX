@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,124 +14,124 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Reset-Prompt {
-<#
-	.SYNOPSIS
-		Restore the Default Prompt
+  <#
+      .SYNOPSIS
+      Restore the Default Prompt
 
-	.DESCRIPTION
-		Restore the Default Prompt
+      .DESCRIPTION
+      Restore the Default Prompt
 
-	.EXAMPLE
-		Josh@fra1w7vm01 /scripts/PowerShell/functions $ Reset-Prompt
-		PS C:\scripts\PowerShell\functions>
+      .EXAMPLE
+      Josh@fra1w7vm01 /scripts/PowerShell/functions $ Reset-Prompt
+      PS C:\scripts\PowerShell\functions>
 
-		Description
-		-----------
-		If you modified the prompt before, this command restores the
-		PowerShell default for you
+      Description
+      -----------
+      If you modified the prompt before, this command restores the
+      PowerShell default for you
 
-	.NOTES
-		Just a quick helper!
+      .NOTES
+      Just a quick helper!
 
-		Reset the prompt and the window title back to the defaults
+      Reset the prompt and the window title back to the defaults
 
-	.LINK
-		Set-LinuxPrompt
-		Set-PowerPrompt
+      .LINK
+      Set-LinuxPrompt
+      Set-PowerPrompt
 
-	.LINK
-		Set-DefaultPrompt
-		Set-ServicePrompt
-#>
+      .LINK
+      Set-DefaultPrompt
+      Set-ServicePrompt
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
-			function global:Prompt {
-			<#
-				.SYNOPSIS
-					Set a default prompt
+  PROCESS {
+    if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
+      function global:Prompt {
+        <#
+            .SYNOPSIS
+            Set a default prompt
 
-				.DESCRIPTION
-					Set a default prompt
+            .DESCRIPTION
+            Set a default prompt
 
-				.EXAMPLE
-					PS C:\> prompt
+            .EXAMPLE
+            PS C:\> prompt
 
-					# Set a default prompt
-			#>
+            # Set a default prompt
+        #>
 
-				# Create a default prompt
-				Write-Host ('PS ' + (Get-Location) + '> ')
+        # Create a default prompt
+        Write-Host ('PS ' + (Get-Location) + '> ')
 
-				# Blank
-				Return ' '
-			}
+        # Blank
+        Return ' '
+      }
 
-			<#
-				Also Reset the Window Title
-			#>
-			# Are we elevated or administrator?
-			if ((New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-				# Administrator Session!
-				$host.ui.RawUI.WindowTitle = 'Administrator: Windows PowerShell'
-			} else {
-				# User Session!
-				$host.ui.RawUI.WindowTitle = 'Windows PowerShell'
-			}
-		}
-	}
+      <#
+          Also Reset the Window Title
+      #>
+      # Are we elevated or administrator?
+      if ((New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        # Administrator Session!
+        $host.ui.RawUI.WindowTitle = 'Administrator: Windows PowerShell'
+      } else {
+        # User Session!
+        $host.ui.RawUI.WindowTitle = 'Windows PowerShell'
+      }
+    }
+  }
 
-	END {
-		if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
-			# Execute!
-			Prompt
-		}
-	}
+  END {
+    if ($pscmdlet.ShouldProcess('Prompt', 'Restore the default')) {
+      # Execute!
+      prompt
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUS1/BSTnlIEkZVHE8qK4jjQ8T
-# tyygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8J9wjC5podGVqUFosge3bOaM
+# xM2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -153,10 +153,10 @@ function global:Reset-Prompt {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -172,12 +172,12 @@ function global:Reset-Prompt {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -274,25 +274,25 @@ function global:Reset-Prompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR0leN/ebKw3k0x/XzBLJv8EawpdTANBgkqhkiG9w0B
-# AQEFAASCAQBrOHXSN4wfj+SUa2yADXmjXqc5A6EkEuaCXRtUiehgc4TFEwTM08qD
-# 0kRUCgsqj4PFFX9XCI2tWXyuRPSwPTJmY1a50Wa3VI92SGU6AZZ2M9Kt68w+5g6x
-# iYD9EkPmf+ke0G256MAcoQZXSrBBQ63WO502Fl6XwZcndnsoRMgWpf0akLFkTl+q
-# 3Uxxd/DkUHdcbVhFtxr5WvPgvjLMwtSJEI4g1gW0cJuy4dEjgftA5JkQYv4eJq4d
-# K2EJllP76IWvnbs6g8gt0kN0g4x0aVR5IvZnIjGTm4Zh7vXdBPlHdMCPE6oGG9MS
-# Iqe4THjX/La5aJlCTfiMRkp9U/zizjZ6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTw67Ln+/piiWO5Qt0+Mq73Exx+lTANBgkqhkiG9w0B
+# AQEFAASCAQBqhGpjztlo4xy+A644K6BiQlOfUEyAu20mVWvyL6DElhRE7jt6B5kR
+# we4hrncTFS4IrQ3iUz8df8j4d3ub6lDJVJ+E9GLb1xs5DLnKFj3QFxg4gWPIlviW
+# Szr6EjyYJR3CBk3Dm9mugJALTYJit4qwwYYWY94113BKi8h/JRQLfjmjEoCAYKHY
+# mqKOYJ6+lxiVpOrOIpdYse7TisQ5SNEyGjLRkRGj9I9+208WcvKYkjkiBZaaKWBD
+# 4vOkJpLaxM3oX+Yg+nV14/uobc23MMn/5zs9+4om9uaFJ/zQdTp24O/HunxaIy7g
+# L2VdQ5q8cu9lroeGnreaiLDxO37qBAM/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1M1owIwYJKoZIhvcN
-# AQkEMRYEFJeKr6ZuwWqUoK3B2jjPz6hIXDwoMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMFowIwYJKoZIhvcN
+# AQkEMRYEFFwEg754MH0tpzNCc7RV5SQiLJmQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCO6rNQPQnRR5ssunyB/d/Qu4Ha+8c1zsTXc6b+RLMJiGt0
-# bIYf1B03QFLhq+NQpCCW1XknOwBllIqZ9jcfqL0Li7dprfWmm+RW8/5CmZ8xu3E7
-# q6z4Q2Dswc25sjvCOamhjgrWqYZtV3tGiwD6kImCaDohcGxj8isOUaC6lpXvhRK/
-# 9tdhyAOCsM3a/K7IF+PUVJPK4K8ycfDtw5FH836ibr/uXJQNnd1UKlXF4wrAOk5j
-# yOrqs8+ypHcduLSsJk5h+VuPfOg8MDIR9kOSrSvcDHmKFfLg6iKIUAI8YFo+xb+b
-# k0u1YoVy5mZ96s3Y4qCAQTaUwRVh3i1apWl+by5L
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQALfHW7oQKqvf6HxvZlogiJvOqO4hHUxSsUayc+JHba8pj3
+# D2pfaamqLYuOiXxHdLNybypS0B5pC5KbtBvB1/zviX5xYLwJ13dkQ9h75i5dG9PA
+# B4PvAMdWPFIQtKOxQ0H5ccN7oqSVdyBYF+RW0uZm3W7eG1OlETUt2UOIhWjC2Wpj
+# JxwWkw/3CMv3xSz3oIoJ7PXhHRKrD0o9GQ84G2OUCXKZcG7ctNsvRxRKiEbIuA3h
+# 0zWRna8FAe1p9LC5QAfPhlJH28IiH26CsK0tAUoJrOD+vOVMqzPl2QL6w/aV5ygq
+# KJl43Nxhwzu1BiT7gQx1ZnUjeB4SPTYKg3Q2rbjy
 # SIG # End signature block

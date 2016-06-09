@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,189 +14,189 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Send-Prowl {
-<#
-	.SYNOPSIS
-		Prowl is the Growl client for iOS.
+  <#
+      .SYNOPSIS
+      Prowl is the Growl client for iOS.
 
-	.DESCRIPTION
-		Prowl is the Growl client for iOS. Push to your iPhone, iPod touch,
-		or iPad notifications from a Mac or Windows computer,
-		or from a multitude of apps and services.
-		Easily integrate the Prowl API into your applications.
+      .DESCRIPTION
+      Prowl is the Growl client for iOS. Push to your iPhone, iPod touch,
+      or iPad notifications from a Mac or Windows computer,
+      or from a multitude of apps and services.
+      Easily integrate the Prowl API into your applications.
 
-	.PARAMETER Event
-		The Text of the Prowl Message
+      .PARAMETER Event
+      The Text of the Prowl Message
 
-	.PARAMETER Description
-		Description of the Prowl Message
+      .PARAMETER Description
+      Description of the Prowl Message
 
-	.PARAMETER ApplicationName
-		Name your Application, e.g. BuildBot. Default is PowerShell
+      .PARAMETER ApplicationName
+      Name your Application, e.g. BuildBot. Default is PowerShell
 
-	.PARAMETER Priority
-		Priority of the Prowl Message (0, 1,2), default is 0
+      .PARAMETER Priority
+      Priority of the Prowl Message (0, 1,2), default is 0
 
-	.PARAMETER url
-		URL you would like to attach to the Prowl Message
+      .PARAMETER url
+      URL you would like to attach to the Prowl Message
 
-	.PARAMETER apiKey
-		Prowl API Key (Required)
+      .PARAMETER apiKey
+      Prowl API Key (Required)
 
-	.EXAMPLE
-		Send-Prowl -apiKey "1234567890" -Event "Hello World!"
+      .EXAMPLE
+      Send-Prowl -apiKey "1234567890" -Event "Hello World!"
 
-		Description
-		-----------
-		Send the Prowl message "Hello World!"
+      Description
+      -----------
+      Send the Prowl message "Hello World!"
 
-	.EXAMPLE
-		Send-Prowl -apiKey "1234567890" -Event "Call the Helpdesk!" -Priority "2" -Description "Call the Helpdesk, we need your feedback!!!" -url "tel:1234567890"
+      .EXAMPLE
+      Send-Prowl -apiKey "1234567890" -Event "Call the Helpdesk!" -Priority "2" -Description "Call the Helpdesk, we need your feedback!!!" -url "tel:1234567890"
 
-		Description
-		-----------
-		Send Prowl event "Call the Helpdesk!" with priority 2 and the
-		description "Call the Helpdesk, we need your feedback!!!".
+      Description
+      -----------
+      Send Prowl event "Call the Helpdesk!" with priority 2 and the
+      description "Call the Helpdesk, we need your feedback!!!".
 
-		It attaches the URL "tel:1234567890"
+      It attaches the URL "tel:1234567890"
 
-	.EXAMPLE
-		Send-Prowl -apiKey "1234567890" -Event "Your Ticket is updated" -Priority 1 -Description "The Helpdesk Team updated your ticket!" -url "http://support.NET-Experts.net/"
+      .EXAMPLE
+      Send-Prowl -apiKey "1234567890" -Event "Your Ticket is updated" -Priority 1 -Description "The Helpdesk Team updated your ticket!" -url "http://support.NET-Experts.net/"
 
-		Description
-		-----------
-		Send Prowl event "Your Ticket is updated" with priority 2 and the
-		description "The Helpdesk Team updated your ticket!".
+      Description
+      -----------
+      Send Prowl event "Your Ticket is updated" with priority 2 and the
+      description "The Helpdesk Team updated your ticket!".
 
-		It attaches the URL "http://support.NET-Experts.net/"
+      It attaches the URL "http://support.NET-Experts.net/"
 
-	.NOTES
-		Additional information about the function.
+      .NOTES
+      Additional information about the function.
 
-	.LINK
-		Info: http://www.prowlapp.com
+      .LINK
+      Info: http://www.prowlapp.com
 
-	.LINK
-		API: http://www.prowlapp.com/api.php
+      .LINK
+      API: http://www.prowlapp.com/api.php
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'The Text of the Prowl Message')]
-		[ValidateNotNullOrEmpty()]
-		[ValidateLength(1, 1024)]
-		[System.String]$Event,
-		[Parameter(HelpMessage = 'Description of the Prowl Message')]
-		[ValidateLength(0, 10000)]
-		[System.String]$Description = '',
-		[Parameter(HelpMessage = 'Name your Application, e.g. BuildBot')]
-		[ValidateLength(1, 256)]
-		[System.String]$ApplicationName = 'PowerShell',
-		[Parameter(HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
-		[ValidateRange(1, 2)]
-		[System.Int32]$Priority = 0,
-		[Parameter(HelpMessage = 'URL you would like to attach to the Prowl Message')]
-		[ValidateLength(0, 512)]
-		[System.String]$url,
-		[Parameter(Mandatory = $true,
-				   HelpMessage = 'Prowl API Key (Required)')]
-		[ValidateScript({ $_.Length -ge 40 })]
-		[System.String]$apiKey
-	)
+  [CmdletBinding()]
+  [OutputType([System.Boolean])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'The Text of the Prowl Message')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(1, 1024)]
+    [System.String]$Event,
+    [Parameter(HelpMessage = 'Description of the Prowl Message')]
+    [ValidateLength(0, 10000)]
+    [System.String]$Description = '',
+    [Parameter(HelpMessage = 'Name your Application, e.g. BuildBot')]
+    [ValidateLength(1, 256)]
+    [System.String]$ApplicationName = 'PowerShell',
+    [Parameter(HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
+    [ValidateRange(1, 2)]
+    [System.Int32]$Priority = 0,
+    [Parameter(HelpMessage = 'URL you would like to attach to the Prowl Message')]
+    [ValidateLength(0, 512)]
+    [System.String]$url,
+    [Parameter(Mandatory = $true,
+    HelpMessage = 'Prowl API Key (Required)')]
+    [ValidateScript({ $_.Length -ge 40 })]
+    [System.String]$apiKey
+  )
 
-	BEGIN {
-		# URL-encode some strings
-		[Reflection.Assembly]::LoadWithPartialName('System.Web') | Out-Null
-		$Event = [web.httputility]::urlencode($Event.Trim())
-		$Description = [web.httputility]::urlencode($Description.Trim())
-		$ApplicationName = [web.httputility]::urlencode($ApplicationName.Trim())
-		$url = [web.httputility]::urlencode($url.Trim())
+  BEGIN {
+    # URL-encode some strings
+    $null = [Reflection.Assembly]::LoadWithPartialName('System.Web')
+    $Event = [web.httputility]::urlencode($Event.Trim())
+    $Description = [web.httputility]::urlencode($Description.Trim())
+    $ApplicationName = [web.httputility]::urlencode($ApplicationName.Trim())
+    $url = [web.httputility]::urlencode($url.Trim())
 
-		# Compose the complete URL
-		$apiBaseUrl = 'https://prowl.weks.net/publicapi/add'
-		$ProwlUrl = "$($apiBaseUrl)?apikey=$($apiKey)&application=$($ApplicationName)&event=$($Event)&Description=$($Description)&priority=$($Priority)&url=$($url)"
+    # Compose the complete URL
+    $apiBaseUrl = 'https://prowl.weks.net/publicapi/add'
+    $ProwlUrl = "$($apiBaseUrl)?apikey=$($apiKey)&application=$($ApplicationName)&event=$($Event)&Description=$($Description)&priority=$($Priority)&url=$($url)"
 
-		# Be Verbose
-		Write-Verbose "Complete URL: $($ProwlUrl)"
-	}
+    # Be Verbose
+    Write-Verbose -Message "Complete URL: $($ProwlUrl)"
+  }
 
-	PROCESS {
-		# Try to send message
-		try {
-			# Fire it up!
-			$webReturn = ([System.String] (New-Object Net.WebClient).DownloadString($ProwlUrl))
-		} catch {
-			# Be Verbose
-			Write-Verbose "Error sending Prowl Message: $($error[0])"
+  PROCESS {
+    # Try to send message
+    try {
+      # Fire it up!
+      $webReturn = ([System.String] (New-Object -TypeName Net.WebClient).DownloadString($ProwlUrl))
+    } catch {
+      # Be Verbose
+      Write-Verbose -Message "Error sending Prowl Message: $($error[0])"
 
-			Return $false
-		}
+      Return $false
+    }
 
-		# Output what comes back from the API
-		Write-Verbose $webReturn
+    # Output what comes back from the API
+    Write-Verbose -Message $webReturn
 
-		If (([xml]$webReturn).prowl.success.code -eq 200) {
-			# Be Verbose
-			Write-Verbose 'Prowl message sent OK'
+    If (([xml]$webReturn).prowl.success.code -eq 200) {
+      # Be Verbose
+      Write-Verbose -Message 'Prowl message sent OK'
 
-			Return $true
-		} else {
-			# Be Verbose
-			Write-Verbose "Error sending Prowl Message: $((1$webReturn).prowl.error.code) - $((1$webReturn).prowl.error.innerXml)"
+      Return $true
+    } else {
+      # Be Verbose
+      Write-Verbose -Message "Error sending Prowl Message: $((1$webReturn).prowl.error.code) - $((1$webReturn).prowl.error.innerXml)"
 
-			Return $false
-		}
-	}
+      Return $false
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUa7weuUK9OYx+M65UsSDE+aT9
-# 3KigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUA9LErMs7DeAbf1pjoiIhV60Q
+# 4J2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -339,25 +339,25 @@ function Global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSufdny6JpMx5f1xlN6G90geymhljANBgkqhkiG9w0B
-# AQEFAASCAQA3KQ8I6jXFYgh5WeUYP+8DO5Fu1ka6qIcxADNlqZF8fWBn0CFXZwsf
-# gF5hjlHfu+4ovXVK9fZkSFkhw5J/sWd6ZCD3xfkJtc3W+n0js3yG+AjwI+vjaF3W
-# elpKa1799ySJBcGa5XWe0U/tBuZO6QTfrWC3x0zlsv8EqFE50qWEZp7DYv8rWbjj
-# g8HCSZnwlmLPzu6tf4LDBgu9/OH+gsRZ6SS5Rv3z+fc6FAtV0YRZFuh/ByOrypv9
-# 16dwRefCxE1OoGYxhKJWLzKGsdCqppXY+WYRmKe8VgqjVa7I3RmpmNDgnUO2c68B
-# l3HPONHMExgMll6s8zm2+VxJLX73Gb5zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS6CGc4rReMYQOp4f5mUVhixsDAwzANBgkqhkiG9w0B
+# AQEFAASCAQCbEocXNMO74svVhCv2jq28SR49xYqIJPUgHtnqHnGZakAZxjDTSAk2
+# kCri7mpH7BBCjd82vye3FlxwJxRMpD9cJDSOqXa4GgSv2jb8UsuWll2eq4cxYbk3
+# 4YIZgHAEH1VIEq4S30d60plt+KPJqIHaeemc62qcf+dlCyvp2LAtRKnQaBS/S5Gg
+# k2PTl6GvmBamGmjQf7lqVb5Cj2Z/ffIrHIkKdauwAHSTy8a1EGjFtijF9Laxhilx
+# SpUFpNme4vzrLiLlO3Xq5whW8Noa/7XpHXrkewG3hT9ul1hMKwP5UYgpqD1g7Drr
+# EEhmiDirALcV5XBXjyWPKAfgzOr9TbBBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NVowIwYJKoZIhvcN
-# AQkEMRYEFKO7OH3k2S5vFXqsEHGvuepug+ByMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMVowIwYJKoZIhvcN
+# AQkEMRYEFJvbGdVgcZc2j7O+oecwyjaRHqe2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB0vU3WOkWP1YoXHlfAPAJFpc0Vt3zoDqRYmHvQLeOGJmFY
-# KPoTQjo94wXpgmNb3G7OdKiGrN5yVQ0XzMlgNQWBGclSkUhnUnxIG96aw/L69rP5
-# 39SO9hn9fgnTf8bw16ZzeQTg0t6fDSByZYij+KkdY/79cEgygCMP/trqK7hmwfzz
-# jYLevhhEq2bNr0W+tJMiUGFHQx+hZu3zKlzQQSJfwztz5bv6HOC+HNghQ6W9AQr8
-# Nb3lEeCWSGTl5O2yaEj+e0bQEDlk4OMPg8rnwNsAOksrORY//zuet5TPwwICHLRb
-# Q9nyXNULrfHlN+2TP1q/UpRRIikqdbX98Lbbx3Or
+# hkiG9w0BAQEFAASCAQB3WWLgDSGROkCoQ4/ovkaMA+cnEHl3p+eWtvgfSCray9ax
+# Za3mPqgETLLNRQZwIEhKmQdMVNkPV9bMyJwW5yM5u3PBOmg850LZkinh9HJW4d/G
+# xnl0QV1z7I7rRLIFYSBn7zsaKMLRc7U3zfgUzQ6RXY7RsWEWGzc5LRJYyARWiFjs
+# rgOaRgOVJs1pXanvdeCD68dr6ROpgU3S77meClxgsl+a7prRQi2bgHkLxYpG9+jV
+# IZ9P1byqQqDg9m0JWg7H+BoSDGH0zk8ZBj7AQqnqxO3krPuB52E6N6Sj+YQJo6cD
+# LhEIBoECB07BnFSxJCPFQxoE4AFQGivOMnMB12+e
 # SIG # End signature block

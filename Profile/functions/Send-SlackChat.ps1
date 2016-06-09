@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,177 +14,175 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Send-SlackChat {
-<#
-	.SYNOPSIS
-		Sends a chat message to a Slack organization
+  <#
+      .SYNOPSIS
+      Sends a chat message to a Slack organization
 
-	.DESCRIPTION
-		The Post-ToSlack cmdlet is used to send a chat message to a Slack
-		channel, group, or person.
+      .DESCRIPTION
+      The Post-ToSlack cmdlet is used to send a chat message to a Slack
+      channel, group, or person.
 
-		Slack requires a token to authenticate to an organization within Slack.
+      Slack requires a token to authenticate to an organization within Slack.
 
-	.PARAMETER Channel
-		Slack Channel to post to
+      .PARAMETER Channel
+      Slack Channel to post to
 
-	.PARAMETER Message
-		Chat message to post
+      .PARAMETER Message
+      Chat message to post
 
-	.PARAMETER token
-		Slack API token
+      .PARAMETER token
+      Slack API token
 
-	.PARAMETER BotName
-		Optional name for the bot
+      .PARAMETER BotName
+      Optional name for the bot
 
-	.EXAMPLE
-		PS C:\> Send-SlackChat -channel '#general' -message 'Hello everyone!' -botname 'The Borg' -token '1234567890'
+      .EXAMPLE
+      PS C:\> Send-SlackChat -channel '#general' -message 'Hello everyone!' -botname 'The Borg' -token '1234567890'
 
-		Description
-		-----------
-		This will send a message to the "#General" channel using a specific
-		token 1234567890, and the bot's name will be "The Borg".
+      Description
+      -----------
+      This will send a message to the "#General" channel using a specific
+      token 1234567890, and the bot's name will be "The Borg".
 
-	.EXAMPLE
-		PS C:\> Send-SlackChat -channel '#general' -message 'Hello everyone!' -token '1234567890'
+      .EXAMPLE
+      PS C:\> Send-SlackChat -channel '#general' -message 'Hello everyone!' -token '1234567890'
 
-		Description
-		-----------
-		This will send a message to the "#General" channel using a specific t
-		oken 1234567890, and the bot's name will be default ("Build Bot").
+      Description
+      -----------
+      This will send a message to the "#General" channel using a specific t
+      oken 1234567890, and the bot's name will be default ("Build Bot").
 
-	.NOTES
-		Based on an idea of @ChrisWahl
-		Please note the Name change and the removal of some functions
+      .NOTES
+      Based on an idea of @ChrisWahl
+      Please note the Name change and the removal of some functions
 
-	.LINK
-		Info: https://api.slack.com/tokens
+      .LINK
+      Info: https://api.slack.com/tokens
 
-	.LINK
-		API: https://api.slack.com/web
+      .LINK
+      API: https://api.slack.com/web
 
-	.LINK
-		Info: https://api.slack.com/bot-users
+      .LINK
+      Info: https://api.slack.com/bot-users
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   Position = 0,
-				   HelpMessage = 'Slack Channel to post to')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$Channel,
-		[Parameter(Mandatory = $true,
-				   Position = 1,
-				   HelpMessage = 'Chat message to post')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$Message,
-		[Parameter(Position = 2,
-				   HelpMessage = 'Slack API token')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$token,
-		[Parameter(Position = 3,
-				   HelpMessage = 'Optional name for the bot')]
-		[Alias('Name')]
-		[System.String]$BotName = 'Build Bot'
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        Position = 0,
+    HelpMessage = 'Slack Channel to post to')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$Channel,
+    [Parameter(Mandatory = $true,
+        Position = 1,
+    HelpMessage = 'Chat message to post')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$Message,
+    [Parameter(Position = 2,
+    HelpMessage = 'Slack API token')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$token,
+    [Parameter(Position = 3,
+    HelpMessage = 'Optional name for the bot')]
+    [Alias('Name')]
+    [System.String]$BotName = 'Build Bot'
+  )
 
-	BEGIN {
-		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  BEGIN {
+    # Cleanup all variables...
+    Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		Set-Variable -Name 'uri' -Value $('https://slack.com/api/chat.postMessage')
+  PROCESS {
+    Set-Variable -Name 'uri' -Value $('https://slack.com/api/chat.postMessage')
 
-		# Build the body as per https://api.slack.com/methods/chat.postMessage
-		# We convert this to JSON then...
-		Set-Variable -Name 'body' -Value $(@{
-			token = $token
-			channel = $Channel
-			text = $Message
-			username = $BotName
-			parse = 'full'
-		})
+    # Build the body as per https://api.slack.com/methods/chat.postMessage
+    # We convert this to JSON then...
+    Set-Variable -Name 'body' -Value $(@{
+        token    = $token
+        channel  = $Channel
+        text     = $Message
+        username = $BotName
+        parse    = 'full'
+    })
 
-		# Convert the Body Variable to JSON Check if the Server understands Compression,
-		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json $body -Depth 2 -Compress:$false)
+    # Convert the Body Variable to JSON Check if the Server understands Compression,
+    # could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
+    Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
 
-		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+    # Method to use for the RESTful Call
+    Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
-		# Use the API via RESTful call
-		try {
-			(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
-		} catch [System.Exception] {
-			<#
-				Argh!
-				That was an Exception...
-			#>
+    # Use the API via RESTful call
+    try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+      <#
+          Argh!
+          That was an Exception...
+      #>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
-		} catch {
-			# Whoopsie!
-			# That should not happen...
-			Write-Warning -message "Could not send notification to your Slack $Channel"
-		} finally {
-			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		}
-	}
+      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+    } catch {
+      # Whoopsie!
+      # That should not happen...
+      Write-Warning -Message "Could not send notification to your Slack $Channel"
+    } finally {
+      # Cleanup all variables...
+      Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+      Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaGxAUA7SW+VLHsen+ue2iFVK
-# vr2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmFyY/lAMBTv+aqSNyuNOViPO
+# 2FqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +325,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS0QOtCz9juTGAAH85mjMfpl9kjhjANBgkqhkiG9w0B
-# AQEFAASCAQBNPkSqcHI4vpCtOWifqyk5Xpsun2CTuTUIT/ozEP4z0sRiRkPOfgeJ
-# 52wLCBoiX0gnHBDgtiq0yz2AY7bVb1CVkDNspFovY6YfK2rP8hMKQUuoupMIc94h
-# 57+4HL7tDebug6uS5ONQMOhDBAjjPEOpgTjrYvrDo2GHKaEI+8I23VCAWdmHmC7W
-# L4sqmse3dEZ0QquA8rWveYEbGYesqJvJAgmzZVTy7QKkde8QXNz9ADQyLG3iMKcR
-# ySplCQOep6Luhu0KU2gwRIC9DOsv3U69KofArUf/s/487ZDjApjK1TwdrvJDl1qE
-# pRYihLpCwDEm0Lyp+RPDBs3qBYbTNN8WoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSsvVnPmORrWnvJZHu9fZ61z93CzjANBgkqhkiG9w0B
+# AQEFAASCAQAcwQ1RghISkE45jYUiqux6jxygOb+OyZidMEmcBIqQzp1Zfeza05cs
+# RV+Yn5iGASb/tzbJxYC3jQH9V9t0VMMnjBSdKgqEw1CcUzIoy/rvC1ROzQrtPdYc
+# k4zqp9Q2B0+Uh8sL1IkV9rpYuGPLeb7vAdX9YgYrjcFqSSTbx9uRStpvy54cujMC
+# L7X2nZJjMCCtczq6cPBvlbLFl4uHOUnj7Yrft3rfAR4hOmb03oa7l0R8lH9W4Yxi
+# 0fw/Dg2BEKEWZmTKJJ8drgxrjHJSPZ40N5aUWh4qhfiTOpzEl/yntF18gS71BnKu
+# 0PCA60DS2ztYp6pHjiY/q8ZeXXLRGwxVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NVowIwYJKoZIhvcN
-# AQkEMRYEFFWASR/ueaMeUSGI8h5l7t3MsF7tMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMVowIwYJKoZIhvcN
+# AQkEMRYEFGosPiFOIpkj3IyT+OBfH4GgSHvRMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAMzBr/7ZMrMZ6Ae2+vQu4WTdLmxi5sTw3rm0B7EijkQRaX
-# +wzo9gOn77RfD/YHJacrtSRVSy2WlglGjha3+YNCOCcUO213nP73O6R5Rx7SE5gO
-# eegjeG7Y6JJjH/Gsgls7iUDttOD0XA2BeYB2sUjn3BnOj9b3HIKU+oXNDUDTES/F
-# C2kLNB1kSnPNHcXSpvRn2jJ3UiXRzDdkSArhCKWhTxarKApZYfaDzqW8xZur4/3j
-# jvBmjVfEV5k2y0AgTZMoGxh//J91tr6hd7EnL0eQtC4fUYBGzs9qR+PtDm0u14BX
-# jcCm9RNm9kjYXXyrtSPFRxcSGmNi/4DVBPwrzjeO
+# hkiG9w0BAQEFAASCAQA/SCDMcH6/55bwqmegpo35WCeF3dvyVoibR/0Ks1Q2irOL
+# gf3ANVZnkBLcNCw10oHCAzAKm3C6UfQvDetOO1PEbiBbnDuOQWX5IaOt1mKs2oWG
+# xVRR7KSQxM8bo/m2c9sP4IDoNQcOVJPosNlKixt8AhMzdKcR2Lo/epm1Wu+b8lUw
+# LHfKXEOYszgttfIq8TmkmWK5VP+ICGu7t7S/BJNn1PEq0souowtT4pkuDarTe3GJ
+# 7qU86pb9CsuY1Q9MhQ9JhK8V4/Umig95WhajbYf1EYDwTvsYhSW4R2djTC7MyGYu
+# dl6CTHGl/bIP7x+8Ks1CV7FjDe0K5b4gvUZGXmMS
 # SIG # End signature block

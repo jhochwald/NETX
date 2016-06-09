@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,204 +14,204 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-EncryptSecretText {
-<#
-	.SYNOPSIS
-		Encrypts a given string with a given certificate
+  <#
+      .SYNOPSIS
+      Encrypts a given string with a given certificate
 
-	.DESCRIPTION
-		Sometimes you might need to transfer a password (or another secret)
-		via Mail (or any other insecure media) here a strong encryption is
-		very handy.
-		Get-EncryptSecretText uses a given Certificate to encrypt a given String
+      .DESCRIPTION
+      Sometimes you might need to transfer a password (or another secret)
+      via Mail (or any other insecure media) here a strong encryption is
+      very handy.
+      Get-EncryptSecretText uses a given Certificate to encrypt a given String
 
-	.PARAMETER CertificatePath
-		Path to the certificate that you would like to use
+      .PARAMETER CertificatePath
+      Path to the certificate that you would like to use
 
-	.PARAMETER plaintext
-		Plain text string that you would like to encrypt with the certificate
+      .PARAMETER plaintext
+      Plain text string that you would like to encrypt with the certificate
 
-	.EXAMPLE
-		PS C:\> Get-EncryptSecretText -CertificatePath "Cert:\CurrentUser\My\XYZ" -PlainText "My Secret Text"
-		MIIB9QYJKoZIhvcNAQcDoIIB5jCCAeICAQAxggGuMIIBqgIBADCBkTB9MQswCQYDVQQGEwJHQjEbnBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRowGAYDVQQKExFDT01PRE8
-		gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczrRgFwwDQYJKoZIhvcNAQEBBQAEggEAi5M7w7k/siGdGiYW8z8izVUNfI15HaHqHJs/t3VIZkgfSc
-		GAKUpZjwJW7xMZHoKppw0eL/mUZr4823M276swiktXnpRbol8g8Kqvy2c7dUx2lNJm/+s8YLG0rsK70EhSPzAEbNtFAqlWj5ETnskTlfuEiJdB2tFjC42oweWKRokQ0exyztY1sN7V7vImkMtCS7JHeJF23SyNv
-		PbFw0hE0QtiKVdu8DESO2CB9H1bVYIxVWTvpvT71yDQCFFOwg0JdGJpCI6l+YxPqHqKhFcdWZtuP8JMvNZ8UbxveNVmBOrasM5ZTHfHljWIT6V6tDxy5jOd9cTiuayh/X1A2eKA/DArBgkqhkiG9w0BBwEwFAYI
-		KoZIhvcNAwcECFjYhWLX5qsEgAgjq1toxGP5GQ==
+      .EXAMPLE
+      PS C:\> Get-EncryptSecretText -CertificatePath "Cert:\CurrentUser\My\XYZ" -PlainText "My Secret Text"
+      MIIB9QYJKoZIhvcNAQcDoIIB5jCCAeICAQAxggGuMIIBqgIBADCBkTB9MQswCQYDVQQGEwJHQjEbnBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRowGAYDVQQKExFDT01PRE8
+      gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBDb2RlIFNpZ25pbmcgQ0ECEBbU91MdmxgnT/ImczrRgFwwDQYJKoZIhvcNAQEBBQAEggEAi5M7w7k/siGdGiYW8z8izVUNfI15HaHqHJs/t3VIZkgfSc
+      GAKUpZjwJW7xMZHoKppw0eL/mUZr4823M276swiktXnpRbol8g8Kqvy2c7dUx2lNJm/+s8YLG0rsK70EhSPzAEbNtFAqlWj5ETnskTlfuEiJdB2tFjC42oweWKRokQ0exyztY1sN7V7vImkMtCS7JHeJF23SyNv
+      PbFw0hE0QtiKVdu8DESO2CB9H1bVYIxVWTvpvT71yDQCFFOwg0JdGJpCI6l+YxPqHqKhFcdWZtuP8JMvNZ8UbxveNVmBOrasM5ZTHfHljWIT6V6tDxy5jOd9cTiuayh/X1A2eKA/DArBgkqhkiG9w0BBwEwFAYI
+      KoZIhvcNAwcECFjYhWLX5qsEgAgjq1toxGP5GQ==
 
-		Description
-		-----------
-		In this example the Certificate with the Fingerprint "XYZ" from the
-		certificate store of the user is used.
+      Description
+      -----------
+      In this example the Certificate with the Fingerprint "XYZ" from the
+      certificate store of the user is used.
 
-	.LINK
-		Get-DecryptSecretText
+      .LINK
+      Get-DecryptSecretText
 
-	.NOTES
-		You need Get-DecryptSecretText to make it human readable again
+      .NOTES
+      You need Get-DecryptSecretText to make it human readable again
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Path to the certificate that you would like to use')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$CertificatePath,
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'Plain text string that you would like to encyt with the certificate')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$PlainText
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Path to the certificate that you would like to use')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$CertificatePath,
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 1,
+    HelpMessage = 'Plain text string that you would like to encyt with the certificate')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$PlainText
+  )
 
-	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
-	}
+  BEGIN {
+    [void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
+  }
 
-	PROCESS {
-		#Get the certificate
-		Set-Variable -Name 'Certificate' -Value $(Get-Item $CertificatePath)
+  PROCESS {
+    #Get the certificate
+    Set-Variable -Name 'Certificate' -Value $(Get-Item $CertificatePath)
 
-		# GetBytes .NET
-		Set-Variable -Name 'ContentInfo' -Value $(New-Object Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
+    # GetBytes .NET
+    Set-Variable -Name 'ContentInfo' -Value $(New-Object -TypeName Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
 
-		# Set the secured envelope infos
-		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms $ContentInfo)
-		$SecureEnvelope.Encrypt((New-Object System.Security.Cryptography.Pkcs.CmsRecipient($Certificate)))
+    # Set the secured envelope infos
+    Set-Variable -Name 'SecureEnvelope' -Value $(New-Object -TypeName Security.Cryptography.Pkcs.EnvelopedCms -ArgumentList $ContentInfo)
+    $SecureEnvelope.Encrypt((New-Object -TypeName System.Security.Cryptography.Pkcs.CmsRecipient -ArgumentList ($Certificate)))
 
-		# And here is the secured string
-		Set-Variable -Name 'SecretText' -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
-	}
+    # And here is the secured string
+    Set-Variable -Name 'SecretText' -Value $([Convert]::ToBase64String($SecureEnvelope.Encode()))
+  }
 
-	END {
-		# Dump it
-		Write-Output $SecretText
-	}
+  END {
+    # Dump it
+    Write-Output -InputObject $SecretText
+  }
 }
 
 function Global:Get-DecryptSecretText {
-<#
-	.SYNOPSIS
-		Decrypts a given String, encrypted by Get-EncryptSecretText
+  <#
+      .SYNOPSIS
+      Decrypts a given String, encrypted by Get-EncryptSecretText
 
-	.DESCRIPTION
-		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
-		decrypts it to and human readable again.
+      .DESCRIPTION
+      Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
+      decrypts it to and human readable again.
 
-	.PARAMETER EncryptedText
-		The encrypted test string
+      .PARAMETER EncryptedText
+      The encrypted test string
 
-	.EXAMPLE
-		PS C:\> $Foo = (Get-EncryptSecretText -CertificatePath "Cert:\CurrentUser\My\XYZ" -PlainText "My Secret Text")
-		PS C:\> Get-DecrypSecretText -EncryptedText $Foo
-		My Secret Text
+      .EXAMPLE
+      PS C:\> $Foo = (Get-EncryptSecretText -CertificatePath "Cert:\CurrentUser\My\XYZ" -PlainText "My Secret Text")
+      PS C:\> Get-DecrypSecretText -EncryptedText $Foo
+      My Secret Text
 
-		Description
-		-----------
-		Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
-		human readable again.
-		In this example the Certificate with the Fingerprint "XYZ" from the
-		certificate store of the user is used.
+      Description
+      -----------
+      Get-DecryptSecretText makes a string encrypted by Get-EncryptSecretText
+      human readable again.
+      In this example the Certificate with the Fingerprint "XYZ" from the
+      certificate store of the user is used.
 
-	.NOTES
-		You need the certificate that was used with Get-EncryptSecretText to
-		encrypt the string
+      .NOTES
+      You need the certificate that was used with Get-EncryptSecretText to
+      encrypt the string
 
-	.LINK
-		Get-EncryptSecretText
+      .LINK
+      Get-EncryptSecretText
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'The encrypted test string')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$EncryptedText
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'The encrypted test string')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$EncryptedText
+  )
 
-	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
-	}
+  BEGIN {
+    [void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
+  }
 
-	PROCESS {
-		# Decode the Base64 encoded string back
-		Set-Variable -Name 'SecretText' -Value $([Convert]::FromBase64String($EncryptedText))
+  PROCESS {
+    # Decode the Base64 encoded string back
+    Set-Variable -Name 'SecretText' -Value $([Convert]::FromBase64String($EncryptedText))
 
-		# the secured envelope infos
-		Set-Variable -Name 'SecureEnvelope' -Value $(New-Object Security.Cryptography.Pkcs.EnvelopedCms)
-		$SecureEnvelope.Decode($SecretText)
-		$SecureEnvelope.Decrypt()
+    # the secured envelope infos
+    Set-Variable -Name 'SecureEnvelope' -Value $(New-Object -TypeName Security.Cryptography.Pkcs.EnvelopedCms)
+    $SecureEnvelope.Decode($SecretText)
+    $SecureEnvelope.Decrypt()
 
-		# And here is the human readable string again!
-		Set-Variable -Name 'UnicodeContent' -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
-	}
+    # And here is the human readable string again!
+    Set-Variable -Name 'UnicodeContent' -Value $([text.encoding]::Unicode.GetString($SecureEnvelope.ContentInfo.Content))
+  }
 
-	END {
-		# Dump it
-		Write-Output $UnicodeContent
-	}
+  END {
+    # Dump it
+    Write-Output -InputObject $UnicodeContent
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO/r40wMx8WbO0mgzGa+zQlVj
-# ZBqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjyFroLB7EdeAAisR0MG1EnMU
+# tAygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -354,25 +354,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTPBqEuSGOvlybivtrh+sQRCozyoDANBgkqhkiG9w0B
-# AQEFAASCAQCammytLoQyitnsOYVKvWFpSV/jXMRj7Nz4NExv3Gu3r9jhkjliEJsK
-# I7mvSox5VIcP5VfDYzlHWpCGP23XvcwSXN10FaoSyNrKapMcrT2NL5OTCaokGQiD
-# UBXYELU55GF+G87QWRQdW/oaN1Qvbm+SOkjl6m+3boFnzT/jy0YYER4A1vXYBogp
-# N7azoFjg2wZAYKxDfvwBUHb4eBvu9TgfhqXqQsg9WfjBklBfQ+KCfjNrtx4yDKGZ
-# 5qaTIE3X070NYR74kYJ1XccTuNO6fZ0g9zR93aKrKkYM3CIrAfZL5BOFUQmgCgi+
-# +7RoqfC38MB1LRmCMjuIS/TANIk1/hxpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT7a7+VX34IjlNMOxCA7wtCV+MBnDANBgkqhkiG9w0B
+# AQEFAASCAQBf2R4t66GEpjwvlmP00CtQ+VKgMKH/m1THrM0Bh11m6SZ6GDtnKCs/
+# e9vzwGZqfGCHmLKegEuWmEUdDR1e9LHhON5jC8QhfBKv+dWo5tEvXzisR4XzuNGs
+# HjQCrfUYt5jGm6p93vOmLdrFx7gWuNuNQCNSsQiRPnOwepKYqV0ixSMedMFos9X8
+# fhw0sQerPI1zeq9n9wE26ylEGAQTaimQy1nfoSZeYbNmyD7yeyv7QG67euCpte6/
+# vwlDp5lr8yxsxmUL5y959MHPqOFbvl5n4z0XDKOnvsGXj6/XixrhW2VSliWE5bBf
+# k+BWZvMtwrGSPiBEwjDw+pKCIc54zb7aoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NFowIwYJKoZIhvcN
-# AQkEMRYEFCOkzl6zrwdPxmO+VE3b/kEO4pPKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMFowIwYJKoZIhvcN
+# AQkEMRYEFJpAdNBSlgpwYbj+XmQbWl55lZ2oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBD5GpfRu4yjbmh0VKZUDzL1TsgyK6G9hEHJXSYR+oQENH3
-# Bl4TeZ1QEwBAxj/UVoq1yDH63rrl8f3eBsgW5Y8whRVfFjfoVlsqy42cPNUeHDEU
-# bZ/lTa+UN7ZIvIKV17LfQBNFEAYY/At8vG9WhB/OpFR+mQbq4hSqgkQHHgxQVD3U
-# Ux9V2Lz/vnxivVxxDBFXHfLX3QGaXcyIMod1+2cHtRyOg0P6TKNS5aEgiHOixjgr
-# NSoVZBcigGngM8lllRUminMQporriboL/9AFltEKplcgSgA1QVFEYpHiQy5rR4m1
-# 5oGG5Fj07SPw9cqjWZqpaIyAKVhMpP/ypcQyW2J+
+# hkiG9w0BAQEFAASCAQCombkMgja5Q10MbiEK/p4xjcvV56LmDMHO1ukLPqoIm4qk
+# nezcHK2L0WtBzeL6FFTCSvsD4jEPqlp9JWuQTEDA7cQfu1rtlMuCQWi0RjNoZG8R
+# H5QTceLRVJCqkdYve9G+Mw0qd/AwI8q+jwXrhlD/12vmGxHgHo1b8wXnDCXjSCRi
+# MfxyXG8OzwZCLiHdnI73ailr473ZSRb7FqiIyGQ0pIBJ9H7wKaGw4zULCIY/TUvs
+# dkyHq/d6h+3niCega6a9O42r6u0kmivm5Qb67s/fDRewIR+tuhYXsMsOV4p0qSrp
+# k9/eLSnRTLMPGBUwmhifChWZzCFyXEdZL7x5jOjm
 # SIG # End signature block

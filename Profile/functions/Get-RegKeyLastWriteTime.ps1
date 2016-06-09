@@ -1,133 +1,132 @@
 #region License
 
 <#
-	LICENSE: Creative Commons Attribution 3.0 Unported License
-	(http://creativecommons.org/licenses/by/3.0/)
+    LICENSE: Creative Commons Attribution 3.0 Unported License
+    (http://creativecommons.org/licenses/by/3.0/)
 
-	http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
+    http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
 #>
 
 #endregion License
 
 Function Global:Get-RegKeyLastWriteTime {
-<#
-	.SYNOPSIS
-		Retrieves the last write time of the supplied registry key
+  <#
+      .SYNOPSIS
+      Retrieves the last write time of the supplied registry key
 
-	.DESCRIPTION
-		The Registry data that a hive stores in containers are called cells.
-		A cell can hold a key, a value, a security descriptor, a list of
-		subkeys, or a list of key values.
-		Get-RegKeyLastWriteTime retrieves the LastWriteTime through a pointer
-		to the FILETIME structure that receives the time at which the
-		enumerated subkey was last written. Values do not contain a
-		LastWriteTime property, but changes to child values update the
-		parent keys lpftLastWriteTime.
+      .DESCRIPTION
+      The Registry data that a hive stores in containers are called cells.
+      A cell can hold a key, a value, a security descriptor, a list of
+      subkeys, or a list of key values.
+      Get-RegKeyLastWriteTime retrieves the LastWriteTime through a pointer
+      to the FILETIME structure that receives the time at which the
+      enumerated subkey was last written. Values do not contain a
+      LastWriteTime property, but changes to child values update the
+      parent keys lpftLastWriteTime.
 
-		The LastWriteTime is updated when a key is created, modified,
-		accessed, or deleted.
+      The LastWriteTime is updated when a key is created, modified,
+      accessed, or deleted.
 
-	.PARAMETER ComputerName
-		Computer name to query (Default is localhost)
+      .PARAMETER ComputerName
+      Computer name to query (Default is localhost)
 
-	.PARAMETER Key
-		Root Key to query, The default is HKLM
-		HKCR - Symbolic link to HKEY_LOCAL_MACHINE \SOFTWARE \Classes.
-		HKCU - Symbolic link to a key under HKEY_USERS representing a user's profile hive.
-		HKLM - Placeholder with no corresponding physical hive. This key contains
-		other keys that are hives.
-		HKU  - Placeholder that contains the user-profile hives of logged-on accounts.
-		HKCC - Symbolic link to the key of the current hardware profile
+      .PARAMETER Key
+      Root Key to query, The default is HKLM
+      HKCR - Symbolic link to HKEY_LOCAL_MACHINE \SOFTWARE \Classes.
+      HKCU - Symbolic link to a key under HKEY_USERS representing a user's profile hive.
+      HKLM - Placeholder with no corresponding physical hive. This key contains
+      other keys that are hives.
+      HKU  - Placeholder that contains the user-profile hives of logged-on accounts.
+      HKCC - Symbolic link to the key of the current hardware profile
 
-	.PARAMETER SubKey
-		Registry Key to query
+      .PARAMETER SubKey
+      Registry Key to query
 
-	.PARAMETER NoEnumKey
-		A description of the NoEnumKey parameter.
+      .PARAMETER NoEnumKey
+      A description of the NoEnumKey parameter.
 
-	.EXAMPLE
-		Get-RegKeyLastWriteTime -ComputerName 'testwks' -Key 'HKLM' -SubKey 'Software'
+      .EXAMPLE
+      Get-RegKeyLastWriteTime -ComputerName 'testwks' -Key 'HKLM' -SubKey 'Software'
 
-		Description
-		-----------
-		Retrieves the last write time of the supplied registry key
+      Description
+      -----------
+      Retrieves the last write time of the supplied registry key
 
-	.EXAMPLE
-		Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft'
+      .EXAMPLE
+      Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft'
 
-		Description
-		-----------
-		Retrieves the last write time of the supplied registry key
+      Description
+      -----------
+      Retrieves the last write time of the supplied registry key
 
-	.EXAMPLE
-		"testwks1","testwks2" | Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft\Windows\CurrentVersion'
+      .EXAMPLE
+      "testwks1","testwks2" | Get-RegKeyLastWriteTime -SubKey 'Software\Microsoft\Windows\CurrentVersion'
 
-		Description
-		-----------
-		Retrieves the last write time of the supplied registry key
+      Description
+      -----------
+      Retrieves the last write time of the supplied registry key
 
-	.NOTES
-		LICENSE: Creative Commons Attribution 3.0 Unported License
-		(http://creativecommons.org/licenses/by/3.0/)
+      .NOTES
+      LICENSE: Creative Commons Attribution 3.0 Unported License
+      (http://creativecommons.org/licenses/by/3.0/)
 
-	.LINK
-		http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
-#>
+      .LINK
+      http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   ValueFromPipelineByPropertyName = $true,
-				   Position = 0)]
-		[ValidateNotNullOrEmpty()]
-		[Alias('CN', '__SERVER', 'Computer', 'CNAME', 'IP')]
-		[System.String]$ComputerName = ($env:ComputerName),
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'Root Key to query, The default is HKLM')]
-		[System.String]$Key = 'HKLM',
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 2,
-				   HelpMessage = 'Registry Key to query')]
-		[System.String]$SubKey,
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 3)]
-		[switch]$NoEnumKey
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        ValueFromPipelineByPropertyName = $true,
+    Position = 0)]
+    [ValidateNotNullOrEmpty()]
+    [Alias('CN', '__SERVER', 'Computer', 'CNAME', 'IP')]
+    [System.String]$ComputerName = ($env:ComputerName),
+    [Parameter(ValueFromPipeline = $true,
+        Position = 1,
+    HelpMessage = 'Root Key to query, The default is HKLM')]
+    [System.String]$Key = 'HKLM',
+    [Parameter(ValueFromPipeline = $true,
+        Position = 2,
+    HelpMessage = 'Registry Key to query')]
+    [System.String]$SubKey,
+    [Parameter(ValueFromPipeline = $true,
+    Position = 3)]
+    [switch]$NoEnumKey
+  )
 
-	BEGIN {
-		switch ($Key) {
-			'HKCR' { $searchKey = 0x80000000 } #HK Classes Root
-			'HKCU' { $searchKey = 0x80000001 } #HK Current User
-			'HKLM' { $searchKey = 0x80000002 } #HK Local Machine
-			'HKU'  { $searchKey = 0x80000003 } #HK Users
-			'HKCC' { $searchKey = 0x80000005 } #HK Current Config
-			default {
-				'Invalid Key. Use one of the following options:
-			HKCR, HKCU, HKLM, HKU, HKCC'
-			}
-		}
+  BEGIN {
+    switch ($Key) {
+      'HKCR' { $searchKey = 0x80000000 } #HK Classes Root
+      'HKCU' { $searchKey = 0x80000001 } #HK Current User
+      'HKLM' { $searchKey = 0x80000002 } #HK Local Machine
+      'HKU'  { $searchKey = 0x80000003 } #HK Users
+      'HKCC' { $searchKey = 0x80000005 } #HK Current Config
+      default {
+        'Invalid Key. Use one of the following options:
+        HKCR, HKCU, HKLM, HKU, HKCC'
+      }
+    }
 
-		#$KEYQUERYVALUE = 0x1
-		$KEYREAD = 0x19
-		#$KEYALLACCESS = 0x3F
-	}
-	PROCESS {
-		foreach ($computer in $ComputerName) {
-
-			$sig0 = @'
+    #$KEYQUERYVALUE = 0x1
+    $KEYREAD = 0x19
+    #$KEYALLACCESS = 0x3F
+  }
+  PROCESS {
+    foreach ($computer in $ComputerName) {
+      $sig0 = @'
 [DllImport("advapi32.dll", SetLastError = true)]
 public static extern int RegConnectRegistry(
 	string lpMachineName,
 	int hkey,
 	ref int phkResult);
 '@
-			$type0 = (Add-Type -MemberDefinition $sig0 -Name Win32Utils -Namespace RegConnectRegistry -Using System.Text -PassThru)
+      $type0 = (Add-Type -MemberDefinition $sig0 -Name Win32Utils -Namespace RegConnectRegistry -UsingNamespace System.Text -PassThru)
 
-			Write-Verbose "$type0"
+      Write-Verbose -Message "$type0"
 
-			$sig1 = @'
+      $sig1 = @'
 [DllImport("advapi32.dll", CharSet = CharSet.Auto)]
 public static extern int RegOpenKeyEx(
 	int hKey,
@@ -136,9 +135,9 @@ public static extern int RegOpenKeyEx(
 	int samDesired,
 	out int hkResult);
 '@
-			$type1 = (Add-Type -MemberDefinition $sig1 -Name Win32Utils -Namespace RegOpenKeyEx -Using System.Text -PassThru)
+      $type1 = (Add-Type -MemberDefinition $sig1 -Name Win32Utils -Namespace RegOpenKeyEx -UsingNamespace System.Text -PassThru)
 
-			$sig2 = @'
+      $sig2 = @'
 [DllImport("advapi32.dll", EntryPoint = "RegEnumKeyEx")]
 extern public static int RegEnumKeyEx(
     int hkey,
@@ -150,9 +149,9 @@ extern public static int RegEnumKeyEx(
     int lpcbClass,
     out long lpftLastWriteTime);
 '@
-			$type2 = (Add-Type -MemberDefinition $sig2 -Name Win32Utils -Namespace RegEnumKeyEx -Using System.Text -PassThru)
+      $type2 = (Add-Type -MemberDefinition $sig2 -Name Win32Utils -Namespace RegEnumKeyEx -UsingNamespace System.Text -PassThru)
 
-			$sig4 = @'
+      $sig4 = @'
 [DllImport("advapi32.dll")]
 public static extern int RegQueryInfoKey(
 	int hkey,
@@ -168,66 +167,66 @@ public static extern int RegQueryInfoKey(
 	out int lpcbSecurityDescriptor,
 	out long lpftLastWriteTime);
 '@
-			$type4 = (Add-Type -MemberDefinition $sig4 -Name Win32Utils -Namespace RegQueryInfoKey -Using System.Text -PassThru)
+      $type4 = (Add-Type -MemberDefinition $sig4 -Name Win32Utils -Namespace RegQueryInfoKey -UsingNamespace System.Text -PassThru)
 
-			$sig3 = @'
+      $sig3 = @'
 [DllImport("advapi32.dll", SetLastError=true)]
 public static extern int RegCloseKey(
 	int hKey);
 '@
-			$type3 = (Add-Type -MemberDefinition $sig3 -Name Win32Utils -Namespace RegCloseKey -Using System.Text -PassThru)
+      $type3 = (Add-Type -MemberDefinition $sig3 -Name Win32Utils -Namespace RegCloseKey -UsingNamespace System.Text -PassThru)
 
-			$hKey = (New-Object int)
-			$hKeyref = (New-Object int)
-			#$searchKeyRemote = $type0::RegConnectRegistry($computer, $searchKey, [ref]$hKey)
-			$result = $type1::RegOpenKeyEx($hKey, $SubKey, 0, $KEYREAD, [ref]$hKeyref)
+      $hKey = (New-Object -TypeName int)
+      $hKeyref = (New-Object -TypeName int)
+      #$searchKeyRemote = $type0::RegConnectRegistry($computer, $searchKey, [ref]$hKey)
+      $result = $type1::RegOpenKeyEx($hKey, $SubKey, 0, $KEYREAD, [ref]$hKeyref)
 
-			if ($NoEnumKey) {
-				#initialize variables
-				$time = (New-Object Long)
-				$result = ($type4::RegQueryInfoKey($hKeyref, $null, [ref]$null, 0, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$time))
+      if ($NoEnumKey) {
+        #initialize variables
+        $time = (New-Object -TypeName Long)
+        $result = ($type4::RegQueryInfoKey($hKeyref, $null, [ref]$null, 0, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$null, [ref]$time))
 
-				#create output object
-				$o = '' | Select-Object Key, LastWriteTime, ComputerName
-				$o.ComputerName = "$computer"
-				$o.Key = "$Key\$SubKey"
+        #create output object
+        $o = '' | Select-Object -Property Key, LastWriteTime, ComputerName
+        $o.ComputerName = "$computer"
+        $o.Key = "$Key\$SubKey"
 
-				# TODO Change to use the time api
-				$o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
-				$o
-			} else {
-				#initialize variables
-				$builder = (New-Object System.Text.StringBuilder 1024)
-				$index = 0
-				$length = [int] 1024
-				$time = (New-Object Long)
+        # TODO Change to use the time api
+        $o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
+        $o
+      } else {
+        #initialize variables
+        $builder = (New-Object -TypeName System.Text.StringBuilder -ArgumentList 1024)
+        $index = 0
+        $length = [int] 1024
+        $time = (New-Object -TypeName Long)
 
-				#234 means more info, 0 means success. Either way, keep reading
-				while (0, 234 -contains $type2::RegEnumKeyEx($hKeyref, $index++, $builder, [ref]$length, $null, $null, $null, [ref]$time)) {
-					#create output object
-					$o = '' | Select-Object Key, LastWriteTime, ComputerName
-					$o.ComputerName = "$computer"
-					$o.Key = $builder.ToString()
+        #234 means more info, 0 means success. Either way, keep reading
+        while (0, 234 -contains $type2::RegEnumKeyEx($hKeyref, $index++, $builder, [ref]$length, $null, $null, $null, [ref]$time)) {
+          #create output object
+          $o = '' | Select-Object -Property Key, LastWriteTime, ComputerName
+          $o.ComputerName = "$computer"
+          $o.Key = $builder.ToString()
 
-					# TODO Change to use the time api
-					$o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
-					$o
+          # TODO Change to use the time api
+          $o.LastWriteTime = (Get-Date $time).AddYears(1600).AddHours(-4)
+          $o
 
-					#reinitialize for next time through the loop
-					$length = [int] 1024
-					$builder = (New-Object System.Text.StringBuilder 1024)
-				}
-			}
-			$result = $type3::RegCloseKey($hKey);
-		}
-	}
+          #reinitialize for next time through the loop
+          $length = [int] 1024
+          $builder = (New-Object -TypeName System.Text.StringBuilder -ArgumentList 1024)
+        }
+      }
+      $result = $type3::RegCloseKey($hKey)
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkhRgmhsOAl3OXbN9jrvnXgLa
-# 4X6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1c4FP5Ngbc8Q95mGtXKksfVF
+# RnygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,10 +248,10 @@ public static extern int RegCloseKey(
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -268,12 +267,12 @@ public static extern int RegCloseKey(
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -370,25 +369,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ8uh9r3Vh9YPNi+bMX5mQ1/qa0OTANBgkqhkiG9w0B
-# AQEFAASCAQCsKNuX29GK0ND1snfWbEPosQP5BZUxpBzYzjpAOeh+GhKXQSsUKHpw
-# vQ6Qao0Hwm+Mxty3Y20b/cRgsZa6sKHveCRPp0mWKAGC8RML3T6+KIT9UYjBRX8X
-# xWH8/7tlVPZUW0cDbWskBYkGykQSIRRuvBc6egoIgAoBb3s3hssCwwWhPpFgG+lT
-# HX4VwxIDd9sODlybL9JM+I2kv+/XPGlIcnsC6UBuv7ve+P6xklb4J63w2nZdrw88
-# mjcs3Lf7Bld1BE5Z7ejJ4OnwS+1XyhmSA8860WqNZyI3nW1DBF3OeLG49Lnjrk4w
-# XABSuk0cwI4AbmuAP/I1HQzLFcbZ+iezoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRAqk/FVLoiRy9Crsta7Roae/IozTANBgkqhkiG9w0B
+# AQEFAASCAQCjAY2JKn+ceoWl1cfEkq8C69H1YCw0P9CrVqSSRrivpfnHrYS9pjS/
+# xpQUIfu1ShC5OduQiJbqVq9IlkvMeI6GxPhzZFTXVZ/PUiwdASs6PT6V4Bkw4XF6
+# 37j7cfYGQR1auOKPufza0AF6BZ2/vZMSH6KnpdS3pI4A4syUwDSyVKcMc/OhPHlO
+# TxakNb90AS26dLNBv9LD0X3i1mv2MPLgPHiofWNQmWqO3Id/bHsmug/kgvMa5cJx
+# QzV2Dy64cTw8KGaPZJA4gg5aKoda3B1y/q7CSF+Ulx6gVmazJSm+R7f2N856vlgB
+# yyCAvIxkmK87aDBNXbxZQSJvZPF6bsKHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzMFowIwYJKoZIhvcN
-# AQkEMRYEFCV33cKW+sUzHSqeQZSBfCe/fMXgMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzNVowIwYJKoZIhvcN
+# AQkEMRYEFFDTGp8h0QSDxy/EJl1mgP39MfUcMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCLJ0qdpJ3RPdr0yn3goEJOi7d+EyHYCzRd0webf+pkq+O2
-# 7L5CvLT/OEKgi9f2jOtH+H5b0h8UcnjSL+VIk85RUMTOHxEGwGAMyLSQAOQ77MGM
-# M6IJpp1WtRka3X657J/05SuMdlHC8sWdihTUbHUbxfCCo7BH8lqTTSTtvubYpa6D
-# WdUfR2QVlb7PlErb9vYAR1XHRhspvk1NtZ+Sv8cg0cqImqRkdCm5SvUgqAREZOTs
-# oBInvCL+Nl24nTeD3bIBTlv4SuhNYNU182yV3dCPClmCN/ZWNiEbz8htlTfTIjP8
-# kuFwSmR41Y0GCdJEq0PVfkriZ9ZYShCie8QegS8/
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBUVyHgsLzX8zB7J6RAIRnCOOFS/IhNeHb1wmauLRU3rxNZ
+# V6kZR0BWmJmJTjdGMcVjFiuDPKmFpIQS0MrPKzUTHTqi08/afvi83KA7inz7LluB
+# 3S9VrmFO/d/jqz2R8vyhF12+sO3zrvjJ+vV6IsAJUXWFdXG/q0D8DhrS1rsAheBW
+# eX7EfafqSLoW/wQfNDV1kqm44/vkFUTGuNWszwjm2ojdLRKejMEmylh9qko7YrW8
+# 40xt+fAuqIzJIYGM0LLI0+hFnFOVedO3V47waKJZu+/B3kJQ1zmgnsBYSK/cngbJ
+# /H7gffg1dCVKC1UZ5rYOxE0odj0hZAftY2dwkb9z
 # SIG # End signature block

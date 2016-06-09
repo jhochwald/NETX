@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,441 +14,423 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-DefaultMessage {
-<#
-	.SYNOPSIS
-		Helper Function to show default message used in VERBOSE/DEBUG/WARNING
+  <#
+      .SYNOPSIS
+      Helper Function to show default message used in VERBOSE/DEBUG/WARNING
 
-	.DESCRIPTION
-		Helper Function to show default message used in VERBOSE/DEBUG/WARNING
-		and... HOST in some case.
-		This is helpful to standardize the output messages
+      .DESCRIPTION
+      Helper Function to show default message used in VERBOSE/DEBUG/WARNING
+      and... HOST in some case.
+      This is helpful to standardize the output messages
 
-	.PARAMETER Message
-		Specifies the message to show
+      .PARAMETER Message
+      Specifies the message to show
 
-	.EXAMPLE
-		PS C:\> Get-DefaultMessage -Message "Test"
-		[2016.04.04-23:53:26:61][] Test
+      .EXAMPLE
+      PS C:\> Get-DefaultMessage -Message "Test"
+      [2016.04.04-23:53:26:61][] Test
 
-		Description
-		-----------
-		Display the given message with a Time-Stamp
+      Description
+      -----------
+      Display the given message with a Time-Stamp
 
-	.EXAMPLE
-		PS C:\> .\dummy.ps1
-		[2016.04.04-23:53:26:61][dummy.ps1] Test
+      .EXAMPLE
+      PS C:\> .\dummy.ps1
+      [2016.04.04-23:53:26:61][dummy.ps1] Test
 
-		Description
-		-----------
-		Use the function from within another script
-		The following code is used in "dummy.ps1"
-		Get-DefaultMessage -Message "Test"
+      Description
+      -----------
+      Use the function from within another script
+      The following code is used in "dummy.ps1"
+      Get-DefaultMessage -Message "Test"
 
-	.NOTES
-		Based on an ideas of Francois-Xavier Cat
+      .NOTES
+      Based on an ideas of Francois-Xavier Cat
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	param
-	(
-		[Parameter(HelpMessage = 'Specifies the message to show')]
-		[System.String]$Message
-	)
+  param
+  (
+    [Parameter(HelpMessage = 'Specifies the message to show')]
+    [System.String]$Message
+  )
 
-	PROCESS {
-		# Set the Variables
-		Set-Variable -Name 'DateFormat' -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
-		Set-Variable -Name 'FunctionName' -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
+  PROCESS {
+    # Set the Variables
+    Set-Variable -Name 'DateFormat' -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
+    Set-Variable -Name 'FunctionName' -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
 
-		# Dump to the console
-		Write-Output "[$DateFormat][$FunctionName] $Message"
-	}
+    # Dump to the console
+    Write-Output -InputObject "[$DateFormat][$FunctionName] $Message"
+  }
 }
 
 function Global:Disable-RemoteDesktop {
-<#
-	.SYNOPSIS
-		The function Disable-RemoteDesktop will disable RemoteDesktop on a
-		local or remote machine.
+  <#
+      .SYNOPSIS
+      The function Disable-RemoteDesktop will disable RemoteDesktop on a
+      local or remote machine.
 
-	.DESCRIPTION
-		The function Disable-RemoteDesktop will disable RemoteDesktop on a
-		local or remote machine.
+      .DESCRIPTION
+      The function Disable-RemoteDesktop will disable RemoteDesktop on a
+      local or remote machine.
 
-	.PARAMETER ComputerName
-		Specifies the computername
+      .PARAMETER ComputerName
+      Specifies the computername
 
-	.PARAMETER Credentials
-		Specifies the Credentials to use
+      .PARAMETER Credentials
+      Specifies the Credentials to use
 
-	.PARAMETER CimSession
-		Specifies one or more existing CIM Session(s) to use
+      .PARAMETER CimSession
+      Specifies one or more existing CIM Session(s) to use
 
-	.EXAMPLE
-		PS C:\> Disable-RemoteDesktop -ComputerName 'DC01'
+      .EXAMPLE
+      PS C:\> Disable-RemoteDesktop -ComputerName 'DC01'
 
-		Description
-		-----------
-		Disable RDP on Server 'DC01'
+      Description
+      -----------
+      Disable RDP on Server 'DC01'
 
-	.EXAMPLE
-		PS C:\> Disable-RemoteDesktop -ComputerName DC01 -Credentials (Get-Credentials -cred "FX\SuperAdmin")
+      .EXAMPLE
+      PS C:\> Disable-RemoteDesktop -ComputerName DC01 -Credentials (Get-Credentials -cred "FX\SuperAdmin")
 
-		Description
-		-----------
-		Disable RDP on Server 'DC01' and use the Domain (FX) Credentials
-		for 'SuperAdmin', The password will be queried.
+      Description
+      -----------
+      Disable RDP on Server 'DC01' and use the Domain (FX) Credentials
+      for 'SuperAdmin', The password will be queried.
 
-	.EXAMPLE
-		PS C:\> Disable-RemoteDesktop -CimSession $Session
+      .EXAMPLE
+      PS C:\> Disable-RemoteDesktop -CimSession $Session
 
-		Description
-		-----------
-		Disable RDP for the host where the CIM Session '$Session' is open.
+      Description
+      -----------
+      Disable RDP for the host where the CIM Session '$Session' is open.
 
-	.EXAMPLE
-		PS C:\> Disable-RemoteDesktop -CimSession $Session1,$session2,$session3
+      .EXAMPLE
+      PS C:\> Disable-RemoteDesktop -CimSession $Session1,$session2,$session3
 
-		Description
-		-----------
-		Disable RDP for the host where the CIM Sessions
-		'$Session1,$session2,$session3' are open.
+      Description
+      -----------
+      Disable RDP for the host where the CIM Sessions
+      '$Session1,$session2,$session3' are open.
 
-	.NOTES
-		Based on an idea of Francois-Xavier Cat
-#>
+      .NOTES
+      Based on an idea of Francois-Xavier Cat
+  #>
 
-	[CmdletBinding(DefaultParameterSetName = 'CimSession',
-				   ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $true)]
-	param
-	(
-		[Parameter(ParameterSetName = 'Main',
-				   ValueFromPipeline = $true,
-				   ValueFromPipelineByPropertyName = $true,
-				   HelpMessage = 'Specifies the computername')]
-		[Alias('CN', '__SERVER', 'PSComputerName')]
-		[String[]]$ComputerName = "$env:COMPUTERNAME",
-		[Parameter(ParameterSetName = 'Main',
-				   HelpMessage = 'Specifies the credential to use')]
-		[System.Management.Automation.Credential()]
-		[Alias('RunAs')]
-		[PSCredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
-		[Parameter(ParameterSetName = 'CimSession',
-				   HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
-		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
-	)
+  [CmdletBinding(DefaultParameterSetName = 'CimSession',
+      ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $true)]
+  param
+  (
+    [Parameter(ParameterSetName = 'Main',
+        ValueFromPipeline = $true,
+        ValueFromPipelineByPropertyName = $true,
+    HelpMessage = 'Specifies the computername')]
+    [Alias('CN', '__SERVER', 'PSComputerName')]
+    [String[]]$ComputerName = "$env:COMPUTERNAME",
+    [Parameter(ParameterSetName = 'Main',
+    HelpMessage = 'Specifies the credential to use')]
+    [System.Management.Automation.Credential()]
+    [Alias('RunAs')]
+    [PSCredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
+    [Parameter(ParameterSetName = 'CimSession',
+    HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
+    [Microsoft.Management.Infrastructure.CimSession[]]$CimSession
+  )
 
-	PROCESS {
-		if ($PSBoundParameters['CimSession']) {
-			foreach ($Cim in $CimSession) {
-				$CIMComputer = $($Cim.ComputerName).ToUpper()
+  PROCESS {
+    if ($PSBoundParameters['CimSession']) {
+      foreach ($Cim in $CimSession) {
+        $CIMComputer = $($Cim.ComputerName).ToUpper()
 
-				try {
-					# Parameters for Get-CimInstance
-					$CIMSplatting = @{
-						Class = 'Win32_TerminalServiceSetting'
-						NameSpace = 'root\cimv2\terminalservices'
-						CimSession = $Cim
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessGetCimInstance'
-					}
+        try {
+          # Parameters for Get-CimInstance
+          $CIMSplatting = @{
+            Class         = 'Win32_TerminalServiceSetting'
+            NameSpace     = 'root\cimv2\terminalservices'
+            CimSession    = $Cim
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessGetCimInstance'
+          }
 
-					# Parameters for Invoke-CimMethod
-					$CIMInvokeSplatting = @{
-						MethodName = 'SetAllowTSConnections'
-						Arguments = @{
-							AllowTSConnections = 0
-							ModifyFirewallException = 0
-						}
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessInvokeCim'
-					}
+          # Parameters for Invoke-CimMethod
+          $CIMInvokeSplatting = @{
+            MethodName    = 'SetAllowTSConnections'
+            Arguments     = @{
+              AllowTSConnections      = 0
+              ModifyFirewallException = 0
+            }
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessInvokeCim'
+          }
 
-					# Be verbose
-					Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - disable Remote Desktop (and Modify Firewall Exception")
+          # Be verbose
+          Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - disable Remote Desktop (and Modify Firewall Exception")
 
-					Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
-				} catch {
-					Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
+          Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
+        } catch {
+          Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
 
-					if ($ErrorProcessGetCimInstance) {
-						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")
-					}
-					if ($ErrorProcessInvokeCim) {
-						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")
-					}
+          if ($ErrorProcessGetCimInstance) {Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")}
+          if ($ErrorProcessInvokeCim) {Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")}
 
-					Write-Warning -Message $Error[0].Exception.Message
-				} finally {
-					$CIMSplatting.Clear()
-					$CIMInvokeSplatting.Clear()
-				}
-			}
-		}
+          Write-Warning -Message $Error[0].Exception.Message
+        } finally {
+          $CIMSplatting.Clear()
+          $CIMInvokeSplatting.Clear()
+        }
+      }
+    }
 
-		foreach ($Computer in $ComputerName) {
-			# Set a variable with the computername all upper case
-			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
+    foreach ($Computer in $ComputerName) {
+      # Set a variable with the computername all upper case
+      Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
 
-			try {
-				# Be verbose
-				Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
+      try {
+        # Be verbose
+        Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
 
-				if (Test-Connection -Computer $Computer -count 1 -quiet) {
-					$Splatting = @{
-						Class = 'Win32_TerminalServiceSetting'
-						NameSpace = 'root\cimv2\terminalservices'
-						ComputerName = $Computer
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessGetWmi'
-					}
+        if (Test-Connection -ComputerName $Computer -Count 1 -Quiet) {
+          $Splatting = @{
+            Class         = 'Win32_TerminalServiceSetting'
+            NameSpace     = 'root\cimv2\terminalservices'
+            ComputerName  = $Computer
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessGetWmi'
+          }
 
-					if ($PSBoundParameters['Credentials']) {
-						$Splatting.credential = $Credentials
-					}
+          if ($PSBoundParameters['Credentials']) {$Splatting.credential = $Credentials}
 
-					# Be verbose
-					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - disable Remote Desktop")
+          # Be verbose
+          Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - disable Remote Desktop")
 
-					# disable Remote Desktop
-					[void](Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
+          # disable Remote Desktop
+          [void](Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
 
-					# Disable requirement that user must be authenticated
-					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
-				}
-			} catch {
-				Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
+          # Disable requirement that user must be authenticated
+          #(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
+        }
+      } catch {
+        Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
 
-				if ($ErrorProcessGetWmi) {
-					Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")
-				}
+        if ($ErrorProcessGetWmi) {Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")}
 
-				Write-Warning -MEssage $Error[0].Exception.Message
-			} finally {
-				$Splatting.Clear()
-			}
-		}
-	}
+        Write-Warning -Message $Error[0].Exception.Message
+      } finally {$Splatting.Clear()}
+    }
+  }
 }
 
 function Global:Enable-RemoteDesktop {
-<#
-	.SYNOPSIS
-		The function Enable-RemoteDesktop will enable RemoteDesktop on a
-		local or remote machine.
+  <#
+      .SYNOPSIS
+      The function Enable-RemoteDesktop will enable RemoteDesktop on a
+      local or remote machine.
 
-	.DESCRIPTION
-		The function Enable-RemoteDesktop will enable RemoteDesktop on a
-		local or remote machine.
+      .DESCRIPTION
+      The function Enable-RemoteDesktop will enable RemoteDesktop on a
+      local or remote machine.
 
-	.PARAMETER ComputerName
-		Specifies the computername
+      .PARAMETER ComputerName
+      Specifies the computername
 
-	.PARAMETER Credentials
-		Specifies the Credentials to use
+      .PARAMETER Credentials
+      Specifies the Credentials to use
 
-	.PARAMETER CimSession
-		Specifies one or more existing CIM Session(s) to use
+      .PARAMETER CimSession
+      Specifies one or more existing CIM Session(s) to use
 
-	.EXAMPLE
-		PS C:\> Enable-RemoteDesktop -ComputerName 'DC01'
+      .EXAMPLE
+      PS C:\> Enable-RemoteDesktop -ComputerName 'DC01'
 
-		Description
-		-----------
-		Enables RDP on 'DC01'
+      Description
+      -----------
+      Enables RDP on 'DC01'
 
-	.EXAMPLE
-		PS C:\> Enable-RemoteDesktop -ComputerName DC01 -Credentials (Get-Credentials -cred "FX\SuperAdmin")
+      .EXAMPLE
+      PS C:\> Enable-RemoteDesktop -ComputerName DC01 -Credentials (Get-Credentials -cred "FX\SuperAdmin")
 
-		Description
-		-----------
-		Enables RDP on 'DC01' and use the Domain (FX) Credentials for
-		'SuperAdmin', The password will be queried.
+      Description
+      -----------
+      Enables RDP on 'DC01' and use the Domain (FX) Credentials for
+      'SuperAdmin', The password will be queried.
 
-	.EXAMPLE
-		PS C:\> Enable-RemoteDesktop -CimSession $Session
+      .EXAMPLE
+      PS C:\> Enable-RemoteDesktop -CimSession $Session
 
-		Description
-		-----------
-		Enable RDP for the host where the CIM Session '$Session' is open.
+      Description
+      -----------
+      Enable RDP for the host where the CIM Session '$Session' is open.
 
-	.EXAMPLE
-		PS C:\> Enable-RemoteDesktop -CimSession $Session1,$session2,$session3
+      .EXAMPLE
+      PS C:\> Enable-RemoteDesktop -CimSession $Session1,$session2,$session3
 
-		Description
-		-----------
-		Enable RDP for the host where the CIM Sessions
-		'$Session1,$session2,$session3' are open.
+      Description
+      -----------
+      Enable RDP for the host where the CIM Sessions
+      '$Session1,$session2,$session3' are open.
 
-	.NOTES
-		Based on an idea of Francois-Xavier Cat
-#>
+      .NOTES
+      Based on an idea of Francois-Xavier Cat
+  #>
 
-	[CmdletBinding(DefaultParameterSetName = 'CimSession',
-				   ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $true)]
-	param
-	(
-		[Parameter(ParameterSetName = 'Main',
-				   ValueFromPipeline = $true,
-				   ValueFromPipelineByPropertyName = $true,
-				   HelpMessage = 'Specifies the computername')]
-		[Alias('CN', '__SERVER', 'PSComputerName')]
-		[String[]]$ComputerName = "$env:COMPUTERNAME",
-		[Parameter(ParameterSetName = 'Main',
-				   HelpMessage = 'Specifies the credential to use')]
-		[System.Management.Automation.Credential()]
-		[Alias('RunAs')]
-		[pscredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
-		[Parameter(ParameterSetName = 'CimSession',
-				   HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
-		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
-	)
+  [CmdletBinding(DefaultParameterSetName = 'CimSession',
+      ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $true)]
+  param
+  (
+    [Parameter(ParameterSetName = 'Main',
+        ValueFromPipeline = $true,
+        ValueFromPipelineByPropertyName = $true,
+    HelpMessage = 'Specifies the computername')]
+    [Alias('CN', '__SERVER', 'PSComputerName')]
+    [String[]]$ComputerName = "$env:COMPUTERNAME",
+    [Parameter(ParameterSetName = 'Main',
+    HelpMessage = 'Specifies the credential to use')]
+    [System.Management.Automation.Credential()]
+    [Alias('RunAs')]
+    [pscredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
+    [Parameter(ParameterSetName = 'CimSession',
+    HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
+    [Microsoft.Management.Infrastructure.CimSession[]]$CimSession
+  )
 
-	PROCESS {
-		if ($PSBoundParameters['CimSession']) {
-			foreach ($Cim in $CimSession) {
-				# Create a Variable with an all upper case computer name
-				Set-Variable -Name 'CIMComputer' -Value $($($Cim.ComputerName).ToUpper())
+  PROCESS {
+    if ($PSBoundParameters['CimSession']) {
+      foreach ($Cim in $CimSession) {
+        # Create a Variable with an all upper case computer name
+        Set-Variable -Name 'CIMComputer' -Value $($($Cim.ComputerName).ToUpper())
 
-				try {
-					# Parameters for Get-CimInstance
-					$CIMSplatting = @{
-						Class = 'Win32_TerminalServiceSetting'
-						NameSpace = 'root\cimv2\terminalservices'
-						CimSession = $Cim
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessGetCimInstance'
-					}
+        try {
+          # Parameters for Get-CimInstance
+          $CIMSplatting = @{
+            Class         = 'Win32_TerminalServiceSetting'
+            NameSpace     = 'root\cimv2\terminalservices'
+            CimSession    = $Cim
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessGetCimInstance'
+          }
 
-					# Parameters for Invoke-CimMethod
-					$CIMInvokeSplatting = @{
-						MethodName = 'SetAllowTSConnections'
-						Arguments = @{
-							AllowTSConnections = 1
-							ModifyFirewallException = 1
-						}
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessInvokeCim'
-					}
+          # Parameters for Invoke-CimMethod
+          $CIMInvokeSplatting = @{
+            MethodName    = 'SetAllowTSConnections'
+            Arguments     = @{
+              AllowTSConnections      = 1
+              ModifyFirewallException = 1
+            }
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessInvokeCim'
+          }
 
-					# Be verbose
-					Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Enable Remote Desktop (and Modify Firewall Exception")
+          # Be verbose
+          Write-Verbose -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Enable Remote Desktop (and Modify Firewall Exception")
 
-					#
-					Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
-				} CATCH {
-					# Whoopsie!
-					Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
+          #
+          Get-CimInstance @CIMSplatting | Invoke-CimMethod @CIMInvokeSplatting
+        } CATCH {
+          # Whoopsie!
+          Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - CIMSession - Something wrong happened")
 
-					if ($ErrorProcessGetCimInstance) {
-						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")
-					}
+          if ($ErrorProcessGetCimInstance) {Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Get-CimInstance")}
 
-					if ($ErrorProcessInvokeCim) {
-						Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")
-					}
+          if ($ErrorProcessInvokeCim) {Write-Warning -Message (Get-DefaultMessage -Message "$CIMComputer - Issue with Invoke-CimMethod")}
 
-					Write-Warning -Message $Error[0].Exception.Message
-				} FINALLY {
-					# Cleanup
-					$CIMSplatting.Clear()
-					$CIMInvokeSplatting.Clear()
-				}
-			}
-		}
+          Write-Warning -Message $Error[0].Exception.Message
+        } FINALLY {
+          # Cleanup
+          $CIMSplatting.Clear()
+          $CIMInvokeSplatting.Clear()
+        }
+      }
+    }
 
-		foreach ($Computer in $ComputerName) {
-			# Creatre a Variable with the all upper case Computername
-			Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
+    foreach ($Computer in $ComputerName) {
+      # Creatre a Variable with the all upper case Computername
+      Set-Variable -Name 'Computer' -Value $($Computer.ToUpper())
 
-			try {
-				Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
-				if (Test-Connection -Computer $Computer -count 1 -quiet) {
-					$Splatting = @{
-						Class = 'Win32_TerminalServiceSetting'
-						NameSpace = 'root\cimv2\terminalservices'
-						ComputerName = $Computer
-						ErrorAction = 'Stop'
-						ErrorVariable = 'ErrorProcessGetWmi'
-					}
+      try {
+        Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Test-Connection")
+        if (Test-Connection -ComputerName $Computer -Count 1 -Quiet) {
+          $Splatting = @{
+            Class         = 'Win32_TerminalServiceSetting'
+            NameSpace     = 'root\cimv2\terminalservices'
+            ComputerName  = $Computer
+            ErrorAction   = 'Stop'
+            ErrorVariable = 'ErrorProcessGetWmi'
+          }
 
-					if ($PSBoundParameters['Credentials']) {
-						$Splatting.credential = $Credentials
-					}
+          if ($PSBoundParameters['Credentials']) {$Splatting.credential = $Credentials}
 
-					# Be verbose
-					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - Enable Remote Desktop")
+          # Be verbose
+          Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - Enable Remote Desktop")
 
-					# Enable Remote Desktop
-					(Get-WmiObject @Splatting).SetAllowTsConnections(1, 1) | Out-Null
+          # Enable Remote Desktop
+          $null = (Get-WmiObject @Splatting).SetAllowTsConnections(1, 1)
 
-					# Disable requirement that user must be authenticated
-					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
-				}
-			} catch {
-				# Whoopsie!
-				Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
+          # Disable requirement that user must be authenticated
+          #(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
+        }
+      } catch {
+        # Whoopsie!
+        Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Something wrong happened")
 
-				if ($ErrorProcessGetWmi) {
-					Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")
-				}
+        if ($ErrorProcessGetWmi) {Write-Warning -Message (Get-DefaultMessage -Message "$Computer - Issue with Get-WmiObject")}
 
-				Write-Warning -MEssage $Error[0].Exception.Message
-			} finally {
-				# Cleanup
-				$Splatting.Clear()
-			}
-		}
-	}
+        Write-Warning -Message $Error[0].Exception.Message
+      } finally {
+        # Cleanup
+        $Splatting.Clear()
+      }
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZM7CVUmFmB42QH2vWP+ohJkb
-# f1CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc2vMV/mqFhoz2OpJ7sRtM9j5
+# 59egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -591,25 +573,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQDHK6iSjWOoXKTGHXKKkIAKcchXzANBgkqhkiG9w0B
-# AQEFAASCAQBATfI0CDpLrjJKa01v9JAEJlte91eJPEHnZ52Lx9Q61d+5rMlM5uTF
-# 74foWg7IzFyemz7C4Lxb1sYk2Y/ekaLCbA2sF30muRR0jzf4d2pgjFs+vmDtb9rw
-# aVj7QVg8JtDTXKvSCk2X6sy3YDd9hJew4OIyPmHEP4QBQKqwMK8MGMPjfasvRxTw
-# 4u5MDJa3K8OlKtKjSz9sBnAktQaGLzJon7qGN18E9BE9GUyUwXLzSPtQGnIoWGXC
-# xDOWQDfFN6D9Ily05TCBc5ndH3J/wOfTAiKuQ9pSGw+aDkBuWPTqKldHP63OaKbP
-# YeFz73GldS80E3Akwzg4B2DX3Wx9L3TQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS/2vZVJeofxv/XZ13APaqf1O8p7jANBgkqhkiG9w0B
+# AQEFAASCAQATPGJRYcxUlDDGKHCp9xgnY7Bm4/XB2ik/pUFTgA+RTIl3LQ5IS9b4
+# 37m01cZCqWPLJ4hwNthLY3xfPPzWfiLcQsZDqxta/VOGnVJ/DT+DheN7JWX/sE8T
+# tgWLNdrYuWiDYfBID1GygClbxHOJfOPbyvEkNN1SBqcIPIvzqcz/yI9Vdo/Sn8HI
+# JDqUWJLOA9pnTAgdEDYbaB/DjwphNayvTOazWYiKUEdiKbTGk2wMYrSfJ2Y2t9wL
+# fKdLKDq21k6Q2yO2AC651pFEX5ZpnlHjPMS0tvWzjhJOL0GC0DfVx97sjwf50a1V
+# jLcIAxGEi5Bb/fvRqOOMBKv/JGmDFZ9noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1MVowIwYJKoZIhvcN
-# AQkEMRYEFOm1boBt/M8nU/RgD/HFgJ9rrRk4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1OFowIwYJKoZIhvcN
+# AQkEMRYEFMkc8yu+W9FJQWVS24HiKxj7TMnnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBMVYKTsZ+BwE8gju1U0fBOH6bQyQspNAJTcML6+kK9i8HS
-# IUmWY4jdBYVh7dnC5WY7OlHQtop9wKV/rl0uJNCpIEpLDSJ4pO4w3x1qhwR58X7h
-# rcV7pbOAqKX35fMn66DuL4/6ZFdy6GigLETkq43kf0X/SDCWhSOcYg9RHjCzF1lT
-# 2j29PNOVc7Rh55LMBsoYkKp+lYna9ep0m9U7MwcBnbNWc7AE3y2R0YpaJPXiFt+T
-# T9T8A04tB3dIA7qArCyodCCPPR+d5ebvbB2IsOAVKREjvf4oAzAPNTypzl3/q1Oy
-# O9EgDeAjfQnlsmBK20kF+L9jvq8Hl2V/Og+xo6wT
+# hkiG9w0BAQEFAASCAQBf3mCmq04EUChs8jEAXvAq2DlU+Pc4LlojEeNbMOZQhER9
+# ZIMlpfOWuDxxCj0p67syMtPRRFYtgY8ZsN41xpvdnnq0LqC5iYMlLX1/F74fgy8k
+# M3qq8oQaTGgHWdHnPX9fgNwiX6gas7glsPsxgI06N8WUk6n+AQr79GQZQBF6hmUK
+# OCwu+X8EzaeHWtoU6E0XpGWL8KpGo45DfTrCPlPdGigzhjn/MiK7IDkX3+84A/s9
+# Eh4uECLPrglT1eh6aPMIyAMaQvZBII8EKpb3iuumj8iTKwA0EAaPslzBglsXTy9l
+# zJrHSgU+zrC+5wlohcOPEaGWrQzwxDIYd1ITa+Yt
 # SIG # End signature block

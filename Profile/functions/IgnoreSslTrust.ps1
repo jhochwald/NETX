@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-09
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,158 +14,158 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-IgnoreSslTrust {
-<#
-	.SYNOPSIS
-		This workaround completely disables SSL certificate checks
+  <#
+      .SYNOPSIS
+      This workaround completely disables SSL certificate checks
 
-	.DESCRIPTION
-		This workaround disables the SSL certificate trust checking.
-		This seems to be useful if you need to use self signed SSL certificates
+      .DESCRIPTION
+      This workaround disables the SSL certificate trust checking.
+      This seems to be useful if you need to use self signed SSL certificates
 
-		But there is a string attached:
-		This is very dangerous.
+      But there is a string attached:
+      This is very dangerous.
 
-		And this is not a joke, it is dangerous, because you leave the door
-		wide open (and honestly it means completely open) for bad certificates,
-		hijacked certificates and even Man-In-The-middle attacks!
+      And this is not a joke, it is dangerous, because you leave the door
+      wide open (and honestly it means completely open) for bad certificates,
+      hijacked certificates and even Man-In-The-middle attacks!
 
-		So really think twice before you use this in a production environment!
+      So really think twice before you use this in a production environment!
 
-	.EXAMPLE
-		PS C:\> Set-IgnoreSslTrust
+      .EXAMPLE
+      PS C:\> Set-IgnoreSslTrust
 
-		Description
-		-----------
-		This workaround completely disables SSL certificate checks.
-		Do this only if you know what you are doing here!!!
+      Description
+      -----------
+      This workaround completely disables SSL certificate checks.
+      Do this only if you know what you are doing here!!!
 
-	.NOTES
-		Be carefull:
-		If you really need to disable the SSL Trust setting,
-		just use it for the calls you really need to!
+      .NOTES
+      Be carefull:
+      If you really need to disable the SSL Trust setting,
+      just use it for the calls you really need to!
 
-	.LINK
-		Source: https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.servercertificatevalidationcallback.aspx
-		Source: https://msdn.microsoft.com/en-us/library/system.net.security.remotecertificatevalidationcallback.aspx
+      .LINK
+      Source: https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.servercertificatevalidationcallback.aspx
+      Source: https://msdn.microsoft.com/en-us/library/system.net.security.remotecertificatevalidationcallback.aspx
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'High',
-				   SupportsShouldProcess = $true)]
-	param ()
+  [CmdletBinding(ConfirmImpact = 'High',
+  SupportsShouldProcess = $true)]
+  param ()
 
-	PROCESS {
-		# Set the SSL Ignore based on the configuration Value Leaves the door wide open...
-		# Think before set this Boolean to $true
-		if ($IgnoreSslTrust) {
-			# AGAIN:
-			# Think before you enable this! It could be very dangerous!!!
-			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $true }
+  PROCESS {
+    # Set the SSL Ignore based on the configuration Value Leaves the door wide open...
+    # Think before set this Boolean to $true
+    if ($IgnoreSslTrust) {
+      # AGAIN:
+      # Think before you enable this! It could be very dangerous!!!
+      [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $true }
 
-			# Be Verbose
-			Write-Verbose -message:'SSL Trust IS ignored - BAD IDEA'
+      # Be Verbose
+      Write-Verbose -Message:'SSL Trust IS ignored - BAD IDEA'
 
-			Write-Warning -message:'SSL Trust IS ignored - BAD IDEA'
-		} else {
-			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
+      Write-Warning -Message:'SSL Trust IS ignored - BAD IDEA'
+    } else {
+      [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
 
-			# Be Verbose
-			Write-Verbose -message:'SSL Trust is NOT ignored - GOOD IDEA'
-		}
-	}
+      # Be Verbose
+      Write-Verbose -Message:'SSL Trust is NOT ignored - GOOD IDEA'
+    }
+  }
 }
 # Set a compatibility Alias
-(Set-Alias IgnoreSslTrust Set-IgnoreSslTrust -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name IgnoreSslTrust -Value Set-IgnoreSslTrust -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function global:Set-NotIgnoreSslTrust {
-<#
-	.SYNOPSIS
-		Enables the SSL certificate checks
+  <#
+      .SYNOPSIS
+      Enables the SSL certificate checks
 
-	.DESCRIPTION
-		This is a companion function for the usage of the
-		"Set-IgnoreSslTrust" function
-		It might be a great idea to disable the SSL Trust check for a single
-		call (If you real need to do it) via the "Set-IgnoreSslTrust"
-		function and then enable it directly after the call
-		via "Set-NotIgnoreSslTrust"
+      .DESCRIPTION
+      This is a companion function for the usage of the
+      "Set-IgnoreSslTrust" function
+      It might be a great idea to disable the SSL Trust check for a single
+      call (If you real need to do it) via the "Set-IgnoreSslTrust"
+      function and then enable it directly after the call
+      via "Set-NotIgnoreSslTrust"
 
-	.EXAMPLE
-		PS C:\> Set-NotIgnoreSslTrust
+      .EXAMPLE
+      PS C:\> Set-NotIgnoreSslTrust
 
-		Description
-		-----------
-		Enables the SSL certificate checks
+      Description
+      -----------
+      Enables the SSL certificate checks
 
-	.NOTES
-		Do yourself a favor and use this function right after a call
-		without SSL Trust check!!!
+      .NOTES
+      Do yourself a favor and use this function right after a call
+      without SSL Trust check!!!
 
-	.LINK
-		Source: https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.servercertificatevalidationcallback.aspx
-		Source: https://msdn.microsoft.com/en-us/library/system.net.security.remotecertificatevalidationcallback.aspx
-#>
+      .LINK
+      Source: https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.servercertificatevalidationcallback.aspx
+      Source: https://msdn.microsoft.com/en-us/library/system.net.security.remotecertificatevalidationcallback.aspx
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'Low',
-				   SupportsShouldProcess = $true)]
-	param ()
+  [CmdletBinding(ConfirmImpact = 'Low',
+  SupportsShouldProcess = $true)]
+  param ()
 
-	PROCESS {
-		[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
+  PROCESS {
+    [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $false }
 
-		# Be Verbose
-		Write-Verbose -message:'SSL Trust is NOT ignored - GOOD IDEA'
-	}
+    # Be Verbose
+    Write-Verbose -Message:'SSL Trust is NOT ignored - GOOD IDEA'
+  }
 }
 
 # Set a compatibility Alias
-(Set-Alias NotIgnoreSslTrust Set-NotIgnoreSslTrust -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name NotIgnoreSslTrust -Value Set-NotIgnoreSslTrust -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxUhTVhBgzUj2y+6MToz0fgbt
-# muigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUB+GBWJ9mDFYR5mAE59fCvhgM
+# ydSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function global:Set-NotIgnoreSslTrust {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQdDPRuS+e9n1xBBa6BPYAT3AuXujANBgkqhkiG9w0B
-# AQEFAASCAQCFGCymuVDJPmqgg/WhvWc7H27B21OlTNUasiNXOalTYiCeiXA/IWZL
-# T7M4Sieu2BoMsjI6xeBwQwEvXEz+zEEX2KiltCfcPMoo4gCrMgRyPW/WCD9V3ISO
-# ls8RY9dhAXeWKg06exoxcMlJ4rgWuP6bgIPwmI4pWORBgee5VSX0pq+sYJtfGQw8
-# DX9jauylV1GKWlS5sJhxpV2XKF3/bvJ6/tUXX8ca1ez0cz5JdZ56oOOSdsySNoyI
-# V1WlcmnAJ47yXmG22qhVP8nOP+8gK1wTAvpUtCfHOCk2Uhy3l1u+ovigkumiLn2L
-# ddqVG5rVu5Ok7v91RRizBgw2LaC4jWlHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRwCXLNunFx5/KsUMPy+N23DZbN2jANBgkqhkiG9w0B
+# AQEFAASCAQATa+crG9pprZ70tybcrBp8dcjR4zmkySRub7i96NQ6oFo/kL1R25u+
+# bMXLvUWpl6St37RslRPVAE5KaoSolus/1jg7bsWaMNexqZ+4qB0DInqTOCEjjl8J
+# dxW03bLIY80zI4rgBV9pcqYgm62PrgrOy6zsy35LppgwO4Ym31SkJRQqG/nFTKJJ
+# EwukMcaDZikcJl6uD3QwOkRMit8WSv306tqsrieiaXhg4N37KCQdLHWp7rTgjPUU
+# SFVMHSKxWaKyeXV/NiV8UfotR/aq4Bh/kTEleaAiGotOfw85+mygG8wu4rw8Bep0
+# 5875GqzwM8YxrTgiG3ZcVb1n6j3W5DRsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzOVowIwYJKoZIhvcN
-# AQkEMRYEFHq6NVHLfW8mEhU3UeLRbeuc7lCKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0NlowIwYJKoZIhvcN
+# AQkEMRYEFC1BG+WjnZbqdiX1EGRuitG3rHO7MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQASxiT2jDdWT5N1NZIaJEXYd9Cdx1XgKeYZDsTFTy8TL5z2
-# GM67WRmWOgFaEgAKRGp426/IN189ujyBu5BoWRF16KgdKQ9YfRxzgRwCYCgSAxxb
-# N371ckcrdxIc+m4y0OG8SeBc1PIKigKI4v0r9TcPJ1D9pLa3WCirMD3xeqQc0I2K
-# di/+me7SxkZ11mbFWMiguzs6Cke4lATv6Wn0QmdlXQmVWOsBNzeoH2MJSRcurX4S
-# s/7RsoL/e/my4a9MxmVuBDa60kM53jJDLXxJd6jI15Jxv60j/aLI4kyR2YOwDg9+
-# xrNBEQDBaJpxFbFHl/cKQcysFhWNNDTPUDOvpSK2
+# hkiG9w0BAQEFAASCAQComhGXZFout5ezScb2FhQieUPZHbN33oIdhmJvZxBAY1IV
+# w0/OxaHNeXiT149qtV66XHd3X+7fT8AL3JjAlwWTCOwEzDxN8HFDX61Ib1DSlKch
+# v/vRNLZJY3rqxWsScVHRapmGJeFGUYBMBcpLVCEnwxreyrfvDtj/S+PRhna8cZsF
+# U10k4+el6DEW5E92xjKcIa+uy+t588MGnCiLEmsiSD+9aLcDumpNvqutE8uI+Te5
+# FsithZAX7bOsohxQi9GxlbtY1y3yMYUNv8huJ2kMwnmoWSi3zXXFNi+5XVTWaqG7
+# tAphnJAot9S7bSwE6oY2jqOG40fnFXIm+DcXTb4M
 # SIG # End signature block

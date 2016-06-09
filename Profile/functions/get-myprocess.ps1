@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,92 +14,90 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-myPROCESS {
-<#
-	.SYNOPSIS
-		Get our own process information
+  <#
+      .SYNOPSIS
+      Get our own process information
 
-	.DESCRIPTION
-		Get our own process information about the PowerShell Session
+      .DESCRIPTION
+      Get our own process information about the PowerShell Session
 
-	.EXAMPLE
-		PS C:\> Get-myProcess
+      .EXAMPLE
+      PS C:\> Get-myProcess
 
-		Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
-		-------  ------    -----      ----- -----   ------     -- -----------
-		511      44        79252      93428   664   11,653   3932 powershell
+      Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
+      -------  ------    -----      ----- -----   ------     -- -----------
+      511      44        79252      93428   664   11,653   3932 powershell
 
-		Description
-		-----------
-		Get our own process information
+      Description
+      -----------
+      Get our own process information
 
-	.NOTES
-		Just a little helper function that might be useful if you have a long
-		running shell session
+      .NOTES
+      Just a little helper function that might be useful if you have a long
+      running shell session
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Diagnostics.Process])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.Diagnostics.Process])]
+  param ()
 
-	BEGIN {
-		# Do a garbage collection
-		if ((Get-Command Invoke-GC -ErrorAction:SilentlyContinue)) {
-			Invoke-GC
-		}
-	}
+  BEGIN {
+    # Do a garbage collection
+    if ((Get-Command Invoke-GC -ErrorAction:SilentlyContinue)) {Invoke-GC}
+  }
 
-	PROCESS {
-		# Get the info
-		[diagnostics.process]::GetCurrentProcess()
-	}
+  PROCESS {
+    # Get the info
+    [diagnostics.process]::GetCurrentProcess()
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkmb/RoFddFJ8oTspOA7/0xZU
-# QzigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnGZtqHHgg7J9mBUpz6W0gHDM
+# okmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -121,10 +119,10 @@ function Global:Get-myPROCESS {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -140,12 +138,12 @@ function Global:Get-myPROCESS {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -242,25 +240,25 @@ function Global:Get-myPROCESS {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSOrpiHkFQhM/kDri+AImkJBfFjVjANBgkqhkiG9w0B
-# AQEFAASCAQA999otHwplVyGOI+xmannsgEKQlr141Qg/nCAdTXvpPY51dEXn5zkW
-# 1HyUQTeX03mXWu15QrT0B6p7y2jL3qqY+kH65p2nYu5yeLU5x4j4Kw5mOXytmQ+N
-# 0bbDVi41DbSd34VrokmPWYSywQbAKgy6nFB9gj8tAlcBkwsv1mDjfh+JO463zJsu
-# FyAtuodAc/InbPn3LQJoOg63npzoOicbhmFAat/Z2hJntshPX3rK2JxZVY/qpDc0
-# EK4zu3LUvWJjWOAv0UMXe8pvIwJbl8RlXfptDTcEEq2mqXZrF91ta/do99lj6XgU
-# DSYQqhq7hc2y79KfOshlanEXB+8HfvYjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTWH3kwcBFGoscyHNY45qZ+QJgZkjANBgkqhkiG9w0B
+# AQEFAASCAQB22cKaYs9QnLS4RZlJeYAjsAW1jFo8lnH7ORPbAVRC+9S8VUZPcgyN
+# WcflrnzVZZsODRvDB8AOeyvMiCxiTlNJJZWRHFk6ZQ2WT50z9gWcAdRQeLf/8xZS
+# L1SUkLbOlxetCXBDINsSY1wLZvYreurQrywgAnn84+nBhnJYHfX2kpVRYWDtDRf9
+# qHiDH4q2wfm05P7P2bQTe7IN1XHLoEsYREenAy/BpdMaYMSfPgyDZXkPmq4tLLN0
+# gHgQvmlO+7pvhMAZ5Cqy2QX2H6EEu/UB0dSOsi4affDbAQKB3lZ1/YAf43Y+PGOF
+# 1cEu/tO3CW+pnPNQBCDX7SqMRbMYw1KZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyN1owIwYJKoZIhvcN
-# AQkEMRYEFAhbS0iNVK/aWRe6NuRmMpVYIwWAMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzMlowIwYJKoZIhvcN
+# AQkEMRYEFAJaw+GaHNOiWLh4ejKyXcwbHlEFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBzzVsWHEGDQSEsta4uyApibsXvEgu0NAYEWxyWgaDBrq7l
-# xp+jc0RNWttsEswX8w5jeD1UlCuV5VZBlEOvAGIraV351lvjZnbxZ2KCjvypZEo7
-# QorOerlqvGU3Aa+ZB9OYpQUW9aotSk00CZGyGW2PXz/5vJ7aH9hfY9jW1uXLojr4
-# AR6wTC/Z45hdMWLGiR9xBg09LobF5sGj/yhU3lMGzZuDLu4pD9nhHZ6V1wCxY2tk
-# WRguUnlY+yr6oCXrq/4izLLW+kA0mIgW/qlfuiFSjvVqrznFpEb1fYOfE18ss2Rx
-# WvGUF9i+vmaCPepXhu4M1bNHhNPR1wrq8cnJr7Ue
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQAXf8Z1STyc0Ej4yhGJFkxaSuoE30fZ58mXJfJhCt202dru
+# mVCtESkKJWDsQcclRGyO9wlD6uLbWLzR7mgUto9vU6bC0tgMFF0X8reUmiQy69+N
+# zvC9brSszWqtMIEq/IKIrVJkCMeU3DWP4KqfUQNzwiqSnYVwPE9W8kn2CRrWRfe5
+# CWbk6FTtxYWxpS8buiRAH2pwiNJgfpiFxN5uj1DqwtQ3sZvup/KmnFUk2sR4HrbA
+# 4yZGdgH5y1VF9Bqo+OW41Qud7dJ0Yt4zcKUORhjAFNgkqwDps7YF1OzAhk+LnA1Y
+# nCnkpv3e2Omz4CCdw9Aac/3I+yHPUW8W7E0tnM7A
 # SIG # End signature block

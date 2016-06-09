@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-09
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,114 +14,114 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-AcceptProtocolViolation {
-<#
-	.SYNOPSIS
-		Workaround for servers with SSL header problems
+  <#
+      .SYNOPSIS
+      Workaround for servers with SSL header problems
 
-	.DESCRIPTION
-		Workaround for the following Exception "DownloadString" with "1"
-		argument(s):
-		"The underlying connection was closed: Could not establish trust
-		relationship for the SSL/TLS secure channel."
+      .DESCRIPTION
+      Workaround for the following Exception "DownloadString" with "1"
+      argument(s):
+      "The underlying connection was closed: Could not establish trust
+      relationship for the SSL/TLS secure channel."
 
-	.EXAMPLE
-		PS C:\> Set-AcceptProtocolViolation
+      .EXAMPLE
+      PS C:\> Set-AcceptProtocolViolation
 
-		Description
-		-----------
-		Establish the workaround (Be careful)
+      Description
+      -----------
+      Establish the workaround (Be careful)
 
-	.NOTES
-		Be careful:
-		This is just a workaround for servers that have a problem with
-		SSL headers.
+      .NOTES
+      Be careful:
+      This is just a workaround for servers that have a problem with
+      SSL headers.
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $true)]
-	param ()
+  [CmdletBinding(ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $true)]
+  param ()
 
-	PROCESS {
-		# Set the SSL Header unsafe parser based on the value from the configuration
-		if ($AcceptProtocolViolation) {
-			# Be Verbose
-			Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
+  PROCESS {
+    # Set the SSL Header unsafe parser based on the value from the configuration
+    if ($AcceptProtocolViolation) {
+      # Be Verbose
+      Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
 
-			# Read the existing settings to a variable
-			Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
+      # Read the existing settings to a variable
+      Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
 
-			# Check if we have something within the Variable
-			if ($netAssembly) {
-				# Set some new values
-				Set-Variable -Name 'bindingFlags' -Value $([Reflection.BindingFlags] 'Static,GetProperty,NonPublic')
-				Set-Variable -Name 'settingsType' -Value $($netAssembly.GetType('System.Net.Configuration.SettingsSectionInternal'))
-				Set-Variable -Name 'instance' -Value $($settingsType.InvokeMember('Section', $bindingFlags, $null, $null, @()))
+      # Check if we have something within the Variable
+      if ($netAssembly) {
+        # Set some new values
+        Set-Variable -Name 'bindingFlags' -Value $([Reflection.BindingFlags] 'Static,GetProperty,NonPublic')
+        Set-Variable -Name 'settingsType' -Value $($netAssembly.GetType('System.Net.Configuration.SettingsSectionInternal'))
+        Set-Variable -Name 'instance' -Value $($settingsType.InvokeMember('Section', $bindingFlags, $null, $null, @()))
 
-				# Check for the Instance variable
-				if ($instance) {
-					# Change the values if they exist
-					$bindingFlags = 'NonPublic', 'Instance'
-					Set-Variable -Name 'useUnsafeHeaderParsingField' -Value $($settingsType.GetField('useUnsafeHeaderParsing', $bindingFlags))
+        # Check for the Instance variable
+        if ($instance) {
+          # Change the values if they exist
+          $bindingFlags = 'NonPublic', 'Instance'
+          Set-Variable -Name 'useUnsafeHeaderParsingField' -Value $($settingsType.GetField('useUnsafeHeaderParsing', $bindingFlags))
 
-					# Check for the unsafe HEader Variable
-					if ($useUnsafeHeaderParsingField) {
-						# Looks like the variable exists, set the value...
-						$useUnsafeHeaderParsingField.SetValue($instance, $true)
-					}
-				}
-			}
-		}
-	}
+          # Check for the unsafe HEader Variable
+          if ($useUnsafeHeaderParsingField) {
+            # Looks like the variable exists, set the value...
+            $useUnsafeHeaderParsingField.SetValue($instance, $true)
+          }
+        }
+      }
+    }
+  }
 }
 # Set a compatibility Alias
-(Set-Alias AcceptProtocolViolation Set-AcceptProtocolViolation -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+5dMmIQdLumtEtE/dW+YgiBO
-# IWigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ2G47LbM0Y4e7h2BRi5GMhFY
+# CKOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -264,25 +264,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRtTl6qb+yifvfJzbZaWYUPS2gj2DANBgkqhkiG9w0B
-# AQEFAASCAQCm1tvgGsIoSVwejifK16ud4PgnIhFEaF+GsmgEDSJSwQs+cthwQNJ0
-# QfltP3JZqhlpElL1vuQe6Bujx3lFpo9crEF5m81O/72hSXNXwzPDeNscWsBx4v0e
-# icpcEQR5Tt4MmxEr6hGsZQu3EnxlgD2lAlQSEmqgDuh9uJw9W740XzgILJV5jO3H
-# JeTk9opYBvNjK/I+cUw4QiOjn4NqqMUyNUNCs63wVtSgCO6Dr+XsU8odsUoUcgJd
-# nqpe3Z/VxrPprJBpaHEQzH9P/TbVn77iy1jh4teQOTzrHKB4zzRslHceHg15AopW
-# kHib7bp/XFEEHOSkT0WQDkelejz5O01zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQM88msVYoacqSSUrxCsj1eYQoU0jANBgkqhkiG9w0B
+# AQEFAASCAQB17ypJvhOL7nR7lxjkDuO9NHhn+KfI0cPw9LRSiMRd5GZTugoc4UgK
+# h8DSENJjdyT5kYYchY3LGue1v4xhIgBuyjjBu2JND0q55rzhbJGbbB3NLEdJwXZv
+# Q1Pau0HF9LrTVtYznno5mlwnwvL2iSAsrTJn4KvaA6ERQFUcA3CRWjLzaiwclAsB
+# Iep5dzcbb7PUsgPdmp5NC2IM/01T0a0vQnEd3EXIMnDrHvYBQJU74yEq42rsKhp0
+# gGyFKkGCzIi7i+u/9imGOBmOBsp2MIX6I7o+WpCGNvLLkyZxiSyEBMOoqspWrXN4
+# cyBn4sOxD0HHZMIBSWyjn/Aev+cm6t9woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NVowIwYJKoZIhvcN
-# AQkEMRYEFBvl5Ms+GRY+UQDUpz3o29alNFa2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwMlowIwYJKoZIhvcN
+# AQkEMRYEFKmlBEgWwjVCEJtecW4SXZSHaPKBMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBy2OXI5buLQdb39fVjqIQPus1JvTcKKJgV3HilvmAnM2JO
-# +TClGBeNY39gYiVswgYWSLFDeONzxcV7JiuOMgckcEfaX5Q6E4305L4XubHSWX9o
-# SeIcJfoSWs7HLj6ZU08ZaDsNcyJh2TeiogC1fqf7q5mX7qFOFQj18glIdDXa/Pmb
-# 2hifFyvhNUejf/iP4kdCyWLBqw9KmiyEjPqvumE66pcNEOFGKUDqKWfjCcwEIecd
-# V4AjIt3yHUeD4GY676lttFTJKCAtg98agi7dCkLp3STrubbXYnqRd4bsDLZockYd
-# 5yCuFtqPTOXYBjyDFzVuI/2XkddCLP/mFqXxFc4h
+# hkiG9w0BAQEFAASCAQCP5a4206WIYTlm7I/DQ8cHeRbKckYRxOdHhGXXSo4AwVrp
+# XXK6en6iDvdfHvU4Fk1WUsJnWhKCwVjg4Nc26UDO4g/AOliARxOvhr/No5hOxQBa
+# N+RJz3hN/tTL3iNxIfDcB66XXvT2+4t4v5yWAvykNlYneE4Wqe3FynTPW6H/01h9
+# MZEB+zqDQfBpWFeGih4DKgZUub1zDbhAU8L6QZtNeoNnrxqbULYf5THyH5LpQYy/
+# vEPVLmuiz3Y+MpkyfHqwDDOqwMFlN6RXz646RNrYqgGg3zX2WEEK/ksZG9G+Esxz
+# YuhUM/1hfpoxjg7sYBdH5zVFYRWuEgwJRhEvNjuB
 # SIG # End signature block

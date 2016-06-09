@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,252 +14,244 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-ASCBanner {
-<#
-	.SYNOPSIS
-		Create an ASC II Banner for a given String
+  <#
+      .SYNOPSIS
+      Create an ASC II Banner for a given String
 
-	.DESCRIPTION
-		Create an ASC II Banner for a given String
+      .DESCRIPTION
+      Create an ASC II Banner for a given String
 
-	.PARAMETER IsString
-		Is this a String that should be dumped as ASC Art?
+      .PARAMETER IsString
+      Is this a String that should be dumped as ASC Art?
 
-	.PARAMETER ASCChar
-		Character for the ASC Banner, * is the default
+      .PARAMETER ASCChar
+      Character for the ASC Banner, * is the default
 
-	.EXAMPLE
-		PS C:\> Get-ASCBanner -InputString 'Welcome' -IsString -ASCChar '#'
-		#     #
-		#  #  #  ######  #        ####    ####   #    #  ######
-		#  #  #  #       #       #    #  #    #  ##  ##  #
-		#  #  #  #####   #       #       #    #  # ## #  #####
-		#  #  #  #       #       #       #    #  #    #  #
-		#  #  #  #       #       #    #  #    #  #    #  #
-		 ## ##   ######  ######   ####    ####   #    #  ######
+      .EXAMPLE
+      PS C:\> Get-ASCBanner -InputString 'Welcome' -IsString -ASCChar '#'
+      #     #
+      #  #  #  ######  #        ####    ####   #    #  ######
+      #  #  #  #       #       #    #  #    #  ##  ##  #
+      #  #  #  #####   #       #       #    #  # ## #  #####
+      #  #  #  #       #       #       #    #  #    #  #
+      #  #  #  #       #       #    #  #    #  #    #  #
+      ## ##   ######  ######   ####    ####   #    #  ######
 
-		Description
-		-----------
-		Create an ASC II Banner for a given String
+      Description
+      -----------
+      Create an ASC II Banner for a given String
 
-	.EXAMPLE
-		PS C:\> Get-ASCBanner -InputString 'NET-Experts' -IsString -ASCChar '*'
-		*     * ******* *******         *******
-		**    * *          *            *        *    *  *****   ******  *****    *****   ****
-		* *   * *          *            *         *  *   *    *  *       *    *     *    *
-		*  *  * *****      *     *****  *****      **    *    *  *****   *    *     *     ****
-		*   * * *          *            *          **    *****   *       *****      *         *
-		*    ** *          *            *         *  *   *       *       *   *      *    *    *
-		*     * *******    *            *******  *    *  *       ******  *    *     *     ****
+      .EXAMPLE
+      PS C:\> Get-ASCBanner -InputString 'NET-Experts' -IsString -ASCChar '*'
+      *     * ******* *******         *******
+      **    * *          *            *        *    *  *****   ******  *****    *****   ****
+      * *   * *          *            *         *  *   *    *  *       *    *     *    *
+      *  *  * *****      *     *****  *****      **    *    *  *****   *    *     *     ****
+      *   * * *          *            *          **    *****   *       *****      *         *
+      *    ** *          *            *         *  *   *       *       *   *      *    *    *
+      *     * *******    *            *******  *    *  *       ******  *    *     *     ****
 
-		Description
-		-----------
-		Create an ASC II Banner for a given String
+      Description
+      -----------
+      Create an ASC II Banner for a given String
 
-	.NOTES
-		Just for fun!
-#>
+      .NOTES
+      Just for fun!
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   ValueFromRemainingArguments = $true,
-				   Position = 0,
-				   HelpMessage = 'The String')]
-		[System.string[]]$InputString,
-		[Parameter(Position = 1,
-				   HelpMessage = 'Is this a String that should be dumped as ASC Art?')]
-		[switch]$IsString = ($true),
-		[Parameter(Position = 2,
-				   HelpMessage = 'Character for the ASC Banner, * is the default')]
-		[char]$ASCChar = '*'
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        ValueFromRemainingArguments = $true,
+        Position = 0,
+    HelpMessage = 'The String')]
+    [System.string[]]$InputString,
+    [Parameter(Position = 1,
+    HelpMessage = 'Is this a String that should be dumped as ASC Art?')]
+    [switch]$IsString = ($true),
+    [Parameter(Position = 2,
+    HelpMessage = 'Character for the ASC Banner, * is the default')]
+    [char]$ASCChar = '*'
+  )
 
-	BEGIN {
-		$bit = @(128, 64, 32, 16, 8, 4, 2, 1)
-		$chars = @(
-		@(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00), # ' '
-		@(0x38, 0x38, 0x38, 0x10, 0x00, 0x38, 0x38), # '!'
-		@(0x24, 0x24, 0x24, 0x00, 0x00, 0x00, 0x00), # '"' UNV
-		@(0x28, 0x28, 0xFE, 0x28, 0xFE, 0x28, 0x28), # '#'
-		@(0x7C, 0x92, 0x90, 0x7C, 0x12, 0x92, 0x7C), # '$'
-		@(0xE2, 0xA4, 0xE8, 0x10, 0x2E, 0x4A, 0x8E), # '%'
-		@(0x30, 0x48, 0x30, 0x70, 0x8A, 0x84, 0x72), # '&'
-		@(0x38, 0x38, 0x10, 0x20, 0x00, 0x00, 0x00), # '''
-		@(0x18, 0x20, 0x40, 0x40, 0x40, 0x20, 0x18), # '('
-		@(0x30, 0x08, 0x04, 0x04, 0x04, 0x08, 0x30), # ')'
-		@(0x00, 0x44, 0x28, 0xFE, 0x28, 0x44, 0x00), # '*'
-		@(0x00, 0x10, 0x10, 0x7C, 0x10, 0x10, 0x00), # '+'
-		@(0x00, 0x00, 0x00, 0x38, 0x38, 0x10, 0x20), # ','
-		@(0x00, 0x00, 0x00, 0x7C, 0x00, 0x00, 0x00), # '-'
-		@(0x00, 0x00, 0x00, 0x00, 0x38, 0x38, 0x38), # '.'
-		@(0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80), # '/'
-		@(0x38, 0x44, 0x82, 0x82, 0x82, 0x44, 0x38), # '0'
-		@(0x10, 0x30, 0x50, 0x10, 0x10, 0x10, 0x7C), # '1'
-		@(0x7C, 0x82, 0x02, 0x7C, 0x80, 0x80, 0xFE), # '2'
-		@(0x7C, 0x82, 0x02, 0x7C, 0x02, 0x82, 0x7C), # '3'
-		@(0x80, 0x84, 0x84, 0x84, 0xFE, 0x04, 0x04), # '4'
-		@(0xFE, 0x80, 0x80, 0xFC, 0x02, 0x82, 0x7C), # '5'
-		@(0x7C, 0x82, 0x80, 0xFC, 0x82, 0x82, 0x7C), # '6'
-		@(0xFC, 0x84, 0x08, 0x10, 0x20, 0x20, 0x20), # '7'
-		@(0x7C, 0x82, 0x82, 0x7C, 0x82, 0x82, 0x7C), # '8'
-		@(0x7C, 0x82, 0x82, 0x7E, 0x02, 0x82, 0x7C), # '9'
-		@(0x10, 0x38, 0x10, 0x00, 0x10, 0x38, 0x10), # ':'
-		@(0x38, 0x38, 0x00, 0x38, 0x38, 0x10, 0x20), # ';'
-		@(0x08, 0x10, 0x20, 0x40, 0x20, 0x10, 0x08), # '<'
-		@(0x00, 0x00, 0xFE, 0x00, 0xFE, 0x00, 0x00), # '=' UNV.
-		@(0x20, 0x10, 0x08, 0x04, 0x08, 0x10, 0x20), # '>'
-		@(0x7C, 0x82, 0x02, 0x1C, 0x10, 0x00, 0x10), # '?'
-		@(0x7C, 0x82, 0xBA, 0xBA, 0xBC, 0x80, 0x7C), # '@'
-		@(0x10, 0x28, 0x44, 0x82, 0xFE, 0x82, 0x82), # 'A'
-		@(0xFC, 0x82, 0x82, 0xFC, 0x82, 0x82, 0xFC), # 'B'
-		@(0x7C, 0x82, 0x80, 0x80, 0x80, 0x82, 0x7C), # 'C'
-		@(0xFC, 0x82, 0x82, 0x82, 0x82, 0x82, 0xFC), # 'D'
-		@(0xFE, 0x80, 0x80, 0xF8, 0x80, 0x80, 0xFE), # 'E'
-		@(0xFE, 0x80, 0x80, 0xF8, 0x80, 0x80, 0x80), # 'F'
-		@(0x7C, 0x82, 0x80, 0x9E, 0x82, 0x82, 0x7C), # 'G'
-		@(0x82, 0x82, 0x82, 0xFE, 0x82, 0x82, 0x82), # 'H'
-		@(0x38, 0x10, 0x10, 0x10, 0x10, 0x10, 0x38), # 'I'
-		@(0x02, 0x02, 0x02, 0x02, 0x82, 0x82, 0x7C), # 'J'
-		@(0x84, 0x88, 0x90, 0xE0, 0x90, 0x88, 0x84), # 'K'
-		@(0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0xFE), # 'L'
-		@(0x82, 0xC6, 0xAA, 0x92, 0x82, 0x82, 0x82), # 'M'
-		@(0x82, 0xC2, 0xA2, 0x92, 0x8A, 0x86, 0x82), # 'N'
-		@(0xFE, 0x82, 0x82, 0x82, 0x82, 0x82, 0xFE), # 'O'
-		@(0xFC, 0x82, 0x82, 0xFC, 0x80, 0x80, 0x80), # 'P'
-		@(0x7C, 0x82, 0x82, 0x82, 0x8A, 0x84, 0x7A), # 'Q'
-		@(0xFC, 0x82, 0x82, 0xFC, 0x88, 0x84, 0x82), # 'R'
-		@(0x7C, 0x82, 0x80, 0x7C, 0x02, 0x82, 0x7C), # 'S'
-		@(0xFE, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10), # 'T'
-		@(0x82, 0x82, 0x82, 0x82, 0x82, 0x82, 0x7C), # 'U'
-		@(0x82, 0x82, 0x82, 0x82, 0x44, 0x28, 0x10), # 'V'
-		@(0x82, 0x92, 0x92, 0x92, 0x92, 0x92, 0x6C), # 'W'
-		@(0x82, 0x44, 0x28, 0x10, 0x28, 0x44, 0x82), # 'X'
-		@(0x82, 0x44, 0x28, 0x10, 0x10, 0x10, 0x10), # 'Y'
-		@(0xFE, 0x04, 0x08, 0x10, 0x20, 0x40, 0xFE), # 'Z'
-		@(0x7C, 0x40, 0x40, 0x40, 0x40, 0x40, 0x7C), # '['
-		@(0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02), # '\'
-		@(0x7C, 0x04, 0x04, 0x04, 0x04, 0x04, 0x7C), # ']'
-		@(0x10, 0x28, 0x44, 0x00, 0x00, 0x00, 0x00), # '^'
-		@(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFE), # '_'
-		@(0x00, 0x38, 0x38, 0x10, 0x08, 0x00, 0x00), # '`'
-		@(0x00, 0x18, 0x24, 0x42, 0x7E, 0x42, 0x42), # 'a'
-		@(0x00, 0x7C, 0x42, 0x7C, 0x42, 0x42, 0x7C), # 'b'
-		@(0x00, 0x3C, 0x42, 0x40, 0x40, 0x42, 0x3C), # 'c'
-		@(0x00, 0x7C, 0x42, 0x42, 0x42, 0x42, 0x7C), # 'd'
-		@(0x00, 0x7E, 0x40, 0x7C, 0x40, 0x40, 0x7E), # 'e'
-		@(0x00, 0x7E, 0x40, 0x7C, 0x40, 0x40, 0x40), # 'f'
-		@(0x00, 0x3C, 0x42, 0x40, 0x4E, 0x42, 0x3C), # 'g'
-		@(0x00, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42), # 'h'
-		@(0x00, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08), # 'i'
-		@(0x00, 0x02, 0x02, 0x02, 0x02, 0x42, 0x3C), # 'j'
-		@(0x00, 0x42, 0x44, 0x78, 0x48, 0x44, 0x42), # 'k'
-		@(0x00, 0x40, 0x40, 0x40, 0x40, 0x40, 0x7E), # 'l'
-		@(0x00, 0x42, 0x66, 0x5A, 0x42, 0x42, 0x42), # 'm'
-		@(0x00, 0x42, 0x62, 0x52, 0x4A, 0x46, 0x42), # 'n'
-		@(0x00, 0x3C, 0x42, 0x42, 0x42, 0x42, 0x3C), # 'o'
-		@(0x00, 0x7C, 0x42, 0x42, 0x7C, 0x40, 0x40), # 'p'
-		@(0x00, 0x3C, 0x42, 0x42, 0x4A, 0x44, 0x3A), # 'q'
-		@(0x00, 0x7C, 0x42, 0x42, 0x7C, 0x44, 0x42), # 'r'
-		@(0x00, 0x3C, 0x40, 0x3C, 0x02, 0x42, 0x3C), # 's'
-		@(0x00, 0x3E, 0x08, 0x08, 0x08, 0x08, 0x08), # 't'
-		@(0x00, 0x42, 0x42, 0x42, 0x42, 0x42, 0x3C), # 'u'
-		@(0x00, 0x42, 0x42, 0x42, 0x42, 0x24, 0x18), # 'v'
-		@(0x00, 0x42, 0x42, 0x42, 0x5A, 0x66, 0x42), # 'w'
-		@(0x00, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42), # 'x'
-		@(0x00, 0x22, 0x14, 0x08, 0x08, 0x08, 0x08), # 'y'
-		@(0x00, 0x7E, 0x04, 0x08, 0x10, 0x20, 0x7E), # 'z'
-		@(0x38, 0x40, 0x40, 0xC0, 0x40, 0x40, 0x38), # '{'
-		@(0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10), # '|'
-		@(0x38, 0x04, 0x04, 0x06, 0x04, 0x04, 0x38), # '}'
-		@(0x60, 0x92, 0x0C, 0x00, 0x00, 0x00, 0x00) # '~'
-		);
-		$o = (New-Object -TypeName psobject)
-		$o | add-member -MemberType NoteProperty -Name OriginalStrings -Value @()
-		$o.psobject.typenames.Insert(0, 'Banner')
-	}
-	PROCESS {
-		$o.OriginalStrings += $InputString
-		$output = ''
-		$width = [math]::floor(($host.ui.rawui.buffersize.width - 1)/8)
-		# check and bail if a string is too long
-		foreach ($substring in $InputString) {
-			if ($substring.length -gt $width) {
-				throw "strings must be less than $width characters"
-			}
-		}
+  BEGIN {
+    $bit = @(128, 64, 32, 16, 8, 4, 2, 1)
+    $chars = @(
+      @(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00), # ' '
+      @(0x38, 0x38, 0x38, 0x10, 0x00, 0x38, 0x38), # '!'
+      @(0x24, 0x24, 0x24, 0x00, 0x00, 0x00, 0x00), # '"' UNV
+      @(0x28, 0x28, 0xFE, 0x28, 0xFE, 0x28, 0x28), # '#'
+      @(0x7C, 0x92, 0x90, 0x7C, 0x12, 0x92, 0x7C), # '$'
+      @(0xE2, 0xA4, 0xE8, 0x10, 0x2E, 0x4A, 0x8E), # '%'
+      @(0x30, 0x48, 0x30, 0x70, 0x8A, 0x84, 0x72), # '&'
+      @(0x38, 0x38, 0x10, 0x20, 0x00, 0x00, 0x00), # '''
+      @(0x18, 0x20, 0x40, 0x40, 0x40, 0x20, 0x18), # '('
+      @(0x30, 0x08, 0x04, 0x04, 0x04, 0x08, 0x30), # ')'
+      @(0x00, 0x44, 0x28, 0xFE, 0x28, 0x44, 0x00), # '*'
+      @(0x00, 0x10, 0x10, 0x7C, 0x10, 0x10, 0x00), # '+'
+      @(0x00, 0x00, 0x00, 0x38, 0x38, 0x10, 0x20), # ','
+      @(0x00, 0x00, 0x00, 0x7C, 0x00, 0x00, 0x00), # '-'
+      @(0x00, 0x00, 0x00, 0x00, 0x38, 0x38, 0x38), # '.'
+      @(0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80), # '/'
+      @(0x38, 0x44, 0x82, 0x82, 0x82, 0x44, 0x38), # '0'
+      @(0x10, 0x30, 0x50, 0x10, 0x10, 0x10, 0x7C), # '1'
+      @(0x7C, 0x82, 0x02, 0x7C, 0x80, 0x80, 0xFE), # '2'
+      @(0x7C, 0x82, 0x02, 0x7C, 0x02, 0x82, 0x7C), # '3'
+      @(0x80, 0x84, 0x84, 0x84, 0xFE, 0x04, 0x04), # '4'
+      @(0xFE, 0x80, 0x80, 0xFC, 0x02, 0x82, 0x7C), # '5'
+      @(0x7C, 0x82, 0x80, 0xFC, 0x82, 0x82, 0x7C), # '6'
+      @(0xFC, 0x84, 0x08, 0x10, 0x20, 0x20, 0x20), # '7'
+      @(0x7C, 0x82, 0x82, 0x7C, 0x82, 0x82, 0x7C), # '8'
+      @(0x7C, 0x82, 0x82, 0x7E, 0x02, 0x82, 0x7C), # '9'
+      @(0x10, 0x38, 0x10, 0x00, 0x10, 0x38, 0x10), # ':'
+      @(0x38, 0x38, 0x00, 0x38, 0x38, 0x10, 0x20), # ';'
+      @(0x08, 0x10, 0x20, 0x40, 0x20, 0x10, 0x08), # '<'
+      @(0x00, 0x00, 0xFE, 0x00, 0xFE, 0x00, 0x00), # '=' UNV.
+      @(0x20, 0x10, 0x08, 0x04, 0x08, 0x10, 0x20), # '>'
+      @(0x7C, 0x82, 0x02, 0x1C, 0x10, 0x00, 0x10), # '?'
+      @(0x7C, 0x82, 0xBA, 0xBA, 0xBC, 0x80, 0x7C), # '@'
+      @(0x10, 0x28, 0x44, 0x82, 0xFE, 0x82, 0x82), # 'A'
+      @(0xFC, 0x82, 0x82, 0xFC, 0x82, 0x82, 0xFC), # 'B'
+      @(0x7C, 0x82, 0x80, 0x80, 0x80, 0x82, 0x7C), # 'C'
+      @(0xFC, 0x82, 0x82, 0x82, 0x82, 0x82, 0xFC), # 'D'
+      @(0xFE, 0x80, 0x80, 0xF8, 0x80, 0x80, 0xFE), # 'E'
+      @(0xFE, 0x80, 0x80, 0xF8, 0x80, 0x80, 0x80), # 'F'
+      @(0x7C, 0x82, 0x80, 0x9E, 0x82, 0x82, 0x7C), # 'G'
+      @(0x82, 0x82, 0x82, 0xFE, 0x82, 0x82, 0x82), # 'H'
+      @(0x38, 0x10, 0x10, 0x10, 0x10, 0x10, 0x38), # 'I'
+      @(0x02, 0x02, 0x02, 0x02, 0x82, 0x82, 0x7C), # 'J'
+      @(0x84, 0x88, 0x90, 0xE0, 0x90, 0x88, 0x84), # 'K'
+      @(0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0xFE), # 'L'
+      @(0x82, 0xC6, 0xAA, 0x92, 0x82, 0x82, 0x82), # 'M'
+      @(0x82, 0xC2, 0xA2, 0x92, 0x8A, 0x86, 0x82), # 'N'
+      @(0xFE, 0x82, 0x82, 0x82, 0x82, 0x82, 0xFE), # 'O'
+      @(0xFC, 0x82, 0x82, 0xFC, 0x80, 0x80, 0x80), # 'P'
+      @(0x7C, 0x82, 0x82, 0x82, 0x8A, 0x84, 0x7A), # 'Q'
+      @(0xFC, 0x82, 0x82, 0xFC, 0x88, 0x84, 0x82), # 'R'
+      @(0x7C, 0x82, 0x80, 0x7C, 0x02, 0x82, 0x7C), # 'S'
+      @(0xFE, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10), # 'T'
+      @(0x82, 0x82, 0x82, 0x82, 0x82, 0x82, 0x7C), # 'U'
+      @(0x82, 0x82, 0x82, 0x82, 0x44, 0x28, 0x10), # 'V'
+      @(0x82, 0x92, 0x92, 0x92, 0x92, 0x92, 0x6C), # 'W'
+      @(0x82, 0x44, 0x28, 0x10, 0x28, 0x44, 0x82), # 'X'
+      @(0x82, 0x44, 0x28, 0x10, 0x10, 0x10, 0x10), # 'Y'
+      @(0xFE, 0x04, 0x08, 0x10, 0x20, 0x40, 0xFE), # 'Z'
+      @(0x7C, 0x40, 0x40, 0x40, 0x40, 0x40, 0x7C), # '['
+      @(0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02), # '\'
+      @(0x7C, 0x04, 0x04, 0x04, 0x04, 0x04, 0x7C), # ']'
+      @(0x10, 0x28, 0x44, 0x00, 0x00, 0x00, 0x00), # '^'
+      @(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFE), # '_'
+      @(0x00, 0x38, 0x38, 0x10, 0x08, 0x00, 0x00), # '`'
+      @(0x00, 0x18, 0x24, 0x42, 0x7E, 0x42, 0x42), # 'a'
+      @(0x00, 0x7C, 0x42, 0x7C, 0x42, 0x42, 0x7C), # 'b'
+      @(0x00, 0x3C, 0x42, 0x40, 0x40, 0x42, 0x3C), # 'c'
+      @(0x00, 0x7C, 0x42, 0x42, 0x42, 0x42, 0x7C), # 'd'
+      @(0x00, 0x7E, 0x40, 0x7C, 0x40, 0x40, 0x7E), # 'e'
+      @(0x00, 0x7E, 0x40, 0x7C, 0x40, 0x40, 0x40), # 'f'
+      @(0x00, 0x3C, 0x42, 0x40, 0x4E, 0x42, 0x3C), # 'g'
+      @(0x00, 0x42, 0x42, 0x7E, 0x42, 0x42, 0x42), # 'h'
+      @(0x00, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08), # 'i'
+      @(0x00, 0x02, 0x02, 0x02, 0x02, 0x42, 0x3C), # 'j'
+      @(0x00, 0x42, 0x44, 0x78, 0x48, 0x44, 0x42), # 'k'
+      @(0x00, 0x40, 0x40, 0x40, 0x40, 0x40, 0x7E), # 'l'
+      @(0x00, 0x42, 0x66, 0x5A, 0x42, 0x42, 0x42), # 'm'
+      @(0x00, 0x42, 0x62, 0x52, 0x4A, 0x46, 0x42), # 'n'
+      @(0x00, 0x3C, 0x42, 0x42, 0x42, 0x42, 0x3C), # 'o'
+      @(0x00, 0x7C, 0x42, 0x42, 0x7C, 0x40, 0x40), # 'p'
+      @(0x00, 0x3C, 0x42, 0x42, 0x4A, 0x44, 0x3A), # 'q'
+      @(0x00, 0x7C, 0x42, 0x42, 0x7C, 0x44, 0x42), # 'r'
+      @(0x00, 0x3C, 0x40, 0x3C, 0x02, 0x42, 0x3C), # 's'
+      @(0x00, 0x3E, 0x08, 0x08, 0x08, 0x08, 0x08), # 't'
+      @(0x00, 0x42, 0x42, 0x42, 0x42, 0x42, 0x3C), # 'u'
+      @(0x00, 0x42, 0x42, 0x42, 0x42, 0x24, 0x18), # 'v'
+      @(0x00, 0x42, 0x42, 0x42, 0x5A, 0x66, 0x42), # 'w'
+      @(0x00, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42), # 'x'
+      @(0x00, 0x22, 0x14, 0x08, 0x08, 0x08, 0x08), # 'y'
+      @(0x00, 0x7E, 0x04, 0x08, 0x10, 0x20, 0x7E), # 'z'
+      @(0x38, 0x40, 0x40, 0xC0, 0x40, 0x40, 0x38), # '{'
+      @(0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10), # '|'
+      @(0x38, 0x04, 0x04, 0x06, 0x04, 0x04, 0x38), # '}'
+      @(0x60, 0x92, 0x0C, 0x00, 0x00, 0x00, 0x00) # '~'
+    )
+    $o = (New-Object -TypeName psobject)
+    $o | Add-Member -MemberType NoteProperty -Name OriginalStrings -Value @()
+    $o.psobject.typenames.Insert(0, 'Banner')
+  }
+  PROCESS {
+    $o.OriginalStrings += $InputString
+    $output = ''
+    $width = [math]::floor(($host.ui.rawui.buffersize.width - 1)/8)
+    # check and bail if a string is too long
+    foreach ($substring in $InputString) {
+      if ($substring.length -gt $width) {throw "strings must be less than $width characters"}
+    }
 
-		foreach ($substring in $InputString) {
-			for ($r = 0; $r -lt 7; $r++) {
-				foreach ($c in $substring.ToCharArray()) {
-					$bitmap = 0
+    foreach ($substring in $InputString) {
+      for ($r = 0; $r -lt 7; $r++) {
+        foreach ($c in $substring.ToCharArray()) {
+          $bitmap = 0
 
-					if (($c -ge ' ') -and ($c -le [char]'~')) {
-						$offset = (([int]$c) - 32)
-						$bitmap = ($chars[$offset][$r])
-					}
+          if (($c -ge ' ') -and ($c -le [char]'~')) {
+            $offset = (([int]$c) - 32)
+            $bitmap = ($chars[$offset][$r])
+          }
 
-					for ($c = 0; $c -lt 8; $c++) {
-						if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += ' ' }
-					}
-				}
+          for ($c = 0; $c -lt 8; $c++) {if ($bitmap -band $bit[$c]) { $output += $ASCChar } else { $output += ' ' }}
+        }
 
-				$output += "`n"
-			}
-		}
-		#$output
-		$sb = ($executioncontext.invokecommand.NewScriptBlock("'$output'"))
-		$o | add-member -Force -MemberType ScriptMethod -Name ToString -Value $sb
+        $output += "`n"
+      }
+    }
+    #$output
+    $sb = ($executioncontext.invokecommand.NewScriptBlock("'$output'"))
+    $o | Add-Member -Force -MemberType ScriptMethod -Name ToString -Value $sb
 
-		if ($IsString) {
-			$o.ToString()
-		} else {
-			$o
-		}
-	}
+    if ($IsString) {$o.ToString()} else {$o}
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTv7lDnUOHqnl5Oc+LP6aOzM9
-# gNGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoNnVnaDnBZHsFHDjVRgbQAoA
+# WcmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -281,10 +273,10 @@ function global:Get-ASCBanner {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -300,12 +292,12 @@ function global:Get-ASCBanner {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -402,25 +394,25 @@ function global:Get-ASCBanner {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQjUzcWegeYVMUMXDgdWjOkye2F6TANBgkqhkiG9w0B
-# AQEFAASCAQBKwy+830ytdHLfamOpH4kEJjd8gBneWPLqSJ6ku2ntmYgMywHOoe1K
-# r/IAdaO+4fidiKDp2p62B1pkXgnB6CyJHcWXaysLR17F0qmuoKXfQ7R49kEQdBOr
-# HUwJeLl+YgxIE1gzC4/nMn7HvAkFchxMOKs7pseDO2EVpCQPP8oNZS6CkYFizufh
-# u8hg0jdvtTFBaEoI9sSks24F7vEXUkqpDOQOEqkBEvJwuSkoGCHBCfi1KL+O8BHd
-# Ht7wHCpgAaOyWCi0J9mfumP7AiowWxm0vXeJFThgagVv6XuhV8MoZB3F1xPA5s9N
-# g29iIT+SBGHcKXJ8w2ZIKNEp61oMpY1WoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRbTjN6f/CKdupYxv1ltBAzHQSsZzANBgkqhkiG9w0B
+# AQEFAASCAQA+CO6DE9DYyOSmisQfd18JCUwE4HSmAATI5kQ04DoQ1XY1rLDYP797
+# TY3rg0LQuZBFKLrjSWcZXRFRAKxe/1hcl1xCA/2Okcc4/WUHA/McgztG2aq1a5tz
+# P7nFNjwBnOvaEevn3dbln1aPbe//6k/7fuN/Ez+/uiQxmV4ZolpwBmQTRimtZXFW
+# Hq57lIjo8lBAoXY3E6IMWNvRN9OFGZ2twTa88dS82eld1nE20Ofs7jVFFNq0Csgd
+# yhpA4Fc3sFKjAEdwPoKH7x6otYfSuZ2FgafA4WcTW4z/MTC68423cbuMUcX5jKnT
+# SWjU1JvArFWzzm5ohTqTWu0EWv+9FozloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyMVowIwYJKoZIhvcN
-# AQkEMRYEFOpFDIfurna96iKJS0yFTDWeFzWgMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyNlowIwYJKoZIhvcN
+# AQkEMRYEFCS4Wi/AulizbXZ7JuGvFjZ2itG7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAiY5dyIhw8JXv5tTqO8EV5qvEMU8G4WgUXMB6RohTvbW15
-# Rl4oROYz8LlwA4tZNr4G/mkJjjEVRGPOG+6oKAhscLqqlsZBbGCNZDPcPPgBGRmh
-# UdCkElPIwVd2syTz2KH2javIMPhHWE5dDZ3MUM0VWruIAe/M3SgtxQdh840eOhug
-# mRoxz1A6Cr1d1ltxRL4I7whRhPsMV6sxJu/UVA79nIQgUjSgwpqw9XgMvey60LPX
-# MUwdu6jIS69O+RQqswXjrxCcte35YhiI9fkQpIvgTEOSJT9vAJNc78pf1EE+bIev
-# a0wnn6izvs701wbHoGX/LvV5jQfWCZal62ITs/r0
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCqrIoZVSEn81iCpKwRwo7IAGmB44hjRFhSfuRxEUOPEqik
+# DicynyqdR8hhtz/EjRlJt0cUx2E1qiyoIFO9F42SUSOjACtG/Ln6NTWzZyZ7nKn6
+# WOfs0PkLxJ8CWQF1PQ0r5ulFl5ly503lPf1/YT9FayQrg5HWkxGbUdNyowW/6Fnq
+# LwiR5B1w8qqI2H0fCwC9e4WJDCIvtS1XYepi0aXEcnJKLocX6s6rtmFI96z19Vcw
+# h+jPL9GNMxg69cdb1LL3sdoO/KkIhhn0iHcwTBV5sG73Bl1IeZGOwkWOz5DjqZHk
+# 5UdnsT2EW0k69qOd+3Rs1F7QiGF0O/TzS83f8bvr
 # SIG # End signature block

@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,114 +14,110 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Hash {
-<#
-	.SYNOPSIS
-		Dumps the MD5 hash for the given File
+  <#
+      .SYNOPSIS
+      Dumps the MD5 hash for the given File
 
-	.DESCRIPTION
-		Dumps the MD5 hash for the given File
+      .DESCRIPTION
+      Dumps the MD5 hash for the given File
 
-	.PARAMETER File
-		File or path to dump MD5 Hash for
+      .PARAMETER File
+      File or path to dump MD5 Hash for
 
-	.PARAMETER Hash
-		Specifies the cryptographic hash function to use for computing the
-		hash value of the contents of the specified file.
+      .PARAMETER Hash
+      Specifies the cryptographic hash function to use for computing the
+      hash value of the contents of the specified file.
 
-	.EXAMPLE
-		PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
-		069DF9587DB0A8D3BA6D8E840099A2D9
+      .EXAMPLE
+      PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
+      069DF9587DB0A8D3BA6D8E840099A2D9
 
-		Description
-		-----------
-		Dumps the MD5 hash for the given File
+      Description
+      -----------
+      Dumps the MD5 hash for the given File
 
-	.EXAMPLE
-		PS C:\> Get-Hash -File 'C:\scripts\PowerShell\PesterDocs.ps1' -Hash SHA1
-		BC6B28A939CB3DBB82C9A7BDA5D80A191E8F06AE
+      .EXAMPLE
+      PS C:\> Get-Hash -File 'C:\scripts\PowerShell\PesterDocs.ps1' -Hash SHA1
+      BC6B28A939CB3DBB82C9A7BDA5D80A191E8F06AE
 
-		Description
-		-----------
-		Dumps the SHA1 hash for the given File
+      Description
+      -----------
+      Dumps the SHA1 hash for the given File
 
-	.NOTES
-		Re-factored to make it more flexible
-		(cryptographic hash is now a parameter)
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      Re-factored to make it more flexible
+      (cryptographic hash is now a parameter)
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'File or path to dum MD5 Hash for')]
-		[System.String]$File,
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
-		[ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$Hash = 'MD5'
-	)
+  [CmdletBinding()]
+  [OutputType([System.Boolean])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'File or path to dum MD5 Hash for')]
+    [System.String]$File,
+    [Parameter(ValueFromPipeline = $true,
+        Position = 1,
+    HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
+    [ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$Hash = 'MD5'
+  )
 
-	PROCESS {
-		if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {
-			Return (Get-FileHash -Algorithm $Hash -Path $File).Hash
-		} else {
-			Return $false
-		}
-	}
+  PROCESS {
+    if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $false}
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUS3LWFBNOmA2FytE8oK2ZuiBE
-# fyugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUloSdu1460B64fdki2cjTFpPt
+# bPugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -143,10 +139,10 @@ function global:Get-Hash {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -162,12 +158,12 @@ function global:Get-Hash {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -264,25 +260,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQA4AvSOce6rwqmp48L/7CDY8AQVTANBgkqhkiG9w0B
-# AQEFAASCAQAbMTbkpNLRxdrDupWUZZiMGIWz4ElaiqxEjgKlaTPQhwtEEEWAKqSd
-# BQz/3uTxMXT6n2PBqbN4fzvtIJ6FputmLDvR60u3ATSJ0JvY2lgwSquUfsVdx3EQ
-# ZcchOVjbnRY8VizuiaXUymvhG5hDYP99c/uhZVNyQyuEosC90GSSJgI4+Ze+kTGQ
-# AuXabGwxQel5B48S3Y62p5W4Usz6Wk/uUdp97ug62khf/R0l61SPqe9PE3dBzHwH
-# 51/4M/GkGXNtiGRPtvhY4mLZdjvL6m6HXhvY378/jJcNAynsMT5iBU78Y4l125gG
-# hy12RsM7O9IviK6I04t6LKAeH3NTE9nmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSi2KoxEhJTMl1ywo0AbJXtSO03uDANBgkqhkiG9w0B
+# AQEFAASCAQCIIr6pkOmSqrcJ7CioPWc7ugnTy8ujPzwEMD1AhDLuErotCTy454+S
+# d3We8VSBKecVnTODXcKWimvPMqsgMbxnPgOOWWtWfQTnTwKhYNgYSJKXcCa8Mefo
+# yJ069pJ8p8ihJRS5MYPcXKerhlBpK2+468KNXQtaqO0BuGuWrz9UFmlSyy9WgyYG
+# kpCPgWPPB+jrmNhY+PCCUJsXbkPL99Hr1kcF8sW7AfSVDBPNLt4rTO0zlJmxgdbz
+# Nxb9LAcDlFEjdWk04WFrHokltmBunSCHm3DjbYl7m1eKNrYl+JUTmVTR2Fv8brlb
+# b22W/2QXjcboXwid42oBy8h+Y+xT9iYNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyNFowIwYJKoZIhvcN
-# AQkEMRYEFIaITEEep2BXJoC4ywwuhq/b6LvtMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyOVowIwYJKoZIhvcN
+# AQkEMRYEFFD9fdN3ttUv9pCf3Vw0rcaPl+ryMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCmz7F+3OWbVuOylGNnNKDKxQQxCHemj+797r0Qpj64T8Ba
-# j/J4JYJOWzFjPKSMfH7xeDklB3fiWv3xys1tnqZ7nccJWtvPS3F/+t4IEsczKmPt
-# YI+oaoIw/u/bS6d0SjuuzduppVexnEcqzBt27VO+hVwuiA3b5zrKWf7zreWNvFpb
-# fPag9EScEdpDwa5X8xIy3HPXBgnto1gPGpwEtn4PfdQ1lAZHMqNf6vBKCu1ApL6U
-# oBqWrt9VJUdkA1vHKR518UxohHidQBvSXtsGfWMoPk37oXsN+QytwYgpM9L6IwUe
-# Hhl2NxLtG7FSHg7Qac6f1dFyNj+uT/Aq/+4k7CT/
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAP1JByYXgEeuXPnSuyA9aPi0JBOXzpkkjql81/QWJdDtIF
+# VXftxUyK504LObd6CU+PiFUCPnm1PI/jjzCF6LvnYgu7Rz4YQDCVHlUhmzw9Bbog
+# ugfQTm9ERpCxyFM4ZLRz8ayryGX6iJxiLwN2y0WMHEEKejUbhZtiS74gbc+KwuuE
+# q+9WT1x3m3jNd5hNQMFgyUQK6qfgAN+//VNaLHMpX4duYj6ouN2XndO/5K2m1UZS
+# 8Kk/mnzcTcQD/dwMmuKJFH3iJ7iB5Vxqsg4uMVQSpPs/4wXYSJLEHFAyTQvcvJej
+# K+ryV9l5196h5bWsPn18hw5m+st5BdZcEcxY2hg1
 # SIG # End signature block

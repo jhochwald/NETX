@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,113 +14,109 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Remove-ItemSafely {
-<#
-	.SYNOPSIS
-		Deletes files and folders into the Recycle Bin
+  <#
+      .SYNOPSIS
+      Deletes files and folders into the Recycle Bin
 
-	.DESCRIPTION
-		Deletes the file or folder as if it had been done via File Explorer.
+      .DESCRIPTION
+      Deletes the file or folder as if it had been done via File Explorer.
 
-	.PARAMETER Path
-		The path to the file/files or folder/folders
+      .PARAMETER Path
+      The path to the file/files or folder/folders
 
-	.PARAMETER DeletePermanently
-		Bypasses the recycle bin, deleting the file or folder permanently
+      .PARAMETER DeletePermanently
+      Bypasses the recycle bin, deleting the file or folder permanently
 
-	.NOTES
-		Early Beta Version
+      .NOTES
+      Early Beta Version
 
-	.LINK
-		Based on http://stackoverflow.com/a/502034/2688
+      .LINK
+      Based on http://stackoverflow.com/a/502034/2688
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'The path to the file or folder')]
-		[System.String[]]$Path,
-		[Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
-		[switch]$DeletePermanently
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'The path to the file or folder')]
+    [System.String[]]$Path,
+    [Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
+    [switch]$DeletePermanently
+  )
 
-	PROCESS {
-		foreach ($SingleItem in $Path) {
-			try {
-				if ($DeletePermanently) {
-					try {
-						# Bypasses the recycle bin, deleting the file or folder permanently
-						(Remove-Item -Path:$SingleItem -Force)
-					} catch {
-						Write-Warning "Unable to Delete $SingleItem, please check!"
-					}
+  PROCESS {
+    foreach ($SingleItem in $Path) {
+      try {
+        if ($DeletePermanently) {
+          try {
+            # Bypasses the recycle bin, deleting the file or folder permanently
+            (Remove-Item -Path:$SingleItem -Force)
+          } catch {Write-Warning -Message "Unable to Delete $SingleItem, please check!"}
 
-					# Done!
-					return
-				}
+          # Done!
+          return
+        }
 
-				# Soft Delete
-				$item = (Get-Item $SingleItem)
-				$directoryPath = (Split-Path $item -Parent)
-				$shell = (New-Object -comobject 'Shell.Application')
-				$shellFolder = ($shell.Namespace($directoryPath))
-				$shellItem = ($shellFolder.ParseName($item.Name))
-				$shellItem.InvokeVerb('delete')
-			} catch {
-				Write-Warning "Unable to Delete $SingleItem, please check!"
-			}
-		}
-	}
+        # Soft Delete
+        $item = (Get-Item $SingleItem)
+        $directoryPath = (Split-Path -Path $item -Parent)
+        $shell = (New-Object -ComObject 'Shell.Application')
+        $shellFolder = ($shell.Namespace($directoryPath))
+        $shellItem = ($shellFolder.ParseName($item.Name))
+        $shellItem.InvokeVerb('delete')
+      } catch {Write-Warning -Message "Unable to Delete $SingleItem, please check!"}
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI2elewYMT7XbAcHo7WbZU5fH
-# hkGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDQgobjC6nbgYUlsLOSGamrzY
+# xHCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -142,10 +138,10 @@ function global:Remove-ItemSafely {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -161,12 +157,12 @@ function global:Remove-ItemSafely {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -263,25 +259,25 @@ function global:Remove-ItemSafely {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRS6m3UOKo7yA1oSE6x9JN2hACSPTANBgkqhkiG9w0B
-# AQEFAASCAQB/0LaRTU9F6X4ZwDR2nPJxNK6BYP4NdY+TifgmGhgqFuUgV7EGFQ4i
-# NOd+lzL/83OOFc9mrlazrb0T6AqWnWOu1ZUZEw+xMuDsTSD7Lgjxw5ExdfLFozS2
-# fZ/SpGTL4jZDEU404UKw0H8yR9uxUz4PiZlh9fZB0YJGGLcD2rYKvXjF1UcA02oA
-# puSc6hiXd1Wn+OBSlu2Z+THAh+1vbJ1THdnvduyMDQSV6MnoZB1jIT50cxZCjg0b
-# EZzPuxUbDm5W5l8mu/LpiabVuI8U9A2+aSDWQXslH7kRluLyqKscJ0YTPwVUA5+7
-# dtut3vqv/gGJl1p2X57KVMxvZXxvxdb0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRncdbEyVHU2WN6JvFOgybMw9xuIzANBgkqhkiG9w0B
+# AQEFAASCAQAe5Twg+8uv6TgjUChKGGvomHZwxT38FS7uoGRIo0hYlv22KoK+ePy7
+# ZbCMxXuwJg10wW+A66wrlPVvWAOU9dpV5XhhuFcYdtQiQHJrqhBHrfZ2rf6c9g3P
+# 6xQvN93A6boNOTEssbhJsAuWIMICuKpTQm4vgbl/nr0t9idQcdIHm7mB/MC7Z4mC
+# /tZScTJ06ujqbPRSItcrc679A2BfayLOcloYMAlnKnKCMA/okttgbBLTH6o33mBA
+# EnxsT5rWlZQPZxiqGXh09GfecjO8SiJC42n8zTQBEbOfUojg2DU+RRd4axvYk6BG
+# TPJTa4Wxm6Q7IC441hN/zkD5dzMSmWUVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1MlowIwYJKoZIhvcN
-# AQkEMRYEFA+cpVskR6mNdmNae+81mtK7Z5bxMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1OVowIwYJKoZIhvcN
+# AQkEMRYEFFMCBV+sFckFomsnwFCoFWXTILAkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA27s8XmtiI/pSaelx75RwXcjk+mfemfBHJd5blrle3kMSY
-# CgqZO9sNFOowUXckiShPLNKl5xeDkvQtXdAknyiBxtpT2UjFNNDSL4QMKCotprvE
-# 1E3RA0o9yR3Qkduhs5jG7L4NqFtoljAKgxAAxSeWAlyMzJxOkuDCksMDoIZB+46k
-# a/QlU8SmB6OOcsWoV8mtqjFYrNbpM0was+KDdfVShOj6+gCX5DGYyowmV2Rr0gMR
-# fcM6ve91QpOdvyYfDdwaRwhodCpEFJPbx3wTOEPcAfKn+wkvToXwWjHE8XmGiMLq
-# 7+eqS6wl5DhL+Q7nm2+zZY6ZZMpMfW3zTMWhRFax
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQA0J6kAjy5e9odHycmlnJ6dTKehmPLMjNweO7VtY9T3Bk9H
+# oyi6xrFwC74Z08gepLmd8isytnJI4IoBS2jeHaOCJhQVKoPH4RnOx8EHMPYu09XI
+# q914ILs2wCPUdZeRs8dfyt5L3asrxEgtQJQ9LdmhqboUGd4xAjjo2kYOx2kSbGyT
+# eNOAmFmZdymYVjNsl5Ruau+IDozDNd3Z8xIeiYMHUh1Xaq9lN7qs/3HSVZHE+t7z
+# V+XZN4aMOoRPg/corP2KT18ZAf4Ed/9Aj5Kku0kbML5QtSdvUCRY8pqAs+CWaZFg
+# nIhGozzK+Uur09V1QbzR5ZUVKhtA8DsjeLgjiY1c
 # SIG # End signature block

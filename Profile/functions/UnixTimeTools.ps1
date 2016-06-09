@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,231 +14,231 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:ConvertTo-UnixDate {
-<#
-	.SYNOPSIS
-		Convert from DateTime to Unix date
+  <#
+      .SYNOPSIS
+      Convert from DateTime to Unix date
 
-	.DESCRIPTION
-		Convert from DateTime to Unix date
+      .DESCRIPTION
+      Convert from DateTime to Unix date
 
-	.PARAMETER Date
-		Date to convert
+      .PARAMETER Date
+      Date to convert
 
-	.PARAMETER Utc
-		Default behavior is to convert Date to universal time.
-		Set this to false to skip this step.
+      .PARAMETER Utc
+      Default behavior is to convert Date to universal time.
+      Set this to false to skip this step.
 
-	.EXAMPLE
-		PS C:\> ConvertTo-UnixDate -Date (Get-date)
-		1458205878
+      .EXAMPLE
+      PS C:\> ConvertTo-UnixDate -Date (Get-date)
+      1458205878
 
-		Description
-		-----------
-		Convert from UTC DateTime to Unix date
+      Description
+      -----------
+      Convert from UTC DateTime to Unix date
 
-	.EXAMPLE
-		PS C:\> ConvertTo-UnixDate -Date (Get-date) -UTC $false
-		1458209488
+      .EXAMPLE
+      PS C:\> ConvertTo-UnixDate -Date (Get-date) -UTC $false
+      1458209488
 
-		Description
-		-----------
-		Convert from non UTC DateTime to Unix date
+      Description
+      -----------
+      Convert from non UTC DateTime to Unix date
 
-	.NOTES
-		Adopted parts of Warren F. (RamblingCookieMonster)
+      .NOTES
+      Adopted parts of Warren F. (RamblingCookieMonster)
 
-	.LINK
-		Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
-		Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
-#>
+      .LINK
+      Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
+      Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.Int32])]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Date to convert')]
-		[System.DateTime]$Date = (Get-Date),
-		[Parameter(Position = 1,
-				   HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to skip this step.')]
-		[System.Boolean]$UTC = $true
-	)
+  [CmdletBinding()]
+  [OutputType([System.Int32])]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Date to convert')]
+    [System.DateTime]$Date = (Get-Date),
+    [Parameter(Position = 1,
+    HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to skip this step.')]
+    [System.Boolean]$UTC = $true
+  )
 
-	BEGIN {
-		# Do we use UTC as Time-Zone?
-		if ($UTC) {
-			$Date = $Date.ToUniversalTime()
-		}
-	}
+  BEGIN {
+    # Do we use UTC as Time-Zone?
+    if ($UTC) {
+      $Date = $Date.ToUniversalTime()
+    }
+  }
 
-	PROCESS {
-		$unixEpochStart = (New-Object DateTime 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
-		[System.Int32]($Date - $unixEpochStart).TotalSeconds
-	}
+  PROCESS {
+    $unixEpochStart = (New-Object -TypeName DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
+    [System.Int32]($Date - $unixEpochStart).TotalSeconds
+  }
 }
 
 function Global:ConvertFrom-UnixDate {
-<#
-	.SYNOPSIS
-		Convert from Unix time to DateTime
+  <#
+      .SYNOPSIS
+      Convert from Unix time to DateTime
 
-	.DESCRIPTION
-		Convert from Unix time to DateTime and make it human readable again
+      .DESCRIPTION
+      Convert from Unix time to DateTime and make it human readable again
 
-	.PARAMETER Date
-		Date to convert, in Unix / Epoch format
+      .PARAMETER Date
+      Date to convert, in Unix / Epoch format
 
-	.PARAMETER Utc
-		Default behavior is to convert Date to universal time.
-		Set this to false to Return local time.
+      .PARAMETER Utc
+      Default behavior is to convert Date to universal time.
+      Set this to false to Return local time.
 
-	.EXAMPLE
-		PS C:\> ConvertFrom-UnixDate -Date 1458205878
-		17. März 2016 09:11:18
+      .EXAMPLE
+      PS C:\> ConvertFrom-UnixDate -Date 1458205878
+      17. März 2016 09:11:18
 
-		Description
-		-----------
-		Convert from a given Unix time string to a UTC DateTime format
-		Formated based on the local PowerShell Culture!
+      Description
+      -----------
+      Convert from a given Unix time string to a UTC DateTime format
+      Formated based on the local PowerShell Culture!
 
-	.EXAMPLE
-		PS C:\> ConvertFrom-UnixDate -Date 1458205878 -UTC $false
-		17. März 2016 10:11:18
+      .EXAMPLE
+      PS C:\> ConvertFrom-UnixDate -Date 1458205878 -UTC $false
+      17. März 2016 10:11:18
 
-		Description
-		-----------
-		Convert from a given Unix time string to a non UTC DateTime format
-		Formated based on the local PowerShell Culture!
+      Description
+      -----------
+      Convert from a given Unix time string to a non UTC DateTime format
+      Formated based on the local PowerShell Culture!
 
-	.EXAMPLE
-		PS C:\> Set-Culture -culture "en-US" | ConvertFrom-UnixDate -Date 1458205878
-		Thursday, March 17, 2016 9:11:18 AM
+      .EXAMPLE
+      PS C:\> Set-Culture -culture "en-US" | ConvertFrom-UnixDate -Date 1458205878
+      Thursday, March 17, 2016 9:11:18 AM
 
-		Description
-		-----------
-		Use our Set-Culture to dump the info in US English
+      Description
+      -----------
+      Use our Set-Culture to dump the info in US English
 
-	.EXAMPLE
-		PS C:\> Set-Culture -culture "en-GB" | ConvertFrom-UnixDate -Date 1458205878
-		17 March 2016 09:11:18
+      .EXAMPLE
+      PS C:\> Set-Culture -culture "en-GB" | ConvertFrom-UnixDate -Date 1458205878
+      17 March 2016 09:11:18
 
-		Description
-		-----------
-		Use our Set-Culture to dump the info in plain (UK) English
+      Description
+      -----------
+      Use our Set-Culture to dump the info in plain (UK) English
 
-	.EXAMPLE
-		PS C:\>  Set-Culture -culture "fr-CA" | ConvertFrom-UnixDate -Date 1458205878
-		17 mars 2016 09:11:18
+      .EXAMPLE
+      PS C:\>  Set-Culture -culture "fr-CA" | ConvertFrom-UnixDate -Date 1458205878
+      17 mars 2016 09:11:18
 
-		Description
-		-----------
-		Use our Set-Culture to dump the info in Canadian French
+      Description
+      -----------
+      Use our Set-Culture to dump the info in Canadian French
 
-	.EXAMPLE
-		PS C:\> ConvertFrom-UnixDate -Date (Get-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' | Select-Object -ExpandProperty InstallDate)
-		20. Juli 2015 13:24:00
+      .EXAMPLE
+      PS C:\> ConvertFrom-UnixDate -Date (Get-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' | Select-Object -ExpandProperty InstallDate)
+      20. Juli 2015 13:24:00
 
-		Description
-		-----------
-		Read the Install date of the local system (Unix time string)
-		and converts it to a human readable string
+      Description
+      -----------
+      Read the Install date of the local system (Unix time string)
+      and converts it to a human readable string
 
-		Formated based on the local PowerShell Culture!
+      Formated based on the local PowerShell Culture!
 
-	.EXAMPLE
-		PS C:\> ConvertFrom-UnixDate -Date (Get-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' | Select-Object -ExpandProperty InstallDate) | New-TimeSpan | Select-Object -ExpandProperty Days
-		240
+      .EXAMPLE
+      PS C:\> ConvertFrom-UnixDate -Date (Get-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' | Select-Object -ExpandProperty InstallDate) | New-TimeSpan | Select-Object -ExpandProperty Days
+      240
 
-		Description
-		-----------
-		Read the Install date (Unix time string) and converts it to DateTime,
-		extracts the days
+      Description
+      -----------
+      Read the Install date (Unix time string) and converts it to DateTime,
+      extracts the days
 
-	.NOTES
-		Adopted parts of Warren F. (RamblingCookieMonster)
+      .NOTES
+      Adopted parts of Warren F. (RamblingCookieMonster)
 
-	.LINK
-		Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
-		Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
-#>
+      .LINK
+      Source http://stackoverflow.com/questions/10781697/convert-unix-time-with-powershell
+      Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Date to convert, in Unix / Epoch format')]
-		[System.Int32]$Date,
-		[Parameter(Position = 1,
-				   HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to Return local time.')]
-		[System.Boolean]$UTC = $true
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Date to convert, in Unix / Epoch format')]
+    [System.Int32]$Date,
+    [Parameter(Position = 1,
+    HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to Return local time.')]
+    [System.Boolean]$UTC = $true
+  )
 
-	BEGIN {
-		# Create the Object
-		$unixEpochStart = (New-Object DateTime 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
+  BEGIN {
+    # Create the Object
+    $unixEpochStart = (New-Object -TypeName DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
 
-		# Default is UTC
-		$Output = ($unixEpochStart.AddSeconds($Date))
-	}
+    # Default is UTC
+    $Output = ($unixEpochStart.AddSeconds($Date))
+  }
 
-	PROCESS {
-		# Convert to non UTC?
-		if (-not $UTC) {
-			# OK, let us use the local time
-			$Output = ($Output.ToLocalTime())
-		}
-	}
+  PROCESS {
+    # Convert to non UTC?
+    if (-not $UTC) {
+      # OK, let us use the local time
+      $Output = ($Output.ToLocalTime())
+    }
+  }
 
-	END {
-		# Dump
-		Write-Output $Output
-	}
+  END {
+    # Dump
+    Write-Output -InputObject $Output
+  }
 }
 # Set a compatibility Alias
-(Set-Alias ConvertFrom-UnixTime ConvertFrom-UnixDate -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name ConvertFrom-UnixTime -Value ConvertFrom-UnixDate -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPPEmnYLv+cciBNC2lRa21Tzy
-# X7ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfpL6n5UbA1z+CzAiIw0UokhZ
+# q62gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -381,25 +381,25 @@ function Global:ConvertFrom-UnixDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRLFaTnZGbLwiCnhoiQO+SFuEc66zANBgkqhkiG9w0B
-# AQEFAASCAQBM7m8TZyr3QQylxSUWFEqV2elgdr74v5isMrFLanjXmb4EG4SoZzeQ
-# OI1Q3Jzi6hZsOpmsZR7/kaW+ONkrF5M7e0kxDHddu3Y0LFNVOsdZhfPwS9Utc3vM
-# 4l3P31R5C8ES34cscHA+ujJwuCAZPDDyrEZamTCr2iOfeWQMg23IEUqztvDJaXsO
-# ix47VWfNK9XiZpVCQRfy9DPD0fiNLODJbJHxKvwtyZv0sFmkeTpOOyyOT31rRzYy
-# mbDFCv33p/tdgGFxlvWZqF8AaJdcwBEOG1qxajbYpJqHoSMjbdAAo1VeeNwYbmYD
-# Zmc70iPRgvdt/mpLabAXSY/0eRwxAptvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRWwAphiPSebOjZE9Dg9Ss+c6P9XzANBgkqhkiG9w0B
+# AQEFAASCAQAu3Fu2n01qPPk165PP312BP+o5+qEXAWN7L/sxM6gtnx4IDwGoCrRg
+# 0L9LlPgPdkpofkdKPMcwKLEP9da3gC9OHKDaxcqdJgorMk62PWb2WKqVv3M9eqZZ
+# ioxLVXVvW9Yk39HPwDey8pADTKXuKN/ibxfYl/wU75QIi2DaKPTyjVC6tY6uTFhW
+# 9e2B9o8roS+/A/6AU24L8l7GWBtbJwBBxpyrCyk8eoUYEKee55e1+1fnn+ATJlg2
+# MNx8pBTrDy53p4PeMkIxL7CS+aOiXY7IKHasFkNf7+qqgKzVY4if70tx85HOYhWq
+# +PsxT6G8hzYEwzU1f9TEmFn9nJDDiyoEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzUwMlowIwYJKoZIhvcN
-# AQkEMRYEFP1I4fyfCNP0V+493IP1ruFJrp7zMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwOVowIwYJKoZIhvcN
+# AQkEMRYEFGJnOn6OSrjDtkGU6tevS31H7SspMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBU5/iMJfDJRT/+oGd6l2YWzpoohs9qy4LhGNWvbcqZ/bg7
-# VbgPp/eGAh+7Hj35PjQjZ+g5d5CeUgFMGBBw7woTrHLE4Nf7vdtGpNr6cfwINb+Z
-# R7MuCi/3+e8YshiQIKaucZ1tfG00nbzhtkLlZ0zS7cgur14/sLMrW62qFjTdyh7H
-# +9Z9mUbbMuOxVnqFXj/E68wekBI3Cln32cHXeHmfQaZhjoebOl1Dtza7EZya1MHk
-# j/LZc00WnU3nHWnqxCYcgmTH76sSpaLhOPs020ljFLvt8Yq1rqcdyajY18IGOypi
-# 5iXfCX1KDRlVw0dLegFQ/ORyF1YbuFocdx2YcIx2
+# hkiG9w0BAQEFAASCAQA8jHNpAM7rF4r9SD9fktodsgV3Zktaoh6DcB/UdCxDU02d
+# plAgQerT+T5zs+v0VCG8ZWWZ+9eT4tYOCB1AYuzQB4XVnO8U8Irri2XdpvXVKvqr
+# l6jRgrxCDhASeLp+BP6mMcHQz1R8PblY0nSoooqCQKBDhOrjp6bjDnEe2omb/8kg
+# ANSshXZO0J0nQVQseLV5AgeMkt8Ab2vZC/I3Hk/YEbAthfVRXeXmoLOOwljHNx8X
+# MGXrjlSMBZk1wiGHtXwxZRX4e8O3AaZmUCa87jneXKSjlMA3aAOuVz5449LHG+kJ
+# SgnmGsl6lls55XqJfptEPKYkJ5tdQi84Ie2yrl13
 # SIG # End signature block

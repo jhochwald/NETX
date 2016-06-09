@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,121 +14,121 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:New-BasicAuthHeader {
-<#
-	.SYNOPSIS
-		Create a basic authentication header for Web requests
+  <#
+      .SYNOPSIS
+      Create a basic authentication header for Web requests
 
-	.DESCRIPTION
-		Create a basic authentication header for Web requests, often used
-		in Rest API Calls (Works perfect for Invoke-RestMethod calls)
+      .DESCRIPTION
+      Create a basic authentication header for Web requests, often used
+      in Rest API Calls (Works perfect for Invoke-RestMethod calls)
 
-	.PARAMETER user
-		User name to use
+      .PARAMETER user
+      User name to use
 
-	.PARAMETER password
-		Password to use
+      .PARAMETER password
+      Password to use
 
-	.EXAMPLE
-		PS C:\> New-BasicAuthHeader -user 'apiuser' -password 'password'
-		YXBpdXNlcjpwYXNzd29yZA==
+      .EXAMPLE
+      PS C:\> New-BasicAuthHeader -user 'apiuser' -password 'password'
+      YXBpdXNlcjpwYXNzd29yZA==
 
-		Description
-		-----------
-		Create a valid password and Auth header, perfect for REST Web Services
+      Description
+      -----------
+      Create a valid password and Auth header, perfect for REST Web Services
 
-	.EXAMPLE
-		PS C:\> Invoke-RestMethod -Uri 'https://service.contoso.com/api/auth' -Method 'Get' -Headers @{Authorization=("Basic {0}" -f (New-BasicAuthHeader 'apiuser' 'password'))}
+      .EXAMPLE
+      PS C:\> Invoke-RestMethod -Uri 'https://service.contoso.com/api/auth' -Method 'Get' -Headers @{Authorization=("Basic {0}" -f (New-BasicAuthHeader 'apiuser' 'password'))}
 
-		Description
-		-----------
-		Call the URI 'https://service.contoso.com/api/auth' with an basic
-		authentication header for the given credentials.
+      Description
+      -----------
+      Call the URI 'https://service.contoso.com/api/auth' with an basic
+      authentication header for the given credentials.
 
-	.NOTES
-		Very basic for now!
-#>
+      .NOTES
+      Very basic for now!
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 1,
-				   HelpMessage = 'User name to use')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$user,
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 2,
-				   HelpMessage = 'Password to use')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$password
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 1,
+    HelpMessage = 'User name to use')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$user,
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 2,
+    HelpMessage = 'Password to use')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$password
+  )
 
-	BEGIN {
-		# Cleanup
-		$BasicAuthHeader = $null
-	}
+  BEGIN {
+    # Cleanup
+    $BasicAuthHeader = $null
+  }
 
-	PROCESS {
-		if ($pscmdlet.ShouldProcess('BasicAuthHeader', 'Create')) {
-			$BasicAuthHeader = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(('{0}:{1}' -f $user, $password)))
-		}
-	}
+  PROCESS {
+    if ($pscmdlet.ShouldProcess('BasicAuthHeader', 'Create')) {
+      $BasicAuthHeader = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(('{0}:{1}' -f $user, $password)))
+    }
+  }
 
-	END {
-		if ($BasicAuthHeader) {
-			Write-Output $BasicAuthHeader
-		}
+  END {
+    if ($BasicAuthHeader) {
+      Write-Output -InputObject $BasicAuthHeader
+    }
 
-		# Cleanup
-		$BasicAuthHeader = $null
-		$user = $null
-		$password = $null
-	}
+    # Cleanup
+    $BasicAuthHeader = $null
+    $user = $null
+    $password = $null
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNGW/6aF4tpAb0t7Ddnkm2spi
-# P2igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURmbdCKkvCMJBbGYdXViRESa0
+# V6igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +271,25 @@ function global:New-BasicAuthHeader {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT+TCMk7sdvmx2iIMukWnn/DrQuTzANBgkqhkiG9w0B
-# AQEFAASCAQBtRt5cD9N77jrDNI8qlAQp9hDE5Zxfq3FtIFUUG4Wl0Ol7imS9tZP8
-# shfIBP9kA0e2h40mCUziguH7nmwNz1+zzewPNXgC+OWPJmiRUYOTbt3AOVJjq0xd
-# 6Cde0aQZk3+oRLWu5AniKXvsGGbfIPXN51Pgk5OeEa56CZpO+RZv6+s4UdMVuUWK
-# bwhOFcO3APz/Cu/lF4ADq3RIUkvdG1wJEAQL+QtZRFmRlXhFplp/R7/VM+1tsfky
-# jc76KiMhiLGhLH4XPxDxdmgG6JK/rEdbt/4nhVNcUxCcjZeYmMx/IdX6fsevp0x4
-# mg0isdZ39C8ORGjmSywL/GSXW8whM7S3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBScWxEviI2y3mPfkA9xByMRtE5yADANBgkqhkiG9w0B
+# AQEFAASCAQBs7zUfC/shAjUS9xkuySWgsSi3vqG6of0j2JL1tqj8uBKovznmRZo+
+# zlQfJ1vdmlfmxdidtpR4IvDH0h41MSlkcn+am57wKI1O4Oisnsmu3v5KKlpiDRo1
+# xv7caGlNJLOgDvuZv4Phc+zNQkNvzna35wZc2nDhmeFIWO8qJFFlUaibYlLse2qH
+# eQhNTM8348gyjccjrrKpSwolcmHmdCjPOnsOkqCk/Q7cVglbTwC9PouliALUwld+
+# QNjv6/iAhxyb11+ocZmJqGeA/JxY+hvDShxKf538gKfWbjYZ6V3LFoiaE9KOHba8
+# hQrKt6bmjM/ZYIM2oK+jkQZvB/NBm8mwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0NlowIwYJKoZIhvcN
-# AQkEMRYEFIQm2jzURvoisf4Kq4UYND9v9webMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1M1owIwYJKoZIhvcN
+# AQkEMRYEFFD6eMNq/0KFLRmNqiNE3hTUVfhxMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCWqm9LssQeozbxxiYSP7mnnCKLidojrOfpAddTqfdNyEDG
-# AmUKIu/LpYq3eyfYMpuE7UPspH4pfHcMoTM/EUiMI3sCLsjK7/3T7MXWaGtyiuQ8
-# pf0fsdfD3O49dUP8YhoUyr3B6CmlpwxWQ6ab2Krb999fBiL/bkq3hHab09ptm+i4
-# J8qHmc3cDpxucXQ9gKt/MtXOzZxCma8s1mJ0m9ImQoEFgZ7+9Cq05yCzKVHakC2Z
-# f/mvGSAL+Uel7ugbjklMnrqtqM7gKi0nwMjUZNBRT66E/grp7XD58HP0KUJzF1Lr
-# 97tsAOxqSJSq8iSnapEl23VX2x7PBy4zNn7wVo/T
+# hkiG9w0BAQEFAASCAQAngmz3yhtqYPwVgNL9b2FKEvMO/iz6Io/mo42XKEAeNvpv
+# bc0cARQ2UlAFcnU2MeKdrUPbIO9PiI7A0+SZPdMcioNTIHtF5P+EwHfprphxYXY0
+# 8yLr4fo2LY2IrJwPlItTxBQ4ayKafA78/990mTSk/+tYIJkeexQdIf+vsX5G8hNG
+# ZuJU07sVZgGYtqsiBKalE0ZH2IJSNvS7M80KXZMwynXvxIYopCqovEjMRQ22/nDr
+# c8scGAzX8lmhq0s9UZ2fHMITR9ing5OQ0qoBsJynijCCaMi2K/xV9HZvhjrWxb60
+# UvoqZfsHegbdX8XjhzjLqF5bCaZW0W7qvZRxdS3w
 # SIG # End signature block

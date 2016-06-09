@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-06-08
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,150 +14,142 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Install-PsGet {
-<#
-	.SYNOPSIS
-		Install PsGet package management
+  <#
+      .SYNOPSIS
+      Install PsGet package management
 
-	.DESCRIPTION
-		Install PsGet package management
+      .DESCRIPTION
+      Install PsGet package management
 
-	.EXAMPLE
-		PS C:\> Install-PsGet
+      .EXAMPLE
+      PS C:\> Install-PsGet
 
-		Description
-		-----------
-		Install the PsGet package management
+      Description
+      -----------
+      Install the PsGet package management
 
-	.NOTES
-		Just a wrapper for the known installer command
+      .NOTES
+      Just a wrapper for the known installer command
 
-	.LINK
-		http://psget.net
+      .LINK
+      http://psget.net
 
-	.LINK
-		https://github.com/psget/psget
-#>
-
+      .LINK
+      https://github.com/psget/psget
+  #>
+	
 	[CmdletBinding(ConfirmImpact = 'Medium',
 				   SupportsShouldProcess = $true)]
 	param ()
-
+	
 	PROCESS {
 		if ($pscmdlet.ShouldProcess('PsGet', 'Download and Install')) {
 			if (-not (Get-Module -ListAvailable -Name PackageManagement)) {
 				# Use the command provided via http://psget.net
 				try {
 					# I hate Invoke-Expression, by the way! Is there another way to do that???
-					(New-Object Net.WebClient).DownloadString('http://psget.net/GetPsGet.ps1') | Invoke-Expression
+					(New-Object -TypeName Net.WebClient).DownloadString('http://psget.net/GetPsGet.ps1') | Invoke-Expression
 				} catch [System.Exception] {
 					Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
-
+					
 					# Still here? Make sure we are done!
 					break
-
+					
 					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
 					exit 1
 				} catch {
 					Write-Error -Message 'Unable to install PsGet' -ErrorAction:Stop
-
+					
 					# Still here? Make sure we are done!
 					break
-
+					
 					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
 					exit 1
 				}
-
-			} else {
-				Write-Output 'PsGet Package Management is already installed!'
-			}
+			} else { Write-Output -InputObject 'PsGet Package Management is already installed!' }
 		}
 	}
 }
 
 function Global:Enable-PSGallery {
-<#
-	.SYNOPSIS
-		Enables the PSGallery Repository
+  <#
+      .SYNOPSIS
+      Enables the PSGallery Repository
 
-	.DESCRIPTION
-		Enables the PSGallery Repository
+      .DESCRIPTION
+      Enables the PSGallery Repository
 
-	.EXAMPLE
-		PS C:\> Enable-PSGallery
+      .EXAMPLE
+      PS C:\> Enable-PSGallery
 
-		Description
-		-----------
-		Enable the PSGallery as installation source.
+      Description
+      -----------
+      Enable the PSGallery as installation source.
 
-	.NOTES
-		The PSGallery is a great source for PowerShell Modules.
-#>
-
+      .NOTES
+      The PSGallery is a great source for PowerShell Modules.
+  #>
+	
 	[CmdletBinding(ConfirmImpact = 'None',
 				   SupportsShouldProcess = $true)]
 	param ()
-
+	
 	#Requires -Module PackageManagement
-
-
+	
+	
 	PROCESS {
 		if ($pscmdlet.ShouldProcess('PSGallery', 'Enable Repository')) {
 			try {
-				if (-not (Get-PSRepository -name PSGallery)) {
-					Set-PSRepository -Name 'PSGallery' -SourceLocation 'https://www.powershellgallery.com/api/v2/' -InstallationPolicy 'Trusted'
-				} else {
-					Write-Output 'PSGallery is already enabled'
-				}
-
+				if (-not (Get-PSRepository -name PSGallery)) { Set-PSRepository -Name 'PSGallery' -SourceLocation 'https://www.powershellgallery.com/api/v2/' -InstallationPolicy 'Trusted' } else { Write-Output -InputObject 'PSGallery is already enabled' }
 			} catch [System.Exception] {
 				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
-
+				
 				# Still here? Make sure we are done!
 				break
-
+				
 				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
 				exit 1
 			} catch {
 				Write-Error -Message 'Unable to enable the PSGallery Repository' -ErrorAction:Stop
-
+				
 				# Still here? Make sure we are done!
 				break
-
+				
 				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
 				exit 1
 			}
@@ -166,34 +158,34 @@ function Global:Enable-PSGallery {
 }
 
 function Global:Update-AllPsGetModules {
-<#
-	.SYNOPSIS
-		Search for all installed PsGet Modules and updates them if needed
+  <#
+      .SYNOPSIS
+      Search for all installed PsGet Modules and updates them if needed
 
-	.DESCRIPTION
-		Search for all installed PsGet Modules and updates them if needed
+      .DESCRIPTION
+      Search for all installed PsGet Modules and updates them if needed
 
-	.PARAMETER force
-		No confirm for the update needed
+      .PARAMETER force
+      No confirm for the update needed
 
-	.EXAMPLE
-		PS C:\> Update-AllPsGetModules -force
+      .EXAMPLE
+      PS C:\> Update-AllPsGetModules -force
 
-		Description
-		-----------
-		Update all installed PsGet Modules without confirming anything!
+      Description
+      -----------
+      Update all installed PsGet Modules without confirming anything!
 
-	.EXAMPLE
-		PS C:\> Update-AllPsGetModules
+      .EXAMPLE
+      PS C:\> Update-AllPsGetModules
 
-		Description
-		-----------
-		Update all installed PsGet Modules...
+      Description
+      -----------
+      Update all installed PsGet Modules...
 
-	.NOTES
-		Inspired by Homebrew (OS X) command: brew update && brew upgrade
-#>
-
+      .NOTES
+      Inspired by Homebrew (OS X) command: brew update && brew upgrade
+  #>
+	
 	[CmdletBinding(SupportsShouldProcess = $true)]
 	param
 	(
@@ -201,37 +193,32 @@ function Global:Update-AllPsGetModules {
 				   HelpMessage = 'No confirm for the update needed')]
 		[switch]$force
 	)
-
+	
 	#Requires -Module PackageManagement
-
+	
 	BEGIN {
 		# Cleanup
 		$InstalledPsGetModules = @()
-
+		
 		# Check for installed PsGet Modules
 		$InstalledPsGetModules = @(Get-InstalledModule)
 	}
-
+	
 	PROCESS {
 		if ($pscmdlet.ShouldProcess('All installed PsGet Modules', 'Install available updates')) {
 			# Loop over the List of Modules
 			foreach ($InstalledPsGetModule in $InstalledPsGetModules) {
 				# Be verbose
 				Write-Verbose -Message 'Process $(($InstalledPsGetModule).name)'
-
+				
 				# Now we do the Update...
 				try {
 					if ($force) {
 						# OK, you want to install all available without confirmation
 						Update-Module -Name ($InstalledPsGetModule).name -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
-					} else {
-						Update-Module -Name ($InstalledPsGetModule).name -ErrorAction Stop -WarningAction SilentlyContinue
-					}
-
-				} catch {
-					Write-Warning -Message 'Update of $(($InstalledPsGetModule).name) failed!!!'
-				}
-
+					} else { Update-Module -Name ($InstalledPsGetModule).name -ErrorAction Stop -WarningAction SilentlyContinue }
+				} catch { Write-Warning -Message 'Update of $(($InstalledPsGetModule).name) failed!!!' }
+				
 				# Be verbose
 				Write-Verbose -Message 'Process $(($InstalledPsGetModule).name)'
 			}
@@ -242,8 +229,8 @@ function Global:Update-AllPsGetModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7mKHXtc6nOFOAnnB0foU4vsr
-# /rCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0+7MrTrLFNsymBuwGMsQWrcJ
+# cK+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -386,25 +373,25 @@ function Global:Update-AllPsGetModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSRHX0B56Zl4kVSuI8SqCKTR49lrjANBgkqhkiG9w0B
-# AQEFAASCAQCrtPT+olFISfL7CsufaGYzO1Z603NafxMH31+cZRRLmlPv8KTdx7da
-# XU4/p8k/mqg93/au0ydUTpd2epoiVEI3UEGtUNcaPjiJHItbGhzx8UCBoZcHTFsC
-# 5hCFuisvfDrMibCBLhsvN9zidu573S9VfXcpvQx4pHTjeGqvzegJfbT7tKQV981k
-# l2LTTSSZMpTECCUIg9YFQoBQEao8d5V8+iCKxfSrHJjGstarLu29UGUSI7Dj6gt/
-# vF75UgnzRkgS29eaqz60OSbbilVoNP4/8JuvjCtwe5Z1h0mBfYt9k+aiQS8PcePj
-# hE+aA12by4ptTfO8rhd0MU+58gDXZElXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT88a8EuaaGpFfelk2G40aeVM6vejANBgkqhkiG9w0B
+# AQEFAASCAQBo5SvaY16ZoZBg1/HcSqyaZP9Prf9NnxkfQXwlJZOPK8sTcjOQFK1l
+# RF3vmgq9p5fcbayk2lqq0J9YeBsWmxvjbltBMw3bEQXZN7e3Ict66NtKBPk8uf7d
+# KAduLmGpsGGXEXPf8g2utJgs1IgHzyeBbVUKZ/uLE87YRQbgD5xEzGxivAWjKt9I
+# jsdyztF6a5CTyA3TZjKqKqfMc6m6UAd4tnua0fb4p7xL27sS4RSyGIcM4UJGjOnp
+# 08bhxEJMp9e3xtlral8/9xI/eK9XJbuSS02S3TUj2D9+083lzLtQPoIj36cZrfwt
+# uabzBJ0M12fPBJdTg+zmXG2skD8kTtaaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1MFowIwYJKoZIhvcN
-# AQkEMRYEFAWY1O8HEmvE8KtEt7/PzfR2VcvSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1N1owIwYJKoZIhvcN
+# AQkEMRYEFNswA154kj2W4gAjPjQW8sAVTgQfMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAEMPAiS0iR5mc737xJllehtU320p0uzapgNL6Ysr2dnHY1
-# MsU3QWMkuvBiMBWRBx1RSDl55g1VDZ9xa1ezxSfRrVdikCh3J04EYGEpTACmrxZR
-# vt3r0yIfZsybovFLTHEZ147zyIMIyCY+2ZzQ6YkZ8/39WGQWSyA5DWT5O6GBjwpn
-# xLtZGngnTK0vOY1XAj4m844Ef8VnH//4qUrwS2EDPwn2Mql1DqgWkMKJ0vS3ymHT
-# 06BEuwZJtOxZys41tCK6nAD53pi9L2XbAtpxNwdNfnjMQz0P1dXVjOh1g3o7aOo/
-# GHh3cQzlE7o9zrPz3apiGEumJQC/WlRjHZ5/7d3P
+# hkiG9w0BAQEFAASCAQCJkAIkM3Nyb1XWSafS7NNpe8WTwaFrfGCEGvmsQv64hHJa
+# mJ3FaCtjAK3RRy/SdMyBRC7NorzQjPCpOSx1WlpCK6sRFBU4MrYdcF8gzw0WpUCM
+# TCZtVuoofN7u93lVPJHcGDYkDaLQMuAvKoQY8SCUdhvbic+33yddwJ9IRxtu1dqz
+# f1J+Fjal53JAOyAL83gQPGBnB45YqP6qmpnE2/P6UMR4RnMqk0HgaINbVbaA3/2l
+# sqNoT9qr3QarTzH2PqkCHnC4jq+YeOBrMF32deK6Bkwy+GmYEc01si6q8RQwOwQN
+# +ctcAAUjXRTI/uH2ZBSdNNi1ZCd7lS/DhgfA9MgZ
 # SIG # End signature block

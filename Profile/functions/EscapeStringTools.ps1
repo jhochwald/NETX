@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-23
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,174 +14,174 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:ConvertTo-EscapeString {
-<#
-	.SYNOPSIS
-		HTML on web pages uses tags and other special characters to define
-		the page.
+  <#
+      .SYNOPSIS
+      HTML on web pages uses tags and other special characters to define
+      the page.
 
-	.DESCRIPTION
-		HTML on web pages uses tags and other special characters to define
-		the page.
-		To make sure text is not misinterpreted as HTML tags, you may want to
-		escape text and automatically convert any ambiguous text character in
-		an encoded format.
+      .DESCRIPTION
+      HTML on web pages uses tags and other special characters to define
+      the page.
+      To make sure text is not misinterpreted as HTML tags, you may want to
+      escape text and automatically convert any ambiguous text character in
+      an encoded format.
 
-	.PARAMETER String
-		String to escape
+      .PARAMETER String
+      String to escape
 
-	.EXAMPLE
-		PS C:\> ConvertTo-EscapeString -String "Hello World"
-		Hello%20World
+      .EXAMPLE
+      PS C:\> ConvertTo-EscapeString -String "Hello World"
+      Hello%20World
 
-		Description
-		-----------
-		In this example we escape the space in the string "Hello World"
+      Description
+      -----------
+      In this example we escape the space in the string "Hello World"
 
-	.EXAMPLE
-		PS C:\> "http://net-experts.net" | ConvertTo-EscapeString
-		http%3A%2F%2Fnet-experts.net
+      .EXAMPLE
+      PS C:\> "http://net-experts.net" | ConvertTo-EscapeString
+      http%3A%2F%2Fnet-experts.net
 
-		Description
-		-----------
-		In this example we escape the URL string
+      Description
+      -----------
+      In this example we escape the URL string
 
-	.NOTES
-		This function has a companion: ConvertFrom-EscapedString
-		The companion reverses the escaped strings back to regular ones.
+      .NOTES
+      This function has a companion: ConvertFrom-EscapedString
+      The companion reverses the escaped strings back to regular ones.
 
-	.LINK
-		ConvertFrom-EscapedString
-#>
+      .LINK
+      ConvertFrom-EscapedString
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'String to escape')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('Message')]
-		[System.String]$String
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'String to escape')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('Message')]
+    [System.String]$String
+  )
 
-	PROCESS {
-		# Try to Escape
-		try {
-			# We use the .NET EscapeDataString provided by the System.URI type
-			[System.Uri]::EscapeDataString($String)
-		} catch {
-			# Whoooops!
-			Write-Warning "Sorry, but we Where-Object unable to escape $String"
-		}
-	}
+  PROCESS {
+    # Try to Escape
+    try {
+      # We use the .NET EscapeDataString provided by the System.URI type
+      [System.Uri]::EscapeDataString($String)
+    } catch {
+      # Whoooops!
+      Write-Warning -Message "Sorry, but we Where-Object unable to escape $String"
+    }
+  }
 }
 
 function global:ConvertFrom-EscapedString {
-<#
-	.SYNOPSIS
-		Convert an encoded (escaped) string back into the original
-		representation
+  <#
+      .SYNOPSIS
+      Convert an encoded (escaped) string back into the original
+      representation
 
-	.DESCRIPTION
-		If you have a escaped String this function make it human readable
-		again.
-		Some Webservices returns strings an escaped format, so we convert an
-		encoded (escaped) string back into the original representation
+      .DESCRIPTION
+      If you have a escaped String this function make it human readable
+      again.
+      Some Webservices returns strings an escaped format, so we convert an
+      encoded (escaped) string back into the original representation
 
-	.PARAMETER String
-		String to un-escape
+      .PARAMETER String
+      String to un-escape
 
-	.EXAMPLE
-		PS C:\> ConvertFrom-EscapedString -String "Hello%20World"
-		Hello World
+      .EXAMPLE
+      PS C:\> ConvertFrom-EscapedString -String "Hello%20World"
+      Hello World
 
-		Description
-		-----------
-		In this example we un-escape the space in the string "Hello%20World"
+      Description
+      -----------
+      In this example we un-escape the space in the string "Hello%20World"
 
-	.EXAMPLE
-		PS C:\> "http%3A%2F%2Fnet-experts.net" | ConvertFrom-EscapedString
-		http://net-experts.net
+      .EXAMPLE
+      PS C:\> "http%3A%2F%2Fnet-experts.net" | ConvertFrom-EscapedString
+      http://net-experts.net
 
-		Description
-		-----------
-		In this example we un-escape the masked (escaped) URL string
+      Description
+      -----------
+      In this example we un-escape the masked (escaped) URL string
 
-	.NOTES
-		This function has a companion: ConvertTo-EscapeString
-		The companion escapes any given regular string.
+      .NOTES
+      This function has a companion: ConvertTo-EscapeString
+      The companion escapes any given regular string.
 
-	.LINK
-		ConvertTo-EscapeString
-#>
+      .LINK
+      ConvertTo-EscapeString
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'String to un-escape')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('Message')]
-		[System.String]$String
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'String to un-escape')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('Message')]
+    [System.String]$String
+  )
 
-	PROCESS {
-		# Try to Un-escape
-		try {
-			# We use the .NET UnescapeDataString provided by the System.URI type
-			[System.Uri]::UnescapeDataString($String)
-		} catch {
-			# Whoooops!
-			Write-Warning "Sorry, but we Where-Object unable to unescape $String"
-		}
-	}
+  PROCESS {
+    # Try to Un-escape
+    try {
+      # We use the .NET UnescapeDataString provided by the System.URI type
+      [System.Uri]::UnescapeDataString($String)
+    } catch {
+      # Whoooops!
+      Write-Warning -Message "Sorry, but we Where-Object unable to unescape $String"
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyu1IqaeGS6TS6elq85VUbAxm
-# tSOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEjTQvtbwSlhiHB4K1yF0OJsG
+# Jy6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -324,25 +324,25 @@ function global:ConvertFrom-EscapedString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQYUxTO0MG29IBRCklKxmNJQg5AFzANBgkqhkiG9w0B
-# AQEFAASCAQBeFBOdeAojiClKJNHPucleFVxlO4j4cBFEdbsk4dWFyZ4DU08CK/W2
-# vsfD4hz2PIpbRZBVFE4JsjTpgYFoMBRbIHOMZZse6BN9ALdTNuodfzXNS2r6CS79
-# uIrJiexkIQjsqTa/QQ0uaByiWq27QgQCSeL8sIOlsBWTxboKMwrS8X4TikpUkqYX
-# r9EIMYPC+fHVkyNTKMtNp/hi7t+wqvQU+KogarMlLWao+gCXdSvRawncoG0WQ4cJ
-# r3Y3LJ69wFN9ABdeWS2gkZEeqVSpW8IjwYf3uN2gYuFqdywp/gIy/A6HDcNwrrz6
-# siH3AsvpWvqiy3ouDfb4nR8B6pDNksh9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTqtBkLdSJXaO4kAQ28GiSR4Nyy/DANBgkqhkiG9w0B
+# AQEFAASCAQAN+2CWcTj6xXI/sUl04hHoxJycIftMfyjDWiJhqyqmPhkNRVV/iaXV
+# loxerUUJ/tybEY+syILt5jzT38+fgRtFdCYDalyb5nHQMZ9JTDnTR5BxuUuoLtwK
+# KOvCF56wA0mLjV7X4MWWJwNX42gcG7AmUaC1gyIrfwLWuFq9dyFaaKiKmVfmdJmt
+# agE0JzcWJetCGt21hy1gFt0CnUBrQ1Fmz54II3DtZDv2pad8Vr7dIdXGnrFOIPq8
+# kIDbq8frb4FgL8HyADFGlwCEDvt0FUDHfF9rur7/U20sUVBLGoJA0zBnHd+sSc8a
+# azFcgeDBBEvu5CNCaX9T4U2zoqyMUmhyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxOVowIwYJKoZIhvcN
-# AQkEMRYEFEDxEGhE07ZqsjY9/69IE4QI0daQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyM1owIwYJKoZIhvcN
+# AQkEMRYEFFwyIrTb31wELk0X+ghzmrqyTQC/MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCUb2hTMenEvFB2x81CPq8335thUACIfoUK4eJTncqtJJHH
-# Q8akCbU6mGiqH8P8dCNDPFxK2xEDwXyuJsgxRbGlZXpzkSY/yMy+kVzoEPAAJH8G
-# 4Rtiu4/lzzBYb07dV3B02K4txKdIvs3eULpy/P3tdB9yu/iXqBKGAZhwglc4Vp2s
-# 4u0N9KiSALcKRLsVuHX2hA4prSTKyN+kJYo5uUxeLkgfliq6uSrwy0Ielo6qIf07
-# 5GXdJlW5zG/MIr1dKbEDDuHkLEvQvpox57Q8/9L3zXm3BBZS6s1tkYUFY7i5JhcH
-# vzIhwHrXXLJnhirO2BXBc/Sj8o6/p0N0V6A+/nU+
+# hkiG9w0BAQEFAASCAQAZZ8HRnCny2+X2rCJEKN+OZdSKra+El2VoH05m4iowmiFi
+# jQNrvAHKSvXdADXtM+nxiKyVwzKOMhy1RIfp+AhrCjOreiH3qUGGsEUDwe4vVUop
+# 6712seFBn97N75ri4kvrsG/6dQIoHQnPiuHaB5vdtA+d/1LcW7X5Wv5IxSR0Pwzb
+# ZfQpeSTte9205PKi4xnFVpaU+tamyTEYC9yWu3liJNuMV2xcsWBW5xR4jdojGA6u
+# 4Y8FtMP3rX95AZ+YEum+4nekoNBBlkawW1Bxwmg9IdZdnAfW5U+aqhG9x2FGiSut
+# ah3aLOpS2/lG/8pCnuDdl6L5+Lu3I4TsvY7UgSsz
 # SIG # End signature block

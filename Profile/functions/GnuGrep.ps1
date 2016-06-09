@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,36 +14,36 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
@@ -51,111 +51,111 @@
 # Old implementation of the above GREP tool
 # More complex but even more UNI* like
 function global:Invoke-GnuGrep {
-<#
-	.SYNOPSIS
-		File pattern searcher
+  <#
+      .SYNOPSIS
+      File pattern searcher
 
-	.DESCRIPTION
-		This command emulates the well known (and loved?) GNU file
-		pattern searcher
+      .DESCRIPTION
+      This command emulates the well known (and loved?) GNU file
+      pattern searcher
 
-	.PARAMETER pattern
-		Pattern (STRING) - Mandatory
+      .PARAMETER pattern
+      Pattern (STRING) - Mandatory
 
-	.PARAMETER filefilter
-		File (STRING) - Mandatory
+      .PARAMETER filefilter
+      File (STRING) - Mandatory
 
-	.PARAMETER r
-		Recurse
+      .PARAMETER r
+      Recurse
 
-	.PARAMETER i
-		Ignore case
+      .PARAMETER i
+      Ignore case
 
-	.PARAMETER l
-		List filenames
+      .PARAMETER l
+      List filenames
 
-	.EXAMPLE
-		Invoke-GnuGrep
+      .EXAMPLE
+      Invoke-GnuGrep
 
-		Description
-		-----------
-		File pattern searcher
+      Description
+      -----------
+      File pattern searcher
 
-	.EXAMPLE
-		Invoke-GnuGrep
+      .EXAMPLE
+      Invoke-GnuGrep
 
-		Description
-		-----------
-		File pattern searcher
+      Description
+      -----------
+      File pattern searcher
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
 
-#>
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   Position = 0,
-				   HelpMessage = ' Pattern (STRING) - Mandatory')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('PaternString')]
-		[System.String]$pattern,
-		[Parameter(Mandatory = $true,
-				   Position = 1,
-				   HelpMessage = ' File (STRING) - Mandatory')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('FFilter')]
-		[System.String]$filefilter,
-		[Alias('Recursive')]
-		[switch]$r,
-		[Alias('IgnoreCase')]
-		[switch]$i,
-		[Alias('ListFilenames')]
-		[switch]$l
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        Position = 0,
+    HelpMessage = ' Pattern (STRING) - Mandatory')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('PaternString')]
+    [System.String]$pattern,
+    [Parameter(Mandatory = $true,
+        Position = 1,
+    HelpMessage = ' File (STRING) - Mandatory')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('FFilter')]
+    [System.String]$filefilter,
+    [Alias('Recursive')]
+    [switch]$r,
+    [Alias('IgnoreCase')]
+    [switch]$i,
+    [Alias('ListFilenames')]
+    [switch]$l
+  )
 
-	BEGIN {
-		# Define object
-		Set-Variable -Name path -Value $($pwd)
+  BEGIN {
+    # Define object
+    Set-Variable -Name path -Value $($pwd)
 
-		# need to add filter for files only, no directories
-		Set-Variable -Name files -Value $(Get-ChildItem $path -include "$filefilter" -recurse:$r)
-	}
+    # need to add filter for files only, no directories
+    Set-Variable -Name files -Value $(Get-ChildItem $path -Include "$filefilter" -Recurse:$r)
+  }
 
-	PROCESS {
-		# What to do?
-		if ($l) {
-			# Do we need to loop?
-			$files | ForEach-Object {
-				# What is it?
-				if ($(Get-Content $_ | select-string -pattern $pattern -caseSensitive:$i).Count > 0) {
-					$_ | Select-Object path
-				}
-			}
-			select-string $pattern $files -caseSensitive:$i
-		} else {
-			$files | ForEach-Object {
-				$_ | select-string -pattern $pattern -caseSensitive:$i
-			}
-		}
-	}
+  PROCESS {
+    # What to do?
+    if ($l) {
+      # Do we need to loop?
+      $files | ForEach-Object -Process {
+        # What is it?
+        if ($(Get-Content $_ | Select-String -Pattern $pattern -CaseSensitive:$i).Count > 0) {
+          $_ | Select-Object -Property path
+        }
+      }
+      Select-String $pattern $files -CaseSensitive:$i
+    } else {
+      $files | ForEach-Object -Process {
+        $_ | Select-String -Pattern $pattern -CaseSensitive:$i
+      }
+    }
+  }
 }
 
-(Set-Alias GnuGrep Invoke-GnuGrep -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name GnuGrep -Value Invoke-GnuGrep -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3wjRhMs3jUTR9sRMlPSgosbv
-# GJWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtUDH3NAjrqU5OnZspWnK1JRQ
+# kIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -177,10 +177,10 @@ function global:Invoke-GnuGrep {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -196,12 +196,12 @@ function global:Invoke-GnuGrep {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -298,25 +298,25 @@ function global:Invoke-GnuGrep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRjNyr8dyD4zHW1CcVYaqvOZFpCETANBgkqhkiG9w0B
-# AQEFAASCAQA8XAj2nBEm4HvtXEux4uhrfZFbuvRtCme/jAMsDUaDcZ+nNg/pUljG
-# tV/jk4Nl8ehyFlfPj20IVD6+LDuXPqFUATMdyf0GdIZyex/0wyTUyndtNC6miI2X
-# 9Cz81fyjLUxOHhbTay7UsFirRr94toysEDPVz760L/JCmexaAi1Zz9ixOpxaUJKf
-# BTemXt4Jl7aXUxbiAhSgCieSuK6wbkZNnIs7sHf8EN0zA1Pw6Lo8Wy5qr+V/Kbb/
-# vj7Aj1d4MQCxgCTvbRS+efZNp/P1dHkMIjaAV23OkU5mLsRRBCUnxRJPlxS2XnEG
-# xvfD8esiuMmgq2vC08CiL42JW1eofLZ0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQVtvlABjZNXKBcFMLMvzz73AhzjDANBgkqhkiG9w0B
+# AQEFAASCAQAbE7QxCr+NqZC6LSwUPxHow10MGr3z8gLnonqbcYTgCMnibc91x4Ux
+# N9wEONO1eyG4EOgkKahlGkcj8yn9xGgkPMjJ8unainwlI27rSe2b4qpbAUtq9us8
+# 3zH5ZUZp2Eh3dvsRdevib+Uru1yowSTPssW2mcbsch/PKsBbn22XPxwaJ39CDN0e
+# hoH+NiY8zhjk79ICxcTjjQh5t4TpFyxfT2ChFjH+8NGDhvlpdpYhFNQlGkB49Djv
+# WkIMpMaKn/t5d58I6i0+wydytpcmxIcG0I6IMA5nxAgIiauypoSickJ2O3yBmTj5
+# b06x3w5dF581RNZuxKWQhtdhKe4+OlGioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzN1owIwYJKoZIhvcN
-# AQkEMRYEFFrYUNY2iogtsnkS5KbMzL5LW+ITMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0NFowIwYJKoZIhvcN
+# AQkEMRYEFF4CEeldaQCJZNyqzXsTOX2/dHUdMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA1hpmZmBiPishnWehSc/SB+QCnI20ILTd7S0Tam53KClRs
-# fE9x8lIEKTHw360HBDt/Cclvxxmi3P8BfBJq5PNkT1uDoXxNJZN7Bl1D8IiHbh7w
-# oL0hbEAE/0DLABWxe3afUmCIZAfZ4t4OIc2V8IapMMznNrRMrr3QojVq8wGJ3KBf
-# lVMiNqQbSLoyYm9XnTXpHXbDx7MecNOcT49c3O0WAkcnIc+JB3/cpqR7V4JWQap+
-# B0PFx8HmW6N9YgEZza+WS6bvlykX5H2mZWJeLWIMofR6JRSK+A3A6BARpDV/nn7I
-# twS/e2oglRDEkBi9mSGFDOr6Ur1xZ4RZzDsdljfr
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBhxbBT9Un4adXJ0ta5j7UatAe775NT3Qnb6IWgyOsbgOLn
+# bpP5Mulqm6GI4NnfiZwwT6+EBllJIQXvKWMmWG9tUjMh0eDFzAMecv63QsgGu7NG
+# xawj2UQ6Dig6cQ3qk70prxSM0KpqkpiErDmFYD/SdjvMa1sXMiXgdXeLTW6NdN8r
+# hsIWEHFtDt1asCQWMfvBU9CELipumgqSxUjcnJPWRYQ78n4Fm8I+OUj1+o1GjHRD
+# nqv9zsz76amM3sQQB9q/5s5gOepUPLTG3EqOsBwj6kUCtIsVDhakaflxJg0GBzhC
+# 662iV8weqPrVlZhs/qkWHhKsI+baj64n8Ey/2DF1
 # SIG # End signature block

@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-23
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,115 +14,115 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Set-DebugOn {
-<#
-	.SYNOPSIS
-		Turn Debug on
+  <#
+      .SYNOPSIS
+      Turn Debug on
 
-	.DESCRIPTION
-		Turn Debug on
+      .DESCRIPTION
+      Turn Debug on
 
-	.NOTES
-		Just an internal function to make our life easier!
+      .NOTES
+      Just an internal function to make our life easier!
 
-	.EXAMPLE
-		PS C:\> Set-DebugOn
+      .EXAMPLE
+      PS C:\> Set-DebugOn
 
-		Description
-		-----------
-		Turn Debug on
+      Description
+      -----------
+      Turn Debug on
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
-		Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
-	}
+  PROCESS {
+    Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
+    Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
+  }
 
-	END {
-		Write-Output 'Debug enabled'
-	}
+  END {
+    Write-Output -InputObject 'Debug enabled'
+  }
 }
 
 function Global:Set-DebugOff {
-<#
-	.SYNOPSIS
-		Turn Debug off
+  <#
+      .SYNOPSIS
+      Turn Debug off
 
-	.DESCRIPTION
-		Turn Debug off
+      .DESCRIPTION
+      Turn Debug off
 
-	.NOTES
-		Just an internal function to make our life easier!
+      .NOTES
+      Just an internal function to make our life easier!
 
-	.EXAMPLE
-		PS C:\> Set-DebugOff
+      .EXAMPLE
+      PS C:\> Set-DebugOff
 
-		Description
-		-----------
-		Turn Debug off
-#>
+      Description
+      -----------
+      Turn Debug off
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
-		Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
-	}
+  PROCESS {
+    Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
+    Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
+  }
 
-	END {
-		Write-Output 'Debug disabled'
-	}
+  END {
+    Write-Output -InputObject 'Debug disabled'
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUv5YmlsxWs7BD5/rNZ19ZLW/X
-# KOigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+iJvQvrzRap3BCbdsJvzxS6L
+# VgWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -144,10 +144,10 @@ function Global:Set-DebugOff {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -163,12 +163,12 @@ function Global:Set-DebugOff {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -265,25 +265,25 @@ function Global:Set-DebugOff {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT5tPNrk2MaXMqzjOYnRWgdY/L6mTANBgkqhkiG9w0B
-# AQEFAASCAQCpKo8EVdB+Pc9iexaTi7GMRCwtncqh7ykgI97MJsD+jMrleX+vHm7o
-# 7VSxyK4jO2g/hpPZyW1mEDiXLSwcvkEg5qeLiEd1fqSshGgt9f3j8Qboj6GSwP28
-# csqmA73wEQ2xj7kogynMhlqH8M63i4eQflwdvRTu49mIQN5toHa/4jw9CFn3/adx
-# 4sOgUSyuwoA/9LhxGyRX7ft9UXHNddRD4Wjjnr61LzfD08t3hVV8fyG5DbTCHhzL
-# q4CNXxAz0AkBqVRqUzLtQLk5W4gnNIxpS79kzt+wPsfTeEIGJpeFnkkUKSQ8MNUo
-# WCILbSq5J/LgGdXJswDnnw4ymw/i4iUFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRoiX5ezOysKzKgELrvIazXvqLevjANBgkqhkiG9w0B
+# AQEFAASCAQCdFcUZRYsoniqA9eZINwgjU9CFhJW24fnuj9s4R0AWeIjUkmYBKlr2
+# veVYmzF6ysRVpMyjrWQbL+0hEELWXY0sBsGsydP8k/jKNWlBhAUXH6zFV781LGhE
+# iPuYgvKjsRtbtT0unZpSP2859IKWCLrZzUpoVkXZwPcU9XlDsmzFP+cBI5v164fK
+# qlfPKH79Jdl1hWSJh94wC1SpBg0lAYgvg7XXwm9SyfZIl5oy+aYSWqCn6n8RqRy7
+# 9i0BkJ5nOed0d2tJ0/S+6JBW+gGRDsHXMDXuZngmjZkwpVl7vX5AhfY70kn0crl/
+# /kzxhXnF5r0jRqVgEGaIIX8+AfyuJyrToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFC6RSXZwy6OMSZHXF39ksXDn0INLMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwM1owIwYJKoZIhvcN
+# AQkEMRYEFD4tgS7IItsE6g+8WherKObTRmoWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCYnLzbXOnctGbFlYY90BvVr+R6r2H4NSw5RcmXokpISQpv
-# 80NWOVe5vltdFnA/z1MjMnI0qp1FJcJQRbsSysQJiLk4T5DKvOXVfkx/rYwYDIXB
-# QmvXa1OSE6gNfBADtfP+sYGWNVULxz+z+/YyBFDryp0rhs2fJCVLO1tabN0fi54S
-# 9I3O0RpcYnjJ+c1AC/fo4JLPz1D6TfRLig10YBudqOk6dAGJ7Ah3sbbqZ+FelMmD
-# KxZgH2oFPM/5hidxt/jY27m76u4SFrLNSxmJnM37ePnFpVaEb9SQj87O+fUQw4vt
-# 6sWuM7icPIo4koGuNNH8FNP4rY29GgI/lWAn/T6c
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCeXVdHtdvsgmjutXbnwhVR/DeUWXHoqU5YXlWxFUkcnjTv
+# 1Q64Q6CkvAGhHV3bu+Nvt2KjYGdn4s8HYUCwLx08mLaDEVDOxgkM7+5XU+8W5ygH
+# xYVUlExhw1bY20G4Vn0eFWoEiIQEMNLHbf+wOhexlQ7jWfqdTWD4xIbkGJo8pryQ
+# UYr9N8C4YEezszMAvwNFQQZxw8XojGIkxsch/cWQuTZiatlaPNLmhi25JJ+jKN4f
+# SucTIEZURGEfxSSU1y9mNqNVqqBXC6TCRJLbcVXESAS7tviOgwSve/qTGyvDUc8p
+# INS/fuH5iHlzPrYekvUhWjyjruSzG+z8d8mdotMV
 # SIG # End signature block

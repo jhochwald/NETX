@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,131 +14,131 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Save-CommandHistory {
-<#
-	.SYNOPSIS
-		Dump the Command History to an XML File
+  <#
+      .SYNOPSIS
+      Dump the Command History to an XML File
 
-	.DESCRIPTION
-		Dump the Command History to an XML File.
-		This file is located in the User Profile.
-		You can then restore it via Load-CommandHistory
+      .DESCRIPTION
+      Dump the Command History to an XML File.
+      This file is located in the User Profile.
+      You can then restore it via Load-CommandHistory
 
-	.EXAMPLE
-		PS C:\> Save-CommandHistory
+      .EXAMPLE
+      PS C:\> Save-CommandHistory
 
-		Description
-		-----------
-		Dump the Command History to an XML file "commandHistory.xml" in the
-		user profile folder
+      Description
+      -----------
+      Dump the Command History to an XML file "commandHistory.xml" in the
+      user profile folder
 
-	.NOTES
-		Companion command
+      .NOTES
+      Companion command
 
-	.LINK
-		Load-CommandHistory
-#>
+      .LINK
+      Load-CommandHistory
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		# Where-Object to store the XML History Dump
-		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
+  PROCESS {
+    # Where-Object to store the XML History Dump
+    Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([System.String] -as [type]))
 
-		# Be verbose
-		Write-Verbose -Message "Save History to $($CommandHistoryDump)"
+    # Be verbose
+    Write-Verbose -Message "Save History to $($CommandHistoryDump)"
 
-		# Dump the History
-		Get-History | Export-Clixml -Path $CommandHistoryDump -Force -Confirm:$false -Encoding utf8
-	}
+    # Dump the History
+    Get-History | Export-Clixml -Path $CommandHistoryDump -Force -Confirm:$false -Encoding utf8
+  }
 }
 
 function Global:Load-CommandHistory {
-<#
-	.SYNOPSIS
-		Load the old History dumped via Save-CommandHistory
+  <#
+      .SYNOPSIS
+      Load the old History dumped via Save-CommandHistory
 
-	.DESCRIPTION
-		This is the companion Command for Save-CommandHistory
-		It loads the old History from a XML File in the users Profile.
+      .DESCRIPTION
+      This is the companion Command for Save-CommandHistory
+      It loads the old History from a XML File in the users Profile.
 
-	.EXAMPLE
-		PS C:\> Load-CommandHistory
+      .EXAMPLE
+      PS C:\> Load-CommandHistory
 
-		Description
-		-----------
-		load the Command History from an XML file "commandHistory.xml" in the
-		user profile folder
+      Description
+      -----------
+      load the Command History from an XML file "commandHistory.xml" in the
+      user profile folder
 
-	.NOTES
-		Companion command
+      .NOTES
+      Companion command
 
-	.LINK
-		Save-CommandHistory
-#>
+      .LINK
+      Save-CommandHistory
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		# Where-Object to Find the XML History Dump
-		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path (Split-Path $profile.CurrentUserAllHosts) 'commandHistory.xml') -as ([System.String] -as [type]))
+  PROCESS {
+    # Where-Object to Find the XML History Dump
+    Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([System.String] -as [type]))
 
-		# Be verbose
-		Write-Verbose -Message 'Clear History to keep things clean'
+    # Be verbose
+    Write-Verbose -Message 'Clear History to keep things clean'
 
-		# Clear History to keep things clean
-		# UP (Cursor) will sill show the existing command history
-		Clear-History -Confirm:$false
+    # Clear History to keep things clean
+    # UP (Cursor) will sill show the existing command history
+    Clear-History -Confirm:$false
 
-		# Be verbose
-		Write-Verbose -Message "Load History from $($CommandHistoryDump)"
+    # Be verbose
+    Write-Verbose -Message "Load History from $($CommandHistoryDump)"
 
-		# Import the History
-		Add-History -InputObject (Import-Clixml -Path $CommandHistoryDump)
-	}
+    # Import the History
+    Add-History -InputObject (Import-Clixml -Path $CommandHistoryDump)
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPNoN0DM6/WkwT5Kf2F7b2n7I
-# Jt+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUF6y7AQMRDZqPN65G+oZE/pne
+# 8o6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -160,10 +160,10 @@ function Global:Load-CommandHistory {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -179,12 +179,12 @@ function Global:Load-CommandHistory {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -281,25 +281,25 @@ function Global:Load-CommandHistory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTy1NbKPCoVWhlb6iGGnIauE8mJBDANBgkqhkiG9w0B
-# AQEFAASCAQCPi4DbuCHvZpPOrbOGMrMcxIvMNFZjgOsRnCVJ4TOlD7+04skCZpCc
-# JKt3sSnvCf1auRFlFFW85UwvORVlSuv8rSpumC06+xDek9RhMGlqrt4wvbbmZazy
-# Wa2m1vxwIrtc3iX17LNRKmWdvh1EJOjXGAc74+6anDst7aC/V9ESGtWyiThctbGu
-# dqmOz7UOqtuoqI6fkQkpoMZXaGCcBje2s4GFcSqemqVh88SUqwLHMhCE1h1pyS6O
-# J8m+CHZis9R+Nu+SdrVPMit+wXL0NuXRraum9FIGpgdhlodr520x73zSk4Fpq2rt
-# TaroE0H50w4+B0P3lgnnENNE399jfsSpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQPaMk+w6TH+2qp75O2nqmazJOP0zANBgkqhkiG9w0B
+# AQEFAASCAQAVs6pwfcCL7cmqYND/UWDp3zb2MrhYGUEe3TKW+D16mRhfLE+X70C9
+# fzz4T15ztBR+McLLMnyz1gvoYa+mIlyLgqZ5B5Ja7IHJaseod+m6sqldNxdHVCYK
+# 2Oy4M3Viv3gQYtV2UfS1n6xSVm6bsS+hLnvBZzUDKjTvwbjv5xMzD1YgYftbgi9f
+# AMeHalxzclcZjlYtFWrCEbRhEeXrDg3/x/1bgRxG10pG+cq+nj3kw2L9a8vdhAj2
+# HOf3yVDhBuCBRrtPKdyqD6Y2qZGTtexAfnzSCDGQ/UanbiHDJ17jOSuATMk7z7HB
+# FMnJbdfBcL0Dzh+YWFZoWE1eC9FNWFUPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxNFowIwYJKoZIhvcN
-# AQkEMRYEFNOVnyDvLobkpFcH9006Wx5a0XbgMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYxOFowIwYJKoZIhvcN
+# AQkEMRYEFMuJ9Yr+Tcwl7IoFFnc+AsQwvXbDMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBUcemrI8CNyM1nJk1dQ0a441PVIfmRsEaGxzf3NUz6nP/n
-# 1Ao7M9eKI8rBazRinjuprV3QO5UdXXDSjeBWVfCTA1zDrEUcWiz4wk1uP0UhtzZF
-# s1Md/xMVlZFV3YAprB1tORkiaRwzIz+Crimxmwcex67ZLZ/YwjzZgbJ4AeYvj22y
-# IYnr8T72Ihos6B+HIea0aGmWHY59ULgFKwcs3DQBfhDiEMSVwnq4jn0tYqYMMnuC
-# BTQggoMgzeEwj8KAPftjUkxB8oUFr5cnAYLNvFaMPVu5uClJ9LykbETv7zHT4ZhM
-# ONqcULlGeqEP45jedtRrliebHcGv6iDtmbFOeb+Y
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBt7vXnZt/COQRZ69cgQzeYPVl1eY2s2qfuRUf7q4tcn9eH
+# d85HPU5qkD+QQjyVcYpUTEQ4vI9v16QU6FTWiLqH7QphrbFjYvu7f3o0a6kQcVAb
+# 4ZUTh4tehus0/LO6u5x10zYGfRcQFnoVdV91FNEKOiSaFeLyd7sLfUsfQ50IwSzt
+# VzrAVktZWvaqjYkyI8N61cCMgrvnksYqDs2He5WmRWZ70QhE1VIFduSGozjPO7hl
+# QDu4uOUwjD0Lmssf9ytP+11bu4KzrVqY5esIE4N85EexrSJFie2Bo0FuesBslqs+
+# AwOzRf3J9vOKimSc/SBeTpHZsfHuDPIJVR7eAYE4
 # SIG # End signature block

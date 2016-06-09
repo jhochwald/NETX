@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-23
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,111 +14,111 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-IsSessionElevated {
-<#
-	.SYNOPSIS
-		Is the Session started as admin (Elevated)
+  <#
+      .SYNOPSIS
+      Is the Session started as admin (Elevated)
 
-	.DESCRIPTION
-		Quick Helper that Return if the session is started as admin (Elevated)
-		It returns a Boolean (True or False) and sets a global variable
-		(IsSessionElevated) with this Boolean value.
-		This might be useful for further use!
+      .DESCRIPTION
+      Quick Helper that Return if the session is started as admin (Elevated)
+      It returns a Boolean (True or False) and sets a global variable
+      (IsSessionElevated) with this Boolean value.
+      This might be useful for further use!
 
-	.EXAMPLE
-		PS C:\> Get-IsSessionElevated
-		True
+      .EXAMPLE
+      PS C:\> Get-IsSessionElevated
+      True
 
-		Description
-		-----------
-		If the session is elevated
+      Description
+      -----------
+      If the session is elevated
 
-	.EXAMPLE
-		PS C:\> Get-IsSessionElevated
-		False
+      .EXAMPLE
+      PS C:\> Get-IsSessionElevated
+      False
 
-		Description
-		-----------
-		If the session is not elevated
+      Description
+      -----------
+      If the session is not elevated
 
-	.NOTES
-		Quick Helper that Return if the session is started as admin (Elevated)
+      .NOTES
+      Quick Helper that Return if the session is started as admin (Elevated)
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([bool])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([bool])]
+  param ()
 
-	BEGIN {
-		# Build the current Principal variable
-		[System.Security.Principal.WindowsPrincipal]$currentPrincipal = (New-Object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent()))
+  BEGIN {
+    # Build the current Principal variable
+    [System.Security.Principal.WindowsPrincipal]$currentPrincipal = (New-Object -TypeName System.Security.Principal.WindowsPrincipal -ArgumentList ([System.Security.Principal.WindowsIdentity]::GetCurrent()))
 
-		# Do we have admin permission?
-		[System.Security.Principal.WindowsBuiltInRole]$administratorsRole = ([System.Security.Principal.WindowsBuiltInRole]::Administrator)
-	}
+    # Do we have admin permission?
+    [System.Security.Principal.WindowsBuiltInRole]$administratorsRole = ([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+  }
 
-	PROCESS {
-		if ($currentPrincipal.IsInRole($administratorsRole)) {
-			# Set the Variable
-			Set-Variable -Name IsSessionElevated -Scope:Global -Value $true
+  PROCESS {
+    if ($currentPrincipal.IsInRole($administratorsRole)) {
+      # Set the Variable
+      Set-Variable -Name IsSessionElevated -Scope:Global -Value $true
 
-			# Yep! We have some power...
-			Return $true
-		} else {
-			# Set the Variable
-			Set-Variable -Name IsSessionElevated -Scope:Global -Value $false
+      # Yep! We have some power...
+      Return $true
+    } else {
+      # Set the Variable
+      Set-Variable -Name IsSessionElevated -Scope:Global -Value $false
 
-			# Nope! Regular User Session!
-			Return $false
-		}
-	}
+      # Nope! Regular User Session!
+      Return $false
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkgLB/LbSsY6Bl9uJCBMHxCss
-# 22agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo8t8xPDDYRxE7GVFD0Xxwaj3
+# zRGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -140,10 +140,10 @@ function global:Get-IsSessionElevated {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -159,12 +159,12 @@ function global:Get-IsSessionElevated {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -261,25 +261,25 @@ function global:Get-IsSessionElevated {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSKGU1R4c30pft0vq8+NXzPhXm7uzANBgkqhkiG9w0B
-# AQEFAASCAQAXulDD5EA2u4KZ+DIWCQbT1EtzK10hxYSa/RnL2wTIQF3hRR/Wdn6S
-# 2AHyi8LKNbgXnQ5pzkRCojiCmDFrh2YuJl2A3ZFri2fi2TDlae1P5ABj/yzCDbnK
-# avksmBxWyG8vp97bniaVfYAU+TQ7Uej9kby4R5iilmixB9R0L8BqTSp7sMd+5beN
-# TOl8Zni6IkSUvMM8vCiQ/bf8xjY6GI35SD8skmnTa0jG0LV7QpNmM+hSdQySDxO2
-# ykBsHoGZ/vvhB71J80fHHhp+Gw7AxYmMdcZu9C47F0RBevRBcLhpjZ5nO6ix3rGk
-# 1qMhb9qByr/IebPyLM9KtuZbWerKJe5SoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBThVIwzDpvJTSaArfZMxR8X+IYefTANBgkqhkiG9w0B
+# AQEFAASCAQCnCmxZHhxXRxKHAOBp9qw+6/6R/GtqGb71tUH/jFYpTD8MSd//bc1w
+# qTIVgEuQ8CLum8K5X/AUouN5kUqRit//Vc8XDiQXgrB7V+GnqpHmOTCGOWjsgKoZ
+# GEMuWAOhrkzn+Ak1McrEFYdWPe+iTiTPnDQro1UHrXVXO2pnBA3EmQvYMSYGt7sH
+# ok+JJkmsFs+irTMDLwhd2PqBs1yrd5tpgRh9S3fmuz/tM7ebc9vCN1tzoVFExeFp
+# OEmYALRmLUMX+BvmX/THre9x7o6sdQMb/pcPTeQpCKxaaVcIX7AoycAntxolqP4l
+# GNIfbyBAgM9ff43O7eR8RR+Qu6hQ+fksoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyNVowIwYJKoZIhvcN
-# AQkEMRYEFLRVJKfYTDfelT440Lh2jiSQCSpSMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzMFowIwYJKoZIhvcN
+# AQkEMRYEFL13KqB0Wd/5vjCnjpcRSRe6GxO0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAOJAkJD8ydtcwEr369XU6ntAGZh9GY0hjnWVZYOBrYaheR
-# ipYkgSnsbHQZlut3AYTxF3V493o9tP46kf/c/K4h08TjsgSh1w5rnyoa+JDv9Ehg
-# 2M7EmXFZaiBH8wF01cWsuYwDl/MAb2wmEEhT/oYt70T4zjHmDCgy+JZYpqRAv6qx
-# IduNvA7MBDDuChaaGEQva8nQiKOdueZC5FGcpe6RnIQuO6FGoyucI2LIFeFikQcI
-# oPtjk3n/UqwHIxGadSovyXTYvdrHBrccZf4KKgZ7PSVnedJlP1PZfeyLhzHj5ANl
-# QhyjbgQBRSUcoIJ7VGS2+PYCYAsIH3KyCuPBWhOx
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCO9EEnv6LmSs+tCG/NMUij4Xw82Zhf4EfgoR3SRk7vxpj7
+# n8r2sG51x3YoPN/BPnGG+W4VoxC3FLYIPlzSfG4nFpuJfurkswoXYYfrTIPzHtR2
+# 1gBGV5KF1j4ubWff2icTaZhDaGxx107NAt5KYNsXk2BFXxZ5L57FywWJBzdRXQqX
+# y2Iy+B4r0QpP99RQWJ/FJr+e6QGxPT86ReB53nXRtpQEy5q4lR52TZ1hbRp9NOTE
+# dWY3+18P64yIBnobXBs0KNjBGJ2pifC3qrrfEr4KXE6v+9zNLmXvbpm3VMNu50Yv
+# CcBrDjHpuldpbnshZwi12+41sAU0R0zpcS8Cbb/M
 # SIG # End signature block

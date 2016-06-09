@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-13
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,96 +14,94 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-AvailibleDriveLetter {
-<#
-	.SYNOPSIS
-		Get an available Drive Letter
+  <#
+      .SYNOPSIS
+      Get an available Drive Letter
 
-	.DESCRIPTION
-		Get an available Drive Letter, next free available or random
+      .DESCRIPTION
+      Get an available Drive Letter, next free available or random
 
-	.PARAMETER Random
-		Get a random available Drive letter instead of the next free available
+      .PARAMETER Random
+      Get a random available Drive letter instead of the next free available
 
-	.EXAMPLE
-		PS C:\> Get-AvailibleDriveLetter -Random
-		O:
+      .EXAMPLE
+      PS C:\> Get-AvailibleDriveLetter -Random
+      O:
 
-		Description
-		-----------
-		Get an available Drive Letter (A Random selection of a free letter)
+      Description
+      -----------
+      Get an available Drive Letter (A Random selection of a free letter)
 
-	.EXAMPLE
-		PS C:\> Get-AvailibleDriveLetter -Random
-		F:
+      .EXAMPLE
+      PS C:\> Get-AvailibleDriveLetter -Random
+      F:
 
-		Description
-		-----------
-		Get the next available unused Drive Letter (non random)
+      Description
+      -----------
+      Get the next available unused Drive Letter (non random)
 
-	.NOTES
-		Found the base idea on PowerShellMagazine
+      .NOTES
+      Found the base idea on PowerShellMagazine
 
-	.LINK
-		http://www.powershellmagazine.com/2012/01/12/find-an-unused-drive-letter/
-#>
+      .LINK
+      http://www.powershellmagazine.com/2012/01/12/find-an-unused-drive-letter/
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(HelpMessage = 'Get a random available Drive letter instead of the next available')]
-		[switch]$Random
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(HelpMessage = 'Get a random available Drive letter instead of the next available')]
+    [switch]$Random
+  )
 
-	PROCESS {
-		if ($Random) {
-			Get-ChildItem function:[d-z]: -n | Where-Object { !(test-path $_) } | Get-Random
-		} else {
-			for ($j = 67; Get-PSDrive ($d = [char]++$j)2>0) { }$d + ':'
-		}
-	}
+  PROCESS {
+    if ($Random) {Get-ChildItem -Path function:[d-z]: -Name |
+      Where-Object -FilterScript { !(Test-Path $_) } |
+    Get-Random} else {for ($j = 67; Get-PSDrive ($d = [char]++$j)2>0) { }$d + ':'}
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJMDMjE+jIif+0Rywqo+ssOxk
-# QkugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC+ZDc7Ozh28ATRXtaX2E00bl
+# 5N2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -246,25 +244,25 @@ function global:Get-AvailibleDriveLetter {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSLW5AD9yIIfvwB0FzEmCyMZAYugjANBgkqhkiG9w0B
-# AQEFAASCAQBnF/wCTYn9bf7ysvi8HWobdYlquaIScNDLIamV0IoETUVNEoQ33Ym3
-# ZjJoj86mrKCwnuT7U3FoXW1EYvYhkyoQG895R+Hk+/o8EWKqmnJmFn7hKVBD3je5
-# qXBbG9YnhqUnFighDqNg7POdC9vWdJgxessKzO8uxYHjyQyHVxN3UTt6OQCMzbgj
-# zAvklWRWezLFLYNaEkd3RCbeYPJV8LJzR6KXlpVmYj6Nd+/IaOZWY1zy1vg6YlS+
-# HPehrrJBCbKpMneGsrb0pObFobySQJiPiBvmuzC0hBBgtf6N28D5A/KFU6ryn397
-# 4sZK/j57FpfePXCVq1LUNkwuIULEvjw1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSNey186bHKBWjV7UD7nPHByfibzzANBgkqhkiG9w0B
+# AQEFAASCAQB3cbFQnKv0yFmVNerGZmd8vwIy/g+sjZB9Rsl38bQI5NDrJ5d36pm5
+# A+JkzzKdYjkqWh7+T/GtOWCWHZMbK3aV2PO8EWydOgLQ4J9cC39tNF1BpRe0POf/
+# 4jOesZAIKA554c4l3FscJ2cMC+rsrRiOLNRRnEyGOm1ugige/yHMcU6awtvJlDwu
+# yR7O4+Yy6L0W/jdiWTXCb+KNupwkc8KpzAFZEeVw+U4Ankxw2K8qROeHVgL8GeFf
+# YcRSaS/onRaj165n7xPQFF/0AXskicWrK36NoXatNbaC3D0f8hWDQUUqQ1jFwstx
+# E+9XlIjLCNjMZegDhiQWGbMm9drN171XoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQyMlowIwYJKoZIhvcN
-# AQkEMRYEFPEHyTrnTVHbjvhr5pe0ilbDC3xPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYyNlowIwYJKoZIhvcN
+# AQkEMRYEFDKuHBCJKUj1D0vMj9AAYW3ysqb0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCHdd/2XkJs9QXDpKHYTPjAKvqxbT8f9NNMoHcGrXfWsIFa
-# YeJELpTda60ErEPqt6uDxuOTXJSKgrKmujGpY/pehlt5fez8t7PqVrJd5anQvLVX
-# Bj9AvZDwOC2qtapEQFtQuIWT7ID7Rp5ITfHMmMyo6bBp0q9reVaL2Je0Wah83bb0
-# /scKzOPEbgMGW0/lKeTb6LPZlaNs8Yw+t0AkllKdwvgo2TmEEgDVKxGlm//QSXiC
-# 3foBUkcF4dJKU4sIwHsxEGsndLJxF2vm6xRXNLiDz0Zqh9pCMGWnCXuVhSBV39X7
-# 2jULPGXjnhe2MoUIImVbG0OfbC5N/nf2Q4dLnv1A
+# hkiG9w0BAQEFAASCAQCrsI4RGa2Ofgkryn2nGVfujYcCsp4IPfXBhsGuroCQrTip
+# VRiuz5ZNxL7XavCrnGco+wf1xHrc2TiDCZflniLqfrbupLpGLF5pZfNs38iIrkzd
+# rE8UI5Ce7Ar4CI4jMv8GoNEcZSoEA/HQUTudqZ/BQW+Px0VPmjAJ27NFdEpPnhNH
+# b4He5dgzi5DfdOJaEZZnD2cJcd+jhUWuoTe1/UZiipZ390Dv4BFqB+DJBCiM12BX
+# q3JcJHV9/kj7ul2bZT3KJ3uIZm0wFvTlZ8KyLg24uU6Po9T0zEtbUgx467D+A96d
+# h3y8O3WweCoHvp4sHjA1Dlu6KXpJP0SXUWhkCwQH
 # SIG # End signature block

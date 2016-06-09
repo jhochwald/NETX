@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,90 +14,90 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 
 function global:New-Guid {
-<#
-	.SYNOPSIS
-		Creates a new Guid object and displays it to the screen
+  <#
+      .SYNOPSIS
+      Creates a new Guid object and displays it to the screen
 
-	.DESCRIPTION
-		Uses static System.Guid.NewGuid() method to create a new Guid object
+      .DESCRIPTION
+      Uses static System.Guid.NewGuid() method to create a new Guid object
 
-	.EXAMPLE
-		PS C:\> New-Guid
-		fd6bd476-db80-44e7-ab34-47437adeb8e3
+      .EXAMPLE
+      PS C:\> New-Guid
+      fd6bd476-db80-44e7-ab34-47437adeb8e3
 
-		Description
-		-----------
-		Creates a new Guid object and displays its GUI to the screen
+      Description
+      -----------
+      Creates a new Guid object and displays its GUI to the screen
 
-	.NOTES
-		This is just a quick & dirty helper function to generate GUID's
-		this is neat if you need a new GUID for an PowerShell Module.
+      .NOTES
+      This is just a quick & dirty helper function to generate GUID's
+      this is neat if you need a new GUID for an PowerShell Module.
 
-		If you have Visual Studio, you might find this function useless!
+      If you have Visual Studio, you might find this function useless!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param ()
 
-	BEGIN {
-		# Define object via NET
-		[System.Guid]$guidObject = [System.Guid]::NewGuid()
-	}
+  BEGIN {
+    # Define object via NET
+    [System.Guid]$guidObject = [System.Guid]::NewGuid()
+  }
 
-	PROCESS {
-		# Dump the new Object
-		Write-Output "$($guidObject.Guid)"
-	}
+  PROCESS {
+    # Dump the new Object
+    Write-Output -InputObject "$($guidObject.Guid)"
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb/k6rAXZ8n7HcI8/7swMkhbx
-# GdegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxVtDPwZ2L7CbaA+0paTrDFcA
+# XEagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -240,25 +240,25 @@ function global:New-Guid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSB0yS0xRBr2/rAe47gy1Deut1mTDANBgkqhkiG9w0B
-# AQEFAASCAQAyUXq7Qmb/VNqIFT9ZXl7bFA4v+r+0MlFzuhBWl7uQxHqpA5hzJtRE
-# MtBpVFd2cPY/DUTpDQw9+BeP0qjfwmvTgYMf/uEO5yycmIymm/A5QU2mSh7EUQCF
-# 25avWsa31XA3tchzH9j3gmeF7r8At/TijYzThUhb1v6jxKJpUTzdJwm77gCCUP0d
-# ATKV0Pk1dVAUsnd57R9A7CTqapK2CbC6W1g3vtIhdGipLXVsr0wu8BXC9aIcnTgc
-# qspTPUrkXMggBogWBfnF312alGHd9jjATVShSoe+S0KhNdgb+13nZPl0Bh0UgQxm
-# BWTpRsF843mCZy4Ozi10D8qmHIV8X8F8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTw0AEDD8NledstKhpoD4wcbfSsgTANBgkqhkiG9w0B
+# AQEFAASCAQAxNBoWz2zc8P1tOzAOSXLBLFfIrhstOICY157Yet7f4uGWn2MCxVfD
+# XL4Ej39ImEB9Ouse0YZ422nHYA/m5C7tAIneaOpmu+4obrRxnUmMATfwnA/dJ05c
+# xias9BflUuAy8K3Dsn4HG+Y9ZNEeBFg1Si5g9GTDdwY277tQqVT8rdz+JG//egXr
+# Q+YDW/l5IpAAz3cnWpNaOpit5gjnYkbd0B2Gr9mezyvXYq4oIgaDAx2uf2KjGr98
+# gMGaR/qwfBImGhjyTFnT2wrJFHo0lBa3Nkrj0ov+CMxiStKuMWZYRzNVkQ4MwJ2C
+# XDI6vYlViS2ZoYjvlLd30iDehn60q46ooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0N1owIwYJKoZIhvcN
-# AQkEMRYEFMSuSJNfmNW0w+felKvIU6nlZLvkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1NFowIwYJKoZIhvcN
+# AQkEMRYEFFBEISdMYkMuF7i3VQnUs/fSUXmDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCIXSu+8Y1XM2q+dKRitBPK4ZZHLEZnd18i8n4BXFHycphh
-# /GmGtlpWIQWbkH2sFLLuqEq/W8+F8mvhPnwOj1Cx9TAOkqH7oKP8AsYKgg28UBk1
-# 1zoycoxpsRP7aSahIUJROnPrT1pDxyuyrbLe8S76GQ/Tx9mh2X/HKevQW2JM/AuN
-# uJx1KB7HhoIJJ+aRaznHPbY+HgtUUTKu2ouX5FFcZVIkham/6atefsH1b9P7wYc/
-# jGyNcEkrhLofS5Y/nfI1oLkrjFw/qbO5lEjA/MsXC3BwLfC4iEfLtw+gaGwePiUe
-# 1Z73j3edWtIsp+P3sw3nN05KC1IzsqOT6Hgt6zkW
+# hkiG9w0BAQEFAASCAQChZIbbG4D5fUcB/ymmvkDIbqmMyOPDfG9c7dm6HU9OFwlv
+# akWhRy5dUvpIJf8441/7LyUMDR+vLev4gD5nkBNoQeEcCkEVwd1hRUXS/NdI0rwy
+# NWysITujYaZ81B7jFpK+tsbVtxEB4SbIcVwCmYWHE4TrvTFihjIiUOUqAvQalNGM
+# JnQLOnblnmwQ15LDM8bSL7mGZ4dBOao0YhjHuiXgn+/t60sY7JaurOgIOX1H1J8R
+# sI86JWeHQnGff5XtXadTk+3tqkIt3pnU4UeKslWGGnq80joUl+o+mDqDyAyepSf7
+# NtqlezAMIrRcgfRcLJ91jTr45EgK4PFNQF9GpHVk
 # SIG # End signature block

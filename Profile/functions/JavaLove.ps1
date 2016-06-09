@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-05
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,124 +14,124 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-JavaLove {
-<#
-	.SYNOPSIS
-		Set the JAVAHOME Variable to use JDK and/or JRE instances withing the
-		Session
+  <#
+      .SYNOPSIS
+      Set the JAVAHOME Variable to use JDK and/or JRE instances withing the
+      Session
 
-	.DESCRIPTION
-		You are still using Java Stuff?
-		OK... Your choice, so we do you the favor and create/fill the
-		variable JAVAHOME based on the JDK/JRE that we found.
-		It also append the Info to the PATH variable to make things easier
-		for you.
-		But think about dropping the buggy Java crap as soon as you can.
-		Java is not only buggy, there are also many Security issues with it!
+      .DESCRIPTION
+      You are still using Java Stuff?
+      OK... Your choice, so we do you the favor and create/fill the
+      variable JAVAHOME based on the JDK/JRE that we found.
+      It also append the Info to the PATH variable to make things easier
+      for you.
+      But think about dropping the buggy Java crap as soon as you can.
+      Java is not only buggy, there are also many Security issues with it!
 
-	.EXAMPLE
-		PS C:\> JavaLove
+      .EXAMPLE
+      PS C:\> JavaLove
 
-		Description
-		-----------
-		Find the installed JDK and/or JRE version and crate the JDK_HOME
-		and JAVA_HOME variables for you.
-		It also appends the Path to the PATH  and CLASSPATH variable to make
-		it easier for you.
+      Description
+      -----------
+      Find the installed JDK and/or JRE version and crate the JDK_HOME
+      and JAVA_HOME variables for you.
+      It also appends the Path to the PATH  and CLASSPATH variable to make
+      it easier for you.
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding(ConfirmImpact = 'Medium',
-				   SupportsShouldProcess = $true)]
-	param ()
+  [CmdletBinding(ConfirmImpact = 'Medium',
+  SupportsShouldProcess = $true)]
+  param ()
 
-	BEGIN {
-		# Where-Object do we want to search for the Java crap?
-		Set-Variable -Name baseloc -Value $("$env:ProgramFiles\Java\")
-	}
+  BEGIN {
+    # Where-Object do we want to search for the Java crap?
+    Set-Variable -Name baseloc -Value $("$env:ProgramFiles\Java\")
+  }
 
-	PROCESS {
-		# Show Java a little love...
-		# And I have no idea why I must do that!
-		if ((Test-Path $baseloc)) {
-			# Include JDK if found
-			Set-Variable -Name sdkdir -Value $(resolve-path "$baseloc\jdk*")
+  PROCESS {
+    # Show Java a little love...
+    # And I have no idea why I must do that!
+    if ((Test-Path $baseloc)) {
+      # Include JDK if found
+      Set-Variable -Name sdkdir -Value $(Resolve-Path -Path "$baseloc\jdk*")
 
-			# Do we have a SDK?
-			if (($sdkdir) -and (Test-Path $sdkdir)) {
-				# Set the enviroment
-				$env:JDK_HOME = $sdkdir
+      # Do we have a SDK?
+      if (($sdkdir) -and (Test-Path $sdkdir)) {
+        # Set the enviroment
+        $env:JDK_HOME = $sdkdir
 
-				# Tweak the PATH
-				append-path "$sdkdir\bin"
-			}
+        # Tweak the PATH
+        append-path "$sdkdir\bin"
+      }
 
-			# Include JRE if found
-			$jredir = (resolve-path "$baseloc\jre*")
+      # Include JRE if found
+      $jredir = (Resolve-Path -Path "$baseloc\jre*")
 
-			# Do we have a JRE?
-			if (($jredir) -and (Test-Path $jredir)) {
-				# Set the enviroment
-				$env:JAVA_HOME = $jredir
+      # Do we have a JRE?
+      if (($jredir) -and (Test-Path $jredir)) {
+        # Set the enviroment
+        $env:JAVA_HOME = $jredir
 
-				# Tweak the PATH
-				append-path "$jredir\bin"
-			}
+        # Tweak the PATH
+        append-path "$jredir\bin"
+      }
 
-			# Update the Classpath
-			Invoke-AppendClassPath '.'
-		}
-	}
+      # Update the Classpath
+      Invoke-AppendClassPath '.'
+    }
+  }
 }
-(Set-Alias JavaLove Invoke-JavaLove -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name JavaLove -Value Invoke-JavaLove -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJXaR25ppTY8FDLtwWIMiNJdh
-# KzWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUccxbNazOlfdid904Zp1QGCPn
+# 3zKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +274,25 @@ function global:Invoke-JavaLove {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTtNppoigXXRv05hwX77I56CdBScjANBgkqhkiG9w0B
-# AQEFAASCAQBnUOYUGyA1I/pU24umJFLPocRHD9LzVplfTaCw9oA+YbOZagGd2NXE
-# wilBp3LF9xc30vPe+2ucmElX2IvEsNbEGtVbBheoJ+14FnZw7CMOE65oYAYXuoRS
-# zGIPYknHKzCVzpNsYc2QvnNCKQSme3AiodP9M40iPoaCwJdo0hJuro5b3gqBt0Ik
-# T3GE3Mu5rHHrTInlbifJWXtxliuIjfCTebe7qvrg2wwNOR/1RIsL8sXRbRnk0j16
-# AlgKuhgU7yxl6F5xFC03DYcEXa0PM4AqCDazwTe8R5VvvZ87FUVnJVKOzxmGUeYI
-# USnnbKZeaB7n/aRz8YxDCFrlnfk9jE0toYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQuxM91zwSCpyiIeVKRCdoTKlYnmTANBgkqhkiG9w0B
+# AQEFAASCAQA8EyTcym2NoJ2Jz3SAHzvH6IyKJDaZ9a0qMYlr1mBhYgISPO8EYyKi
+# r9rFqWOHuX//ikTVcXrb7/O600AkemfCYLogLPc52ukVZpbG0zk+mF5DQqeumLmR
+# sgBNOAas5oCI+k34sJ9JN6CzLbpTdfhLuv7WQkHw/Ty8ijTro+Zi6F9wHjJIVI9S
+# 8+sE6lMqPe4kAKtupJ5W8d0J3NIz1v7le1Q10dG5mbjNRs2dXmJrFybwRFN/KQJB
+# 47fqgHVH0qMgxYBHXRDUYSQX+NB7e4wAtagw5zqzuTJRazpIn/ho/SpUuB3Mj9sy
+# yWhTS5VTstXexvGgkeeR6nzk5oky46aUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0M1owIwYJKoZIhvcN
-# AQkEMRYEFF5MJOXMjW2TzU6yjpICDq2z5lWLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1MFowIwYJKoZIhvcN
+# AQkEMRYEFIM0czD/fu0hsbu8v0YnWESMVyYWMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAB1ofYXpkzwXj5quxuTM4aL2evdi/ZlRP8KuIiNJ45h7Rn
-# oME1Mv5Ls9AU+1KGRne3EycZQXy+KOLY0s4VbfHAB4pf/qk4D90F/A57/Q7xJ93/
-# BiYH3l6JzZBQQRJVdXdlJKe1o7GbssMn4TTjEmd3uVzzQaKp9XydKcE/74zhEYg1
-# pDwMzpQLubMi3Y4xONfzjkcT+CwfGF+gm1TIxwG/UWRjCv+2VML75ihPWho2f1Xn
-# HGuH7OvSiT7sSYHK6GOY+DrH3iXhy16fid8QlkvruOrlJUJ/YRoepuOBQ3ScrpqF
-# Me7L4a6asuXHEL1BKW4CYa1musHf2n8EpDBplVhi
+# hkiG9w0BAQEFAASCAQBWmWAHveDr6IxYRyUZZ6WcNrlhTDaSm7vx1fbU5zT6HAVP
+# p0qLqpzJYnMWM2UUYFgtpGyLz4o/9RlMpnaeRXk+6dal1Gi5n7TgCUxSVDULP+tT
+# PvJmgB2m8LDEYsbe1ZuvUfBCoKXbcz7D5reFOnwqnxryizYo7c+SYN7AnfeW3TxQ
+# /NvIfuhINUqDKgz5oTwwhY1UrJ3ISpo8NNtTIECaQzQprRRGosgZhi++ApwIdCxG
+# +V+LfGvw6mB+lR/xRAiss+Nwqymv3qKlzBulB54YL77G7GPIEoGbTpqcmCJ9MKsP
+# A9n1fHOgjMBNVZAiGwv8Lfqvr/KvAhog0XlRfZwN
 # SIG # End signature block

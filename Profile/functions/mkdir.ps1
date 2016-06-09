@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,101 +14,101 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Make Powershell more Uni* like
 function global:Invoke-MakeDirectory {
-<#
-	.SYNOPSIS
-		Wrapper of New-Item
+  <#
+      .SYNOPSIS
+      Wrapper of New-Item
 
-	.DESCRIPTION
-		Wrapper of New-Item to create a directory
+      .DESCRIPTION
+      Wrapper of New-Item to create a directory
 
-	.PARAMETER Directory
-		Directory name to create
+      .PARAMETER Directory
+      Directory name to create
 
-	.PARAMETER path
-		Name of the directory that you would like to create
+      .PARAMETER path
+      Name of the directory that you would like to create
 
-	.EXAMPLE
-		PS C:\> mkdir test
+      .EXAMPLE
+      PS C:\> mkdir test
 
-		Description
-		-----------
-		Creates a directory with the name "test"
+      Description
+      -----------
+      Creates a directory with the name "test"
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Directory name to create')]
-		[Alias('dir')]
-		[System.String]$Directory
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Directory name to create')]
+    [Alias('dir')]
+    [System.String]$Directory
+  )
 
-	PROCESS {
-		try {
-			# Do it: Create the directory
-			New-Item -type directory -Force -path $Directory -Confirm:$false -ErrorAction:stop -WarningAction:SilentlyContinue
-		} catch {
-			Write-Error "Sorry, we had a problem while we try to create $Directory"
-		}
-	}
+  PROCESS {
+    try {
+      # Do it: Create the directory
+      New-Item -type directory -Force -Path $Directory -Confirm:$false -ErrorAction:stop -WarningAction:SilentlyContinue
+    } catch {
+      Write-Error -Message "Sorry, we had a problem while we try to create $Directory"
+    }
+  }
 }
 # Set a compatibility Alias
-(Set-Alias md Invoke-MakeDirectory -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias mkdir Invoke-MakeDirectory -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name md -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name mkdir -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx9PVG93YHI/dQDqIXN8sx0st
-# JKSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx7jeLQYo+eP8tr5XPxdCD3ms
+# 3ZigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -251,25 +251,25 @@ function global:Invoke-MakeDirectory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTc0hKoZO2Ok1oUUbF/L2BmR4783DANBgkqhkiG9w0B
-# AQEFAASCAQA5PTnqiw82wTcILQb85RxVWNWnzbkhnh9eoMJuwVKpiQDnz/qxKM8y
-# JnzHC17K7hZU+471H3wT+rBV8ktxIvOGE49G4fJyYzqSP5HXeS0sUCZO4VeE4QKW
-# KShDc+5q6X5D0/DBc7EmmOmAxx6BINcYTzDOrrl7oFyXR4H89q2z0frt5ZKVdu7X
-# UdnYafDbMRNuEiyjj8GQhhOgdstMhV3Hfuzpon840Larkgie2qMjQxilvF4li82G
-# r0sjOxFuLzbaLfgiuHSODp0w1FIs1y6pECgHG39lsdwv+kFxXBMmexARW+I15BN/
-# n322TWec8tirBbZODRboRPzwHorv2KtioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQc1gXOjEJCY5+h4IUBlEF/lk/MjTANBgkqhkiG9w0B
+# AQEFAASCAQBwwvlhZAwWMCABeUmUlIjS0L+B7smZJJK/UO333nyYpE5gwkS1IDQc
+# IME2Ke88t6paTf9I7Fy0anXjw3BKKmlPdY7TfIsCSe+IYWLgAx1+ZYf/zQwg/vK+
+# kmdQpJHs5/pscwfUowposBIKRDPcU40U/4E09nFY8TbUtcKiQLCATIKI4ZdYPUUa
+# kn6H7VlfZlqvHRE4KcihENwGWJVdYvq/+2jTkYpJWizKCsvk9hvmWs8swC9zBXcD
+# w6kFiarR5KPDJjrMJFtC14zpn/k6T1n5K5TbudNv6jA3w07BQIcrI7w577KWb1w/
+# U5ErT/kHWkNnCPN7wKqhkRl5IA0Pm0JNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0NVowIwYJKoZIhvcN
-# AQkEMRYEFFaWzx2GRQmnEqqSFDcCMeuVgCFKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1MlowIwYJKoZIhvcN
+# AQkEMRYEFGvF5Jn/eqjpbEQNXto/sgHzFkEyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCA77oS2G62nlZL5jN+uit0+4YQVFb+/R27rcMUvrDe1hPc
-# Yt7FJjdpFk8WqNAYQHp6bDmJS1dgoZkgPxMPUcoDLlVDOyeaySYXdwwa9uKkvYwG
-# 8G/efRfn0fJD/bA5mLwSIv7QCQR3ETlRvpPo68+n2ypOScO3TPLVPP62wipyt+Hk
-# zHosney1XaowajKu4Z9V+S5kB7OIOwxrmfDQXjoqC64tnIsqo/BEgstLrAkESiF9
-# Uhm5C1lFheCuS/fZ3PaYJw55r8rRvCEP7KHlC8g8zxcYSoVdSV/sYd01+P58CkIc
-# wV5dmX6KsA9nhzFvJXgYlP/txLmtVEe7SjsHOPJQ
+# hkiG9w0BAQEFAASCAQB2ka4sJSVhnLOaUDrllBoJW0GrLAXioD++mhYOXgW8ySFP
+# mtgYmtFI5WiZnrtF3EatbINvCPjodRUphGBqjaYQequ1j4egGBn0Hu1rzfjgypwl
+# vr1pOaG4DLCHI371gT1TvfktVecQ62xWGCDw44+Uj8JjLn7cXk+ncUcevY7P2HyK
+# byK/SZqyt2KZsUwpKcFI9Y46/9m8ovaf0MBJFIOCPkenURpOAzND3/4H8IxMspiv
+# sColbxgN8TuUtKqoWxUq29P396d32lUXQkqohHCpH8Qijuf2vF5Tyko/oxWVOWZs
+# YML/HE0k3+ObVSLNr0cMFrZIlZgvqPbNhCIvUA/q
 # SIG # End signature block

@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,90 +14,90 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-PowerHelp {
-<#
-	.SYNOPSIS
-		Wrapper that use the cmdlet Get-Help -full
+  <#
+      .SYNOPSIS
+      Wrapper that use the cmdlet Get-Help -full
 
-	.DESCRIPTION
-		Wrapper that use the regular cmdlet Get-Help -full to show all
-		technical informations about the given command
+      .DESCRIPTION
+      Wrapper that use the regular cmdlet Get-Help -full to show all
+      technical informations about the given command
 
-	.EXAMPLE
-		PS C:\> help Get-item
+      .EXAMPLE
+      PS C:\> help Get-item
 
-		Description
-		-----------
-		Show the full technical informations of the Get-item cmdlet
+      Description
+      -----------
+      Show the full technical informations of the Get-item cmdlet
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.PARAMETER cmdlet
-		command-let
+      .PARAMETER cmdlet
+      command-let
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	BEGIN {
-		# Make the console clean
-		[System.Console]::Clear()
-		[System.Console]::SetWindowPosition(0,[System.Console]::CursorTop)
-	}
+  BEGIN {
+    # Make the console clean
+    [System.Console]::Clear()
+    [System.Console]::SetWindowPosition(0,[System.Console]::CursorTop)
+  }
 
-	PROCESS {
-		# Get the FULL Help Message for the given command-let
-		Get-Help $args[0] -full
-	}
+  PROCESS {
+    # Get the FULL Help Message for the given command-let
+    Get-Help -Name $args[0] -Full
+  }
 }
-(Set-Alias Help Invoke-PowerHelp -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Help -Value Invoke-PowerHelp -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8AUM3lms1xHYeATuR8zHJJlW
-# CtegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhetfExHsD0BDu3PlOjZiYth9
+# lvmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -240,25 +240,25 @@ function global:Invoke-PowerHelp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRjFy4zjx0hVndxAMCvLaN9U7xEmDANBgkqhkiG9w0B
-# AQEFAASCAQAgvYyBqEWPW+icLT9R81++GFx6jh+lmCi0QOWp8V8+kkEHjY2NuY6P
-# R9KzGKAQdWTSgA+ISYaYTVimZtt4oxRrM+kyn7H0ECyo8t8MYsXNeL2jtOlw7rdV
-# VU3gLZ0ALmPVIUDbIxexDmGbw795If+0dMpdplMuRpuYmTili0TA6KdGHLlSRy15
-# fkeD0fJVjpYsy061hhhP19e8fYf5I33VFvf6HJC6RRInL8nEXxOSwMtFrHJkXcZM
-# TXeN4iJPSgp0y1xM24JaF7MENn0jQCZbNd3mJ/slbayltv/xqy2DM9f6Xyh9KSzt
-# QXONswWlIHiDu2CZw9fqk7RCcOgmLn4GoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRI8LKsHj7Zmdrjtde2hTTryKW7cjANBgkqhkiG9w0B
+# AQEFAASCAQAhlHc+xNjkYb540AA2NXn2uPpp+sY/AcpELNC88ATTMYfHvYA/UQfS
+# 6kSRJDt6+TD+iuiJr6A7CLQEPFzjPzCyClHrd4OG1G1kw3OP6/vzHvXZQekNAzhx
+# ZCYXy2o82WuT7XJq02YtLM6Mujv+N5IU7DwnzLWSwiwBM0X+ih2jG5vwozGl+2Q/
+# 9w+azj+Q2Lhw1Z1T4HolgdDYU6qYqJlzXewZ7idZyy7AP4aCPp3/ysvCNzAT5O09
+# UofHGPDHhctfe8pmUT4d3X7/IunxfcIsI/ZN/R0AxxRJWl9vzIfODb9sESV/RLg5
+# JuL7d0Dla+HWD2tFXskgaFyaWVnf3AVUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzOVowIwYJKoZIhvcN
-# AQkEMRYEFPCJN40AdDt7iUP/lPxF3Tmyv6STMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0NlowIwYJKoZIhvcN
+# AQkEMRYEFLf+d6sncRyVfyCSYNYtjn2R/uyjMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAS4t+ivrqDJTtpguXdngtG3QU2lJsxXsST8I5KUHR6Pcfw
-# diG2ek7uwFf0mjfswo4RsMPsXCyhXZ/jqSFMIfeJWA8P9Ezn+DNNEEhb70SSmqnw
-# g6PwlwWu+WaJAm/MH4teJrRzK/2yQsU15bRhcYcrh++hZpRbjo6tMraetMqh0RPA
-# ez6k+tpqQX5pcVw5pPxZEqFDsuElbC/tGsD5/jF3VdWPE864sxjnPCFFj+gAxIl4
-# W1IK3PNTF2kC1PZJcn0M8gQvSEfLjtlU6E4rk77PTFCAyipw+wBLHMqbS4O24OUI
-# ufAlLhKQtMQyW2tMMxmW8eE+mS9ZxxHDdJsRcxMs
+# hkiG9w0BAQEFAASCAQCQzNKqY3RaMzD4iHUHWkcWBHisQZavijunhWuBPy73XLGY
+# HnifPQd1zsLNy4tPKjb7U59BnYQw2W2PI5YItv/RLFWA9G3q/Swc/Osm7g9gVn5/
+# hN581hIYvb0PwwqAxYcvEBvPEKFrlKaUx0FKISVSNf3nRIGc96ilrmVlVQFFrFdh
+# x3kMTiMvjWZIAfdxr0VWdvECjv0VffThwf6YPAFPI3RgmB0zw9kr+e09t5r83QNz
+# hi8J89oEj8j+IuAX/HDUsElQVm2ilxeiN/57CP9ICZTljapm92moo3uA+SvImciN
+# wgsLNB8+gyhre2XPjpPRQe+WhwztBYvyKAMGfX0H
 # SIG # End signature block

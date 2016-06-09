@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,176 +14,176 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:ConvertTo-Base64 {
-<#
-	.SYNOPSIS
-		Convert a String to a Base 64 encoded String
+  <#
+      .SYNOPSIS
+      Convert a String to a Base 64 encoded String
 
-	.DESCRIPTION
-		Convert a String to a Base 64 encoded String
+      .DESCRIPTION
+      Convert a String to a Base 64 encoded String
 
-	.PARAMETER plain
-		Un-Encodes Input String
+      .PARAMETER plain
+      Un-Encodes Input String
 
-	.EXAMPLE
-		PS C:\> ConvertTo-Base64 -plain "Hello World"
-		SABlAGwAbABvACAAVwBvAHIAbABkAA==
+      .EXAMPLE
+      PS C:\> ConvertTo-Base64 -plain "Hello World"
+      SABlAGwAbABvACAAVwBvAHIAbABkAA==
 
-		Description
-		-----------
-		Convert a String to a Base 64 encoded String
+      Description
+      -----------
+      Convert a String to a Base 64 encoded String
 
-	.EXAMPLE
-		PS C:\> "Just a String" | ConvertTo-Base64
-		SgB1AHMAdAAgAGEAIABTAHQAcgBpAG4AZwA=
+      .EXAMPLE
+      PS C:\> "Just a String" | ConvertTo-Base64
+      SgB1AHMAdAAgAGEAIABTAHQAcgBpAG4AZwA=
 
-		Description
-		-----------
-		Convert a String to a Base 64 encoded String via Pipe(line)
+      Description
+      -----------
+      Convert a String to a Base 64 encoded String via Pipe(line)
 
-	.NOTES
-		Companion function
+      .NOTES
+      Companion function
 
-	.LINK
-		ConvertFrom-Base64
-#>
+      .LINK
+      ConvertFrom-Base64
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Unencodes Input String')]
-		[ValidateNotNullOrEmpty()]
-		[Alias('unencoded')]
-		[System.String]$plain
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Unencodes Input String')]
+    [ValidateNotNullOrEmpty()]
+    [Alias('unencoded')]
+    [System.String]$plain
+  )
 
-	BEGIN {
-		# Cleanup
-		Remove-Variable -Name 'GetBytes' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'EncodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  BEGIN {
+    # Cleanup
+    Remove-Variable -Name 'GetBytes' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+    Remove-Variable -Name 'EncodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		# GetBytes .NET
-		Set-Variable -Name 'GetBytes' -Value $([System.Text.Encoding]::Unicode.GetBytes($plain))
+  PROCESS {
+    # GetBytes .NET
+    Set-Variable -Name 'GetBytes' -Value $([System.Text.Encoding]::Unicode.GetBytes($plain))
 
-		#  Cobert to Base64 via .NET
-		Set-Variable -Name 'EncodedString' -Value $([Convert]::ToBase64String($GetBytes))
-	}
+    #  Cobert to Base64 via .NET
+    Set-Variable -Name 'EncodedString' -Value $([Convert]::ToBase64String($GetBytes))
+  }
 
-	END {
-		# Dump the Info
-		Write-Output -InputObject $EncodedString
-	}
+  END {
+    # Dump the Info
+    Write-Output -InputObject $EncodedString
+  }
 }
 
 function Global:ConvertFrom-Base64 {
-<#
-	.SYNOPSIS
-		Decode a Base64 encoded String back to a plain String
+  <#
+      .SYNOPSIS
+      Decode a Base64 encoded String back to a plain String
 
-	.DESCRIPTION
-		Decode a Base64 encoded String back to a plain String
+      .DESCRIPTION
+      Decode a Base64 encoded String back to a plain String
 
-	.PARAMETER encoded
-		Base64 encoded String
+      .PARAMETER encoded
+      Base64 encoded String
 
-	.EXAMPLE
+      .EXAMPLE
 
-		PS C:\> ConvertFrom-Base64 -encoded "SABlAGwAbABvACAAVwBvAHIAbABkAA=="
-		Hello World
+      PS C:\> ConvertFrom-Base64 -encoded "SABlAGwAbABvACAAVwBvAHIAbABkAA=="
+      Hello World
 
-		Description
-		-----------
-		Decode a Base64 encoded String back to a plain String
+      Description
+      -----------
+      Decode a Base64 encoded String back to a plain String
 
-	.EXAMPLE
-		PS C:\> "SABlAGwAbABvACAAVwBvAHIAbABkAA==" | ConvertFrom-Base64
-		Hello World
+      .EXAMPLE
+      PS C:\> "SABlAGwAbABvACAAVwBvAHIAbABkAA==" | ConvertFrom-Base64
+      Hello World
 
-		Description
-		-----------
-		Decode a Base64 encoded String back to a plain String via Pipe(line)
+      Description
+      -----------
+      Decode a Base64 encoded String back to a plain String via Pipe(line)
 
-	.NOTES
-		Companion function
+      .NOTES
+      Companion function
 
-	.LINK
-		ConvertTo-Base64
-#>
+      .LINK
+      ConvertTo-Base64
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param
-	(
-		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Base64 encoded String')]
-		[ValidateNotNullOrEmpty()]
-		[System.String]$encoded
-	)
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param
+  (
+    [Parameter(ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'Base64 encoded String')]
+    [ValidateNotNullOrEmpty()]
+    [System.String]$encoded
+  )
 
-	BEGIN {
-		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+  BEGIN {
+    # Cleanup
+    Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 
-	PROCESS {
-		# Decode the Base64 encoded string back
-		Set-Variable -Name 'DecodedString' -Value $(([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($encoded))) -as ([System.String] -as [type]))
-	}
+  PROCESS {
+    # Decode the Base64 encoded string back
+    Set-Variable -Name 'DecodedString' -Value $(([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($encoded))) -as ([System.String] -as [type]))
+  }
 
-	END {
-		# Dump the Info
-		Write-Output -InputObject $DecodedString
+  END {
+    # Dump the Info
+    Write-Output -InputObject $DecodedString
 
-		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-	}
+    # Cleanup
+    Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUaht/ovGhDY5mdg67Saza3wb1
-# /yWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSqFFwhuZESQODEcsCCYWHbvO
+# 6OagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -326,25 +326,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQpp1rVJY7T4JFvaolwhaLOYMqOiDANBgkqhkiG9w0B
-# AQEFAASCAQBTJYbezehTzU3SpRMeahhWG4Nnq1deQo3xiuUHqE6NrIAflj01n842
-# Ao/8TmXOhcWRj9WBYvwwAtnp5Ai5nKG9Tkh6PHNpPZCNsYJOT43DMYHKE+3wdgBl
-# OPpehtoKwYDUd5U+hP7VEGCgjI39uQOIBV7k6PWvaFwN9zRpkpzE1oAjzpeFNUet
-# 9mz725CBcFO3GhyFdhVlce6ccL41WmvRnl8tFnnVATWv/DGfFNFSt0MyuJBqlFXC
-# oXM+uM1depd5euoSRmdGj+1BcyAtuBhJ6Xrg1TgpmHOQiVu6JFCoziKpXgT8iarm
-# LQn5R1gU+Q/XukMSeih97oVNzEi6O0dsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQX6QjAc7A977gxY+/FAldEmgTepjANBgkqhkiG9w0B
+# AQEFAASCAQCDl3LZ9gVU/UQrPWvhgVfwQV7agSjmLo2kG3OcK1J86zHe/q8OVGpp
+# IS3HzJsjRqdBYNmli0BhClJk0mGOUuyxjzhkZXfZV12m//Q4mPEOvMqHAn2CICOE
+# VuDunYPpOJxo8LeC+ku7b7Z1mw9CUZSdFqrFfb7g8l6/DbKyBwS+dIJ7RN/6mxdx
+# 2+Y5npj0NwTPHS+EpUEGpjhdyLq4NgazE1c1FGB44hlrGoNWEAu7Td7QW4n8/eB0
+# hweATiVCndziXqiABt4JC+zaIVoJga6e9qoILGxwHpwtSigmEtgR9wJHY1SslJ1b
+# PN2wp3WIFUf/OisHKCppoa+7Ny6i8N7JoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxMVowIwYJKoZIhvcN
-# AQkEMRYEFA/5yad1ETal6yPrrlfJPA31ptIWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYxNVowIwYJKoZIhvcN
+# AQkEMRYEFDVg1/W7mjr6CLB7LrFkYLGLJYOpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAF018nwFANb090dqin4CfDeiM7X7GWUauGwMEgnnjr6h9i
-# xAp8otc8tZxRc9BqBlR+G93J8eHNP6eyucOadxRxs9oNTd4yr6NEu6EG4kjzGiQE
-# 4ZmbPIP97oHhjJYX4EqLjJd/H/P9RR2wCbAtY0QpSLwZCEIBpGGlGujFK75YAQPn
-# +7eS3/mSKv/Jfs6Wwnk7NOkXJ7tHbKEC1BoOZE75ZI9fp9IZjRHjid0Xgkv9QqKz
-# V6K2WZBel7hbj7JV3iUebLFSJLYROxKGD6IR/pc7SHYi0aZv0tSiLfSlstzDTHdo
-# /26hOw6tbh3gHwNuCz0D56FYcEIQvhwXdDC6MnCn
+# hkiG9w0BAQEFAASCAQBi8ouujOe8xPvPJNaoGy9i/aAyZL4kkY7jTMFtPcSnBAjK
+# Nrp33PH1i8b7tbbqiRtWO1RiXlAx3Qmqion9ZnKwJq7luP5Kesly8PyoChEMA1Mr
+# 61qIwYd1L74UMdowF4FefPE5n/wg6n61tiCc8ehpZF9Ruc2RidGxqjowIAbgyW9w
+# HrD3xv7Po0Q/pgNKjEK0epV8V9oekFkpjn4JLgC8AYB29WVkH75S/3Zyd8iVk2h1
+# T+XcClGFMqfCo3wSC8eD/5tiuOGaV6/btTlG7hlDFEEWbe9N7s7q3wNgTpSq8OZF
+# RWioTpTXY7Rq+Ta9DaYjcNDLnGrmA92Y7VQtRgtz
 # SIG # End signature block

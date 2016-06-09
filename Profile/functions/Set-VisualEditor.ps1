@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,119 +14,119 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-VisualEditor {
-<#
-	.SYNOPSIS
-		Set the VisualEditor variable
+  <#
+      .SYNOPSIS
+      Set the VisualEditor variable
 
-	.DESCRIPTION
-		Setup the VisualEditor variable. Checks if the free (GNU licensed)
-		Notepad++ is installed,
-		if so it uses this great free editor.
+      .DESCRIPTION
+      Setup the VisualEditor variable. Checks if the free (GNU licensed)
+      Notepad++ is installed,
+      if so it uses this great free editor.
 
-		If not the fall back is the PowerShell ISE.
+      If not the fall back is the PowerShell ISE.
 
-	.EXAMPLE
-		PS C:\> Set-VisualEditor
+      .EXAMPLE
+      PS C:\> Set-VisualEditor
 
-		Description
-		-----------
-		Set the VisualEditor variable. Nothing is returned, no parameter,
-		no nothing ;-)
+      Description
+      -----------
+      Set the VisualEditor variable. Nothing is returned, no parameter,
+      no nothing ;-)
 
-	.EXAMPLE
-		PS C:\> $VisualEditor
-		C:\Program Files (x86)\Notepad++\notepad++.exe
+      .EXAMPLE
+      PS C:\> $VisualEditor
+      C:\Program Files (x86)\Notepad++\notepad++.exe
 
-		Description
-		-----------
-		Show the variable (Notepad++ in this case)
+      Description
+      -----------
+      Show the variable (Notepad++ in this case)
 
-	.EXAMPLE
-		PS C:\> $VisualEditor
-		PowerShell_ISE.exe
+      .EXAMPLE
+      PS C:\> $VisualEditor
+      PowerShell_ISE.exe
 
-		Description
-		-----------
-		Show the variable (PowerShell ISE in this case)
-		So no Sublime (our favorite) or Notepad++ (Fallback) installed.
-		looks like a plain vanilla PowerShell box.
-		But hey, since PowerShell 4, ISE is great!
+      Description
+      -----------
+      Show the variable (PowerShell ISE in this case)
+      So no Sublime (our favorite) or Notepad++ (Fallback) installed.
+      looks like a plain vanilla PowerShell box.
+      But hey, since PowerShell 4, ISE is great!
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param ()
+  [CmdletBinding()]
+  param ()
 
-	PROCESS {
-		# Do we have the Sublime Editor installed?
-		Set-Variable -Name SublimeText -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" 'Sublime*') 'Sublime_text*'))
+  PROCESS {
+    # Do we have the Sublime Editor installed?
+    Set-Variable -Name SublimeText -Value $(Resolve-Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'Sublime*') -ChildPath 'Sublime_text*'))
 
-		# Check if the GNU licensed Note++ is installed
-		Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path (join-path (join-path "$env:PROGRAMW6432*" 'notepad*') 'notepad*'))
+    # Check if the GNU licensed Note++ is installed
+    Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'notepad*') -ChildPath 'notepad*'))
 
-		# Do we have it?
-		(resolve-path "${env:ProgramFiles(x86)}\Notepad++\notepad++.exe" -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+    # Do we have it?
+    (Resolve-Path -Path "${env:ProgramFiles(x86)}\Notepad++\notepad++.exe" -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
 
-		# What Editor to use?
-		if (($SublimeText) -and (Test-Path $SublimeText)) {
-			# We have Sublime Editor installed, so we use it
-			Set-Variable -Name VisualEditor -Scope:Global -Value $($SublimeText.Path)
-		} elseif (($NotepadPlusPlus) -and (Test-Path $NotepadPlusPlus)) {
-			# We have Notepad++ installed, Sublime Editor is not here... use Notepad++
-			Set-Variable -Name VisualEditor -Scope:Global -Value $($NotepadPlusPlus.Path)
-		} else {
-			# No fancy editor, so we use ISE instead
-			Set-Variable -Name VisualEditor -Scope:Global -Value $('PowerShell_ISE.exe')
-		}
-	}
+    # What Editor to use?
+    if (($SublimeText) -and (Test-Path $SublimeText)) {
+      # We have Sublime Editor installed, so we use it
+      Set-Variable -Name VisualEditor -Scope:Global -Value $($SublimeText.Path)
+    } elseif (($NotepadPlusPlus) -and (Test-Path $NotepadPlusPlus)) {
+      # We have Notepad++ installed, Sublime Editor is not here... use Notepad++
+      Set-Variable -Name VisualEditor -Scope:Global -Value $($NotepadPlusPlus.Path)
+    } else {
+      # No fancy editor, so we use ISE instead
+      Set-Variable -Name VisualEditor -Scope:Global -Value $('PowerShell_ISE.exe')
+    }
+  }
 
-	END {
-		# Be Verbose
-		Write-Verbose "$VisualEditor"
-	}
+  END {
+    # Be Verbose
+    Write-Verbose -Message "$VisualEditor"
+  }
 }
 
 # Execute the function above
@@ -135,8 +135,8 @@ Set-VisualEditor
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3i0DXyCNuyFCt1Q6IFvfBqpJ
-# bDagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWBsiFRl0gxQYlpklXzZaqPmr
+# JNigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -279,25 +279,25 @@ Set-VisualEditor
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRyEYUNG8y5FdqABpnHypb+lJNjWjANBgkqhkiG9w0B
-# AQEFAASCAQAtn+bfgDoi8beA6A2nQ18tZK8Qa/LmmJb6zYhLgqOpD1I5PinRPQ6q
-# tM5dJ5wvXVhMuRhSZGGAxUsgcpuEOFNyCOv4eY5nmmJ2cHSDHDjZhuriBhDwvJBW
-# zN6DlNkkkHamS0dPfcxneS3iEx0rZzO7JjMcJHmIKouJpX+yN2zAUzNSX5z6VtE4
-# 0LF6F6UBBJKKah1vJ+220Wuc16Q4u1vpwq+/ctO0heoDp8MGh717WMactvZIzfii
-# 6uMEy3OMkoWF5JBf69Eh3RKYcDSSfsE0SATABy3Qlox+HnthqMp2Ok0fDvcdxsWp
-# yfFMqntEQePD3ICXkjVnWbJgIvp9xOw/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ8kH57QgYNHSuWL/EfyLn+tPCmtzANBgkqhkiG9w0B
+# AQEFAASCAQCNZ1cRK4j8lecwT9/AvZV0EInKYHt8blEgTtML0MxxMxiJ1V+www07
+# gYb3k06QetT0sC2vvBDpazpwsfUI+ngZP9F4++q1QWq2Kwuepe7LmjRKKuGTqWB1
+# d1IloTyNx/Wx+f7WYuV7OzqFUXq404V4p0/70uN13vpVGEqPd0HEC5+FlXsn6oVL
+# nwjnsTZH4xiG8TRZHNTfP+IkB4s76L/p2Aj8UMTP//lt0o/mspaGJPPUrm+OwRLt
+# /8TCnTapphkfNPaK1BPPZkWCSzqjzq4flnkAZsGxQgk6Uank1bhGtcRV3EJTZAox
+# LV/JFWhFdbAs8w1dNVVwO6wTqAU0MGuSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ1OFowIwYJKoZIhvcN
-# AQkEMRYEFDt40kESR8LvYuRKD0r0UQ2sNExLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcwNFowIwYJKoZIhvcN
+# AQkEMRYEFMnoYJ/30qbOR1deXJrHZjl3FzIBMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQClQgFiI0QqQF4bNcRLvJzZvFplUgV5PTKgE6+dG1T+EALQ
-# Ro7HUuDJVY7uv133u0AKcibfqqiiHIphColhH1yf2z1lz0uczOGLgQ0Q5/5O5K+s
-# efLyyXw4Rd2l/Endg4tn/Zws5fiyUkJs9LCsv/V+ycO9y7UL4hOpoHlnlpAde8pm
-# uokLwe1pkUBUI29dJsoGbXc+HvoIObeNLLNzzVQXtVm4tvonUMbdwiBUuBnOPBbS
-# Hr/+1IOb52lBNgo2mbDb513WWnU+cXwHmtF4zZGmf1qfNtNJWHNBp0ywJwV5tX57
-# uqm4DWN/ESxl/lXjY58uZGWILZUeUbXoQf6INokq
+# hkiG9w0BAQEFAASCAQAm+n7bTUnSem6o+I9qe4hyiwSd1RcFrmrTXTdJgfYvexWS
+# R8xin2OOYqWDeMI5Z+kTv2+mVmvkA+O7dmuNhyg4ujhHIOJ9cJL5DdmNoyOw9tMP
+# 7IfuAE4c1nufqxxHM9Vu5wJwQhG6NVZkkwzzLC4PJ1DzPn9ZQFaOSdliPi/ybKIR
+# wvcrMDIjJCqYQVMT0lNl9gmZJM8p6aLKslhwsQ/hP6T9f9Tgzf2xYbihY670eiqu
+# w3Sm7s4Y444qvXMXRag3snh6o3pOix/6Jd2cSF0xHn4K4vnvrI3D7bW+eJYQQnKB
+# 1WXAKnNkzL4mBVOA1+eVele9iRixBnte5y0qmpaY
 # SIG # End signature block

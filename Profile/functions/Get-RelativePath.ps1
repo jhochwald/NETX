@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,131 +14,127 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-RelativePath {
-<#
-	.SYNOPSIS
-		Get a path to a file (or folder) relative to another folder
+  <#
+      .SYNOPSIS
+      Get a path to a file (or folder) relative to another folder
 
-	.DESCRIPTION
-		Converts the FilePath to a relative path rooted in the specified Folder
+      .DESCRIPTION
+      Converts the FilePath to a relative path rooted in the specified Folder
 
-	.PARAMETER Folder
-		The folder to build a relative path from
+      .PARAMETER Folder
+      The folder to build a relative path from
 
-	.PARAMETER FilePath
-		The File (or folder) to build a relative path TO
+      .PARAMETER FilePath
+      The File (or folder) to build a relative path TO
 
-	.PARAMETER Resolve
-		If true, the file and folder paths must exist
+      .PARAMETER Resolve
+      If true, the file and folder paths must exist
 
-	.Example
-		PS C:\> Get-RelativePath ~\Documents\WindowsPowerShell\Logs\ ~\Documents\WindowsPowershell\Modules\Logger\log4net.xslt
-		..\Modules\Logger\log4net.xslt
+      .Example
+      PS C:\> Get-RelativePath ~\Documents\WindowsPowerShell\Logs\ ~\Documents\WindowsPowershell\Modules\Logger\log4net.xslt
+      ..\Modules\Logger\log4net.xslt
 
-		Description
-		-----------
-		Returns a path to log4net.xslt relative to the Logs folder
+      Description
+      -----------
+      Returns a path to log4net.xslt relative to the Logs folder
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   Position = 0,
-				   HelpMessage = 'The folder to build a relative path from')]
-		[System.String]$Folder,
-		[Parameter(Mandatory = $true,
-				   ValueFromPipelineByPropertyName = $true,
-				   Position = 1,
-				   HelpMessage = 'The File (or folder) to build a relative path TO')]
-		[Alias('FullName')]
-		[System.String]$FilePath,
-		[Parameter(HelpMessage = 'If true, the file and folder paths must exist')]
-		[switch]$Resolve
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        Position = 0,
+    HelpMessage = 'The folder to build a relative path from')]
+    [System.String]$Folder,
+    [Parameter(Mandatory = $true,
+        ValueFromPipelineByPropertyName = $true,
+        Position = 1,
+    HelpMessage = 'The File (or folder) to build a relative path TO')]
+    [Alias('FullName')]
+    [System.String]$FilePath,
+    [Parameter(HelpMessage = 'If true, the file and folder paths must exist')]
+    [switch]$Resolve
+  )
 
-	BEGIN {
-		# FROM (Compare 1)
-		$from = $Folder = (Split-Path $Folder -NoQualifier -Resolve:$Resolve)
+  BEGIN {
+    # FROM (Compare 1)
+    $from = $Folder = (Split-Path -Path $Folder -NoQualifier -Resolve:$Resolve)
 
-		# TO (Compare 2)
-		$to = $filePath = (Split-Path $filePath -NoQualifier -Resolve:$Resolve)
-	}
+    # TO (Compare 2)
+    $to = $FilePath = (Split-Path -Path $FilePath -NoQualifier -Resolve:$Resolve)
+  }
 
-	PROCESS {
-		# Now we compare what we have
-		while ($from -and $to -and ($from -ne $to)) {
-			# Check the Length of both
-			if ($from.Length -gt $to.Length) {
-				$from = (Split-Path $from)
-			} else {
-				$to = (Split-Path $to)
-			}
-		}
+  PROCESS {
+    # Now we compare what we have
+    while ($from -and $to -and ($from -ne $to)) {
+      # Check the Length of both
+      if ($from.Length -gt $to.Length) {$from = (Split-Path $from)} else {$to = (Split-Path $to)}
+    }
 
-		# Setup and fill the Variables
-		$filepath = ($filepath -replace '^' + [regex]::Escape($to) + '\\')
-		$from = ($Folder)
+    # Setup and fill the Variables
+    $FilePath = ($FilePath -replace '^' + [regex]::Escape($to) + '\\')
+    $from = ($Folder)
 
-		# compare to figure out what to show
-		while ($from -and $to -and $from -gt $to) {
-			# Setup and fill the Variables
-			$from = (Split-Path $from)
-			$filepath = (Join-Path '..' $filepath)
-		}
-	}
+    # compare to figure out what to show
+    while ($from -and $to -and $from -gt $to) {
+      # Setup and fill the Variables
+      $from = (Split-Path $from)
+      $FilePath = (Join-Path -Path '..' -ChildPath $FilePath)
+    }
+  }
 
-	END {
-		# Do a garbage collection
-		Write-Output $filepath
-	}
+  END {
+    # Do a garbage collection
+    Write-Output -InputObject $FilePath
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbOCc2a7WnfvEFy+Nlf3gYejf
-# 9HygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUp6KxuJN+8rEIrZfSZu+Rwt7e
+# C/ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -160,10 +156,10 @@ function global:Get-RelativePath {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -179,12 +175,12 @@ function global:Get-RelativePath {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -281,25 +277,25 @@ function global:Get-RelativePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTRJzB8uga/T4Zytd7LuvDq8CYobDANBgkqhkiG9w0B
-# AQEFAASCAQCN+9dW0F5UijJZo1O+qWQxOauXRWI4KAWcss1Rw1D6vZDYQ0G0gkKk
-# 8E4KEhE92PYpVJOe7BUtiOHtoo+Ls4jZUgzHv3G1yospUAeFF2Re8hqr8FKy6stt
-# mHg+swFeD/SlAcaE3PdJRTAOTDxSMI6khjXlbATZI1I1/JnehU2tgCTXIvUyJpse
-# 98MaU446M9CpER6GFG/RufeTIZqrRIwu199bXlhfOrSmmBD3J3QciUk8fv7nu1Az
-# D/Zmorb34yRBIJvHiVCDj2YDHNTwg+xFNQ3OrVEjXUoxMpaj64NFwpjii3jAkMMZ
-# ujXjeIX93qqLAeRDZqyw23jU8wC0yWHhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRX2llxwwx0rchgYHGjJW8Z/KLK2DANBgkqhkiG9w0B
+# AQEFAASCAQASqqf19HOz1S67zeOInSepTnehM3vzY9gF/zo61T8L9fIhPPAOOaJH
+# 0ak3f9UC6ZBBRQYxiKbNHL5XHOPIEmFS9017ANbgprdBrBhe6JX/iVyn367mRc0Y
+# 2nhuj7eXRd2MS3LyDV/fpyzaFrXXEFovtoG+h8MCjeA5sGMkPg0Qd8M1CAb3pJbf
+# NwjUDi++iwRtjiPs2JkCiiaV6EHo+VARlzmnS3HJpUSs+izSpu6+WvCp3Ra/ys0t
+# E6Ktp9JdMzsZ3eHzNHdhp7+jedx2H0PAdD7TG4vhg01iUs++wYcrwUL88GqS67j+
+# wJwUleyxBJ4kTnsiuWIIIGFfMfW4JnHPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzMVowIwYJKoZIhvcN
-# AQkEMRYEFOPySlXutwnc/12Vesm/3bskNru2MIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzNlowIwYJKoZIhvcN
+# AQkEMRYEFGisLfw9vIHc3vsCcYDIawMwYNzAMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBdH3wjhOliIkpvSG+hsuvf12NQU0MIw+BuLOff87XVEpZ/
-# MwQA3hH3tib+tm1rBJWTbXkg2NOM92KMZloAwN2pCCUozovdpl1V4JT0lIn6BQyG
-# hDlA6zVaXQM4iGCi1Sh8b3QlfZ9+SNm2xxjPMLvV/syYcwiDP02prKCEg0If6PQx
-# zoLIM4U/Ob3yKeLwlEaUyYtg9DxOxnZIaBdb6JJuVR+wjzK9YShUkAuNwg2Nun9K
-# HabiKtL/wTS0WDPJDPOaTqLGOrtIg65gEX25aqAup3mwheW/6+3an0QKQSzpDw0n
-# xT9bvrbBSelF1q0zFIyXAfWiqB9wQEwh/rfRKasy
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQAiDtqsk0+DCAblrFThGRKfg1efNzRLdKxaVKhZLS75d3no
+# PEZO+2JIIa3+kfnPWV9iMS3Fvv1j3/wDWsFkULUFW1bj7YOY99zwlLbVFDBZvJSs
+# as38z8wUIcTWOmhJwaZU5wPbFImRsA1P+JAWHNi4HbL5ASfd1jLoaua854yy78iQ
+# DKiQH+YiuqBNUlQypAHljd8R/7YPg1YmPQB9ONyTbB/Iv87KWwgAjF299q/KQRRc
+# EEEWM8rWUxQcyonUzxTmf3/wnvMq2F00f4HlXwgSbXMwV51ArZK+dfmoURgRQra+
+# QhDzFJkn+payiijSVwwskgGeoIE+dx0vnsWBqr9T
 # SIG # End signature block

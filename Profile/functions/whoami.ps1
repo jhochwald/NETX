@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,82 +14,82 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:whoami {
-<#
-	.SYNOPSIS
-		Shows the windows login info
+  <#
+      .SYNOPSIS
+      Shows the windows login info
 
-	.DESCRIPTION
-		Make PowerShell a bit more like *NIX! Shows the Login info as you
-		might know it from Unix/Linux
+      .DESCRIPTION
+      Make PowerShell a bit more like *NIX! Shows the Login info as you
+      might know it from Unix/Linux
 
-	.EXAMPLE
-		PS C:\> whoami
-		BART\josh
+      .EXAMPLE
+      PS C:\> whoami
+      BART\josh
 
-		Description
-		-----------
-		Login (User) Josh on the system named BART
+      Description
+      -----------
+      Login (User) Josh on the system named BART
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
-	param ()
+  [CmdletBinding()]
+  [OutputType([System.String])]
+  param ()
 
-	PROCESS {
-		# Call the NET function
-		[System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-	}
+  PROCESS {
+    # Call the NET function
+    [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiBFA68wM4LaWXxKV8DUb8Fe2
-# KkegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9l+xl1TEKQKxRaXb/YliOaYD
+# fJSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -232,25 +232,25 @@ function global:whoami {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSYOEJYN3kpNe+vKGryaB4NQZtUgTANBgkqhkiG9w0B
-# AQEFAASCAQCHiMrtxr04eaEPUXAZUV/ZJ2aTyBWwUn5MRg8iAAOlvrqN/a2njse+
-# r3JySlbsWVhNHUKPByvHGas10tyHERbvY6DLE5vQ/v7iSvT3dgMUj73xnSuN8ZFD
-# Mx74wWOXRVJEFyLQD3s7hzpTqxhLdKFwpW4O0v7sYrwiOD9qyoTV6q6dksyZylHA
-# DQPFLs+7vVH0JkaSRZL5n352mPP8+PGyINvTNFiIC+EKzpvSEKYGHgQZjPna+gv9
-# Db5YMKBeUi6Om1eWsZp1+QMN1csQPoMRSNELBjCY6p09bjTAk6DyBJsJEECkwuov
-# VYuatA11fJxZQTtSsK5TLxuo64AKDNFsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRhlpV67X2AM/Nz9nAIYzcXNJsv0jANBgkqhkiG9w0B
+# AQEFAASCAQBA1HXGvBL8PcRHl7Nt1PGrL1dwwaHHSmBhBzox+5wWdQsdn7fpPuJf
+# V1HZCdlsytlhjgnB/j35f8qj4h3lYwZjEsgYdNcINHVk2d8LIRZoLJ9tB4sNe/oC
+# ysrJTvNKQkWvU80CWnh/45+whA5PFQxa3aSi7pSWjuDfpVLaMZKDXbtbv4q2c1lr
+# py7hIro0+q841b5SFpMSLdZakXU1QAXkeN2xeCrUjyhq8j5MOie2x+miiZQSi8VZ
+# aUUbURSxEn6nd/JBEnNCOqzD7zLvuIb1t7SOApvkEzYass1tzSWv5n0nkL2funn9
+# UDDnbBvMtREKjRQDEP6+bY2Lxl95ny+goYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzUwNFowIwYJKoZIhvcN
-# AQkEMRYEFHqpa/EuC13ppEAfF1+7R7aYYaazMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDcxMVowIwYJKoZIhvcN
+# AQkEMRYEFAVvaVGXnuPUmk+xxjlrky+PkTcgMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBbhOuWwovNk/xU1seHByaP7zo7zrBYVDUJwWPxB5sxeETi
-# KstQWXlEzC0LsMNeduNhdMTnmTi6uZLhUL5SzRzDswZWLzNdXlSN0xuTSuMyK7z/
-# VtY0J10cyt/9r+oLAYtE+afPLyWwFZ0sgS67ROxQHMzGQijn3318Im6R5g83B7X5
-# gCTNjS3cRn4fbPCZL5JQzdvZ+UiBnx0cDnN1H+LRcA9+b09FH35J+74KUXOFnBU7
-# ob6OGzK1lScglXrkb+V30lYThVGQXBlY3itFsogc7GpRFy+K/g9Lhpcz2kzwRstx
-# cQ1Koqu8R0LHGmU1vxJ0smtx7wmiGS/VYyLkVfxT
+# hkiG9w0BAQEFAASCAQAiwVax1pow5EpSUsFZLCnQsL3gFRB4CBkSwnNCjBgzaas5
+# ZltqB8OkBp/PSt4HUT3nhg2RMMTiKTvCMDfd49NBc/jG4x2jd7s/peHjowhQammc
+# 6gKglhYcxWqcv/IrY/uxLfWq20B/6P+1lZKPR1WnoqLx4QZuKAPOWGzZz3CGJNLv
+# +2TTXWo4N9oFgbMjfn9YIRe/NcetZkI20m9MwguEV9xpls6s7VUU05acEmvJq3Wb
+# 6Jg0PTYL9X2lrUdjWTsfI9w7Gp0XonOEAQXbYW2mLrVlui5/1jGI64bkG7cWFp1R
+# LDI0114pWmKxk/yzcJOtavJSJZ1B/Oh4hBiulItj
 # SIG # End signature block

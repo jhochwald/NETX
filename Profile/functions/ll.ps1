@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,127 +14,127 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Make Powershell more Uni* like
 function global:Invoke-PowerLL {
-<#
-	.SYNOPSIS
-		Quick helper to make my PowerShell a bit more like *nix
+  <#
+      .SYNOPSIS
+      Quick helper to make my PowerShell a bit more like *nix
 
-	.DESCRIPTION
-		Everyone ever used a modern Unix and/or Linux system knows and love
-		the colored output of LL
+      .DESCRIPTION
+      Everyone ever used a modern Unix and/or Linux system knows and love
+      the colored output of LL
 
-		This function is hack to emulate that on PowerShell.
+      This function is hack to emulate that on PowerShell.
 
-	.PARAMETER dir
-		Show the content of this Directory
+      .PARAMETER dir
+      Show the content of this Directory
 
-	.PARAMETER all
-		Show all files, included the hidden ones!
+      .PARAMETER all
+      Show all files, included the hidden ones!
 
-	.NOTES
-		Make PowerShell a bit more like *NIX!
+      .NOTES
+      Make PowerShell a bit more like *NIX!
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Alias('Directory')]
-		$dir = '.',
-		[Alias('ShowAll')]
-		$all = $false
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Alias('Directory')]
+    $dir = '.',
+    [Alias('ShowAll')]
+    $all = $false
+  )
 
-	BEGIN {
-		# Define object
-		Set-Variable -Name origFg -Value $($Host.UI.RawUI.ForegroundColor)
-	}
+  BEGIN {
+    # Define object
+    Set-Variable -Name origFg -Value $($Host.UI.RawUI.ForegroundColor)
+  }
 
-	PROCESS {
-		# What to do?
-		if ($all) {
-			Set-Variable -Name toList -Value $(Get-ChildItem -Force $dir)
-		} else {
-			Set-Variable -Name toList -Value $(Get-ChildItem $dir)
-		}
+  PROCESS {
+    # What to do?
+    if ($all) {
+      Set-Variable -Name toList -Value $(Get-ChildItem -Force $dir)
+    } else {
+      Set-Variable -Name toList -Value $(Get-ChildItem $dir)
+    }
 
-		# Define the display colors for given extensions
-		foreach ($Item in $toList) {
-			Switch ($Item.Extension) {
-				'.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
-				'.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
-				'.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
-				'.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
-				'.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
-				'.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
-				'.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-				'.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-				'.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-				'.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-				Default { $Host.UI.RawUI.ForegroundColor = $origFg }
-			}
+    # Define the display colors for given extensions
+    foreach ($Item in $toList) {
+      Switch ($Item.Extension) {
+        '.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+        '.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+        '.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
+        '.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
+        '.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+        '.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+        '.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+        '.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+        '.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+        '.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+        Default { $Host.UI.RawUI.ForegroundColor = $origFg }
+      }
 
-			# All directories a Dark Grey
-			if ($item.Mode.StartsWith('d')) {
-				$Host.UI.RawUI.ForegroundColor = 'DarkGray'
-			}
+      # All directories a Dark Grey
+      if ($Item.Mode.StartsWith('d')) {
+        $Host.UI.RawUI.ForegroundColor = 'DarkGray'
+      }
 
-			# Dump it
-			$item
-		}
-	}
+      # Dump it
+      $Item
+    }
+  }
 
-	END {
-		$Host.UI.RawUI.ForegroundColor = $origFg
-	}
+  END {
+    $Host.UI.RawUI.ForegroundColor = $origFg
+  }
 }
-(Set-Alias ll Invoke-PowerLL -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name ll -Value Invoke-PowerLL -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQIr8MqswOY6q2v6cDKDM5KsJ
-# e2mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDHlFMZ205Isu3oFboSo2ElYv
+# b9egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -277,25 +277,25 @@ function global:Invoke-PowerLL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxwJNW32AFj9S6FbPUHVw1bd/e2DANBgkqhkiG9w0B
-# AQEFAASCAQCd2f29um8t3lPcYddIEg0xW9OW7UENdph3m78ApctGbgAMcDAztmc8
-# CEgzPyrya3qeKGenntQSOcqW2tOyp6LdJcKu9XGJz5ymn1r1/RblD+RSKwOkAB5C
-# 4FWf7A7qQhgQDAeMVrkE6t7tZdFVftc67sz199EApRUE228nKrhXfQP3e2PhZetM
-# RPyjGukjWqLdUAXm4boiVyM06wqAKk/zKOnTWwztqzQvHjxFVoALiZHKuK8S//jJ
-# Sw1AzcFQly9HSvh10MGNbcHZASnmw0MZYLl31pC3NTtZu7c3AwL79DliIRLZ+Cnj
-# Ct7WUJ9xdeWPnwwiSdR3QCw7LufMq0qboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQlYbB1J9QyTfylCEXnyJgfr7kBwDANBgkqhkiG9w0B
+# AQEFAASCAQAZo709f0sIqEzw0BtXMLDRfivNNm6yIEx9CSdB6qbGdW/aHiQ6o9fv
+# oqbIaoJNIs/YhyVhXsqYYUggld/rpatUbCeQanWDWT9WfKj17a5ia+VUV4UY6iZQ
+# EfSF0D94okBqHFUV0nBv+znhx7sCc4AVf+jKNfBtjaxVs48rMZ7F1fuoJtpB74V6
+# TpQQfxrNRqTZq5sf/tby2Tm4agESoi9y/qA7690+WIaK8pKk3G8Hgd6FHwjGVluf
+# qncaansMaXdXMDaer6UvPsej5ZS9SwlQpM1j5Wlbcz2B6pAnmRImlGECDesYCiHa
+# TZ6toShhWIz0Q4xHvqv6gUXlS1Iz7AY0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0NFowIwYJKoZIhvcN
-# AQkEMRYEFBLDTjmH8Txp7FoVBWeKUhPQ05fFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY1MVowIwYJKoZIhvcN
+# AQkEMRYEFGqvdsjcR1IZmwYfRRoVeXxWcsQDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBT9TDcQWQUQfqvMqNRvyOCz57gijb47jp7/LELORG5dNwA
-# gq3iCZERu73HHV9MSVrKbIPLsNkPXtDVZi5Id+1bWYxrdsaFYMiCGtpYU+Mm1IzM
-# xjQJJzffd6UpLYgwFAZHQOEfDPDB6SobMGp8U8PgfEMGJJmtV5R9DYG+Mc2aUrHa
-# /WxasKBiyoS4QQhqyDvaPb8XDZzVgD9hHJluWlNWl3ed561un90yqrDdmiL2hQfH
-# KEiSLEwC75T9mNXMrPIZDbR5EfruOIkc2eQWTaUY/XVuTAKCmFGXR8vFLvY9bkgD
-# UESwD3X89ikuk8LpY2RcW1f32SQxOwSbuvh5ZrTU
+# hkiG9w0BAQEFAASCAQAI6ShBM7nk+2Ov7a6mSUqQk40PKkOW3rfR+/c985oQMeNG
+# levRVWULvijx9436mWFsPTPHocanzMZCCo5+dCiAZ6kmpq0zMFk94xMSzIIKvJKJ
+# pO2CNeEiq317YSmVXPZznrdz/MAOTob4N8orchCLFXjuZoYpVjjsmx/wtPmUjJ0E
+# GkOUfxLq99TOyAuVsbUa8KhNeoiID/X5itFK61rVSouLUQhoqdcbEOGaJKkUiAya
+# +vbZ9WPTxBYRvjuknyC4jimBmGlUJJbLgGeRZoqmDuDCJ1bzgRXY/1OQXPnmTNKZ
+# VByALopxqdnogQJZzy7gAvQCwq3vcQ0s3ogNeGsh
 # SIG # End signature block

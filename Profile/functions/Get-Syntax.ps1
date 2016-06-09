@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-18
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,89 +14,89 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Syntax {
-<#
-	.SYNOPSIS
-		Get the syntax of a cmdlet, even if we have no help for it
+  <#
+      .SYNOPSIS
+      Get the syntax of a cmdlet, even if we have no help for it
 
-	.DESCRIPTION
-		Helper function to get the syntax of a alias or cmdlet,
-		even if we have no help for it
+      .DESCRIPTION
+      Helper function to get the syntax of a alias or cmdlet,
+      even if we have no help for it
 
-	.PARAMETER cmdlet
-		command-let that you want to check
+      .PARAMETER cmdlet
+      command-let that you want to check
 
-	.EXAMPLE
-		PS C:\> Get-syntax Get-syntax
+      .EXAMPLE
+      PS C:\> Get-syntax Get-syntax
 
-		Description
-		-----------
-		Get the syntax and parameters for the cmdlet "Get-syntax".
-		Makes no sense at all, but this is just an example!
+      Description
+      -----------
+      Get the syntax and parameters for the cmdlet "Get-syntax".
+      Makes no sense at all, but this is just an example!
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[ValidateNotNullOrEmpty()]
-		[Alias('Command')]
-		$cmdlet
-	)
+  [CmdletBinding()]
+  param
+  (
+    [ValidateNotNullOrEmpty()]
+    [Alias('Command')]
+    $cmdlet
+  )
 
-	PROCESS {
-		# Use Get-Command to show the syntax
-		Get-Command $cmdlet -syntax
-	}
+  PROCESS {
+    # Use Get-Command to show the syntax
+    Get-Command $cmdlet -Syntax
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnNw55XyC76nBfYs3Erp7szdU
-# vlegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoGA1WeS7B1WLZHQyl3aERb+u
+# 0OagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -239,25 +239,25 @@ function global:Get-Syntax {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxHzBHnNpdFd8UKSuEwN1/HD7iezANBgkqhkiG9w0B
-# AQEFAASCAQCYz6PP6sQQ0c9VmhwYPvbtkEYxKrk7llhtllpsnYBFy2HPqHAuuo6F
-# aDH5xpfC9po8QihVNsg6bKa/vquXZu1nIpw8eeVuyM2PHS1+HPz0CANblUmhVA1L
-# 3rOAw+NDKz2zkOm0IsHbCgj18nHVHytevau+tAGQsvkbfNlt56JFm4ZBmTBXuvbJ
-# 7QMAgOD2cExzkedlw71aE3FE82b1JT2AQmE2dkyjV+OPybV4vQzzKpTsC3VauyRd
-# MIOPYUTk4Pw09XytAybu7xaM6lxXpDQ2jYzczI9ttAev0QG89HRlNXiJZzMRBDN1
-# B4mERXTkodKy/e/PWR1bWEFfsfuIr40voYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS9ZuTtQDv+YoPjrnSA+/Hhf12FAjANBgkqhkiG9w0B
+# AQEFAASCAQAHgdFuG38htZ+UrDGbSOKqaSuZvd+OgSsfGX9GWHSGMFwIB+lGt1JW
+# 8Qfmzhk+uWUMooaXk3PS2j/48BjyV4QFvFBtNE3ze/fXEEc4yIT32rekfYM3pcOk
+# 7YIsPuW+3hyVJ+bIRDA48LJea/VCOLeMjXoU5CYob29dLLoT/Fbsf3kdP/1y7Jf1
+# 3Prblcg3rFS7TIRxSwIkmOzYHAdTR7ICINZUHrYOOFJ1BVf7pMkq+3bgLwJ3JTE9
+# BiXm90UZMVeA+OpmzTTagGO+vVx0xHFLvyptvu74iL+7fHm+A29tY8UlIVEZBsVV
+# 4Lz2SVDuTCFAdXTlrHx7IokCd8Tq5ewCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQzM1owIwYJKoZIhvcN
-# AQkEMRYEFCzKO9O7dAZisRTBZGQYTF+oQbQYMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYzOVowIwYJKoZIhvcN
+# AQkEMRYEFKMIzomZwBu13ZDVhoFpFep3Ua5lMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBkN0Y7BEHD64QflbsTKr3fG8/d6oedTAq0yQBqN82EudW+
-# d3wZekI7dmMG9FMMeETXkhIjlAGf0KLGtn1wWRkzrKXC4d9SuxS6dssUQ8KiTbtk
-# CKsYETA8wmDLp5hlr5udxa5lAreWZfWnKkEHY0S7VGurPSpLaWbqrtshSxw2G004
-# +5l3UHK647pMbKTizDG2LfK12ylhXAmYHoKsggRn9KNLN3BnNvK/HKWbnZoBYLxz
-# Jw3G1xtLEMXEyIV0TEVDlE/X2jc1mCwaHsvXVDJspArTZD5O3tM5MM26ejUaEOzt
-# ZxwMW/UwapimCNh9L7TgIvSfzGw5nmBIXelDObWy
+# hkiG9w0BAQEFAASCAQCABp5NFEri/RuEFXp7diCuYTkY1+0gByBEeucKd4LJfy3q
+# BYwo3n2BtRpmhhfvJNnzB4StCAmaASsXVlQZFX4FgW42rvvR0/AGazh6tQUOu0Es
+# wmI2LBCI4jsUu1zx3kmqhf5b72zLKor9w9cfhRlYCmw2urVXaDg8dm7v1UWhESjL
+# 0c3wGW5v+Nkl4dUEZ9yvGKWyA2A4oXP9TWI07oKa/P3SW9GyVlMrTx34dFOZpQp2
+# lBeEZJLclQ2nScDy50lLEB5AQW4l662OKWu6L1Xvt19B+j9qJI/H7pNxziKSnCoK
+# aIDHr1fdpLKeOHrfMFC1MgJc3cAKzCrm9yVwRo40
 # SIG # End signature block

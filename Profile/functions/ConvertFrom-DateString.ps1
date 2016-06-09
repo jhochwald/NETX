@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-29
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -15,155 +15,151 @@
 #endregion License
 
 function ConvertFrom-DateString {
-<#
-	.SYNOPSIS
-		Converts a string representation of a date.
+  <#
+      .SYNOPSIS
+      Converts a string representation of a date.
 
-	.DESCRIPTION
-		Converts the specified string representation of a date and time to its
-		DateTime equivalent using the specified format and culture-specific
-		format information. The format of the string representation must match
-		the specified format exactly.
+      .DESCRIPTION
+      Converts the specified string representation of a date and time to its
+      DateTime equivalent using the specified format and culture-specific
+      format information. The format of the string representation must match
+      the specified format exactly.
 
-	.PARAMETER Value
-		A string containing a date and time to convert.
+      .PARAMETER Value
+      A string containing a date and time to convert.
 
-	.PARAMETER FormatString
-		The required format of the date string value. If FormatString defines a
-		date with no time element, the resulting DateTime value has a time of
-		midnight (00:00:00).
-		If FormatString defines a time with no date element, the resulting
-		DateTime value has a date of DateTime.Now.Date.
-		If FormatString is a custom format pattern that does not include date
-		or time separators (such as "yyyyMMdd HHmm"), use the invariant culture
-		(e.g [System.Globalization.CultureInfo]::InvariantCulture), for the
-		provider parameter and the widest form of each custom format specifier.
-		For example, if you want to specify hours in the format pattern,
-		specify the wider form, "HH", instead of the narrower form, "H".
-		The format parameter is a string that contains either a single standard
-		format specifier, or one or more custom format specifiers that define
-		the required format of StringFormats. For details about valid
-		formatting codes, see 'Standard Date and Time Format Strings'
-		(http://msdn.microsoft.com/en-us/library/az4se3k1.aspx)
-		or 'Custom Date and Time Format Strings'
-		(http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx).
+      .PARAMETER FormatString
+      The required format of the date string value. If FormatString defines a
+      date with no time element, the resulting DateTime value has a time of
+      midnight (00:00:00).
+      If FormatString defines a time with no date element, the resulting
+      DateTime value has a date of DateTime.Now.Date.
+      If FormatString is a custom format pattern that does not include date
+      or time separators (such as "yyyyMMdd HHmm"), use the invariant culture
+      (e.g [System.Globalization.CultureInfo]::InvariantCulture), for the
+      provider parameter and the widest form of each custom format specifier.
+      For example, if you want to specify hours in the format pattern,
+      specify the wider form, "HH", instead of the narrower form, "H".
+      The format parameter is a string that contains either a single standard
+      format specifier, or one or more custom format specifiers that define
+      the required format of StringFormats. For details about valid
+      formatting codes, see 'Standard Date and Time Format Strings'
+      (http://msdn.microsoft.com/en-us/library/az4se3k1.aspx)
+      or 'Custom Date and Time Format Strings'
+      (http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx).
 
-	.PARAMETER Culture
-		An object that supplies culture-specific formatting information about
-		the date string value. The default value is null. A value of null
-		corresponds to the current culture.
+      .PARAMETER Culture
+      An object that supplies culture-specific formatting information about
+      the date string value. The default value is null. A value of null
+      corresponds to the current culture.
 
-	.PARAMETER InvariantCulture
-		Gets the CultureInfo that is culture-independent (invariant).
-		The invariant culture is culture-insensitive. It is associated with the
-		English language but not with any country/region.
+      .PARAMETER InvariantCulture
+      Gets the CultureInfo that is culture-independent (invariant).
+      The invariant culture is culture-insensitive. It is associated with the
+      English language but not with any country/region.
 
-	.EXAMPLE
-		ConvertFrom-DateString -Value 'Sun 15 Jun 2008 8:30 AM -06:00' -FormatString 'ddd dd MMM yyyy h:mm tt zzz' -InvariantCulture
+      .EXAMPLE
+      ConvertFrom-DateString -Value 'Sun 15 Jun 2008 8:30 AM -06:00' -FormatString 'ddd dd MMM yyyy h:mm tt zzz' -InvariantCulture
 
-		Sunday, June 15, 2008 5:30:00 PM
+      Sunday, June 15, 2008 5:30:00 PM
 
-		Description
-		-----------
-		This example converts the date string, 'Sun 15 Jun 2008 8:30 AM -06:00',
-		according to the specifier that defines the required format.
-		The InvariantCulture switch parameter formats the date string in a
-		culture-independent manner.
+      Description
+      -----------
+      This example converts the date string, 'Sun 15 Jun 2008 8:30 AM -06:00',
+      according to the specifier that defines the required format.
+      The InvariantCulture switch parameter formats the date string in a
+      culture-independent manner.
 
-	.EXAMPLE
-		'jeudi 10 avril 2008 06:30' | ConvertFrom-DateString -FormatString 'dddd dd MMMM yyyy HH:mm' -Culture fr-FR
+      .EXAMPLE
+      'jeudi 10 avril 2008 06:30' | ConvertFrom-DateString -FormatString 'dddd dd MMMM yyyy HH:mm' -Culture fr-FR
 
-		Thursday, April 10, 2008 6:30:00 AM
+      Thursday, April 10, 2008 6:30:00 AM
 
-		Description
-		-----------
-		In this example a date string, in French format (culture).
-		The date string is piped to ConvertFrom-DateString.
-		The input value is bound to the Value parameter.
-		The FormatString value defines the required format of the date string
-		value. The result is a DateTime object that is equivalent to the date
-		and time contained in the Value parameter, as specified by
-		FormatString and Culture parameters.
+      Description
+      -----------
+      In this example a date string, in French format (culture).
+      The date string is piped to ConvertFrom-DateString.
+      The input value is bound to the Value parameter.
+      The FormatString value defines the required format of the date string
+      value. The result is a DateTime object that is equivalent to the date
+      and time contained in the Value parameter, as specified by
+      FormatString and Culture parameters.
 
-	.EXAMPLE
-		ConvertFrom-DateString -Value 'Sun 15 Jun 2008 8:30 AM -06:00' -FormatString 'ddd dd MMM yyyy h:mm tt zzz'
+      .EXAMPLE
+      ConvertFrom-DateString -Value 'Sun 15 Jun 2008 8:30 AM -06:00' -FormatString 'ddd dd MMM yyyy h:mm tt zzz'
 
-		Sunday, June 15, 2008 5:30:00 PM
+      Sunday, June 15, 2008 5:30:00 PM
 
-		Description
-		-----------
-		Converts the date string specified in the Value parameter with the
-		custom specifier specified in the FormatString parameter. The result
-		DateTime object format corresponds to the current culture.
+      Description
+      -----------
+      Converts the date string specified in the Value parameter with the
+      custom specifier specified in the FormatString parameter. The result
+      DateTime object format corresponds to the current culture.
 
-	.NOTES
-		We just adopted and tweaked the existing function from Shay Levy.
+      .NOTES
+      We just adopted and tweaked the existing function from Shay Levy.
 
-	.LINK
-		Blog	http://PowerShay.com
+      .LINK
+      Blog	http://PowerShay.com
 
-	.LINK
-		information	http://msdn.microsoft.com/en-us/library/w2sa9yss.aspx
+      .LINK
+      information	http://msdn.microsoft.com/en-us/library/w2sa9yss.aspx
 
-	.LINK
-		Source	http://gallery.technet.microsoft.com/scriptcenter/5b40075b-caef-45e8-8b12-d882fcd0dd9c
-#>
+      .LINK
+      Source	http://gallery.technet.microsoft.com/scriptcenter/5b40075b-caef-45e8-8b12-d882fcd0dd9c
+  #>
 
-	[CmdletBinding(DefaultParameterSetName = 'Culture')]
-	[OutputType([System.DateTime])]
-	param
-	(
-		[Parameter(Mandatory = $true,
-				   ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'A string containing a date and time to convert.')]
-		[System.String]$Value,
-		[Parameter(Mandatory = $true,
-				   Position = 1,
-				   HelpMessage = 'The required format of the date string value')]
-		[Alias('format')]
-		[System.String]$FormatString,
-		[Parameter(ParameterSetName = 'Culture',
-				   HelpMessage = 'An object that supplies culture-specific formatting information about')]
-		[System.Globalization.CultureInfo]$Culture = $null,
-		[Parameter(ParameterSetName = 'InvariantCulture',
-				   Mandatory = $true,
-				   HelpMessage = 'Gets the CultureInfo that is culture-independent (invariant).')]
-		[switch]$InvariantCulture
-	)
+  [CmdletBinding(DefaultParameterSetName = 'Culture')]
+  [OutputType([System.DateTime])]
+  param
+  (
+    [Parameter(Mandatory = $true,
+        ValueFromPipeline = $true,
+        Position = 0,
+    HelpMessage = 'A string containing a date and time to convert.')]
+    [System.String]$Value,
+    [Parameter(Mandatory = $true,
+        Position = 1,
+    HelpMessage = 'The required format of the date string value')]
+    [Alias('format')]
+    [System.String]$FormatString,
+    [Parameter(ParameterSetName = 'Culture',
+    HelpMessage = 'An object that supplies culture-specific formatting information about')]
+    [System.Globalization.CultureInfo]$Culture = $null,
+    [Parameter(ParameterSetName = 'InvariantCulture',
+        Mandatory = $true,
+    HelpMessage = 'Gets the CultureInfo that is culture-independent (invariant).')]
+    [switch]$InvariantCulture
+  )
 
-	PROCESS {
-		if ($PSCmdlet.ParameterSetName -eq 'InvariantCulture') {
-			$Culture = [System.Globalization.CultureInfo]::InvariantCulture
-		}
+  PROCESS {
+    if ($PSCmdlet.ParameterSetName -eq 'InvariantCulture') {$Culture = [System.Globalization.CultureInfo]::InvariantCulture}
 
-		Try {
-			[System.DateTime]::ParseExact($Value, $FormatString, $Culture)
-		} Catch [System.FormatException] {
-			Write-Error "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+    Try {[System.DateTime]::ParseExact($Value, $FormatString, $Culture)} Catch [System.FormatException] {
+      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
 
-			# Still here? Make sure we are done!
-			break
+      # Still here? Make sure we are done!
+      break
 
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
-		} Catch {
-			Write-Error "$($Value) is not in the correct format."
+      # Aw Snap! We are still here? Fix that the hard way...
+      exit 1
+    } Catch {
+      Write-Error -Message "$($Value) is not in the correct format."
 
-			# Still here? Make sure we are done!
-			break
+      # Still here? Make sure we are done!
+      break
 
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
-		}
-	}
+      # Aw Snap! We are still here? Fix that the hard way...
+      exit 1
+    }
+  }
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURl6KpUjWysB6B0eROCJ8PIqg
-# dhugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULT2hw2ughvu+e7JMF/FizgOB
+# aKegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -185,10 +181,10 @@ function ConvertFrom-DateString {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -204,12 +200,12 @@ function ConvertFrom-DateString {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -306,25 +302,25 @@ function ConvertFrom-DateString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSiFTwjyRRjib6r5yOKp6CHU6l6WTANBgkqhkiG9w0B
-# AQEFAASCAQCfPP/jSEnUrFKggyijml4myAkIWKwmf6JkYuKleZ65bZt3lGECarkm
-# aSuxYFWgj9yT9yCRbDplUc9KVhMNR0ptNg34r2dOupp8b458Dj2zWQFjWSUJ3EUK
-# PCVFAxbfvqkZQG7iXZOJHgv94NHEL7dGzyvrM7gs4CkYYbnYjs0l03YUsgUzLd9g
-# /S/n5EOlJ/85jFVkOL1A9RtimgVv7HovGo5fPB4k1kc4yl77emlB8+59taYCYouq
-# wCM/+BZiBUVJY1DcEnVZSt8tTMKsUyFWWXWNJZOhzWTCozkt6zLRBubchAECh+c2
-# qegjYDCMe04km3AoP86aHYIbsXV/WLcPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTF0ZH+Y8mYazbwjICy+LZkZM4+qDANBgkqhkiG9w0B
+# AQEFAASCAQAIXuGzOFXUcMs+iM1laEaLgSM8066j3IhWcfDrW7HEaRvscPe30MDm
+# bGMPU9mizrmM68yighA83CUcXH9lJrw5ZN4JDao1dfX6ka6f+HGWrc3mE61Em7lC
+# Q21UH3Xdf74H1n60TuLbXuD7CDnoaEYcCIAwMr1Ay2s+B40kMNtnQBoKyktLDO4z
+# x4k1+NeC4JsAG5lk706dvhM+z+6NEjYUeZoeK6TfHTXa9ZKF9xAExk4c2KxMNzRu
+# gmuffj2DjI4XPFVEp0tej6u6KX61Jsb+I7wD0WwivfwWfnSYeYnWDK1S1uFViOSO
+# yGQycCzgZKHQXt14FV7oHmJCGwQB20pToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQxNVowIwYJKoZIhvcN
-# AQkEMRYEFM+tC4G40uxL0z6AIyIJyIh49AdmMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDYxOVowIwYJKoZIhvcN
+# AQkEMRYEFBQIGVav02TmS2tIe/4JRK3KVMJpMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBMCLjCtlPYo93PS3gLsDf2YSj7OJrCcTuDBLBvBGJPJ9hd
-# wLb0pGSs/uVwI5kv+V7/6VNVg+oEFLm0YSpZUmP4XZzPBBjq/jeQVKz1DN8i0OfY
-# jPTW2CKfv/4vl7BzZlV5ognWGnkT+7r/wKZoqj46SlXzkK5mi4/BtHqEBL20QV39
-# vbO/xrTtX7DdFNOw9SsG37G+h6hbLyC1qiaVSd/S15h9fDzVb3W1aFfOrJYORFW5
-# +c/wOFB7ildQMVTVUdUFQgX/V3bW+9mW7zHd34XBLn6N4zUAJloYtAoCyDNBNKQJ
-# x+PvSSbRiopr3EoIBhA5BjSzDKUNlFaXQ95iKuz7
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQA0RV6NCh/LSfrp3RwIaLIho4+nv3rMfOkYLsDryrwsX2v7
+# dSjR3JPFp5yundNvhjuza1rGtqtOY8GqVYNJMP0gndSDifS3KWL+/lp5H2nMRirc
+# beG76cyzQTVU1zcPnsAToE5LG8oLj8v8xgUxKnb5k/YLKZleErirTB0OaEsjk5JB
+# sHXSzQjLXi3NQ1NcozQ+Sltg4CZsNxcOLvJ+pZbHL7w4lpggrpQ4G1DAhFG6NtEQ
+# 0tqwcoGEtB5C4uIn4fKvUzplta7JhzGxOn88ihPxysjjVvpqPSnltaW6n6nVl7bs
+# dOGFrspXcOQhgpA0k09JsFlpWL7PJxQye5B8+oR9
 # SIG # End signature block

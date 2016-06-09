@@ -1,12 +1,12 @@
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-05-27
-	#################################################
+    #################################################
+    # modified by     : Joerg Hochwald
+    # last modified   : 2016-06-09
+    #################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+    Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,115 +14,115 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+    All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+    3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+    THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+    By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-VisualEditor {
-<#
-	.SYNOPSIS
-		Wrapper to edit files
+  <#
+      .SYNOPSIS
+      Wrapper to edit files
 
-	.DESCRIPTION
-		This is a quick wrapper that edits files with editor from the
-		VisualEditor variable
+      .DESCRIPTION
+      This is a quick wrapper that edits files with editor from the
+      VisualEditor variable
 
-	.PARAMETER args
-		Arguments
+      .PARAMETER args
+      Arguments
 
-	.PARAMETER Filename
-		File that you would like to edit
+      .PARAMETER Filename
+      File that you would like to edit
 
-	.EXAMPLE
-		PS C:\> Invoke-VisualEditor example.txt
+      .EXAMPLE
+      PS C:\> Invoke-VisualEditor example.txt
 
-		Description
-		-----------
-		Invokes Note++ or ISE and edits "example.txt".
-		This is possible, even if the File does not exists...
-		The editor should ask you if it should create it for you
+      Description
+      -----------
+      Invokes Note++ or ISE and edits "example.txt".
+      This is possible, even if the File does not exists...
+      The editor should ask you if it should create it for you
 
-	.EXAMPLE
-		PS C:\> Invoke-VisualEditor
+      .EXAMPLE
+      PS C:\> Invoke-VisualEditor
 
-		Description
-		-----------
-		Invokes Note++ or ISE without opening a file
+      Description
+      -----------
+      Invokes Note++ or ISE without opening a file
 
-	.NOTES
-		This is just a little helper function to make the shell more flexible
+      .NOTES
+      This is just a little helper function to make the shell more flexible
 
-	.LINK
-		NET-Experts http://www.net-experts.net
+      .LINK
+      NET-Experts http://www.net-experts.net
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+      .LINK
+      Support https://github.com/jhochwald/NETX/issues
+  #>
 
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(Position = 0)]
-		[Alias('File')]
-		[System.String]$args
-	)
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Position = 0)]
+    [Alias('File')]
+    [System.String]$args
+  )
 
-	PROCESS {
-		# Call the newly set Editor
-		if (-not ($VisualEditor)) {
-			# Aw SNAP! The VisualEditor is not configured...
-			Write-Error -Message:'System is not configured well! The Visual Editor is not given...' -ErrorAction:Stop
-		} else {
-			# Yeah! Do it...
-			if (-not ($args)) {
-				#
-				Start-Process -FilePath $VisualEditor
-			} else {
-				#
-				Start-Process -FilePath $VisualEditor -ArgumentList "$args"
-			}
-		}
-	}
+  PROCESS {
+    # Call the newly set Editor
+    if (-not ($VisualEditor)) {
+      # Aw SNAP! The VisualEditor is not configured...
+      Write-Error -Message:'System is not configured well! The Visual Editor is not given...' -ErrorAction:Stop
+    } else {
+      # Yeah! Do it...
+      if (-not ($args)) {
+        #
+        Start-Process -FilePath $VisualEditor
+      } else {
+        #
+        Start-Process -FilePath $VisualEditor -ArgumentList "$args"
+      }
+    }
+  }
 }
 # Set a compatibility Alias
-(Set-Alias vi Invoke-VisualEditor -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias vim Invoke-VisualEditor -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name vi -Value Invoke-VisualEditor -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name vim -Value Invoke-VisualEditor -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfKUeDtc5JFzQb5QIufgmE4cq
-# 2sOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhA0Rl4HmUl5gRS3yQGyY6jK1
+# SeSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +265,25 @@ function global:Invoke-VisualEditor {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRcs1TZgm1XINBB9OYt1ZSL/7m6CjANBgkqhkiG9w0B
-# AQEFAASCAQB3xVsoT8jeaAKYsrYQDJTDFlZ2GtFIWHSqtFb8ml7M+qerkvj5DmkP
-# DFcL2aSDXO8rIVwYUooY0e9Rqqp2OXXQKZDd+18MqwIf/F1ziXZU8FBstvLPELx+
-# 0XK+hOwcZ55WielEdZOt3oUD3fbAJ4KMy20w//BECdCfXYiiXA6KXZlMVrzZQoEk
-# SjPdyjC5v7Bfgf1l+U34z42eEpPgwVsWrxdA/E/ghxuSXv1ViU0dg7M+nWY1cIM1
-# DQsbRGNjHpzUsAGpyVjwnk+Lexyv7236fKpDsL2+MTcNnIDuz5vzyiZhkOEgEHNm
-# 96GLHiVpuwFVu/oft3ClwLK5SqBsvEnToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQNByXr8OE/CD6qaC4GGFuaeQXDMjANBgkqhkiG9w0B
+# AQEFAASCAQBXsM8JIX02HceRHuqEN20sbgcy69iRpiXE6YuK0drFwg0YUsoSX0Ua
+# iDDv7uf+7C76TDlnm6rMi8vQTpjOYt3Y/sYdZDM2BnSysi5AcgH6dEOteIGHOZbk
+# kmdrZxgK6AiIu71J3ZK762hAIo/1goGB2p1kl1/XDVpt01X8SaCEL5wS67yv9i1L
+# Cn2HJjB5wDtVkPQhPUu+KJGJta8d+gPp1PR4rvYrUgvNe4iFbzSAfD1zoddakXp6
+# 9D0GkwjWBwbdyaEORx2bKwt19SLvW1Qz6+UHcpKAfjC/xNW9W1WDgfoxtdgHtHyt
+# OOkxr/1n52nHCMq6WRKEjKdM5IafNkX+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTE0MzQ0MlowIwYJKoZIhvcN
-# AQkEMRYEFNdzD+mS8Dxk7LyTrU257I7+iEP9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIwMDY0OVowIwYJKoZIhvcN
+# AQkEMRYEFOcCkH/UtgQ8cOsb29h7N7PMDgl1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA6fGaLnjhOerkoUTkPVev2bAnHcCyHrs3L6kiewHrZpqg+
-# pEhZovsMm2dKmopZzCi3yQwz3qb30tytyL7AZsbxycW2/q6ySQebe0jMEeQC6htC
-# 7mDx9JrBWPyCe/W9fuNRadbIIXpGU1pc+gKkjTc+hI3NenovLZ2khwVT5G0NWXC0
-# C/W9ikIXW60L4tRou6J4lXAedmai90tyywhSb04UczJ63rWHr2QKzEgCPtDAaMfE
-# vUxrDqouyZhiTEzepMGpoVtG7CApuN+CLkWvkkLqiCMu2DWoRtFEBvzze/BbijDu
-# 8HvIsPDn+vo4xNTWTySn9Fm4DI/o4Lxz+Bn3j3oI
+# hkiG9w0BAQEFAASCAQA7UU5vhuSIn+6UwzmIK1m3ucdGkQWkJosywDbd/SWpWpDl
+# B6uYNC2BHD+GMWUnRiuN/F1bu4Qr2nvwrvqOVJdaDuU3STylVxLqMj0LYJ2xU4Tw
+# o2JgFpWcfKjl5AwJZTToWq8RjV6rV6cn5D8M0p/wUQxc8LxWX19ay/cvchVImurj
+# 1VV843j36B3kpsQmdzYn6aQUigGe2yWcGH4/3B1l+SVI2KLpTBv5ANAyyIyn+NIF
+# oY86hqvS9sr1O9LBT6gtLZ86hdJZtAhQfYffC6hRCPzEkdbD7EJL3pboAdrwVipc
+# 1VnA3mX9ZBMfrGXnJLoftMAuy7irnXE64Fmj4vs0
 # SIG # End signature block
