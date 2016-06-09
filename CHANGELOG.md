@@ -1,10 +1,13 @@
-### PsGet package management Tools (HEAD -> master)
+### Distribution Snapshot 1.2.3.80 (HEAD -> master)
+>*Thu, 9 Jun 2016 16:55:34 +0200*
+
+### PsGet package management Tools (origin/master, origin/HEAD)
 >*Wed, 8 Jun 2016 17:38:04 +0200*
 
 ### Distribution Snapshot 1.2.3.79
 >*Wed, 8 Jun 2016 17:37:40 +0200*
 
-### Distribution Snapshot 1.2.3.78 (origin/master, origin/HEAD)
+### Distribution Snapshot 1.2.3.78
 >*Sun, 5 Jun 2016 19:33:00 +0200*
 
 ### Refactoring
