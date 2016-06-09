@@ -1,7 +1,10 @@
-### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82 (HEAD -> master)
+### Reformating (HEAD -> master)
+>*Fri, 10 Jun 2016 01:59:42 +0200*
+
+### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82 (origin/master, origin/HEAD)
 >*Thu, 9 Jun 2016 22:30:06 +0200*
 
-### Refactoring (origin/master, origin/HEAD)
+### Refactoring
 >*Thu, 9 Jun 2016 21:52:07 +0200*
 
 ### Refactoring
