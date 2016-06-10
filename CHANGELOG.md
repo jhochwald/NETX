@@ -1,4 +1,7 @@
-### Reformating (HEAD -> master)
+### Minor fix (HEAD -> master)
+>*Fri, 10 Jun 2016 02:01:18 +0200*
+
+### Reformating
 >*Fri, 10 Jun 2016 01:59:42 +0200*
 
 ### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82 (origin/master, origin/HEAD)
