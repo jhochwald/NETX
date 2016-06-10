@@ -1,10 +1,13 @@
-### Minor fix (HEAD -> master)
+### New Signatur (By Build Server) (HEAD -> master)
+>*Fri, 10 Jun 2016 02:02:21 +0200*
+
+### Minor fix (origin/master, origin/HEAD)
 >*Fri, 10 Jun 2016 02:01:18 +0200*
 
 ### Reformating
 >*Fri, 10 Jun 2016 01:59:42 +0200*
 
-### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82 (origin/master, origin/HEAD)
+### Lot of refactoring with ISESteriods 2.5.2 Update to Distribution Snapshot 1.2.3.82
 >*Thu, 9 Jun 2016 22:30:06 +0200*
 
 ### Refactoring
