@@ -1,4 +1,7 @@
-### Minor changes Module loader removed Required Version changed from 4 to 4 (PowerShell Version) (HEAD -> master)
+### Removed wrong requirement (Copy/Paste error fixed) (HEAD -> master)
+>*Sat, 11 Jun 2016 14:45:21 +0200*
+
+### Minor changes Module loader removed Required Version changed from 4 to 4 (PowerShell Version)
 >*Sat, 11 Jun 2016 14:44:32 +0200*
 
 ### New Signatur (By Build Server)
