@@ -1,4 +1,7 @@
-### Removed wrong requirement (Copy/Paste error fixed) (HEAD -> master)
+### New Signature (By Build Server) (HEAD -> master)
+>*Sat, 11 Jun 2016 14:45:43 +0200*
+
+### Removed wrong requirement (Copy/Paste error fixed)
 >*Sat, 11 Jun 2016 14:45:21 +0200*
 
 ### Minor changes Module loader removed Required Version changed from 4 to 4 (PowerShell Version)
