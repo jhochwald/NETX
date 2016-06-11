@@ -1,3 +1,4 @@
+#requires -Modules NETX.Core, NETX.Tools
 #region Info
 
 <#
@@ -74,7 +75,7 @@
 SupportsShouldProcess = $true)]
 param ()
 
-#Requires -Version 4
+#Requires -Version 3
 
 function global:Get-IsWin10 {
 	# For some Workarounds!
@@ -164,40 +165,6 @@ foreach ($MyModule in $MyModules) {
 (Remove-Module -Name 'NETX.Core' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion WorkAround
-
-if (-not (Get-Module -ListAvailable -Name NETX.Core)) { Write-Error -Message:'Error: NET-Experts Core Module missing...' -ErrorAction:Stop } else {
-	if (-not (Get-Module -Name 'NETX.Core')) {
-		try {
-			# Import the Core PowerShell Module in the Global context
-			if (Get-Command Get-IsWin10 -ErrorAction:SilentlyContinue) {
-				if ((Get-IsWin10) -eq $true) {
-					# Ok, we are using Windows 10
-					Import-Module -Name "$BasePath\modules\NETX.Core\NETX.Core.psm1" -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
-				} else {
-					# Not Windows 10
-					Import-Module -Name 'NETX.Core' -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
-				}
-			} else {
-				try {
-					# Try the known way!
-					Import-Module -Name 'NETX.Core' -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
-				} catch {
-					# Ups, try old school...
-					Import-Module -Name "$BasePath\modules\NETX.Core\NETX.Core.psm1" -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
-				}
-			}
-		} catch {
-			# Sorry, Core PowerShell Module is not here!!!
-			Write-Error -Message:'NET-Experts Core Module was not imported...' -ErrorAction:Stop
-
-			# Still here? Make sure we are done!
-			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
-		}
-	}
-}
 
 # Gets back the default colors parameters
 [console]::ResetColor()
@@ -492,8 +459,8 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfE60IW587hMe7i78xhFZBNXJ
-# BpegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFXZiYidWpbZohZb2Xdy4mpP8
+# h1mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -636,25 +603,25 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSA8GImzYrj6Trk3ncfY0HCZWzYKTANBgkqhkiG9w0B
-# AQEFAASCAQABxBjAbC/DPim9B98Rx+yk8gOMJqbeFCvG0x9g5Qsvl6YeT8Mrg9x5
-# 6igf58i2JDKOu2O7oP4dd7cpiHxny8ROB6kATiNvH0bG7heRFELNH6tpwkoCZVWi
-# caS02g6KjHnnDeCkBqvXcIIT2jQlaUBulemGlrMEFoMeuLTxI9nuIzBPGePA/2X5
-# MY2rD0OLLrMFmEqvC8XHmvfjMQdUWHa5cCkIQMuWdXLAxmk58r3Z4AD/yQXMYfAy
-# Xx2Dk0Kfy9keEy3O1bkbsoyqOOppCXPASZoiXe1v1p6XK2T0A5QbYDxh83VX9emq
-# ywNXWnqZ02fbMDolOqfpM0aaCAy8Zqv9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSlqpbXgUbkgDFac+HTr2oxkurJ8zANBgkqhkiG9w0B
+# AQEFAASCAQATEMkX/t0BEs1Zd4s+TF4Zho0wYU4qYHIqH18nTYrg5W19ARDsRdmO
+# OWT6zySNzyCdUl8Fzu9yzIZI+GJUExNBNFqQa8ub8pO0jERDEKld/OiHda37w6rX
+# THqsvHneo5U681wrqQyjoaUQF/p4qzRtY2ax8oEYaemBzwhzA8Fw5b8aykWXbN6I
+# sjzeW1vOcLu2y4ZVYM5dHtAYfErfIHFkVGLp38RCjuBcgVlRTFR76APlRY3209/Z
+# 6b3D5BU2pnqgRVp5x8laHPxQj7Ir4QihCPJWLW4ETDDgP6W9hAZFfkM18ogGQiKp
+# G/PLGvvwKhKnWypH0JiCZO/3w9wjv6puoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYwOTIzNDE0NlowIwYJKoZIhvcN
-# AQkEMRYEFHyy+zhLo/aTTRA5chIl5cLoCtc+MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYxMTExNDcwMFowIwYJKoZIhvcN
+# AQkEMRYEFIQOgd+nPInPvYZpHErZ6sG06XgRMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA9RW61c8JqLIWg5HKiUaVj+rwRO6cmOB0EZBO7rdVCPNqP
-# nlXJ9Amgjeycq4ZU286mDmGfouGM90uwmlbPrNp9va8ADWnhMsBjecLIvyRwNUWa
-# qbdNk46c9eyr7B4+8BvNtVad/meC1uKFOtkj4TIELAUK94JFiDge6aXBf5xskP/h
-# /WTiIKyBlbI7ug99czP2JEpPkMNDXgmWUDXkwF3bzxf4o4dHx6UmlxyGx+m/99cN
-# 7gDEWyC+CbgZLPPlXdG4o3tdZZQixOi6RO/NpracfSLCITRVK+vlTJtFX40GMedG
-# HASqlyKaoh0ZJyPNtppA3MXsSF3orhhteZQKC34K
+# hkiG9w0BAQEFAASCAQCoI/kQ0nhwo/xRxrzio8lu+PsLPzZZNa6ZXq5Yg6wax0ny
+# 7qualIa+7KlqyIskGfNf57qjm4jX4NvYRzIo4N3Jdtf2OaceLiXJ2Ca/gS8Q8hMe
+# S14ZeTUEnr5sjMWIU9R/gdqgwBXwedECQhfYOu4f9JwHnsYH6TsC5xNyKofOMPDZ
+# JcUwoNkdy0+usobesk94ZrRpDIUiPEPfu/npLA4VWhov7leoeIMgp/bkSvEsNOLG
+# ZtjOw5irfu35I+RayHd2MUYhsAuJRRcINIrWRmgukDATIjusCALs7cg/qxWwCiPR
+# q5eb9prXoRLPd8gJ960rnvRZ7OR0ZGNvh9fhWEBE
 # SIG # End signature block

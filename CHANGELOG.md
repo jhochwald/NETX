@@ -1,4 +1,7 @@
-### New Signatur (By Build Server) (HEAD -> master)
+### Minor changes Module loader removed Required Version changed from 4 to 4 (PowerShell Version) (HEAD -> master)
+>*Sat, 11 Jun 2016 14:44:32 +0200*
+
+### New Signatur (By Build Server)
 >*Fri, 10 Jun 2016 02:02:21 +0200*
 
 ### Minor fix (origin/master, origin/HEAD)
