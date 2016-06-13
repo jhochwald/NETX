@@ -1,7 +1,10 @@
-### Development Snapshot (automated) (HEAD -> master)
+### Minor change to the REQUIRES handling (HEAD -> master)
+>*Mon, 13 Jun 2016 11:49:10 +0200*
+
+### Development Snapshot (automated) (origin/master, origin/HEAD)
 >*Mon, 13 Jun 2016 09:34:48 +0200*
 
-### New Signature (By Build Server) (origin/master, origin/HEAD)
+### New Signature (By Build Server)
 >*Sat, 11 Jun 2016 14:45:43 +0200*
 
 ### Removed wrong requirement (Copy/Paste error fixed)
