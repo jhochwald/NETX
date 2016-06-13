@@ -1,12 +1,12 @@
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-12
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,169 +14,173 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Test-Filelock {
-  <#
-      .SYNOPSIS
-      Test if a file is locked
+	<#
+			.SYNOPSIS
+			Test if a file is locked
 
-      .DESCRIPTION
-      Test if a file is locked
+			.DESCRIPTION
+			Test if a file is locked
 
-      .PARAMETER Path
-      File to check
+			.PARAMETER Path
+			File to check
 
-      .NOTES
-      Just a helper function
+			.NOTES
+			Just a helper function
 
-      .LINK
-      Get-FileLock
-  #>
+			.LINK
+			Get-FileLock
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'File to check')]
-    [Alias('File')]
-    [System.IO.FileInfo]$Path
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'File to check')]
+		[Alias('File')]
+		[System.IO.FileInfo]$Path
+	)
 
-  PROCESS {
-    try {
-      # initialize variables
-      $script:filelocked = $false
+	PROCESS {
+		try {
+			# initialize variables
+			$script:filelocked = $false
 
-      # attempt to open file and detect file lock
-      $script:fileInfo = (New-Object -TypeName System.IO.FileInfo -ArgumentList $Path)
-      $script:fileStream = ($fileInfo.Open([System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None))
+			# attempt to open file and detect file lock
+			$script:fileInfo = (New-Object -TypeName System.IO.FileInfo -ArgumentList $Path)
+			$script:fileStream = ($fileInfo.Open([System.IO.FileMode]::OpenOrCreate, [System.IO.FileAccess]::ReadWrite, [System.IO.FileShare]::None))
 
-      # close stream if not lock
-      if ($fileStream) {$fileStream.Close()}
-    } catch {
-      # catch fileStream had failed
-      $filelocked = $true
-    } finally {
-      # return result
-      [PSCustomObject]@{
-        path       = $Path
-        filelocked = $filelocked
-      }
-    }
-  }
+			# close stream if not lock
+			if ($fileStream) {$fileStream.Close()}
+		} catch {
+			# catch fileStream had failed
+			$filelocked = $true
+		} finally {
+			# return result
+			[PSCustomObject]@{
+				path       = $Path
+				filelocked = $filelocked
+			}
+		}
+	}
 }
 
 function Global:Get-FileLock {
-  <#
-      .SYNOPSIS
-      Test if a File is locked
+	<#
+			.SYNOPSIS
+			Test if a File is locked
 
-      .DESCRIPTION
-      Test if a File is locked
+			.DESCRIPTION
+			Test if a File is locked
 
-      .PARAMETER Path
-      File to check
+			.PARAMETER Path
+			File to check
 
-      .NOTES
-      Companion function Test-Filelock is needed!
+			.NOTES
+			Companion function Test-Filelock is needed!
 
-      .LINK
-      Test-Filelock
-  #>
+			.LINK
+			Test-Filelock
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'File to check')]
-    [ValidateNotNullOrEmpty()]
-    [string]$Path
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'File to check')]
+		[ValidateNotNullOrEmpty()]
+		[string]$Path
+	)
 
-  BEGIN {
-    # Check if the helper function exists...
-    if (-not (Get-Command Test-Filelock -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)) {
-      #
-      # Did not see this one coming!
-      Write-Error -Message 'Sorry, something is wrong! please check that the command Test-Filelock is available!' -ErrorAction:Stop
+	BEGIN {
+		# Check if the helper function exists...
+		if (-not (Get-Command Test-Filelock -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)) {
+			#
+			# Did not see this one coming!
+			Write-Error -Message 'Sorry, something is wrong! please check that the command Test-Filelock is available!' -ErrorAction:Stop
 
-      # Still here? Make sure we are done!
-      break
+			# Still here? Make sure we are done!
+			break
 
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    }
-  }
+			# Aw Snap! We are still here? Fix that the hard way...
+			exit 1
+		}
+	}
 
-  PROCESS {
-    try {
-      if (Test-Path $Path) {
-        if ((Get-Item -Path $Path) -is [System.IO.FileInfo]) {return Test-Filelock -Path $Path} elseif ((Get-Item $Path) -is [System.IO.DirectoryInfo]) {Write-Verbose -Message "[$Path] detect as $((Get-Item -Path $Path).GetType().FullName). Skip check."}
-      } else {Write-Error -Message "[$Path] could not be found."}
-    } catch [System.Exception] {
-      Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+	PROCESS {
+		try {
+			if (Test-Path $Path) {
+				if ((Get-Item -Path $Path) -is [System.IO.FileInfo]) {
+					return Test-Filelock -Path $Path
+				} elseif ((Get-Item $Path) -is [System.IO.DirectoryInfo]) {
+					Write-Verbose -Message "[$Path] detect as $((Get-Item -Path $Path).GetType().FullName). Skip check."
+				}
+			} else {
+				Write-Error -Message "[$Path] could not be found."
+			}
+		} catch [System.Exception] {
+			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
 
-      # Still here? Make sure we are done!
-      break
+			# Capture any failure and display it in the error section
+			# The Exit with Code 1 shows any calling App that there was something wrong
+			exit 1
+		} catch {
+			# Did not see this one coming!
+			Write-Error -Message "Could not check $Path" -ErrorAction:Stop
 
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    } catch {
-      # Did not see this one coming!
-      Write-Error -Message "Could not check $Path" -ErrorAction:Stop
+			# Still here? Make sure we are done!
+			break
 
-      # Still here? Make sure we are done!
-      break
-
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    }
-  }
+			# Aw Snap! We are still here? Fix that the hard way...
+			exit 1
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIVe0R9Udj2IsPv5FUgiHPRhI
-# LFKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/h8EDq/42NDGSzOTdmoEzChi
+# mZigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -319,25 +323,25 @@ function Global:Get-FileLock {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ3RKx/uUoUaYu0a+K7mIrjo0s33TANBgkqhkiG9w0B
-# AQEFAASCAQAjCTIGQdscYaMXOZwJx5FODLxUAXT+srqHAoaPWqfXbkqjGMiOEGZd
-# qSW8CbHD/BPpi9GKF1I2/GzebrugRgZuwe2xBXhsiS7wgKA6nPKyunbAPZaHlPDz
-# IPOliH8wHgcMmYPLK21E2J6/FAyq/2NHYQ6UXJ3JXJP5Xa2Deyg+77aJtj3RTE40
-# 6jYkokvNcKkmIRyeuR4pTNZlfbw7yrKn+OopfgQI2DfD6fNoKO2BD/r4+ajahssc
-# gWelh5BzaER5jBnWQ1CqxblFrNHymjbOEWGwDzfc9yksWBH2G09Wu1WzRAh+zoi3
-# WL1rhFBdi1OY70tVjJ5GsYbSrwauATZboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR7LPjR8DVFdcdAvtySL9k5klb1KDANBgkqhkiG9w0B
+# AQEFAASCAQBgP6u47H8bU7+KMXDElp/KuyqleRabqCJmjCzw7AtxxbPodmqEOi9o
+# WiL2etIvMsyBLU9y+Xb34PkbXdKs6PeXO7pmfOL4xHrdqRrOEE08LKmRJIMYoPU0
+# SIeJKZFBSViykNYnRYl2jOxw8X6TAO/9cm7oM0++orYp0m97D164hzJOK+yXZh35
+# Z3cEjK6OT/s1vfa0j/CoKfCMP1NVGjj8oF2E4ILWIqWTdfLavjSEcSKL4kJ4hT0n
+# IaTm163mcsECdxz/mrpY7AMKbkmVdiSr9/7iB70oHV4k1ZSf2Bu0ayQjlpWB4LCd
+# nTFfi3WXwuawI6K6yx56zHiujTKk+nS9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYxMTExNDcxMFowIwYJKoZIhvcN
-# AQkEMRYEFOqZFlHccRTudDX5PaGqX1R/Y2KJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYxMjE2MTAzOFowIwYJKoZIhvcN
+# AQkEMRYEFOzGNmt9tnF5asR5dAuopLjXFpHsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAl8wfHKV90OebsFycKjKAxeyNVjzUYLSoyDvm5wMNVlQg0
-# AHt0GkvrPV1WOrdmuvMByeCyuvwaVNPrh0125i/3umNR/NmDrTNfXDLAZO7Es4uS
-# 2czxItlxS1BEM7ABX8W8mG0XXsHFBB0nOheM1R6rMDESTOFTpQJFtGySgeUPeak9
-# s0gIQSBTRqyABHg0epAbc7dcBh2+vkH/wPwuVJXBzgKGuPM/qBXCHuYFdvZEa84o
-# wuhDnT955ey4JIREiQa9rK2ZxuXMlkhEOy0iORVagR8hOUwQ+f40S+XyfYI2Uxkn
-# bW/Yqm/4FMbUfgUfbtk+ONq0aAbJSq9mUcjAIsSi
+# hkiG9w0BAQEFAASCAQAF2gs/p7uFtmnPNIWMQEvwgChdf+jY3pwvUIIwLuW4lfzg
+# emj0XGWVcVnTOKRxJtv3fO351FRwAuCveEmyr4uIwYsRVF3Bo22HsoOuHXl3tToN
+# f2ItmrjlTaURJ8DPpCINWDx+MpPobXqtHhUu+Q0o2hcxZj7LnVtPHgHWgvRpYw9M
+# +edSCk8uMc9ZW/nO+ru/i9SfOQvVFhtP5hq+PXX6ECROzgCV8LhE2UUf3nCk66rf
+# p3fmaF5KIXDZI9F3Vz2uA9g+iUpYADLxq0OAke4VX8V4+EKfjhHFqegYXJ5P1Ge3
+# 0ws/tYLXYPZcjqNJkBfCcFN2dseXFOXHHmk80vg0
 # SIG # End signature block

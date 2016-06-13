@@ -1,4 +1,7 @@
-### New Signature (By Build Server) (HEAD -> master)
+### Development Snapshot (automated) (HEAD -> master)
+>*Mon, 13 Jun 2016 09:34:48 +0200*
+
+### New Signature (By Build Server) (origin/master, origin/HEAD)
 >*Sat, 11 Jun 2016 14:45:43 +0200*
 
 ### Removed wrong requirement (Copy/Paste error fixed)
@@ -10,7 +13,7 @@
 ### New Signatur (By Build Server)
 >*Fri, 10 Jun 2016 02:02:21 +0200*
 
-### Minor fix (origin/master, origin/HEAD)
+### Minor fix
 >*Fri, 10 Jun 2016 02:01:18 +0200*
 
 ### Reformating

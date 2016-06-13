@@ -1,12 +1,12 @@
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-12
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,397 +14,395 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 Function Global:Convert-IPToBinary {
-  <#
-      .SYNOPSIS
-      Converts an IP address string to it's binary string equivalent
+	<#
+			.SYNOPSIS
+			Converts an IP address string to it's binary string equivalent
 
-      .DESCRIPTION
-      Takes a IP as a string and returns the same IP address as a binary
-      string with no decimal points
+			.DESCRIPTION
+			Takes a IP as a string and returns the same IP address as a binary
+			string with no decimal points
 
-      .PARAMETER IP
-      The IP address which will be converted to a binary string
+			.PARAMETER IP
+			The IP address which will be converted to a binary string
 
-      .EXAMPLE
-      PS C:\> Convert-IPToBinary -IP '10.211.55.1'
-      Binary                                                          IPAddress
-      ------                                                          ---------
-      00001010110100110011011100000001                                10.211.55.1
+			.EXAMPLE
+			PS C:\> Convert-IPToBinary -IP '10.211.55.1'
+			Binary                                                          IPAddress
+			------                                                          ---------
+			00001010110100110011011100000001                                10.211.55.1
 
-      Description
-      -----------
-      Converts 10.211.55.1 to it's binary string equivalent
-      00001010110100110011011100000001
+			Description
+			-----------
+			Converts 10.211.55.1 to it's binary string equivalent
+			00001010110100110011011100000001
 
-      .NOTES
-      Works with IPv4 addresses only!
-  #>
+			.NOTES
+			Works with IPv4 addresses only!
+	#>
 
-  [CmdletBinding()]
-  [OutputType([psobject])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'The IP address which will be converted to a binary string')]
-    [ValidateNotNullOrEmpty()]
-    [ValidatePattern('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')]
-    [Alias('IPAddress')]
-    [String]$IP
-  )
+	[CmdletBinding()]
+	[OutputType([psobject])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'The IP address which will be converted to a binary string')]
+		[ValidateNotNullOrEmpty()]
+		[ValidatePattern('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')]
+		[Alias('IPAddress')]
+		[String]$IP
+	)
 
-  BEGIN {
-    $Binary = $null
-    $Result = $null
-    $SingleIP = $null
-  }
+	BEGIN {
+		$Binary = $null
+		$Result = $null
+		$SingleIP = $null
+	}
 
-  PROCESS {
-    foreach ($SingleIP in $IP) {
-      try {
-        $SingleIP.split('.') | ForEach-Object -Process { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
-      } catch [System.Exception] {
-        Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+	PROCESS {
+		foreach ($SingleIP in $IP) {
+			try {
+				$SingleIP.split('.') | ForEach-Object -Process { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
+			} catch [System.Exception] {
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
 
-        # Still here? Make sure we are done!
-        break
+				# Capture any failure and display it in the error section
+				# The Exit with Code 1 shows any calling App that there was something wrong
+				exit 1
+			} catch {
+				Write-Error -Message "Could not convert $SingleIP!" -ErrorAction:Stop
 
-        # Aw Snap! We are still here? Fix that the hard way...
-        exit 1
-      } catch {
-        Write-Error -Message "Could not convert $SingleIP!" -ErrorAction:Stop
+				# Still here? Make sure we are done!
+				break
 
-        # Still here? Make sure we are done!
-        break
+				# Aw Snap! We are still here? Fix that the hard way...
+				exit 1
+			}
 
-        # Aw Snap! We are still here? Fix that the hard way...
-        exit 1
-      }
+			$Result = New-Object -TypeName PSObject -Property @{
+				IPAddress = $SingleIP
+				Binary    = $Binary
+			}
+		}
+	}
 
-      $Result = New-Object -TypeName PSObject -Property @{
-        IPAddress = $SingleIP
-        Binary    = $Binary
-      }
-    }
-  }
-
-  END {
-    Write-Output -InputObject $Result
-  }
+	END {
+		Write-Output -InputObject $Result
+	}
 }
 
 function global:Convert-IPtoDecimal {
-  <#
-      .SYNOPSIS
-      Converts an IP address to decimal.
+	<#
+			.SYNOPSIS
+			Converts an IP address to decimal.
 
-      .DESCRIPTION
-      Converts an IP address to decimal value.
+			.DESCRIPTION
+			Converts an IP address to decimal value.
 
-      .PARAMETER IPAddress
-      An IP Address you want to check
+			.PARAMETER IPAddress
+			An IP Address you want to check
 
-      .EXAMPLE
-      PS C:\> Convert-IPtoDecimal -IPAddress '127.0.0.1','192.168.0.1','10.0.0.1'
+			.EXAMPLE
+			PS C:\> Convert-IPtoDecimal -IPAddress '127.0.0.1','192.168.0.1','10.0.0.1'
 
-      decimal		IPAddress
-      -------		---------
-      2130706433	127.0.0.1
-      3232235521	192.168.0.1
-      167772161	10.0.0.1
+			decimal		IPAddress
+			-------		---------
+			2130706433	127.0.0.1
+			3232235521	192.168.0.1
+			167772161	10.0.0.1
 
-      Description
-      -----------
-      Converts an IP address to decimal.
+			Description
+			-----------
+			Converts an IP address to decimal.
 
-      .EXAMPLE
-      PS C:\> Convert-IPtoDecimal '127.0.0.1','192.168.0.1','10.0.0.1'
+			.EXAMPLE
+			PS C:\> Convert-IPtoDecimal '127.0.0.1','192.168.0.1','10.0.0.1'
 
-      decimal		IPAddress
-      -------		---------
-      2130706433	127.0.0.1
-      3232235521	192.168.0.1
-      167772161	10.0.0.1
+			decimal		IPAddress
+			-------		---------
+			2130706433	127.0.0.1
+			3232235521	192.168.0.1
+			167772161	10.0.0.1
 
-      Description
-      -----------
-      Converts an IP address to decimal.
+			Description
+			-----------
+			Converts an IP address to decimal.
 
-      .EXAMPLE
-      PS C:\> '127.0.0.1','192.168.0.1','10.0.0.1' |  Convert-IPtoDecimal
+			.EXAMPLE
+			PS C:\> '127.0.0.1','192.168.0.1','10.0.0.1' |  Convert-IPtoDecimal
 
-      decimal		IPAddress
-      -------		---------
-      2130706433	127.0.0.1
-      3232235521	192.168.0.1
-      167772161	10.0.0.1
+			decimal		IPAddress
+			-------		---------
+			2130706433	127.0.0.1
+			3232235521	192.168.0.1
+			167772161	10.0.0.1
 
-      Description
-      -----------
-      Converts an IP address to decimal.
+			Description
+			-----------
+			Converts an IP address to decimal.
 
-      .NOTES
-      Sometimes I need to have that info, so I decided it would be great
-      to have a functions who do the job!
+			.NOTES
+			Sometimes I need to have that info, so I decided it would be great
+			to have a functions who do the job!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([psobject])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'An IP Address you want to check')]
-    [Alias('IP')]
-    [System.String]$IPAddress
-  )
+	[CmdletBinding()]
+	[OutputType([psobject])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'An IP Address you want to check')]
+		[Alias('IP')]
+		[System.String]$IPAddress
+	)
 
-  BEGIN {
-    # Dummy block - We so nothing here
-  }
+	BEGIN {
+		# Dummy block - We so nothing here
+	}
 
-  PROCESS {
-    # OK make sure the we have a string here!
-    # Then we split everthing based on the DOTs.
-    [String[]]$IP = $IPAddress.Split('.')
+	PROCESS {
+		# OK make sure the we have a string here!
+		# Then we split everthing based on the DOTs.
+		[String[]]$IP = $IPAddress.Split('.')
 
-    # Create a new object and transform it to Decimal
-    $Object = New-Object -TypeName psobject -Property (@{
-        'IPAddress' = $($IPAddress)
-        'Decimal' = [Int64](
-          ([Int32]::Parse($IP[0]) * [Math]::Pow(2, 24) +
-            ([Int32]::Parse($IP[1]) * [Math]::Pow(2, 16) +
-              ([Int32]::Parse($IP[2]) * [Math]::Pow(2, 8) +
-                ([Int32]::Parse($IP[3])
-                )
-              )
-            )
-          )
-        )
-    })
-  }
+		# Create a new object and transform it to Decimal
+		$Object = New-Object -TypeName psobject -Property (@{
+				'IPAddress' = $($IPAddress)
+				'Decimal' = [Int64](
+					([Int32]::Parse($IP[0]) * [Math]::Pow(2, 24) +
+						([Int32]::Parse($IP[1]) * [Math]::Pow(2, 16) +
+							([Int32]::Parse($IP[2]) * [Math]::Pow(2, 8) +
+								([Int32]::Parse($IP[3])
+								)
+							)
+						)
+					)
+				)
+		})
+	}
 
-  END {
-    # Dump the info to the console
-    Write-Output -InputObject $Object
-  }
+	END {
+		# Dump the info to the console
+		Write-Output -InputObject $Object
+	}
 }
 
 function global:Check-IPaddress {
-  <#
-      .SYNOPSIS
-      Check if a given IP Address seems to be valid
+	<#
+			.SYNOPSIS
+			Check if a given IP Address seems to be valid
 
-      .DESCRIPTION
-      Check if a given IP Address seems to be valid.
-      We use the .NET function to do so. This is not 100% reliable,
-      but is enough most times.
+			.DESCRIPTION
+			Check if a given IP Address seems to be valid.
+			We use the .NET function to do so. This is not 100% reliable,
+			but is enough most times.
 
-      .PARAMETER IPAddress
-      An IP Address you want to check
+			.PARAMETER IPAddress
+			An IP Address you want to check
 
-      .EXAMPLE
-      PS C:\> Check-IPaddress -IPAddress '10.10.16.10'
-      True
+			.EXAMPLE
+			PS C:\> Check-IPaddress -IPAddress '10.10.16.10'
+			True
 
-      Description
-      -----------
-      Check if a given IP Address seems to be valid
+			Description
+			-----------
+			Check if a given IP Address seems to be valid
 
-      .EXAMPLE
-      PS C:\> Check-IPaddress -IPAddress '010.010.016.010'
-      True
+			.EXAMPLE
+			PS C:\> Check-IPaddress -IPAddress '010.010.016.010'
+			True
 
-      Description
-      -----------
-      Check if a given IP Address seems to be valid
+			Description
+			-----------
+			Check if a given IP Address seems to be valid
 
-      .EXAMPLE
-      PS C:\> Check-IPaddress -IPAddress '10.10.16.01O'
-      False
+			.EXAMPLE
+			PS C:\> Check-IPaddress -IPAddress '10.10.16.01O'
+			False
 
-      Description
-      -----------
-      Check if a given IP Address seems to be valid
+			Description
+			-----------
+			Check if a given IP Address seems to be valid
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([bool])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true,
-        Position = 0,
-    HelpMessage = 'An IP Address you want to check')]
-    [ValidateScript({
-          $_ -match [IPAddress]
-          $_
-    })]
-    [Alias('IP')]
-    [System.String]$IPAddress
-  )
+	[CmdletBinding()]
+	[OutputType([bool])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipelineByPropertyName = $true,
+				Position = 0,
+		HelpMessage = 'An IP Address you want to check')]
+		[ValidateScript({
+					$_ -match [IPAddress]
+					$_
+		})]
+		[Alias('IP')]
+		[System.String]$IPAddress
+	)
 
-  PROCESS {
-    # Use the .NET Call to figure out if the given address is valid or not.
-    Set-Variable -Name 'IsValid' -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
-  }
+	PROCESS {
+		# Use the .NET Call to figure out if the given address is valid or not.
+		Set-Variable -Name 'IsValid' -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
+	}
 
-  END {
-    # Dump the bool value to the console
-    Write-Output -InputObject $IsValid
-  }
+	END {
+		# Dump the bool value to the console
+		Write-Output -InputObject $IsValid
+	}
 }
 
 function global:Get-NtpTime {
-  <#
-      .SYNOPSIS
-      Get the NTP Time from a given Server
+	<#
+			.SYNOPSIS
+			Get the NTP Time from a given Server
 
-      .DESCRIPTION
-      Get the NTP Time from a given Server.
+			.DESCRIPTION
+			Get the NTP Time from a given Server.
 
-      .PARAMETER Server
-      NTP Server to use. The default is de.pool.ntp.org
+			.PARAMETER Server
+			NTP Server to use. The default is de.pool.ntp.org
 
-      .EXAMPLE
-      PS C:\scripts\PowerShell> Get-NtpTime -Server 'de.pool.ntp.org'
-      5. April 2016 00:58:59
+			.EXAMPLE
+			PS C:\scripts\PowerShell> Get-NtpTime -Server 'de.pool.ntp.org'
+			5. April 2016 00:58:59
 
-      Description
-      -----------
-      Get the NTP Time from a given Server
+			Description
+			-----------
+			Get the NTP Time from a given Server
 
-      .NOTES
-      This sends an NTP time packet to the specified NTP server and reads
-      back the response.
-      The NTP time packet from the server is decoded and returned.
+			.NOTES
+			This sends an NTP time packet to the specified NTP server and reads
+			back the response.
+			The NTP time packet from the server is decoded and returned.
 
-      Note: this uses NTP (rfc-1305: http://www.faqs.org/rfcs/rfc1305.html)
-      on UDP 123.
-      Because the function makes a single call to a single server this is
-      strictly a SNTP client (rfc-2030).
-      Although the SNTP protocol data is similar (and can be identical) and
-      the clients and servers are often unable to distinguish the difference.
-      Where-Object SNTP differs is that is does not accumulate historical
-      data (to enable statistical averaging) and does not retain a session
-      between client and server.
+			Note: this uses NTP (rfc-1305: http://www.faqs.org/rfcs/rfc1305.html)
+			on UDP 123.
+			Because the function makes a single call to a single server this is
+			strictly a SNTP client (rfc-2030).
+			Although the SNTP protocol data is similar (and can be identical) and
+			the clients and servers are often unable to distinguish the difference.
+			Where-Object SNTP differs is that is does not accumulate historical
+			data (to enable statistical averaging) and does not retain a session
+			between client and server.
 
-      An alternative to NTP or SNTP is to use Daytime (rfc-867) on TCP
-      port 13 â€" although this is an old protocol and is not supported
-      by all NTP servers.
+			An alternative to NTP or SNTP is to use Daytime (rfc-867) on TCP
+			port 13 â€" although this is an old protocol and is not supported
+			by all NTP servers.
 
-      .LINK
-      Source: https://chrisjwarwick.wordpress.com/2012/08/26/getting-ntpsntp-network-time-with-powershell/
-  #>
+			.LINK
+			Source: https://chrisjwarwick.wordpress.com/2012/08/26/getting-ntpsntp-network-time-with-powershell/
+	#>
 
-  [CmdletBinding()]
-  [OutputType([datetime])]
-  param
-  (
-    [Parameter(HelpMessage = 'NTP Server to use. The default is de.pool.ntp.org')]
-    [Alias('NETServer')]
-    [System.String]$Server = 'de.pool.ntp.org'
-  )
+	[CmdletBinding()]
+	[OutputType([datetime])]
+	param
+	(
+		[Parameter(HelpMessage = 'NTP Server to use. The default is de.pool.ntp.org')]
+		[Alias('NETServer')]
+		[System.String]$Server = 'de.pool.ntp.org'
+	)
 
-  PROCESS {
-    # Construct client NTP time packet to send to specified server
-    # (Request Header: [00=No Leap Warning; 011=Version 3; 011=Client Mode]; 00011011 = 0x1B)
-    [Byte[]]$NtpData = , 0 * 48
-    $NtpData[0] = 0x1B
+	PROCESS {
+		# Construct client NTP time packet to send to specified server
+		# (Request Header: [00=No Leap Warning; 011=Version 3; 011=Client Mode]; 00011011 = 0x1B)
+		[Byte[]]$NtpData = , 0 * 48
+		$NtpData[0] = 0x1B
 
-    # Create the connection
-    $Socket = New-Object -TypeName Net.Sockets.Socket -ArgumentList ([Net.Sockets.AddressFamily]::InterNetwork, [Net.Sockets.SocketType]::Dgram, [Net.Sockets.ProtocolType]::Udp)
+		# Create the connection
+		$Socket = New-Object -TypeName Net.Sockets.Socket -ArgumentList ([Net.Sockets.AddressFamily]::InterNetwork, [Net.Sockets.SocketType]::Dgram, [Net.Sockets.ProtocolType]::Udp)
 
-    # Configure the connection
-    $Socket.Connect($Server, 123)
-    [Void]$Socket.Send($NtpData)
+		# Configure the connection
+		$Socket.Connect($Server, 123)
+		[Void]$Socket.Send($NtpData)
 
-    # Returns length â€" should be 48
-    [Void]$Socket.Receive($NtpData)
+		# Returns length â€" should be 48
+		[Void]$Socket.Receive($NtpData)
 
-    # Close the connection
-    $Socket.Close()
+		# Close the connection
+		$Socket.Close()
 
-    <#
-        Decode the received NTP time packet
+		<#
+				Decode the received NTP time packet
 
-        We now have the 64-bit NTP time in the last 8 bytes of the received data.
-        The NTP time is the number of seconds since 1/1/1900 and is split into an
-        integer part (top 32 bits) and a fractional part, multiplied by 2^32, in the
-        bottom 32 bits.
-    #>
+				We now have the 64-bit NTP time in the last 8 bytes of the received data.
+				The NTP time is the number of seconds since 1/1/1900 and is split into an
+				integer part (top 32 bits) and a fractional part, multiplied by 2^32, in the
+				bottom 32 bits.
+		#>
 
-    # Convert Integer and Fractional parts of 64-bit NTP time from byte array
-    $IntPart = 0
+		# Convert Integer and Fractional parts of 64-bit NTP time from byte array
+		$IntPart = 0
 
-    foreach ($Byte in $NtpData[40..43]) {
-      $IntPart = ($IntPart * 256 + $Byte)
-    }
+		foreach ($Byte in $NtpData[40..43]) {
+			$IntPart = ($IntPart * 256 + $Byte)
+		}
 
-    $FracPart = 0
+		$FracPart = 0
 
-    foreach ($Byte in $NtpData[44..47]) {
-      $FracPart = ($FracPart * 256 + $Byte)
-    }
+		foreach ($Byte in $NtpData[44..47]) {
+			$FracPart = ($FracPart * 256 + $Byte)
+		}
 
-    # Convert to Milliseconds (convert fractional part by dividing value by 2^32)
-    [UInt64]$Milliseconds = $IntPart * 1000 + ($FracPart * 1000 / 0x100000000)
+		# Convert to Milliseconds (convert fractional part by dividing value by 2^32)
+		[UInt64]$Milliseconds = $IntPart * 1000 + ($FracPart * 1000 / 0x100000000)
 
-    # Create UTC date of 1 Jan 1900,
-    # add the NTP offset and convert result to local time
-    (New-Object -TypeName DateTime -ArgumentList (1900, 1, 1, 0, 0, 0, [DateTimeKind]::Utc)).AddMilliseconds($Milliseconds).ToLocalTime()
-  }
+		# Create UTC date of 1 Jan 1900,
+		# add the NTP offset and convert result to local time
+		(New-Object -TypeName DateTime -ArgumentList (1900, 1, 1, 0, 0, 0, [DateTimeKind]::Utc)).AddMilliseconds($Milliseconds).ToLocalTime()
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name Get-AtomicTime -Value Get-NtpTime -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -412,8 +410,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUux3ZXcK4/u1O3OcH2+3IB4zk
-# +JmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfe+Eb7vwbw/mwsTnWBaJNTuh
+# EEqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -435,10 +433,10 @@ function global:Get-NtpTime {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -454,12 +452,12 @@ function global:Get-NtpTime {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -556,25 +554,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTjJSeblve2N+t1s+i3uitpxFLlnjANBgkqhkiG9w0B
-# AQEFAASCAQCt690HU5h4Pjc+34+/jPCMnvfzr8E07ULvlqUDGp7mHF+6EsJYhLXa
-# sVLpE/vKTNUFBQlgBvOIfSO73YGl/LC7x4AeiQLHNAe1cSnuik9OoIe5FZZPNgo+
-# 5EMadpzV+unYC+0p4M/CyfVUQ94jH6aBi3oKbmVDNm71MYujM/seyyzIXA4fV2nW
-# jOlCl2AEg5LJQrpW+0LuGOSzdXS9RnDtshxk3ii9n2qwfjbFmH8BSd01oaysgmXh
-# Vo75xc64h7vgtYpAmsZWgRcbWYHQELWDF+OI0bwv9kVb9m445RnKrBvZUzopZ7EE
-# 10Zm0/s3vR8egp1jS4AhZ3BhVqwosjQuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTx88lgBTVbzJC41etPI2wD3WUcVDANBgkqhkiG9w0B
+# AQEFAASCAQArBiQkvYfykARkyBkR8kAPNz8g0Eg1CBOqHTi348Scfn/9O6nI3g5G
+# ehUxOdLno5dcDYhve2pazWyxLu2N/VVguimbbzqAE9GIpXdsCURnvYzzJ+xDsEhv
+# E6lSoKkgDkC0MunfG1hOxeh+DYekIg3RaItRlHwsnlWICNkf+8LigrSq9ywp0DKJ
+# DFNvf8Fjcug8sI0LbTTrmqo7a4Mgn7Qj0unA0KNOc1zyixEiEK3KBD3otfx1tme7
+# t3kP41bBC7rmx/USwpitGfJTu0v4U5++0hpc/a8N2XWdgddIirUDHtG6BzCOv8xl
+# UVyhXtI+BNqGYmK4dHiOdOT9TXrJ/f6KoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYxMTExNDczM1owIwYJKoZIhvcN
-# AQkEMRYEFNqm+NVew4g6mb9CghhEooPQcOGUMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYxMjE2MTEwMFowIwYJKoZIhvcN
+# AQkEMRYEFEK/hXxnm/0UAKZGgBH3W1lIJk0yMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQALheE210iFv5aNRVbA8UOdyIUt+icSImi9sB/VwI31r2+C
-# vBL9XciAafqoVBu7RHK/ACN7QnXNFGfEefBdQ1saQog4Zl7Cv96bh3K9wG/gVdOQ
-# 4oARiUuOrdmCLBCwSqdxpJYsAb5rO3j5ZkiqmSjG34douZgcxek8lWEttmT7+Qxq
-# cssw/RbsGYBi+ju4bpwY4HMZMzROb46F0IhE0Db2/hA4ik5iQxCu98IGDlt7oBWY
-# nPIiyXIOGznluilqzI0M6FtgPcJZTxKC7rYbF8tz0z4Xg5qVEKES7E+zmyjKcUGD
-# VlhQjlFWIwqf56B34tCAmGcB3ljzLB91DB6z3kkw
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBZl2Ek0S9oVOjQus9ioUcgvNggDbLBP37kd/E8igak7SrY
+# Fuy3uFiv5miP+89if7tjthqj+FDuvxnTLB6uaqolvbFFyGsUtm8sZHvSIyVljUUs
+# 76xWpXM8DQXH2mEdQ443/fJhXdGd/Zbqz+kEP5u4IRGS18yoRXOnLz7dLUZsmH0C
+# vJrjYE0J13wwo/bEvPCn4OJTLeQ6yUPSTbXB5/JsEC1G9fOE2NrOiU+QYB9FRSdJ
+# ClGOZnkg77etN3MAebLQSK8rNycx4wiOLBtObkwRue0D9OumdvnnGA+B6gNAKhrI
+# 9VTZhgIO7mlkv+sUOlyIbBopMTPCN8xDutisKuIM
 # SIG # End signature block
