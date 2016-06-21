@@ -1,7 +1,10 @@
-### Development Snapshot (automated) (HEAD -> master)
+### Distribution Snapshot 1.2.3.87 (HEAD -> master)
+>*Tue, 21 Jun 2016 20:44:53 +0200*
+
+### Development Snapshot (automated) (origin/master, origin/HEAD)
 >*Mon, 13 Jun 2016 11:49:23 +0200*
 
-### Minor change to the REQUIRES handling (origin/master, origin/HEAD)
+### Minor change to the REQUIRES handling
 >*Mon, 13 Jun 2016 11:49:10 +0200*
 
 ### Development Snapshot (automated)
