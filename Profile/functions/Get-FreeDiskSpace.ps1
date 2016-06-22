@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,88 +15,88 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Get-FreeDiskSpace {
-  <#
-      .SYNOPSIS
-      Show the Free Disk Space of all Disks
+	<#
+			.SYNOPSIS
+			Show the Free Disk Space of all Disks
 
-      .DESCRIPTION
-      This is a Uni* DF like command that shows the available Disk space.
-      It's human readable (e.g. more like df -h)
+			.DESCRIPTION
+			This is a Uni* DF like command that shows the available Disk space.
+			It's human readable (e.g. more like df -h)
 
-      .EXAMPLE
-      PS C:\scripts\PowerShell> Get-FreeDiskSpace
-      Name Disk Size(GB) Free (%)
-      ---- ------------- --------
-      C          64         42%
-      D           2         84%
+			.EXAMPLE
+			PS C:\scripts\PowerShell> Get-FreeDiskSpace
+			Name Disk Size(GB) Free (%)
+			---- ------------- --------
+			C          64         42%
+			D           2         84%
 
-      Description
-      -----------
-      Show the Free Disk Space of all Disks
+			Description
+			-----------
+			Show the Free Disk Space of all Disks
 
-      .NOTES
-      Just a quick hack to make Powershell more Uni* like
+			.NOTES
+			Just a quick hack to make Powershell more Uni* like
 
-      .LINK
-      Idea http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
-  #>
+			.LINK
+			Idea http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Array])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.Array])]
+	param ()
 
-  PROCESS {
-    # Get all Disks (Only logical drives of type 3)
-    $Disks = ((Get-WmiObject -Class win32_logicaldisk | Where-Object -FilterScript { $_.DriveType -eq 3 }).DeviceID)
+	PROCESS {
+		# Get all Disks (Only logical drives of type 3)
+		$Disks = ((Get-WmiObject -Class win32_logicaldisk | Where-Object -FilterScript { $_.DriveType -eq 3 }).DeviceID)
 
-    # remove the ":" from the windows like Drive letter
-    $Disks = ($Disks -replace '[:]', '')
+		# remove the ":" from the windows like Drive letter
+		$Disks = ($Disks -replace '[:]', '')
 
-    # Not sexy, but it works!
-    # Base Idea is from here: http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
-    (Get-PSDrive $Disks | Format-Table -Property Name, @{
-        Name       = 'Disk Size(GB)'
-        Expression = { '{0,8:N0}' -f ($_.free/1gb + $_.used/1gb) }
-      }, @{
-        Name       = 'Free (%)'
-        Expression = { '{0,6:P0}' -f ($_.free / ($_.free + $_.used)) }
-    } -AutoSize)
-  }
+		# Not sexy, but it works!
+		# Base Idea is from here: http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
+		(Get-PSDrive $Disks | Format-Table -Property Name, @{
+				Name       = 'Disk Size(GB)'
+				Expression = { '{0,8:N0}' -f ($_.free/1gb + $_.used/1gb) }
+			}, @{
+				Name       = 'Free (%)'
+				Expression = { '{0,6:P0}' -f ($_.free / ($_.free + $_.used)) }
+		} -AutoSize)
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name df -Value Get-FreeDiskSpace -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -103,8 +104,8 @@ function Get-FreeDiskSpace {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQhDZCBCyOysaHAbNH8++eZOU
-# 0amgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2JmRNNl6b3NLz7KvVJW2v98n
+# T7ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -247,25 +248,25 @@ function Get-FreeDiskSpace {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR10xrlMzCZ7lGdJ85RO3JwOOkncDANBgkqhkiG9w0B
-# AQEFAASCAQBFeXDqS8f7b2YJUiL7k3VxmVTjXrR9ezXVfrUWjs9vQsU3wrsmvz05
-# vXCGw4kDqN+4k3vqRjWSPJv2lDfWchX+vFHxTiYedoXwCGeNaVh3XFTxf7MCuN3q
-# 2J2dzUiLm5imzWY/Uu1va7BAJsoHOTm9Q45yK4n/a8b3b4pKoOJHooSJCMeGf1S1
-# zUp0P8WZqKMKyufiP7xQySClOozt/7CcxkaIdyJ/eci61Qi6xuqxsDsLW9iyROWV
-# T8cfEGFIT82Z+UxpFj+lioogK/1mipm2KhA/hYhhloCfFeoTasSXrCRDioOOLy9W
-# uBII46f5WJ7OlO2iQPU3JQbutRZktArXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ6u59KXO3ixDfUW55tW7sFDzAjZjANBgkqhkiG9w0B
+# AQEFAASCAQAZRhUkKY8+ltHwzBjCLJx6GHwiM7ooJvH1TAsoaEkt0puIBvKqvwVo
+# n26bj8WKkX6sdxAYnemk5ZtmZUUffNXhTK9QjQbd64BgYZRYi+cdj8n1lZaoWtV7
+# /WkaHejOo6K79/cWQTjC8EIiQSQ4tMaUUN1HXajTa9DHRRldYltpqKXFHoSrHJ3b
+# Bbk1f+gDsbqWTnyEBfOfiufg2AhBWsGEkIGa2KuKs+gWvc4qhAaYod+hNPOKJ7Md
+# vKZ3Om7aj/Ec0kUNhBIF274nU4ZOKIJrn95m6LOhnhvNmR59P5Cf4tVGAt15ibGE
+# RO9vmm//2ZZ+dTAE/HT4TocXpSJY5ejxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNVowIwYJKoZIhvcN
-# AQkEMRYEFPpkYuSdU1WwC8d7zmpiZU1eGcnNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNFowIwYJKoZIhvcN
+# AQkEMRYEFOlwBypfKbzMjTAFjgKsRG4nzte1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCP1evvSEt9y5p0o3Z6zOHPoYXxeSqlPeSQ583+2IN5gQau
-# h08YPLKwFvxQDCZ6j3fSVrhB/vClhZkABRewINBtZlj/07JJYRRhM4zxhvWoCffM
-# Yk036Ocfir8Ktowia0bDmzeIzTpeVLqI97BVQ/9Ug4MDKgc3NmtjeXqq9GDUz/s6
-# Ql2GlbuBlCghWeN0iibRrTsr1nVgyj/zVs/1GUBnLfN4QGEd7gD+jikZGYqmwn2z
-# m2UIh6mW3X0aF5LJ7Anljoqokdn8D5Yj5imCelATLAN6EdTe6PHyU5SPiPcFNhh/
-# eBnA5jstGrYlaCSP17OvjXJretJpi5t8bkKO5F/k
+# hkiG9w0BAQEFAASCAQBnLpfWaeNtHWSgNbAtc0f363MTWid3gEU3sXP4FToEZV4b
+# 7FdIDSx0/Vl9yVhSBUG0CtQNcB+9sZoIodYxgSKArwAPBusJ2D2pGCQEKZU3yVjX
+# D8iN6B9cngh+CVLEulFacb8K4W4YPI6wg9qOth4pmd0Fo5mHd5fgSU4X+3E+oPnn
+# wuOwp7jHQc5vxfWU8u8NNhUHxvYxiRsesWA0upbZTkvRZu9ssbh6MpI6QZcxkbBt
+# TQ1JJp7Vq2T7FI0h7pUzHB3acX656ex99HirZl7t2XGWxKREbVDh8zcV/cHlg6C4
+# ANF0TXuzc/ZK1r7qw+gQhe/WnhkoasBi4uw23id8
 # SIG # End signature block

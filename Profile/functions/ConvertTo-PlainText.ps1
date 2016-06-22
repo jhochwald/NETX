@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,91 +15,91 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:ConvertTo-PlainText {
-  <#
-      .SYNOPSIS
-      Convert a secure string back to plain text
+	<#
+			.SYNOPSIS
+			Convert a secure string back to plain text
 
-      .DESCRIPTION
-      Convert a secure string back to plain text
+			.DESCRIPTION
+			Convert a secure string back to plain text
 
-      .PARAMETER secure
-      Secure String to convert
+			.PARAMETER secure
+			Secure String to convert
 
-      .NOTES
-      Helper function
+			.NOTES
+			Helper function
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        Position = 0,
-    HelpMessage = 'Secure String to convert')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('SecureString')]
-    [security.securestring]$secure
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				Position = 0,
+		HelpMessage = 'Secure String to convert')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('SecureString')]
+		[security.securestring]$secure
+	)
 
-  BEGIN {
-    # Define the Marshal Variable
-    # We use the native .NET Call to do so!
-    $marshal = [Runtime.InteropServices.Marshal]
-  }
+	BEGIN {
+		# Define the Marshal Variable
+		# We use the native .NET Call to do so!
+		$marshal = [Runtime.InteropServices.Marshal]
+	}
 
-  PROCESS {
-    # Return what we have
-    # We use the native .NET Call to do so!
-    Write-Output -InputObject "$($marshal::PtrToStringAuto($marshal::SecureStringToBSTR($secure)))"
-  }
+	PROCESS {
+		# Return what we have
+		# We use the native .NET Call to do so!
+		Write-Output -InputObject "$($marshal::PtrToStringAuto($marshal::SecureStringToBSTR($secure)))"
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQnP4LjFDeLsqCwi0eYoYEm/l
-# IQmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULW7ffQgzsvTyIdGzLR7dnyT5
+# NxGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -241,25 +242,25 @@ function global:ConvertTo-PlainText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRod14EewR9SqaHrHqWmjYphUUGLTANBgkqhkiG9w0B
-# AQEFAASCAQBeMVvp2p9PopE8Jy/wlU8CVUqx+GZNDaGoCxfjBss8r7hFOnDCtyHK
-# 1UY96hTQGvt8+1QwojgLSCeFW6ZBB3WJ0ETPMnN0KBlKhMyRGEjTx1xgClI2rSW1
-# G8Pye/XJUaQGBtlXRlamdIHqKbs8uvzbhvoysn9UTbNyJskkOM/WwhXxALg5ytdm
-# 7v/W/5HXpldnjNMSUt7w8A6ENRXE8t6uYHmJlA2tWnoPdYJiU0uoFXDrTKTdqvdS
-# KCJaWP4pcNzoKAaZc6+RCVurVT5+1zQJF+H5rBKyrm8fLkyYEObNWdKwy3m8tSik
-# n9o0kMKR5K6YKu46ok2WCvRfab/Ho0znoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSuMpI0ZFKlH27CCzQsdgVs7G/ZNjANBgkqhkiG9w0B
+# AQEFAASCAQAc2zCDJxYWHwxNfQdUsfK6ldwk9oDXa2MbZvtHnLqPilCCyRdsKMpZ
+# f5x7ZdVpIXTAD/X4stUByP3fnpjJLsQYMpDy4bG3C8CZz50YwnJvRcfeIAE7mBGC
+# ErWK5fJ0PVX9M9jAirdc4NjeIjiNhR1MJuq0Z5M4BD9CKde3sj9aveP/AKk+cGWp
+# h9RHuaLS0yV507/wfWPwpOdZ4IYF/fzs6eZ9an/rSx+FELAY83Lzm9dO1WnAM05C
+# M5i7rVpwyspHanq3Jk1OFgevtXUVkN8RWpal3kUL4HvQZqq5HsV5xzsxVS0V4uvS
+# YPTRM68drJrGZU8zKC/iMcQcDxYyI3qtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyOFowIwYJKoZIhvcN
-# AQkEMRYEFNF7H/bQBleHsXpkXRi4doDLB5fOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExN1owIwYJKoZIhvcN
+# AQkEMRYEFOv6acXmHVSPkk/PudOCK3S7oSLjMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCcU6eVdXqNrYYqVWMRi52U7729qaC4MRdy7JdY5VRFMVAf
-# qX2nJ9eogZRYwe0bClincpFyWvC0d/iyhCloNR8wuzRcw25fVG3jn4FetWZjEjrG
-# T4ixKgkbejnzbDBuLSTkNRZVwbgVk0ZjsV7gZg7Dek8V6vpwXHTRWWlf0nceXNFS
-# y+anRdUH48BjfbMcRIDCITdvPBazp+tEPrLppGTyADAlrEgw0p4H36exeWD49ogX
-# BmDw6CpT9Qme4N+LaEp12Z08gi1fZ0mUqJyCYOrBqjkK7fAlYJVg7a3zPAzCBBXE
-# YosZ7ojJBeneVKp/sc1lkUCAJOSW/+B682TqipmP
+# hkiG9w0BAQEFAASCAQB3uLhG6MLg3Ew8IJ+1ydud3wISge3OPUPPN9Zc3uSuPsLb
+# LXMJV+1O4iGmXc0gwNpdBi5Y6akBhxW4+KQHnSNM3txKKpG1JLPq+s2zm+ElzIbu
+# ajMz/AUt1Z64oh1k0YZwN+x2Ok/Lc2SiagnbW1uZU2BYXXCceZYemOrj10h2qhf/
+# aXtvNpuu4U75jiXfBLrVT5gQaBLEKfDwz0u34RIvAveouqgowogVb9ckhidtETRv
+# uMp5VxAF9TcMQPjgJBR5LPcGz5JrQ045Pz0O/rxQNqOyyIXrriKiSGykoiK/UrFA
+# j9Pz0x9PiFBZl5XiEvC+mfu4ji91gAXr2o8NvQli
 # SIG # End signature block

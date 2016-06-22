@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,102 +15,102 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-EnvironmentVariables {
-  <#
-      .SYNOPSIS
-      Get and list all Environment Variables
+	<#
+			.SYNOPSIS
+			Get and list all Environment Variables
 
-      .DESCRIPTION
-      Dump all existing Environment Variables.
-      Sometimes this comes handy if you do something that changes them an
-      you want to compare the before and after values (See examples)
+			.DESCRIPTION
+			Dump all existing Environment Variables.
+			Sometimes this comes handy if you do something that changes them an
+			you want to compare the before and after values (See examples)
 
-      .EXAMPLE
-      PS C:\> Get-EnvironmentVariables
+			.EXAMPLE
+			PS C:\> Get-EnvironmentVariables
 
-      # Get and list all Environment Variables
+			# Get and list all Environment Variables
 
-      .EXAMPLE
-      PS C:\> $before = (Get-EnvironmentVariables)
-      PS C:\> Installer
-      PS C:\> $after = (Get-EnvironmentVariables)
-      PS C:\> Compare-Object -ReferenceObject $before -DifferenceObject $after
+			.EXAMPLE
+			PS C:\> $before = (Get-EnvironmentVariables)
+			PS C:\> Installer
+			PS C:\> $after = (Get-EnvironmentVariables)
+			PS C:\> Compare-Object -ReferenceObject $before -DifferenceObject $after
 
-      Description
-      -----------
-      Get and list all Environment Variables and save them to a variable.
-      Install, or do whatever you want to do... Something that might change
-      the Environment Variables.
-      Get and list all Environment Variables again and save them to a
-      variable.
-      Compare the 2 results...
+			Description
+			-----------
+			Get and list all Environment Variables and save them to a variable.
+			Install, or do whatever you want to do... Something that might change
+			the Environment Variables.
+			Get and list all Environment Variables again and save them to a
+			variable.
+			Compare the 2 results...
 
-      .EXAMPLE
-      PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\before.txt
-      PS C:\> Installer
-      PS C:\> reboot
-      PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\after.txt
-      PS C:\> Compare-Object -ReferenceObject 'C:\scripts\PowerShell\export\before.txt' -DifferenceObject 'C:\scripts\PowerShell\export\after.txt'
+			.EXAMPLE
+			PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\before.txt
+			PS C:\> Installer
+			PS C:\> reboot
+			PS C:\> (Get-EnvironmentVariables) | C:\scripts\PowerShell\export\after.txt
+			PS C:\> Compare-Object -ReferenceObject 'C:\scripts\PowerShell\export\before.txt' -DifferenceObject 'C:\scripts\PowerShell\export\after.txt'
 
-      Description
-      -----------
-      Get and list all Environment Variables and save them to a file.
-      Install, or do whatever you want to do... Something that might change
-      the Environment Variables.
-      Get and list all Environment Variables again and save them to another
-      file.
-      Compare the 2 results...
+			Description
+			-----------
+			Get and list all Environment Variables and save them to a file.
+			Install, or do whatever you want to do... Something that might change
+			the Environment Variables.
+			Get and list all Environment Variables again and save them to another
+			file.
+			Compare the 2 results...
 
-      .NOTES
-      Initial Version...
-  #>
+			.NOTES
+			Initial Version...
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param ()
 
-  (Get-ChildItem -Path env: | Sort-Object -Property name)
+	(Get-ChildItem -Path env: | Sort-Object -Property name)
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuMr0XSAH13ohoDFKE98Tlo9/
-# 5pigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAFGHtMwslXJ5UJvQ1W7x0F3/
+# osygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +253,25 @@ function global:Get-EnvironmentVariables {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS2wNSGn4KNBmTqYtuKUAJwt5BI5jANBgkqhkiG9w0B
-# AQEFAASCAQBOeG0Iw8r5PNtTMM71e95MtydQPhXHvPiLUL414dFJKW4E80eebT4r
-# FNaJLaxvBM3eijKHJtosLUwEDSrw6d9/h5zcadBDuPFjf+3bKKS8bGGYzARVb12I
-# ZDGIXm5FNXKKcXNB3e9tRQ5Bo/DKf4ylqfs8M3FzkpQgcDKEZaxK9Q52JNwE3A/R
-# crbyNsStR94ggm/VA/ErE4sGJovzlaUKvn5vzIlk8Kp99yrcQciuOR02Qp8M3STg
-# SpBFAb8B3ufDWPmR47KaK6wQA2pbjqSyoa5st0JBMDOUS7cb/ULqvP1tAmhpzuy4
-# 8HRUpmvQAwLtuuTwU2ETrwi1Kz6gBHQXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSAspjAIU3q+8RdeEBvKWGbLhMjIzANBgkqhkiG9w0B
+# AQEFAASCAQAIIdCBCHzzUYj35idjP8lBQd/bdGrOcY+2pVnEMlPJNcvlUsHAz1Nz
+# mIOp9GKpl359qLDdPS2HbzYtbZlAsT+Ce1gPTn9Uhi26HXxPnxtHOjDCT13ZAM54
+# 2uiInvg6cFt7DE7frmuCUQgC8zvRbxk2Aze1+tXh5UnZvyh4m0WzXIk8XygJdXe4
+# J51u5FYV4ds17VlhIEjn8ErFEB9mdyRz1Ofe5YW+niUxBy6+gvxey5Za/3Cxl6ht
+# wK2seRbG4n8Cs1FDitXoKCqmaAmDh2v9ducaVE9ZRlvdHgDcPJqurOIUxlGirGzm
+# VorepKPteyV56lR1ZAP3zNvFQU1KCElmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNVowIwYJKoZIhvcN
-# AQkEMRYEFJxycnzNxK25yz+QoGz6b1SAuCIjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyM1owIwYJKoZIhvcN
+# AQkEMRYEFCx0M118Ud7FdiBGftyVa6pW2YTeMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAE5BkmkCsEoSK8JtzzWviyzBFJmNLpBRdHZrnGcxPITbl4
-# cryctK85MnhEi0nYKoFr/CY76DY7U3oSTV6iIzwgM6qcDJE6PA03mGLkJXybnUdz
-# sEcDcAotuvut5wpdQXKYUrab34L0jvrPdq0cX80Ly48bzeclqEKPsFPpmV6bRIrT
-# 6oo6nYVgmHvjYgYQ01XwUtmMQmQxPno+cS9kXJDXYj46gItBeJYXJUw/HQI6jC+f
-# vPvXkUmdnL8WanGiFK+ynkSJ6xGmMofT9BeFgRt3tWbia6guyCAtKzh1LbbMr01W
-# IoJ2CsU2P5kHWhhuGt1NJuHI7hLOvOKrYAgTUTWC
+# hkiG9w0BAQEFAASCAQBu9+Lw/o0arsPPLR8NO4KQCjns99cqTJVF1U2wn/XbOlNC
+# aNV5viybgjhYDbFasl9grJ/fFELhRPc7upQjeal8tYl5Lv6eJC4zH46dqIMynLCQ
+# KBQltd1bD5wWRhMEl5uHe+y6PqPT3F2Z4MYao4RA3ocQyfZlcoO+sdBml7ejKa25
+# EDUywGrsemQ623BpRDo3QozUA/H8HyZn7YhvLcZWf/idqraHGE4KEMLysxTwe9cs
+# MEovYZV19LdsLoGBmEnZ6HmPBGxJSmo+0U2tC855kz9fQQj7dNtvZ3cvb/ozl5DO
+# 9H0bTuc6fJwHP1BOECc1630f2mXVGemRM4Q9c8XC
 # SIG # End signature block

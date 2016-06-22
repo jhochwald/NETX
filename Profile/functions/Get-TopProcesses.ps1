@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,89 +15,89 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-TopProcesses {
-  <#
-      .SYNOPSIS
-      Make the PowerShell a bit more *NIX like
+	<#
+			.SYNOPSIS
+			Make the PowerShell a bit more *NIX like
 
-      .DESCRIPTION
-      This is a PowerShell Version of the well known *NIX like TOP
+			.DESCRIPTION
+			This is a PowerShell Version of the well known *NIX like TOP
 
-      .EXAMPLE
-      PS C:\> top
+			.EXAMPLE
+			PS C:\> top
 
-      Description
-      -----------
-      Shows the top CPU consuming processes
+			Description
+			-----------
+			Shows the top CPU consuming processes
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  BEGIN {
-    # Define objects
-    Set-Variable -Name SetValX -Value $([Console]::CursorLeft)
-    Set-Variable -Name SetValY -Value $([Console]::CursorTop)
-  }
+	BEGIN {
+		# Define objects
+		Set-Variable -Name SetValX -Value $([Console]::CursorLeft)
+		Set-Variable -Name SetValY -Value $([Console]::CursorTop)
+	}
 
-  PROCESS {
-    # figure out what uses the most CPU Time
-    While ($true) {
-      # Get the fist 30 items
-      (Get-Process |
-        Sort-Object -Descending -Property CPU |
-      Select-Object -First 30)
+	PROCESS {
+		# figure out what uses the most CPU Time
+		While ($true) {
+			# Get the fist 30 items
+			(Get-Process |
+				Sort-Object -Descending -Property CPU |
+			Select-Object -First 30)
 
-      # Wait 2 seconds
-      Start-Sleep -Seconds 2
+			# Wait 2 seconds
+			Start-Sleep -Seconds 2
 
-      # Dump the Info
-      [Console]::SetCursorPosition(${SetValX}, ${SetValY} + 3)
-    }
-  }
+			# Dump the Info
+			[Console]::SetCursorPosition(${SetValX}, ${SetValY} + 3)
+		}
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name top -Value Get-TopProcesses -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -104,8 +105,8 @@ function global:Get-TopProcesses {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6mRT3qp5LbTgYHG/xyB4LZI+
-# IASgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvocWVKZsQLLyPRRTL08Dvg3F
+# Uv2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -127,10 +128,10 @@ function global:Get-TopProcesses {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -146,12 +147,12 @@ function global:Get-TopProcesses {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -248,25 +249,25 @@ function global:Get-TopProcesses {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQvtcf6gOfdaH9LBc1766QKjwvaGDANBgkqhkiG9w0B
-# AQEFAASCAQA81VJb9uO+Unou33bdxW+3aro81j2U3BuR+ZGAylcPw1Rxjb2UEDGX
-# Az6ce/RvJnpXxcT+sjHxEHdYSNhR4MlHKqBBJCh4BcKMENo343lTki9CPHrBNDRb
-# d3JYpxHIRXAX/gKa4to6r+xg/b1in8+nMq6zRqGoS9ebPsW6C7iY0rXsqLyWJtM+
-# EYkdNCgZCGfJMahILe6B9xF42JD0TvDgxuUoCe4HIBWp2JL35dfTBhmZX/3p+hBT
-# 0gFvLiJkV+nJF012m3zx+yPSzMkv2jsUgNkrVxAZZUOMh6nGdM+rEe4nubqnzliE
-# mY5VRqfLJ+AxfxpthgOUiB7yrh+aR9ZxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT/qaiZy63gOkT0cNPgz35LvVHa/jANBgkqhkiG9w0B
+# AQEFAASCAQCQYYa39mPsNbhNY3x2W+0UsrgXbcjZP9ro9NFHIC1KHMBTNVS5neAI
+# ZGWW8QeAfjEOHNUjj7ZGBNNxlezdipt+hJSnimOw0PywZ9X07xN2akUqaBn8+Ouk
+# 68+mwgLmaXnl7yfPOUnPbh+PwV5F4T83w5Zs+3i/DKGn+HGbwYErJgvaTUZksKtU
+# pMi4XKLRX7JPxFDN6yWHpBy1/mXF0DVadOrQZ+HJ4X/Wk7EztTLjNVBz+ztpWX0W
+# k5/CxZPlfhPXQ95nsDcLVBbvq9Pe7n70Fzn6xrrT5EPh9gJIvft/Hy6pv8Ulgfvz
+# MCkaqkfJl+5zSJmaW4HLqCGTdq5B1pyLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0NlowIwYJKoZIhvcN
-# AQkEMRYEFH3dEFm2CZiNHwzYLr0zKJkqYEQeMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzNlowIwYJKoZIhvcN
+# AQkEMRYEFLU4SGIbnUUxCVjCaWaCsBiVpT0kMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAeD3jPkQUlShiwdHz6X23EZ17CxWB8QIRD2YO2L5KND6Za
-# FGtoEFd8o+m8kVO5k6UuvrXBf8D9SegouNf62hLFSybiR1ZgVpHfQ/u/xYT8yD2X
-# GpE7++tNpyOn0kSnsF7+SWkRzaEx2U7fzJBRNbtylIGWx0hi86h914S43ViVpMo/
-# bBw9BhxleBaWG4V5Owo2ClACg2RIWsG2/NLfypVP0DW5Nr2WxFlz3m39w5cHDr+G
-# fQ8zZ6nsdGbmRWGt0DbMlzSIxqdfrUIul/g1vkwbfDuUYcT7PIb+aRNMRKLYzkJc
-# kEBvURmVFcpZR0WVEcqIiXhkjEn3S922DG/si2Bx
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQA7tLiXiMBestoDB/goMFRN3pRa+8uZ4MXodx8Pm8GR6/6Y
+# YznFKW2PWQAvfwiZ4Ce66em8WMf4tUFF72A6NVbIGdv3qZ6mQxSyjIJwNVmKmrrr
+# MDGR+imF7P30tna1/j2NJfPUip2NJYN0Ji5klYOsvFojkWAwyzuxJEJTcW7hFrnN
+# C5Jw9U1RnNK1KQSPcoKvtLwlpV5QhDtRGbKgt29uvG+etx8waPLHUxBy42ZyVSl0
+# 6JaDG3D/AInSBLGQPm4xZD/uyQkaM/W9IOYsCEUZQIj1Z8cedG9chk5pIC2foRov
+# ezO7ydyeT8rJpGyx4Pru0ZgzLbaZM40/oZsRgr67
 # SIG # End signature block

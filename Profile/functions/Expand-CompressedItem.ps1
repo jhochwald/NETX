@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,200 +15,200 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Expand-CompressedItem {
-  <#
-      .SYNOPSIS
-      Expands a compressed archive or container.
+	<#
+			.SYNOPSIS
+			Expands a compressed archive or container.
 
-      .DESCRIPTION
-      Expands a compressed archive or container.
+			.DESCRIPTION
+			Expands a compressed archive or container.
 
-      Currently only ZIP files are supported. Per default the contents of the
-      ZIP is expanded in the current directory.
-      If an item already exists, you will be visually prompted to overwrite
-      it, skip it, or to have a second copy of the item expanded.
-      This is due to the mechanism how this is implemented
-      (via Shell.Application).
+			Currently only ZIP files are supported. Per default the contents of the
+			ZIP is expanded in the current directory.
+			If an item already exists, you will be visually prompted to overwrite
+			it, skip it, or to have a second copy of the item expanded.
+			This is due to the mechanism how this is implemented
+			(via Shell.Application).
 
-      .PARAMETER InputObject
-      Specifies the archive to expand. You can either pass this parameter as
-      a path and name to the archive or as a FileInfo object.
-      You can also pass an array of archives to the parameter.
-      In addition you can pipe a single archive or an array of archives to
-      this parameter as well.
+			.PARAMETER InputObject
+			Specifies the archive to expand. You can either pass this parameter as
+			a path and name to the archive or as a FileInfo object.
+			You can also pass an array of archives to the parameter.
+			In addition you can pipe a single archive or an array of archives to
+			this parameter as well.
 
-      .PARAMETER Path
-      Specifies the destination path Where-Object to expand the archive.
-      By default this is the current directory.
+			.PARAMETER Path
+			Specifies the destination path Where-Object to expand the archive.
+			By default this is the current directory.
 
-      .PARAMETER Format
-      A description of the Format parameter.
+			.PARAMETER Format
+			A description of the Format parameter.
 
-      .EXAMPLE
-      PS C:\> Expands an archive 'mydata.zip' to the current directory.
+			.EXAMPLE
+			PS C:\> Expands an archive 'mydata.zip' to the current directory.
 
-      Description
-      -----------
-      Expand-CompressedItem mydata.zip
+			Description
+			-----------
+			Expand-CompressedItem mydata.zip
 
-      .EXAMPLE
-      PS C:\> Expand-CompressedItem mydata.zip -Confirm
+			.EXAMPLE
+			PS C:\> Expand-CompressedItem mydata.zip -Confirm
 
-      Description
-      -----------
-      Expands an archive 'mydata.zip' to the current directory and
-      prompts for every item to be extracted.
+			Description
+			-----------
+			Expands an archive 'mydata.zip' to the current directory and
+			prompts for every item to be extracted.
 
-      .EXAMPLE
-      PS C:\> Get-ChildItem Y:\Source\*.zip | Expand-CompressedItem -Path Z:\Destination -Format ZIP -Confirm
+			.EXAMPLE
+			PS C:\> Get-ChildItem Y:\Source\*.zip | Expand-CompressedItem -Path Z:\Destination -Format ZIP -Confirm
 
-      Description
-      -----------
-      You can also pipe archives to the Cmdlet.
-      Enumerate all ZIP files in 'Y:\Source' and pass them to the Cmdlet.
-      Each item to be extracted must be confirmed.
+			Description
+			-----------
+			You can also pipe archives to the Cmdlet.
+			Enumerate all ZIP files in 'Y:\Source' and pass them to the Cmdlet.
+			Each item to be extracted must be confirmed.
 
-      .EXAMPLE
-      PS C:\> Expand-CompressedItem "Y:\Source\data1.zip","Y:\Source\data2.zip"
+			.EXAMPLE
+			PS C:\> Expand-CompressedItem "Y:\Source\data1.zip","Y:\Source\data2.zip"
 
-      Description
-      -----------
-      Expands archives 'data1.zip' and 'data2.zip' to the current directory.
+			Description
+			-----------
+			Expands archives 'data1.zip' and 'data2.zip' to the current directory.
 
-      .EXAMPLE
-      PS C:\> @("Y:\Source\data1.zip","Y:\Source\data2.zip") | Expand-CompressedItem
+			.EXAMPLE
+			PS C:\> @("Y:\Source\data1.zip","Y:\Source\data2.zip") | Expand-CompressedItem
 
-      Description
-      -----------
-      Expands archives 'data1.zip' and 'data2.zip' to the current directory.
+			Description
+			-----------
+			Expands archives 'data1.zip' and 'data2.zip' to the current directory.
 
-      .NOTES
-      See module manifest for required software versions and dependencies at:
-      http://dfch.biz/biz/dfch/PS/System/Utilities/biz.dfch.PS.System.Utilities.psd1/
+			.NOTES
+			See module manifest for required software versions and dependencies at:
+			http://dfch.biz/biz/dfch/PS/System/Utilities/biz.dfch.PS.System.Utilities.psd1/
 
-      .LINK
-      Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/
-  #>
+			.LINK
+			Online Version: http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Low',
-      HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/',
-  SupportsShouldProcess = $true)]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.')]
-    [ValidateScript({ Test-Path($_)})]
-    [System.String]$InputObject,
-    [Parameter(Position = 1)]
-    [ValidateScript({ Test-Path($_)})]
-    [System.IO.DirectoryInfo]$Path = $PWD.Path,
-    [ValidateSet('default', 'ZIP')]
-    [System.String]$Format = 'default'
-  )
+	[CmdletBinding(ConfirmImpact = 'Low',
+			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/',
+	SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.')]
+		[ValidateScript({ Test-Path($_)})]
+		[System.String]$InputObject,
+		[Parameter(Position = 1)]
+		[ValidateScript({ Test-Path($_)})]
+		[System.IO.DirectoryInfo]$Path = $PWD.Path,
+		[ValidateSet('default', 'ZIP')]
+		[System.String]$Format = 'default'
+	)
 
-  BEGIN {
-    # Build a string
-    [System.String]$fn = ($MyInvocation.MyCommand.Name)
+	BEGIN {
+		# Build a string
+		[System.String]$fn = ($MyInvocation.MyCommand.Name)
 
-    # Currently only ZIP is supported
-    switch ($Format) {
-      'ZIP'
-      {
-        # We use the Shell to extract the ZIP file. If using .NET v4.5 we could have used .NET classes directly more easily.
-        Set-Variable -Name ShellApplication -Value $(New-Object -ComObject Shell.Application)
-      }
-      default {
-        # We use the Shell to extract the ZIP file. If using .NET v4.5 we could have used .NET classes directly more easily.
-        Set-Variable -Name ShellApplication -Value $(New-Object -ComObject Shell.Application)
-      }
-    }
+		# Currently only ZIP is supported
+		switch ($Format) {
+			'ZIP'
+			{
+				# We use the Shell to extract the ZIP file. If using .NET v4.5 we could have used .NET classes directly more easily.
+				Set-Variable -Name ShellApplication -Value $(New-Object -ComObject Shell.Application)
+			}
+			default {
+				# We use the Shell to extract the ZIP file. If using .NET v4.5 we could have used .NET classes directly more easily.
+				Set-Variable -Name ShellApplication -Value $(New-Object -ComObject Shell.Application)
+			}
+		}
 
-    # Set the Variable
-    Set-Variable -Name CopyHereOptions -Value $(4 + 1024 + 16)
-  }
+		# Set the Variable
+		Set-Variable -Name CopyHereOptions -Value $(4 + 1024 + 16)
+	}
 
-  PROCESS {
-    # Define a variable
-    Set-Variable -Name fReturn -Value $($false
-    )
+	PROCESS {
+		# Define a variable
+		Set-Variable -Name fReturn -Value $($false
+		)
 
-    # Remove a variable that we do not need anymore
-    Remove-Variable -Name OutputParameter -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		# Remove a variable that we do not need anymore
+		Remove-Variable -Name OutputParameter -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-    # Loop over what we have
-    foreach ($Object in $InputObject) {
-      # Define a new variable
-      Set-Variable -Name $Object -Value $(Get-Item $Object)
+		# Loop over what we have
+		foreach ($Object in $InputObject) {
+			# Define a new variable
+			Set-Variable -Name $Object -Value $(Get-Item $Object)
 
-      # Check what we have here
-      if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Object.Name, $Path.FullName))) {
-        # Set a new variable
-        Set-Variable -Name CompressedObject -Value $($ShellApplication.NameSpace($Object.FullName))
+			# Check what we have here
+			if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Object.Name, $Path.FullName))) {
+				# Set a new variable
+				Set-Variable -Name CompressedObject -Value $($ShellApplication.NameSpace($Object.FullName))
 
-        # Loop over what we have
-        foreach ($Item in $CompressedObject.Items()) {
-          if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Item.Name, $Path.FullName))) {($ShellApplication.Namespace($Path.FullName).CopyHere($Item, $CopyHereOptions))}
-        }
-      }
-    }
+				# Loop over what we have
+				foreach ($Item in $CompressedObject.Items()) {
+					if ($PSCmdlet.ShouldProcess(("Extract '{0}' to '{1}'" -f $Item.Name, $Path.FullName))) {($ShellApplication.Namespace($Path.FullName).CopyHere($Item, $CopyHereOptions))}
+				}
+			}
+		}
 
-    # Show what we have
-    Write-Output -InputObject $OutputParameter
-  }
+		# Show what we have
+		Write-Output -InputObject $OutputParameter
+	}
 
-  END {
-    # Cleanup
-    if ($ShellApplication) {
-      # Remove a no longer needed variable
-      Remove-Variable -Name ShellApplication -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    }
+	END {
+		# Cleanup
+		if ($ShellApplication) {
+			# Remove a no longer needed variable
+			Remove-Variable -Name ShellApplication -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		}
 
-    # Set another variable
-    Set-Variable -Name datEnd -Value $([datetime]::Now)
-  }
+		# Set another variable
+		Set-Variable -Name datEnd -Value $([datetime]::Now)
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1uddeGNjvael2N9jds16if8E
-# etegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpPt2LiBKq2U/KWfRVNbv6Zug
+# IVGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -350,25 +351,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS8XoYdO7AhfU2UQS2y3CuB3WNQjTANBgkqhkiG9w0B
-# AQEFAASCAQAk26FqPXXAwGVXGU+g7ZT7+P/NsYSgUjORwkNfc5o1QZFvsma+otyA
-# KXAyUeFFtt5pFMhGk0r0nPGeQ/yBpkfkTbvTeH8Hs3C2CYQrLbRaaYB9Ng0yG399
-# qYxv9q6VqDpQYLN6FPvszKVfP0cmsJAl99JdNTeh+WOAhYJSLSVTkpoI7mhipBny
-# oEyDx5jINy7Zb5w5KWipN/i+hmjGLFlQZqbzos5YZL9ma9wSRYxBYaUvoEbrvigP
-# ifJ9165LbnMPjYiqA6TA3ETONXFc4wNEiL/J+IaQDIRUBsUlsYpEVy8VMNHGhZ2/
-# sL6fDMrrWIVYt5ZpaHuxmH0+ScaZdbxUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS1+wRtoZDn+4sgsJgvt3qtl6IQrzANBgkqhkiG9w0B
+# AQEFAASCAQAgQW8hPmNrhPsMnfOdr3Sq2kLQPZl/eANOEFLtQtyNdOs1QTkkm/JJ
+# pRj39Ob+0mVD8JBR+T9O/Q8Oi12MXYOSVNE6MkgBjgxiNkHUALrzYpQ4UWpamAMB
+# WnbBwNEz7DXZABdqYwuyen/SG5bOAvofQnQ+q0bz8YIzhNYSo12Yq8hh4ChTvdJR
+# wMSLilojNo7qnk3ARkM5Sx3TwVMPLjj3QJzS2W+/IEtpAsXILy1Jr4xj5P8tcKW+
+# DEYqtuUs+UmWe2AevkXoUasR1Z9D88TbPLAaSTSl4RhbVw1GLJvTOoisX2Qb+hCI
+# Bw4vRgnwsOLB31VWZRlqGb35rpNHAad2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzMVowIwYJKoZIhvcN
-# AQkEMRYEFGS9BL1L992LBwORd6H8kVwXRcCJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExOVowIwYJKoZIhvcN
+# AQkEMRYEFM9eNI03vMOrjAtmM94lYmlv43JvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCRBKCqCPvl5amlxigz/3H2WnC7nd1HWCzo628AZ32dV9C1
-# azjzjiHTwI+z7AFBwe9BYHrSk/t+pKzXncSGzKoYYEPj7ACbTuyWY6gs4Yv1LeiI
-# j6E4JJ3onrG5f1lNIInRYy08pvEUXO7rCvFvsEUAcDnqvtvgdwukPdXm/ax+1B61
-# a9NRuSy8df0aqNbsXmTVQAkU38maIa5/HqQR7jh1nIy38P1/Klq/5PBhBHgAxWMk
-# qEWmMhGvbzMOldWhxOtyt03KFPuwZgXqv0J5KE4/tpHPPJEdvCoKppvHKyqfuZF1
-# vnpxslwePN7Xhs7EaWDW7G3AY5ezEs6ta36jLA5P
+# hkiG9w0BAQEFAASCAQCIzORSkPLnGm3URpq2GjoYCuVGLWSjm9k/JNKRPEsn5wvl
+# 6p0BwywQ3nQKmNiDg2BrTLYU2Qz6bNKyLTLgKrCvAV46kxLajudgFUNbWrswxqrk
+# /SxC20ij5SAHm0/jWRYpwhedC+hea8hKtzjoa3xsjOenDEFLDaOCefZyUqlUGap/
+# 5gDGuyuvp2Jc49m9ZBJZtFwQ7VdsmN4+IxhPshMVJjC116jVcCsY6sFjfAsqGtnE
+# aaGbYbhLqzGHW1mrc8p4x6hRuPv9wEG0rDSrx8eVyO2GpWCpzJyRraYXHPcMPVX5
+# 4VjX2wVkojTmOZncpVjVQj7PUH72fyzW94WTJzui
 # SIG # End signature block

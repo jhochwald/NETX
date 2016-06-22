@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,240 +15,240 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-PendingReboot {
-  <#
-      .SYNOPSIS
-      Gets the pending reboot status on a local or remote computer.
+	<#
+			.SYNOPSIS
+			Gets the pending reboot status on a local or remote computer.
 
-      .DESCRIPTION
-      This function will query the registry on a local or remote computer and
-      determine if the system is pending a reboot, from either Microsoft
-      Patching or a Software Installation.
-      For Windows 2008+ the function will query the CBS registry key as
-      another factor in determining pending reboot state.
-      "PendingFileRenameOperations" and "Auto Update\RebootRequired" are
-      observed as being consistent across Windows Server 2003 & 2008.
+			.DESCRIPTION
+			This function will query the registry on a local or remote computer and
+			determine if the system is pending a reboot, from either Microsoft
+			Patching or a Software Installation.
+			For Windows 2008+ the function will query the CBS registry key as
+			another factor in determining pending reboot state.
+			"PendingFileRenameOperations" and "Auto Update\RebootRequired" are
+			observed as being consistent across Windows Server 2003 & 2008.
 
-      CBServicing = Component Based Servicing (Windows 2008)
-      WindowsUpdate = Windows Update / Auto Update (Windows 2003 / 2008)
-      CCMClientSDK = SCCM 2012 Clients only (DetermineIfRebootPending method) otherwise $null value
-      PendFileRename = PendingFileRenameOperations (Windows 2003 / 2008)
+			CBServicing = Component Based Servicing (Windows 2008)
+			WindowsUpdate = Windows Update / Auto Update (Windows 2003 / 2008)
+			CCMClientSDK = SCCM 2012 Clients only (DetermineIfRebootPending method) otherwise $null value
+			PendFileRename = PendingFileRenameOperations (Windows 2003 / 2008)
 
-      .PARAMETER ComputerName
-      A single Computer or an array of computer names.
+			.PARAMETER ComputerName
+			A single Computer or an array of computer names.
 
-      The default is localhost ($env:COMPUTERNAME).
+			The default is localhost ($env:COMPUTERNAME).
 
-      .EXAMPLE
-      PS C:\> Get-PendingReboot -ComputerName (Get-Content C:\ServerList.txt) | Format-Table -AutoSize
+			.EXAMPLE
+			PS C:\> Get-PendingReboot -ComputerName (Get-Content C:\ServerList.txt) | Format-Table -AutoSize
 
-      Computer CBServicing WindowsUpdate CCMClientSDK PendFileRename PendFileRenVal RebootPending
-      -------- ----------- ------------- ------------ -------------- -------------- -------------
-      DC01     False   False           False      False
-      DC02     False   False           False      False
-      FS01     False   False           False      False
+			Computer CBServicing WindowsUpdate CCMClientSDK PendFileRename PendFileRenVal RebootPending
+			-------- ----------- ------------- ------------ -------------- -------------- -------------
+			DC01     False   False           False      False
+			DC02     False   False           False      False
+			FS01     False   False           False      False
 
-      Description
-      -----------
-      This example will capture the contents of C:\ServerList.txt and query
-      the pending reboot information from the systems contained in the file
-      and display the output in a table.
-      The null values are by design, since these systems do not have the
-      SCCM 2012 client installed, nor was the PendingFileRenameOperations
-      value populated.
+			Description
+			-----------
+			This example will capture the contents of C:\ServerList.txt and query
+			the pending reboot information from the systems contained in the file
+			and display the output in a table.
+			The null values are by design, since these systems do not have the
+			SCCM 2012 client installed, nor was the PendingFileRenameOperations
+			value populated.
 
-      .EXAMPLE
-      PS C:\> Get-PendingReboot
+			.EXAMPLE
+			PS C:\> Get-PendingReboot
 
-      Computer     : WKS01
-      CBServicing  : False
-      WindowsUpdate      : True
-      CCMClient    : False
-      PendComputerRename : False
-      PendFileRename     : False
-      PendFileRenVal     :
-      RebootPending      : True
+			Computer     : WKS01
+			CBServicing  : False
+			WindowsUpdate      : True
+			CCMClient    : False
+			PendComputerRename : False
+			PendFileRename     : False
+			PendFileRenVal     :
+			RebootPending      : True
 
-      Description
-      -----------
-      This example will query the local machine for pending reboot information.
+			Description
+			-----------
+			This example will query the local machine for pending reboot information.
 
-      .EXAMPLE
-      PS C:\> $Servers = Get-Content C:\Servers.txt
-      PS C:\> Get-PendingReboot -Computer $Servers | Export-Csv C:\PendingRebootReport.csv -NoTypeInformation
+			.EXAMPLE
+			PS C:\> $Servers = Get-Content C:\Servers.txt
+			PS C:\> Get-PendingReboot -Computer $Servers | Export-Csv C:\PendingRebootReport.csv -NoTypeInformation
 
-      Description
-      -----------
-      This example will create a report that contains pending reboot
-      information.
+			Description
+			-----------
+			This example will create a report that contains pending reboot
+			information.
 
-      .NOTES
-      Based on an idea of Brian Wilhite
+			.NOTES
+			Based on an idea of Brian Wilhite
 
-      .LINK
-      Component-Based Servicing: http://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
+			.LINK
+			Component-Based Servicing: http://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
 
-      .LINK
-      PendingFileRename/Auto Update: http://support.microsoft.com/kb/2723674
+			.LINK
+			PendingFileRename/Auto Update: http://support.microsoft.com/kb/2723674
 
-      .LINK
-      http://technet.microsoft.com/en-us/library/cc960241.aspx
+			.LINK
+			http://technet.microsoft.com/en-us/library/cc960241.aspx
 
-      .LINK
-      http://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
+			.LINK
+			http://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
 
-      .LINK
-      SCCM 2012/CCM_ClientSDK: http://msdn.microsoft.com/en-us/library/jj902723.aspx
-  #>
+			.LINK
+			SCCM 2012/CCM_ClientSDK: http://msdn.microsoft.com/en-us/library/jj902723.aspx
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        ValueFromPipelineByPropertyName = $true,
-        Position = 0,
-    HelpMessage = 'A single Computer or an array of computer names.')]
-    [Alias('CN', 'Computer')]
-    [String[]]$ComputerName = "$env:COMPUTERNAME"
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				ValueFromPipelineByPropertyName = $true,
+				Position = 0,
+		HelpMessage = 'A single Computer or an array of computer names.')]
+		[Alias('CN', 'Computer')]
+		[String[]]$ComputerName = "$env:COMPUTERNAME"
+	)
 
-  PROCESS {
-    Foreach ($Computer in $ComputerName) {
-      Try {
-        # Setting pending values to false to cut down on the number of else statements
-        $CompPendRen, $PendFileRename, $Pending, $SCCM = $false, $false, $false, $false
+	PROCESS {
+		Foreach ($Computer in $ComputerName) {
+			Try {
+				# Setting pending values to false to cut down on the number of else statements
+				$CompPendRen, $PendFileRename, $Pending, $SCCM = $false, $false, $false, $false
 
-        # Setting CBSRebootPend to null since not all versions of Windows has this value
-        Remove-Variable -Name 'CBSRebootPend' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+				# Setting CBSRebootPend to null since not all versions of Windows has this value
+				Remove-Variable -Name 'CBSRebootPend' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-        # Querying WMI for build version
-        $WMI_OS = (Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction:Stop)
+				# Querying WMI for build version
+				$WMI_OS = (Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction:Stop)
 
-        # Making registry connection to the local/remote computer
-        Set-Variable -Name 'HKLM' -Value $([UInt32] '0x80000002')
-        Set-Variable -Name 'WMI_Reg' -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
+				# Making registry connection to the local/remote computer
+				Set-Variable -Name 'HKLM' -Value $([UInt32] '0x80000002')
+				Set-Variable -Name 'WMI_Reg' -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
 
-        # If Vista/2008 & Above query the CBS Reg Key
-        If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
-          Set-Variable -Name 'RegSubKeysCBS' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\'))
-          Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains 'RebootPending')
-        }
+				# If Vista/2008 & Above query the CBS Reg Key
+				If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
+					Set-Variable -Name 'RegSubKeysCBS' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\'))
+					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains 'RebootPending')
+				}
 
-        # Query WUAU from the registry
-        Set-Variable -Name 'RegWUAURebootReq' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\'))
-        Set-Variable -Name 'WUAURebootReq' -Value $($RegWUAURebootReq.sNames -contains 'RebootRequired')
+				# Query WUAU from the registry
+				Set-Variable -Name 'RegWUAURebootReq' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\'))
+				Set-Variable -Name 'WUAURebootReq' -Value $($RegWUAURebootReq.sNames -contains 'RebootRequired')
 
-        # Query PendingFileRenameOperations from the registry
-        Set-Variable -Name 'RegSubKeySM' -Value $($WMI_Reg.GetMultiStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\', 'PendingFileRenameOperations'))
-        Set-Variable -Name 'RegValuePFRO' -Value $($RegSubKeySM.sValue)
+				# Query PendingFileRenameOperations from the registry
+				Set-Variable -Name 'RegSubKeySM' -Value $($WMI_Reg.GetMultiStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\', 'PendingFileRenameOperations'))
+				Set-Variable -Name 'RegValuePFRO' -Value $($RegSubKeySM.sValue)
 
-        # Query ComputerName and ActiveComputerName from the registry
-        Set-Variable -Name 'ActCompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\', 'ComputerName'))
-        Set-Variable -Name 'CompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\', 'ComputerName'))
-
-
-        If ($ActCompNm -ne $CompNm) {Set-Variable -Name 'CompPendRen' -Value $($true)}
-
-        # If PendingFileRenameOperations has a value set $RegValuePFRO variable to $true
-        If ($RegValuePFRO) {Set-Variable -Name 'PendFileRename' -Value $($true)}
-
-        # Determine SCCM 2012 Client Reboot Pending Status
-        # To avoid nested 'if' statements and unneeded WMI calls to determine if the CCM_ClientUtilities class exist, setting EA = 0
-        Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-
-        $CCMSplat = @{
-          NameSpace    = 'ROOT\ccm\ClientSDK'
-          Class        = 'CCM_ClientUtilities'
-          Name         = 'DetermineIfRebootPending'
-          ComputerName = $Computer
-          ErrorAction  = 'Stop'
-        }
+				# Query ComputerName and ActiveComputerName from the registry
+				Set-Variable -Name 'ActCompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\', 'ComputerName'))
+				Set-Variable -Name 'CompNm' -Value $($WMI_Reg.GetStringValue($HKLM, 'SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName\', 'ComputerName'))
 
 
-        Try {Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)} Catch [System.UnauthorizedAccessException] {
-          Set-Variable -Name 'CcmStatus' -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
+				If ($ActCompNm -ne $CompNm) {Set-Variable -Name 'CompPendRen' -Value $($true)}
 
-          If ($CcmStatus.Status -ne 'Running') {
-            Write-Warning -Message "$Computer`: Error - CcmExec service is not running."
+				# If PendingFileRenameOperations has a value set $RegValuePFRO variable to $true
+				If ($RegValuePFRO) {Set-Variable -Name 'PendFileRename' -Value $($true)}
 
-            Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-          }
-        } Catch {Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
+				# Determine SCCM 2012 Client Reboot Pending Status
+				# To avoid nested 'if' statements and unneeded WMI calls to determine if the CCM_ClientUtilities class exist, setting EA = 0
+				Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-        If ($CCMClientSDK) {
-          If ($CCMClientSDK.ReturnValue -ne 0) {Write-Warning -Message "Error: DetermineIfRebootPending returned error code $($CCMClientSDK.ReturnValue)"}
+				$CCMSplat = @{
+					NameSpace    = 'ROOT\ccm\ClientSDK'
+					Class        = 'CCM_ClientUtilities'
+					Name         = 'DetermineIfRebootPending'
+					ComputerName = $Computer
+					ErrorAction  = 'Stop'
+				}
 
-          If ($CCMClientSDK.IsHardRebootPending -or $CCMClientSDK.RebootPending) {Set-Variable -Name 'SCCM' -Value $($true)}
-        } Else {Remove-Variable -Name 'SCCM' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
 
-        ## Creating Custom PSObject and Select-Object Splat
-        $SelectSplat = @{
-          Property = (
-            'Computer',
-            'CBServicing',
-            'WindowsUpdate',
-            'CCMClientSDK',
-            'PendComputerRename',
-            'PendFileRename',
-            'PendFileRenVal',
-            'RebootPending'
-          )
-        }
+				Try {Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)} Catch [System.UnauthorizedAccessException] {
+					Set-Variable -Name 'CcmStatus' -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction:SilentlyContinue)
 
-        New-Object -TypeName PSObject -Property @{
-          Computer           = $WMI_OS.CSName
-          CBServicing        = $CBSRebootPend
-          WindowsUpdate      = $WUAURebootReq
-          CCMClientSDK       = $SCCM
-          PendComputerRename = $CompPendRen
-          PendFileRename     = $PendFileRename
-          PendFileRenVal     = $RegValuePFRO
-          RebootPending      = ($CompPendRen -or $CBSRebootPend -or $WUAURebootReq -or $SCCM -or $PendFileRename)
-        } | Select-Object @SelectSplat
-      } Catch {Write-Warning "$Computer`: $_"}
-    }
-  }
+					If ($CcmStatus.Status -ne 'Running') {
+						Write-Warning -Message "$Computer`: Error - CcmExec service is not running."
+
+						Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+					}
+				} Catch {Remove-Variable -Name 'CCMClientSDK' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
+
+				If ($CCMClientSDK) {
+					If ($CCMClientSDK.ReturnValue -ne 0) {Write-Warning -Message "Error: DetermineIfRebootPending returned error code $($CCMClientSDK.ReturnValue)"}
+
+					If ($CCMClientSDK.IsHardRebootPending -or $CCMClientSDK.RebootPending) {Set-Variable -Name 'SCCM' -Value $($true)}
+				} Else {Remove-Variable -Name 'SCCM' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
+
+				## Creating Custom PSObject and Select-Object Splat
+				$SelectSplat = @{
+					Property = (
+						'Computer', 
+						'CBServicing', 
+						'WindowsUpdate', 
+						'CCMClientSDK', 
+						'PendComputerRename', 
+						'PendFileRename', 
+						'PendFileRenVal', 
+						'RebootPending'
+					)
+				}
+
+				New-Object -TypeName PSObject -Property @{
+					Computer           = $WMI_OS.CSName
+					CBServicing        = $CBSRebootPend
+					WindowsUpdate      = $WUAURebootReq
+					CCMClientSDK       = $SCCM
+					PendComputerRename = $CompPendRen
+					PendFileRename     = $PendFileRename
+					PendFileRenVal     = $RegValuePFRO
+					RebootPending      = ($CompPendRen -or $CBSRebootPend -or $WUAURebootReq -or $SCCM -or $PendFileRename)
+				} | Select-Object @SelectSplat
+			} Catch {Write-Warning "$Computer`: $_"}
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3OWRB5f4xvwIAGoCBuhMxj9x
-# adagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTQhRR8MQVG2n5wD/8DcAlT/P
+# qp2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -269,10 +270,10 @@ function Global:Get-PendingReboot {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -288,12 +289,12 @@ function Global:Get-PendingReboot {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -390,25 +391,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRhNv25QpMtdFp01CFgY5J78/MuoTANBgkqhkiG9w0B
-# AQEFAASCAQCNm/FEf8hME/G7E9Y0D0xIekCTWBxRbaG7oehbb1xXPZhC9ubE7As0
-# nfx4SEKh3lGbOVOF/tUIdXkPubwYPFMcdrb+zt2sFY8u5rpeVZpdVCiVJIqsnXYu
-# D1BJonQnAjDJI1DYAxF674zxwGV82Uvv4oq3acSP0I2UAkCiZHmA2kehJubWOttl
-# PspSO3pEbDDmkP64+fdHeLGO/DZi3Mr0Crbx1tsQUQqwtK+F25PKi84pi03ONypV
-# sYDyxarx9/MOG2rNcuWw6NqehNqn7lyPQzkzqavi8RrVPq0v6otr4NQ31fPShc26
-# cR3jy+WQWyPprqlzBknvm0ZJ7a+rNjiooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTE+j8UN1p0mLwvjUI3LWZPCgIVwDANBgkqhkiG9w0B
+# AQEFAASCAQBUYnj0Wio2mGbVpfnReEQ4Hy1QxPC9HMPpa6XbuLYXIhj+1C7zIPKi
+# fIet1HAKNxInVwURuKJ/sHiQ/3Qz7fnZ18/KjzAPgALTXIqqh6P3MWxOXwrIeK6S
+# 4sU9BO4WqmPtw3OTga4axHXtZMRsFi8O7eG8rMyWu4Njh6Gk2dBYG0j1cNAbcpcq
+# KM/tKsW5kU11svNvnJ1sYR5k/JuK5yivIlXwpjdlhpTFkk8F/qi7d4Qq5POTqACd
+# i6iHK0TpRAu4JMOQG67HjntB4eOy6qAquKZ0wVq5K9ndtAmSJQmHP6x+mcEufqmn
+# lkyJEY+j0MviwlGXDUz0eityEEtOoMs2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0MVowIwYJKoZIhvcN
-# AQkEMRYEFEJ9GTqbalcuYc98AU5XZobhUPCSMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzMVowIwYJKoZIhvcN
+# AQkEMRYEFN96WX/nuz1THCsEC2qU8Fdqy77tMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCwBPuEUE51KkR/pkilhkQST/HSGG5C9eUiwyDtlzNib/zM
-# GTunU6iOTx1wS0G6XH7+o6j5yN8dUi/dCzBHHSP+YJa5+gU93guS8NywJ7NZ3of1
-# t2086nkVgnWm8dgJVYc2vYUgi/ghqidb3BdJH949AvrHc5CKN+gRryeBcAxv5hZI
-# BjY1wl1WeVfrpupvinv+ahEpzl6nSz9D2a39FrVaTqf9ilnLvRuORMJAQEfI7lzZ
-# i5EnDciw65dEbBU56rs2cGKMIDp57ZbkSn6D/Wd4w/sxz8bduzi6huBtwKbSW50x
-# 1WC/EBjCpt+kQUoXFmgUSXQBL2qW/X7oTpY1TYUm
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAHeURM0St325vuIW0K9sps+ohx0pRCkQ+TzJOPLiaO+DjQ
+# 6Z769qixgUvIJUVGS8i0N+lB78sP8IPVmlryHmjePBQ9HErfcLzQB3OhZG3XQ7jh
+# 2ch6SjxmGYYZwG5mNbpY3YouS6+ZaAFA7MVv9/BnrwgSYUmPpxtFBXgKXtTapyWK
+# Z2k74tIJI5gk13qk/5Hm6nnH0Xucr6dwAs5xhQUClV046+66qv3pPTHh0GFEwnxf
+# j/5KZ9+93hZjqodf1gc/KNfRMzb01SsIXZOIRs6yHvR3rg2CUwzUIyTccDeg8Ch0
+# TDpZ2P58/iXoQzpsIc6G4OzfKL8Knv16ZM37dCoL
 # SIG # End signature block

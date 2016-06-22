@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,91 +15,91 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-AppendClassPath {
-  <#
-      .SYNOPSIS
-      Append a given path to the Class Path
+	<#
+			.SYNOPSIS
+			Append a given path to the Class Path
 
-      .DESCRIPTION
-      Appends a given path to the Java Class Path.
-      Useful if you still need that old Java crap!
+			.DESCRIPTION
+			Appends a given path to the Java Class Path.
+			Useful if you still need that old Java crap!
 
-      By the way: I hate Java!
+			By the way: I hate Java!
 
-      .EXAMPLE
-      PS C:\> append-classpath "."
+			.EXAMPLE
+			PS C:\> append-classpath "."
 
-      Description
-      -----------
-      Include the directory Where-Object you are to the Java Class Path
+			Description
+			-----------
+			Include the directory Where-Object you are to the Java Class Path
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .PARAMETER path
-      Path to include in the Java Class Path
+			.PARAMETER path
+			Path to include in the Java Class Path
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param ()
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param ()
 
-  PROCESS {
-    # Do we have a class path?
-    if ([System.String]::IsNullOrEmpty($env:CLASSPATH)) {
-      $env:CLASSPATH = ($args)
-    } else {
-      $env:CLASSPATH += ';' + $args
-    }
-  }
+	PROCESS {
+		# Do we have a class path?
+		if ([System.String]::IsNullOrEmpty($env:CLASSPATH)) {
+			$env:CLASSPATH = ($args)
+		} else {
+			$env:CLASSPATH += ';' + $args
+		}
+	}
 }
 (Set-Alias -Name append-classpath -Value Invoke-AppendClassPath -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgbkCHAZK8oacz/Cxc2rKRyqo
-# O0WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8EK2HEsQK/ylBuUtT9JOCvfz
+# 2tugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -241,25 +242,25 @@ function global:Invoke-AppendClassPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSLf8hVKrIZ7KfBK7O1WqQJ5RnoJzANBgkqhkiG9w0B
-# AQEFAASCAQBAdeCMj+MaIlfMwf9vm2cbHMv8filqPEDc2C/mkMuaBUzWaX2HcaxS
-# OWhYmGZIgLVLvxfVSlxWThtIV7EQiHOf8wjoNRZAOXLz4BQtpBFgp6rCQb4ETCHw
-# A0yGpqTb/F4PYXr2V7CWMc/lqleSYP37PGs+sOGa5+KRILzlI96ZRiXGRDCXjUlQ
-# 3enqd4KEELI9wiPaD5hv+5oDOa0IawhX3GWTpmGWX/C1VpOmBDyEs3uhd/ueNcCo
-# 69NBe0SnB103xcX66e5xQY6MkD9PI/SY3dsGXasR3NQ4GIyCzISYeICZ3uYSa9Vo
-# 5mMw+kHty5zb7thRiGyO8T9IZ0gjMNH7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTVQhfVzN61NJAzZk5F4tc0DWQwnzANBgkqhkiG9w0B
+# AQEFAASCAQCLNxJV9NULlaQBRsJZonWoID8N+FcauwSDmXYSXk+H/5ahnoBQ55RL
+# UTPXVrXFV8nLgp7c6aqvx1cMxXFlhvpKb1hR4dpsETXW+uIZB0KEhC7evpll7dtg
+# T9dyiutkqncAyUfT1B2XkJyWGobo65TUh5R1BoSaruGTSM+R8wvWTQF2KmxvHnqH
+# bp2w480cDMelQAkbibB86g8smuPB1Tz44te9NDRcRxLJSrTAtL7h4yexcKRFzYav
+# vQEZmUcryB6TRNIpyRj5jjRsAfHSwWJlrdAQ6mn/5hpPZbKpiWPL/zjUvhH1M67z
+# Z7K1piMt3WMPNXNwzND5Ja3kiT3vn5d8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1NVowIwYJKoZIhvcN
-# AQkEMRYEFCs8OE2IU5MW/ahPiY/KMh/z+inEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0NlowIwYJKoZIhvcN
+# AQkEMRYEFOtp84NnrN9GV1+tDviAwfEz6e/4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCeIoU5UcMNm0k66nh4lN1TcS6RkVW7MAE+AJV7PwsuNwb7
-# 3BO/T3RV/ZoiS6s08P83xOG9KEvpq8Na+NbO69+xP7/yb0/RbylVqlD1DgSH9hal
-# SSwOSjHlLY4prjNs9xeQVRH/DYyOKwnWGCdLurgt9gxqNNhO479B3d5spgnEEYiQ
-# qNsK/2VCYIizxFDCKI2OP4lB1QRVqpt/ZCkPEgXnqi1jdDT1esmjDRe5xrUPvIbq
-# QG9Qr0T6EEDAzARvLScXdKSW3aFLGfOHqyRkNbtMpcsxpjFAKg/SA1Klp6xqB/G6
-# 8V2D8h1Ydkr1T/T0rjDq5fdoFcnUXgNnMN+2C/Oo
+# hkiG9w0BAQEFAASCAQCT9NwPIlgIszRETkI92Y2LIsz6X8HzM/zWCi47OrccK2Tf
+# EtVlkMkHYNN+qnmMkl2qAMrOy0TNoTOT08w4rS6LN3JsRmgJxz4LPgNGfImCbpLr
+# KONW5FBDzfHAlAq9Gi6nrwzsUH+u3wyDD+4rsF9/FKo4IWGiLfoceMs7/CTfknHr
+# 3o4j6HlR++HD5nboSkcQ+mXQVw1mSZSjt3+gNv8CdpVjoJXGMqowCDiaqCqqxaZ9
+# iKdAUKN/kMf15aOP+FJavh0e7CHK52Gkdv3AlQI7Q+AZTdGFr/dE5CgwbFEhy3GA
+# VlFSsBlrP7M/vwtgIUCDYuN1fpUFZppREj2B/Ali
 # SIG # End signature block

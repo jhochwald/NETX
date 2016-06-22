@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,91 +15,91 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 function global:Edit-HostsFile {
-  <#
-      .SYNOPSIS
-      Edit the Windows Host file
+	<#
+			.SYNOPSIS
+			Edit the Windows Host file
 
-      .DESCRIPTION
-      Shortcut to quickly edit the Windows host File. Might be useful for
-      testing things without changing the regular DNS.
+			.DESCRIPTION
+			Shortcut to quickly edit the Windows host File. Might be useful for
+			testing things without changing the regular DNS.
 
-      Handle with care!
+			Handle with care!
 
-      .EXAMPLE
-      PS C:\> Edit-HostsFile
+			.EXAMPLE
+			PS C:\> Edit-HostsFile
 
-      Description
-      -----------
-      Opens the Editor configured within the VisualEditor variable to edit
-      the Windows Host file
+			Description
+			-----------
+			Opens the Editor configured within the VisualEditor variable to edit
+			the Windows Host file
 
-      .NOTES
-      Additional information about the function.
+			.NOTES
+			Additional information about the function.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    # Open the Host file with...
-    if (-not ($VisualEditor)) {
-      # Aw SNAP! The VisualEditor is not configured...
-      Write-Error -Message 'System is not configured! The Visual Editor is not given...' -ErrorAction:Stop
+	PROCESS {
+		# Open the Host file with...
+		if (-not ($VisualEditor)) {
+			# Aw SNAP! The VisualEditor is not configured...
+			Write-Error -Message 'System is not configured! The Visual Editor is not given...' -ErrorAction:Stop
 
-      # If you want to skip my VisualEditor function, add the following here instead of the Write-Error:
-      # Start-Process -FilePath notepad -ArgumentList "$env:windir\system32\drivers\etc\hosts"
-    } else {
-      # Here we go: Edit the Host file...
-      Start-Process -FilePath $VisualEditor -ArgumentList "$env:windir\system32\drivers\etc\hosts"
-    }
-  }
+			# If you want to skip my VisualEditor function, add the following here instead of the Write-Error:
+			# Start-Process -FilePath notepad -ArgumentList "$env:windir\system32\drivers\etc\hosts"
+		} else {
+			# Here we go: Edit the Host file...
+			Start-Process -FilePath $VisualEditor -ArgumentList "$env:windir\system32\drivers\etc\hosts"
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuYP992yYHT71vGvFtqxd20qg
-# nZ6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5fIgFzpZ6xYuEraQLS7bC9B+
+# yM2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -241,25 +242,25 @@ function global:Edit-HostsFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTx6kJwhPzzqAlKdJNT/2aUg+VVKDANBgkqhkiG9w0B
-# AQEFAASCAQBx6EufKRTYd0n14KfqzqNbJ/OKSzeHPvzD/gurH0pJaR7i6QawgRg5
-# a0A9loHT5gqjSVIqO6zH2HR7j8J9Z9NCbwvoAU/UimGEhM1NT2At+ajqxJ/skO1i
-# IY65v8crpFRsqJ/S5O6pmq4EZcUvXGoKBjscD/L7gvYUjGzuLawopS2OxiShKBzy
-# sFym896GHYW/lIZBZ9iJPRWwCMLmYpvhDfcH/ure0nFmmcp7X1+8FP4ku4o6BvnW
-# vRoKhXYmzRU3jUzn3n0pz+pU/pW9gux84fJteQw1iwbsRIUar/aYw2xGDZMAA5+G
-# yr0YtMYQMvlqXfw2RtrnWI3Awl3HUD5soYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQshRKFuACfXqR+ilAAMtWJ8h7eeDANBgkqhkiG9w0B
+# AQEFAASCAQAK5cpsdorPwghe0wRjHfxlDE1WC7bca1gUXBc9w//DAzqRuBiSC9/N
+# hZdb2HmAGBCcbcnSCxuCI7pLsh7z8Ig82CKPFs9dCBcbstpof+VcwAjGvJSS7gLX
+# jxcVSzU5gmd3fcdMLjuAWFKivtFC8/h5rOla5tzqVtemM6Xf+VA+BPJ7zwIZk6Rf
+# WVds4AhfGVxJ9oORM+NZWVc81WhxiHZlQR2hT9i2PxiUusQvbkoM4t0gwzkI21O5
+# zaZHffetSAUWjvJ/5hZssSCZlLDPl0Sv9UlNy3t0BvT10ajiFfWIZe9ziW4gm4wB
+# +I9aKveIru2q2UgOeL6t9Rp4XL4mM/KXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzMFowIwYJKoZIhvcN
-# AQkEMRYEFBVnAQByWJ5mra6ozdP4FhDZAQU6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExOFowIwYJKoZIhvcN
+# AQkEMRYEFMSxJ0fdF2OPe4oiKjfSQdJOksuzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAY6fE64nrRs9SfEqV0C08ffgJBkBdlZbIfxTwzU6IO4rCy
-# mL05fO/uE+zDg7o1d+yjOEWutVCxAvdCwOcCazFDaanE+or8KhDGdQSvnYBZq9ri
-# RAiBwp9pLgOsGtEje7RXcBA+Vn6QtVq1SMy8SAeRR3tkoVw6GEo8+uHi26K74bK6
-# FmSfywQhbVjwaVM+NqdQPsbDhVs3wOF2gMvkeXULeOklPrK4sCxd6ybEh6x0IwdU
-# HPzdCOhXMIVB44fm8SG7C02H+UvbhwRyCrEdvthOw1glKkdJPeSLv303f8Jwuw7V
-# 0EU0vWJ56xOL5v6dgM10XrNmA4prDVMHAfeWAryQ
+# hkiG9w0BAQEFAASCAQBb2eYMuf5amNvvLs8a8anEvqllTvbFfKPx9aF0/HD8EgXm
+# ERjOxLdmaOTGf9zz+upSJduZ/UJBpvRGdqbwHfxn7veODYTPmE7XctjObbh+gHS1
+# wAmqXhk04QI8ePsOq9FmIENXaWNHofvWkWY/bKWshyZh6zwX14tpdILmJ9ogoRhW
+# pMHTT/+/howmFjM4AXRvsMYncEvfGjo0aB4cCKoWeEyTfR9F0xicsnT0VVkwGrdm
+# Uw5yTtxYTYmu2gk+R4c1/g68RJ775ZSo09XnzeTeglaM3aGaKmCjdBmH7hxsaEDf
+# ePDd1luMaaInCnz4PHhySyoEj4kJjAMZfWYLvwZE
 # SIG # End signature block

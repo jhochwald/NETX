@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,200 +15,200 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-FileTime {
-  <#
-      .SYNOPSIS
-      Change file Creation + Modification + Last Access times
+	<#
+			.SYNOPSIS
+			Change file Creation + Modification + Last Access times
 
-      .DESCRIPTION
-      The touch utility sets the Creation + Modification + Last Access
-      times of files.
+			.DESCRIPTION
+			The touch utility sets the Creation + Modification + Last Access
+			times of files.
 
-      If any file does not exist, it is created with default permissions by
-      default.
+			If any file does not exist, it is created with default permissions by
+			default.
 
-      To prevent this, please use the -NoCreate parameter!
+			To prevent this, please use the -NoCreate parameter!
 
-      .PARAMETER Path
-      Path to the File that we would like to change
+			.PARAMETER Path
+			Path to the File that we would like to change
 
-      .PARAMETER AccessTime
-      Change the Access Time Only
+			.PARAMETER AccessTime
+			Change the Access Time Only
 
-      .PARAMETER WriteTime
-      Change the Write Time Only
+			.PARAMETER WriteTime
+			Change the Write Time Only
 
-      .PARAMETER CreationTime
-      Change the Creation Time Only
+			.PARAMETER CreationTime
+			Change the Creation Time Only
 
-      .PARAMETER NoCreate
-      Do not create a new file, if the given one does not exist.
+			.PARAMETER NoCreate
+			Do not create a new file, if the given one does not exist.
 
-      .PARAMETER Date
-      Date to set
+			.PARAMETER Date
+			Date to set
 
-      .EXAMPLE
-      touch foo.txt
+			.EXAMPLE
+			touch foo.txt
 
-      Description
-      -----------
-      Change the Creation + Modification + Last Access Date/time and if the
-      file does not already exist, create it with the default permissions.
-      We use the alias touch instead of Set-FileTime to make it more *NIX like
+			Description
+			-----------
+			Change the Creation + Modification + Last Access Date/time and if the
+			file does not already exist, create it with the default permissions.
+			We use the alias touch instead of Set-FileTime to make it more *NIX like
 
-      .EXAMPLE
-      Set-FileTime foo.txt -NoCreate
+			.EXAMPLE
+			Set-FileTime foo.txt -NoCreate
 
-      Description
-      -----------
-      Change the Creation + Modification + Last Access Date/time if this
-      file exists.
+			Description
+			-----------
+			Change the Creation + Modification + Last Access Date/time if this
+			file exists.
 
-      The -NoCreate makes sure, that the file will not be created!
+			The -NoCreate makes sure, that the file will not be created!
 
-      .EXAMPLE
-      Set-FileTime foo.txt -only_modification
+			.EXAMPLE
+			Set-FileTime foo.txt -only_modification
 
-      Description
-      -----------
-      Change only the modification time
+			Description
+			-----------
+			Change only the modification time
 
-      .EXAMPLE
-      Set-FileTime foo.txt -only_access
+			.EXAMPLE
+			Set-FileTime foo.txt -only_access
 
-      Description
-      -----------
-      Change only the last access time
+			Description
+			-----------
+			Change only the last access time
 
-      .EXAMPLE
-      dir . -recurse -filter "*.xls" | Set-FileTime
+			.EXAMPLE
+			dir . -recurse -filter "*.xls" | Set-FileTime
 
-      Description
-      -----------
-      Change multiple files
+			Description
+			-----------
+			Change multiple files
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
 
-      .LINK
-      Based on this: http://ss64.com/ps/syntax-touch.html
-  #>
+			.LINK
+			Based on this: http://ss64.com/ps/syntax-touch.html
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-    HelpMessage = 'Path to the File')]
-    [System.String[]]$Path,
-    [Parameter(HelpMessage = 'Change the Access Time Only')]
-    [switch]$AccessTime,
-    [Parameter(HelpMessage = 'Change the Write Time Only')]
-    [switch]$WriteTime,
-    [Parameter(HelpMessage = 'Change the Creation Time Only')]
-    [switch]$CreationTime,
-    [switch]$NoCreate,
-    [Parameter(HelpMessage = 'Date to set')]
-    [datetime]$Date
-  )
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+		HelpMessage = 'Path to the File')]
+		[System.String[]]$Path,
+		[Parameter(HelpMessage = 'Change the Access Time Only')]
+		[switch]$AccessTime,
+		[Parameter(HelpMessage = 'Change the Write Time Only')]
+		[switch]$WriteTime,
+		[Parameter(HelpMessage = 'Change the Creation Time Only')]
+		[switch]$CreationTime,
+		[switch]$NoCreate,
+		[Parameter(HelpMessage = 'Date to set')]
+		[datetime]$Date
+	)
 
-  PROCESS {
-    # Let us test if the given file exists
-    if (Test-Path $Path) {
-      if ($Path -is [System.IO.FileSystemInfo]) {
-        Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path)
-      } else {
-        Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path |
-          Resolve-Path -ErrorAction:SilentlyContinue |
-        Get-Item)
-      }
+	PROCESS {
+		# Let us test if the given file exists
+		if (Test-Path $Path) {
+			if ($Path -is [System.IO.FileSystemInfo]) {
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path)
+			} else {
+				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path |
+					Resolve-Path -ErrorAction:SilentlyContinue |
+				Get-Item)
+			}
 
-      # Now we loop over all objects
-      foreach ($fsInfo in $FileSystemInfoObjects) {
+			# Now we loop over all objects
+			foreach ($fsInfo in $FileSystemInfoObjects) {
 
-        if (($Date -eq $null) -or ($Date -eq '')) {
-          $Date = Get-Date
-        }
+				if (($Date -eq $null) -or ($Date -eq '')) {
+					$Date = Get-Date
+				}
 
-        # Set the Access time
-        if ($AccessTime) {
-          $fsInfo.LastAccessTime = $Date
-        }
+				# Set the Access time
+				if ($AccessTime) {
+					$fsInfo.LastAccessTime = $Date
+				}
 
-        # Set the Last Write time
-        if ($WriteTime) {
-          $fsInfo.LastWriteTime = $Date
-        }
+				# Set the Last Write time
+				if ($WriteTime) {
+					$fsInfo.LastWriteTime = $Date
+				}
 
-        # Set the Creation time
-        if ($CreationTime) {
-          $fsInfo.CreationTime = $Date
-        }
+				# Set the Creation time
+				if ($CreationTime) {
+					$fsInfo.CreationTime = $Date
+				}
 
-        # On, no parameter given?
-        # We set all time stamps!
-        if (-not ($AccessTime -and $ModificationTime -and $CreationTime)) {
-          $fsInfo.CreationTime = $Date
-          $fsInfo.LastWriteTime = $Date
-          $fsInfo.LastAccessTime = $Date
-        }
-      }
-    } elseif (-not $NoCreate) {
-      # Let us create the file for ya!
-      Set-Content -Path $Path -Value $null
-      Set-Variable -Name 'fsInfo' -Value $($Path |
-        Resolve-Path -ErrorAction:SilentlyContinue |
-      Get-Item)
+				# On, no parameter given?
+				# We set all time stamps!
+				if (-not ($AccessTime -and $ModificationTime -and $CreationTime)) {
+					$fsInfo.CreationTime = $Date
+					$fsInfo.LastWriteTime = $Date
+					$fsInfo.LastAccessTime = $Date
+				}
+			}
+		} elseif (-not $NoCreate) {
+			# Let us create the file for ya!
+			Set-Content -Path $Path -Value $null
+			Set-Variable -Name 'fsInfo' -Value $($Path |
+				Resolve-Path -ErrorAction:SilentlyContinue |
+			Get-Item)
 
-      # OK, now we set the date to the given one
-      # We ignore all given parameters here an set all time stamps!
-      # If you want to change it, re-run the command!
-      if (($Date -ne $null) -and ($Date -ne '')) {
-        Set-Variable -Name 'Date' -Value $(Get-Date)
-        $fsInfo.CreationTime = $Date
-        $fsInfo.LastWriteTime = $Date
-        $fsInfo.LastAccessTime = $Date
-      }
-    }
-  }
+			# OK, now we set the date to the given one
+			# We ignore all given parameters here an set all time stamps!
+			# If you want to change it, re-run the command!
+			if (($Date -ne $null) -and ($Date -ne '')) {
+				Set-Variable -Name 'Date' -Value $(Get-Date)
+				$fsInfo.CreationTime = $Date
+				$fsInfo.LastWriteTime = $Date
+				$fsInfo.LastAccessTime = $Date
+			}
+		}
+	}
 }
 # Every *NIX user known touch and we miss that on PowerShell ;-)
 (Set-Alias -Name touch -Value Set-FileTime -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -215,8 +216,8 @@ function global:Set-FileTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfo1NR65kXTBtmimdogBWp9bH
-# pdegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrkxrvcZvrjNrTgwkXYpdzxOW
+# Jq2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -359,25 +360,25 @@ function global:Set-FileTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSvIqlRTs9z9k2Jwoh9gs/ZqyH4CzANBgkqhkiG9w0B
-# AQEFAASCAQBYUjUAncFzjfEJwZdSCMQ6RBs33msd/v5mE+hzuy0QD4X+fN+pGaTK
-# GQEIhMEQhv+oHQzl/toJndbjbrmHcylYW9deg1UWGbHxhf5ByLd87NI16WCoPLuE
-# e8hsM+p6YGgY38Aj6y/FYLNdEUU97+bsBCZlFiSzcPDSRQ4e9QrIulT9m95zAV/p
-# ycEis71qNnWEdT790LgEtbNflOtuNz0AxWvV1K7xqdKG+TnQ6eeda/NWA+TNdy7S
-# dE7kjkEHku4jd2Z00h3f4sH5shdYcI0SQ02PY7TKK61rk9BXrZTLKMbbjfAl72WP
-# T2QR5mDcJcBHhxibwlZP8CSN21OCz8n+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRWA94phrzFaZ269GW/Lky6ag68PTANBgkqhkiG9w0B
+# AQEFAASCAQB5dIR+2yL1OZMALyVLuWdzQ2Z7mVy9qvXQlLDK8ZCrDi4XUHU2ceBr
+# w5Fmaru9n3+r9OoN8S73u+8VhB2pRjC5gTv/UF3Z02+J/NLcgYZYm5o50T42INyb
+# dcyFUkD93DkYgLsb88mJjPp8bP1/NX3unIMu7AOsrDwQ9wY0hbKWQyA0g/EkGWkS
+# ncqlegYox//91X9zUuDJPM0EkXCXn3toBTz+FB+fFc0U6PXENm1NvCemxqMYY70q
+# w0HN2iHu7Qpl84LGWy00x4t9txT6nQL05hkQrFvABbrGkgrKqgu1epvxlXeCULKA
+# T9gAZpsEK9dmtJwu5MD3UFKik/KiMYLyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxNFowIwYJKoZIhvcN
-# AQkEMRYEFNBV9uGO9UipRBFWSBbxXBVGVFuUMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwNVowIwYJKoZIhvcN
+# AQkEMRYEFH3VijDF7ugloL/bWRKNKgjuQYyqMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAL0UTfzAkAwqwE6FhH/YjUCAJnMmQnim+sTIDO+rVDuWqq
-# J0EK6IfdsmQs7y4GImxSKWQBiXYAtoHvSWDySuc6Sm6VOYZNbIaGb6DhHgsMRrJ0
-# WWL8zGuq5u2oBBFYz6SFaqzsKSCfc3wd51zUpF4V+3H8jKiESqmKDMI4eziur89i
-# gme1TSvjSjH98y62Mf8I4jQjZ5lXv7GiyBqLXSpej7zJpSf/ia7P7DgG72gQBwIV
-# yJL6eMtFWGrWauSU4I3vUwYt8h+RpVvmAPOH+/paqpcjNCUcNUhWjPA7ZQynVTIu
-# 2Se/LYaQV/eAiB3JkPyUoKl3T2NZSWb7sbIJ0gvN
+# hkiG9w0BAQEFAASCAQCRh9dzKFhzbZRH47kbrUffuNYVps98XrSm37Hwq/xPk58Q
+# T6TWvNwOiBCMv89C7Dt318yPA0zBc45S5BQjyN8JFBRu1RhrEApiI2zoqZJkKPCZ
+# hoBeSrgxEMsmXNRaKF4yvtiHRsfJN6T6iHVId6Q1qUYGmVN3eYzyxLZoRTtuBPlw
+# mKcjONs47G7GnKAnV3w8RNc/GcYDFFqkoGCxuEAj4cAg7rcFYBpr8AWQ/KQFfXS8
+# wa4rUHvuU4vkoFGbCETnKrPL1f42XSYMEowL8ulV3AB2PhYC8ZlEqxblXM2OM8Ev
+# vo4ndh1YYn7f9XXPx+fYnsuPPgiQNSGc28jm7lvX
 # SIG # End signature block

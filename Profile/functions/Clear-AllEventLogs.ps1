@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,96 +15,96 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Clear-AllEventLogs {
-  <#
-      .SYNOPSIS
-      Delete all EventLog entries
+	<#
+			.SYNOPSIS
+			Delete all EventLog entries
 
-      .DESCRIPTION
-      Delete all EventLog entries
+			.DESCRIPTION
+			Delete all EventLog entries
 
-      .EXAMPLE
-      PS C:\> Clear-AllEventLogs
+			.EXAMPLE
+			PS C:\> Clear-AllEventLogs
 
-      Description
-      -----------
-      Ask if it should delete all EventLog entries and you need to confirm it
+			Description
+			-----------
+			Ask if it should delete all EventLog entries and you need to confirm it
 
-      .EXAMPLE
-      PS C:\> Clear-AllEventLogs -Confirm:$false
+			.EXAMPLE
+			PS C:\> Clear-AllEventLogs -Confirm:$false
 
-      Description
-      -----------
-      Delete all EventLog entries and you do not need to confirm it
+			Description
+			-----------
+			Delete all EventLog entries and you do not need to confirm it
 
-      .NOTES
-      Could be great to clean up everything, but everything is gone forever!
-  #>
+			.NOTES
+			Could be great to clean up everything, but everything is gone forever!
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'High',
-  SupportsShouldProcess = $true)]
-  [OutputType([System.String])]
-  param ()
+	[CmdletBinding(ConfirmImpact = 'High',
+	SupportsShouldProcess = $true)]
+	[OutputType([System.String])]
+	param ()
 
-  BEGIN {
-    if (-not (Get-AdminUser)) {
-      Write-Output -InputObject 'Would clean all EventLog entires'
-      Write-Output -InputObject ''
-      Write-Output -InputObject 'But you need to be Admin to do that!'
+	BEGIN {
+		if (-not (Get-AdminUser)) {
+			Write-Output -InputObject 'Would clean all EventLog entires'
+			Write-Output -InputObject ''
+			Write-Output -InputObject 'But you need to be Admin to do that!'
 
-      break
-    }
-  }
+			break
+		}
+	}
 
-  PROCESS {
-    if ($pscmdlet.ShouldProcess('Target', 'Operation')) {
-      Get-EventLog -List | ForEach-Object -Process {
-        Write-Host "Clearing $($_.Log)"
-        Clear-EventLog -LogName $_.Log -Confirm:$false
-      }
-    } else {Write-Output -InputObject 'You denied to clean the EventLog entires...'}
-  }
+	PROCESS {
+		if ($pscmdlet.ShouldProcess('Target', 'Operation')) {
+			Get-EventLog -List | ForEach-Object -Process {
+				Write-Host -Object "Clearing $($_.Log)"
+				Clear-EventLog -LogName $_.Log -Confirm:$false
+			}
+		} else {Write-Output -InputObject 'You denied to clean the EventLog entires...'}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpU4MJp+ncIi6nj6jj09QhmUX
-# OXWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXU4PW0H0Sk1KeYa1y9lujuhU
+# BRqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -246,25 +247,25 @@ function global:Clear-AllEventLogs {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSh3DDO98bwNqeSAziXiZR4nTYYVTANBgkqhkiG9w0B
-# AQEFAASCAQAZsIaaQGWKpCZMJjD0TjYdtfqdffd83N6gEZF81BB48sLwxqD5MovK
-# srdZTR0MxhTRJmv6oUgAmQInFt9mohxM9Dym/DSkO8A10AB5DRmjb2BiK5oK8V+E
-# Q8734tMMyntveZHZnBWijCzktz6yfFR1bjOovWCl7IjRb1tnaVC3gyxcAwRDhnHI
-# Jug4wzrBdqn22CHnTtZwx8vK0rXlTKxqFHG158ChvddcVpERO3mZdR2lG+/ql72b
-# 6xE7u99WuEpQ6VXuqjSjXz7joSMjXXhEKG90t1tHQPxykoFP6/p4/418UruxVhhg
-# oaIRoWkH3VVb8rQ9fCvOvNlP1hMnNaTyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQfs2Qhnt4CWybYVLa95KiR9rgTbzANBgkqhkiG9w0B
+# AQEFAASCAQBz+7WG93lP0YgViomvWKzF8/XQ3rYoDUU0xPQZMHbCk4QcH3UUW5WA
+# Xv9pdY0lUBpATh59VW9lS0oSo186whV6rOrtV1NbNiJMaqiijZND49GYN+CfZZBR
+# 9qDW/pGskUK+eL4Hw74oBhqfHY/j15NKGVJCspvcnCa9M6H03p+x1iLs6WBCN4CG
+# zux7jKNal7GTnNq/2kdtNGMKV0sFYaJHV1UICYCm7ttLEOrDRyg8XI2qiBfi/Svu
+# yO+98fXv9llaQXlB/sRT20pl1wj0OJ4cUy/eRDCyZun+BzM87obvCimaYIH+pB5R
+# cK/3rSo6ql3BKu8ErUAfjgHOmLL4Oq8loYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyM1owIwYJKoZIhvcN
-# AQkEMRYEFFRopASXvZnq6rAst1B27HMNenAPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMlowIwYJKoZIhvcN
+# AQkEMRYEFLQQpgDP2U6ryhkL0PzhsqLiKZDrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBRiXClzN03enFVH9SH88/fgmeZ1a8JGd5LHD6S/eFJlsJ6
-# u/Pvfo0Oqbjww7YWRll23+TOATYUuLL+wV9cyjg3knvP4KfxbPW+X4Yr3nYpRHJH
-# dzOvEUinRqDCnfN9eLFBDJaRzyp+PlrPwzlKsBOjPnwI7JNjTnH2Z7f5iPZQclcr
-# 7zQCQEiqNQfvmrkbDfFAjAYNM+fvwBYI8k2RJB6vutcxYdCx5z6FJqaZhD/f76w0
-# pbdnc68L5pmxfaOBUFfYlE8cxSadjzEQh4jJmJw2JkpRiotKL+/60omDyvMzfgP+
-# QyVjCP0m5XK/2ZLI3mSVbCeiFwphr/5cjtnF6POQ
+# hkiG9w0BAQEFAASCAQBapdhMRdmwfQbzUc5+3DXDuPzINbbLFIG6ErNs1flI6cw4
+# PL6IAi0FOtgqnL5q1JfcKk2T4nz/FLr3BQjwQhFRyNJd/TEIohmMY1TWkEMnKyKQ
+# tUVx1Z1Wu3FM35EGQyYIxNFPLhNFbo2r3dxwFAfHUQFvUO4dFq9SwT0H5WV+2OqN
+# 71kkesEjCdc9ILYYeKOxdmYKNzvHLjKInGwK8t6GfuYpgNyfjKro1nKE8S2wbNz5
+# m7zJeKavcZX3u7jGeBGp73QkPEaPZnFvUAwX5a5CsnxxibkgCfShFcw6NdxTlNBF
+# fcdea/GIts+l/RLc9SafNGn+OSXVUYP2JtmBcOIo
 # SIG # End signature block

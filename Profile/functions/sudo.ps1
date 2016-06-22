@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,125 +15,125 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Uni* like SuDo
 function global:Invoke-WithElevation {
-  <#
-      .SYNOPSIS
-      Uni* like Superuser Do (Sudo)
+	<#
+			.SYNOPSIS
+			Uni* like Superuser Do (Sudo)
 
-      .DESCRIPTION
-      This is not a hack or something:
-      You still to have the proper access rights (permission) to execute
-      something with elevated rights (permission)!
-      Windows will tell you (and ask for confirmation) that the given
-      command is executes with administrative rights.
+			.DESCRIPTION
+			This is not a hack or something:
+			You still to have the proper access rights (permission) to execute
+			something with elevated rights (permission)!
+			Windows will tell you (and ask for confirmation) that the given
+			command is executes with administrative rights.
 
-      The command opens another window and you can still use your existing
-      shell with you regular permissions.
+			The command opens another window and you can still use your existing
+			shell with you regular permissions.
 
-      Keep that in mind when you execute it...
+			Keep that in mind when you execute it...
 
-      .PARAMETER file
-      Script/Program to run
+			.PARAMETER file
+			Script/Program to run
 
-      .EXAMPLE
-      PS C:\> sudo 'C:\scripts\PowerShell\profile.ps1'
+			.EXAMPLE
+			PS C:\> sudo 'C:\scripts\PowerShell\profile.ps1'
 
-      Description
-      -----------
-      Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
-      We use the Uni* like alias here
+			Description
+			-----------
+			Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
+			We use the Uni* like alias here
 
-      .EXAMPLE
-      PS C:\> Invoke-WithElevation 'C:\scripts\PowerShell\profile.ps1'
+			.EXAMPLE
+			PS C:\> Invoke-WithElevation 'C:\scripts\PowerShell\profile.ps1'
 
-      Description
-      -----------
-      Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
+			Description
+			-----------
+			Try to execute 'C:\scripts\PowerShell\profile.ps1' with elevation
 
-      .NOTES
-      Still a internal Beta function!
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Still a internal Beta function!
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = ' Script/Program to run')]
-    [Alias('FileName')]
-    [System.String]$file
-  )
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = ' Script/Program to run')]
+		[Alias('FileName')]
+		[System.String]$file
+	)
 
-  PROCESS {
-    # Define some defaults
-    $sudo = (New-Object -TypeName System.Diagnostics.ProcessStartInfo)
-    $sudo.Verb = 'runas'
-    $sudo.FileName = "$pshome\PowerShell.exe"
-    $sudo.windowStyle = 'Normal'
-    $sudo.WorkingDirectory = (Get-Location)
+	PROCESS {
+		# Define some defaults
+		$sudo = (New-Object -TypeName System.Diagnostics.ProcessStartInfo)
+		$sudo.Verb = 'runas'
+		$sudo.FileName = "$pshome\PowerShell.exe"
+		$sudo.windowStyle = 'Normal'
+		$sudo.WorkingDirectory = (Get-Location)
 
-    # What to execute?
-    if ($file) {
-      if (Test-Path $file) {
-        $sudo.Arguments = "-executionpolicy unrestricted -NoExit -noprofile -Command $file"
-      } else {
-        Write-Error -Message:"Error: File does not exist - $file" -ErrorAction:Stop
-      }
-    } else {
-      # No file given, so we open a plain Shell (Console window)
-      $sudo.Arguments = "-executionpolicy unrestricted -NoExit -Command  &{Set-Location '" + (Get-Location).Path + "'}"
-    }
-  }
+		# What to execute?
+		if ($file) {
+			if (Test-Path $file) {
+				$sudo.Arguments = "-executionpolicy unrestricted -NoExit -noprofile -Command $file"
+			} else {
+				Write-Error -Message:"Error: File does not exist - $file" -ErrorAction:Stop
+			}
+		} else {
+			# No file given, so we open a plain Shell (Console window)
+			$sudo.Arguments = "-executionpolicy unrestricted -NoExit -Command  &{Set-Location '" + (Get-Location).Path + "'}"
+		}
+	}
 
-  END {
-    # NET call to execute SuDo
-    if ($pscmdlet.ShouldProcess("$sudo", 'Execute elevated')) {
-      $null = [System.Diagnostics.Process]::Start($sudo)
-    }
-  }
+	END {
+		# NET call to execute SuDo
+		if ($pscmdlet.ShouldProcess("$sudo", 'Execute elevated')) {
+			$null = [System.Diagnostics.Process]::Start($sudo)
+		}
+	}
 }
 # More Uni* like alias
 (Set-Alias -Name sudo -Value Invoke-WithElevation -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -140,8 +141,8 @@ function global:Invoke-WithElevation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhcTC328ecIS4ivV3GPNRzC3i
-# a7qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUgW+Q299s/9mnwt+mSw21bEc
+# RY6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -163,10 +164,10 @@ function global:Invoke-WithElevation {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -182,12 +183,12 @@ function global:Invoke-WithElevation {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -284,25 +285,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT9yLunTuGgSKo6dlUrgavwxx9AkTANBgkqhkiG9w0B
-# AQEFAASCAQBVVRHZ5azkMWlvqzXu0LQPVBrEjRzm2Yd+Liz5l2Ah4KkFfhoIDdD8
-# dvb4gYrnTRSBtJpN7Cqfj3KkBo8e3uDcflhSdZI7iL8BSwff2kGpkDaQ8BxIe403
-# tKknYbAcPvPAvcFHx+wyO3OVK+m74cpkNNS1KjZ6IeRs+s1HpL8HV+9T1ZYqyO7+
-# xh6uZQe+C6iZ3P2abMnJA689VUXHF9mQfQ1Ot25S5IRSClQdUJcauzVG0ePQq+uS
-# tkJkBJFQJwhBrqhowsAW+WsfSjP1LA3cbIoXpPO7VQMEM49u6jkMPnt+IwwoVhKv
-# 0BHz+nUfvq0F2z8Wj1rxJHXpuBepW80ooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRnMRnr1+86M5Ssfea6HTIL5pmY1TANBgkqhkiG9w0B
+# AQEFAASCAQCjBcLhhEf0YBIC7Ei55WBhOIukAI+We2nxAkgtck+9wGnqHdlV0kXB
+# pRaTfXg9T69Io0Ln15/J9FInna8gZVFr868YpFqxdqgZjOTSemhOAFQ2ZwqnzVnk
+# UbqO9zM77VF2MulpDrqGo139TGKFWr7SH1zDR1SSTF7pSxslW9pScLWxLHM3e/56
+# 9i/Px7gujuzeC+APoHryl8l1O94qzmAUoNI0T0grtytriQEVHjjcNg8RYl8j93BJ
+# c/mk9o+RrGlJw4pL2JyOoiEE+BMOYGKdpqiexRTkTnWNxcjxuIq6vzEfg4y6AFC0
+# qv5W66iBYLMlW5dTd61EiwhutzAnQ90/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMVowIwYJKoZIhvcN
-# AQkEMRYEFEVF3GJ8RPUyigoHChO1U/2KfWSrMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMlowIwYJKoZIhvcN
+# AQkEMRYEFKr7b1qK9QEw8hFlp3DDL26iXYP9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAURFa9l2FZnbsdh9sfv//ShQTkYl7VJ/LOXdLIE5geQSpe
-# Mx3xddfpR3a35yKEvmO48dTkOhYkCC0JdHdoeqrx0pGfaXzB7Qz76N37ncd6Ab1b
-# HOOuWMwwSNvPsRLSNgbPCfZ9X+VPL8J4ik3aDzxiNAdS0aWahPjouv9SwopxFSmK
-# 7/nsB+Lnb8b43/BgzFjVzQx/6hQRx3I0pWlCRVbM+1R4LWuxr86FkjHX+FoFPGWA
-# Ru4EIn4qgUVhlq5/qq/srYv0jMFhfgDtbUrYpDz9S7qyfNHKuh56GjQrZLC2jl0Q
-# Pk6uEfIgDzUSDheZEAe3CReUTSyCLuXHVAArIkPO
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBcDFynB+CF61IFeTu42d4GN6xsgZa4rLGYhf3ojQ8eGK3V
+# vU+YR2N5ptbbD2w7ye51lRyvBp0k3N7estDBUNH5JIQLgmrcmGIrtFjCQLUr6FC3
+# A78odsshJdLnsa5fqcLtYKqew3GELqC9gmz7B6dObeifzwf72EM/g1hvDFuBN5lE
+# zXWM7U/fb/lLpjETkSQekmSxlbmJ2tEXAgR9hCuNY56GXNjdpvhW8F2M3IW/kKsc
+# 1WwIBk7yZefUAIfuQabYshcTcMoMSkoLxTl/rtzle9gk7OmjepNo7xI5skGM5xGz
+# hOxVcnwKeurXv+dEXze5y1dpnT3RhI8xOLvCFGx5
 # SIG # End signature block

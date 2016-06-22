@@ -1,105 +1,106 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
 
 #region License
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 #endregion License
 
 function Global:Get-ReqParams {
-  <#
-      .SYNOPSIS
-      A quick way to view required parameters on a cmdlet
+	<#
+			.SYNOPSIS
+			A quick way to view required parameters on a cmdlet
 
-      .DESCRIPTION
-      A quick way to view required parameters on a cmdlet, function,
-      provider, script or workflow
+			.DESCRIPTION
+			A quick way to view required parameters on a cmdlet, function,
+			provider, script or workflow
 
-      .PARAMETER command
-      Gets required parameters of the specified command or concept.
-      Enter the name of a cmdlet, function, provider, script, or workflow,
-      such as "Get-Member", a conceptual topic name, such as "about_Objects",
-      or an alias, such as "ls".
+			.PARAMETER command
+			Gets required parameters of the specified command or concept.
+			Enter the name of a cmdlet, function, provider, script, or workflow,
+			such as "Get-Member", a conceptual topic name, such as "about_Objects",
+			or an alias, such as "ls".
 
-      .EXAMPLE
-      PS C:\> PS C:\scripts\PowerShell> Get-ReqParams -command 'New-ADUser'
+			.EXAMPLE
+			PS C:\> PS C:\scripts\PowerShell> Get-ReqParams -command 'New-ADUser'
 
-      -Name <String>
-      Specifies the name of the object. This parameter sets the Name property of the Active Directory object. The LDAP Display
-      Name (ldapDisplayName) of this property is name.
+			-Name <String>
+			Specifies the name of the object. This parameter sets the Name property of the Active Directory object. The LDAP Display
+			Name (ldapDisplayName) of this property is name.
 
-      Required?                    true
-      Position?                    2
-      Default value
-      Accept pipeline input?       True (ByPropertyName)
-      Accept wildcard characters?  false
+			Required?                    true
+			Position?                    2
+			Default value
+			Accept pipeline input?       True (ByPropertyName)
+			Accept wildcard characters?  false
 
-      .NOTES
-      Just a filter for Get-Help
-  #>
+			.NOTES
+			Just a filter for Get-Help
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'cmdlet')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('cmd')]
-    [System.String]$command
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'cmdlet')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('cmd')]
+		[System.String]$command
+	)
 
-  PROCESS {
-    Get-Help -Name $command -Parameter * | Where-Object -FilterScript { $_.required -eq $true }
-  }
+	PROCESS {
+		Get-Help -Name $command -Parameter * | Where-Object -FilterScript { $_.required -eq $true }
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUH1mvYBlUYbkyzk3Oi9OH8IIj
-# w7OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEqmKl3GwaarWczijZiWPR4+e
+# LnmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -121,10 +122,10 @@ function Global:Get-ReqParams {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -140,12 +141,12 @@ function Global:Get-ReqParams {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -242,25 +243,25 @@ function Global:Get-ReqParams {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTEYwfE8+CLnYDYd3qRWlQgzao2TDANBgkqhkiG9w0B
-# AQEFAASCAQAaLnbJ9Y76MsvB8JcJ/6n+LhZocJt2Ks0rvEz4cPneG74k/QKTPEvl
-# 25uD/77pwXde4+EjXaG9RasJtjVHsOb+PFLbVgcTT96tp/OnbJHAj9j5fCO2FweM
-# X0/mgm/ZXEpanu+B7I78Rb59Q71k1/ZvitKSatmwc4gCasOwFlvolN3IWoWFwy2m
-# oR+VNJzuZOxeiYnfMBbk7l1aaPAqxhnxgupGyaCjOugkqNjk8jBhelC+oxOZO7xu
-# yv1sNzDbKMFn/zq2mH7cryOz11H4rn6Nr9+TALfEjyyfj7FqC62VkPfAnxkCTejR
-# 3EorXBVHOjNmJT/X/wX/V+GB/ZtOH6IWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRIl690ovfeTHF1B1pL9sBHrLAKazANBgkqhkiG9w0B
+# AQEFAASCAQCfZnDfgdIw0jVvxEczZmmEYbn2HC8JRhy3Na+H0D4gPQZfFOsnjxLT
+# IxUEql9GTEVjyO8HmAIbX7W8t1b7ZLBCjdUnw6fbzlIwHtWCOD4DLT+/U7tL63OE
+# PZJ/cfamWpFPqBVEva/j7P9rVQ1z0Q3wzaYfqujlTovw9fHw8TQOvpexI7n3fuk4
+# 9JuFf5VJUTIhiupb2rr/utqJYzLr3RYR9gLh0KdFFjjpKPPFOIMHxhMZjOPGcizZ
+# gMNxucn0xwklWI2vQzXlEewgJpIPs464Ry3gGBGJI/GB4A4GfEwMJfsJaWR0kDV9
+# fB0s9zCvvFgBsBRS/+0gu84htWSYxMj4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0M1owIwYJKoZIhvcN
-# AQkEMRYEFLhCv/WraQg61cwHXG70BLoME13PMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzM1owIwYJKoZIhvcN
+# AQkEMRYEFEJt8PGNM4ULuCGRu8W2K56VRpNOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCt0vQPpjbdQHAOR/umXYEPscU8dcxeqzj07BQvC8qDE/1Q
-# 69KLKHzN0DSR+0o9dgzeGf+V6KbMAWxr7+rrR1h6SX7LRst+vu1e4VwFCr3ksU6a
-# VwPaewzX7WZ6anf2oNgP7JZKt3WODwBkC6aSt0HAdS6AO1H8FwLSy6sE+WPDscB/
-# wLzwNu0IBdf06/D1wO8/25+ZV3+j6w235gM67De+pu4ZfAzNSHVqQBJsn9GktxCv
-# 1ec8h74+1uU/qq2bhiWrwoAX774Rj89fuPw3zatzH7GIBFiM5mmsoKIlQR9xnMFZ
-# l8ijOoQ8gFOD7XPV7w0jVTBNNJ9nrru1yurKpEkR
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBkklO6WkGYNTmeLvl6ZZQLlhl8HU/v1zmW9LHY1Z78LqN4
+# BRdfbt+oA+034lifva/LRkmhH23SfXbZb0dj1ZMba2S10smH3SWMQECkXwXDlhhD
+# 190XoLDTwcw0yGnck7V20V9r3j/Y0/2HBN2SS+BRizs5mgJrm3qy4i1ggD2uahMu
+# lIZpIBT6FinxeBNM72Q0IRbrkyRDxZuQtEjFykfDhMnjqY8Rg/FHtfjaG/b5atoI
+# OSaTVjNkIV76Ce2lFbaDaHEO12NBcVUJwBzWehB+KlaKqQ7nk4/uQ7NriPpp/Yyh
+# 0Tba8jwvrxDZBnvVuE53X7ohC/GJrvnRFdU+pSbL
 # SIG # End signature block

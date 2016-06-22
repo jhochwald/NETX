@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,109 +15,109 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Test-ModuleAvailableToLoad {
-  <#
-      .SYNOPSIS
-      Test if the given Module exists
+	<#
+			.SYNOPSIS
+			Test if the given Module exists
 
-      .DESCRIPTION
-      Test if the given Module exists
+			.DESCRIPTION
+			Test if the given Module exists
 
-      .PARAMETER modname
-      Name of the Module to check
+			.PARAMETER modname
+			Name of the Module to check
 
-      .EXAMPLE
-      PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
-      True
+			.EXAMPLE
+			PS C:\> Test-ModuleAvailableToLoad EXISTINGMOD
+			True
 
-      Description
-      -----------
-      This module exists
+			Description
+			-----------
+			This module exists
 
-      .EXAMPLE
-      PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
-      False
+			.EXAMPLE
+			PS C:\> Test-ModuleAvailableToLoad WRONGMODULE
+			False
 
-      Description
-      -----------
-      This Module does not exists
+			Description
+			-----------
+			This Module does not exists
 
-      .EXAMPLE
-      $MSOLModname = "MSOnline"
-      $MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
+			.EXAMPLE
+			$MSOLModname = "MSOnline"
+			$MSOLTrue = (Test-ModuleAvailableToLoad $MSOLModName)
 
-      Description
-      -----------
-      Bit more complex example that put the Boolean in a variable
-      for later use.
+			Description
+			-----------
+			Bit more complex example that put the Boolean in a variable
+			for later use.
 
-      .NOTES
-      Quick helper function
-  #>
+			.NOTES
+			Quick helper function
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-    Position = 0)]
-    [string[]]$modname
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+		Position = 0)]
+		[string[]]$modname
+	)
 
-  BEGIN {
-    # Easy, gust check if it exists
-    $modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
-  }
+	BEGIN {
+		# Easy, gust check if it exists
+		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+	}
 
-  PROCESS {
-    if (-not ($modtest)) {
-      Return $false
-    } else {
-      Return $true
-    }
-  }
+	PROCESS {
+		if (-not ($modtest)) {
+			Return $false
+		} else {
+			Return $true
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhCNl9bYzjjTNu8wKjA0OIuq7
-# +GegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2slu84CEIaNJKVPz6u3QJDd7
+# eFmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -138,10 +139,10 @@ function global:Test-ModuleAvailableToLoad {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -157,12 +158,12 @@ function global:Test-ModuleAvailableToLoad {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -259,25 +260,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRmYsWUeILSgpf3zc+hZ5HjuGXaFzANBgkqhkiG9w0B
-# AQEFAASCAQA+mzj0ro03XLlXPY/a7ItTa1BhZHXdfTdU8STMzMpW3o6vMJ+5LjfN
-# 1mCtRbhKc2VlolzDSb1VU2TVXl3BRgiiTns1aBoDCl8rchEcGnKiClR7VWEC+XSX
-# l/gosCAoiNot5GRIT5QaArdD81qQ/qVUXm9GX//77K6APArfuyeITZDh0l+todZl
-# f3YusaXLZKT+2Fc78hlh5QXdUAFVKi+qsD2tXinBn7fOqpM8iWyp6vRnLgipi0b0
-# yifMI5pZDaQejPaCWMatoquGRxXEgxYQL1GLGj56pBeKttIrPj/ko3J8VC0dGmML
-# AMck43E/o1/39IoSeZ3s/8HItl/TY9sxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTQZ5Oq+iamCoc4nZG3y4B5UVhjdDANBgkqhkiG9w0B
+# AQEFAASCAQBqQQ6LENRUfgM+iPgmlu0ag1BFtovUfIBP3z4e3e8wWVaR8OQfqAAE
+# LwVgkf48LBYWmshHtUybW7IqjNkGhRThAYOeKhU13AZa5us3Kxdtk/mA5C+3WUiK
+# sNItB4gq6Bc+l5UZhGFHUCoe5+GmN4AuZjn21CuIF2W8F0EWXMAY5XImJzTraM1H
+# kWDhwwFr/QJ2U92NDjrgeOlOySPBnD5cpmFBhzxDEdUAYUNju3uAzMdrJcJDzAEt
+# Fdg4hkc4p/0CikwjW+ZTf8GRTD78RO9Om8PxYmBFSD1G0p5GWwFK+DKHT/1Of51E
+# isIGI7abqPfn4lnbmi0WlY2XYQdeTkPKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMlowIwYJKoZIhvcN
-# AQkEMRYEFIJB5Ed5KijLPKpH98Awz1fpawmSMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwM1owIwYJKoZIhvcN
+# AQkEMRYEFH9fhFNOQuDCZXIZg8K1rhCLqf6dMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBcvBye34b9ZlS6UrSIYc1K1kr5kEMbmHRdnzTPg+yCzbiV
-# dUA8J/AuS6EgUkj/obuaoTFEVuK/BdEwdeWEcnYEAxva7e7mNVbhcKwJg2PPrsKJ
-# xHd2zDY9ISzwt53aVbgXWQD+KpwqPhOfkYZ8vYl5p+7heA85WYRZigxHXQ5z/i+l
-# 9bBANn1q0X7Yq5dKq85/nTxJsn1OuBaUyhrSJwkwMDvfTgNTt9BR0xHEuLk0jcFz
-# k67bIra3ehFxbQ1hBzRZ6YUQMpaAmtc8bNP3BgJGIIGhhUeT+FxbSNu7qDK5urkt
-# rdOd/W6eBGGm1fdUoHYaJfCeEQlW9BNjl3bz/DLC
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQA9ga/0jtZI6D1R6CzfHpDfL41sOkF5N67AG5Vfthzw5acA
+# V1zHLuW83ktmnn0C1A2LXk1XDW1EN5ajPuoWh3l9RqTNJSWToy6LcbF6+oMO2pbf
+# Z8/EI/MohJy09mpfUVI9AfcYcS0Ur4+2DrEmCr2tvA0om9hFXf2YOqX2GSS+XwJU
+# as196jflPgkbZ2WxbxZrK31cKKy1BNm40lTJQ5AgJfz+aICpDVC9uxvaCM5jBP1n
+# +S72nw2oLqNt8xhoAcK1a7wmEY8U13v+ulBBXUkMsTUPes3sGUfNWPXbp77R+gCv
+# m+GMQ1tn6kbqEFFuBHomWgl52mipLk8dvf3WHOzt
 # SIG # End signature block

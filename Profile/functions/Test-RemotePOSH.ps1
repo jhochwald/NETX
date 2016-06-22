@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,148 +15,148 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Test-RemotePOSH {
-  <#
-      .SYNOPSIS
-      Check if PSRemoting (Remote execution of PowerShell) is enabled on
-      a given Host
+	<#
+			.SYNOPSIS
+			Check if PSRemoting (Remote execution of PowerShell) is enabled on
+			a given Host
 
-      .DESCRIPTION
-      Check if PSRemoting (Remote execution of PowerShell) is enabled on
-      a given Host
+			.DESCRIPTION
+			Check if PSRemoting (Remote execution of PowerShell) is enabled on
+			a given Host
 
-      .PARAMETER ComputerName
-      Hostname of the System to perform, default is the local system
+			.PARAMETER ComputerName
+			Hostname of the System to perform, default is the local system
 
-      .PARAMETER POSHcred
-      The credentials to use!
+			.PARAMETER POSHcred
+			The credentials to use!
 
-      Default is the credentials that we use for Azure, Exchange...
+			Default is the credentials that we use for Azure, Exchange...
 
-      .EXAMPLE
-      PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN01'
-      WARNING: Unable to establish remote session with NXLIMCLN01.
+			.EXAMPLE
+			PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN01'
+			WARNING: Unable to establish remote session with NXLIMCLN01.
 
-      Description
-      -----------
-      Check if PSRemoting (Remote execution of PowerShell) is enabled on
-      'NXLIMCLN01'. It uses the default credentials (Same that we use to
-      administer Exchange Online and Azue)
+			Description
+			-----------
+			Check if PSRemoting (Remote execution of PowerShell) is enabled on
+			'NXLIMCLN01'. It uses the default credentials (Same that we use to
+			administer Exchange Online and Azue)
 
-      .EXAMPLE
-      PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN02' -POSHcred (Get-Credential)
-      NXLIMCLN02
+			.EXAMPLE
+			PS C:\> Enable-RemotePOSH -ComputerName 'NXLIMCLN02' -POSHcred (Get-Credential)
+			NXLIMCLN02
 
-      Description
-      -----------
-      Check if PSRemoting (Remote execution of PowerShell) is enabled on
-      'NXLIMCLN02'.
+			Description
+			-----------
+			Check if PSRemoting (Remote execution of PowerShell) is enabled on
+			'NXLIMCLN02'.
 
-      And is asks for the credentials to use.
+			And is asks for the credentials to use.
 
-      .NOTES
-      Initial Beta based on an idea of Adrian Rodriguez (adrian@rdrgz.net)
+			.NOTES
+			Initial Beta based on an idea of Adrian Rodriguez (adrian@rdrgz.net)
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Hostname of the System to perform, default is the local system')]
-    [string[]]$Computer = ($Env:computername),
-    [Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
-    [pscredential]$POSHcred
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Hostname of the System to perform, default is the local system')]
+		[string[]]$Computer = ($Env:computername),
+		[Parameter(HelpMessage = 'The credentials to use! Default is the centials that we use for Azure, Exchange...')]
+		[pscredential]$POSHcred
+	)
 
-  BEGIN {
-    # Cleanup
-    Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	BEGIN {
+		# Cleanup
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 
-  PROCESS {
-    # Define a dummy ScriptBlock
-    $ScriptBlock = { $Env:computername }
+	PROCESS {
+		# Define a dummy ScriptBlock
+		$ScriptBlock = { $Env:computername }
 
-    # Define the Argument List
-    $InvokeArgs = @{
-      ComputerName = $Computer
-      ScriptBlock  = $ScriptBlock
-    }
+		# Define the Argument List
+		$InvokeArgs = @{
+			ComputerName = $Computer
+			ScriptBlock  = $ScriptBlock
+		}
 
-    # Do we have credentials?
-    If ($null -ne $POSHcred) {
-      # Yeah!
-      $InvokeArgs.Credential = $POSHcred
-    }
+		# Do we have credentials?
+		If ($null -ne $POSHcred) {
+			# Yeah!
+			$InvokeArgs.Credential = $POSHcred
+		}
 
-    # Try to connect
-    Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
+		# Try to connect
+		Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
 
-    # Loop over the Problems, if we have one... or more?
-    ForEach ($Failure in $Failures) {
-      # Warn the user
-      Write-Warning -Message "Unable to establish remote session with $($Failure.TargetObject)."
-    }
-  }
+		# Loop over the Problems, if we have one... or more?
+		ForEach ($Failure in $Failures) {
+			# Warn the user
+			Write-Warning -Message "Unable to establish remote session with $($Failure.TargetObject)."
+		}
+	}
 
-  END {
-    # Cleanup
-    Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	END {
+		# Cleanup
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpWEUnAZXlZy6BScirs0NwIWy
-# Z8WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn/9/CMi/DU3xuBkIAIGs/yVj
+# kjqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -298,25 +299,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSz8ZVQJplcNVvX9RupgOSWFOnt9TANBgkqhkiG9w0B
-# AQEFAASCAQA5noxZbdehkMmNxqI/cvZtbZ+5aCoHSd+qaxnZKDMd3EBVa7RvoqDM
-# LJve5rg9FAZr9k2yGnctbTz98K2O9RRLIxTEvNiKea/8KgrcWnJw7R6f/T2bEB3I
-# C6YtRXwvr5+xIo9SqhiStD0+DfZhlTq8W6p+XE8PDLfkq5qodYDmaLUt6/UBX2jg
-# iZSfbOnXMR3Zj1kyxXq4/ZUEeFfaqi/WE4zZH+TX/Elf7GG1Ba4NTnRS9/3ZVP6/
-# hll7c6RHi1r5XgSjUMx16Mv+bMryn6rTgk4aKFPgVHoqbzrH7F4LAzidkj84qU1q
-# CRqdj1W7++sHxGIk+ijyODTiQdQ3unqNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT4JEmX5RB14+gRUnYSsq5xClFBhjANBgkqhkiG9w0B
+# AQEFAASCAQB+au6hRANKTi3NCEy9NDlIwwWGUQb4L/zrZKsH/DZtMdRbI96SPs3W
+# OPbRyGrrjs2fdChhSxNZcGPmQpXtQWkY+PMGC5XEemHBtW9CUUIIFMheEOawxjke
+# rMr/HK/klY76mff4/YKFwgOmcQiCl1v3v7IEc37pdIKEC5g+xcMHfRKZacH4HZSn
+# iTRYV8BKDLmEmqpf5ZdmaX3FfR+5QSKD2ge6Denm07rul4RgUhzZ2M7CtNaiTOeg
+# 9NXUXDiqOmDUNDQGrECcPGS/UWU1OMtVzl8JdKXPV48nnv3Ul5HnLol5SKmi8sPv
+# LvyeIlcmClZwMB6PB+t63/LCyzkBbssvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxM1owIwYJKoZIhvcN
-# AQkEMRYEFLV0Vm3ByrtdxRHxPKe5I3gJVjrQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwNFowIwYJKoZIhvcN
+# AQkEMRYEFFo/eWECFSOY8QuLQamnz/wVw42iMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBnCuKrmNrmOkPb/wPpkQ2cuJNOLR2j6KJxuTAwGtYP0zVf
-# TZ1D8D/oC0lOyNOotGbMRxoHhb3NBMW6TCnMhfs3mL8k2MxsBWoxZ18Us5vHMKDo
-# sNK+uB+hzjIEbRUJrSbGqSIj1nJw+wuchiKvRZDbBZzO12epAeMO2PROboEXGQJE
-# roiLCr3e4S+OWw73GK/zI+b+KJrMe6yYCdahX4dQywLyzx4ZndlDLMw2yidBChBu
-# J5dRzYqmNhi1UBMRCgt9TB0pba1RfLnDB+rzLeeHUElMyni5VK0XuWGZula2OR5X
-# i4ExQf9uTg8SIA8vGUWFbpx81kPNMitd/jUs0VEZ
+# hkiG9w0BAQEFAASCAQBiRJza7LY+Nqsx+WXl7hBW+9tuL3qhjrp3ikEhaR4i7s5X
+# gXsEluyAzMB0OPXrSZmt2hi0J4AhrBurWOBmfuhfYSU8LyC63yZe+peh7gLV4Xz8
+# 9sO7/LAm5gJ23a8dc7om3bGZ82yVz2e7XelJUz7DRJ3njFRhCyENkNZXTXNCRMKf
+# H+tdCkNCxf3LWnGsTwOMuB4rpzU6KFrF/84Qm4aWIo7xdw3ld1uh1KI0NAI+iqDq
+# z9YqC3FKWHcHAPhWXIj5nCg1N3iiZcKSr0fO1759hrejmBLNlWBz6x7I/9PmMiJQ
+# GtYnAAboEcVGbjYGKpbaL6H7XvKBrt+Zn7X/YyKa
 # SIG # End signature block

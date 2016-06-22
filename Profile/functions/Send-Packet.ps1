@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,143 +15,143 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Send-Packet {
-  <#
-      .SYNOPSIS
-      Send a packet via IP, TCP or UDP
+	<#
+			.SYNOPSIS
+			Send a packet via IP, TCP or UDP
 
-      .DESCRIPTION
-      Send a packet via IP, TCP or UDP
-      Found this useful to test firewall configurations and routing.
-      Or even to test some services.
+			.DESCRIPTION
+			Send a packet via IP, TCP or UDP
+			Found this useful to test firewall configurations and routing.
+			Or even to test some services.
 
-      .PARAMETER Target
-      Target name or IP
+			.PARAMETER Target
+			Target name or IP
 
-      .PARAMETER Protocol
-      protocol to use, default is IP
+			.PARAMETER Protocol
+			protocol to use, default is IP
 
-      .PARAMETER TargetPort
-      Target Port (against the target)
+			.PARAMETER TargetPort
+			Target Port (against the target)
 
-      .PARAMETER SourcePort
-      Fake Source port (Default is random)
+			.PARAMETER SourcePort
+			Fake Source port (Default is random)
 
-      .PARAMETER Ttl
-      The Time To Life (Default is 128)
+			.PARAMETER Ttl
+			The Time To Life (Default is 128)
 
-      .PARAMETER Count
-      The count, how many packets? (Default is one)
+			.PARAMETER Count
+			The count, how many packets? (Default is one)
 
-      .EXAMPLE
-      PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'TCP' -TargetPort '4711'
+			.EXAMPLE
+			PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'TCP' -TargetPort '4711'
 
-      Description
-      -----------
-      Send a 'TCP' packet on port '4711' to target '10.10.16.29'
+			Description
+			-----------
+			Send a 'TCP' packet on port '4711' to target '10.10.16.29'
 
-      .EXAMPLE
-      PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'UDP' -TargetPort '4711' -Count '10'
+			.EXAMPLE
+			PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'UDP' -TargetPort '4711' -Count '10'
 
-      Description
-      -----------
-      Send 10 'UDP' packets on port '4711' to target '10.10.16.29'
+			Description
+			-----------
+			Send 10 'UDP' packets on port '4711' to target '10.10.16.29'
 
-      .EXAMPLE
-      PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'TCP' -TargetPort '4711' -SourcePort '14712'
+			.EXAMPLE
+			PS C:\> Send-Packet -Target '10.10.16.29' -Protocol 'TCP' -TargetPort '4711' -SourcePort '14712'
 
-      Description
-      -----------
-      Send a 'TCP' packet on port '4711' to target '10.10.16.29' and it
-      uses a fake source port '14712'
-      This could be useful for port knocking or to check Firewall behaviors
+			Description
+			-----------
+			Send a 'TCP' packet on port '4711' to target '10.10.16.29' and it
+			uses a fake source port '14712'
+			This could be useful for port knocking or to check Firewall behaviors
 
-      .NOTES
-      Based on an idea of JohnLaska
+			.NOTES
+			Based on an idea of JohnLaska
 
-      .LINK
-      Source: https://github.com/JohnLaska/PowerShell/blob/master/Send-Packet.ps1
-  #>
+			.LINK
+			Source: https://github.com/JohnLaska/PowerShell/blob/master/Send-Packet.ps1
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Target name or IP')]
-    [System.String]$Target,
-    [Parameter(Position = 1,
-    HelpMessage = 'protocol to use, default is IP')]
-    [ValidateSet('IP', 'TCP', 'UDP')]
-    [System.String]$Protocol = 'IP',
-    [Parameter(Mandatory = $true,
-        Position = 2,
-    HelpMessage = 'Target Port (against the target)')]
-    [ValidateRange(0, 65535)]
-    [System.Int32]$TargetPort,
-    [Parameter(Position = 3,
-    HelpMessage = 'Fake Source port (Default is random)')]
-    [ValidateRange(0, 65535)]
-    [System.Int32]$SourcePort = (Get-Random -Minimum 0 -Maximum 65535),
-    [Parameter(Position = 4,
-    HelpMessage = 'The Time To Life (Default is 128)')]
-    [System.Int32]$TTL = 128,
-    [Parameter(Position = 5,
-    HelpMessage = 'The count, how many packets? (Default is one)')]
-    [System.Int32]$Count = 1
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Target name or IP')]
+		[System.String]$Target,
+		[Parameter(Position = 1,
+		HelpMessage = 'protocol to use, default is IP')]
+		[ValidateSet('IP', 'TCP', 'UDP')]
+		[System.String]$Protocol = 'IP',
+		[Parameter(Mandatory = $true,
+				Position = 2,
+		HelpMessage = 'Target Port (against the target)')]
+		[ValidateRange(0, 65535)]
+		[System.Int32]$TargetPort,
+		[Parameter(Position = 3,
+		HelpMessage = 'Fake Source port (Default is random)')]
+		[ValidateRange(0, 65535)]
+		[System.Int32]$SourcePort = (Get-Random -Minimum 0 -Maximum 65535),
+		[Parameter(Position = 4,
+		HelpMessage = 'The Time To Life (Default is 128)')]
+		[System.Int32]$TTL = 128,
+		[Parameter(Position = 5,
+		HelpMessage = 'The count, how many packets? (Default is one)')]
+		[System.Int32]$Count = 1
+	)
 
-  PROCESS {
-    $packet = New-Object -TypeName System.Net.Sockets.Socket -ArgumentList (
-      [System.Net.Sockets.AddressFamily]::InterNetwork,
-      [System.Net.Sockets.SocketType]::Raw,
-      [System.Net.Sockets.ProtocolType]::$Protocol
-    )
+	PROCESS {
+		$packet = New-Object -TypeName System.Net.Sockets.Socket -ArgumentList (
+			[System.Net.Sockets.AddressFamily]::InterNetwork, 
+			[System.Net.Sockets.SocketType]::Raw, 
+			[System.Net.Sockets.ProtocolType]::$Protocol
+		)
 
-    $packet.Ttl = ($TTL)
-  }
+		$packet.Ttl = ($TTL)
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVaZKsTosQWbeTG7dsu9UYz0V
-# H1igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkJ2wx4IFe7VBxsfWu/TRPsvn
+# sOagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -172,10 +173,10 @@ function global:Send-Packet {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -191,12 +192,12 @@ function global:Send-Packet {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -293,25 +294,25 @@ function global:Send-Packet {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS0JvbwI9aNI/yt3fDC6wgUEbFOMzANBgkqhkiG9w0B
-# AQEFAASCAQAuiKrWP+swNE5J5rgnP/rab4Sg/ilmB47fNnodZREsnPetItX/Ty+y
-# oCnt//fwdQANyLhYhhEqAawSZ3+bS+Qs7DBW7b41RWYUe6X8oLmef1GnjSzpeMq0
-# 0sy8Ys/JdZ8qmaqqivxcJHT8Lg5NiCNiYavclkI57IKWYrqIdfNSeMjRWO0oh7Gp
-# dkjODM8rA6uBKB/z0K7+RRAgZdSYNO2tD9qjg8mbN3+C8OCOFt+qogldAYX+UMr7
-# 8VMySOzglmg12aYgelbI0qpGMrBDlxQI4XvPlBTUhtiPTcPPBB4kYqgI7x5VALv5
-# bKiCrWRH0IoABnUWtpjFDWxmW6vRqfBxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTVvpnr4sma2u5adaeTwqWjFdtlXjANBgkqhkiG9w0B
+# AQEFAASCAQBC6DeMHPJtF6NWFQhoAB4LVRb4/48EBgREEJsm12Fn3nhrU+EftRqC
+# KRyGkI78JRGIyF1pVcZOl8rmwbEq4f0zO3xdERI+EVZbmzxpUR/aNmJLm8k/l3cj
+# Jfb2EY8Bnk7BFMTfYUXvTqd/EtYt0CTSGcvn099Yr38lPfc8u4YPqYHN12qSJEu+
+# hpNt1hd5lCvAcdh1I2UmpxMfKFjrtcbJr6scZLgQewqWPhXWD0BXly5lN41zWzRt
+# WKQ/fLXaSEnO9rVy62FOIZ/7hEFaF7u8rR3gVqctprh0AfAz9hOCWleC8cjVaKVj
+# +ifjeSbkY/cRE6U3pihnk12eLJpaUINyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwNlowIwYJKoZIhvcN
-# AQkEMRYEFCInFYTBQ65iHfWvSd/8IZexsnuxMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1OFowIwYJKoZIhvcN
+# AQkEMRYEFNwbzwggDvl/jbgP5HSnr/78Ylx7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBaIt3S0x27MuazQnOtXklBO0Q8UbCJt10/Q9Cpo+I8njHG
-# NjwY+5WCVqeDuIxkHO45MCTiQvdtPlNj6jg7lbz/te261eZ2Pit0U4LOqnKjz8yN
-# lKVIDDxA90gRw0V6zxnY6CQMupnS/LyAFziGF2xOMgmVVnjt/HkXCtJt+J8pasZo
-# 4tIid4PmA/boziYlm9iZRdbQx033DkfUS5aOsChds+86n8EvkP9vku51UKw4VxWi
-# OooaILLfVQGKz3EX2j1fZDOmxtig7b9DK1gfd45VgZsuBQxKR2K222vrwxraUZMb
-# Pmp9yFt9Qs9CsQO2c13xS0xuqAG3cXk6ZxP7j04n
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQAcDB7nb2nEuGK0FdRR20ucxMa1gRacerS0RNTY0UXvmf33
+# 2jzEIeXzmDFTIAPvSs3eHT72qRjcPJWQRttIVrysIddzh7AiSg9a9OuSqszIU7V6
+# C1m/sN56gzsWQz1bhpiQ9fPqZRMHW+ruATCQ8g1Gcrfign7XEgs/OtikRcnddnbr
+# 3Y4LFJ6NqcNKiS8PLmPDrfw8kwTEOGtihs4Bi9E8Z2PyF93zvI/5Xf9leFTHORwo
+# jS5a8GtKgQf0qmWM+FuWnQTtuQBnk6ybp6D6EJ2iy4Q7P7/uGdEqITNt2d3hks3l
+# dnUMEvlRN6yBGR/FFz3XH9n0BgsSIADTIXOuXVxR
 # SIG # End signature block

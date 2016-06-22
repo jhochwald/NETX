@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,119 +15,119 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Test-ProxyBypass {
-  <#
-      .SYNOPSIS
-      Testing URLs for Proxy Bypass
+	<#
+			.SYNOPSIS
+			Testing URLs for Proxy Bypass
 
-      .DESCRIPTION
-      If you'd like to find out whether a given URL goes through a proxy or
-      is accessed directly
+			.DESCRIPTION
+			If you'd like to find out whether a given URL goes through a proxy or
+			is accessed directly
 
-      .PARAMETER url
-      URL to check for Proxy Bypass
+			.PARAMETER url
+			URL to check for Proxy Bypass
 
-      .EXAMPLE
-      PS C:\> Test-ProxyBypass -url 'https://outlook.office.com'
-      True
+			.EXAMPLE
+			PS C:\> Test-ProxyBypass -url 'https://outlook.office.com'
+			True
 
-      Description
-      -----------
-      Check if the given URL 'https://outlook.office.com' is directly
-      accessible, what it IS!
+			Description
+			-----------
+			Check if the given URL 'https://outlook.office.com' is directly
+			accessible, what it IS!
 
-      .EXAMPLE
-      PS C:\> Test-ProxyBypass -url 'http://technet.microsoft.com'
-      False
+			.EXAMPLE
+			PS C:\> Test-ProxyBypass -url 'http://technet.microsoft.com'
+			False
 
-      Description
-      -----------
-      Check if the given URL 'http://technet.microsoft.com' is directly
-      accessible, what it is NOT!
+			Description
+			-----------
+			Check if the given URL 'http://technet.microsoft.com' is directly
+			accessible, what it is NOT!
 
-      .NOTES
-      Initial version of the function
+			.NOTES
+			Initial version of the function
 
-      .Link
-      Source: http://powershell.com/cs/blogs/tips/archive/2012/08/14/testing-urls-for-proxy-bypass.aspx
+			.Link
+			Source: http://powershell.com/cs/blogs/tips/archive/2012/08/14/testing-urls-for-proxy-bypass.aspx
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'URL to check for Proxy Bypass')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('uri')]
-    [System.String]$url = 'http://support.net-experts.net'
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'URL to check for Proxy Bypass')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('uri')]
+		[System.String]$url = 'http://support.net-experts.net'
+	)
 
-  BEGIN {
-    # Cleanup
-    $webclient = $null
-  }
+	BEGIN {
+		# Cleanup
+		$webclient = $null
+	}
 
-  PROCESS {
-    if ($pscmdlet.ShouldProcess("$url", 'Check if direct access is possible')) {
-      $webclient = (New-Object -TypeName System.Net.WebClient)
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$url", 'Check if direct access is possible')) {
+			$webclient = (New-Object -TypeName System.Net.WebClient)
 
-      Write-Output -InputObject "$($webclient.Proxy.IsBypassed($url))"
-    }
-  }
+			Write-Output -InputObject "$($webclient.Proxy.IsBypassed($url))"
+		}
+	}
 
-  END {
-    # Cleanup
-    $webclient = $null
-  }
+	END {
+		# Cleanup
+		$webclient = $null
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUelXJ1vN3wS0LiNx0E8ZXGkY2
-# mW+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUspjjRZhQXo0JO882T2ilnx54
+# il+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -148,10 +149,10 @@ function global:Test-ProxyBypass {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -167,12 +168,12 @@ function global:Test-ProxyBypass {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -269,25 +270,25 @@ function global:Test-ProxyBypass {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRVFPnnTxYlRojMaP1hymttcddD5TANBgkqhkiG9w0B
-# AQEFAASCAQAIc5BUcC7H0teLscOs+tZ/sUgy8FOQLDAs49wk/4wVTGfPseTKLx9a
-# 3HTv/NX6YnhgTitMCD9UhlEWohs4KgKb3LLvKiALDEB/5pI+pjv5muH/6gazi8U0
-# JQRyS8X7is04hzMSpq4UAD9KkGUt6Lf9ryADXdxJBoicZCFAl8zz8FY9xAkEcq/L
-# 5oKpsxh/bNm3SCLw8Y4R6ifBCgmEBbR2UzQQt/rsVNxyHa3fOsGl1UjWspo/o6QV
-# fQh2SzCpTfD80wdy36kKi4Kau5Kk1jh3bDcy4yb+VhCSuu357Zeifl37O6mLQIED
-# xdiHi1GlqxtA9ljwAXHzw5fGUp9kNgINoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSSSLL3n3g11pVldS3YdsPH8IGwSzANBgkqhkiG9w0B
+# AQEFAASCAQBLSKGPSxO9PRHL/rY2PJvg+wpLp3qhCZXaVx/h/jSm7kwbjVm8KxzY
+# yeSlTcBQ7XBVy2ZSYrs+WW4nJzz8YRd6STURSd9700BJOwFtHeTmMjihBjHonpAX
+# Rkb0X/hCTkryjC+zZiJazCb5aZM460YXYsrCrqdHZr0ub+NGjeGM2zAP7+sCm8L4
+# FJjDZvndk6+5ajqKHHD41IQA8YiBWWwDaUeN1nCBNXbNFBRW6Gju9e26WQNRYiK4
+# VFHPkS3M88GO8wqPOaz1mhivDmgE0GkO4HPzLMsHoDsmhItujrT7q3X4Ld70UbNK
+# x4ttL1CKerv1p4TB6cT2//y8OwKEEFSsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMlowIwYJKoZIhvcN
-# AQkEMRYEFAU/pG8DTeJQkCZHDp1rwiwAjU2NMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwNFowIwYJKoZIhvcN
+# AQkEMRYEFIycdNGfP28tiKygYZg/HXyMHpQ6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAAplMXkOSFB8x0lt2algyVI6FIVof5EjSnDpCjJ46ZuBX0
-# kijNmi1r6EXz/C/gcz5bRDIAkZFofiekadTj3CACpOIsnCHUGzhc5Crmbnc8QNmG
-# EZ0OTuRT009uGek02MfV+yzzR6D3ad0gBnYzZgWJEtgO2yKDBvfpCLLwySG+ZcF1
-# S3wvfkhaiuKPxSw8uHWAFx9AHDXOfXWiT+Vvbuxf0JKxxxww6NB5Ziw4191vAOHL
-# tCGR4Nxv6R9IvMWmIzScAr6q3mHC2XpTZ6tRLRGD2cDNwIRabcHR6+6d2XWpqnQm
-# m/OAJ5jBgRpK1XuWrubLGxQajC2S6jmSq1BazLiC
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBChekvuc0SEjvhFl6kakiZ5CbwO2Kam9+uAEEgZb5pMZMR
+# GulIMCFmzo/5GklyYPiHD1KZfh9elpseAnWIFNpTvttefkSifLpL0SGa7wNhzlTq
+# hqaIct/Hag9oEuOr200HQNiJUSGsKlc45PMWuvW6bLKiHliTEIxzaOmYcONtWs1a
+# P+rkc9AeJnZ+QiZVb6CGicP4Uf3wEfVr0NBoK56S2iAW30w8ZIndBvdrS3RFa0J7
+# 0CBjGsMYSSArQ+FM/4vPQQjbgENm+uUpEGx3jRkUC5KZOW7MTIFC4qwIsoYHMNSY
+# KMHnCSWm3XA6ssT5SNk3wjrtOvMGZ+P/BZjt3tbF
 # SIG # End signature block

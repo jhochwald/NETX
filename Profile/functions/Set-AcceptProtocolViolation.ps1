@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,105 +15,105 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-AcceptProtocolViolation {
-  <#
-      .SYNOPSIS
-      Workaround for servers with SSL header problems
+	<#
+			.SYNOPSIS
+			Workaround for servers with SSL header problems
 
-      .DESCRIPTION
-      Workaround for the following Exception "DownloadString" with "1"
-      argument(s):
-      "The underlying connection was closed: Could not establish trust
-      relationship for the SSL/TLS secure channel."
+			.DESCRIPTION
+			Workaround for the following Exception "DownloadString" with "1"
+			argument(s):
+			"The underlying connection was closed: Could not establish trust
+			relationship for the SSL/TLS secure channel."
 
-      .EXAMPLE
-      PS C:\> Set-AcceptProtocolViolation
+			.EXAMPLE
+			PS C:\> Set-AcceptProtocolViolation
 
-      Description
-      -----------
-      Establish the workaround (Be careful)
+			Description
+			-----------
+			Establish the workaround (Be careful)
 
-      .NOTES
-      Be careful:
-      This is just a workaround for servers that have a problem with
-      SSL headers.
+			.NOTES
+			Be careful:
+			This is just a workaround for servers that have a problem with
+			SSL headers.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param ()
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param ()
 
-  PROCESS {
-    # Set the SSL Header unsafe parser based on the value from the configuration
-    if ($AcceptProtocolViolation) {
-      # Be Verbose
-      Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
+	PROCESS {
+		# Set the SSL Header unsafe parser based on the value from the configuration
+		if ($AcceptProtocolViolation) {
+			# Be Verbose
+			Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
 
-      # Read the existing settings to a variable
-      Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
+			# Read the existing settings to a variable
+			Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
 
-      # Check if we have something within the Variable
-      if ($netAssembly) {
-        # Set some new values
-        Set-Variable -Name 'bindingFlags' -Value $([Reflection.BindingFlags] 'Static,GetProperty,NonPublic')
-        Set-Variable -Name 'settingsType' -Value $($netAssembly.GetType('System.Net.Configuration.SettingsSectionInternal'))
-        Set-Variable -Name 'instance' -Value $($settingsType.InvokeMember('Section', $bindingFlags, $null, $null, @()))
+			# Check if we have something within the Variable
+			if ($netAssembly) {
+				# Set some new values
+				Set-Variable -Name 'bindingFlags' -Value $([Reflection.BindingFlags] 'Static,GetProperty,NonPublic')
+				Set-Variable -Name 'settingsType' -Value $($netAssembly.GetType('System.Net.Configuration.SettingsSectionInternal'))
+				Set-Variable -Name 'instance' -Value $($settingsType.InvokeMember('Section', $bindingFlags, $null, $null, @()))
 
-        # Check for the Instance variable
-        if ($instance) {
-          # Change the values if they exist
-          $bindingFlags = 'NonPublic', 'Instance'
-          Set-Variable -Name 'useUnsafeHeaderParsingField' -Value $($settingsType.GetField('useUnsafeHeaderParsing', $bindingFlags))
+				# Check for the Instance variable
+				if ($instance) {
+					# Change the values if they exist
+					$bindingFlags = 'NonPublic', 'Instance'
+					Set-Variable -Name 'useUnsafeHeaderParsingField' -Value $($settingsType.GetField('useUnsafeHeaderParsing', $bindingFlags))
 
-          # Check for the unsafe HEader Variable
-          if ($useUnsafeHeaderParsingField) {
-            # Looks like the variable exists, set the value...
-            $useUnsafeHeaderParsingField.SetValue($instance, $true)
-          }
-        }
-      }
-    }
-  }
+					# Check for the unsafe HEader Variable
+					if ($useUnsafeHeaderParsingField) {
+						# Looks like the variable exists, set the value...
+						$useUnsafeHeaderParsingField.SetValue($instance, $true)
+					}
+				}
+			}
+		}
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -120,8 +121,8 @@ function global:Set-AcceptProtocolViolation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ2G47LbM0Y4e7h2BRi5GMhFY
-# CKOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKAuY9o/h/UistVPx1AnG7EKo
+# gyygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -143,10 +144,10 @@ function global:Set-AcceptProtocolViolation {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -162,12 +163,12 @@ function global:Set-AcceptProtocolViolation {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -264,25 +265,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQM88msVYoacqSSUrxCsj1eYQoU0jANBgkqhkiG9w0B
-# AQEFAASCAQB17ypJvhOL7nR7lxjkDuO9NHhn+KfI0cPw9LRSiMRd5GZTugoc4UgK
-# h8DSENJjdyT5kYYchY3LGue1v4xhIgBuyjjBu2JND0q55rzhbJGbbB3NLEdJwXZv
-# Q1Pau0HF9LrTVtYznno5mlwnwvL2iSAsrTJn4KvaA6ERQFUcA3CRWjLzaiwclAsB
-# Iep5dzcbb7PUsgPdmp5NC2IM/01T0a0vQnEd3EXIMnDrHvYBQJU74yEq42rsKhp0
-# gGyFKkGCzIi7i+u/9imGOBmOBsp2MIX6I7o+WpCGNvLLkyZxiSyEBMOoqspWrXN4
-# cyBn4sOxD0HHZMIBSWyjn/Aev+cm6t9woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSldMYGK5GwDh/KScJXJQJiZMbG6zANBgkqhkiG9w0B
+# AQEFAASCAQATHI1e9fyiCnE0dIo5+E0waa9k5vHpGVN2IdTG4Ukad3PDYgv53i2p
+# MG+RF2qEfwNDsxFv2qLbfrGeCJWeqvTjXUeNMWZ8fHlv1sDcfmre9pey9S3r9DgW
+# jd/+eYGOMQ9u3KNg60Sw4fDYz6OqagTh617sApqBw2owy2q2yz4LLUOXHAehicXq
+# o4Q+kCzFczXZNUGFSjhFpwgrWczkd1vRaSs9KZgV6/9UZrdyWqUiKCIgXd8dqJ6n
+# UJn5BP/r1rSzdQVyY9ORvxXFEvTS93jJ0tVaP+9RwY3C9199Hdql7pIcNNeZBe/u
+# +cjQLTiN4P0eR1+dg1yypduE1cPvtdy8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwOFowIwYJKoZIhvcN
-# AQkEMRYEFKmlBEgWwjVCEJtecW4SXZSHaPKBMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1OVowIwYJKoZIhvcN
+# AQkEMRYEFMJdOFu2PWRETaHhksHPfaZZmXKvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCrCyNReZCiEbZ8DYhFqPCQMmlOM8CMGFccdbBITeyNBnCW
-# tJwLGbYNUTA9vlLw0MsQJ4y8gQWtWkE17exuoP621LuGKXjVKAnPVB+xPBkTvPxB
-# ICA7s5ftDzBHnuWUI/mSAKbLdHSt7vopsBowNtN3FAQwN9FTsX+yPb7cRepo3Qvk
-# WxSnWByki8jw+JSZSvoAItor71PYZCZj00ME+ocY2gvj/rTyzF5MXzymyZ1yQy/C
-# ZsDcC9vl4IWeGjVCzGocmCEIksl7Jz6haY/8bE5uAnF6sK+1ruc+BUxDA58Smjw6
-# msLDQ8Yw/AJo/t0A/0VRm5X2uS4K2i/T27bxFZuq
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQAkWGXnvq7k7fSzEn+mMko+3n7GOASfVbvW6Awe6lTgS6PT
+# V/+2gnc0JVQz4qi7Jg6OnEiZM+3Pn4jYlxyksMsk8E9g0LD5pcStsqET+oc7t75v
+# kDv/jfKk2aMpfE6spN39h+Z55MvZ79dD3GeCu7olguZHhPx/E+eTTnVG1rFbtat5
+# d2pibhTIaMGh/NoQnWdcpaSqVWN8/r3rpwBhiZzSeW+nKQVYf+uiB0pLe6aIV4f1
+# d+BuxQoV5BHsCpxxBFApB4tg+p6s8+rgTT9xYYcaSML3t/JVxL+Az73Fyh4eeXEi
+# znxY/DpHavmvAoQZwrtfdrAwoncdiis0RlR5VbiU
 # SIG # End signature block

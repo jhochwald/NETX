@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,132 +15,132 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Time {
-  <#
-      .SYNOPSIS
-      Timing How Long it Takes a Script or Command to Run
+	<#
+			.SYNOPSIS
+			Timing How Long it Takes a Script or Command to Run
 
-      .DESCRIPTION
-      This is a quick wrapper for Measure-Command Cmdlet
+			.DESCRIPTION
+			This is a quick wrapper for Measure-Command Cmdlet
 
-      Make the PowerShell a bit more *NIX like
+			Make the PowerShell a bit more *NIX like
 
-      Everyone ever used Unix or Linux known time ;-)
+			Everyone ever used Unix or Linux known time ;-)
 
-      .PARAMETER file
-      Script or command to execute
+			.PARAMETER file
+			Script or command to execute
 
-      .EXAMPLE
-      PS C:\> time new-Bulk-devices.ps1
+			.EXAMPLE
+			PS C:\> time new-Bulk-devices.ps1
 
-      Description
-      -----------
-      Runs the script new-Bulk-devices.ps1 and shows how log it takes
-      to execute
+			Description
+			-----------
+			Runs the script new-Bulk-devices.ps1 and shows how log it takes
+			to execute
 
-      We use the well known Uni* alias here!
+			We use the well known Uni* alias here!
 
-      .EXAMPLE
-      PS C:\> time Get-Service | Export-Clixml c:\scripts\test.xml
+			.EXAMPLE
+			PS C:\> time Get-Service | Export-Clixml c:\scripts\test.xml
 
-      Description
-      -----------
-      When you run this command, service information will be saved to
-      the file Test.xml
+			Description
+			-----------
+			When you run this command, service information will be saved to
+			the file Test.xml
 
-      It also shows how log it takes to execute
-      We use the well known Uni* alias here!
+			It also shows how log it takes to execute
+			We use the well known Uni* alias here!
 
-      .EXAMPLE
-      PS C:\> Get-Time new-Bulk-devices.ps1
+			.EXAMPLE
+			PS C:\> Get-Time new-Bulk-devices.ps1
 
-      Description
-      -----------
-      Runs the script new-Bulk-devices.ps1 and shows how log it takes to
-      execute
+			Description
+			-----------
+			Runs the script new-Bulk-devices.ps1 and shows how log it takes to
+			execute
 
-      Makes no sense, instead of Measure-Command we use Get-Time,
-      but we need to use this name to make it right ;-)
+			Makes no sense, instead of Measure-Command we use Get-Time,
+			but we need to use this name to make it right ;-)
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-    HelpMessage = 'Script or command to execute')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Command')]
-    $file
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+		HelpMessage = 'Script or command to execute')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Command')]
+		$file
+	)
 
-  PROCESS {
-    # Does the file exist?
-    if (-not ($file)) {
-      # Aw SNAP! That sucks...
-      Write-Error -Message:'Error: Input is missing but mandatory...' -ErrorAction:Stop
-    } else {
-      # Measure the execution for you, Sir! ;-)
-      Measure-Command -Expression { $file }
-    }
-  }
+	PROCESS {
+		# Does the file exist?
+		if (-not ($file)) {
+			# Aw SNAP! That sucks...
+			Write-Error -Message:'Error: Input is missing but mandatory...' -ErrorAction:Stop
+		} else {
+			# Measure the execution for you, Sir! ;-)
+			Measure-Command -Expression { $file }
+		}
+	}
 }
 
 # Set a compatibility Alias
 (Set-Alias -Name time -Value Get-Time -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 <#
-    Another Option:
-    (Set-Alias time Measure-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+		Another Option:
+		(Set-Alias time Measure-Command -option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 #>
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSymGLA0YpwHsnEy//PJTJike
-# gHugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPL2nqk/V6kH8Ly7IcTNX2anF
+# ftmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -161,10 +162,10 @@ function global:Get-Time {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -180,12 +181,12 @@ function global:Get-Time {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -282,25 +283,25 @@ function global:Get-Time {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5xu0czAf15FfvbA7k+4yxExU6XTANBgkqhkiG9w0B
-# AQEFAASCAQAPkDty6gAgs/HIB3ZrDFoE9LqtDB6vTyrcSrRXL/8FHK4VqTIejL1X
-# utDGOtv23/PJYAqv8rWxHgadDMrSLE/PiUdb2V2+CGFf8iOhleHDskGegUtrkNly
-# ZgOQKOV6unZbSHnMA21+5iQfKT0qpRD7KzYqj6j8E1h2tJVrefs5uSlE4Kak70kb
-# Wbn5volvG/PDmXK3sk4XlZQgDdHTUf52M7xY9+yGDMCZb86flw/NP5u//RLDOWs/
-# P1xvVvP9lzXmutOIi7mxuLADiFKlvJZz2Y1cVUmWlEQcuNCxyB5lz0r4wargary3
-# BoosaM/hmhHFKV7KRwzxse77N0WuXAoeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTHgAfsiATsyFk+k8wg2v4O8GsNdDANBgkqhkiG9w0B
+# AQEFAASCAQBi6MCXaH0vWWB0EmcjafS8gxJDxpKEVChkHY7LBlkgENbdjWNqhJcO
+# XbedVA1X/MzAjuHrjf/+XARePq57B68g3k0X64zWB006xUWSD+TPiGtsObxqw13z
+# 5Lb4lJZtgQgntVm2fPTp+qAkFe4Fiir5ZfWPdqr0GYOliWXCpotiYsHzQ10ySgmz
+# 5aN1c+b4hrCLw7ttqKCRanYpAwaf8cR1jlalDfqUSKNCxEEMmT/pax8PpkH+KOno
+# 2o6dO4P3xaPHx1FKWIIoUNKib3RHCQAdApnlbOcaqTZkUgsaIVSic9aWEUwIplXI
+# 3AGXlQ2nkp1viEX/HSp/f8c7aRAiNgkzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxM1owIwYJKoZIhvcN
-# AQkEMRYEFN8tmEzG28dd94JuIb6uWPhhBtUpMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwNVowIwYJKoZIhvcN
+# AQkEMRYEFJsDbvdr82jYHOi3DOgbawXCwqdIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCm0HmJCeJwjoYmBTi2AP76ezeI3Wib3yHZmQAMhS2s7osP
-# 9UYC32HToI9BMcwrHPoyagEmLy6k/uq99VdLMiuz/RBlChYusxYc7CZDFwjCJ93s
-# G5L+7EBezS+BYU1utBZdQcQAouqR/Gd8gdDYj1IgNxwsc/mrJCIQUC3ylYP6pF5w
-# UuIpja/i1yJ/pAYE3wLLeDV60YIb2Yk3d6JeL1h9CrDMaDO/iIHbRngEXAo7CYZ6
-# 5W/8ReKYCbP01icp2qXnaYFKLBYvE7xi1gagXdWoqwHaLLIWALtBpmQKnVyYRm9l
-# iucmf30V8DDnBBd71/xOcvI7ppL8NnAgXtKy4DcZ
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAZrHzcUjmwbnTvttl5kNqnnPPheFn3v8lbtpuf2pSNepvY
+# aQbVc2zqWS4s2y2r2CQrbSbCQh8svCB+NZMJ+yMebLQhB7mge4t8JwS4to3dUrEE
+# rcjQ3SCaRdJ3eutMrimBVU9hZOsgAY/6Dzh1LXYTG4xiqHmRJwT+z/bw2BPfGC1O
+# meju+KTRp8HwT5Ob5WDOjeudTbZfLiClqaRXWHbh7TrF+yOjklnTWZ0taPz7SPEW
+# VLREDTixPkNKNlBV+rIxsgyY9jiqApWiLKNyZ+tc74O2KtUW4yLa46nXR4nwbFPb
+# ez78u4/5HtUdjj3vZCQCwsbUIFobdWlAqZyMToVo
 # SIG # End signature block

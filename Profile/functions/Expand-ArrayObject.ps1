@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,114 +15,114 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Expand-ArrayObject {
-  <#
-      .SYNOPSIS
-      You get an array of objects and performs an expansion of data separated
-      by a spacer
+	<#
+			.SYNOPSIS
+			You get an array of objects and performs an expansion of data separated
+			by a spacer
 
-      .DESCRIPTION
-      You get an array of objects and performs an expansion of data separated
-      by a spacer
+			.DESCRIPTION
+			You get an array of objects and performs an expansion of data separated
+			by a spacer
 
-      .PARAMETER array
-      Input Array
+			.PARAMETER array
+			Input Array
 
-      .PARAMETER field
-      Field to extract from the Array
+			.PARAMETER field
+			Field to extract from the Array
 
-      .PARAMETER delimiter
-      Delimiter within the Array, default is ";"
+			.PARAMETER delimiter
+			Delimiter within the Array, default is ";"
 
-      .EXAMPLE
-      $arr | Expand-ArrayObject fieldX
+			.EXAMPLE
+			$arr | Expand-ArrayObject fieldX
 
-      Description
-      -----------
-      You get an array of objects and performs an expansion of data separated
-      by a spacer
+			Description
+			-----------
+			You get an array of objects and performs an expansion of data separated
+			by a spacer
 
-      .NOTES
-      Additional information about the function.
-  #>
+			.NOTES
+			Additional information about the function.
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Object[]])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Input Array')]
-    [ValidateNotNullOrEmpty()]
-    [System.Array]$array,
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Field to extract from the Array')]
-    [System.String]$field,
-    [Parameter(HelpMessage = 'Delimiter within the Array')]
-    [System.Char]$delimiter = ';'
-  )
+	[CmdletBinding()]
+	[OutputType([System.Object[]])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Input Array')]
+		[ValidateNotNullOrEmpty()]
+		[System.Array]$array,
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Field to extract from the Array')]
+		[System.String]$field,
+		[Parameter(HelpMessage = 'Delimiter within the Array')]
+		[System.Char]$delimiter = ';'
+	)
 
-  BEGIN {
-    [PSObject[]]$array_result = @()
-  }
+	BEGIN {
+		[PSObject[]]$array_result = @()
+	}
 
-  PROCESS {
-    foreach ($item in $array) {
-      $item."$field" -split $delimiter | ForEach-Object -Process {
-        $newItem = $item.PSObject.Copy()
-        $newItem."$field" = $_
-        $array_result += $newItem
-      }
-    }
-  }
+	PROCESS {
+		foreach ($item in $array) {
+			$item."$field" -split $delimiter | ForEach-Object -Process {
+				$newItem = $item.PSObject.Copy()
+				$newItem."$field" = $_
+				$array_result += $newItem
+			}
+		}
+	}
 
-  END {
-    Write-Output -InputObject $array_result
-  }
+	END {
+		Write-Output -InputObject $array_result
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtEoC3/hoYos2h4WMZtnS4SHa
-# fKugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsqoC5TOGMtmaaA8z7F7ycZRv
+# lGWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -264,25 +265,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRKx5AY/vdxo3sbwHTxGAayU1GtGjANBgkqhkiG9w0B
-# AQEFAASCAQATnDnIIIBCM0NuNxizCufZSEArRGpNi0jKiT97WPH55DRbXZ++Dwby
-# oKcyCZDfXNvc2XvKVsB7mgPMsLGs4jHuGA7XpC/A1LVIhVzNXHjXP9mI8YFxvWt9
-# Bamxu+GP/tYfbiLV6B0fQXIW3BTSCROcfll/0lUtfJZ/Est+qoe9gBlcUsgk+ioJ
-# X90+WFRU2hmdRuHMQG7ijPePQpznQkpyvgvQy7c1Ch60rxVBGj9L4hqTpmtb1WXM
-# soYbNxDGMTwBxTkdT8fqZk3JRsllfCo4BC2tr8j2vch0BJUTw3oHxD/2eaWrln/X
-# LKFiFUDHf+bikNfZfL4I0qXQGvRHnIRCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR6BrCIYbag2s9IBFM5Y1lPCuBFHzANBgkqhkiG9w0B
+# AQEFAASCAQCHNeWj+ZrSz6LJvGWYO8uJBk8U3piGCAtbZpmhY5+cR/L/HUItgs+w
+# aHqRbE6b63bf1q1GIfJWN55/YJDdS1FPb1j9xYETM4kiyc8Z7yQBrSQ+ILrp1gbD
+# 63qWJX/CS9y8NUoz9gff2o2KhMsQOF3hBdE5Won64dUVB22M2WVKHt6svMxogi0S
+# tgDlJPXDIefRVFSZy5WLmd9CxYvraqf8VZIpM/deCY5Ghct4rS9p99DpH0BcVYya
+# 15DONYrqlE03zYgvccwr2Kh09qj2kK2fzzh5LowaxERve5//uRcd7QJxSlQRvF0H
+# aqj5YvVNPN6WjgQa5aBv1OKUUDAL9bOsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzMFowIwYJKoZIhvcN
-# AQkEMRYEFJN95+2skBhbteQg4mfSAUqme2dMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExOVowIwYJKoZIhvcN
+# AQkEMRYEFO2n+7UIy/hD1InVYynnPnd/m4PXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB3Qwg9FQJYC/fAMor3why5RgMgyFps2MSsFylAWe4qTru9
-# HMuXPOpd/WN61K+Y+N5kLjcgvdkXGVKhvAWU2363CiYYj3qUTTdwA+9Vf8WQYYmL
-# UlFiyO7m8ZoPrczd6f6YeXkLMJDxoeQ6kRhYpA61f3M5QqvGVIenLLWuhFISioe9
-# wjMVWKPd2QbZN7BK0VI20M7XR+Nb6D7Bi2WMH0GqqtO3jr17lBOHZxgBYbjFO9mi
-# GBWt3BRPD2K5VLVps/v9qnK4smaE05+vCWG2f6beJ1A5pB3zqhZIJMkkstPiOjBy
-# jF6p37ge2R16xU+9UNJPv5hqO2ipwYVpvjRtubNg
+# hkiG9w0BAQEFAASCAQBf4oaoCI8Bi64YNIuOeHvCvVL/rysysT5UF+OIPh06pqVM
+# t9sugVpkCluOn0CuhtvYc7m49rVmrbfHP1rvEMIA6LhG0VZnWiT6n/PCJoUPQ0xr
+# C1KJXQD/ksaGJDiFOtFTnMG9ux635DeSshB4Jd0los9L0s9/HzAaIhAKyyMOPbPY
+# sWrGHKQ/5VgsVpoRTa7ZIaSIC3K/Fhpm0lpoyLcFm+uFollwCEGsu82g2ADnln40
+# nYaPp1r253fQ0NfbMjw0iyrbWqi5mmQyCcR9ZfVj7GHPDlKG0scJWlUFWlDqgWe3
+# b3mQb3d72Fal7z1c+jBTD1rQndqecGJ6kKaaMXR/
 # SIG # End signature block

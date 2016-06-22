@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,156 +15,156 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Invoke-NTFSFilesCompression {
-  <#
-      .SYNOPSIS
-      Compress files with given extension older than given amount of time
+	<#
+			.SYNOPSIS
+			Compress files with given extension older than given amount of time
 
-      .DESCRIPTION
-      The function is intended for compressing (using the NTFS compression)
-      all files with particular extensions older than given time unit
+			.DESCRIPTION
+			The function is intended for compressing (using the NTFS compression)
+			all files with particular extensions older than given time unit
 
-      .PARAMETER Path
-      The folder path that contain files. Folder path can be pipelined.
+			.PARAMETER Path
+			The folder path that contain files. Folder path can be pipelined.
 
-      .PARAMETER OlderThan
-      The count of units that are base to comparison file age.
+			.PARAMETER OlderThan
+			The count of units that are base to comparison file age.
 
-      .PARAMETER TimeUnit
-      The unit of time that are used to count.
+			.PARAMETER TimeUnit
+			The unit of time that are used to count.
 
-      The default time unit are minutes.
+			The default time unit are minutes.
 
-      .PARAMETER Extension
-      The extension of files that will be processed.
+			.PARAMETER Extension
+			The extension of files that will be processed.
 
-      The default file extension is log.
+			The default file extension is log.
 
-      .PARAMETER OlderThan
-      The count of units that are base to comparison file age.
+			.PARAMETER OlderThan
+			The count of units that are base to comparison file age.
 
-      .EXAMPLE
-      Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "20"
+			.EXAMPLE
+			Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "20"
 
-      Description
-      -----------
-      Compress files with extension log in folder 'c:\test' that are older
-      than 20 minutes
+			Description
+			-----------
+			Compress files with extension log in folder 'c:\test' that are older
+			than 20 minutes
 
-      .EXAMPLE
-      Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "1" -TimeUnit "hours" -Extension "txt"
+			.EXAMPLE
+			Invoke-NTFSFilesCompression -Path "C:\test" -OlderThan "1" -TimeUnit "hours" -Extension "txt"
 
-      Description
-      -----------
-      Compress files with extension txt in folder 'c:\test' that are
-      older than 1 hour
+			Description
+			-----------
+			Compress files with extension txt in folder 'c:\test' that are
+			older than 1 hour
 
-      .NOTES
-      Based on an idea of  Wojciech Sciesinski
-  #>
+			.NOTES
+			Based on an idea of  Wojciech Sciesinski
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-    HelpMessage = 'The folder path that contain files. Folder path can be pipelined.')]
-    [string[]]$Path,
-    [Parameter(Mandatory = $true,
-    HelpMessage = 'The count of units that are base to comparison file age.')]
-    [int]$OlderThan,
-    [Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
-    [ValidateSet('minutes', 'hours', 'days', 'weeks')]
-    [string[]]$TimeUnit = 'minutes',
-    [Parameter(HelpMessage = 'The extention of files that will be processed. The default file extenstion is log.')]
-    [string[]]$Extension = 'log'
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+		HelpMessage = 'The folder path that contain files. Folder path can be pipelined.')]
+		[string[]]$Path,
+		[Parameter(Mandatory = $true,
+		HelpMessage = 'The count of units that are base to comparison file age.')]
+		[int]$OlderThan,
+		[Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
+		[ValidateSet('minutes', 'hours', 'days', 'weeks')]
+		[string[]]$TimeUnit = 'minutes',
+		[Parameter(HelpMessage = 'The extention of files that will be processed. The default file extenstion is log.')]
+		[string[]]$Extension = 'log'
+	)
 
-  BEGIN {
-    $excludedfiles = 'temp.log', 'temp2.log', 'source.log'
+	BEGIN {
+		$excludedfiles = 'temp.log', 'temp2.log', 'source.log'
 
-    # translate action to numeric value required by the method
-    switch ($TimeUnit) {
-      'minutes' {
-        $multiplier = 1
-        break
-      }
-      'hours' {
-        $multiplier = 60
-        break
-      }
-      'days' {
-        $multiplier = 1440
-        break
-      }
-      'weeks' {
-        $multiplier = 10080
-        break
-      }
-    }
+		# translate action to numeric value required by the method
+		switch ($TimeUnit) {
+			'minutes' {
+				$multiplier = 1
+				break
+			}
+			'hours' {
+				$multiplier = 60
+				break
+			}
+			'days' {
+				$multiplier = 1440
+				break
+			}
+			'weeks' {
+				$multiplier = 10080
+				break
+			}
+		}
 
-    $OlderThanMinutes = $($OlderThan * $multiplier)
-    $compressolder = $(Get-Date).AddMinutes(- $OlderThanMinutes)
-    $filterstring = '*.' + $Extension
-    $files = (Get-ChildItem -Path $Path -Filter $filterstring)
-  }
+		$OlderThanMinutes = $($OlderThan * $multiplier)
+		$compressolder = $(Get-Date).AddMinutes(- $OlderThanMinutes)
+		$filterstring = '*.' + $Extension
+		$files = (Get-ChildItem -Path $Path -Filter $filterstring)
+	}
 
-  PROCESS {
-    ForEach ($i in $files) {
-      if ($i.Name -notin $excludedfiles) {
-        $filepathforquery = $($i.FullName).Replace('\', '\\')
-        $file = (Get-WmiObject -Query "SELECT * FROM CIM_DataFile Where-Object Name='$filepathforquery'")
+	PROCESS {
+		ForEach ($i in $files) {
+			if ($i.Name -notin $excludedfiles) {
+				$filepathforquery = $($i.FullName).Replace('\', '\\')
+				$file = (Get-WmiObject -Query "SELECT * FROM CIM_DataFile Where-Object Name='$filepathforquery'")
 
-        if ((-not ($file.compressed)) -and $i.LastWriteTime -lt $compressolder) {
-          Write-Verbose -Message "Start compressing file $i.name"
+				if ((-not ($file.compressed)) -and $i.LastWriteTime -lt $compressolder) {
+					Write-Verbose -Message "Start compressing file $i.name"
 
-          #Invoke compression
-          [void]$file.Compress()
-        } #End if
-      } #End if
-    }
-  }
+					#Invoke compression
+					[void]$file.Compress()
+				} #End if
+			} #End if
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU90+Xv3G618b5Cuc25zMhVAz5
-# ZKmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUE00A2kVEDVPvh/V25XvulbIk
+# gKGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -185,10 +186,10 @@ function Global:Invoke-NTFSFilesCompression {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -204,12 +205,12 @@ function Global:Invoke-NTFSFilesCompression {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -306,25 +307,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSKQwNh0TOMRbcVc0EqmKbh17jqCzANBgkqhkiG9w0B
-# AQEFAASCAQAGWxPqiobGzFg9dB6seYFnBVN2eE6FqJVBH96geVZ4IamjkpS+bL12
-# rQNz/DS6XrnVsBAg/2CthVQz5l0e35D3UGNCoQMrKb1RUyLP+wN842bEzM9e2pYj
-# ns+ZNqRDrGBlNAy48oJhUZlBdMDZvAl1SqX3zCFY9e0F7oGXZahfqXovjjPsqjWZ
-# 3dEpi8egeodjCY66VzookIi+KCDQDLXY2ZWBODlv1X8aOnBkVxj4NXF1VPA8Vvk8
-# f0me2SzHXBVojgjTZK/p3uZnYwGEgiJkQkv9gUJYw1BnEdwuPgExDavlSDex7Z7V
-# G92xNnJGWtBKXE9lGcCNEsXycIkkk0QKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRvfZdHodXF4pWs7Neu9tyiB8LpDzANBgkqhkiG9w0B
+# AQEFAASCAQCq2HkGd03UZOF6i80TNvzzeqg1PzgaqflqU7pI64X0+QNlF/iroHiF
+# BmHHnGHVd3RNYiimcDRPdaVgiHHjhAOjbR2CTuWr6hp3bAofUfkBCoT1le0GYNrS
+# IWh8ut2EuIKKY3ABQI3aoIi7uBk6bz2vI705kp3BrZOEtBrnXiI+K3iFSRBbrjbo
+# 5S1bUIv4ts3IlTrCj4iwY085XecG617SQ9u0Kfyqb79m3cOjy3I6hrl5Bb2RapJg
+# qTmM1vxscDJgkMAaZrj86CVHp40QTLhe9G1ZFBR9bp3bMXqNP/HtFJ7wtw1cDk0D
+# sx7YlkiMSzHHjwyN076th2mDgon+C9ECoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1M1owIwYJKoZIhvcN
-# AQkEMRYEFBusd+08+SBNuWXh20IU4I+96+WzMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0NFowIwYJKoZIhvcN
+# AQkEMRYEFHgH6CsODdWZae72fbtDiFAMhdKIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAnkeaTGl1Wst3EqU0J7R9woYGxImuCGwzE1N5dYIWK1s1S
-# vuxMZcx4YlXRAn211Qtsz0o/bFHyPo2YurGB+LYWhaRzZaD9LUsHA68YvZxl+C2p
-# Ujnq1AERVMYdKrqPgb1YcSGpPSbWgO5UggZ76RZS8LrG7Ld5bBwurpW480op5QDT
-# q81chIkvKtaqk0/AXTORP/2UaxRnZ9E+A0T+FIfGJfPO8jazYQzJvMtWOsTfa35B
-# YR04rtaji3buRaVB0nYvs+Zc74wT594OJvVjZtlWBJiwEt9/fpMYZSLTINsz8WWw
-# HTw3zCW19ogBHHX8/BjZz6BQdvVlUMbz7yYZhxq9
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCbtUwXh5EVLMnyaKKjwadZLFa+29wvlQ1AaII4wo37UsrQ
+# IMBLWY9axGYVDTdLouJBtIMpklH18t3rQej/p9Dv3lOvDMAJPU4pCcAy8Ay1CuaF
+# rknoZCiPfQSMkxWfzPYgp/uFGly2pUh24yhU+BO7L18EwDMuTRJLv/QAAma7avIy
+# SSOOsGp37GJhgxjGN6rgYpPvzq0d8Hpae+v7UZyL+e9XMucXI5n33Nn1OwWQOhU6
+# MYBqjXGKVGO8oeyl5Ozp3RsgIpUColzeVVn0C4Gwp4AQrJVW2+4MGFLkwwDF5j/k
+# 54GW89Tu1xJcLZG67OQGJM8gqjBO6g8rDZE7P9/z
 # SIG # End signature block

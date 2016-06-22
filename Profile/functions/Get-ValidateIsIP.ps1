@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,107 +15,107 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-ValidateIsIP {
-  <#
-      .SYNOPSIS
-      Validates if input is an IP Address
+	<#
+			.SYNOPSIS
+			Validates if input is an IP Address
 
-      .DESCRIPTION
-      Validates if input is an IP Address
+			.DESCRIPTION
+			Validates if input is an IP Address
 
-      .PARAMETER IP
-      A string containing an IP address
+			.PARAMETER IP
+			A string containing an IP address
 
-      .EXAMPLE
-      PS C:\> Get-ValidateIsIP 10.211.55.125
-      True
+			.EXAMPLE
+			PS C:\> Get-ValidateIsIP 10.211.55.125
+			True
 
-      Description
-      -----------
-      Validates if input is an IP Address
+			Description
+			-----------
+			Validates if input is an IP Address
 
-      .EXAMPLE
-      PS C:\> Get-ValidateIsIP -IP '10.211.55.125'
-      True
+			.EXAMPLE
+			PS C:\> Get-ValidateIsIP -IP '10.211.55.125'
+			True
 
-      Description
-      -----------
-      Validates if input is an IP Address
+			Description
+			-----------
+			Validates if input is an IP Address
 
-      .EXAMPLE
-      PS C:\> Get-ValidateIsIP -IP 'fe80::3db7:8507:3f9a:bb13%11'
-      True
+			.EXAMPLE
+			PS C:\> Get-ValidateIsIP -IP 'fe80::3db7:8507:3f9a:bb13%11'
+			True
 
-      Description
-      -----------
-      Validates if input is an IP Address
+			Description
+			-----------
+			Validates if input is an IP Address
 
-      .OUTPUTS
-      System.Boolean
+			.OUTPUTS
+			System.Boolean
 
-      .NOTES
-      Very easy helper function
+			.NOTES
+			Very easy helper function
 
-      .INPUTS
-      System.String
-  #>
+			.INPUTS
+			System.String
+	#>
 
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'A string containing an IP address')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$IP
-  )
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'A string containing an IP address')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$IP
+	)
 
-  PROCESS {
-    try {return ([System.Net.IPAddress]::Parse($IP))} catch {Write-Debug -Message 'Something is wrong!!!'}
+	PROCESS {
+		try {return ([System.Net.IPAddress]::Parse($IP))} catch {Write-Debug -Message 'Something is wrong!!!'}
 
-    return $false
-  }
+		return $false
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhpi6QbJXcLV3VP97a1ZUJO8y
-# VLmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDYklvrV7Sx/cFIQ0HcY01UYo
+# UF2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -257,25 +258,25 @@ function global:Get-ValidateIsIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQtqUFKb7JuzYC9fCKoh+d7bQudxTANBgkqhkiG9w0B
-# AQEFAASCAQAD+avkVJynKuxhjCrnuOaeN4XWKPnXposT3rmNdbViAJuorM1y1QzT
-# 55dorqzTtjC2RgaXWDfb4UjExjFLnuik0ULpEIdNwnPXslmPAvpvpKHPSxI1BIlt
-# 9USd2H6DAQSX/H40R4BwwMm/Q2CbXm2FnjZvLR2ULO9vOcRCG5uSR/UDDZTn4O1o
-# zpT+QaiBhPkkJZfFyb4sAUdyd+2uuBhBGAw9xTdiF5DPlspzZuqiGiaWcmbfjN0/
-# pruPoC3dOMHjt7Fw7McYm7xHfpWB3y3/19e/HqJmZjI8umf0LDi10a55vwQ+t4W6
-# DyF1R7bP089oyH9v0zHu5XMAgAoqVnkfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSUv1K4DamYWLJ1y6u2v/RGPMOr7jANBgkqhkiG9w0B
+# AQEFAASCAQAIA+T8w6K2zm2/rXgYeirQOSF4kE09uFvsDjcpBtOs2yuDFwQoeznY
+# FIk4JgOqq6+1TBM8l39NuZtzRkr1twyxLkcX58oKfK9X3zpQk8ANGnHjS3l1q4ya
+# mcdnijlO7MMj/WK8jeiASngiW+8i2cKnX3mq/QJ+X4BO4cAkWcT3IyNz6TM/K2g4
+# VwQs7kosB1sv6wJEFVjgoEARGr45zM0kkPcCxFMvmUnXnqYCGxTlNLtWDSlEycRX
+# grutcDd/bAkyQN8TrYvS3bgwSzZG70Fr0HT4FEZhdaUcyIi/Yp1cSUmg5Wa1/XTK
+# Rfp/vVRamDy1oCRcIKlEkO32aCb4S82coYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0OFowIwYJKoZIhvcN
-# AQkEMRYEFLPYWQniBxKe4HLW3umnOF+ThDMSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzOFowIwYJKoZIhvcN
+# AQkEMRYEFAHcd3a/XFEhItNdbnyMjaz9oI9BMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCbeQGdvDWkqKS2UA9/Sr8QFfEfbQhbd1pNCcqnjm8i81ok
-# pqkIG50S76Mu7D2B0YZx0uyFfSoINgYtnHRxtVRQiXiDDIXzQp90avNjFze6vR6c
-# GVCOMiKaIjqP5hAyi1dXfRmG+G059FdKWqVNxlOZPo9F9RgE2Y0uFaa9QdOkFm14
-# +EckECh4mw4uH+8nxAid7cKek8a5iHD+C4Rtl3vW7IBjCptGKE4naKUagD1zVB5O
-# EfiFPKqgKBndgUqBZ3VqSPNn/EZAbn3sFEGICPHXbRQ5vHuwlyOGpPN4lwPVE1lY
-# y7PooqshHvCZzn7tssZzkcSBQC2nxwvfG/SXqNlV
+# hkiG9w0BAQEFAASCAQAKDCjxPu0N7QmHf3Xcxl3MNBvFUpG0ALPWCR/lSem9L153
+# GTaf+qeYY79o1dbPJ2Z5qFF7NPHvECTpjht46+nTjkSA5/NNF2xatw/NCYtoyoK0
+# YU3NJJKo1MukVCfCPU7Fq34pXMOPOLtWwtJL0lFdaOXg5k8AYP6qSuumuEdUfSyx
+# vwPrTxkAG2g7WALXVtiXeinwJnJ9O8kx6WCnqf0cB9rrsyFAoB59JXASd+Ppur8e
+# OWGIwf7kSRpFyuxFmY32sbiMpGdjDON7tIpLrZtkO1P0goW2LzvHhMGtif9MqSqA
+# +CFLI02s0Z6CFwSqeSNQaAGICqEhNP2N9cF2eono
 # SIG # End signature block

@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 3
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,90 +15,90 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Make Powershell more Uni* like
 function global:Reload-PesterModule {
-  <#
-      .SYNOPSIS
-      Load Pester Module
+	<#
+			.SYNOPSIS
+			Load Pester Module
 
-      .DESCRIPTION
-      Load the Pester PowerShell Module to the Global context.
-      Pester is a Mockup, Unit Test and Function Test Module for PowerShell
+			.DESCRIPTION
+			Load the Pester PowerShell Module to the Global context.
+			Pester is a Mockup, Unit Test and Function Test Module for PowerShell
 
-      .NOTES
-      Pester Module must be installed
+			.NOTES
+			Pester Module must be installed
 
-      .LINK
-      Pester: https://github.com/pester/Pester
+			.LINK
+			Pester: https://github.com/pester/Pester
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    # Lets check if the Pester PowerShell Module is installed
-    if (Get-Module -ListAvailable -Name Pester -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) {
-      try {
-        #Make sure we remove the Pester Module (if loaded)
-        Remove-Module -Name [P]ester -Force -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	PROCESS {
+		# Lets check if the Pester PowerShell Module is installed
+		if (Get-Module -ListAvailable -Name Pester -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) {
+			try {
+				#Make sure we remove the Pester Module (if loaded)
+				Remove-Module -Name [P]ester -Force -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-        # Import the Pester PowerShell Module in the Global context
-        Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
-      } catch {
-        # Sorry, Pester PowerShell Module is not here!!!
-        Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction:Stop
+				# Import the Pester PowerShell Module in the Global context
+				Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
+			} catch {
+				# Sorry, Pester PowerShell Module is not here!!!
+				Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction:Stop
 
-        # Still here? Make sure we are done!
-        break
+				# Still here? Make sure we are done!
+				break
 
-        # Aw Snap! We are still here? Fix that the hard way...
-        exit 1
-      }
-    } else {
-      # Sorry, Pester PowerShell Module is not here!!!
-      Write-Warning  -Message 'Pester Module is not installed! Go to https://github.com/pester/Pester to get it!'
-    }
-  }
+				# Aw Snap! We are still here? Fix that the hard way...
+				exit 1
+			}
+		} else {
+			# Sorry, Pester PowerShell Module is not here!!!
+			Write-Warning  -Message 'Pester Module is not installed! Go to https://github.com/pester/Pester to get it!'
+		}
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name Load-Pester -Value Reload-PesterModule -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -106,8 +107,8 @@ function global:Reload-PesterModule {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUG0YArf4rofM1xuUKwWhssex/
-# xfugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrKlgW+hCX+5M7vrKro73jULe
+# xhigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -250,25 +251,25 @@ function global:Reload-PesterModule {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQw99FtHultUtUBp8bNTp77lKiUhTANBgkqhkiG9w0B
-# AQEFAASCAQCQp3UMEMTXfOEJwi0Rhw55YMVkKQKWLJ7MqKGYx6yyxC8CH8gHUvY8
-# girqsNEJmYmFXSoA8nEegM7sNWN4vRJ1opvwUrKZ48pJe8EtlBa3u7O+aaWUArTe
-# yH4LjeJSee6C0PrGwMkClq93ielLN8ZfUeOO9KXuySfYbNdd/vRu7bKCIlMzSNHC
-# tRkSebuw4mffsPyrlOLuepJIS1RHlOt1+2trKw7h+8maT8J256+jeEGPb9lLOEwg
-# FBjpPViDmkesgKal2m+VtrJ8HB8XaxeHxPovdYRT63F0FTk+uKHASMSOVDw0KNgm
-# EVtUlymY3YyGY17qc8//F3ixoBNAUeTfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQkcIz7L2FgesuIvGZALB9g0qIZRzANBgkqhkiG9w0B
+# AQEFAASCAQB6IWkJe77jnB9CFMzrLofQUfAUfL4yCkLCjJ/3CGj49MxpYLlDKLJs
+# tFmauipIkzFQJ0DpReJTFmXJTTKkTpir1pZMAatByemgVuXP2MYnyxCG1v701IFX
+# JYBYeQ0+7THjmF0eBXT9UMY9juA4LxlV8Oseyz2Gl9MA9wElGFapzRQEfQXzjwrC
+# Dr/7QEPQGoHMDtuYLbPYvDiCIANBD0r3vvCZzSvY9Y6jt6FFgpyM4fuDmPU+G7tx
+# 1+d+KLy7F5yMLeLmmZ8HRnKOC+J+dPvzXTM6fLZInD7fzVvITUonR7T61AflE8JL
+# iC5E9uy3f2khLWV50jID5iSmEmocaQCDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1NlowIwYJKoZIhvcN
-# AQkEMRYEFJVD/KaOUL4SCFCbDf5G29btUCxQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0N1owIwYJKoZIhvcN
+# AQkEMRYEFH3yAGPb7pHrhXc7U1qJ7O8UeUaKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB35VDOLShQschTsNVJFatsaDuX8Srh7L82AdW1yUADsvos
-# ersrViI2KhDhyTg+JnLDLnzS+Hjm8+ySzHb6qMJy0P+6pXz9UPwaxZ6oyleBRCn2
-# iqqodDzcoGQ1lZiSPez+ektq9gc9Ho+bnvcUCkdTvpqUUzzeyQxpXIozTu8yY7LU
-# s9mTNhykyfqqeuh31wq46xNTY95sXrrFeEi+fQX13zQJgCAeA58dGnb6UEtkiXO6
-# /tnKED3tuwS1+QeFlNjvjF82jwV3pEgisboNTNpLR3kLvpujNFuPMhWRzD/4KqJA
-# 7ozPhJDtIeZr3f4s3ml0+NBq3JZ/2M/u+N/niu1f
+# hkiG9w0BAQEFAASCAQANVmgFwIrOb3QouN/YC2PUrG7bhiAErm+lE1s1piIKfn1b
+# Uv1Q/if9uD4o6c8k0At7Lpprb5X8UCKRduH2ShqJ9BUiMz9ebVYGgtm6WOksAI0G
+# buiqt5tZfsU/vme9awBPDzHOxZFkhD9fROYbR4+68mGChnhStvLKikm96tRjwyRL
+# vt5Z3pCSn2UxQOZiP/GSS8YOtxP2A8radPg3O1W0U51TSrV8auXaSvfZLf2w3o0X
+# N4yiWSyysp719+jo4ykH+R3EKlFoAHtu+FzvwPE3xFLsv29xav6UrrUr85ZFumHq
+# t/sz/IjZpV+KYD81UkmwfWyooW6eH3aHkFb0+jw0
 # SIG # End signature block

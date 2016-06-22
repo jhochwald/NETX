@@ -1,12 +1,11 @@
-#requires -Version 3
-#requires -Modules NETX.Core
+﻿#requires -Version 3
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-13
+		# last modified   : 2016-06-22
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -336,25 +335,25 @@ function motd {
 			# How much Disk Space do we have here?
 			if ($Free -le 5) {
 				# Less then 5 GB available - WARN!
-				Write-Host "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Yellow'
+				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Yellow'
 			} elseif ($Free -le 2) {
 				# Less then 2 GB available - WARN a bit more aggressive!!!
-				Write-Host "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Red'
+				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Red'
 			} else {
 				# Regular Disk Free Space- GREAT!
 				# With more then 5 GB available
-				Write-Host "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available"
+				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available"
 			}
 		}
 
-		Write-Host ''
+		Write-Host -Object ''
 
 		if ((Get-Command Get-Uptime -ErrorAction:SilentlyContinue)) {
 			# Get the Uptime...
 			Get-Uptime
 		}
 
-		Write-Host ''
+		Write-Host -Object ''
 	}
 }
 
@@ -393,13 +392,13 @@ If ($host.Name -eq 'ConsoleHost') {
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is a regular user Account!
-		Write-Host "Entering PowerShell as $MyUserInfo with User permissions on $env:COMPUTERNAME" -ForegroundColor 'White'
+		Write-Host -Object "Entering PowerShell as $MyUserInfo with User permissions on $env:COMPUTERNAME" -ForegroundColor 'White'
 	} else {
 		# Make the Name ALL Lower case
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is an elevated session!
-		Write-Host "Entering PowerShell as $MyUserInfo with Admin permissions on $env:COMPUTERNAME" -ForegroundColor 'Green'
+		Write-Host -Object "Entering PowerShell as $MyUserInfo with Admin permissions on $env:COMPUTERNAME" -ForegroundColor 'Green'
 	}
 
 	# Show infos
@@ -461,8 +460,8 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxxmrNpErWcTgJ+pUdi+00BY4
-# OqOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfGoM0QUo3tEApuLP2ZVJnbIM
+# vGOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -605,25 +604,25 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQdpRkcNazjT6NByUjNBXEO3mCESDANBgkqhkiG9w0B
-# AQEFAASCAQBGAfUhM4/wz04tTvouhjBsDsyYUieM4jkWYB0PrEH735P6jFq71Y0W
-# 3d8QQAy4HMV3cC130I3RnL6GwFfKKSlO1Ac60nEEah7XKuPn7Bp/o463p8feXsiS
-# +evD5rwG6eR7cPFhmi/c4a6+EcgJyld5YClTTlXsH/3p+5AI5q7wLnh4W9R1nFY4
-# TE3stGBxIoalNWYVrOJyS661pKiREMrXMQnf1Gfvx7CfL8vcI8PbFm14lLoOF2mE
-# WhEIyRGfuEZOwRpxibBMaF/L8lVsGHISao+O3AjGv7jO2021BIPUTsrA1zwmu2yy
-# JKl1pjacMhfzBJUk9KtVHy+/74b8jz5YoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS4QneYs+RBzK17K6DZ5wHGuRGZ9DANBgkqhkiG9w0B
+# AQEFAASCAQBu6I2Dj6Tfy3pPhI2qDBHI58C2Ozw9Hfb0I4TbVG8rVHo6jkjsrkHc
+# Wa/PA+0c4cw8dBpSLgTthloXjNvFsIFCy34R8YiTpLsdy26ifpbEKUqIzE0I2mN4
+# geNs4A/ag9nqbtSr91PEhZqUN6jt84dqyxcImhSdSx7S3mko+q902+txZZjo3B0i
+# +71sLA9zoWUtUzqf+Z8YPZHnV42pUmUNgPJ7wXNHuo5TlcVFdb/71dWZQlbs//i/
+# Wpxl1qt8rIDM9SWfom3n7N23I0XdK5RbT9hdVPupHGfIj+4hNtu5SmvjOOtIlx5G
+# 2pXBgP/ZHWMd2Os2gpbhAOnjw/eCr04QoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyMVowIwYJKoZIhvcN
-# AQkEMRYEFOcBInr4JpRe6wRA+pv5vzHbjEy9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMFowIwYJKoZIhvcN
+# AQkEMRYEFBtI+gOetD60boLonDi40rwqbxK6MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBWPGduNrPBubCYVAgdXSuy/IofqlvkxI7L2OnevgsM8KVz
-# Mdb8Xb3XyhUYCxSwzmX1CazZ1bUJm5zmVG8B3HQ0tB+FVh08fS5/MLdOhel4b4Dv
-# 075m+0l1W8a1q8OnLMWaeqFunxl/rwuFov0HEliD/V1HYfKux3MD8ILMezDM+LqL
-# dva05vuSoiyALqJ1c/iYtxjgooR3nELhe7ZWFAByw1G+rfC8PVjZoNuEZ4HebU36
-# AeP3sXXBZf/HXkJqVyDVv2coHUhd17lI/dkEp3/4l9Cb0mGrXFag/umYaf/66unY
-# cVfaj3c9CeJ1aNvDaQul9qGL6qTae6kpHfSHG0hi
+# hkiG9w0BAQEFAASCAQCWsm9zHlZgtiHlPbyyhpSUBd+gfihWfAD+G/l3QgWpgHNw
+# e9+t6RGEr0DxKAKnHXl/x8w5MIsZ5ojfb1ZEheP46nSYpXrz/y7f84GWK446tKAp
+# 2LRsHq17LPKUeml9dGWuB6GPYsyTv5PjmBbvhnwRMhuVSoF8UiPhvWpboNjsX/fx
+# 7OnKaiC+a6IqFkmtFMbsmTbgFf/Qs6e1cF84zxLNZx3OPLR/YKl0MtbXq+2u0Huv
+# dLlChp0uwweb2/bqWYxOK8JO20PqtjqgIFl5HyRwFEN4Ah0wBKETv4dJjRVzwTkY
+# JHvW+Jh2zP+IXVp8x1w78UR/wij87at/N34tFTSj
 # SIG # End signature block

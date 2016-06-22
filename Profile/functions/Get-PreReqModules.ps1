@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 3
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,182 +15,182 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-PreReqModules {
-  <#
-      .SYNOPSIS
-      Get all required Office 365 Modules and Software from Microsoft
+	<#
+			.SYNOPSIS
+			Get all required Office 365 Modules and Software from Microsoft
 
-      .DESCRIPTION
-      Get all required Office 365 Modules and Software from Microsoft
+			.DESCRIPTION
+			Get all required Office 365 Modules and Software from Microsoft
 
-      It Downloads:
-      -> .NET Framework 4.5.2 Off-line Installer
-      -> Microsoft Online Services Sign-In Assistant for IT Professionals RTW
-      -> Microsoft Azure Active Directory PowerShell Module
-      -> SharePoint Online Management Shell
-      -> Skype for Business Online Windows PowerShell Module
+			It Downloads:
+			-> .NET Framework 4.5.2 Off-line Installer
+			-> Microsoft Online Services Sign-In Assistant for IT Professionals RTW
+			-> Microsoft Azure Active Directory PowerShell Module
+			-> SharePoint Online Management Shell
+			-> Skype for Business Online Windows PowerShell Module
 
-      .PARAMETER Path
-      Where to Download
+			.PARAMETER Path
+			Where to Download
 
-      .EXAMPLE
-      PS C:\> Get-PreReqModules
+			.EXAMPLE
+			PS C:\> Get-PreReqModules
 
-      Description
-      -----------
-      Get all required Office 365 Modules and Software from Microsoft.
-      Downloads them to: "c:\scripts\powershell\prereq"
-      (Will be created if it doe not exist)
+			Description
+			-----------
+			Get all required Office 365 Modules and Software from Microsoft.
+			Downloads them to: "c:\scripts\powershell\prereq"
+			(Will be created if it doe not exist)
 
-      .EXAMPLE
-      PS C:\> Get-PreReqModules -Path 'c:\scripts\download'
+			.EXAMPLE
+			PS C:\> Get-PreReqModules -Path 'c:\scripts\download'
 
-      Description
-      -----------
-      Get all required Office 365 Modules and Software from Microsoft.
-      Downloads them to: "c:\scripts\download"
-      (Will be created if it doe not exist)
+			Description
+			-----------
+			Get all required Office 365 Modules and Software from Microsoft.
+			Downloads them to: "c:\scripts\download"
+			(Will be created if it doe not exist)
 
 
-      .NOTES
-      Just a helper function based on an idea of En Pointe Technologies
+			.NOTES
+			Just a helper function based on an idea of En Pointe Technologies
 
-      .NET Framework 4.5.2 Off-line Installer URL
-      https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+			.NET Framework 4.5.2 Off-line Installer URL
+			https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
 
-      Microsoft Online Services Sign-In Assistant for IT Professionals RTW URL
-      https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi
+			Microsoft Online Services Sign-In Assistant for IT Professionals RTW URL
+			https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi
 
-      Microsoft Azure Active Directory PowerShell Module URL
-      https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi
+			Microsoft Azure Active Directory PowerShell Module URL
+			https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi
 
-      SharePoint Online Management Shell URL
-      https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi
+			SharePoint Online Management Shell URL
+			https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi
 
-      Skype for Business Online Windows PowerShell Module URL
-      https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe
-  #>
+			Skype for Business Online Windows PowerShell Module URL
+			https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Where to Download')]
-    [System.String]$Path = 'c:\scripts\powershell\prereq'
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Where to Download')]
+		[System.String]$Path = 'c:\scripts\powershell\prereq'
+	)
 
-  BEGIN {
-    # Is the download path already here?
-    if (-not (Test-Path $Path)) {(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1} else {Write-Output -InputObject 'Download path already exists'}
-  }
+	BEGIN {
+		# Is the download path already here?
+		if (-not (Test-Path $Path)) {(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1} else {Write-Output -InputObject 'Download path already exists'}
+	}
 
-  PROCESS {
-    <#
-        Now download all the required software
-    #>
+	PROCESS {
+		<#
+				Now download all the required software
+		#>
 
-    try {
-      # Whare to download and give the Filename
-      $dlPath = (Join-Path -Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
+		try {
+			# Whare to download and give the Filename
+			$dlPath = (Join-Path -Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
 
-      # Is this file already downloaded?
-      if (Test-Path $dlPath) {
-        # It exists
-        Write-Output -InputObject "$dlPath exists..."
-      } else {
-        # Download it
-        Write-Output -InputObject 'Processing: .NET Framework 4.5.2 Off-line Installer'
-        Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
-      }
-    } catch {
-      # Aw Snap!
-      Write-Warning -Message 'Unable to download: .NET Framework 4.5.2 Off-line Installer'
-    }
+			# Is this file already downloaded?
+			if (Test-Path $dlPath) {
+				# It exists
+				Write-Output -InputObject "$dlPath exists..."
+			} else {
+				# Download it
+				Write-Output -InputObject 'Processing: .NET Framework 4.5.2 Off-line Installer'
+				Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
+			}
+		} catch {
+			# Aw Snap!
+			Write-Warning -Message 'Unable to download: .NET Framework 4.5.2 Off-line Installer'
+		}
 
-    try {
-      $dlPath = (Join-Path -Path $Path -ChildPath 'msoidcli_64.msi')
+		try {
+			$dlPath = (Join-Path -Path $Path -ChildPath 'msoidcli_64.msi')
 
-      if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
-        Write-Output -InputObject 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
-        Invoke-WebRequest -Uri https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi -OutFile $dlPath
-      }
-    } catch {Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'}
+			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+				Write-Output -InputObject 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
+				Invoke-WebRequest -Uri https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi -OutFile $dlPath
+			}
+		} catch {Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'}
 
-    try {
-      $dlPath = (Join-Path -Path $Path -ChildPath 'AdministrationConfig-en.msi')
+		try {
+			$dlPath = (Join-Path -Path $Path -ChildPath 'AdministrationConfig-en.msi')
 
-      if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
-        Write-Output -InputObject 'Processing: Microsoft Azure Active Directory PowerShell Module'
-        Invoke-WebRequest -Uri https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi -OutFile $dlPath
-      }
-    } catch {Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'}
+			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+				Write-Output -InputObject 'Processing: Microsoft Azure Active Directory PowerShell Module'
+				Invoke-WebRequest -Uri https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi -OutFile $dlPath
+			}
+		} catch {Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'}
 
-    try {
-      $dlPath = (Join-Path -Path $Path -ChildPath 'sharepointonlinemanagementshell_4915-1200_x64_en-us.msi')
+		try {
+			$dlPath = (Join-Path -Path $Path -ChildPath 'sharepointonlinemanagementshell_4915-1200_x64_en-us.msi')
 
-      if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
-        Write-Output -InputObject 'Processing: SharePoint Online Management Shell'
-        Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
-      }
-    } catch {Write-Warning -Message 'Unable to download: SharePoint Online Management Shell'}
+			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+				Write-Output -InputObject 'Processing: SharePoint Online Management Shell'
+				Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
+			}
+		} catch {Write-Warning -Message 'Unable to download: SharePoint Online Management Shell'}
 
-    try {
-      $dlPath = (Join-Path -Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
+		try {
+			$dlPath = (Join-Path -Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
 
-      if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
-        Write-Output -InputObject 'Processing: Skype for Business Online Windows PowerShell Module'
-        Invoke-WebRequest -Uri https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe -OutFile $dlPath
-      }
-    } catch {Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'}
-  }
+			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+				Write-Output -InputObject 'Processing: Skype for Business Online Windows PowerShell Module'
+				Invoke-WebRequest -Uri https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe -OutFile $dlPath
+			}
+		} catch {Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'}
+	}
 
-  END {
-    Write-Output -InputObject "Prerequisites downloaded to $($Path)"
+	END {
+		Write-Output -InputObject "Prerequisites downloaded to $($Path)"
 
-    Invoke-Item $Path
-  }
+		Invoke-Item $Path
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV1Ft8Laeoad6La8OpyXDysRo
-# o3OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjoIFvJmYUh7KJugTfzNTkRLu
+# Mn2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -211,10 +212,10 @@ function global:Get-PreReqModules {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -230,12 +231,12 @@ function global:Get-PreReqModules {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -332,25 +333,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQQd4cu03HS1xyzOiRhQuggoau3ODANBgkqhkiG9w0B
-# AQEFAASCAQBy+nr6EbHbWTCtMto5W1NYGpa6pmuNrORE0LtakKQTU+2TxY8GpMvA
-# Qj13HbxtEq3ffyKrU5xJqI+OnI5irC3j9R0G0RjQb3lo7CFANR52bT3RhmACMkts
-# RrwMBk9g6ra9l4THCp+d9lwmkpXeml3nlMykBZvmV6LglvXLHcDgsmbmpFDT0FIu
-# kVeDL/Ryj6nj+14UTzCJzDcjx1vzZhZRExBoByzUtsiGmi8zGUtPCHrc7iKt8b12
-# 9Xa1NK6/7RS1gm1FE8DLuin7rv0RcZ2fpiKR9op3WXCNaatElAqBRuoSZVqGI+CY
-# Ae9j3/F8rPPWf0VWg/JSj8icY3gMiISsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS15u8XzUC8ycxSqsHNtXi4Ga5I2zANBgkqhkiG9w0B
+# AQEFAASCAQA106A2nrW9dldv8U+sEB5lsRx9O27MPIgrphgMdV7CgxRlDsKTcpTV
+# fqvHi1L5vAe36L5fGAiVno0z+kSC9YbCY5Y4INC3L1XZCrrq/461vhu9skhEdA8R
+# 9djhX2aBHZnoo1E7/RjRL1n4pHSNBV6A8UANUpvAlKsBN4IeVJpdJ/2EWN2ya3ix
+# X4DbOxSTT73IwLB5NNKOWkZuBFYIJcpIM2AsFNvvJUAr+WXuMc7G6fDtb5/3SPTh
+# NSh6K0wdjSvV1q4/hrjuDqSi22m7h3bH7fm1IUa8oWKRXj2lUYMzenRSdEqhEUW2
+# 1lZaGfLcbYbC7ZjNtzuyBW5X1Lrq115+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0MlowIwYJKoZIhvcN
-# AQkEMRYEFNnJ3G1S88sxx4H/ksRSU8u9EJrIMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzMVowIwYJKoZIhvcN
+# AQkEMRYEFJISgC7Ux62WRDBqU5SERsdiFZhtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB1GVBz1+HLupn+IK3VJqrFdsQTvUwJ2YM3eq+AypcyqJ0c
-# cSelbgqlnjFwE8lgex8DBybn/Aut5fcIohz5h6ndUO/EsBdqgmgpjNRtBtMSDMzI
-# y21TlaeexQoWgg4mKFOvBo369MvGsbPtoVHK4nAEUyjCearwUUDTevMf0qeD0xoM
-# lBV2Cf4HOY0R7yIyg/C+BDiCQtmrsIOI88qw3wXppzezkBFYN5VKxiUqOSV5PqQv
-# W8qTRvW15AuM1gt+hytbjnJ+QpcVCZ4o1rE97+FbMcdGNZhJfZGu2/Td5Ijj9XKm
-# CV0rHgxmMVzbWeTY8L3amZLU2NPVyfi+PK/khzck
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCglu9owPV2RHka5qmqLYV19qgq6czp6TROLPEdJ/ir/sMu
+# 0E8dESiPTIISy22O10Bi5yn1Fi+8MTZ4d8tJnQAasH/rIEKFtcfFwft+VWLoIXP+
+# MdfHhqhEL8qP/Y3bqkyJvULJ46RLKsa+68n8VRUoxgzm5CreyFloP1N5zqF3pjyT
+# cc8C5USmr8U3cvmR5PRJAW+r1zlNZd/E7A2rSBOANRj8DcVLsQlHsGT/LDs+Kr5j
+# 6mWTpmM+eiZQ9EXZN7iykERlTq17RPKgiEkY9ls9JR1O+Ioa4tTLlLjsXFx/Y9C5
+# W2uzVtIWR01keaB+igdxIxLeTrEzqdhNro78jjj9
 # SIG # End signature block

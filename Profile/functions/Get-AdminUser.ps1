@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,95 +15,95 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-AdminUser {
-  <#
-      .SYNOPSIS
-      Small function to see if we are Admin
+	<#
+			.SYNOPSIS
+			Small function to see if we are Admin
 
-      .DESCRIPTION
-      Check if the user have started the PowerShell Session as Admin
+			.DESCRIPTION
+			Check if the user have started the PowerShell Session as Admin
 
-      .EXAMPLE
-      PS C:\> Get-AdminUser
-      True
+			.EXAMPLE
+			PS C:\> Get-AdminUser
+			True
 
-      Description
-      -----------
-      Return a boolean (True if the user is Admin and False if not)
+			Description
+			-----------
+			Return a boolean (True if the user is Admin and False if not)
 
-      .EXAMPLE
-      PS C:\> if ( Get-AdminUser ) {Write-Output "Hello Admin User"}
+			.EXAMPLE
+			PS C:\> if ( Get-AdminUser ) {Write-Output "Hello Admin User"}
 
-      Description
-      -----------
-      Prints "Hello Admin User" to the Console if the session is started
-      as Admin!
+			Description
+			-----------
+			Prints "Hello Admin User" to the Console if the session is started
+			as Admin!
 
-      .NOTES
-      Just a little helper function
+			.NOTES
+			Just a little helper function
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param ()
 
-  BEGIN {
-    # Set the objects
-    Set-Variable -Name 'Id' -Value $([Security.Principal.WindowsIdentity]::GetCurrent())
-    Set-Variable -Name 'IdWindowsPrincipal' -Value $(New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ($Id))
-  }
+	BEGIN {
+		# Set the objects
+		Set-Variable -Name 'Id' -Value $([Security.Principal.WindowsIdentity]::GetCurrent())
+		Set-Variable -Name 'IdWindowsPrincipal' -Value $(New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ($Id))
+	}
 
-  PROCESS {
-    # Return what we have
-    Write-Output -InputObject "$($IdWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
-  }
+	PROCESS {
+		# Return what we have
+		Write-Output -InputObject "$($IdWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUw4+oeULvLFEe+llpd+NAw6Dw
-# Pt2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDw5W8r9/JdiLJCBRC32+jA/D
+# Q1OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +246,25 @@ function global:Get-AdminUser {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTQbipb/bdMFC9bnhCQe97b2OBk4zANBgkqhkiG9w0B
-# AQEFAASCAQB6qMfgioqiMdE663+MQ4hSMQ8axEH9If+RgfmzKkOphA2y/scNhL+z
-# CPb2iTeg2XFfraW6vqiGvkK9tOfeKAF76W13LYD8294InxGXOF1mBkKTd19Cd8+W
-# VDh27eJrwnbBJ4BNWBQ23aARSI0BXCOi7lB1ZaTcm5zAW5jDT+yto8RWOPnQezEp
-# 45LtiiWx6QeqjGW4w33Mns/Qza4ZIlGuRUfYZ9Lhb4xblVseccMtKcxV5pYeMKwT
-# Uz2HoEtk8rgcM4ed27yqCRDHzUzihkpExY7do1Ofqj4rtuORgWo9VyiVpRg6D1pe
-# SQPXK0Nv+KhPbkYJdUqhrPSEIDrAz+XXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTWoknzmiv+0iiw/7na+AZb7J9zuTANBgkqhkiG9w0B
+# AQEFAASCAQBWH3ZPQjG0N6jNsHA1N/LoVAYYl/VfU6uVucgKpMHTZKnfss+7wfOO
+# TCRtUmcLgMsdguUDHowKubPvWhSWVMDa8WQCO8UloCuli8oZrAI9xK/bodf8hTWU
+# s7dXMZvWA1hS44Jjhl3vkGKD3W7IdWKCvcJsGGekEpmuNGtYwNakfwy76LTRWJp+
+# TIhVlA1ub9nVj7jNWn45hv1BXyihmJ8ny4IDvZTZKdA9hyLcwd1xR52HR++oaVYx
+# /T463QF43B/FzrSXgFQWYj5NgkBxjUIxW4H1EKw2cKC/mGlnstQ/IH1/waI1e1YT
+# KCtX6GJ38fqRyTnYT9n+Nuwz9B8GRcJMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzM1owIwYJKoZIhvcN
-# AQkEMRYEFL8vMyY9503uKBMV+NWfiRca0JT2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyMVowIwYJKoZIhvcN
+# AQkEMRYEFFYpt63HGQdsa7iZfOERZg+Cg8jxMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBKSHHZkceKgzu2EWXkZzpIiKiEA9hvg37vr+eOWLqvUHzP
-# XBRDjROQn45cnAd2ty3sFOSthHCbTm5Pz0q2qUzSDQt/ZFbC0ylvnTnCV5lHmn1L
-# +nG78S1Zz4ZG4tFyVL/vgngn2Q3pnG+SMPV3X94ZU3x9WaJ+qbvm4jS3UU2s6rdx
-# HkIcwoitJJd+5Up9/FhFLqjcQmfcDECQ+5W2RErEaWP0q+VF5NAm9/JSPJeojJ1t
-# pszrDarPCoNX8mAy3qPRHpE4U4ZBW02jN6/U3IdlxhQl31vS4I7V+wHtiZyV2aRq
-# JKTFBHYdWq5HsvYX6ps1SJYiH39Eq2A3b8URv48X
+# hkiG9w0BAQEFAASCAQCm5icjXmDHO8nt4+qDyewmvaWIIGMZhDPAeSLzArI5XBGL
+# C+UUk9awlvdyv34+Wf/oR7eZ4SMU5MpBzBob/aI+ph8Zutcd1xTimnzyyCuepBr+
+# aKNdVB9c6+UUJyePXgM6DpAS0y63glHmsl6zj5dTnqxV8zu9FDAlFemfwr17L+Gs
+# EZex/GqyAGFj6V9edBZh5JW1PsbzV17HNal4L4ceHmgHERBXSFLJVW+d0SweL5PO
+# 7abYYDfiSE0+jruJyTI/UisQOjINFnDWQVikZ2aBJg8hEjPHOsGQhvXUI/63FvU4
+# oy9T16aaJ5eAJgON+bY1pfzS13MNNgGUSJqezA0Y
 # SIG # End signature block

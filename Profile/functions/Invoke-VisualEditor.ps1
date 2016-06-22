@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,105 +15,105 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-VisualEditor {
-  <#
-      .SYNOPSIS
-      Wrapper to edit files
+	<#
+			.SYNOPSIS
+			Wrapper to edit files
 
-      .DESCRIPTION
-      This is a quick wrapper that edits files with editor from the
-      VisualEditor variable
+			.DESCRIPTION
+			This is a quick wrapper that edits files with editor from the
+			VisualEditor variable
 
-      .PARAMETER args
-      Arguments
+			.PARAMETER args
+			Arguments
 
-      .PARAMETER Filename
-      File that you would like to edit
+			.PARAMETER Filename
+			File that you would like to edit
 
-      .EXAMPLE
-      PS C:\> Invoke-VisualEditor example.txt
+			.EXAMPLE
+			PS C:\> Invoke-VisualEditor example.txt
 
-      Description
-      -----------
-      Invokes Note++ or ISE and edits "example.txt".
-      This is possible, even if the File does not exists...
-      The editor should ask you if it should create it for you
+			Description
+			-----------
+			Invokes Note++ or ISE and edits "example.txt".
+			This is possible, even if the File does not exists...
+			The editor should ask you if it should create it for you
 
-      .EXAMPLE
-      PS C:\> Invoke-VisualEditor
+			.EXAMPLE
+			PS C:\> Invoke-VisualEditor
 
-      Description
-      -----------
-      Invokes Note++ or ISE without opening a file
+			Description
+			-----------
+			Invokes Note++ or ISE without opening a file
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Position = 0)]
-    [Alias('File')]
-    [System.String]$args
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Position = 0)]
+		[Alias('File')]
+		[System.String]$args
+	)
 
-  PROCESS {
-    # Call the newly set Editor
-    if (-not ($VisualEditor)) {
-      # Aw SNAP! The VisualEditor is not configured...
-      Write-Error -Message:'System is not configured well! The Visual Editor is not given...' -ErrorAction:Stop
-    } else {
-      # Yeah! Do it...
-      if (-not ($args)) {
-        #
-        Start-Process -FilePath $VisualEditor
-      } else {
-        #
-        Start-Process -FilePath $VisualEditor -ArgumentList "$args"
-      }
-    }
-  }
+	PROCESS {
+		# Call the newly set Editor
+		if (-not ($VisualEditor)) {
+			# Aw SNAP! The VisualEditor is not configured...
+			Write-Error -Message:'System is not configured well! The Visual Editor is not given...' -ErrorAction:Stop
+		} else {
+			# Yeah! Do it...
+			if (-not ($args)) {
+				#
+				Start-Process -FilePath $VisualEditor
+			} else {
+				#
+				Start-Process -FilePath $VisualEditor -ArgumentList "$args"
+			}
+		}
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name vi -Value Invoke-VisualEditor -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -121,8 +122,8 @@ function global:Invoke-VisualEditor {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhA0Rl4HmUl5gRS3yQGyY6jK1
-# SeSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqoiw6FqnbZFWP0V4sR1qc14s
+# 952gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +266,25 @@ function global:Invoke-VisualEditor {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQNByXr8OE/CD6qaC4GGFuaeQXDMjANBgkqhkiG9w0B
-# AQEFAASCAQBXsM8JIX02HceRHuqEN20sbgcy69iRpiXE6YuK0drFwg0YUsoSX0Ua
-# iDDv7uf+7C76TDlnm6rMi8vQTpjOYt3Y/sYdZDM2BnSysi5AcgH6dEOteIGHOZbk
-# kmdrZxgK6AiIu71J3ZK762hAIo/1goGB2p1kl1/XDVpt01X8SaCEL5wS67yv9i1L
-# Cn2HJjB5wDtVkPQhPUu+KJGJta8d+gPp1PR4rvYrUgvNe4iFbzSAfD1zoddakXp6
-# 9D0GkwjWBwbdyaEORx2bKwt19SLvW1Qz6+UHcpKAfjC/xNW9W1WDgfoxtdgHtHyt
-# OOkxr/1n52nHCMq6WRKEjKdM5IafNkX+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTOyOGbFwdbT8XDipAfBj1Uq8Ij2zANBgkqhkiG9w0B
+# AQEFAASCAQAdJVvZlnv/2AUWDDK7XRIzpERVw9l9FL8oUP6JMBCMhfLEKqGwcxTk
+# J02oRkoc6XH1exuyxgtskzCS7StrXbAa1vD732q59Q2cYkZ3grTjevcJ8edOXLxh
+# bh633/c+ldrfqqUPdn4ne0wGI8j82vEpZeuGpgoSd7McOZdxs+bB+prRqSbSbeY5
+# AGBSW8VbDfke3yDxIYEPQd1vbEh2SOsnR5XSknWIuB94T8ry23jOXDQAHahzwmau
+# BNbbdVTjQHyRVysaKGsPAXdfYO5akbuInGmFWHIaRuTqHR6utxHYHrtUL/fmBzAr
+# fg+J4bX1x1zBSyDJMy1DPdiQNiYt77bMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1NFowIwYJKoZIhvcN
-# AQkEMRYEFOcCkH/UtgQ8cOsb29h7N7PMDgl1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0NFowIwYJKoZIhvcN
+# AQkEMRYEFNTYPRHQfnkww/+HiDPw1zPK4eSeMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAY+gEVs3D9MLEw23EFkJ4QT3VkTUH2Uf3gd/HGwWHqRtyv
-# Zenwbv+MNrr0GG5ZfLzScJ+7pfAOGVu7TA3P2DHmq6hpBbfQ6NZaWWUeFKd0hgzT
-# ulV1/ibATUPpZ5JXr1oblVLsljPlmLjpF2050zJdDJhn+TRAbp3qJycX6PXRvzMq
-# QdYww8vFOoopcky3owvxgNqufIITJOX7rxU9H8kVruiEAeAzOhiMZ0Ho2uuvwY43
-# hMh+On+YTo9N7J76BhPENxh088liKViTeTlz+2g41rwvwR5Pa6pWcarKvY5EbiGc
-# VDLMuVedu7F8+MPodH7e/3fUab95ijIuo/6aDCGJ
+# hkiG9w0BAQEFAASCAQAE0PVnprfLTqX0fSbl1lodL7+6kbHC03GDbuotqf9mUaTF
+# 7PpQe1u+dDkPUGstRiudm637AlvvX2bXBPxwiT3Nw93PfM6AKf1hnH0O/eye1Wdu
+# XSo+24yPyvdSilYl425WjL4vd5zd3H1LII6m36eKv7CjT8KQk+l61GV1vRGWdgfC
+# DEBdaaALRlFccPHf9Ck6d96GpOn2UlcgVLYKk1afzQ2dTypo9i56tIHQeLEqeJaY
+# 40ir+f6mCxaMI7/m8Hr13F4Z5JDPj1jBU67E/sO/7maFFAiKpHyh6/WQSFJd8DWh
+# CJaT/d26E7voSq7cPPTq1zzZkHq7Td/IpJLhMnRF
 # SIG # End signature block

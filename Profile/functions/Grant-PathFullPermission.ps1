@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,147 +15,147 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Grant-PathFullPermission {
-  <#
-      .SYNOPSIS
-      Grant Full Access Permission for a given user to a given Path
+	<#
+			.SYNOPSIS
+			Grant Full Access Permission for a given user to a given Path
 
-      .DESCRIPTION
-      Grant Full Access Permission for a given user to a given Path
+			.DESCRIPTION
+			Grant Full Access Permission for a given user to a given Path
 
-      .PARAMETER path
-      Path you want to grant the access to
+			.PARAMETER path
+			Path you want to grant the access to
 
-      .PARAMETER user
-      User you want to grant the access to
+			.PARAMETER user
+			User you want to grant the access to
 
-      .EXAMPLE
-      PS C:\> Grant-PathFullPermission -path 'D:\dev' -user 'John'
+			.EXAMPLE
+			PS C:\> Grant-PathFullPermission -path 'D:\dev' -user 'John'
 
-      Description
-      -----------
-      Grant Full Access Permission for a given user 'John' to a given
-      Path 'D:\dev'
+			Description
+			-----------
+			Grant Full Access Permission for a given user 'John' to a given
+			Path 'D:\dev'
 
-      .NOTES
-      Additional information about the function.
-  #>
+			.NOTES
+			Additional information about the function.
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Path you want to grant the access to')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$path,
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'User you want to grant the access to')]
-    [System.String]$user
-  )
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Path you want to grant the access to')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$path,
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'User you want to grant the access to')]
+		[System.String]$user
+	)
 
-  BEGIN {
-    if (-not (Test-Path -Path $path -PathType Container)) {
-      Write-Error -Message "Sorry $path does not exist!" -ErrorAction:Stop
+	BEGIN {
+		if (-not (Test-Path -Path $path -PathType Container)) {
+			Write-Error -Message "Sorry $path does not exist!" -ErrorAction:Stop
 
-      # Still here? Make sure we are done!
-      break
+			# Still here? Make sure we are done!
+			break
 
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    } else {
-      Write-Output -InputObject "Set full permission on $path for $user."
-    }
-  }
+			# Aw Snap! We are still here? Fix that the hard way...
+			exit 1
+		} else {
+			Write-Output -InputObject "Set full permission on $path for $user."
+		}
+	}
 
-  PROCESS {
-    # Get the existing ACL for the Path
-    try {
-      ($acl = (Get-Acl -Path $path -ErrorAction:Stop -WarningAction:SilentlyContinue)) > $null 2>&1 3>&1
-    } catch {
-      # Whoopsie
-      Write-Error -Message "Could not get existing ACL for $path" -ErrorAction:Stop
+	PROCESS {
+		# Get the existing ACL for the Path
+		try {
+			($acl = (Get-Acl -Path $path -ErrorAction:Stop -WarningAction:SilentlyContinue)) > $null 2>&1 3>&1
+		} catch {
+			# Whoopsie
+			Write-Error -Message "Could not get existing ACL for $path" -ErrorAction:Stop
 
-      # Still here? Make sure we are done!
-      break
+			# Still here? Make sure we are done!
+			break
 
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    }
+			# Aw Snap! We are still here? Fix that the hard way...
+			exit 1
+		}
 
-    # Do we have inheritance?
-    $inheritance = $(
-      if (Test-Path -Path $path -PathType Container) {
-        'ContainerInherit, ObjectInherit'
-      } else {
-        'None'
-    })
+		# Do we have inheritance?
+		$inheritance = $(
+			if (Test-Path -Path $path -PathType Container) {
+				'ContainerInherit, ObjectInherit'
+			} else {
+				'None'
+		})
 
-    # Build a new Rule...
-    $rule = (New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList ($user, 'FullControl', $inheritance, 'None', 'Allow'))
+		# Build a new Rule...
+		$rule = (New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList ($user, 'FullControl', $inheritance, 'None', 'Allow'))
 
-    # Set the new rule
-    $acl.SetAccessRule($rule)
+		# Set the new rule
+		$acl.SetAccessRule($rule)
 
-    # Apply the new Rule to the Path
-    try {
-      (Set-Acl -Path $path -AclObject $acl -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-    } catch {
-      # Whoopsie
-      Write-Error -Message "Could not set new ACL for $user on $path" -ErrorAction:Stop
+		# Apply the new Rule to the Path
+		try {
+			(Set-Acl -Path $path -AclObject $acl -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+		} catch {
+			# Whoopsie
+			Write-Error -Message "Could not set new ACL for $user on $path" -ErrorAction:Stop
 
-      # Still here? Make sure we are done!
-      break
+			# Still here? Make sure we are done!
+			break
 
-      # Aw Snap! We are still here? Fix that the hard way...
-      exit 1
-    }
-  }
+			# Aw Snap! We are still here? Fix that the hard way...
+			exit 1
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwziSUmDc17RRErCYTcn0JD4a
-# b1qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyt/a8dXXmo+wxaLJ6j0BSIqQ
+# Hz2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -176,10 +177,10 @@ function global:Grant-PathFullPermission {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -195,12 +196,12 @@ function global:Grant-PathFullPermission {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -297,25 +298,25 @@ function global:Grant-PathFullPermission {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR72DmsHo+4m2tVjDyGRc6LwRbS3DANBgkqhkiG9w0B
-# AQEFAASCAQBxqARc0PacdjsFO8OM2fGevRw/+XBSkxrhhDmh0lVe7MMgF8Qm/PQv
-# ro9SAo7E6i8h7YL2yGSR9nyzlEut0AWC39yYqaa1zW9tWCDQqKZ6y1FDeoZmXTsD
-# fPxHzIK3Ekc81sjh4JeF3BnIO2I8l+J81w8MJRjmPTxG+iFjFmeEjRwfXgsoPz74
-# NgsvSSj8RqsotSUF2ohfdr3k+o/QoQfiTdgWTJqnoDtkhNr+GgXXS1mB1m7oV/gZ
-# 2T2QQfeDC8A4jOnumfKfylPy9RDWzJy6dkg8F8OgZhX+Ply0KWMQMhuEbrXRw70D
-# ey8rtbvFXdv3rgIAjx2nk5hXqKkYVeKioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSmgM4ijY6EkQlYWh1I4Xlmi8d2ZjANBgkqhkiG9w0B
+# AQEFAASCAQB4tJWpeaEQzRXwtgbmIBMr0F3XmYC96l2AkEOHwJC8Mdbq2bXWg6Rq
+# PjlUCpKUo2tVm29JAyc4WWOFpKYy/WSKg4TCohRxAYZvXBh5vjiFCQ3IQh6ZOcTI
+# bF6iliacHgec9WHkEP+1DXGao2ktPklmoJ35FSmP9gFDKXbHEhCc4Hb9rm/dFhBB
+# C/AY+/qan0EuAhWl7HhuP8RigkNgXaIriiyJQFMEv5PM+z3Z25//zOgYCOkKhQUM
+# 1g+Pl8d6Hx5RjjFo+9BDa4ij9xpV+XSo/gqDZW5lmYPJ3czKMSFwdF40oAZTPnPn
+# mZX0GKuCy4YeZVSDma7fO/pYAOiQZUjuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0OVowIwYJKoZIhvcN
-# AQkEMRYEFPJM3eeY2mq3GthbondjA5aJ9iKgMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzOVowIwYJKoZIhvcN
+# AQkEMRYEFFZvwpTnCFCFZJsb5j3oXjKQdRJTMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAhrhZcdcBTVYzwzgVvd7vHPLu1rI34TG0xnJMDxF8MIca/
-# 0oCAnTAyJtCiikeJkSAG/R0PplJ/97+2MjfJAjTQOzEwdG2McliDcvRfy6RS1Hph
-# S77id1dSPBUBGjFE1R+KA289Ayxwb2Kk4Xyql8GqIQek3YaHHLBjld9b5sncOnCw
-# yZ+uf2diDogh8M6o0ZFKTb5Wf+XfABEfvQpsQqEcjCu8zUHNVVvelktofAq00Hsd
-# 7O/sBaUK8MjK2/X3NXY240pZx47eXFzZ5Sg/M68sTkrkKkNO3lYMx8IDbnDztRz1
-# X0hX9twNXs41NY+JpO2DnymLtQ5APOnalteRarNM
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBYsMKeY78tbhO9Zn5/22QQPWZcAcObIUUiJEJG+fAxQF1O
+# vKtAT9r/6YavysW+4qt3SxoYpWaCWCxH7ZPY6GPn6OY3m5LE/6tnG0sEAc+rkb8q
+# Cp0Q+jjmuIyqC/fxzCq9ck3BEPd4XdVNTAqaeLmj9CK1wfCDgdmyD4jkBj6QP2+f
+# NTyLBmISlzoXEQ0vuIEbNspYRMLWPJgKnzCuVOJT17KmsUhT+vQGDOPSS9L8rKPS
+# epMf5cQDJtQwvIvI683pPCaH4io4SlAL2sZVLyr2KX9BG9tWNuWJcM4F7MsWaoeg
+# y0sXg9rJ+YYPIYSBxLt7Ewylc7KZ59srIlIzVq3W
 # SIG # End signature block

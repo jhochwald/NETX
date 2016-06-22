@@ -1,105 +1,106 @@
-﻿<#
-    Basic Function found somewhere on the Internet.
-    Unknown license and unknown copyright.
+﻿#requires -Version 2
+<#
+		Basic Function found somewhere on the Internet.
+		Unknown license and unknown copyright.
 
-    We just adopted and tweaked it.
+		We just adopted and tweaked it.
 #>
 
 function global:Get-BingSearch {
-  <#
-      .SYNOPSIS
-      Get the Bing results for a string
+	<#
+			.SYNOPSIS
+			Get the Bing results for a string
 
-      .DESCRIPTION
-      Get the latest Bin search results for a given string and presents it
-      on the console
+			.DESCRIPTION
+			Get the latest Bin search results for a given string and presents it
+			on the console
 
-      .PARAMETER searchstring
-      String to search for on Bing
+			.PARAMETER searchstring
+			String to search for on Bing
 
-      .EXAMPLE
-      PS C:\> Get-BingSearch -searchstring:"Joerg Hochwald"
+			.EXAMPLE
+			PS C:\> Get-BingSearch -searchstring:"Joerg Hochwald"
 
-      Description
-      -----------
-      Return the Bing Search Results for "Joerg Hochwald"
+			Description
+			-----------
+			Return the Bing Search Results for "Joerg Hochwald"
 
-      .EXAMPLE
-      PS C:\> Get-BingSearch -searchstring:"KreativSign GmbH"
+			.EXAMPLE
+			PS C:\> Get-BingSearch -searchstring:"KreativSign GmbH"
 
-      Description
-      -----------
-      Return the Bing Search Results for "KreativSign GmbH" as a formated
-      List (fl = Format-List)
+			Description
+			-----------
+			Return the Bing Search Results for "KreativSign GmbH" as a formated
+			List (fl = Format-List)
 
-      .NOTES
-      This is a function that Michael found useful, so we adopted and
-      tweaked it a bit.
+			.NOTES
+			This is a function that Michael found useful, so we adopted and
+			tweaked it a bit.
 
-      The original function was found somewhere on the Internet!
+			The original function was found somewhere on the Internet!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [ValidateNotNullOrEmpty()]
-    [Alias('Search')]
-    [System.String]$searchstring = $(throw 'Please specify a search string.')
-  )
+	[CmdletBinding()]
+	param
+	(
+		[ValidateNotNullOrEmpty()]
+		[Alias('Search')]
+		[System.String]$searchstring = $(throw 'Please specify a search string.')
+	)
 
-  BEGIN {
-    # Use the native .NET Client implementation
-    $client = New-Object -TypeName System.Net.WebClient
+	BEGIN {
+		# Use the native .NET Client implementation
+		$client = New-Object -TypeName System.Net.WebClient
 
-    # What to call?
-    $url = "http://www.bing.com/search?q={0}`&format=rss" -f $searchstring
-  }
+		# What to call?
+		$url = "http://www.bing.com/search?q={0}`&format=rss" -f $searchstring
+	}
 
-  PROCESS {
-    # By the way: This is XML ;-)
-    [xml]$results = ($client.DownloadString($url))
+	PROCESS {
+		# By the way: This is XML ;-)
+		[xml]$results = ($client.DownloadString($url))
 
-    # Save the info to a variable
-    $channel = ($results.rss.channel)
+		# Save the info to a variable
+		$channel = ($results.rss.channel)
 
-    # Now we loop over the return
-    foreach ($item in $channel.item) {
-      # Create a new Object
-      $result = (New-Object -TypeName PSObject)
+		# Now we loop over the return
+		foreach ($item in $channel.item) {
+			# Create a new Object
+			$result = (New-Object -TypeName PSObject)
 
-      # Fill the new Object
-      $result | Add-Member -MemberType NoteProperty -Name Title -Value $item.title
-      $result | Add-Member -MemberType NoteProperty -Name Link -Value $item.link
-      $result | Add-Member -MemberType NoteProperty -Name Description -Value $item.description
-      $result | Add-Member -MemberType NoteProperty -Name PubDate -Value $item.pubdate
+			# Fill the new Object
+			$result | Add-Member -MemberType NoteProperty -Name Title -Value $item.title
+			$result | Add-Member -MemberType NoteProperty -Name Link -Value $item.link
+			$result | Add-Member -MemberType NoteProperty -Name Description -Value $item.description
+			$result | Add-Member -MemberType NoteProperty -Name PubDate -Value $item.pubdate
 
-      $sb = {
-        $ie = New-Object -ComObject internetexplorer.application
-        $ie.navigate($this.link)
-        $ie.visible = $true
-      }
+			$sb = {
+				$ie = New-Object -ComObject internetexplorer.application
+				$ie.navigate($this.link)
+				$ie.visible = $true
+			}
 
-      $result | Add-Member -MemberType ScriptMethod -Name Open -Value $sb
-    }
-  }
+			$result | Add-Member -MemberType ScriptMethod -Name Open -Value $sb
+		}
+	}
 
-  END {
-    # Dump it to the console
-    Write-Output -InputObject $result
-  }
+	END {
+		# Dump it to the console
+		Write-Output -InputObject $result
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHi2aOulxtitwntNkJa1Pd61F
-# YlSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjHZQIzGtp86mW3AbK1N910NW
+# BimgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +243,25 @@ function global:Get-BingSearch {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQOxvG3OVXSfaUgzHD8c5KI9AwJWjANBgkqhkiG9w0B
-# AQEFAASCAQBYOPiXXZAPc2GI1cMWjvUCDFWePkMYdfxBM4Lnrbbvf7m4bvkYY8cJ
-# RIZepvbxXOJWBuWa6iLB1SAYyxpK3NEVDOSXMiCz0zkoiG+WWW2LBxo6uksxWTr+
-# 0BwtMLsTneaCql2y2jvHI7bV0Kw5Kemkeu6/2myiZxHPIgcUwVq66g7o1JQL6YQQ
-# C5okHmzAmKvATsPWC26Fd8xFun82wcdpSXWqymlil4R/U/tZ8okGb1DIqYXVVAKO
-# Lo26YhxtmNu6P+bMYoE3wOfFKPRZ8g4QihvF6nvcTwZds1bYJ69BFp0Tb7SGdUCA
-# Czc3RvtAVOtGRcIhmuO58lmG+z/vGlV5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHlgTCptvMtJ6PHbeovXg/i8nGKTANBgkqhkiG9w0B
+# AQEFAASCAQBHatmTB1TKpx7LrF+QkOZ8RZ4y2HSV9AU5+HNMRoRai/H385AYItXH
+# uWG1aEbaZ38FLWTCTd+hM30+4ibXv30iQqqcs4wLuGCdEflLIGxKg+tJEZ+BjRdb
+# fPPiqp129GqwglG0ulzxJeLjKahLekatLGOdgyLMzd5KlJ7VZ68zlvLreXfNwEm8
+# Bhj0UFCss3Xc6By5oIR0xxx5HrhSOWyk60GZAR4RIDq36t1QuY83VbV3B6Oev7nk
+# 5q1gq0//jz6LD4jd0GeRcRUsY9k/4kCKUzvFqP6t1ee6F2+Wa7YkSdw6brISc/z+
+# NTQzO5tAemsxGb+3fxk9w82PS3UmoDzsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNFowIwYJKoZIhvcN
-# AQkEMRYEFFdr8/+r2hDeYHXr9swxXFDF4yP9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyMlowIwYJKoZIhvcN
+# AQkEMRYEFCt1W2Itqi+rJAdpUqAqFr3UeSmkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAQidZlOYNIg1oCkZ7DlZQ8ncQHNdlg2rtpAo0RCrxIYyj9
-# RukNWiayBLDBJ9Ly0WWGiRpCjHhLHPWHyj2P0wMcuYr+0fNgf887jSXpuuXPKapU
-# jqdVH0o84RkAR252/8RZirNDDJHyIumQcZYu3oZIJH6HW28euebPHqJM0UfNIIfj
-# 1+U+DYpdvuhT4d8gnpE+7gwogFPRsPNLGevb0O1t2cpory+ZijsKND+JOiTcroKH
-# 72V5L3CN07fwMEgknhBkC/+tniICYtRoXD+94fJa203fzNBu8RHEAQBOUq0aRNL5
-# UYcoliRQBrh9/VnpjKi1nWtvijv8X06iyxJpqr3O
+# hkiG9w0BAQEFAASCAQCoRTnhfaCYJtawJQPIYwdu/h+pr/TG80aEGIIdCeNwWYkQ
+# kmXG4q5mnyRFgLt8DuXBKe0y06eiM/CI1sNzX8eyrCzzBp1trmAUPpGQFD1Bh501
+# t9TuhSBr5oWwK8XhFoQiL0tWHs/f6MeiaXXOijw8AWa74Z1yS1WEpC2rm9QPvRqc
+# 98YPKQ4VprWyFEBn5IvBytxRzqKJCXsOATXRoqREevXEguh2xRX+q6DALSt6hNnz
+# zwsF+M/3dPFNcvvnThJL73zk6Q0f0gOtLPgr8NitoUR6wK2UvtkdoYZUKN3331x/
+# dA3IfUJSpEU1p0dF2c5bGxrsQKqxfh5Yh5LrGyVf
 # SIG # End signature block

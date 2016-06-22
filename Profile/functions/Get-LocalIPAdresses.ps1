@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 3
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,143 +15,143 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-LocalIPAdresses {
-  <#
-      .SYNOPSIS
-      Show all local IP Addresses
+	<#
+			.SYNOPSIS
+			Show all local IP Addresses
 
-      .DESCRIPTION
-      Show all local IP Addresses
+			.DESCRIPTION
+			Show all local IP Addresses
 
-      .PARAMETER LinkLocal
-      Show IsIPv6LinkLocal?
+			.PARAMETER LinkLocal
+			Show IsIPv6LinkLocal?
 
-      .EXAMPLE
-      PS C:\> Get-LocalIPAdresses
+			.EXAMPLE
+			PS C:\> Get-LocalIPAdresses
 
-      IPAddressToString                                          AddressFamily
-      -----------------                                          -------------
-      fe80::3db7:8507:3f9a:bb13%11                              InterNetworkV6
-      10.211.55.125                                               InterNetwork
+			IPAddressToString                                          AddressFamily
+			-----------------                                          -------------
+			fe80::3db7:8507:3f9a:bb13%11                              InterNetworkV6
+			10.211.55.125                                               InterNetwork
 
-      Description
-      -----------
-      Show all local IP Addresses
+			Description
+			-----------
+			Show all local IP Addresses
 
-      .EXAMPLE
-      PS C:\> Get-LocalIPAdresses | Format-List
+			.EXAMPLE
+			PS C:\> Get-LocalIPAdresses | Format-List
 
-      IPAddressToString : fe80::3db7:8507:3f9a:bb13%11
-      AddressFamily     : InterNetworkV6
+			IPAddressToString : fe80::3db7:8507:3f9a:bb13%11
+			AddressFamily     : InterNetworkV6
 
-      IPAddressToString : 10.211.55.125
-      AddressFamily     : InterNetwork
+			IPAddressToString : 10.211.55.125
+			AddressFamily     : InterNetwork
 
-      Description
-      -----------
-      Show all local IP Addresses, formated
+			Description
+			-----------
+			Show all local IP Addresses, formated
 
-      .EXAMPLE
-      PS C:\> Get-LocalIPAdresses -LinkLocal | ConvertTo-Csv -NoTypeInformation
-      "IPAddressToString","AddressFamily","IsIPv6LinkLocal"
-      "fe80::3db7:8507:3f9a:bb13%11","InterNetworkV6","True"
-      "10.211.55.125","InterNetwork","False"
+			.EXAMPLE
+			PS C:\> Get-LocalIPAdresses -LinkLocal | ConvertTo-Csv -NoTypeInformation
+			"IPAddressToString","AddressFamily","IsIPv6LinkLocal"
+			"fe80::3db7:8507:3f9a:bb13%11","InterNetworkV6","True"
+			"10.211.55.125","InterNetwork","False"
 
-      Description
-      -----------
-      Show all local IP Addresses as CSV and shows IsIPv6LinkLocal info
+			Description
+			-----------
+			Show all local IP Addresses as CSV and shows IsIPv6LinkLocal info
 
 
 
-      .NOTES
-      Additional information about the function.
-  #>
+			.NOTES
+			Additional information about the function.
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(HelpMessage = 'Show IsIPv6LinkLocal?')]
-    [switch]$LinkLocal
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(HelpMessage = 'Show IsIPv6LinkLocal?')]
+		[switch]$LinkLocal
+	)
 
-  BEGIN {
-    # Cleanup
-    $Result = @()
-  }
+	BEGIN {
+		# Cleanup
+		$Result = @()
+	}
 
-  PROCESS {
-    $AllIpInfo = @()
+	PROCESS {
+		$AllIpInfo = @()
 
-    # Get the info via .NET
-    $AllIpInfo = ([Net.DNS]::GetHostAddresses([Net.DNS]::GetHostName()))
+		# Get the info via .NET
+		$AllIpInfo = ([Net.DNS]::GetHostAddresses([Net.DNS]::GetHostName()))
 
-    # Loop over the Info
-    foreach ($SingleIpInfo in $AllIpInfo) {
-      $Object = New-Object -TypeName PSObject -Property @{
-        AddressFamily     = $SingleIpInfo.AddressFamily
-        IPAddressToString = $SingleIpInfo.IPAddressToString
-      }
+		# Loop over the Info
+		foreach ($SingleIpInfo in $AllIpInfo) {
+			$Object = New-Object -TypeName PSObject -Property @{
+				AddressFamily     = $SingleIpInfo.AddressFamily
+				IPAddressToString = $SingleIpInfo.IPAddressToString
+			}
 
-      if ($LinkLocal) {
-        if (($SingleIpInfo.IsIPv6LinkLocal) -eq $true) {$Object | Add-Member -TypeName 'NoteProperty' -Name IsIPv6LinkLocal -Value $true} else {$Object | Add-Member -TypeName 'NoteProperty' -Name IsIPv6LinkLocal -Value $False}
-      }
+			if ($LinkLocal) {
+				if (($SingleIpInfo.IsIPv6LinkLocal) -eq $true) {$Object | Add-Member -TypeName 'NoteProperty' -Name IsIPv6LinkLocal -Value $true} else {$Object | Add-Member -TypeName 'NoteProperty' -Name IsIPv6LinkLocal -Value $False}
+			}
 
-      # Add
-      $Result += $Object
+			# Add
+			$Result += $Object
 
-      # Cleanup
-      $Object = $null
-    }
+			# Cleanup
+			$Object = $null
+		}
 
-  }
+	}
 
-  END {
-    # DUMP
-    Write-Output -InputObject $Result -NoEnumerate
-    # Cleanup
-    $Result = $null
-  }
+	END {
+		# DUMP
+		Write-Output -InputObject $Result -NoEnumerate
+		# Cleanup
+		$Result = $null
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ+wgi4ClVZ3Wl0LVEqatg5zm
-# PiugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc6B8rXcKDzaRR4/EixNvCSvr
+# BX+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -172,10 +173,10 @@ function global:Get-LocalIPAdresses {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -191,12 +192,12 @@ function global:Get-LocalIPAdresses {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -293,25 +294,25 @@ function global:Get-LocalIPAdresses {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSNjkdUCnOXO/eSTjlS65u68ZAMjjANBgkqhkiG9w0B
-# AQEFAASCAQA/B4PRC4VcMESXx/gP1P/rW8H4dTSfzyVdI8zJkywqOsXu4Tk7uyi2
-# 6lptcZpuVrk3meQAgO1zNrojJdGtvIZ8dui+5iAVYgv1iyIKM+uJ8rKjNkExU+mP
-# x5ISfBE91Jyi9wfrhV36k0/6xBJvXXIkWvr8LOQMSFnL2N5Jdc2BUx1/SFV8ISJ6
-# 2CDifN9yKM+iKBQYJ4Hw7HJYMlqilGVHb6NHWY8oRLQpdryyoE/LGu/6DjVCLfAF
-# FOpuRodPC6k9MorGRTETxGgrNfmy+0Zv7BKp2gvr/n5i8aLUqRAW1EeCJuL2j2Mn
-# Gukgrpcam6ZZkI+9P+WFUVqSOCBsz+/BoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ/Cb2w5UvaQhz/fN5k1oy1piYiEDANBgkqhkiG9w0B
+# AQEFAASCAQCsyzrOgTW7QCpz2jysitQjr+HMVBeEPVa36Ml5SVj/KDSPHuW8JN75
+# LHlR06IA0byiElPwZBKpeo5FxeU2HlKJL8l3ubl+f4koc6tB/6Gup2qVuh5jbVBA
+# 5s6RSQFieo39Yoa3hPrPTCYGoEFOBKU1anOLU45covFWI3QrNJPVLqCBWuFtm4S1
+# ezOUl4Zs1GS52Ski7SOuKqF4pgHbbo5ap36XAUQGOyltOHsLEJzHoOkE1Dj1zej5
+# Usy88Ps8L7nm+Ys/Tyw0EvsQ86ofM2+qH+LAzXUYL4Q6u9g8XGpdkX7IB+ts48Ix
+# yywaTku2b2mOkFGzmyWtB/z2f5KPKrFfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzOFowIwYJKoZIhvcN
-# AQkEMRYEFF/dH3Pgd0upVg/i1eJ/U35GTNwQMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNlowIwYJKoZIhvcN
+# AQkEMRYEFCVM18UkWMhtl/FuuBrED0fy7KeOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA/NuX1uMpc8XAIbsd0NM9XFgrW1wyyar1pSeybHOw0KMSA
-# ZSjFkOyHrUAAEpU4fSIyGGSwkf/moR91aY5a6aum0a/j690zp2XN6+K36eG/NJwM
-# ybjXHOEY/2tJGfL6tVGj9MLykIsvG+KmUBG9ODnB5dwoPpsFreU96/IAiNU6u46x
-# FZP+Vd2QkyPWawKFbrztpP+CBhMnTM9GUcb2tIXcP1KWWe3aw362dIQ9GPiFeYfN
-# FIhMDFMU4qVDh1BtEQ47gpEyP2XnVmdVbsEdb748PyRGIXz06q0j9O5FSTe6lzvm
-# Dup6tJppwk3I9vwRBw0gJzeywderGUtKqvxJqck7
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQApWz0xWvzzVfmS4aZ0gzHfGx3CpETHcGhrAtIgTGl5ylYv
+# hCpVTQmtRCw8CEPwQfeyRA22+rqU+LoSykKDd5S74Ff6NxCbTrPg0yebbk61bR9X
+# gufL7wqzSg6gybly3JdLAA1lhc6D06prQ5POC5b5JUr7z40FMGwOzvKaJ/hFFzcI
+# 2/CemFOHeO+Zr2hxHIDv4bYOX6YerCpyfYFNCGt0R1MHxFHIsd3VxHsdHMCXYxMh
+# /5NDELAiyxb0uDyIZIkD0UolA6X/4A9wvWgJ9HGHKWPNCiOjBswPkwikadvKPobj
+# hr3w1trj76l5LIUaqLMSEDHhFjAho7QlDo9jEsS0
 # SIG # End signature block

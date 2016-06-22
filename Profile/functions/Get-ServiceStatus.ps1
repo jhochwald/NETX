@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,114 +15,114 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-ServiceStatus {
-  <#
-      .SYNOPSIS
-      List Services Where-Object StartMode is AUTOMATIC that are NOT running
+	<#
+			.SYNOPSIS
+			List Services Where-Object StartMode is AUTOMATIC that are NOT running
 
-      .DESCRIPTION
-      This function will list services from a local or remote computer
-      Where-Object the StartMode property is set to "Automatic" and
-      Where-Object the state is different from RUNNING
-      (so mostly Where-Object the state is NOT RUNNING)
+			.DESCRIPTION
+			This function will list services from a local or remote computer
+			Where-Object the StartMode property is set to "Automatic" and
+			Where-Object the state is different from RUNNING
+			(so mostly Where-Object the state is NOT RUNNING)
 
-      .PARAMETER ComputerName
-      Computer Name to execute the function
+			.PARAMETER ComputerName
+			Computer Name to execute the function
 
-      .EXAMPLE
-      PS C:\> Get-ServiceStatus
-      DisplayName                                  Name                           StartMode State
-      -----------                                  ----                           --------- -----
-      Microsoft .NET Framework NGEN v4.0.30319_X86 clr_optimization_v4.0.30319_32 Auto      Stopped
-      Microsoft .NET Framework NGEN v4.0.30319_X64 clr_optimization_v4.0.30319_64 Auto      Stopped
-      Multimedia Class Scheduler                   MMCSS                          Auto      Stopped
+			.EXAMPLE
+			PS C:\> Get-ServiceStatus
+			DisplayName                                  Name                           StartMode State
+			-----------                                  ----                           --------- -----
+			Microsoft .NET Framework NGEN v4.0.30319_X86 clr_optimization_v4.0.30319_32 Auto      Stopped
+			Microsoft .NET Framework NGEN v4.0.30319_X64 clr_optimization_v4.0.30319_64 Auto      Stopped
+			Multimedia Class Scheduler                   MMCSS                          Auto      Stopped
 
-      Description
-      -----------
-      List Services Where-Object StartMode is AUTOMATIC that are NOT running
+			Description
+			-----------
+			List Services Where-Object StartMode is AUTOMATIC that are NOT running
 
-      .NOTES
-      Just an initial Version of the Function,
-      it might still need some optimization.
+			.NOTES
+			Just an initial Version of the Function,
+			it might still need some optimization.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Position = 0,
-    HelpMessage = 'Computer Name to execute the function')]
-    [System.String]$ComputerName = "$env:COMPUTERNAME"
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Position = 0,
+		HelpMessage = 'Computer Name to execute the function')]
+		[System.String]$ComputerName = "$env:COMPUTERNAME"
+	)
 
-  PROCESS {
-    # Try one or more commands
-    try {
-      # Cleanup
-      Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	PROCESS {
+		# Try one or more commands
+		try {
+			# Cleanup
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-      # Get the Infos
-      Set-Variable -Name 'ServiceStatus' -Value $(Get-WmiObject -Class Win32_Service -ComputerName $ComputerName |
-        Where-Object -FilterScript { ($_.startmode -like '*auto*') -and ($_.state -notlike '*running*') } |
-        Select-Object -Property DisplayName, Name, StartMode, State |
-      Format-Table -AutoSize)
+			# Get the Infos
+			Set-Variable -Name 'ServiceStatus' -Value $(Get-WmiObject -Class Win32_Service -ComputerName $ComputerName |
+				Where-Object -FilterScript { ($_.startmode -like '*auto*') -and ($_.state -notlike '*running*') } |
+				Select-Object -Property DisplayName, Name, StartMode, State |
+			Format-Table -AutoSize)
 
-      # Dump it to the Console
-      Write-Output -InputObject $ServiceStatus
-    } catch {
-      # Whoopsie!!!
-      Write-Warning -Message 'Could not get the list of services for $ComputerName'
-    } finally {
-      # Cleanup
-      Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    }
-  }
+			# Dump it to the Console
+			Write-Output -InputObject $ServiceStatus
+		} catch {
+			# Whoopsie!!!
+			Write-Warning -Message 'Could not get the list of services for $ComputerName'
+		} finally {
+			# Cleanup
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3yqZUYi5av2GDiRpZY2Jsg1I
-# APOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULCBnCymHEb5eMhtk0+CPGG5U
+# wN6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -143,10 +144,10 @@ function Global:Get-ServiceStatus {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -162,12 +163,12 @@ function Global:Get-ServiceStatus {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -264,25 +265,25 @@ function Global:Get-ServiceStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRdtJT7zDjnaKbe/ZRDeB6d+0SvWDANBgkqhkiG9w0B
-# AQEFAASCAQAyqyTKEPlsj5TOAU1iluUbVVZu0j30jTVEvoE9wsVRsaOjqBDcqa3N
-# dLWgg+ThWRRbaKXduMAZaHsFmkdt5cy2rRdGPsNR5hC047brcpdaIggMAHLqkGqg
-# VY3QZDJ6HbboFHRR1fkFX+sCFl3DLWeF0mHCt9HD4hrCYR7bj0cmlk9ZIGcKgPS4
-# ed+gPDV0Lal0ey0CahiTLQZN9NK2QK7dnsEg2JO2YJZTC0Wy23KMwg/mtPn9Xlj4
-# 13IVOYJGBYM2ANF9szQdkLuQ/+Orfv4oOW7byTVpQro7ijLjbjjEcPhuuoZtes9O
-# Y8VU03If4ZGQSiPBWC4fwJ45jYjPMXsAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRxtaEh22GOoYHqxjfTsBBDKWJGVDANBgkqhkiG9w0B
+# AQEFAASCAQA7kCjhUqM5ZeitukwEQv/wVS7fhyFD9O2V99akHSmrFafS6gy8D1kl
+# 0FFAQ9OmvKFvIdQlV2HVwNVOBtn724iX3LOFJj6YDwXuewHAnTUBKwkD81oAlYmh
+# Yob/8Spr0aUqbns+BUoS2ocnZZr+wA9muxI17hrGS+OGiS1AgjhbbPvzKOunoVPA
+# mswecStyRkealrvk9vchOXHBLpxSyI/SSOLflniN9UCBTlU9wFUE5aiYwvtSszxm
+# V5g2VtGNK1pmvInVGczVQNtaZREmPe3OZTOG3Gd3HLQg0kMezyUHnv0E7kztyTBT
+# rCQdBGjbXI9NYKUyTAIyqhXC6aWUU52voYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0NFowIwYJKoZIhvcN
-# AQkEMRYEFEOs3deAMfc59y8aWkmPN+4spcqdMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzNFowIwYJKoZIhvcN
+# AQkEMRYEFGnh+max103uOujEKaet0H9xPtwmMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCXHmM/hMZ0vJRNYcDx/nG80LXosPSkoxmLgfeRTI5JJWpx
-# qSGaw2c047i9TsLBc5z2jRigDbOBVbYuQIQeS6jzCMnSZvHxeGfuJo8GPT9KlcGm
-# NvC6mDLCTZAydToWPq564rithM9UYqfPu6SyRjoiIbtaWPqTYGYuetlddgDdqVF6
-# gch8/m85qYHOKgJxpiLu5SD/snkB7C7peT6UJU5C3T6pwXZtoMaXI8TKz6K/barm
-# 2wjxOSkUebLoSznufKSBUGumNOrhV4B/c09VtemeeTADi/NF435fAy1BPckVBDLW
-# qNmoBOg8dwZMl+kLGLfRnz8FGdWQCKn5sSip6xHA
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQAN++VHkFucRMgtCjY5ajA/eHCEvQrgkdd+3jHt17K0hMpT
+# MoWqxbPI6nZ9Fya+A/ZI/q1WNDD4g1NG8dAV5NOdFfjgMDSjwesNh6crOEBRL65J
+# sHZ1h7W5CWpfdXs9Ac9Bv3eHrZoFWd0mi0hi2uOzpSVprF5kGcJwPd+wyMAdai6S
+# ojkAeBGNGkB2t63QUhcuXIRvCQNjhRJ4QUV5HePC5FTml+nbKW1mjerngysC5FF0
+# X8wV07io0aZ71ZjGb+p47jUlp/3G61RtrqeWH2mEtXiwygXE+jscrHMZ35Ir7LPv
+# omHxA9GJg7NkOnqdR0MZJSFBT3iOS8+0lVWvZF08
 # SIG # End signature block

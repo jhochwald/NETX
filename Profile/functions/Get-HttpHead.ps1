@@ -1,12 +1,13 @@
+#requires -Version 3
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,149 +15,149 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-HttpHead {
-  <#
-      .Synopsis
-      Retrieve HTTP Headers from target web server
+	<#
+			.Synopsis
+			Retrieve HTTP Headers from target web server
 
-      .Description
-      This command will get the HTTP headers from the target web server and
-      test for the presence of various security related HTTP headers and
-      also display the cookie information.
+			.Description
+			This command will get the HTTP headers from the target web server and
+			test for the presence of various security related HTTP headers and
+			also display the cookie information.
 
-      .PARAMETER url
-      The URL for inspection, e.g. https://www.linkedin.com
+			.PARAMETER url
+			The URL for inspection, e.g. https://www.linkedin.com
 
-      .Example
-      PS C:> Get-HttpHead -url https://www.linkedin.com
-      Header Information for https://www.linkedin.com
+			.Example
+			PS C:> Get-HttpHead -url https://www.linkedin.com
+			Header Information for https://www.linkedin.com
 
-      Description
-      -----------
-      Retrieve HTTPs Headers from www.linkedin.com
+			Description
+			-----------
+			Retrieve HTTPs Headers from www.linkedin.com
 
-      .Example
-      PS C:> Get-HttpHead -url http://net-experts.net
-      Header Information for http://net-experts.net
+			.Example
+			PS C:> Get-HttpHead -url http://net-experts.net
+			Header Information for http://net-experts.net
 
-      Description
-      -----------
-      Retrieve HTTP Headers from net-experts.net
+			Description
+			-----------
+			Retrieve HTTP Headers from net-experts.net
 
-      .NOTES
-      Based on an idea of Dave Hardy, davehardy20@gmail.com @davehrdy20
+			.NOTES
+			Based on an idea of Dave Hardy, davehardy20@gmail.com @davehrdy20
 
-      .LINK
-      Source: https://github.com/davehardy20/PowerShell-Scripts/blob/master/Get-HttpSecHead.ps1
-  #>
+			.LINK
+			Source: https://github.com/davehardy20/PowerShell-Scripts/blob/master/Get-HttpSecHead.ps1
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        ValueFromPipelineByPropertyName = $true,
-        Position = 0,
-    HelpMessage = 'The URL for inspection, e.g. https://www.linkedin.com')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('link')]
-    [System.String]$url
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				ValueFromPipelineByPropertyName = $true,
+				Position = 0,
+		HelpMessage = 'The URL for inspection, e.g. https://www.linkedin.com')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('link')]
+		[System.String]$url
+	)
 
-  BEGIN {
-    # Cleanup
-    $webrequest = $null
-    $cookies = $null
-    $cookie = $null
-  }
+	BEGIN {
+		# Cleanup
+		$webrequest = $null
+		$cookies = $null
+		$cookie = $null
+	}
 
-  PROCESS {
-    $webrequest = (Invoke-WebRequest -Uri $url -SessionVariable websession)
-    $cookies = ($websession.Cookies.GetCookies($url))
+	PROCESS {
+		$webrequest = (Invoke-WebRequest -Uri $url -SessionVariable websession)
+		$cookies = ($websession.Cookies.GetCookies($url))
 
-    Write-Host -Object "`n"
-    Write-Host 'Header Information for' $url
-    Write-Host -Object ($webrequest.Headers | Out-String)
-    Write-Host
+		Write-Host -Object "`n"
+		Write-Host 'Header Information for' $url
+		Write-Host -Object ($webrequest.Headers | Out-String)
+		Write-Host
 
-    Write-Host -ForegroundColor White -Object "HTTP security Headers`nConsider adding the values in RED to improve the security of the webserver. `n"
+		Write-Host -ForegroundColor White -Object "HTTP security Headers`nConsider adding the values in RED to improve the security of the webserver. `n"
 
-    if ($webrequest.Headers.ContainsKey('x-xss-protection')) {Write-Host -ForegroundColor Green -Object "X-XSS-Protection Header PRESENT`n"} else {Write-Host -ForegroundColor Red -Object 'X-XSS-Protection Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('x-xss-protection')) {Write-Host -ForegroundColor Green -Object "X-XSS-Protection Header PRESENT`n"} else {Write-Host -ForegroundColor Red -Object 'X-XSS-Protection Header MISSING'}
 
-    if ($webrequest.Headers.ContainsKey('Strict-Transport-Security')) {Write-Host -ForegroundColor Green -Object 'Strict-Transport-Security Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'Strict-Transport-Security Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('Strict-Transport-Security')) {Write-Host -ForegroundColor Green -Object 'Strict-Transport-Security Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'Strict-Transport-Security Header MISSING'}
 
-    if ($webrequest.Headers.ContainsKey('Content-Security-Policy')) {Write-Host -ForegroundColor Green -Object 'Content-Security-Policy Header PRRESENT'} else {Write-Host -ForegroundColor Red -Object 'Content-Security-Policy Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('Content-Security-Policy')) {Write-Host -ForegroundColor Green -Object 'Content-Security-Policy Header PRRESENT'} else {Write-Host -ForegroundColor Red -Object 'Content-Security-Policy Header MISSING'}
 
-    if ($webrequest.Headers.ContainsKey('X-Frame-Options')) {Write-Host -ForegroundColor Green -Object 'X-Frame-Options Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'X-Frame-Options Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('X-Frame-Options')) {Write-Host -ForegroundColor Green -Object 'X-Frame-Options Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'X-Frame-Options Header MISSING'}
 
-    if ($webrequest.Headers.ContainsKey('X-Content-Type-Options')) {Write-Host -ForegroundColor Green -Object 'X-Content-Type-Options Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'X-Content-Type-Options Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('X-Content-Type-Options')) {Write-Host -ForegroundColor Green -Object 'X-Content-Type-Options Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'X-Content-Type-Options Header MISSING'}
 
-    if ($webrequest.Headers.ContainsKey('Public-Key-Pins')) {Write-Host -ForegroundColor Green -Object 'Public-Key-Pins Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'Public-Key-Pins Header MISSING'}
+		if ($webrequest.Headers.ContainsKey('Public-Key-Pins')) {Write-Host -ForegroundColor Green -Object 'Public-Key-Pins Header PRESENT'} else {Write-Host -ForegroundColor Red -Object 'Public-Key-Pins Header MISSING'}
 
-    Write-Host -Object "`n"
+		Write-Host -Object "`n"
 
-    Write-Host 'Cookies Set by' $url
-    Write-Host -Object "Inspect cookies that don't have the HTTPOnly and Secure flags set."
-    Write-Host -Object "`n"
+		Write-Host 'Cookies Set by' $url
+		Write-Host -Object "Inspect cookies that don't have the HTTPOnly and Secure flags set."
+		Write-Host -Object "`n"
 
-    foreach ($cookie in $cookies) {
-      Write-Host -Object "$($cookie.name) = $($cookie.value)"
+		foreach ($cookie in $cookies) {
+			Write-Host -Object "$($cookie.name) = $($cookie.value)"
 
-      if ($cookie.HttpOnly -eq 'True') {Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Green} else {Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Red}
+			if ($cookie.HttpOnly -eq 'True') {Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Green} else {Write-Host -Object "HTTPOnly Flag Set = $($cookie.HttpOnly)" -ForegroundColor Red}
 
-      if ($cookie.Secure -eq 'True') {Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Green} else {Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Red}
+			if ($cookie.Secure -eq 'True') {Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Green} else {Write-Host -Object "Secure Flag Set = $($cookie.Secure)" -ForegroundColor Red}
 
-      Write-Host "Domain = $($cookie.Domain) `n"
-    }
-  }
+			Write-Host -Object "Domain = $($cookie.Domain) `n"
+		}
+	}
 
-  END {
-    # Cleanup
-    $webrequest = $null
-    $cookies = $null
-    $cookie = $null
-  }
+	END {
+		# Cleanup
+		$webrequest = $null
+		$cookies = $null
+		$cookie = $null
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUf2QxRaTyvMS1gtrGfhu2KpAM
-# 9TagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl4lyN8zBWJOMHb7f2UPv0tkS
+# sWCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -299,25 +300,25 @@ function global:Get-HttpHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ1KAOUJyxktjeTz2g7pXs3IGV+jzANBgkqhkiG9w0B
-# AQEFAASCAQBaPlYubUtW9Fcuxxl4VXEkacr6AloRPcslIFFfRj0uJz50v7+4IyOn
-# xV1ph0o3JUuAbUANipLvWnuIqLFyasILXyPnlrpgwB3LeLIvrEs4wIz7KYzUuJen
-# 6Tq9GcNaOvy6Qwb2abwrPqcuQurf4WNRDLdasGgBemHeGpXFwhJ2oXMNBwSYKovv
-# SRQR8VJYy2ro1MZkf7dTIB0sQsaOmiXl7nI9o97r7YXKCXUkRAP/5s5P1IHBrMfi
-# tNY6l7jQ3MtzjpBwbKAc75dgiUSIC+qBzUUDzsGAJLgSPTMdFY7GH/mVPYxuqPBd
-# kXuquUKYbiPXIsw/xabFNwDfLl9pdmHLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTmlATHQyk5IC60wBsyteG288bNlDANBgkqhkiG9w0B
+# AQEFAASCAQBBSPtLNsdx9h++76dj2Emlw6sJf5YvRZfCDxe4BKvjiVdIlNIJy+vy
+# GWvfzJkZioi1zvr/ppC1nPTgq/MMY06G7H9IB94XQ0gMjxdUEW8MrVo6WLCR9F3f
+# 7rPLh4j9foxnPnUyHeW5VkWFMu2hN4dOZMni4D8Jw0gCR6fp8xyavWSjRjJYreZ+
+# 2YZr+UvwNXK47zCmh7JmveQtpP8tV7u2aiuGOkp/CROmfZjsqiIXGNQnhKLbtf77
+# szfAiAuEqUydLeUf3tHGfnHHZ5qTQrJQSdZbrX0p0DdnI/NFGCMP4gku+2gFGPR1
+# 1rMAMqecrYxjFN3NHJOT87BCp3gRl/7XoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzN1owIwYJKoZIhvcN
-# AQkEMRYEFI6DJRkcpMK/2SC4qXZcwt60L25AMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNVowIwYJKoZIhvcN
+# AQkEMRYEFK/FFyg7mxIMWGQ0F89yzWx9NnyQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCczTIlMOUTgPudT8ziAJw0oeRdKX2CcAyJypLZKCUoU+JE
-# kVS8KYbvmb1r4wWeOIZXITfVpOwwOdS+Pq6FlQP4QUQlVfmELefUKR3rcTOZcDcP
-# 2GSCilnKDP2YiBH89EI79TiNE7G1sGXkdzUgOvzlF4mencw5qRsWSWceJeRmCkxB
-# RSrbzOXoK4+ondEntYC1jjXFZZeAK0kUBOCuXYIRhbjXjGebZfOcYF8kVEkFOPZq
-# iDfA3ljHL8YbiDf5vaJOAd5mlWTi1VgrFh5v4VIlx965qA+emOE4+M81UapDYfWb
-# 1a0TUPEyHFGYJJqf69xmuWi9qPz0kwkx4UF4HyTi
+# hkiG9w0BAQEFAASCAQAxZsS7vkCrQYDf13tBFko+CUd+Xn0JhVrpOEkSmdO7eWDL
+# Vxw8JsOt3kT+SSAu4aK49CPl35SdXfXyZMFlTPJEhYTvV1LLa6f2rLQD56wxJ4ju
+# trfvruZAU/TFP+lvN8NQ6qaH+pjpZN159oQNE/HKsT3GlGfF86hTJlNmyWuQyzM6
+# v9XSLFRUKZep6YsjUZPUH2+snT5IAG71XKzuPNrhpK5NdIxA2vDe9A8SRgDZPWYt
+# gawSeuCyT0loLr2jLcJyVvl9niZLxfdPx5bChDRGQqH6WK3DLU5nGoxmRXb9DWDJ
+# +f9ixyGy0sHccWLv8IwK1MFn1EIPnaXPAEMJFYSM
 # SIG # End signature block

@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,104 +15,104 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:wc {
-  <#
-      .SYNOPSIS
-      Word, line, character, and byte count
+	<#
+			.SYNOPSIS
+			Word, line, character, and byte count
 
-      .DESCRIPTION
-      The wc utility displays the number of lines, words, and bytes
-      contained in each input file, or standard input (if no file is
-      specified) to the standard output.
-      A line is defined as a string of characters delimited by a <newline>
-      character.
-      Characters beyond the final <newline> character will not be
-      included in the line count.
+			.DESCRIPTION
+			The wc utility displays the number of lines, words, and bytes
+			contained in each input file, or standard input (if no file is
+			specified) to the standard output.
+			A line is defined as a string of characters delimited by a <newline>
+			character.
+			Characters beyond the final <newline> character will not be
+			included in the line count.
 
-      .PARAMETER object
-      The input File, Object, or Array
+			.PARAMETER object
+			The input File, Object, or Array
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Int32])]
-  param
-  (
-    [Alias('File')]
-    $object
-  )
+	[CmdletBinding()]
+	[OutputType([System.Int32])]
+	param
+	(
+		[Alias('File')]
+		$object
+	)
 
-  BEGIN {
-    # initialize counter for counting number of data from
-    $counter = 0
-  }
+	BEGIN {
+		# initialize counter for counting number of data from
+		$counter = 0
+	}
 
-  # Process is invoked for every pipeline input
-  PROCESS {
-    if ($_) { $counter++ }
-  }
+	# Process is invoked for every pipeline input
+	PROCESS {
+		if ($_) { $counter++ }
+	}
 
-  END {
-    # if "wc" has an argument passed, ignore pipeline input
-    if ($object) {
-      if (Test-Path $object) {
-        (Get-Content $object | Measure-Object).Count
-      } else {
-        ($object | Measure-Object).Count
-      }
-    } else {
-      $counter
-    }
-  }
+	END {
+		# if "wc" has an argument passed, ignore pipeline input
+		if ($object) {
+			if (Test-Path $object) {
+				(Get-Content $object | Measure-Object).Count
+			} else {
+				($object | Measure-Object).Count
+			}
+		} else {
+			$counter
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWqaF6pKpqaYNy4Dq2iG3xTqh
-# QwKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxiNMA3AH0iXplh/wGLtvr3Bm
+# ts6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +255,25 @@ function Global:wc {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSV+4SVxKXuv4DkTOsEh4l3l4KghDANBgkqhkiG9w0B
-# AQEFAASCAQBq9Yiu6uyaqYdUMYmS38fUSdJnqqZS8n9QNg29CEEJSVkkAddiyykt
-# 68y7RIt/s6dM9+IVmYOHoSMsWcaVCqNIhX7INk8NXZG0ASVwCcTCqsZn2OLymWAv
-# x8h/wAtq827uwlZg57eg4HlNyk12LYvbyg9JlaUVOgGE/yvfkLHtm38JAQXVs2+K
-# iC7Ou6KmwoCL2phenZx6somvMUBDxpDx3qW69CRqA5THMv/b2LVOkERrGJY6dD+J
-# Me8l2dFp6YrEPr+WPVCqv9FN40q66QKFFNfw8sB1UfBmmuJPOA7GAjeOIvDbPUrD
-# +1N1RMyO9E150GwJB+NnbOb4uJTvaLHvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTFPNPdveR8/OARUjGxIYQIlJSlUTANBgkqhkiG9w0B
+# AQEFAASCAQCICKGufXisS5Sf0wgEjfd+TtxqTU+5BsGYFeRyVgj2NlXa02gSkA1J
+# xrmx7DMkr6+fr/JTWHUMhI8xPCdm8NhGlbxmqqZfJFL+6pNGOR0tqnJQ6vfCa5JR
+# CWmgkwQ7989Bh1BZClV5EcQevdajYXyaWgyXx5KZ36zKB21dlcgbqsW3YVgbQxiR
+# Xx1gkc5cLV5ZECb0dWWgdqwKK2CWK5Ybl7c8XDFeb67uMiH4vYgt57Lt8/bxhU7R
+# NexHCZ7EmRFkkKht4B6vUA4GS7Z12v4VWy9pPLDqjSKts/9qJH0eeTYq10er8qct
+# F0np2hpHwxp3wM5oEptjFfagttBYPQASoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxNVowIwYJKoZIhvcN
-# AQkEMRYEFOdRb0l6RwVsGL42N9kY9YrvRP/2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwN1owIwYJKoZIhvcN
+# AQkEMRYEFE6H4w63QdSjQ92xVP0S9yv5Th4CMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQByakMk/UMP8XnJ31hTsWwiB6H3UX0gt1PH5tlrVZeVtAgK
-# j49KzBCNspagH4gThFJsXZAQS0AfixBEWL0eSB6h4AicPQ4G6HurRvGgHW8x1YFi
-# itK9NeHtcIwUfcG3mWiNXS5qBEhFWiiblTjmZEqGxy5rNFR6xR2MM//vFIP67qnI
-# 5HZ7u7IGqr8EZu/chK6Z+wXGz/tTh1IXhRFYSeWDCe757no6BeQmoEm4Sr9zmR1S
-# 8B8PEEKfmauu0Dc4bYYq8iGPlPtoFs4vWJQuVNlBHSKxAHeszObvAjHy7ErM1MXi
-# j35aMC6Aim30bswgaDGmEsZNpTWFozOE3bQ8FMdm
+# hkiG9w0BAQEFAASCAQB58kZ3auUhGo+0h7HiRUQQ8o6DcDHvgOqnJliEuBbmUih/
+# opgWUhHCD5bZK8MkP5dNp1AA9PHGhgTnhVLQZBBDxZCfjBqneKD5UZkkUwR5fEN8
+# JU+7MIL90+0NtBPhgJdhX8TT4y7aLD6ZxXGr3pdsXoJpAyiFSAqgZ6lPDGkse2KK
+# ltxAn5WCvCf6CAjv8NcSNNVeS2/qoWvZ8Xzgz7ogqLKjulTMTTNkYtbq37uyuipV
+# VWgjYuM9fEW8APOgWicVhB/H2w/tWTMbCoOou63l4thytI49qSZRAEBxyz1iZY+g
+# MI6V7EasgW6mdHlU3+02yaRvwJpS1JCMag+PN7sg
 # SIG # End signature block

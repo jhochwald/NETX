@@ -1,12 +1,13 @@
+﻿#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-22
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,158 +15,158 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-IsVirtual {
-  <#
-      .SYNOPSIS
-      Check if this is a Virtual Machine
+	<#
+			.SYNOPSIS
+			Check if this is a Virtual Machine
 
-      .DESCRIPTION
-      If this is a virtual System the Boolean is True, if not it is False
+			.DESCRIPTION
+			If this is a virtual System the Boolean is True, if not it is False
 
-      .EXAMPLE
-      PS C:\> Get-IsVirtual
-      True
+			.EXAMPLE
+			PS C:\> Get-IsVirtual
+			True
 
-      Description
-      -----------
-      If this is a virtual System the Boolean is True, if not it is False
+			Description
+			-----------
+			If this is a virtual System the Boolean is True, if not it is False
 
-      .EXAMPLE
-      PS C:\> Get-IsVirtual
-      False
+			.EXAMPLE
+			PS C:\> Get-IsVirtual
+			False
 
-      Description
-      -----------
-      If this is not a virtual System the Boolean is False, if so it is True
+			Description
+			-----------
+			If this is not a virtual System the Boolean is False, if so it is True
 
-      .NOTES
-      The Function name is changed!
+			.NOTES
+			The Function name is changed!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param ()
 
-  BEGIN {
-    # Cleanup
-    Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	BEGIN {
+		# Cleanup
+		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 
-  PROCESS {
-    # Get some System infos via NET (WMI) call
-    Set-Variable -Name 'WMI_BIOS' -Scope:Script -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
-    Set-Variable -Name 'WMI_ComputerSystem' -Scope:Script -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
+	PROCESS {
+		# Get some System infos via NET (WMI) call
+		Set-Variable -Name 'WMI_BIOS' -Scope:Script -Value $($WMI_BIOS = (Get-WmiObject -Class 'Win32_BIOS' -ErrorAction:Stop | Select-Object -Property 'Version', 'SerialNumber'))
+		Set-Variable -Name 'WMI_ComputerSystem' -Scope:Script -Value $((Get-WmiObject -Class 'Win32_ComputerSystem' -ErrorAction:Stop | Select-Object -Property 'Model', 'Manufacturer'))
 
-    # First we try to figure out if this is a Virtual Machine based on the
-    # Bios Serial information that we get via WMI
-    if ($WMI_BIOS.SerialNumber -like '*VMware*') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
-    } elseif ($WMI_BIOS.Version -like 'VIRTUAL') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
-    } elseif ($WMI_BIOS.Version -like 'A M I') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Virtual PC')
-    } elseif ($WMI_BIOS.Version -like '*Xen*') {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Xen')
-    } elseif (($WMI_BIOS.Version -like 'PRLS*') -and ($WMI_BIOS.SerialNumber -like 'Parallels-*')) {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
-    }
+		# First we try to figure out if this is a Virtual Machine based on the
+		# Bios Serial information that we get via WMI
+		if ($WMI_BIOS.SerialNumber -like '*VMware*') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
+		} elseif ($WMI_BIOS.Version -like 'VIRTUAL') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
+		} elseif ($WMI_BIOS.Version -like 'A M I') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Virtual PC')
+		} elseif ($WMI_BIOS.Version -like '*Xen*') {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Xen')
+		} elseif (($WMI_BIOS.Version -like 'PRLS*') -and ($WMI_BIOS.SerialNumber -like 'Parallels-*')) {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
+		}
 
-    # Looks like this is not a Virtual Machine, but to make sure that figure it out!
-    # So we try some other information that we have via WMI :-)
-    if (-not ($SysInfo_IsVirtual)) {
-      if ($WMI_ComputerSystem.Manufacturer -like '*Microsoft*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
-      } elseif ($WMI_ComputerSystem.Manufacturer -like '*VMWare*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
-      } elseif ($WMI_ComputerSystem.Manufacturer -like '*Parallels*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
-      } elseif ($wmisystem.model -match 'VirtualBox') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VirtualBox')
-      } elseif ($wmisystem.model -like '*Virtual*') {
-        Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
-        Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Unknown Virtual Machine')
-      }
-    }
+		# Looks like this is not a Virtual Machine, but to make sure that figure it out!
+		# So we try some other information that we have via WMI :-)
+		if (-not ($SysInfo_IsVirtual)) {
+			if ($WMI_ComputerSystem.Manufacturer -like '*Microsoft*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
+			} elseif ($WMI_ComputerSystem.Manufacturer -like '*VMWare*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
+			} elseif ($WMI_ComputerSystem.Manufacturer -like '*Parallels*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
+			} elseif ($wmisystem.model -match 'VirtualBox') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VirtualBox')
+			} elseif ($wmisystem.model -like '*Virtual*') {
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Unknown Virtual Machine')
+			}
+		}
 
-    # OK, this does not look like a Virtual Machine to us!
-    if (-not ($SysInfo_IsVirtual)) {
-      Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($false)
-      Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Not a Virtual Machine')
-    }
+		# OK, this does not look like a Virtual Machine to us!
+		if (-not ($SysInfo_IsVirtual)) {
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($false)
+			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Not a Virtual Machine')
+		}
 
-    # Dump the Boolean Info!
-    Write-Output -InputObject "$SysInfo_IsVirtual"
+		# Dump the Boolean Info!
+		Write-Output -InputObject "$SysInfo_IsVirtual"
 
-    # Write some Debug Infos ;-)
-    Write-Verbose -Message "$SysInfoVirtualType"
-  }
+		# Write some Debug Infos ;-)
+		Write-Verbose -Message "$SysInfoVirtualType"
+	}
 
-  END {
-    # Cleanup
-    Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-    Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	END {
+		# Cleanup
+		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzu0b51gAXjh1LDKQHjX/b7Tj
-# sUGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb22yyn1YwUMlZpGmTZVTgFm3
+# llygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -187,10 +188,10 @@ function global:Get-IsVirtual {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -206,12 +207,12 @@ function global:Get-IsVirtual {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -308,25 +309,25 @@ function global:Get-IsVirtual {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQiQTRWTYG9t/NCaMITRs2HRWX1STANBgkqhkiG9w0B
-# AQEFAASCAQASEA1n67SbCPPJhCXdIwSKYPYP4z1ZJ2UqXYlRhKSzffsEb3xYpaV9
-# cwaPb+TO2WRrFWl3i17nuROy5ruUrnd9DzGn7XE9gjLz/Az7Hn2iHUmkrfJsP1Yz
-# hrJOVeWdwW8S4xG023R/frr3BPQ41+WYhZURZEqfotwV+kVab1qVuQuhbZ5tonOc
-# nev48FPrk0u2NenLCJloEQfsjgaf8YBiiSue76Zwv8f2bB0rpAvCyZZIpOGHbiv5
-# euV977K/DmtSBr8g3xR2P9Lsk96j+56gM+tZZ/iQVJk+YsPi8zs06xhCPP4AFY37
-# V8S9ew62ntZm43Ayp1EG2JezEvOlYvqNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSN+EQtNI93RdcSu4kNnv3z8wGSWzANBgkqhkiG9w0B
+# AQEFAASCAQCXYb/OkpNs7lBVJyHUaO+5qA7SePc39aFpPUDjEsOrTgHQOBq66ZVr
+# 9yYMI6ghtdJSmm+N6ZqOBO0hUl+QbDRsQ8BaIDW7Zn9M9uB8Ad+TUlFRRgA9NO8g
+# Ll6tevz3UcSA3yGR17CGkJMjTxliuXrRiL5OaRKxeF8yOyLFNwnsy89Icr/vL0tq
+# 6wRVVtZp3Q5XibwhD8YZD/7+Hrtc2HSuVDfxucsDF9Dp5mRYIMG2kUzpLkKQkmkR
+# TNR14/7dFDBe3xX2FtiLzByxL8Cu9FcET7y7zF33tpJfLUeLtUfuY11XrLMvCjEY
+# aZqCBXaTC0h50lKHNe9YHUt41QOKtju9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzN1owIwYJKoZIhvcN
-# AQkEMRYEFLgo2Fnb2X19sYhqPydEa0CT1rdwMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNlowIwYJKoZIhvcN
+# AQkEMRYEFOonhY5BmMyPo2LtTOUg6aNzsSBbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCKDpilS4jE26A+D5w7VMu6BkiY3uuTlTTgqoBCmqxXLcKm
-# cME0ZuMWVEcRGMA1OcXjpBl20uWhDn1zFrELQll+1xSo2df7cyK6OcSXUhw+6PHl
-# MA7jG9ke+89Y2htcOOqAJOV+h5GCaA+cPzJUqBmGVjh3OmxqjtcEZyqYNEdFZVK6
-# JwQ8T8ImdSJZHOBVZ1ZfdfJiEb6iU7q9jPH6cngDvqOf+/rbJiuaI3Kl0/PVyDaa
-# 5LWc8SwD3XmIO05elSki+jDWuZoWU3Fr3NWPdRGLc7eMyWUaNPpkAKimKt+3/ql2
-# JUKUgUilS/A3MM9ybM5/fW9AaXd3BfDvFdI92mkq
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCgpd/rmj2LnC+caQqb5qxoss2CFx2hQrsyUCJVK0yn+ULB
+# D7CDVTKn7Fd966oTVbjywu5KWXVQqHPwtZvx1KaUZ84hri9hj7dk+jWdFUKp/8A2
+# 2vRlZlvX/UaOr1+IzXwHHbKETJKw5/bhowsUBRQRMKRdTkdGLyH2OqzMfNQaYyHV
+# UzNyT+beyhGCMDcHogPZBX1krNMtTtpxyoqA4QtjusunaH/fPE5FjhTk9ERIJu1R
+# tvZXa6McouuKk5BMiCtO7wXWPfyuwD5rNCGkJnQAcUVTTBw70bvhk+5r9P7nHlD0
+# zWfHumSc3+lQclW78nbbvlFaUw5ecHtf+D3S9Bg5
 # SIG # End signature block

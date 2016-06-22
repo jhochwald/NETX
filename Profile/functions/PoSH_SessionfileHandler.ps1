@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,247 +15,247 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 <#
-    Simple Functions to save and restore PowerShell session information
+		Simple Functions to save and restore PowerShell session information
 #>
 function global:Get-sessionfile
 {
-  <#
-      .SYNOPSIS
-      Restore PowerShell Session information
+	<#
+			.SYNOPSIS
+			Restore PowerShell Session information
 
-      .DESCRIPTION
-      This command shows many PowerShell Session informations.
+			.DESCRIPTION
+			This command shows many PowerShell Session informations.
 
-      .PARAMETER sessionName
-      Name of the Session you would like to dump
+			.PARAMETER sessionName
+			Name of the Session you would like to dump
 
-      .EXAMPLE
-      PS C:\> Get-sessionfile $O365Session
-      C:\Users\adm.jhochwald\AppData\Local\Temp\[PSSession]Session2
+			.EXAMPLE
+			PS C:\> Get-sessionfile $O365Session
+			C:\Users\adm.jhochwald\AppData\Local\Temp\[PSSession]Session2
 
-      Description
-      -----------
-      Returns the Session File for a given Session
+			Description
+			-----------
+			Returns the Session File for a given Session
 
-      .EXAMPLE
-      PS C:\> Get-sessionfile
-      C:\Users\adm.jhochwald\AppData\Local\Temp\
+			.EXAMPLE
+			PS C:\> Get-sessionfile
+			C:\Users\adm.jhochwald\AppData\Local\Temp\
 
-      Description
-      -----------
-      Returns the Session File of the running session, cloud be none!
+			Description
+			-----------
+			Returns the Session File of the running session, cloud be none!
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Mandatory = $true)]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Session')]
-    [System.String]$sessionName
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Mandatory = $true)]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Session')]
+		[System.String]$sessionName
+	)
 
-  PROCESS {
-    # DUMP
-    Return "$([io.path]::GetTempPath())$sessionName"
-  }
+	PROCESS {
+		# DUMP
+		Return "$([io.path]::GetTempPath())$sessionName"
+	}
 }
 
 function global:export-session
 {
-  <#
-      .SYNOPSIS
-      Export PowerShell session info to a file
+	<#
+			.SYNOPSIS
+			Export PowerShell session info to a file
 
-      .DESCRIPTION
-      This is a (very) poor man approach to save some session infos
+			.DESCRIPTION
+			This is a (very) poor man approach to save some session infos
 
-      Our concept of session is simple and only considers:
-      - history
-      - The export-session
+			Our concept of session is simple and only considers:
+			- history
+			- The export-session
 
-      But still can be very handy and useful. If you type in some sneaky
-      commands, or some very complex things and you did not copied these to
-      another file or script it can save you a lot of time if you need to
-      do it again (And this is often the case)
+			But still can be very handy and useful. If you type in some sneaky
+			commands, or some very complex things and you did not copied these to
+			another file or script it can save you a lot of time if you need to
+			do it again (And this is often the case)
 
-      Even if you just want to dump it quick to copy it some when later to
-      a documentation or script this might be useful.
+			Even if you just want to dump it quick to copy it some when later to
+			a documentation or script this might be useful.
 
-      .EXAMPLE
-      PS C:\> export-session
+			.EXAMPLE
+			PS C:\> export-session
 
-      Description
-      -----------
-      Export the history and the export-session to a default File like
-      'session-2016040512.ps1session', dynamically generated based on
-      Time/date
+			Description
+			-----------
+			Export the history and the export-session to a default File like
+			'session-2016040512.ps1session', dynamically generated based on
+			Time/date
 
-      .EXAMPLE
-      PS C:\> export-session -sessionName 'C:\scripts\mySession'
+			.EXAMPLE
+			PS C:\> export-session -sessionName 'C:\scripts\mySession'
 
-      Description
-      -----------
-      Export the history and the export-session to the File
-      'C:\scripts\mySession.ps1session'
+			Description
+			-----------
+			Export the history and the export-session to the File
+			'C:\scripts\mySession.ps1session'
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Name of the Session File')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$sessionName = "session-$(Get-Date -Format yyyyMMddhh)"
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Name of the Session File')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$sessionName = "session-$(Get-Date -Format yyyyMMddhh)"
+	)
 
-  BEGIN {
-    # Define object
-    Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
-  }
+	BEGIN {
+		# Define object
+		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
+	}
 
-  PROCESS {
-    #
-    (Get-Location).Path > "$file-pwd.ps1session"
+	PROCESS {
+		#
+		(Get-Location).Path > "$file-pwd.ps1session"
 
-    #
-    Get-History | Export-Csv -Path "$file-hist.ps1session"
-  }
+		#
+		Get-History | Export-Csv -Path "$file-hist.ps1session"
+	}
 
-  END {
-    # Dump what we have
-    Write-Output -InputObject "Session $sessionName saved"
-  }
+	END {
+		# Dump what we have
+		Write-Output -InputObject "Session $sessionName saved"
+	}
 }
 
 function global:import-session
 {
-  <#
-      .SYNOPSIS
-      Import a PowerShell session info from file
+	<#
+			.SYNOPSIS
+			Import a PowerShell session info from file
 
-      .DESCRIPTION
-      This is a (very) poor man approach to restore some session infos
+			.DESCRIPTION
+			This is a (very) poor man approach to restore some session infos
 
-      Our concept of session is simple and only considers:
-      - history
-      - The current directory
+			Our concept of session is simple and only considers:
+			- history
+			- The current directory
 
-      But still can be very handy and useful. If you type in some sneaky
-      commands, or some very complex things and you did not copied these to
-      another file or script it can save you a lot of time if you need
-      to do it again (And this is often the case)
+			But still can be very handy and useful. If you type in some sneaky
+			commands, or some very complex things and you did not copied these to
+			another file or script it can save you a lot of time if you need
+			to do it again (And this is often the case)
 
-      Even if you just want to dump it quick to copy it some when later to a
-      documentation or script this might be useful.
+			Even if you just want to dump it quick to copy it some when later to a
+			documentation or script this might be useful.
 
-      .EXAMPLE
-      PS C:\> import-session -sessionName 'C:\scripts\mySession'
+			.EXAMPLE
+			PS C:\> import-session -sessionName 'C:\scripts\mySession'
 
-      Description
-      -----------
-      Import the history and the export-session from the File
-      'C:\scripts\mySession.ps1session'
+			Description
+			-----------
+			Import the history and the export-session from the File
+			'C:\scripts\mySession.ps1session'
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Mandatory = $true)]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Session')]
-    [System.String]$sessionName
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Mandatory = $true)]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Session')]
+		[System.String]$sessionName
+	)
 
-  BEGIN {
-    # Define object
-    Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
-  }
+	BEGIN {
+		# Define object
+		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
+	}
 
-  PROCESS {
-    # What do we have?
-    if (-not [io.file]::Exists("$file-pwd.ps1session"))
-    {
-      Write-Error -Message:"Session file doesn't exist" -ErrorAction:Stop
-    }
-    else
-    {
-      Set-Location (Get-Content -Path "$file-pwd.ps1session")
-      Import-Csv -Path "$file-hist.ps1session" | Add-History
-    }
-  }
+	PROCESS {
+		# What do we have?
+		if (-not [io.file]::Exists("$file-pwd.ps1session"))
+		{
+			Write-Error -Message:"Session file doesn't exist" -ErrorAction:Stop
+		}
+		else
+		{
+			Set-Location (Get-Content -Path "$file-pwd.ps1session")
+			Import-Csv -Path "$file-hist.ps1session" | Add-History
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ29G8mCMCeMfzrlifan3rQEy
-# EnugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIoSieFs3DmXHVRmLr3rqAdLF
+# WZSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -397,25 +398,25 @@ function global:import-session
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTKuKFK6I+ilB/T2sgfBix3Z5flnTANBgkqhkiG9w0B
-# AQEFAASCAQA1J3M4d6X8jSxjaZwglPahJZOsUXGSYvTE7fV3wnJOnT2eYu8ynL9I
-# 3JA7yQRYdHymWIX6X+Q7tJbb9DYyiayjKvzntIaZqa15hFzWgrQ/fa+5vB2C/oHe
-# LGRHB0uEtV8A6fJJRSlYrL8TpMc1n5p+B9YiHfbZOUpbyE4SLB9slZaPNdfVlxEO
-# QZud/LeVjmi7humMz+VzQv7ucC3Ra3AUXUAZPmtUU2bwEKiHTCERjWB8biQoBYmn
-# NtrZYlgaKG1PkT11xaMaXbqUL8u8I1TOCwx+Dx/cwVXVGVlTsFw+IFLGYw24QnUz
-# 4YdnFfRI6N2TSGuL16FKZRL2Akb8c1ZvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHGvztdJphKbVZV4kKnh6BxSXc4TANBgkqhkiG9w0B
+# AQEFAASCAQAt57Y5fYjW58ymtjXZPImIsMm+yNhQyUwdjCmj/xNSggE5Bs+lUCyV
+# U6VDTyu7B0+KYv/qlvxYps1akp46A+990Fy/+qqMPThVJI+PKt+vTmf1GChITOzB
+# J2GZX6GhVWwSNU88cJqhJRveZnUv9N0HwFMxYy16HVslMpgBrNVhSYlPUgmSwXki
+# YEy5nXVZV6aQbrqjNL1yE1izedTi7RWPSCutT7sGag+CIwde7yiDsi12os/M54OR
+# dm6ABnFTj8CLNipTkvOiNTYyfn9cKKOVfa5UyaayW4Bu4mnyDAE+WeNGZvcfWOvg
+# 1LfOO+mm4LM7lgkl8+6BMydaK3KQ6ZIkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwMlowIwYJKoZIhvcN
-# AQkEMRYEFDXEXt5J+jEtKLw0+SRkMU6m4anAMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1M1owIwYJKoZIhvcN
+# AQkEMRYEFLjSwXd6zaZnwMfFK8OSOt6MaS9KMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAvt+KBDtSBJ9b8039tYrpDCgW2JaG1FESPiuNaH3y2ngcC
-# obnXG9oQb2t8daVMbvQqm0+/mvt3h3Rgt4czRkpynbxP5OMsJCNYPT/fAf6zqGvD
-# cgiFTvO7dHrE76IDSjPA37CzNwIptV+LPBm2vaXK0gZEiBPlFjZCsI55zD3tSbrN
-# h9ZgWGy3IsW3s6l11rUNyqHg9KV0Qu4a90ftBx/7n5x8BiF+1Slb5aZJn0g2/krr
-# WINq+Ww9NdmacnROatheCU0lTbHd9RdhlfuKhJMgUjh9I8Qnqjq1AC+0khmzPqqL
-# cQqcBmSqdRbMGn40sJxbEMr9KGOXvdygdas+cT/D
+# hkiG9w0BAQEFAASCAQABl1aZuCooZPy53En0/o6LmkYshnPr71fFXPVaA16Bj0pZ
+# MjgoCQY6xy4RELvK6c+ws0kkfZMPR9N2du6Hfp7+o8PW48JjI75seo4RYnfigrNf
+# u8D1HVXjhdeWuAQ86np1cmCdUIBnm6MZkZR1eRmW8dMYqfvINPvbUJ5JTlKLvfGA
+# Zfwh6DLpZjss3zXzr4I/yCZe5iQphwDxPAtNGdtvVJ8U+KL5V6Gz21rJK3HJMSQK
+# Rg2KhtYihWWvMLHsyNI0owgjOEtb41CTgKsFgKpNobwADlS651TT1gieoygYBu3g
+# Y3RBWSOGAcCPxwa1nhpdm8yWYujjmtLEKOiMBPdB
 # SIG # End signature block

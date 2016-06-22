@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,83 +15,83 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Check-SessionArch {
-  <#
-      .SYNOPSIS
-      Show the CPU architecture
+	<#
+			.SYNOPSIS
+			Show the CPU architecture
 
-      .DESCRIPTION
-      You want to know if this is a 64BIT or still a 32BIT system?
-      Might be useful, maybe not!
+			.DESCRIPTION
+			You want to know if this is a 64BIT or still a 32BIT system?
+			Might be useful, maybe not!
 
-      .EXAMPLE
-      PS C:\> Check-SessionArch
-      x64
+			.EXAMPLE
+			PS C:\> Check-SessionArch
+			x64
 
-      Description
-      -----------
-      Shows that the architecture is 64BIT and that the session also
-      supports X64
+			Description
+			-----------
+			Shows that the architecture is 64BIT and that the session also
+			supports X64
 
-      .NOTES
-      Additional information about the function.
+			.NOTES
+			Additional information about the function.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param ()
 
-  PROCESS {
-    # Figure out if this is a x64 or x86 system via NET call
-    if ([System.IntPtr]::Size -eq 8) {Return 'x64'} elseif ([System.IntPtr]::Size -eq 4) {Return 'x86'} else {Return 'Unknown Type'}
-  }
+	PROCESS {
+		# Figure out if this is a x64 or x86 system via NET call
+		if ([System.IntPtr]::Size -eq 8) {Return 'x64'} elseif ([System.IntPtr]::Size -eq 4) {Return 'x86'} else {Return 'Unknown Type'}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUX2a3GtNExIFyIh7ARJOByowt
-# WySgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjwrIa5WstlGUKvsGdILZQjHf
+# mMKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -233,25 +234,25 @@ function global:Check-SessionArch {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRp41D4ITempJ3KN3qsSXB18KTh6zANBgkqhkiG9w0B
-# AQEFAASCAQBZD0SJ3hGk2k6O4+lxQ3EAOt1Xv5uRnlR8CH3WbS0Y6DNlXTbzSaKo
-# AAeVzHC4rrrF3ywTq7PFU2SH6nA6aHsRg1VrbkZTHTdbXMfyYyQY09zg6kulDbYZ
-# 057Tj5TMtuWlkPK+WoBfWdemkbAaG1yqDpDHR5vtwmufBqZY7Y69AAKpFhGJnU+V
-# ZCUCpTH1zcyjdGDVx2EUUuUjzeGkUobrI5PZN6GaW3cVfpjZtHsXCJ2zt+k9ITYA
-# Azd/Gd1I8DKPzHutgqdCeadXrZXzpkoxhmpieX58kUDIBf9bQiCXSGP4O6BAy5HP
-# nZtDUOGIWX8lelU1SzAotC0uPsl3URYkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR9sZWs7kubUlSrv9+AOCorr216aDANBgkqhkiG9w0B
+# AQEFAASCAQAw6a0fnRMp/rf7DcyEz4LFOBuZlbIbrm+RjOJ7f7DxuYSaeWxTaCEf
+# sP/lMLe0pAvukyoU85lVn1J6Rp2yW5IPQZcS/M34pLMEFj9y9OyL0BXtgYvOGq+Q
+# R3ga2uOIzXG0PrWkkhJuemh9omLymASLpn3nuRpoZsfEOvogGJQ8nZzrHWyLWUVz
+# hmTH/8ao9FekJZJaz6g11jX56XViyqtQSs/QC5gAUSoUo/fyJc4fcpjVzAcHazfp
+# Pr3uhbv8UCWrq5ZJ5GNq1YP5qjZJS17oEjQi+1JIFSgKxVWV0LnkLYhjSZb0IU82
+# 48NC3iTmKt6QeS3ibf/i0fMwxoxNHkh4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyMlowIwYJKoZIhvcN
-# AQkEMRYEFFlKwnVueojNUVnzfaEuussZ9TakMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMVowIwYJKoZIhvcN
+# AQkEMRYEFGHbSTSdWxqvFfAwfVt80XWuCPleMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB+LAzHdU49c88yoHZY1DlU87OJ5G81DNlJVqJU1Pr3okVf
-# S/vJqYaEVL6/fskej4zoxaboNGOV5hY3e15qMa6huJpiwvEMlI0oWrjWaALccRjW
-# SzJDp8UNhc206chP6dYqQairGRNZGOyPAUvHSER2MTAoeghSAgWKFPQFejBgTWnf
-# fNAaCVI3e/Eo99cJWMnAq95EXQZR9NS4O1eU20xvtfSqM1RLwzd9p/I5WXRAD/pD
-# fT+p6c/FMUzXnvidiU45acezfAbz3jbi214SvS9UDTMhZjLt2GlwM13nvD7vGyy9
-# sdWtN0aqYpQ28dO0wVJphxXtzwLGsmXtBaqg14y6
+# hkiG9w0BAQEFAASCAQBc97NV22WpGX7NzwjNkP1nV1cbl/WfHhT2+0lwv/LI/5CE
+# Mj8n57S2XjS1ZKrjMthCS/Pe0RK2E491fjjy5ZrqvYEs/aGXu5SeG0CCCSORQIKS
+# 6ZgeEC9ADtW8yBgvQhFkidoT1ZpB6vsO9Eg13jgt+Vdhrfr/lLVg53ICLozOEGz3
+# C3mrXRkSs+SHiaDf4085SBDwJ0R1YD3K88Qz0U/MiSAF18F1gGwD9stRH8vljkV4
+# deLZNDIReReEYn/ehp6bW6zIiSNMt3XILz11W4zYpnKW0VOlZJZ4KQBF12zjwJVe
+# DkTh5UTU9s7ynaaUbkCLVFW6w8bk/1mtEupb4qKf
 # SIG # End signature block

@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,166 +15,166 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-ShortDate {
-  <#
-      .SYNOPSIS
-      Get the Date as short String
+	<#
+			.SYNOPSIS
+			Get the Date as short String
 
-      .DESCRIPTION
-      Get the Date as short String
+			.DESCRIPTION
+			Get the Date as short String
 
-      .PARAMETER FilenameCompatibleFormat
-      Make sure it is compatible to File Dates
+			.PARAMETER FilenameCompatibleFormat
+			Make sure it is compatible to File Dates
 
-      .EXAMPLE
-      PS C:\> Get-ShortDate
-      19.03.16
+			.EXAMPLE
+			PS C:\> Get-ShortDate
+			19.03.16
 
-      Description
-      -----------
-      Get the Date as short String
+			Description
+			-----------
+			Get the Date as short String
 
-      .EXAMPLE
-      PS C:\> Get-ShortDate -FilenameCompatibleFormat
-      19-03-16
+			.EXAMPLE
+			PS C:\> Get-ShortDate -FilenameCompatibleFormat
+			19-03-16
 
-      Description
-      -----------
-      Get the Date as short String and replace the '.' with '-'.
-      Useful is you want to append this to filenames.
+			Description
+			-----------
+			Get the Date as short String and replace the '.' with '-'.
+			Useful is you want to append this to filenames.
 
-      The dots are bad for such use cases!
+			The dots are bad for such use cases!
 
-      .NOTES
-      Helper Function based on an idea of Robert D. Biddle
+			.NOTES
+			Helper Function based on an idea of Robert D. Biddle
 
-      .LINK
-      Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
-  #>
+			.LINK
+			Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Position = 0,
-    HelpMessage = 'Make sure it is compatible to File Dates')]
-    [Switch]$FilenameCompatibleFormat
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Position = 0,
+		HelpMessage = 'Make sure it is compatible to File Dates')]
+		[Switch]$FilenameCompatibleFormat
+	)
 
-  PROCESS {
-    if ($FilenameCompatibleFormat) {
-      $Date = (Get-Date)
+	PROCESS {
+		if ($FilenameCompatibleFormat) {
+			$Date = (Get-Date)
 
-      # Dump
-      Return (($Date.ToShortDateString()).Replace('/', '-'))
-    } else {
-      $Date = (Get-Date)
+			# Dump
+			Return (($Date.ToShortDateString()).Replace('/', '-'))
+		} else {
+			$Date = (Get-Date)
 
-      # Dump
-      Return ($Date.ToShortDateString())
-    }
-  }
+			# Dump
+			Return ($Date.ToShortDateString())
+		}
+	}
 }
 
 function global:Get-ShortTime {
-  <#
-      .SYNOPSIS
-      Get the Time as short String
+	<#
+			.SYNOPSIS
+			Get the Time as short String
 
-      .DESCRIPTION
-      Get the Time as short String
+			.DESCRIPTION
+			Get the Time as short String
 
-      .PARAMETER FilenameCompatibleFormat
-      Make sure it is compatible to File Timestamp
+			.PARAMETER FilenameCompatibleFormat
+			Make sure it is compatible to File Timestamp
 
-      .EXAMPLE
-      PS C:\> Get-ShortTime
-      16:17
+			.EXAMPLE
+			PS C:\> Get-ShortTime
+			16:17
 
-      Description
-      -----------
-      Get the Time as short String
+			Description
+			-----------
+			Get the Time as short String
 
-      .EXAMPLE
-      PS C:\> Get-ShortTime -FilenameCompatibleFormat
-      16-17
+			.EXAMPLE
+			PS C:\> Get-ShortTime -FilenameCompatibleFormat
+			16-17
 
-      Description
-      -----------
-      Get the Time as short String and replace the ':' with '-'.
-      Useful is you want to append this to filenames.
-      The dash could be bad for such use cases!
+			Description
+			-----------
+			Get the Time as short String and replace the ':' with '-'.
+			Useful is you want to append this to filenames.
+			The dash could be bad for such use cases!
 
-      .NOTES
-      Helper Function based on an idea of Robert D. Biddle
+			.NOTES
+			Helper Function based on an idea of Robert D. Biddle
 
-      .LINK
-      Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
-  #>
+			.LINK
+			Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Position = 0,
-    HelpMessage = 'Make sure it is compatible to File Timestamp')]
-    [Switch]$FilenameCompatibleFormat
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Position = 0,
+		HelpMessage = 'Make sure it is compatible to File Timestamp')]
+		[Switch]$FilenameCompatibleFormat
+	)
 
-  PROCESS {
-    if ($FilenameCompatibleFormat) {
-      $Time = (Get-Date)
+	PROCESS {
+		if ($FilenameCompatibleFormat) {
+			$Time = (Get-Date)
 
-      # Dump
-      Return (($Time.ToShortTimeString()).Replace(':', '-').Replace(' ', '-'))
-    } else {
-      $Time = (Get-Date)
+			# Dump
+			Return (($Time.ToShortTimeString()).Replace(':', '-').Replace(' ', '-'))
+		} else {
+			$Time = (Get-Date)
 
-      # Dump
-      Return ($Time.ToShortTimeString())
-    }
-  }
+			# Dump
+			Return ($Time.ToShortTimeString())
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUq8gZNCDA1CeyDIfz6GGNLZNP
-# PK2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/uOiJTb0de0EB5ZV0qtKSqVp
+# PDWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -316,25 +317,25 @@ function global:Get-ShortTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSqtSYCcqkAuHoPcjT4/fChe1a/+TANBgkqhkiG9w0B
-# AQEFAASCAQBKDIUWkbzDeqXT/u8aMer3KjAu3aP8MhjtEFvf1POhnjmMbClJQlMR
-# oxner/IsFkrC6HxkWlxDA57ZG48SsQniBPTV6OgCLzJGRDEtgxPIbRzBsbl6jEBE
-# SHnyWQcmKzThuhRf+LcWui2DqOySAMImKqPmq0szseyf9m+LOXUEdT9FCwOAkmpu
-# qwKZYVpWnIy9+iq5z/zn3r1UYGHUCeORXccqB+6EcM099AQumGhRHVOX75O3t2wU
-# dTs0y2De4UQNL6Bykk+SnZiDQ+gTC1B2AShhkzLJHV/m8BoBUD2Hi6V3lmvd03Vf
-# VT04sf/Gkd/vwBHb9ycqzhAQDDjVhFSsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSyC4h9dTVj6RIWeCAVZi6w+6zdsDANBgkqhkiG9w0B
+# AQEFAASCAQBr0hnQCHR+PtJlB2hACvNieXpWRIAZrSG5yrLr9ra8MhWoK7WGtT7+
+# UwfLTlff6Cyu2Px85pEiu1rsok/E0hoqoR+WY/K2LCmXTHZWTv8txgz4IT8+DJ2N
+# okuEyDOmhdbcvUnZMZIGbX1YW5H725XjV5tBkwJE9up1pIg+bD94yKodQsui+aLE
+# SVLpoP1vgTkjeJsg35nWo5IK4GCbta1h4+wnxoRnbhGZcfqglDXzofTQ0lON4zT6
+# y3eYlGg/4AXvFSnrzMYSLQffz+7otTDrVk/itnQxicgvVwsqeKwt5CMS9K1yIS0H
+# TEwYDULb4+IHQAXns6x5s9cBQxLkwSGnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMFowIwYJKoZIhvcN
-# AQkEMRYEFCteCQA5qQ3re1oX1Rc2L39oMDgyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMlowIwYJKoZIhvcN
+# AQkEMRYEFFmOluljoCX3OweEK1E2Q7RObywMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCeXfoqDvbRgvOvx2PAgNtaloKgbYS3t0cHwuPSAEQkn9pb
-# 93kWjT/TZqhPwM3ICWwmhkNyXYgTIUV6xSB8SB+H0TDQO2y9fk4Z5SU6b/+Y7dnJ
-# kds/haUahEb7rKqnP/GAf7rh93EzRARMuQArrz/rgKmjV3OkRChD5nPs9rbVKlTG
-# SUdiDVSNWU/Tsp9+QugrUDa1I5WJPByll0JTwFhrww0I9xlWUBxYT3Genl1HWO4f
-# dUd7BnAJGdBtilvEmgtMp7pt6M4XhqT2tAVsJKrZ9XJEkScVu1ezTf8VT0h9RlVu
-# R/0dvC4G1v4rE4KY+Q42USAmvxvWA2cS7tF8VOAr
+# hkiG9w0BAQEFAASCAQAi45z4fctpv/PDQLxi3XqXeOFD9h4/RxQtbtV6hWtYVKoH
+# vBAvEtF1YD+2xibg5mM+i/w2RF52R6Sk10TS95ws+bE/uXeBgs8VF8nm24+4/8Ao
+# BJ1qaDQy2NJh86GfpGtSA1oDr/gP7DYxLpwypv1lPhjqf42nuM+4DNEUMKzWBWWi
+# OHzWbeov/yRfXP36/15vn7USzVrjKVQY5d84Bpw61563dqzS4PAGrzxlbbZW5Ger
+# IcwG+bNA3fD+njLa7lzOam4sb5oHS8czSoXghlHQBSpnR/1yMOLLsDo0lfu8EckH
+# 1KfPw+40jQejKG2Hp1/IyrpQV0YKlp/vG+LFkc+v
 # SIG # End signature block

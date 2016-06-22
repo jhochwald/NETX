@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,123 +15,123 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 Function Global:ConvertTo-HashTable {
-  <#
-      .Synopsis
-      Convert an object to a HashTable
+	<#
+			.Synopsis
+			Convert an object to a HashTable
 
-      .Description
-      Convert an object to a HashTable excluding certain types.
+			.Description
+			Convert an object to a HashTable excluding certain types.
 
-      For example ListDictionaryInternal doesn't support serialization
-      therefore can't be converted to JSON.
+			For example ListDictionaryInternal doesn't support serialization
+			therefore can't be converted to JSON.
 
-      .Parameter InputObject
-      Object to convert
+			.Parameter InputObject
+			Object to convert
 
-      .Parameter ExcludeTypeName
-      Array of types to skip adding to resulting HashTable.
-      Default is to skip ListDictionaryInternal and Object arrays.
+			.Parameter ExcludeTypeName
+			Array of types to skip adding to resulting HashTable.
+			Default is to skip ListDictionaryInternal and Object arrays.
 
-      .Parameter MaxDepth
-      Maximum depth of embedded objects to convert, default is 4.
+			.Parameter MaxDepth
+			Maximum depth of embedded objects to convert, default is 4.
 
-      .Example
-      $bios = Get-CimInstance win32_bios
-      $bios | ConvertTo-HashTable
+			.Example
+			$bios = Get-CimInstance win32_bios
+			$bios | ConvertTo-HashTable
 
-      Name                           Value
-      ----                           -----
-      SoftwareElementState           3
-      Manufacturer                   American Megatrends Inc.
-      Caption                        4.6.5
-      CurrentLanguage                en|US|iso8859-1
+			Name                           Value
+			----                           -----
+			SoftwareElementState           3
+			Manufacturer                   American Megatrends Inc.
+			Caption                        4.6.5
+			CurrentLanguage                en|US|iso8859-1
 
-      Description
-      -----------
-      Convert an object to a HashTable
+			Description
+			-----------
+			Convert an object to a HashTable
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  Param (
-    [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-    [Object]$InputObject,
-    [string[]]$ExcludeTypeName = @('ListDictionaryInternal', 'Object[]'),
-    [ValidateRange(1, 10)]
-    [System.Int32]$MaxDepth = 4
-  )
+	Param (
+		[Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+		[Object]$InputObject,
+		[string[]]$ExcludeTypeName = @('ListDictionaryInternal', 'Object[]'),
+		[ValidateRange(1, 10)]
+		[System.Int32]$MaxDepth = 4
+	)
 
-  BEGIN {
-    # Be Verbose
-    Write-Verbose -Message "Converting to hashtable $($InputObject.GetType())"
-  }
+	BEGIN {
+		# Be Verbose
+		Write-Verbose -Message "Converting to hashtable $($InputObject.GetType())"
+	}
 
-  PROCESS {
-    $propNames = $InputObject.psobject.Properties | Select-Object -ExpandProperty Name
+	PROCESS {
+		$propNames = $InputObject.psobject.Properties | Select-Object -ExpandProperty Name
 
-    $hash = @{ }
+		$hash = @{ }
 
-    $propNames | ForEach-Object -Process {
-      if (($InputObject.$_)) {
-        if ($InputObject.$_ -is [System.String] -or (Get-Member -MemberType Properties -InputObject ($InputObject.$_)).Count -eq 0) {$hash.Add($_, $InputObject.$_)} else {
-          if ($InputObject.$_.GetType().Name -in $ExcludeTypeName) {
-            # Be Verbose
-            Write-Verbose -Message "Skipped $_"
-          } elseif ($MaxDepth -gt 1) {$hash.Add($_, (ConvertTo-HashTable -InputObject $InputObject.$_ -MaxDepth ($MaxDepth - 1)))}
-        }
-      }
-    }
-  }
+		$propNames | ForEach-Object -Process {
+			if (($InputObject.$_)) {
+				if ($InputObject.$_ -is [System.String] -or (Get-Member -MemberType Properties -InputObject ($InputObject.$_)).Count -eq 0) {$hash.Add($_, $InputObject.$_)} else {
+					if ($InputObject.$_.GetType().Name -in $ExcludeTypeName) {
+						# Be Verbose
+						Write-Verbose -Message "Skipped $_"
+					} elseif ($MaxDepth -gt 1) {$hash.Add($_, (ConvertTo-HashTable -InputObject $InputObject.$_ -MaxDepth ($MaxDepth - 1)))}
+				}
+			}
+		}
+	}
 
-  END {
-    Write-Output -InputObject $hash
-  }
+	END {
+		Write-Output -InputObject $hash
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQl/jJKoMObNuC4dmyTOKBt3k
-# tlWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDuVm1FfF5KrRFYezFm0aa7lm
+# A3+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -273,25 +274,25 @@ Function Global:ConvertTo-HashTable {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBREQiJgNAMJ0/LawtOMQQTTMc/OFzANBgkqhkiG9w0B
-# AQEFAASCAQBEjhuT4pJQlMpbCG5qdLh5pEPTOfdFBS0lbx9pBUyOnjSfvZHKKsDi
-# wd1odCSLZZz5Z02rvZRY7H9mDc+okrD0aC/Q+Cl9xNQVy1/fLYArJNkrghqAlKjQ
-# gj86QmeaF7vTtxTjs7czG5gvEqzSqA9qIxRM7SOcUo77gotpbPI2U6jMcwOt5756
-# Ou8X9xTbEqAoM8yBaVpQO7b8IsjDyjgFabl5y5WCS8jzUiANlz24Zsta9TmtEaPA
-# FEE8Vp5EtM/RI+jcaQcZGGWOuBjiVnfNJIaaEO4wOjWPhjPvsCGZQk5Ly8+BzeRk
-# myinjMw5ZdnpgEm81ot2drLkGsjZunGdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBST/Wb48ZssP/F0c3XLwranZMspYTANBgkqhkiG9w0B
+# AQEFAASCAQBXAkwT8MIYtjBcaEfc4tNkl3h8Htr4FW41xo8X61sB0FpAY/MVYyKt
+# 8No9elAQAf6Gx0W4vIPdEOJFUxq8yiSuGWmY655SrCVvoMoYLS9mN3DlawjZh0QS
+# KQ84TOS1Td351rFGeRC/74ZhBQGTBenHBXAZ+WhKo5Zofcf9yWnJnJXJ5ERxxuaU
+# Xq60Xo2dFREysi42+67Fbe9Ymx1ZIBcwn3L7R8h6QxpqyQ+FvvGTCCyEU486TqN5
+# Rj4nc5BDSH2bfa0mtAIAJ2TGleqPoesorh5f16wjiIkfsxR/ubArOZISVF59yu0E
+# FRzI4YT5jveXdQC8+PPOwCWr4orS0NAJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyNlowIwYJKoZIhvcN
-# AQkEMRYEFO4/pMa0omvs79iq1O7grSEc+ZdtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExNVowIwYJKoZIhvcN
+# AQkEMRYEFDwYCEzavwHRFd12fX4hezohzZ6MMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAS7P44hA2YjhBjyXPctgniM2LkvtLd8wlHWPwIdN8QKs0a
-# XdEJdp7Ey8wGyLqp0H+JCFHABSQ9uKrqjrAXDkDDiJISDytqLMJEiuwreyKNoRMK
-# 50Z2wvQIWy4BeMGnf2wiIxk84yyvNQNVpCI5iXtn4iBpox24+W1yzvjSSBv4bWqR
-# 1V/X0pcZyhywr1Bq8sWWae+pl3J7BUaX1Vxkz45XSP1ZmF+nTSDZ1IQXQOzWCVu0
-# 3iDueePXhmMd7xK65XBPXTxBxjHSR2DeR2DI1dDnPFLqFBuBbVirW0vv0MR5z4JE
-# Yc7RFesqnhGRlRMsW+EwqGGZVSjTA1WzdzwpLpNZ
+# hkiG9w0BAQEFAASCAQCuQfYKA7qM+9zyxYFwIu/VylGKcLH2RhWXlntAVV8z7FrJ
+# V9xu5QCr2yxpnoSdPIgBfOEnXT0kK/gdHF3+mOWgGKkn33T5rEYBZ6LEXj/YwoUC
+# Pr/Ex4acN5/LjxZMahSrI28nc6wHbc8uOcI+0Uoo+nvjm1CV8xL1yQzEiwlIzxJh
+# jsRMgGRFJIUISm6DWjryDVEjt76864ogU4mCZaIEfbTDWZr0n5brnCi/E+q9MMh2
+# TINF50BdVLsZ9uIrSn5Uo9jgS4j3ZxVLTaORktnag0v2a9UGVeVA3oDK2Zv9E9h6
+# N19qATYwKi0yjqK0PC+JFlO6J85HOfVyUWXmH+C1
 # SIG # End signature block

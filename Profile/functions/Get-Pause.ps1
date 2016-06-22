@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,119 +15,119 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Pause {
-  <#
-      .SYNOPSIS
-      Wait for user to press any key
+	<#
+			.SYNOPSIS
+			Wait for user to press any key
 
-      .DESCRIPTION
-      Shows a console message and waits for user to press any key.
+			.DESCRIPTION
+			Shows a console message and waits for user to press any key.
 
-      Optional:
-      The message to display could be set by a command line parameter.
+			Optional:
+			The message to display could be set by a command line parameter.
 
-      .PARAMETER PauseMessage
-      This optional parameter is the text that the function displays.
-      If this is not set, it uses a default text "Press any key..."
+			.PARAMETER PauseMessage
+			This optional parameter is the text that the function displays.
+			If this is not set, it uses a default text "Press any key..."
 
-      .EXAMPLE
-      PS C:\> pause
+			.EXAMPLE
+			PS C:\> pause
 
-      Display a console message and wait for user to press any key.
-      It shows the default Text "Press any key..."
+			Display a console message and wait for user to press any key.
+			It shows the default Text "Press any key..."
 
-      .EXAMPLE
-      PS C:\> pause "Please press any key"
+			.EXAMPLE
+			PS C:\> pause "Please press any key"
 
-      Description
-      -----------
-      Display a console message and wait for user to press any key.
-      It shows the Text "Please press any key"
+			Description
+			-----------
+			Display a console message and wait for user to press any key.
+			It shows the Text "Please press any key"
 
-      .EXAMPLE
-      PS C:\> pause -PauseMessage "Please press any key"
+			.EXAMPLE
+			PS C:\> pause -PauseMessage "Please press any key"
 
-      Description
-      -----------
-      Display a console message and wait for user to press any key.
-      It shows the Text "Please press any key"
+			Description
+			-----------
+			Display a console message and wait for user to press any key.
+			It shows the Text "Please press any key"
 
-      .NOTES
-      PowerShell have no build in function like this
+			.NOTES
+			PowerShell have no build in function like this
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Text to display')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Message')]
-    [System.String]$PauseMessage = 'Press any key...'
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Text to display')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Message')]
+		[System.String]$PauseMessage = 'Press any key...'
+	)
 
-  BEGIN {
-    # Do we need to show the default?
-    if (($PauseMessage -eq '') -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
-      # Text to show - Default text!
-      Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([System.String] -as [type]))
-    }
-  }
+	BEGIN {
+		# Do we need to show the default?
+		if (($PauseMessage -eq '') -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
+			# Text to show - Default text!
+			Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([System.String] -as [type]))
+		}
+	}
 
-  PROCESS {
-    # This is the Message
-    Write-Host "$PauseMessage" -ForegroundColor Yellow
+	PROCESS {
+		# This is the Message
+		Write-Host -Object "$PauseMessage" -ForegroundColor Yellow
 
-    # Wait for the Keystroke
-    $null = ($host.ui.RawUI.ReadKey('NoEcho,IncludeKeyDown'))
-  }
+		# Wait for the Keystroke
+		$null = ($host.ui.RawUI.ReadKey('NoEcho,IncludeKeyDown'))
+	}
 
-  END {
-    # Cleanup
-    Remove-Variable -Name 'PauseMessage' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	END {
+		# Cleanup
+		Remove-Variable -Name 'PauseMessage' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name pause -Value Get-Pause -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -134,8 +135,8 @@ function global:Get-Pause {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBDpK8SVLcQDBr0cWkrfsiJ7J
-# pCWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYKcAOISqrfOjsvK6UYOwaDDn
+# bhmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -157,10 +158,10 @@ function global:Get-Pause {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -176,12 +177,12 @@ function global:Get-Pause {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -278,25 +279,25 @@ function global:Get-Pause {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTQOOrVle2IVT0GzJdJVS2v2ZrwTTANBgkqhkiG9w0B
-# AQEFAASCAQA4KdSc+eWpKsn9sZil8if9rlSNhJquup3s2z0475Yv/HIS43MWKf/k
-# CPRTV+vkqIND1kT95azCEaGZkpGwEuspBKCkQ8LFrH1ieVF7paHU0yYq2cJPlENy
-# FrOuwrCRHcCgtTnIewGFqscNNMgzqcqTzvfAGHG+dzfuR9jYJkes7uHnfELp06YW
-# oUaNEZHjxS/Zj8na8UfQfYZzFJZDAeGW08jR3wFv+Co3Su2hXBhSwXJwzX0Vq830
-# hh1o4CF3bcQwyJInEzqmNQPrpPozjNH/hFNX6zsXJ9zO6cEVwW/C68pkN/SMUKJT
-# 3Ww1JlB+CoA39IYiOmxUIu4uer2xG75moYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSyHSQPt1XfuZ7VddiY+hm0456jfjANBgkqhkiG9w0B
+# AQEFAASCAQBRs/cm9sHuYzv6u+3Dtt/leWeKgw4lSsFSRYZb54IkGbJEqNXq0oqW
+# 9Ayy6AwAhuJJHEsPvkluFYLP/Fvw9iojO9Fxp03n8ow1T8dvs41SJyTSTxt2rjCu
+# wMjBNlH16HV13ofyP3wVGnPzGeAeHttys/tzkrfap8IE13SvM5sQnCs8xJJUomuS
+# SWVaLRcmQg92Kj22WjJ/ZdEx9URLN5HCdrV+VFUYe4Z7Pp7B+6d9h0VogbHW2pLV
+# AJYzFJp+J7ufD4PX9knowS+bOxbYxkvNiYYgMZ5sTovGqAsQsiXSS2ey2Kf3pTjZ
+# V4LjnQwxqKZ91sgs1bslSgdCXtmfp4tfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0MVowIwYJKoZIhvcN
-# AQkEMRYEFFnqb1YxcVGjA/KnYhUSfGfmChrVMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzMFowIwYJKoZIhvcN
+# AQkEMRYEFM0Al0MlxMvG1EihVWTiBrr0xly8MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBteDWimJt+wSVTuRpejNi3PEjOgafIoKHHkOINGFzyDwXk
-# HhCO/jVy3PcYAijprK7Yiusm23u1MkVp7shU15Z5gZh5+l3SiVxf0TSW3e+N/eKK
-# DngPivaI3f6ciV+BumnFM0EaoygXRFHL8mgIGyW0pDC45DRP9r5/lXCJrn8GTv68
-# KHfwQvGHXgVhfyHH/7xMO4k4q4/afDDBO9//DYLin1kNrxBLokHq8+5BMrw81rOY
-# Ivi5DD/Q/2TlIOun9cuGtdwxXmMf5HuY2QUCNvsvTBTT0ppmOevbpaMkSnLj3Gf4
-# zs+zErB0VhGlXeV5zkMAO3XwlKSMufl7qltFuE61
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBJV6OcNnwq9a6pkdmo0wKFxq1YkK7tSdXAzcSe7avzzbJ0
+# F2ib1MuvM6HXRGayNPQDJEk4LxU8hxKZAqxFcprXivQwETAwyo/GmGFyWG5vbkqa
+# 2Rlb1Tvs0/1+yb242bH6MZDTbdBhllk0wkloVIYUvlnIg/VSiamwiwwx4fAkaFvO
+# 2q0VcYkuQYpelvBWAbWZspdLVc/5XV+x6nE9mLI5QKX12PfRFQZgvFdsSB256cGs
+# 2//7EUJIdMVFj86NXT7QrUqiOesKqcNuzT1fu7QTL1k9Ch53CQHn5C6Ttmo/lOrt
+# 3WkKisWSwCNbaryQqc/eFGJil/O4QtNRQa9tTSIv
 # SIG # End signature block

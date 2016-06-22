@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 3
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,78 +15,78 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 <#
-    Whenever PowerShell comes across a command name that it does not know,
-    you see a red error message.
+		Whenever PowerShell comes across a command name that it does not know,
+		you see a red error message.
 
-    However, starting with PowerShell 3.0, there is a "CommandNotFoundHandler"
-    that you can program. It can then log things, or try and resolve the issue.
+		However, starting with PowerShell 3.0, there is a "CommandNotFoundHandler"
+		that you can program. It can then log things, or try and resolve the issue.
 
-    Here is a simple example. Once you run this code, whenever there is a
-    command that PowerShell does not know, it runs Show-Command and opens a
-    helper tool with all valid commands
+		Here is a simple example. Once you run this code, whenever there is a
+		command that PowerShell does not know, it runs Show-Command and opens a
+		helper tool with all valid commands
 
-    Source: http://powershell.com/cs/blogs/tips/archive/2015/10/22/adding-command-not-found-handler.aspx
+		Source: http://powershell.com/cs/blogs/tips/archive/2015/10/22/adding-command-not-found-handler.aspx
 #>
 
-$ExecutionContext.InvokeCommand.CommandNotFoundAction =
+$ExecutionContext.InvokeCommand.CommandNotFoundAction = 
 {
-  param (
-    [System.String]$commandName,
-    [System.Management.Automation.CommandLookupEventArgs]$eventArgs
-  )
+	param (
+		[System.String]$commandName,
+		[System.Management.Automation.CommandLookupEventArgs]$eventArgs
+	)
 
-  BEGIN {
-    # What to print to the console
-    Write-Warning -Message "Command $commandName was not found."
-  }
+	BEGIN {
+		# What to print to the console
+		Write-Warning -Message "Command $commandName was not found."
+	}
 
-  PROCESS {
-    # Here we go
-    # Let us open a nice UI for you ;-)
-    $eventArgs.CommandScriptBlock = { Show-Command }
-  }
+	PROCESS {
+		# Here we go
+		# Let us open a nice UI for you ;-)
+		$eventArgs.CommandScriptBlock = { Show-Command }
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZU7uQNIJsRw9g6iyXjFyJbvn
-# 8HSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyNVVTcA5dCoqsdUJySVGiQyQ
+# 2aGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -228,25 +229,25 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSp6PCUwc2kenNvwAGPaGU9S8QebTANBgkqhkiG9w0B
-# AQEFAASCAQAZQo/4IS7pWBn/aRV0SJCr3ZDuKmrXP5zAryA2x3B7d11a7YZ2RVOY
-# H1qEi22aNVXn8EPhrntmbdnbmKcr8HbZo66RSrOQHvQpQZq34ODILInQDSnB09/q
-# 0pUzumtONbnwPlGOrD5qmDmNbAAOM+YhX4W9wtvmfnEKlmAPr5TjWNNwr5J6vhqL
-# Du2cdUquPLtlwiiLvGORo8g5h1a3lBpfvdt3jSGfnRBo2gYe3lgahRaqA7NNrEJQ
-# JTseUp+gmWcpQEbVVAvu4isMO4sH2tvkQpH8cXLaJ2fZAyrauG+V7FhNswAyUd37
-# gHqtUQrjBBaD6zHsW3tsNNwZ6ZTQH0zKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRFQp0UCcDb02rMNN2PcJHi9VjilDANBgkqhkiG9w0B
+# AQEFAASCAQApFAWKAAPy6wfRAr5j1K8EvICYnJ3Ca/aZOizXuFHM0i6MFX01fPHC
+# Vl4F8aJqmKdAXHmk0KHmfxpHOkQ8EXZb0OK3rv0/uh3iCkx355r48HBET8NChmm1
+# +b84J8E5V6MwKp/rN0tFdhxOgkWeoIfZdmrHkag8wUtQnM0PqcPLHqsms9bHIAHC
+# uAj0r0JLjGlzpgnRYa30IlpYkHQIwCtgBhky5cRxjspP04sRHhe8+gkv2Dz5qF0i
+# m0mM/iYD/iXgZCksSlLisWfp/jmgJP7UVpU/GATaADGi0CLpAIz7m7Fh9y/rAqyO
+# BwgC9zXEyYIlL9JfYPjzAtcIcKVepDvCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyNVowIwYJKoZIhvcN
-# AQkEMRYEFBFDtTlQGI3BZioe8mG1V9gUVii7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExNFowIwYJKoZIhvcN
+# AQkEMRYEFFcnUzQGDhz8Kuf+0KpaIXNCDHfdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQClTuEnGl1qQYkdZMxhAnMjd1gnY1x4dnK4yYBFgFvwa65x
-# +cYXhrhT22jIBGQnXdMFFOOqjlTjJ/j/MWHBU4gJAiyRcT+4cdBVYqEj5Z8w8FXW
-# wznAiW2LYrp3Bhqg1dSGzeEtCD6gR5Cb37NdKShwYJ2h3Hf6UqdaXEkhxPRQ21hx
-# NTT3FGnzs4fZ6VVtl3+x21TxnmQ2PYSfh7ofJ+vO+YtcoiosxpmSQPrhShrw5mQa
-# H9Wylbm1/rnt4mNB4Hz94+w4c73LMSHQBfLmLN3T0xpoLYMksdyvTNEZFb2+4pj1
-# vrUs5jYx+vXfYCRkJvIaV/l+OIEQfbszZOBXKwyW
+# hkiG9w0BAQEFAASCAQAjNY5R5Axit4hGtYHdywvs+N4hdE/SywXTFmp3enEJhW4D
+# ioTTiDP62+q/RrKkshyg5DQdPmrXY7bCUhLyOGCpIXzgNvvvPi7BFE14MJIvgvSG
+# NiZqWgVz8TEjgIsG60wxqB+IxM2MpjEO9iLCraDihHyqZ2HsM9dqt6470WTLGuN8
+# Vru98XtLAmF/9iEqe/FteXv1NxRBG8pUvwKeUzCchUucsdC7eL1pnTlGdRHb8UGk
+# 9w70OX5iN35VXWWY7dWsvY99LqHzZpRGuMguySHbztqZ5a+rZIkLIOTXjYZaPbQQ
+# iMszARQ62RHImVQ57hwybDkOOlpn4FOOnRpmjeux
 # SIG # End signature block

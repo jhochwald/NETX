@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,131 +15,131 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Approve-MailAddress {
-  <#
-      .SYNOPSIS
-      REGEX check to see if a given Email address is valid
+	<#
+			.SYNOPSIS
+			REGEX check to see if a given Email address is valid
 
-      .DESCRIPTION
-      Checks a given Mail Address against a REGEX Filter to see if it is
-      RfC822 complaint
-      Not directly related is the REGEX check. Most mailer will not be able
-      to handle it if there are non standard chars within the Mail Address...
+			.DESCRIPTION
+			Checks a given Mail Address against a REGEX Filter to see if it is
+			RfC822 complaint
+			Not directly related is the REGEX check. Most mailer will not be able
+			to handle it if there are non standard chars within the Mail Address...
 
-      .PARAMETER Email
-      e.g. "joerg.hochwald@outlook.com"
-      Email address to check
+			.PARAMETER Email
+			e.g. "joerg.hochwald@outlook.com"
+			Email address to check
 
-      .EXAMPLE
-      PS C:\> Approve-MailAddress -Email:"No.Reply@bewoelkt.net"
-      True
+			.EXAMPLE
+			PS C:\> Approve-MailAddress -Email:"No.Reply@bewoelkt.net"
+			True
 
-      Description
-      -----------
-      Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX
-      Filter to see if it is RfC822 complaint
+			Description
+			-----------
+			Checks a given Mail Address (No.Reply@bewoelkt.net) against a REGEX
+			Filter to see if it is RfC822 complaint
 
-      .EXAMPLE
-      PS C:\> Approve-MailAddress -Email:"Jörg.hochwald@gmail.com"
-      False
+			.EXAMPLE
+			PS C:\> Approve-MailAddress -Email:"Jörg.hochwald@gmail.com"
+			False
 
-      Description
-      -----------
-      Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a
-      REGEX Filter to see if it is RfC822 complaint, and it is NOT
+			Description
+			-----------
+			Checks a given Mail Address (JÃ¶rg.hochwald@gmail.com) against a
+			REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
-      .EXAMPLE
-      PS C:\> Approve-MailAddress -Email:"Joerg hochwald@gmail.com"
-      False
+			.EXAMPLE
+			PS C:\> Approve-MailAddress -Email:"Joerg hochwald@gmail.com"
+			False
 
-      Description
-      -----------
-      Checks a given Mail Address (Joerg hochwald@gmail.com) against a
-      REGEX Filter to see if it is RfC822 complaint, and it is NOT
+			Description
+			-----------
+			Checks a given Mail Address (Joerg hochwald@gmail.com) against a
+			REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
-      .EXAMPLE
-      PS C:\> Approve-MailAddress -Email:"Joerg.hochwald@gmail"
-      False
+			.EXAMPLE
+			PS C:\> Approve-MailAddress -Email:"Joerg.hochwald@gmail"
+			False
 
-      Description
-      -----------
-      Checks a given Mail Address (Joerg.hochwald@gmail) against a
-      REGEX Filter to see if it is RfC822 complaint, and it is NOT
+			Description
+			-----------
+			Checks a given Mail Address (Joerg.hochwald@gmail) against a
+			REGEX Filter to see if it is RfC822 complaint, and it is NOT
 
-      .NOTES
-      Internal Helper function to check Mail addresses via REGEX to see
-      if they are RfC822 complaint before use them.
+			.NOTES
+			Internal Helper function to check Mail addresses via REGEX to see
+			if they are RfC822 complaint before use them.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([bool])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-    HelpMessage = 'Enter the Mail Address that you would like to check (Mandatory)')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Mail')]
-    [System.String]$Email
-  )
+	[CmdletBinding()]
+	[OutputType([bool])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+		HelpMessage = 'Enter the Mail Address that you would like to check (Mandatory)')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Mail')]
+		[System.String]$Email
+	)
 
-  BEGIN {
-    # Old REGEX check
-    Set-Variable -Name 'EmailRegexOld' -Value $("^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$" -as ([regex] -as [type]))
+	BEGIN {
+		# Old REGEX check
+		Set-Variable -Name 'EmailRegexOld' -Value $("^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$" -as ([regex] -as [type]))
 
-    # New REGEX check (Upper and Lowercase FIX)
-    Set-Variable -Name 'EmailRegex' -Value $('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$' -as ([regex] -as [type]))
-  }
+		# New REGEX check (Upper and Lowercase FIX)
+		Set-Variable -Name 'EmailRegex' -Value $('^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,6})$' -as ([regex] -as [type]))
+	}
 
-  PROCESS {
-    # Check that the given Address is valid.
-    if (($Email -match $EmailRegexOld) -and ($Email -match $EmailRegex)) {
-      # Email seems to be valid
-      Return $true
-    } else {
-      # Wow, that looks bad!
-      Return $false
-    }
-  }
+	PROCESS {
+		# Check that the given Address is valid.
+		if (($Email -match $EmailRegexOld) -and ($Email -match $EmailRegex)) {
+			# Email seems to be valid
+			Return $true
+		} else {
+			# Wow, that looks bad!
+			Return $false
+		}
+	}
 }
 
 # Set a compatibility Alias
@@ -149,8 +150,8 @@ function global:Approve-MailAddress {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjCEutMTOnlRuYcRKwq/OA0o+
-# 2hOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiYNRW91RsRJqZV8dyDwpaRvw
+# H7SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -293,25 +294,25 @@ function global:Approve-MailAddress {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTriVQ6aAMjK2Jfbz4LdAt3AHvGCTANBgkqhkiG9w0B
-# AQEFAASCAQA4nCueOK9PAlUUcEB3boiuJck4IQz/uXHTRMkZOPMAtVK/wPar6RjO
-# /ckHZsSvpjdzczrWm9bRZfJyI3LW4UcNUJ0AKvHarxxLI9ZdcTjSMP21ifBpR1NC
-# HFCJA0u/x6dVM8p9FHnSJW/gCCnjF9f1HUOY9x6uvjm5AOHKroDKKSYcd0qul8JZ
-# BnaZQDyYA3j6UDyJfFl38JO4o+Fec8DPPVoEKLXThmfnL1YX13J8KR/7swn6Sjas
-# NQAnA0PytSAf7adRHriZ5ufT3RAtkY2J6mjvsOxpw2M/dt1xau+v5UvzrmAfd6qo
-# IhunRnb/vp9uow6Z4eewqCfs7oIM4ZujoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSBAahJjTIipdbY0dWB6e4IXxzqADANBgkqhkiG9w0B
+# AQEFAASCAQCQH9qXI+ojcXkzMnbSvk0iorDb1WZZza4sMg0njaw6c2S325t2LXpd
+# iIbCH7MOxuPR/+zqE+mTsTsf1mwrUgDb8IvsuFkX0MWFUg63IChN4Ho1+tAkeXfD
+# z6NCP9Z3PVtwZhcDBzonOKXeMM85NzlCFSLZeax/IpMcvzLZV0YeuVP0XvojzGsq
+# oQryHR4m/5oBz8XnDJ5MUJQRh7N8b1NJXF6H5uf0pc9ix2dGcG63ZL/D93FbbE5G
+# oYMwjPnHITB7vw80jy/j9sRomhTlyVaXxmX1/i+Xycv/MNWaF0QYM8yPzTz6A5qM
+# f/PGPTsuAQ/HzTO7W/QNYc7wS9eEpwcooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyMVowIwYJKoZIhvcN
-# AQkEMRYEFErjhwX/hEU/SXO1g0Uye5S6XEkHMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMFowIwYJKoZIhvcN
+# AQkEMRYEFBiRdxoMeFggyjreUGWVAnOSbekkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCGGddddbn3oogb88BMVDL/zlaa/pBpKKX3nP+YDwK0BDYV
-# ceiuTLW1MAvQYBHLxizSfUwP38WEH5zpCy/4A/qCA9aIu7lkxw96iIAnNG6PrGPM
-# 79hOeddj+WUaaZ/MMRtHewEFY4fYbUbOkEoYTHbk7BlYOi6PtvDQmn/H+mriaZhH
-# u1L86FAFePVXCtn8noJ36daW6vX6WrbpmO+cH7FgZWQCfKLuWnG9xuKtL+5idbCu
-# mIcPlWohT0H4UusvTRgDfPJ85m5f5YIUZg7gUFKTrxiTYqfuZXiPpgFdGFNsFRo6
-# f2MN1r1kqLKtUB/JG6yODk31hvUXuXgIOh7DcE8n
+# hkiG9w0BAQEFAASCAQCED6x3YbW002skQH1oe/WC3d3+/kVGr3BnF+FhaLuf3DEK
+# ritYo4YRVEs3vY0ANJznvc3w0T/M00c8H7c4ZAo/xxgVbdVP3ehJk3DBJLx/thE6
+# 3VvZGAfyFc6GCwpUYLzaYjcYfAWeCSaX/A0LyAXFdSZntLaiGqwzhzpj42nU7PUY
+# kwIbb/6XNTmq9f8Dtu8nx1ukRIHwNK/etqgGdL49VDqtg2OacmifD5+N/4FBcc17
+# ZLjKCqpEeN8IA3wOvVVt/a0S5oBfoygZxdX6D68yJjRKQjOl0Kc64fgaRWGnhkLI
+# vCZTXH5q5xzlUmTCutigvPihLIcjjSM3WqYPQ8Og
 # SIG # End signature block

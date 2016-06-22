@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,122 +15,122 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-PowerHead {
-  <#
-      .SYNOPSIS
-      Display first lines of a file
+	<#
+			.SYNOPSIS
+			Display first lines of a file
 
-      .DESCRIPTION
-      This filter displays the first count lines or bytes of each of the
-      specified files, or of the standard input if no files are specified.
+			.DESCRIPTION
+			This filter displays the first count lines or bytes of each of the
+			specified files, or of the standard input if no files are specified.
 
-      If count is omitted it defaults to 10.
+			If count is omitted it defaults to 10.
 
-      .PARAMETER File
-      Filename
+			.PARAMETER File
+			Filename
 
-      .PARAMETER count
-      A description of the count parameter, default is 10.
+			.PARAMETER count
+			A description of the count parameter, default is 10.
 
-      .EXAMPLE
-      PS C:\> head 'C:\scripts\info.txt'
+			.EXAMPLE
+			PS C:\> head 'C:\scripts\info.txt'
 
-      Description
-      -----------
-      Display first 10 lines of a file 'C:\scripts\info.txt'
+			Description
+			-----------
+			Display first 10 lines of a file 'C:\scripts\info.txt'
 
-      .EXAMPLE
-      PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt'
+			.EXAMPLE
+			PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt'
 
-      Description
-      -----------
-      Display first 10 lines of a file 'C:\scripts\info.txt'
+			Description
+			-----------
+			Display first 10 lines of a file 'C:\scripts\info.txt'
 
-      .EXAMPLE
-      PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt' -count '2'
+			.EXAMPLE
+			PS C:\> Invoke-PowerHead -File 'C:\scripts\info.txt' -count '2'
 
-      Description
-      -----------
-      Display first 2 lines of a file 'C:\scripts\info.txt'
+			Description
+			-----------
+			Display first 2 lines of a file 'C:\scripts\info.txt'
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-    HelpMessage = 'Filename')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('FileName')]
-    [System.String]$File,
-    [Alias('Counter')]
-    [System.Int32]$count = 10
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+		HelpMessage = 'Filename')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('FileName')]
+		[System.String]$File,
+		[Alias('Counter')]
+		[System.Int32]$count = 10
+	)
 
-  BEGIN {
-    # Does this exist?
-    if (-not (Test-Path $File)) {
-      # Aw Snap!
-      Write-Error -Message:"Unable to locate file $File" -ErrorAction:Stop
+	BEGIN {
+		# Does this exist?
+		if (-not (Test-Path $File)) {
+			# Aw Snap!
+			Write-Error -Message:"Unable to locate file $File" -ErrorAction:Stop
 
-      Return
-    }
-  }
+			Return
+		}
+	}
 
-  PROCESS {
-    # Show the fist X entries
-    Return (Get-Content $File | Select-Object -First $count)
-  }
+	PROCESS {
+		# Show the fist X entries
+		Return (Get-Content $File | Select-Object -First $count)
+	}
 }
 (Set-Alias -Name head -Value Invoke-PowerHead -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHelDK1KrYGrXvWVieVPrQI2+
-# BoigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjh2rpTN4I4geZSNaC6XJjaaf
+# 732gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -151,10 +152,10 @@ function global:Invoke-PowerHead {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -170,12 +171,12 @@ function global:Invoke-PowerHead {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -272,25 +273,25 @@ function global:Invoke-PowerHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR1lY2rmJtWMtqWAEUdh+Hia7RPtDANBgkqhkiG9w0B
-# AQEFAASCAQB2kJNA8bzhD1o9Ep+oWxyB0+ReWOzaF3qKolhzhcr20hUCo8pAX1Je
-# 1lywGMVhUZ4cZ+jh5JkKFu5S1Z+tBF2qIaLmOcEJJQ9bPnCFExcL25tX9O83IPQL
-# vBlAOI3KYzqNk98nhKS5rvAjUfokVnTSfCXJYX5xYxtvzVEWsi2seQ01U9iCC6RT
-# 1WLTzw0fyq4jaGSuiZoY9JbTtex/C3UJSPJf55hP4KJbnAzXWuW4W3OvOQuaiLIV
-# zaW9Y87+zzpKaFHhSwmWkTIeZlzaP/NHD+xdoWEHkvt8Zr0WxWTdyiSQDP01XMdU
-# rHs1ETKse7LpZP7hfUhS/9JbpVeRy7DQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS/amYpOpy+Ypgta7ysdyYdM9EfhjANBgkqhkiG9w0B
+# AQEFAASCAQBYpHr33MgSJYRoVhOelmgO0gk4LxlzdP39yiHxYhdMnOJih4AoRhYs
+# EFxDmVxKmu+bgH49hmvCP/eMvobeJPU7oX0el1lHkF7WFFfBt2hTQl5/FNpj31N6
+# dUBVsLD5nEkhO5O7r9WuPtYwvpw1wJsVxQL7oSTLzFkXNuzE0kIQweOo1lGStPso
+# ntgxMoUVFhWj73EP/EQVy7nxGY0mOiJRY+yLzY2Ijv6vmLGkdDZ8sopRajgXyxrl
+# l6Zt8TpxZsXFnF5yeUccnnVbRfkVU6S2ArfqoIY8mvW2BMSQS7cI4+Pzr9iKTfFW
+# RDf/LGClNxoObt5goaFGCQGyDhmlru4noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1MFowIwYJKoZIhvcN
-# AQkEMRYEFKp8xUVJrOv6QDI4id35qV7uQ1h/MIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0MFowIwYJKoZIhvcN
+# AQkEMRYEFKV+VT/g+jCjSdxzslbIQwdlmyeSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAF7GjG373ZdrwaG11yLmvgcT9rYccYFV5Aips9rmoZ0vTl
-# GP/vx9Xr/elvbiLJCVdNr06izDsuXW7y9P597GvkpFWtjjoDY5Vt9AermWoVzy6o
-# B8BjCG2zqPeGwvN+q5SiR4r7a1A8JzwCuuAvPko/c+xwdZn4s5Yguqa2X56hmXoN
-# 9TJfslmzAgcB4CiDRaNaadvNcdCW/9wh36RQSxPYOizdWx9ITKQw9wbgwWqbs1dU
-# 9C8c7LZRqu9WJRCggD6Pl3fhuFdsXrOqWDjW4J84rPpmeLDRpvWAUAgJhVsb4UyF
-# xKJKfPgVxKSimoljRGlGBCPK52GMJwWAl2xQUXC3
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBjSfQH/KNtnEAY2wMA0EOdLpgQ4fRnbuaa4KNzE78kTUCf
+# XxWvXExqW3QPi8PUPH/aVlXM54nVN0j6g3loR4Ny+d7kRkPFTOv8s5BMZ478n1Gd
+# GO2jIB8y7dHlFIoXAnb+cTKEXEuNZBdJ0JSM5dkdbjZjkESZUN3FwUQM2wUtXeWb
+# PMQCDAp8ATZZ/ZnTqQx5iTKoMxlYIOdAawUMuMVhdGl9KVP2bMPL8yGGHDDD/p6P
+# WWfWa4y7qvSOSt+kdbenH1NanUbReUbsYIEjT2aQXAIVMy9cZJrLorzTOzJTKKIx
+# 0Ov5DVbzXnrZE3uH+XxvI5bXk5B4FsciRFwLngQ3
 # SIG # End signature block

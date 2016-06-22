@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,113 +15,113 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-NetStat {
-  <#
-      .SYNOPSIS
-      This function will get the output of netstat -n and parse the output
+	<#
+			.SYNOPSIS
+			This function will get the output of netstat -n and parse the output
 
-      .DESCRIPTION
-      This function will get the output of netstat -n and parse the output
+			.DESCRIPTION
+			This function will get the output of netstat -n and parse the output
 
-      .NOTES
-      Based on an idea of Francois-Xavier Cat
+			.NOTES
+			Based on an idea of Francois-Xavier Cat
 
-      .EXAMPLE
-      PS C:\> Get-NetStat
-      LocalAddressIP     : 10.211.59.125
-      LocalAddressPort   : 1321
-      State              : ESTABLISHED
-      ForeignAddressIP   : 10.211.16.2
-      ForeignAddressPort : 10943
-      Protocole          : TCP
+			.EXAMPLE
+			PS C:\> Get-NetStat
+			LocalAddressIP     : 10.211.59.125
+			LocalAddressPort   : 1321
+			State              : ESTABLISHED
+			ForeignAddressIP   : 10.211.16.2
+			ForeignAddressPort : 10943
+			Protocole          : TCP
 
-      Description
-      -----------
-      This function will get the output of netstat -n and parse the output
+			Description
+			-----------
+			This function will get the output of netstat -n and parse the output
 
-      .LINK
-      Idea: http://www.lazywinadmin.com/2014/08/powershell-parse-this-netstatexe.html
+			.LINK
+			Idea: http://www.lazywinadmin.com/2014/08/powershell-parse-this-netstatexe.html
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    # Get the output of netstat
-    Set-Variable -Name 'data' -Value $(NETSTAT.EXE -n)
+	PROCESS {
+		# Get the output of netstat
+		Set-Variable -Name 'data' -Value $(NETSTAT.EXE -n)
 
-    # Keep only the line with the data (we remove the first lines)
-    Set-Variable -Name 'data' -Value $($data[4..$data.count])
+		# Keep only the line with the data (we remove the first lines)
+		Set-Variable -Name 'data' -Value $($data[4..$data.count])
 
-    # Each line need to be spitted and get rid of unnecessary spaces
-    foreach ($line in $data) {
-      # Get rid of the first whitespace, at the beginning of the line
-      Set-Variable -Name 'line' -Value $($line -replace '^\s+', '')
+		# Each line need to be spitted and get rid of unnecessary spaces
+		foreach ($line in $data) {
+			# Get rid of the first whitespace, at the beginning of the line
+			Set-Variable -Name 'line' -Value $($line -replace '^\s+', '')
 
-      # Split each property on whitespace block
-      Set-Variable -Name 'line' -Value $($line -split '\s+')
+			# Split each property on whitespace block
+			Set-Variable -Name 'line' -Value $($line -split '\s+')
 
-      # Define the properties
-      $properties = @{
-        Protocole          = $line[0]
-        LocalAddressIP     = ($line[1] -split ':')[0]
-        LocalAddressPort   = ($line[1] -split ':')[1]
-        ForeignAddressIP   = ($line[2] -split ':')[0]
-        ForeignAddressPort = ($line[2] -split ':')[1]
-        State              = $line[3]
-      }
+			# Define the properties
+			$properties = @{
+				Protocole          = $line[0]
+				LocalAddressIP     = ($line[1] -split ':')[0]
+				LocalAddressPort   = ($line[1] -split ':')[1]
+				ForeignAddressIP   = ($line[2] -split ':')[0]
+				ForeignAddressPort = ($line[2] -split ':')[1]
+				State              = $line[3]
+			}
 
-      # Output the current line
-      New-Object -TypeName PSObject -Property $properties
-    }
-  }
+			# Output the current line
+			New-Object -TypeName PSObject -Property $properties
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAZCzQ/aNUm5ppGzBnM+7fM0R
-# wF+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGOZceH3fWXPxlRvCkc048pVg
+# 9zqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -142,10 +143,10 @@ function Global:Get-NetStat {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -161,12 +162,12 @@ function Global:Get-NetStat {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -263,25 +264,25 @@ function Global:Get-NetStat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRb4dDKWotARPYU6kXpRcQjLBRC2DANBgkqhkiG9w0B
-# AQEFAASCAQBjVQU+zvta8ytwbQY2ai6XaiuF3865mZRW2+RdMjIxnWdTD2oWIrbL
-# gh32250gA6p0In5+ZnwIg/VSalWdSe9I0nOigIVPGpMSxsyVYcg+TpPV5LcAfZFg
-# WQQvu0iFRVMUxqIqAi8Gy1zD8ExTv5U9VNF+UGrvcWqmbQKf9HnoPCGBNRjkSAzV
-# Rh+AUK3HEj3iW9CvaGcwxffQAxBNhKFiwbULmwRGQub+w4nA8fi3pM/df66ceB1K
-# PMEZnDHS2y1IRt9H/+J3tSSuXiis+Mxw3M4e+7J5VRlqH4lzrRhO9B/EXWDh6pkr
-# ZB/afajWzTjkw96LEBKe+wYc6eAF9G5CoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSALgTzpTtQbl1zyPXz0IA8Iof6fTANBgkqhkiG9w0B
+# AQEFAASCAQCRxnMu+U5JvsRmRAFfDTRriz0C6OEOGZZmLQZuN/iKYIOuVXLm98JE
+# 0LON6gMrUA89ZeWmB1HN/GC43dFMVsFDsuup2f1s2od7F4xC4iWvDFXk9YFh10Vv
+# WF9yNPjqw3GtJ2nytorFRTsTgBXZ2v+vW496PEpCnpw1yRySUmHRRu8hsGXX9gN6
+# QgVTcfVSV6+aqurEAT7l1OKZYORO934nP7wLvHR17ZV3eNfClqt6fA8+oB736R6W
+# DCLX3RmrIrQ3FMTtgkp7iAOcGwboKfjLJVhB0zrVe43Eh7hRbRT+vRSXQtO+jupW
+# zD0eDAd3CCaJPlNdXLdfZ6pL3v04SKDNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzOVowIwYJKoZIhvcN
-# AQkEMRYEFB/CFmo5iH5dB+oh215xzAghXIAuMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyOFowIwYJKoZIhvcN
+# AQkEMRYEFHYoAUK59mJR6Yk64hysoAFga3T6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAwmzy+t0+MVXQ6Ei1OJvnIhzIuhtAhZP+5L8xF/04KfdXY
-# q2/7GPfYulmFVYK78pkD7mzGuD0SZAdyCHOCDLW9uNlDiPr/tSrJmR4or98srP5x
-# F1+54Loh6k00qHpDIHDt7/N5XEbaXybg4Snlcpa/oXPEgg4onzCYcmekPg+eTauo
-# QwKeurFhuicbalZWX3NNJ8WlUc9kjgmXM3PuI/p4KIxm4Nx58N4AT1195ldVqG8g
-# ZMXK5w2zD59znOdQ4AASIzP+6q2WyGsRfW+e/Sw/Wucd3TUItZ/sm2ZNBjt4Odhu
-# ClbXFSkvloaRmcS9Ow8dPn4yXEDjWgHXpsODlabG
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBV+UAXTkX0VO0HecakUQIHPmHtDX4WRlfJlD9dFVYazCLv
+# yUboAktUicuzMsh/5oJ/CXqzc/VB/wyjYtpNX/irJvYUfOKFoSIx5yifAlf+SKmM
+# g8T7K8CMFMRrgksjwR8Rm4IvpOxVE/ye80RAzGEb/8Wdpzr96kkiyJP4nLG70Huo
+# MJnyxbfMC0l+HCFLSmcw40rjcdIBRacB7IwzMIVrmvCxiOqlUaudGZz9bZHlrvdC
+# Pg3DzNcL8v192yzwccTJDOTfJxCfB4pPfTuBey8/KRLcQhJ8YSgeX8KiSgnhNced
+# gxYCBE3xx1o1JvCSXWpPAfs/qxvh4IxXO5tlViuU
 # SIG # End signature block

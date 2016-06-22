@@ -1,12 +1,12 @@
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,153 +14,153 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Set-PowerPrompt {
-  <#
-      .SYNOPSIS
-      Multicolored prompt with marker for windows started as Admin and
-      marker for providers outside file system
+	<#
+			.SYNOPSIS
+			Multicolored prompt with marker for windows started as Admin and
+			marker for providers outside file system
 
-      .DESCRIPTION
-      Multicolored prompt with marker for windows started as Admin and
-      marker for providers outside file system
+			.DESCRIPTION
+			Multicolored prompt with marker for windows started as Admin and
+			marker for providers outside file system
 
-      .EXAMPLE
-      [Admin] C:\Windows\System32>
+			.EXAMPLE
+			[Admin] C:\Windows\System32>
 
-      Description
-      -----------
-      Multicolored prompt with marker for windows started as Admin and
-      marker for providers outside file system
+			Description
+			-----------
+			Multicolored prompt with marker for windows started as Admin and
+			marker for providers outside file system
 
-      .EXAMPLE
-      [Registry] HKLM:\SOFTWARE\Microsoft\Windows>
+			.EXAMPLE
+			[Registry] HKLM:\SOFTWARE\Microsoft\Windows>
 
-      Description
-      -----------
-      Multicolored prompt with marker for windows started as Admin and
-      marker for providers outside file system
+			Description
+			-----------
+			Multicolored prompt with marker for windows started as Admin and
+			marker for providers outside file system
 
-      .EXAMPLE
-      [Admin] [Registry] HKLM:\SOFTWARE\Microsoft\Windows>
+			.EXAMPLE
+			[Admin] [Registry] HKLM:\SOFTWARE\Microsoft\Windows>
 
-      Description
-      -----------
-      Multicolored prompt with marker for windows started as Admin and
-      marker for providers outside file system
+			Description
+			-----------
+			Multicolored prompt with marker for windows started as Admin and
+			marker for providers outside file system
 
-      .NOTES
-      Just an internal function to make my life easier!
+			.NOTES
+			Just an internal function to make my life easier!
 
-      .LINK
-      Source: http://www.snowland.se/2010/02/23/nice-powershell-prompt/
+			.LINK
+			Source: http://www.snowland.se/2010/02/23/nice-powershell-prompt/
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
 
-      .LINK
-      Set-LinuxPrompt
-      Reset-Prompt
+			.LINK
+			Set-LinuxPrompt
+			Reset-Prompt
 
-      .LINK
-      Set-DefaultPrompt
-      Set-ServicePrompt
-  #>
+			.LINK
+			Set-DefaultPrompt
+			Set-ServicePrompt
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
-      function Global:Prompt {
-        [CmdletBinding()]
-        [OutputType([System.String])]
-        param ()
+	PROCESS {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
+			function Global:Prompt {
+				[CmdletBinding()]
+				[OutputType([System.String])]
+				param ()
 
-        # New nice WindowTitle
-        $Host.UI.RawUI.WindowTitle = 'PowerShell v' + (Get-Host).Version.Major + '.' + (Get-Host).Version.Minor + ' (' + $pwd.Provider.Name + ') ' + $pwd.Path
+				# New nice WindowTitle
+				$Host.UI.RawUI.WindowTitle = 'PowerShell v' + (Get-Host).Version.Major + '.' + (Get-Host).Version.Minor + ' (' + $pwd.Provider.Name + ') ' + $pwd.Path
 
-        # Are we elevated or administrator?
-        if ((New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-          # Admin-mark in WindowTitle
-          $Host.UI.RawUI.WindowTitle = '[Admin] ' + $Host.UI.RawUI.WindowTitle
+				# Are we elevated or administrator?
+				if ((New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+					# Admin-mark in WindowTitle
+					$Host.UI.RawUI.WindowTitle = '[Admin] ' + $Host.UI.RawUI.WindowTitle
 
-          # Admin-mark on prompt
-          Write-Host '[' -nonewline -foregroundcolor DarkGray
-          Write-Host 'Admin' -nonewline -foregroundcolor Red
-          Write-Host '] ' -nonewline -foregroundcolor DarkGray
-        }
+					# Admin-mark on prompt
+					Write-Host -Object '[' -NoNewline -ForegroundColor DarkGray
+					Write-Host -Object 'Admin' -NoNewline -ForegroundColor Red
+					Write-Host -Object '] ' -NoNewline -ForegroundColor DarkGray
+				}
 
-        # Show provider name if you are outside FileSystem
-        if ($pwd.Provider.Name -ne 'FileSystem') {
-          Write-Host '[' -nonewline -foregroundcolor DarkGray
-          Write-Host $pwd.Provider.Name -nonewline -foregroundcolor Gray
-          Write-Host '] ' -nonewline -foregroundcolor DarkGray
-        }
+				# Show provider name if you are outside FileSystem
+				if ($pwd.Provider.Name -ne 'FileSystem') {
+					Write-Host -Object '[' -NoNewline -ForegroundColor DarkGray
+					Write-Host -Object $pwd.Provider.Name -NoNewline -ForegroundColor Gray
+					Write-Host -Object '] ' -NoNewline -ForegroundColor DarkGray
+				}
 
-        # Split path and write \ in a gray
-        $pwd.Path.Split('\') | ForEach-Object -Process {
-          Write-Host $_ -nonewline -foregroundcolor Yellow
-          Write-Host '\' -nonewline -foregroundcolor Gray
-        }
+				# Split path and write \ in a gray
+				$pwd.Path.Split('\') | ForEach-Object -Process {
+					Write-Host -Object $_ -NoNewline -ForegroundColor Yellow
+					Write-Host -Object '\' -NoNewline -ForegroundColor Gray
+				}
 
-        # Backspace last \ and write >
-        Write-Host "`b>" -nonewline -foregroundcolor Gray
+				# Backspace last \ and write >
+				Write-Host -Object "`b>" -NoNewline -ForegroundColor Gray
 
-        Return ' '
-      }
-    }
-  }
+				Return ' '
+			}
+		}
+	}
 
-  END {
-    if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
-      # Execute!
-      prompt
-    }
-  }
+	END {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set Multicolored')) {
+			# Execute!
+			prompt
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwLfvCpaxlhdVczNCmwoc3NzG
-# C+ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI88dtPHyytk3vlpZz/+A/QQu
+# g7SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -182,10 +182,10 @@ function Global:Set-PowerPrompt {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -201,12 +201,12 @@ function Global:Set-PowerPrompt {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -303,25 +303,25 @@ function Global:Set-PowerPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTGmUvB0fdn3vAqIGgnGMzMe3yLrjANBgkqhkiG9w0B
-# AQEFAASCAQCsaZTsY+mo8H3wtIxljiOHSDPccqsxrE2CkbcJ9gV+8zGzxtLfM4za
-# yh3JG87+MF4idtSm0cLFlvadEuJqZuG79d+BS70IadIiBLro6TpEzIe2QZPd3ge5
-# +y4UQ2/cVBJGzzu/vxleJjJy2LXJ/DwARyMn6r1BlN6i6XJ8F75GLpdpP822HVsU
-# pZ65sRuU8ya1lvWqFvOMgIx59PwkNpxBTmkHavUy1GqfGxa8W/bfXtFlGZkcgXYx
-# umjehXlyvJRSDRNomQHmasqNmc8oJ+4BE2dhyOpK3yhHbO2f6Ox41wDsMfsWlsv0
-# 1WX+0zc8EmW/X3hBtyWvmh5Tjrp1pVj9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTx8+Z++shBu1dUWyZu78d1VKjVJzANBgkqhkiG9w0B
+# AQEFAASCAQAsSQ8mdxh/MLU7jlbWprLyMOa6wSVM1iv35Z4nFjbKbGl32V+h1j/i
+# zd4SWDsRfGeNXH1Mr4lSP0TAt2hn8wuzEozfolB8Cnklpe33pgTjRSHi9NUFOwPv
+# nSbWTZtBflMrRBK4omSqozVll/wV4Snre62Asn15AJu8A7TnEI31PRXx0kehHpUY
+# BvcuPTQef/e0DJpVOY/a5HGEY6l1pIhxPIWsBhLsCABEx2G8o+Lrwe0ikUmJIDG0
+# Qfly5u5AIZZ3VAPibEkruBbm4j9RSq6VrtjVL8vF+Ug+Qmzl6KONc8Ij385HIqYZ
+# MTAjwOIQuTKPTJcBPk8W9l9URa0zYdfPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMFowIwYJKoZIhvcN
-# AQkEMRYEFCCkmJyvcMO8tlCdj0NQw38d72qfMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMVowIwYJKoZIhvcN
+# AQkEMRYEFG/Vsm3Z6uAxbZrMZXIlxW1T8U8UMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCjh5U+VijvjMNGkUT2r24Sovgl3NWvJzeXlNXcOuMzBR9l
-# SC8dsvkGa/7TIHx/5t6R/QKzBCMflQhEk26fmhPGuL8t5EDPwIuUr8u4I+UPes6A
-# qw88FYhcQJD7xsGcNdPrSJgro2GtsCea7OemNPJJjoYJXc8aJUl428kChItumg2x
-# vPmH3rG7gO2I1odZdm3Lt/5hBxXFfVdI3K8jcxciMsYG/bBwvPVQGw/wnDzIvrr7
-# pyrXMiQNvKOOU6M5p/MlKCvF+dc0ZQ7BCHiO3YU8a1mUT/LzH4UH2tABgz/mlsLk
-# uxUIZXEff4St+BExPEjZ6zo0zK9Ba5jQFGwEzbAU
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCplH8uekYAJMdNvwk/avRbNH8gC5ACZvUb2wYaFwh7pxiY
+# dumRcWbWk+F/jeemLDJmDOxfv96hoI9zvSg8gu+2JH0shbmA+/qSNghA5jnZAbWs
+# 45z7v4oNqjL+6GRFtoXVuBegUj+vRsgZ6gVAupCQgHz3YWV3UPBE+jJQXGhLuXKi
+# Yx/EEqMzihWI/FSt2t8aaAGVEXWA9piYG/Tyvh7ajYBziVsiexjuDN0suaeztYwu
+# dAwwM7fECDqtR9gBPzTJMgujUI0Gr0H1+CMDDjsah0cjKBoBimqmlhPsYgXj7IN5
+# xOs4Dt8YCshAUmtY0Uc9ZF2u90RMOFOqPMZ073pB
 # SIG # End signature block

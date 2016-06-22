@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,158 +15,158 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:New-Gitignore {
-  <#
-      .SYNOPSIS
-      Create a new .gitignore file with my default settings
+	<#
+			.SYNOPSIS
+			Create a new .gitignore file with my default settings
 
-      .DESCRIPTION
-      Downloads my default .gitignore from GitHub and creates it within
-      the directory from Where-Object this function is called.
+			.DESCRIPTION
+			Downloads my default .gitignore from GitHub and creates it within
+			the directory from Where-Object this function is called.
 
-      .PARAMETER Source
-      The Source for the .gitignore
+			.PARAMETER Source
+			The Source for the .gitignore
 
-      .EXAMPLE
-      PS C:\scripts\PowerShell\test> New-Gitignore
-      Creating C:\scripts\PowerShell\test\.gitignore
-      C:\scripts\PowerShell\test\.gitignore successfully created.
+			.EXAMPLE
+			PS C:\scripts\PowerShell\test> New-Gitignore
+			Creating C:\scripts\PowerShell\test\.gitignore
+			C:\scripts\PowerShell\test\.gitignore successfully created.
 
-      Description
-      -----------
-      The default: We downloaded the default .gitignore from GitHub
+			Description
+			-----------
+			The default: We downloaded the default .gitignore from GitHub
 
-      .EXAMPLE
-      PS C:\scripts\PowerShell\test\> New-Gitignore
-      WARNING: You already have a .gitignore in this dir.
-      Fetch a fresh one from GitHub?
-      Removing existing .gitignore.
-      Creating C:\scripts\PowerShell\test\.gitignore
-      C:\scripts\PowerShell\test\.gitignore successfully created.
+			.EXAMPLE
+			PS C:\scripts\PowerShell\test\> New-Gitignore
+			WARNING: You already have a .gitignore in this dir.
+			Fetch a fresh one from GitHub?
+			Removing existing .gitignore.
+			Creating C:\scripts\PowerShell\test\.gitignore
+			C:\scripts\PowerShell\test\.gitignore successfully created.
 
-      Description
-      -----------
-      In this example we had an existing .gitignore and downloaded the
-      default one from GitHub...
+			Description
+			-----------
+			In this example we had an existing .gitignore and downloaded the
+			default one from GitHub...
 
-      .EXAMPLE
-      PS C:\scripts\PowerShell\test> New-Gitignore
-      WARNING: You already have a .gitignore in this dir.
-      Fetch a fresh one from GitHub?
-      Existing .gitignore will not be changed.
+			.EXAMPLE
+			PS C:\scripts\PowerShell\test> New-Gitignore
+			WARNING: You already have a .gitignore in this dir.
+			Fetch a fresh one from GitHub?
+			Existing .gitignore will not be changed.
 
-      Description
-      -----------
-      In this Example we had an existing .gitignore and we decided to
-      stay with em!
+			Description
+			-----------
+			In this Example we had an existing .gitignore and we decided to
+			stay with em!
 
-      .NOTES
-      Additional information about the function.
+			.NOTES
+			Additional information about the function.
 
-      .LINK
-      SourceFile https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore
+			.LINK
+			SourceFile https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'The Source for the .gitignore')]
-    [System.String]$Source = 'https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore'
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'The Source for the .gitignore')]
+		[System.String]$Source = 'https://raw.githubusercontent.com/jhochwald/MyPowerShellStuff/master/.gitignore'
+	)
 
-  BEGIN {
-    $GitIgnore = "$PWD\.gitignore"
-  }
+	BEGIN {
+		$GitIgnore = "$PWD\.gitignore"
+	}
 
-  PROCESS {
-    if (Test-Path $GitIgnore) {
-      Write-Warning -Message 'You already have a .gitignore in this dir.'
-      Write-Output -InputObject ''
-      Write-Output -InputObject 'Fetch a fresh one from GitHub?'
+	PROCESS {
+		if (Test-Path $GitIgnore) {
+			Write-Warning -Message 'You already have a .gitignore in this dir.'
+			Write-Output -InputObject ''
+			Write-Output -InputObject 'Fetch a fresh one from GitHub?'
 
-      $Answer = ([Console]::ReadKey('NoEcho,IncludeKeyDown'))
+			$Answer = ([Console]::ReadKey('NoEcho,IncludeKeyDown'))
 
-      if ($Answer.Key -ne 'Enter' -and $Answer.Key -ne 'y') {
-        Write-Output -InputObject ''
-        Write-Output -InputObject 'Existing .gitignore will not be changed.'
-        return
-      }
+			if ($Answer.Key -ne 'Enter' -and $Answer.Key -ne 'y') {
+				Write-Output -InputObject ''
+				Write-Output -InputObject 'Existing .gitignore will not be changed.'
+				return
+			}
 
-      Write-Output -InputObject ''
-      Write-Host 'Removing existing .gitignore.'
+			Write-Output -InputObject ''
+			Write-Host -Object 'Removing existing .gitignore.'
 
-      try {
-        (Remove-Item -Path "$PWD\.gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop) > $null 2>&1 3>&1
-      } catch {
-        Write-Output -InputObject ''
-        Write-Output -InputObject ''
-        Write-Warning -Message "Unable to remove existing $PWD\.gitignore"
-        break
-      }
-    }
+			try {
+				(Remove-Item -Path "$PWD\.gitignore" -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop) > $null 2>&1 3>&1
+			} catch {
+				Write-Output -InputObject ''
+				Write-Output -InputObject ''
+				Write-Warning -Message "Unable to remove existing $PWD\.gitignore"
+				break
+			}
+		}
 
-    Write-Output -InputObject ''
-    Write-Output -InputObject "Creating $PWD\.gitignore"
+		Write-Output -InputObject ''
+		Write-Output -InputObject "Creating $PWD\.gitignore"
 
-    try {
-      $wc = (New-Object -TypeName System.Net.WebClient)
-      $wc.DownloadString($Source) | New-Item -ItemType file -Path $PWD -Name '.gitignore' -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
+		try {
+			$wc = (New-Object -TypeName System.Net.WebClient)
+			$wc.DownloadString($Source) | New-Item -ItemType file -Path $PWD -Name '.gitignore' -Force -Confirm:$false -WarningAction:SilentlyContinue -ErrorAction:Stop > $null 2>&1 3>&1
 
-      Write-Output -InputObject ''
-      Write-Output -InputObject "$PWD\.gitignore successfully created."
-    } catch {
-      Write-Output -InputObject ''
-      Write-Output -InputObject ''
-      Write-Warning -Message "Unable to create $PWD\.gitignore"
-    }
-  }
+			Write-Output -InputObject ''
+			Write-Output -InputObject "$PWD\.gitignore successfully created."
+		} catch {
+			Write-Output -InputObject ''
+			Write-Output -InputObject ''
+			Write-Warning -Message "Unable to create $PWD\.gitignore"
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqz1oKucrgyz1uhNJjc12V0Oj
-# XCagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI+9q9ZQVgpqpM2WegKXOhwFA
+# MwygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +309,25 @@ function global:New-Gitignore {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSIdwH29qgVJESpD2oQDdynSYE/oTANBgkqhkiG9w0B
-# AQEFAASCAQCt9oTUKGoz4h92qpbTGJQ5G68ir6zo8GxgiFcqbaKTRtXCXwo61ZlB
-# Gu7QJBrBYwpTyjGqT93QqhTcTxkA1k02L5M8JUu3a5+kouT7ZElrHxiBjMUxrUGJ
-# 8nF7CMD3BdQyQwKCMgP7IdHTc4Suxs5RO/edYxq+PfUYpcvWtNS+P+yfc6SwmrDM
-# 0E8c5Obd7c+faRXKC8q2WgBKuj9d4KSF/a7AXvhHZl5k2Fyi3tqQn9SPLtVp3NuC
-# 6SV45Yx4dqIOnZYmxYWDifL2bk3JPpxEq6TWEQ5iTII9hVKVP9zR4J2xAdumkalQ
-# r3SUwdCX4GgYHuH21rx2M6S6Ys2xLQHjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ6gTS5mMqo3m2ijn9TQVWmHHMuojANBgkqhkiG9w0B
+# AQEFAASCAQBBtHCEg2r1AtExTIXJGP1Lcj4as6yq/1bmHvyH2npLpItfH3YkBZvB
+# QdX5ZaJtScGYsc7eINxUAtJPVR/5Y4YJYW+yuJyo9ld1CMBxJ3tCarRjELk+fl86
+# +0F2O1Xst8TlzX/QN0oz1wwLa8sSCE4wcG4+hU2B1iio8gUcravdWEzOAj0E5J64
+# I5Hj92gpp0CR6igQ5JHo5cA+Jkmud6h/A8dCnrbiYppwdeunJHPNZCddeWS5UJfu
+# llY0WnRZQcYkX6RTBZnqNM0fBOG2fsuRuu1tK+1CWn8b0pvxzi68hcF650e7A9qD
+# 575/tFz/gv9ov+aT2a6PJD+tCnskglQLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwMFowIwYJKoZIhvcN
-# AQkEMRYEFDUA4j4HECA+QpAXUd68BIJGKWJRMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1MFowIwYJKoZIhvcN
+# AQkEMRYEFBah5IhDg7T2qL141v3nzpqwqA8lMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA75vT/sUIO/6HL/pxo7lNJaQb1iyDo0PVjg71LhTdPDa4h
-# iZsPZuf57RIjZmjAVdrWOGNeRnn4PEt9HjQ+4QinEjcUp0LWhS/MF2rQXrz6vphE
-# OIOM1mc5GOlYrx12deJv7N/ZneaXlimr71kpBV4krqvanaWSbwH1cv8DT6q5wUwV
-# xJfs6jbNnoWm9DTy8Kd1adPTYCkKZIbjUYv+sD1UHcM878VrE33e+NjOq8KuazB0
-# NhhlxXRK79O0pZtG+EcOhrieMzsEv3FVvLvMdEB1YojznR7Wmc1+THx4LANIOp4O
-# JtB3tv5ID2Y0saBP9zU3NCQR+Pp2Amq0rMtIeiGG
+# hkiG9w0BAQEFAASCAQCbbuhdru5Cawd+hDbuhLkp5LUZdKdEj/8ylpjTNvGxE4sz
+# +VhA7j5nutjTfFytF17EW+FNPevcPh9d8a//UktBjw+t5ftusxu/hsKyLZ++GVx0
+# +FO9oYY4jHKj0h6a4TmL039GeBf7digpVt3dfMFV4rE80CeE2BGW7ZXGsh0jaf83
+# xszsu553EjtR0tqLsim4TpEBKl2hZvSIw8SwDQ+xwY3w9hlAev9elVpFOQJrVTb6
+# 204AFEQj4YwJAC95CshAPGlr2XErBpKVs4Y/GkoseOoW+D37pNSXjIPxNHNQ+Lay
+# O06U25y7OeX3TntdlE8uTH2k8QUSJGILTKobeT7w
 # SIG # End signature block

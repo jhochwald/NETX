@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,144 +15,144 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-TcpPortStatus {
-  <#
-      .SYNOPSIS
-      Check a TCP Port
+	<#
+			.SYNOPSIS
+			Check a TCP Port
 
-      .DESCRIPTION
-      Opens a connection to a given (or default) TCP Port to a given
-      (or default) server.
+			.DESCRIPTION
+			Opens a connection to a given (or default) TCP Port to a given
+			(or default) server.
 
-      This is not a simple port ping, it creates a real connection to
-      see if the port is alive!
+			This is not a simple port ping, it creates a real connection to
+			see if the port is alive!
 
-      .PARAMETER Port
-      Port to use e.g. "25", default is 587
+			.PARAMETER Port
+			Port to use e.g. "25", default is 587
 
-      .PARAMETER Server
-      SMTP Server to use e.g. "outlook.office365.com" or "192.168.16.10"
+			.PARAMETER Server
+			SMTP Server to use e.g. "outlook.office365.com" or "192.168.16.10"
 
-      .EXAMPLE
-      PS C:\> Get-TcpPortStatus
+			.EXAMPLE
+			PS C:\> Get-TcpPortStatus
 
-      Description
-      -----------
-      Check port 587/TCP on the default Server
+			Description
+			-----------
+			Check port 587/TCP on the default Server
 
-      .EXAMPLE
-      PS C:\> Get-TcpPortStatus -Port:25 -Server:mx.NET-Experts.net
-      True
+			.EXAMPLE
+			PS C:\> Get-TcpPortStatus -Port:25 -Server:mx.NET-Experts.net
+			True
 
-      Description
-      -----------
-      Check port 25/TCP on Server mx.NET-Experts.net
+			Description
+			-----------
+			Check port 25/TCP on Server mx.NET-Experts.net
 
-      .NOTES
-      Internal Helper function to check if we can reach a server via a TCP
-      connection on a given port
+			.NOTES
+			Internal Helper function to check if we can reach a server via a TCP
+			connection on a given port
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([bool])]
-  param
-  (
-    [Parameter(HelpMessage = 'Port to use e.g. 25, default is 587')]
-    [Int32]$Port = 587,
-    [Parameter(HelpMessage = 'SMTP Server to use e.g. outlook.office365.com or 192.168.16.10')]
-    [System.String]$Server = 'outlook.office365.com'
-  )
+	[CmdletBinding()]
+	[OutputType([bool])]
+	param
+	(
+		[Parameter(HelpMessage = 'Port to use e.g. 25, default is 587')]
+		[Int32]$Port = 587,
+		[Parameter(HelpMessage = 'SMTP Server to use e.g. outlook.office365.com or 192.168.16.10')]
+		[System.String]$Server = 'outlook.office365.com'
+	)
 
-  BEGIN {
-    # Cleanup
-    Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	BEGIN {
+		# Cleanup
+		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 
-  PROCESS {
-    # Set the defaults for some stuff
-    if (-not ($Port)) {
-      # This is the default TCP Port to Check
-      Set-Variable -Name Port -Value $('587' -as ([System.Int32] -as [type]))
-    }
+	PROCESS {
+		# Set the defaults for some stuff
+		if (-not ($Port)) {
+			# This is the default TCP Port to Check
+			Set-Variable -Name Port -Value $('587' -as ([System.Int32] -as [type]))
+		}
 
-    # Server given?
-    if (-not ($Server)) {
-      # Do we know any defaults?
-      if (-not ($PSEmailServer)) {
-        # We have a default SMTP Server, use it!
-        Set-Variable -Name Server -Value $("$PSEmailServer" -as ([System.String] -as [type]))
-      } else {
-        # Aw Snap! No Server given on the command line, no Server configured as default... BAD!
-        Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction:Stop
-      }
-    }
+		# Server given?
+		if (-not ($Server)) {
+			# Do we know any defaults?
+			if (-not ($PSEmailServer)) {
+				# We have a default SMTP Server, use it!
+				Set-Variable -Name Server -Value $("$PSEmailServer" -as ([System.String] -as [type]))
+			} else {
+				# Aw Snap! No Server given on the command line, no Server configured as default... BAD!
+				Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction:Stop
+			}
+		}
 
-    # Create a function to open a TCP connection
-    Set-Variable -Name ThePortStatus -Value $(New-Object -TypeName Net.Sockets.TcpClient -ErrorAction:SilentlyContinue)
+		# Create a function to open a TCP connection
+		Set-Variable -Name ThePortStatus -Value $(New-Object -TypeName Net.Sockets.TcpClient -ErrorAction:SilentlyContinue)
 
-    # Look if the Server is Online and the port is open
-    try {
-      # Try to connect to one of the on-premises Exchange front end servers
-      $ThePortStatus.Connect($Server, $Port)
-    } catch [System.Exception] {Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"}
+		# Look if the Server is Online and the port is open
+		try {
+			# Try to connect to one of the on-premises Exchange front end servers
+			$ThePortStatus.Connect($Server, $Port)
+		} catch [System.Exception] {Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"}
 
-    # Share the info with the caller
-    $ThePortStatus.Client.Connected
+		# Share the info with the caller
+		$ThePortStatus.Client.Connected
 
-    # Cleanup
-    Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		# Cleanup
+		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-    # CLOSE THE TCP Connection
-    if ($ThePortStatus.Connected) {
-      # It works, close the connection
-      $ThePortStatus.Close()
-    }
-  }
+		# CLOSE THE TCP Connection
+		if ($ThePortStatus.Connected) {
+			# It works, close the connection
+			$ThePortStatus.Close()
+		}
+	}
 
-  END {
-    # Cleanup
-    Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	END {
+		# Cleanup
+		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name IsSmtpMessageAlive -Value Get-TcpPortStatus -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -160,8 +161,8 @@ function global:Get-TcpPortStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpUIgFlE72LgHWQiLiNtGkpJL
-# 8j2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWJmVFKqK1wkWIn51bL4UMhrw
+# YWCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -304,25 +305,25 @@ function global:Get-TcpPortStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTnEJVAp1Fd0sICf9x9QTzopeKQEjANBgkqhkiG9w0B
-# AQEFAASCAQAZo6CBdf26jbgesanbfnHTSQwOV3NHDyzAZR6HUaFNt3WcxQr6mj6k
-# h5frrxb/UmQM9gZubR4cX2DkzC6oXtnxD3g30fEZpN4oTEtZrWE0ylwc1ER34Yhi
-# YxJTrm6AerjBE5yp/rV4aaoCCXJ9H+TJ3Mf9lJdjjRGxpz/FujY84qgwi5N+uQzm
-# lCQTlyNeS9ls38iPMApzSoESMazihEwC0AglmesH0Occvl8wgKDH5V3uJDMk56IN
-# fMI2ChcdLnioXFlfQ+wVnHgU57Q69U7WUDmE/MtzBh1xnXWliJij5br7XY98XZjD
-# 3Zd5WYk5k+mzd26hT7/qoTzrccqIqYOZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSHiV2qKgYpEbE/1CLll+bP7UklsjANBgkqhkiG9w0B
+# AQEFAASCAQAKEWeVWnOmB8ieGXCI3Njdjok3gBkfHzsHV85/yQCQdViYnPm5zsTv
+# n4dcgq0EHoVpxgkZo7BlxFxfoAhaLh/Vab9rfIQBY+LUHPUtbJjZ//3MisxL9wm0
+# cCjvU6L10yPPIWsuGRTM7ONFn2sVej8XWuCbfgEp+YjNKp394phGYe0bzzSMMMgR
+# R7saEkGYkuEoMmIXAFJOQPzMuPN29CDom1n9cqjKqEO/Elqk04QJExpNDlOogWP9
+# KT1uNbc2ZgEyOEPprXGhUMTVl8421WgdE3NpFDZZJzs4TaLR/r9E+fXlRz92m/6T
+# 4nY48pledxwgx8n/upwwqHTgLvetUhuLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyMlowIwYJKoZIhvcN
-# AQkEMRYEFPicVunHyQXIDiknkE4ejciXyUp7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMlowIwYJKoZIhvcN
+# AQkEMRYEFDPwm3AmjQ2Bg12eXy7wXrlBkD+AMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCAfQzah1EGe0gykpowWMn6VtCMwvgrx+QERmOclFPaSxT7
-# aDh0mQHeN2pCWiET0an39nlEA0aKm0jqgRLaYBYcteq7aCkQOHHExXDRjRQKpXA6
-# /LL6aPzP5Y8Faf1tCX1tLJWQ6gS5HGr3wvg2xV0V38HytE22kzJNdJobOTFaHpcJ
-# a5kPKWGrgD6zZTLN12LpESC+u4wSAwR+j+zpcf7CEdIW6ar223+wQeeHcXVl9Mm0
-# ey163jzwV9jcYT6VfqT6B09L6gRsEHyE3W5a3gPXIutDN4H52+xQMiyDBxvQ0oRv
-# n6vZvD5n7MC6qbT3u3D+mTVs0XhKpMdN7NJdloHG
+# hkiG9w0BAQEFAASCAQAa2Anw+qWwqka0AuNZ7o+dhyNTsLmA91UAhMMDsyImfftH
+# EfZhAjeNnCjBXBELKPI5nixoXBtRqkqJsUMAvt3tVFdroGOvCao8OIxL8AhOpyZy
+# XZnjdEsCtJnxf1ejBwn/WLs9rWVWiEFg9j4+9+kBODLnm5lzm+qtLpLdJaj8hMob
+# 5UIFezmhehZLxgrF//tN/Qex39Zc3xFeUa2d5452K80UdPt+lJwBsXeH9KpKdXVI
+# IQKG3xrT6iLkvZjC5VJLwjJY+Or6ZPY++fMhcrDkDFFviqOaNwc8Ec3wmhILuuqN
+# mXmm1SpvckLNeJiHBDciZcsLPPFxVu3yBKZ4boPn
 # SIG # End signature block

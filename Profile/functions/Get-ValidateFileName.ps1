@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,106 +15,106 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-ValidateFileName {
-  <#
-      .SYNOPSIS
-      Validates if the file name has valid characters
+	<#
+			.SYNOPSIS
+			Validates if the file name has valid characters
 
-      .DESCRIPTION
-      Validates if the file name has valid characters
+			.DESCRIPTION
+			Validates if the file name has valid characters
 
-      .PARAMETER FileName
-      A string containing a file name
+			.PARAMETER FileName
+			A string containing a file name
 
-      .EXAMPLE
-      PS C:\> Get-ValidateFileName test1.ps1
-      True
+			.EXAMPLE
+			PS C:\> Get-ValidateFileName test1.ps1
+			True
 
-      Description
-      -----------
-      Validates if the file name has valid characters
+			Description
+			-----------
+			Validates if the file name has valid characters
 
-      .EXAMPLE
-      PS C:\> Get-ValidateFileName -Filename 'test1.ps1'
-      True
+			.EXAMPLE
+			PS C:\> Get-ValidateFileName -Filename 'test1.ps1'
+			True
 
-      Description
-      -----------
-      Validates if the file name has valid characters
+			Description
+			-----------
+			Validates if the file name has valid characters
 
-      .OUTPUTS
-      System.Boolean
+			.OUTPUTS
+			System.Boolean
 
-      .NOTES
-      Very easy helper function
+			.NOTES
+			Very easy helper function
 
-      .INPUTS
-      System.String
-  #>
+			.INPUTS
+			System.String
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'A string containing a file name')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$Filename
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'A string containing a file name')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$Filename
+	)
 
-  PROCESS {
-    $invalidChars = [System.IO.Path]::GetInvalidFileNameChars()
+	PROCESS {
+		$invalidChars = [System.IO.Path]::GetInvalidFileNameChars()
 
-    foreach ($fileChar in $Filename) {
-      foreach ($invalid in $invalidChars) {
-        if ($fileChar -eq $invalid) {return $false}
-      }
-    }
+		foreach ($fileChar in $Filename) {
+			foreach ($invalid in $invalidChars) {
+				if ($fileChar -eq $invalid) {return $false}
+			}
+		}
 
-    return $true
-  }
+		return $true
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUACjayTlxGWVFU3f+eZtHB1WS
-# /9SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6P/3lVrbzY4ys/UNISnB4Lrm
+# IQ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -135,10 +136,10 @@ function Global:Get-ValidateFileName {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -154,12 +155,12 @@ function Global:Get-ValidateFileName {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -256,25 +257,25 @@ function Global:Get-ValidateFileName {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR9Z7hC8pMqsQGPqiKdN6wi+5eNKTANBgkqhkiG9w0B
-# AQEFAASCAQBu9kbzeGEHXOYa1PdL0HpehVH3luPLoax1pT0r9vB0gQodJqkHgDwu
-# WS1Q7z5NNuBWoVWtj+EJRsZeqGbOaZpkw9agWvk7KJhCqYOD5f907tpZBPgSGhBz
-# X8o6lnXuS+WgfDUPO2IATJQ68sDh1pV+xPpcfgE3YhDAFhdVR9MNZWSRfVvLeD/t
-# KBBl5Y4T5wx1YEofhejkVmh9epedTD16M0PRkK1nH8NYcdGHTxElCcFFLnKYZXdD
-# nw6KS1/xP++b4+2qkMyiWLz48RFP5we0njPf93Aacy0Cl89CpxTzN4yzWJhMY/km
-# wmXzBaVXZNBr3ovaKdbGX4CVP9y81keFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT2y0GzcszMgrz+zKN0mOB2q4eSgDANBgkqhkiG9w0B
+# AQEFAASCAQCNxa68XEM8m5D1ZQteh8j5xeKXn5Ut8qKG3Fyl/9ow/AAVEfazGARK
+# euQgbqko1Y+WgqbLrvgnkFbKfTLO2Q4cYsLON+BDgiH41r8C7FZ1KpptoUf/8mza
+# hcjZClFUiN6TYKS9wCGqFpDVAJP0rp5rExU08bTD4jIkUibqrYq9nG/8IUR2x6n3
+# VcFZSO2O9OAS2LREjLgCUro3gAn8imNJfgE7b9zZWjy31Pp3p1tvals1ezzECISs
+# iPodlIwi2hRKXcluFm+7t13g7EAha+sbJtvYePKWw3JpFbGwp4XDXdtpjqe7Qn7j
+# 0aYYxw69h8QZ53pzZIHSJLAVSuL1rLnnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0N1owIwYJKoZIhvcN
-# AQkEMRYEFKSo0pD4rurp1EIDvaYEqYxA1EijMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzN1owIwYJKoZIhvcN
+# AQkEMRYEFAp28x0hU6ALj0YBo+TLyPWmV7wbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAfMhdW1aenri6q08ZKGBVBn9HlSFHzZeuheeCbz1t072sx
-# 9uOX5TyPeLiEtvOShQs4SW2DTytUbfl8OvuNhoRD/XZ6216mDeO2xnwH6YBWyct4
-# 1R4u6dQoDEa3oGCc1WnlWdKSxCGahIB8105Ojgge1JLR7+99SAO/e7aBk0SYfyd3
-# +640qcyCM2OByc0wki7uGqqJDGb4v12tjXTvC0FPxv7optrhkM6Cdr/QLa5hR7T8
-# o8jHEllUsFZ5AY19V4caUIkskzfaTNsSjzv5rFwdmSiITNbcm1+7COyo8JGYPM5e
-# 43K9yAG3rYOUMM0tj5Z9TPi/u/36G1YkRWx0AhMf
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCcGhIbzfVbSklKdTapNCXd8hGLhcAbwhY7wH6x+bgsO9Xa
+# R+PqX+msUJ07gjewhfmMWyDJm0G6osToLfH1sF3rxUX0YQ4SAXJPOGCwTNc1hOVE
+# KuRZQut+OJI1VKoqVE57STdXjOHw0lcQu7/AR25ngkwSWviJuJOrb7YSbRhnVB7i
+# 7qwpB/nIsVmgm3SNuLgimYl1ipktSlnejeCc1/eu5cz4W3hNzGLEdVsU/zyb4NF3
+# BYugtr+cBvI5gBroTS/XH5dDI56w5c6vLfmKbusVVhTrphpli4GLPJUdLHFWInw0
+# +aCgcf3kdZjQgLML2WD50xk7z7rblv3ntxf4QWvw
 # SIG # End signature block

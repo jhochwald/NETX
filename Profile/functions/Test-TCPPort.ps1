@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,157 +15,157 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Test-TCPPort {
-  <#
-      .SYNOPSIS
-      TCP Port Ping
+	<#
+			.SYNOPSIS
+			TCP Port Ping
 
-      .DESCRIPTION
-      This function is used to see if a TCP Port is answering
+			.DESCRIPTION
+			This function is used to see if a TCP Port is answering
 
-      .PARAMETER target
-      Please specify an EndPoint (Host or IP Address)
+			.PARAMETER target
+			Please specify an EndPoint (Host or IP Address)
 
-      .PARAMETER Port
-      Please specify a Port
+			.PARAMETER Port
+			Please specify a Port
 
-      .PARAMETER TimeOut
-      Timeout value (Default is 1.000)
+			.PARAMETER TimeOut
+			Timeout value (Default is 1.000)
 
-      .EXAMPLE
-      Test-TCPPort -target '127.0.0.1' -Port '445'
-      False
+			.EXAMPLE
+			Test-TCPPort -target '127.0.0.1' -Port '445'
+			False
 
-      Description
-      -----------
-      This function is used to see if a TCP Port is answering
+			Description
+			-----------
+			This function is used to see if a TCP Port is answering
 
-      .EXAMPLE
-      Test-TCPPort -target '110.10..16.10' -Port '445'
-      True
+			.EXAMPLE
+			Test-TCPPort -target '110.10..16.10' -Port '445'
+			True
 
-      Description
-      -----------
-      This function is used to see if a TCP Port is answering
+			Description
+			-----------
+			This function is used to see if a TCP Port is answering
 
-      .NOTES
-      This function will be replaced soon: We will build a new one soon that
-      supports other protocols to (Not only TCP)
+			.NOTES
+			This function will be replaced soon: We will build a new one soon that
+			supports other protocols to (Not only TCP)
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        Position = 0,
-    HelpMessage = 'Please specify an EndPoint (Host or IP Address)')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$target,
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Please specify a Port')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$Port,
-    [Parameter(ValueFromPipeline = $true,
-        Position = 2,
-    HelpMessage = 'Timeout value (Default is 1.000)')]
-    [ValidateNotNullOrEmpty()]
-    [System.Int32]$TimeOut = 1000
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				Position = 0,
+		HelpMessage = 'Please specify an EndPoint (Host or IP Address)')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$target,
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Please specify a Port')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$Port,
+		[Parameter(ValueFromPipeline = $true,
+				Position = 2,
+		HelpMessage = 'Timeout value (Default is 1.000)')]
+		[ValidateNotNullOrEmpty()]
+		[System.Int32]$TimeOut = 1000
+	)
 
-  BEGIN {
-    # Cleanup
-    $Address = $null
-    $Socket = $null
-    $Connect = $null
-    $Wait = $null
-  }
+	BEGIN {
+		# Cleanup
+		$Address = $null
+		$Socket = $null
+		$Connect = $null
+		$Wait = $null
+	}
 
-  PROCESS {
-    Try {
-      $IP = ([System.Net.Dns]::GetHostAddresses($target))
-      $Address = ([System.Net.IPAddress]::Parse($IP))
-      $Socket = (New-Object -TypeName System.Net.Sockets.TCPClient)
-      $Connect = ($Socket.BeginConnect($Address, $Port, $null, $null))
-    } catch {
-      Write-Warning -Message 'Host unreachable'
-    }
+	PROCESS {
+		Try {
+			$IP = ([System.Net.Dns]::GetHostAddresses($target))
+			$Address = ([System.Net.IPAddress]::Parse($IP))
+			$Socket = (New-Object -TypeName System.Net.Sockets.TCPClient)
+			$Connect = ($Socket.BeginConnect($Address, $Port, $null, $null))
+		} catch {
+			Write-Warning -Message 'Host unreachable'
+		}
 
-    # Wait a few ticks (Just a few!!!)
-    Start-Sleep -Milliseconds 10
+		# Wait a few ticks (Just a few!!!)
+		Start-Sleep -Milliseconds 10
 
-    if ($Connect.IsCompleted) {
-      $Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $false))
+		if ($Connect.IsCompleted) {
+			$Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $false))
 
-      if ($Wait) {
-        $Socket.EndConnect($Connect)
-        $Socket.Close()
-        Return $true
-      } else {
-        $Socket.Close()
-        Return $false
-      }
-    } else {
-      Return $false
-    }
-  }
+			if ($Wait) {
+				$Socket.EndConnect($Connect)
+				$Socket.Close()
+				Return $true
+			} else {
+				$Socket.Close()
+				Return $false
+			}
+		} else {
+			Return $false
+		}
+	}
 
-  END {
-    # Cleanup
-    $Address = $null
-    $Socket = $null
-    $Connect = $null
-    $Wait = $null
-  }
+	END {
+		# Cleanup
+		$Address = $null
+		$Socket = $null
+		$Connect = $null
+		$Wait = $null
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSUQB+0oC5+8cmuLQEjmbsHrr
-# Ri6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo2HmhYEMEkyNDk0SByhGN00v
+# 7QCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -186,10 +187,10 @@ function Global:Test-TCPPort {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -205,12 +206,12 @@ function Global:Test-TCPPort {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -307,25 +308,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRK9VbaChuK+ryfa1WRZk4qyCOl/jANBgkqhkiG9w0B
-# AQEFAASCAQCIgcU3HZu9lphK9wUaHDqWrW+/1oyCSu7q2Llc55EcHKpw4V3dJ62j
-# fe7SLmp1MwOsNVrrx9XwdMjKxTVMvQR56r1/nYrBV+PlyWlxFO2sLrYrs7z4Obap
-# /xQhX59puGk5p26tyXkeq+M3XH5BGtrupzM358n19bxZGQ++Lo1rh9OWsSBqsFUp
-# ok1llKM6QUh1rtJe1X65eJBsEbJ+LXQuhpVDv0g3CsEEp3Xto0e0UOi3N80m1Bfv
-# 1x57F2gZNhTfso3E02ivgjqqb6K3ClDDSYfyu67Ni0LiKeGz5t7+gUfTRHZ2IDtz
-# 0KEUrka38yyhSNiTONIKhL66H2G0rBSgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRlAAXDDwaUVKYdhELFEitTHFBMXDANBgkqhkiG9w0B
+# AQEFAASCAQAGNW3aqxyDNRWQRTl/X5pb74xFQ9b1hxxDPPkNgRxvaunwslfm5z4M
+# L/hq/a1bUjXc+XQuWuQ1sTbWtSjO0EVqjG1qBk/voNctESEfMlf+S+j0fs34RfAC
+# JzdEde24/8v2lLPDtE9vSgbBZK9IAsr2Fli0nixwjxim3dpwo7Qj/lz+1ukHPfBH
+# AloGRe1/wP+jkwRrX7mWIhjWY1UyyyuGyjM4S/s1ktkXP+yX0BTzMhgC2qcnQeFH
+# l1JxqQum78dh8++/0Vbra6vtoDtGaZ73Yt5kAjenBin/3OgFszMWbXUNiPgPD1bp
+# 0Ix2QZQBhE9bj271/FC1ZlPuos37BrH7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxM1owIwYJKoZIhvcN
-# AQkEMRYEFMRydrVl2pZwMmGBDqQ8fPR/Q0mLMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwNVowIwYJKoZIhvcN
+# AQkEMRYEFEE2YOASFXqgP3+iovZaq1YJasjBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA2sbmAJprGwoK6IDLvhWQkgBASGScfCLcUNhmiV+NutVYf
-# 2dp/QOUecrPSDNqT/C+Jnq9qnu3FpLjVn16EaBlRG4ERZOpFnn9/SAVR6s3NHdD9
-# wfDe5hI3SoerFPN7VeP0NotHYbhixJq6C1Pl81iFnYq+s7Rz/th4yFA3woHL22ai
-# /uOSvW1emUjYoUXX9MM5KKl0bNpRVW6/dJLiikDEqYVz15D7k+4k7vdyBfRjQvi8
-# f1nYwrjcEvygHnp3b4nRXmHauTUjlw7JUNqqGJnHiwMeN5EdU4/tK4iBCnQupqGy
-# EZoVnLZ5RCqMeKbdfTnAmijCaACHw/bvFmlekb+H
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQBf5dmqBx9eGHo1y5PbJi5f1UHiC+7DZwgE0M1Oad0/eTyK
+# nivVLpkJQFZQP2UOI95nb+rWgtiQsajrmhm8ybmIrnGZnN249JlFOnDcR9zxVHV2
+# mC7PDT81/9m28n8J0R1x2X44gRRN27e1Sk292z/m+aPmks4EI83XqAkehf1uahne
+# ryEyeVjjlWfhSvGisTeKsHCzEWRwdsOvjxJnNVBMVFovnBz6zaIt0u/QfoF7/5ll
+# 75B56Sgtyxls6HDQRljC62NKha07W3IK132kSMrfdCZDiojUo5vJlUq86nyTaO4z
+# uYB2xPMN9T+YW5OY7Fh7DGUPsr9XN3Co1TkaGkzm
 # SIG # End signature block

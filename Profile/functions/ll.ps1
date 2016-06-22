@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,127 +15,127 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Make Powershell more Uni* like
 function global:Invoke-PowerLL {
-  <#
-      .SYNOPSIS
-      Quick helper to make my PowerShell a bit more like *nix
+	<#
+			.SYNOPSIS
+			Quick helper to make my PowerShell a bit more like *nix
 
-      .DESCRIPTION
-      Everyone ever used a modern Unix and/or Linux system knows and love
-      the colored output of LL
+			.DESCRIPTION
+			Everyone ever used a modern Unix and/or Linux system knows and love
+			the colored output of LL
 
-      This function is hack to emulate that on PowerShell.
+			This function is hack to emulate that on PowerShell.
 
-      .PARAMETER dir
-      Show the content of this Directory
+			.PARAMETER dir
+			Show the content of this Directory
 
-      .PARAMETER all
-      Show all files, included the hidden ones!
+			.PARAMETER all
+			Show all files, included the hidden ones!
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Alias('Directory')]
-    $dir = '.',
-    [Alias('ShowAll')]
-    $all = $false
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Alias('Directory')]
+		$dir = '.',
+		[Alias('ShowAll')]
+		$all = $false
+	)
 
-  BEGIN {
-    # Define object
-    Set-Variable -Name origFg -Value $($Host.UI.RawUI.ForegroundColor)
-  }
+	BEGIN {
+		# Define object
+		Set-Variable -Name origFg -Value $($Host.UI.RawUI.ForegroundColor)
+	}
 
-  PROCESS {
-    # What to do?
-    if ($all) {
-      Set-Variable -Name toList -Value $(Get-ChildItem -Force $dir)
-    } else {
-      Set-Variable -Name toList -Value $(Get-ChildItem $dir)
-    }
+	PROCESS {
+		# What to do?
+		if ($all) {
+			Set-Variable -Name toList -Value $(Get-ChildItem -Force $dir)
+		} else {
+			Set-Variable -Name toList -Value $(Get-ChildItem $dir)
+		}
 
-    # Define the display colors for given extensions
-    foreach ($Item in $toList) {
-      Switch ($Item.Extension) {
-        '.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
-        '.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
-        '.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
-        '.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
-        '.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
-        '.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
-        '.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-        '.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-        '.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-        '.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
-        Default { $Host.UI.RawUI.ForegroundColor = $origFg }
-      }
+		# Define the display colors for given extensions
+		foreach ($Item in $toList) {
+			Switch ($Item.Extension) {
+				'.exe' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.hta' { $Host.UI.RawUI.ForegroundColor = 'DarkYellow' }
+				'.cmd' { $Host.UI.RawUI.ForegroundColor = 'DarkRed' }
+				'.ps1' { $Host.UI.RawUI.ForegroundColor = 'DarkGreen' }
+				'.html' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.htm' { $Host.UI.RawUI.ForegroundColor = 'Cyan' }
+				'.7z' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.zip' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.gz' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				'.rar' { $Host.UI.RawUI.ForegroundColor = 'Magenta' }
+				Default { $Host.UI.RawUI.ForegroundColor = $origFg }
+			}
 
-      # All directories a Dark Grey
-      if ($Item.Mode.StartsWith('d')) {
-        $Host.UI.RawUI.ForegroundColor = 'DarkGray'
-      }
+			# All directories a Dark Grey
+			if ($Item.Mode.StartsWith('d')) {
+				$Host.UI.RawUI.ForegroundColor = 'DarkGray'
+			}
 
-      # Dump it
-      $Item
-    }
-  }
+			# Dump it
+			$Item
+		}
+	}
 
-  END {
-    $Host.UI.RawUI.ForegroundColor = $origFg
-  }
+	END {
+		$Host.UI.RawUI.ForegroundColor = $origFg
+	}
 }
 (Set-Alias -Name ll -Value Invoke-PowerLL -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDHlFMZ205Isu3oFboSo2ElYv
-# b9egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8zmfEtVCxkMRlHw60vLGHeq2
+# eKegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -156,10 +157,10 @@ function global:Invoke-PowerLL {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -175,12 +176,12 @@ function global:Invoke-PowerLL {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -277,25 +278,25 @@ function global:Invoke-PowerLL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQlYbB1J9QyTfylCEXnyJgfr7kBwDANBgkqhkiG9w0B
-# AQEFAASCAQAZo709f0sIqEzw0BtXMLDRfivNNm6yIEx9CSdB6qbGdW/aHiQ6o9fv
-# oqbIaoJNIs/YhyVhXsqYYUggld/rpatUbCeQanWDWT9WfKj17a5ia+VUV4UY6iZQ
-# EfSF0D94okBqHFUV0nBv+znhx7sCc4AVf+jKNfBtjaxVs48rMZ7F1fuoJtpB74V6
-# TpQQfxrNRqTZq5sf/tby2Tm4agESoi9y/qA7690+WIaK8pKk3G8Hgd6FHwjGVluf
-# qncaansMaXdXMDaer6UvPsej5ZS9SwlQpM1j5Wlbcz2B6pAnmRImlGECDesYCiHa
-# TZ6toShhWIz0Q4xHvqv6gUXlS1Iz7AY0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ5h2TJStTM/xIR07zm+8aOM4e4xTANBgkqhkiG9w0B
+# AQEFAASCAQArv0aIrK/8eS/TJrtXIIX2WPybgXlSIZU974WsYgq9gsz2l2+zV0Lw
+# uDUxequiMTZfBfbWx/YRAnM/puVqBwotkGZBrsruc5D0rusdcbuPfkc6nLbc8Fye
+# /1f8oD8uERny3KIY4zZHgtfrl+dSOOA4e4ofUc/2wQyMF/Eijgb2DstPUtsgzqYg
+# g1yylWqAh3ORgBvDL0aoXolYlu8nqmw/9xnsw77H5oyb1q8a82gmZndczc46DoEh
+# 1ze2ZtPK+LUCd7dIELQN/awTMznHX+ilB4bIYspMFlu66DRgaDMdsh66xnfBX0uT
+# 9KLjr91h/KabIAIw7ugN6WFIMOFFIwnJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1NlowIwYJKoZIhvcN
-# AQkEMRYEFGqvdsjcR1IZmwYfRRoVeXxWcsQDMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0NlowIwYJKoZIhvcN
+# AQkEMRYEFLzoTp0pYJPTvkpBuHIhU0276YKOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCQDO1mRn8Ww3kYVkCnADYUFl4hqqt9Ab1W9JYoLTX/naWn
-# EcmUoXHdXpkQc4LyZVpQP9oGt6gBNhfPLWAvyk54Mfx3inBcdNtwFl70nCwmCf08
-# N+QScrh4Dawj5ON+IewULVx4t8oor2cDQr7In2y2gIHNSfwFN9UkSiiHINtjQS4d
-# DfCuHYn7NM+DOCiLbjMqFGd1wm1ch9mtrA1TF75vg6U/JlQ5JZ45rB2OpP9cQ9cL
-# 6UteqrwWNTUAkTxS2tGeHReW+njLOZarHAfUrm8pKaflizTraoBYwWreah4prCbs
-# 58FjtE+L5qw8+bxuEaASuq3hIenueqCY35XWdSd/
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAPvGMeLmyJBh9XguZsycMApBPG7uH3bhxygZszf0uzeDes
+# lpsz/d7OCxFQGDMoQ6QZEBXqOznBlYXCflDmf0Z+UVp7ccphKodemsjLJ9ot/rTl
+# AZGXjE+uMPmsAEDNt2fMKFLFq2doEltSVqqDqT6aKiyc9QzOFd6nB3dkkL0vNQ3t
+# jrL5pqBvptvjUDyy6Vyu/UQIzs2/3mplovGIqpYBKt9cjmDBDP5C4iag8nK2YJup
+# nhqHIJUho7QZONoIom/tuM631iqY046NJwateAHMzeYQ5gIPq39y17sM46zjuN0q
+# nBEHwVHiYEdxVfDi7wwcgP0reilnS7b7r+Prn1dW
 # SIG # End signature block

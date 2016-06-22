@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,117 +15,117 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Clear-TempDir {
-  <#
-      .SYNOPSIS
-      Cleanup the TEMP Directory
+	<#
+			.SYNOPSIS
+			Cleanup the TEMP Directory
 
-      .DESCRIPTION
-      Cleanup the TEMP Directory
+			.DESCRIPTION
+			Cleanup the TEMP Directory
 
-      .PARAMETER Days
-      Number of days, older files will be removed!
+			.PARAMETER Days
+			Number of days, older files will be removed!
 
-      .EXAMPLE
-      PS C:\> Clear-TempDir
-      Freed 439,58 MB disk space
+			.EXAMPLE
+			PS C:\> Clear-TempDir
+			Freed 439,58 MB disk space
 
-      # Will delete all Files older then 30 Days (This is the default)
-      # You have to confirm every item before it is deleted
+			# Will delete all Files older then 30 Days (This is the default)
+			# You have to confirm every item before it is deleted
 
-      .EXAMPLE
-      PS C:\> Clear-TempDir -Days:60 -Confirm:$false
-      Freed 407,17 MB disk space
+			.EXAMPLE
+			PS C:\> Clear-TempDir -Days:60 -Confirm:$false
+			Freed 407,17 MB disk space
 
-      Description
-      -----------
-      Will delete all Files older then 30 Days (This is the default)
-      You do not have to confirm every item before it is deleted
+			Description
+			-----------
+			Will delete all Files older then 30 Days (This is the default)
+			You do not have to confirm every item before it is deleted
 
-      .NOTES
-      Additional information about the function.
+			.NOTES
+			Additional information about the function.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Position = 0,
-    HelpMessage = 'Number of days, older files will be removed!')]
-    [Alias('RemoveOlderThen')]
-    [System.Int32]$Days = 30,
-    [switch]$Confirm = $true,
-    [Switch]$Whatif = $false
-  )
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Position = 0,
+		HelpMessage = 'Number of days, older files will be removed!')]
+		[Alias('RemoveOlderThen')]
+		[System.Int32]$Days = 30,
+		[switch]$Confirm = $true,
+		[Switch]$Whatif = $false
+	)
 
-  # Do we want to confirm?
-  if (-not ($Confirm)) {Set-Variable -Name '_Confirm' -Value $($false -as ([bool] -as [type]))} elseif ($Confirm) {Set-Variable -Name '_Confirm' -Value $($true -as ([bool] -as [type]))}
+	# Do we want to confirm?
+	if (-not ($Confirm)) {Set-Variable -Name '_Confirm' -Value $($false -as ([bool] -as [type]))} elseif ($Confirm) {Set-Variable -Name '_Confirm' -Value $($true -as ([bool] -as [type]))}
 
-  # Is there a WhatIf?
-  if (-not ($Whatif)) {Set-Variable -Name '_WhatIf' -Value $('#')} elseif ($Whatif) {Set-Variable -Name '_WhatIf' -Value $('-WhatIf')}
+	# Is there a WhatIf?
+	if (-not ($Whatif)) {Set-Variable -Name '_WhatIf' -Value $('#')} elseif ($Whatif) {Set-Variable -Name '_WhatIf' -Value $('-WhatIf')}
 
-  # Set the Cut Off Date
-  Set-Variable -Name 'cutoff' -Value $((Get-Date) - (New-TimeSpan -Days $Days))
+	# Set the Cut Off Date
+	Set-Variable -Name 'cutoff' -Value $((Get-Date) - (New-TimeSpan -Days $Days))
 
-  # Save what we have before we start the Clean up
-  Set-Variable -Name 'before' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
+	# Save what we have before we start the Clean up
+	Set-Variable -Name 'before' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
 
-  # Find all Files within the TEMP Directory and process them
-  Get-ChildItem $env:temp |
-  Where-Object -FilterScript { ($_.Length) } |
-  Where-Object -FilterScript { $_.LastWriteTime -lt $cutoff } |
-  Remove-Item -Recurse -Force -ErrorAction:SilentlyContinue -Confirm:$_Confirm
+	# Find all Files within the TEMP Directory and process them
+	Get-ChildItem $env:temp |
+	Where-Object -FilterScript { ($_.Length) } |
+	Where-Object -FilterScript { $_.LastWriteTime -lt $cutoff } |
+	Remove-Item -Recurse -Force -ErrorAction:SilentlyContinue -Confirm:$_Confirm
 
-  # How much do we have now?
-  Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
+	# How much do we have now?
+	Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
 
-  'Freed {0:0.00} MB disk space' -f (($before - $after)/1MB)
+	'Freed {0:0.00} MB disk space' -f (($before - $after)/1MB)
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTz6tNYZ9q9ExvvBr9mO8Ldb5
-# 7LegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcL9GsIjrQbgCBIzAWZSFMkds
+# ko6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -267,25 +268,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSI2WH0i4SwHuy3HIZKYyJJfuLfbzANBgkqhkiG9w0B
-# AQEFAASCAQBIVttJBO6Zjq69yDFqWVSOuKoHulTnght5oL78pIdX6jORbagGIt/B
-# vkBbGWrsmvNDu7mHVj4Ron0OBQ+mEpUws4YkpzO6GIStGTcG1z2ghJkxoS1qj8Hw
-# 5wa3USZ+yWVLdHDEhUGBn54sevTaWjoH5HS0AzVdApHpSK0s1KuvMcu/hUhHLny7
-# swUlNB7O9qXCP4LwD7mtb1GSXR3YIiPFoFDrz/37PeDHUOHm+UG7/Lz2VcClr9F+
-# xqm/iFY9VSNYG8VyJ/xYtgj/DZKLruT9ialtP0NttgP++71yamos6FXuH0AQsn62
-# yMzFGYAOKxmTJq8jc5jSMZnCu8vLHFYYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTX9kujoikHHnNcUS8BFPNHQ6JkODANBgkqhkiG9w0B
+# AQEFAASCAQBX8oV1eAY4nQ7ugEmD6Lcb8R1DJBK4bvA3Ro+/zQn9JKW/tH1ziOZi
+# txT2KsBhzZIKEo975hfULYvVCRfdB+DTL39jPQ3vZZlcutiKWxE+S8QPdMrgg88E
+# tfk15+k1ItQpjDUSMN01nw6AML0/JMclnTEnjO8ic33yAmnrfqOtOVvhQ+2z8sAX
+# ZGD7m1RjaOIAsV/b6xhNHqhEO5p3QnrcRff0COrDElaw7a8ledA7024y281S/+t+
+# AWbXz5rwMKXB6eCt5z/GHqmccirA6wUrlenamawui7mzhmWbmv9Jxr4OfH9rXjHx
+# xCz4h71WkgPGakZQ/3x8NRHp7SEQZ2nyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyM1owIwYJKoZIhvcN
-# AQkEMRYEFOUyFYCqvaEBWhQRh/44KgXwcexKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExM1owIwYJKoZIhvcN
+# AQkEMRYEFDjdjWLngy9+3wd28N7X4u1doF1WMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAWe1qaB+HiUTflh7n9uHpptNhn/sVMzdac8Zc31zdiZ60C
-# Kk8xxEyl+ARLIzV5ooiYPrJ0KqnE7qQgqFURiilZecjFKMDF8zmw1/xgKsvXc9rc
-# DVMKB54KCkXw5g4/NkS6r1JlEsM9nmFLn3dcqh6rm2M1l4vWVOb61A3NWCMuwspG
-# dQCDPDxsudGwygpWHCJPvQtG6+sv+dfqAgSNB7yGC0SeWO6wJeUY7MEvtZ46BLUK
-# SVpGi1vTbMR2pRaGnc8eNRNGuAlfE/Q6A9UWSlwXa3kFlgzgUU2WgBCBuLykczQ9
-# C1JtBCU0gAW/c4x3mRsAwBTH1++KkRsbH8FlnDph
+# hkiG9w0BAQEFAASCAQAJ5qtuDBxLJPkYwCOXXI1hVTkA+dq0Rlx62tNgbuVTih8l
+# XJkUZGBUxiDGeSzSTm+B9LlpINqLwzjAeJR5rc/HhL9q3XWUjAgdKwk53c7r7bLY
+# 6quuaH5tWFw8AqYRT94NA/zA8D9FFU34keeB9uj6u9Nxy70NRhj1Y0L/G6efEoYo
+# xJQGkDx8LTgnpw0m6fQTbxThhzO4ZZJIRoSlGj1m3AqFALF6e6S6X5lP0gNYHaY5
+# zBXy37Sl47ot+qcpxbcd5MgA1nXJZ65Apfo0clNRFd44ye3OkQ7eq5IGws1GSP37
+# 7/wg3abMCumKoN79CghFnxrJ3VR68JfcHtHN04tW
 # SIG # End signature block

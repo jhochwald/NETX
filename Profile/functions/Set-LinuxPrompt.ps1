@@ -1,12 +1,12 @@
 ﻿#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,136 +14,136 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Set-LinuxPrompt {
-  <#
-      .SYNOPSIS
-      Make the Prompt more Linux (bash) like
+	<#
+			.SYNOPSIS
+			Make the Prompt more Linux (bash) like
 
-      .DESCRIPTION
-      Make the Prompt more Linux (bash) like
+			.DESCRIPTION
+			Make the Prompt more Linux (bash) like
 
-      .EXAMPLE
-      PS C:\Windows\system32> Set-LinuxPrompt
-      Josh@fra1w7vm01 /Windows/system32 #
+			.EXAMPLE
+			PS C:\Windows\system32> Set-LinuxPrompt
+			Josh@fra1w7vm01 /Windows/system32 #
 
-      Description
-      -----------
-      The user 'Josh' executes the 'Set-LinuxPrompt' on the system
-      'fra1w7vm01', the '#' shows that he did that in an
-      elevated (started as Administrator) session.
+			Description
+			-----------
+			The user 'Josh' executes the 'Set-LinuxPrompt' on the system
+			'fra1w7vm01', the '#' shows that he did that in an
+			elevated (started as Administrator) session.
 
-      .EXAMPLE
-      PS C:\Users\Josh> Set-LinuxPrompt
-      Josh@fra1w7vm01 ~ $
+			.EXAMPLE
+			PS C:\Users\Josh> Set-LinuxPrompt
+			Josh@fra1w7vm01 ~ $
 
-      Description
-      -----------
-      The user 'Josh' executes the 'Set-LinuxPrompt' on the system
-      'fra1w7vm01', the '$' shows that this is a non elevated (User) session.
+			Description
+			-----------
+			The user 'Josh' executes the 'Set-LinuxPrompt' on the system
+			'fra1w7vm01', the '$' shows that this is a non elevated (User) session.
 
-      .NOTES
-      Based on an idea of Tommy Maynard
-      If you want a more colorful Prompt, take a look at the
-      Set-PowerPrompt command
+			.NOTES
+			Based on an idea of Tommy Maynard
+			If you want a more colorful Prompt, take a look at the
+			Set-PowerPrompt command
 
-      .LINK
-      Source http://tommymaynard.com/quick-learn-duplicate-the-linux-prompt-2016/
+			.LINK
+			Source http://tommymaynard.com/quick-learn-duplicate-the-linux-prompt-2016/
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
 
-      .LINK
-      Set-PowerPrompt
-      Reset-Prompt
+			.LINK
+			Set-PowerPrompt
+			Reset-Prompt
 
-      .LINK
-      Set-DefaultPrompt
-      Set-ServicePrompt
-  #>
+			.LINK
+			Set-DefaultPrompt
+			Set-ServicePrompt
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  BEGIN {
-    (Get-PSProvider -PSProvider FileSystem).Home = $env:USERPROFILE
-  }
+	BEGIN {
+		(Get-PSProvider -PSProvider FileSystem).Home = $env:USERPROFILE
+	}
 
-  PROCESS {
-    if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
-      function Global:Prompt {
-        # Are we elevated or administrator?
-        if ((New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-          # Administrator Session!
-          $Symbol = '#'
-        } else {
-          # User Session!
-          $Symbol = '$'
-        }
+	PROCESS {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
+			function Global:Prompt {
+				# Are we elevated or administrator?
+				if ((New-Object -TypeName Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+					# Administrator Session!
+					$Symbol = '#'
+				} else {
+					# User Session!
+					$Symbol = '$'
+				}
 
-        if ($PWD.Path -eq $env:USERPROFILE) {
-          $Location = '~'
-        } elseif ($PWD.Path -like "*$env:USERPROFILE*") {
-          $Location = ($PWD.Path -replace ($env:USERPROFILE -replace '\\', '\\'), '~' -replace '\\', '/')
-        } else {
-          $Location = "$(($PWD.Path -replace '\\', '/' -split ':')[-1])"
-        }
+				if ($PWD.Path -eq $env:USERPROFILE) {
+					$Location = '~'
+				} elseif ($PWD.Path -like "*$env:USERPROFILE*") {
+					$Location = ($PWD.Path -replace ($env:USERPROFILE -replace '\\', '\\'), '~' -replace '\\', '/')
+				} else {
+					$Location = "$(($PWD.Path -replace '\\', '/' -split ':')[-1])"
+				}
 
-        $Prompt = "$($env:USERNAME.ToLower())@$($env:COMPUTERNAME.ToLower()) $Location $Symbol "
+				$Prompt = "$($env:USERNAME.ToLower())@$($env:COMPUTERNAME.ToLower()) $Location $Symbol "
 
-        # Mirror the Prompt to the window title
-        $Host.UI.RawUI.WindowTitle = ($Prompt)
-        $Prompt
-      }
-    }
-  }
+				# Mirror the Prompt to the window title
+				$Host.UI.RawUI.WindowTitle = ($Prompt)
+				$Prompt
+			}
+		}
+	}
 
-  END {
-    if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
-      # Execute!
-      prompt
-    }
-  }
+	END {
+		if ($pscmdlet.ShouldProcess('Prompt', 'Set it to a Bash styled one')) {
+			# Execute!
+			prompt
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqtUCR4EELbGYVF2kWP1f6RFC
-# aaKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBaJvvZFa5a35JdkF2b4rhcRM
+# BzWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -286,25 +286,25 @@ function Global:Set-LinuxPrompt {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQpcd/EkT5AInys+lMhY7bnbrts9zANBgkqhkiG9w0B
-# AQEFAASCAQBUFfjvoQ8DMh85UHIMOVD7ovb57dWPHo7kd+8lJlH96IKCz2FJ2kza
-# tBvmeKEAu86umIUx1t3x742n+6oMIHKe/NA+sERBg4v6c1hvh/PLwmAfwQcvWNYb
-# D1Tko1Z9ER/nLI2dhwOa/hpz795JjKhqZlnxwH0UbJ/MvXKtacQypJMqNH54h9sf
-# 8JvKmowdxovCpVo1UJw35uGfqRjrq4SYH3tW0fpxU5f3KaA9YoYeF3jxkd/u/wCA
-# MGM2fIZaBl6JKgG1N/yaKyh7R9SGDQkc6LjlbAtjaAS78yzDTpUW9+uQ8hyo1Wko
-# 9rj4bJDosvbQPrnXa+lmUd4gjW7GKP74oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSBhOfRGM2mHWd9kSRjfPjAwQZSjjANBgkqhkiG9w0B
+# AQEFAASCAQAdnNURtZFzKMX1Z/bDW3H5ME7JD64lYjaEOQLllRD+qdzO0Qc9VLhh
+# 3PdgGbm6BoR7LCwrFwfTjVTvq2Dgt/B7nf2uJi11HIkzqfxQslpsWgeEYVVL28nD
+# xdPky3bvbaJMbiI8MctliOaqaQS+ou0ZpwSMkDG9nfb8vXoX9cIpx+dmwaiNHNwB
+# V+nXHON+JDFFkuRRwmsEsxev7PNUh8H/I7A1dQVIkEgnnm9RhbXvMa/MFz+cwlQH
+# Tv9zzMEgTH6ZZpskghzXAk3/C5RVI3A/QANuz978bd9Zv16ridKLmJHn3A4FTeGA
+# ukzXPktuZiev0ZjoQxTNafarEdZMnygUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwOVowIwYJKoZIhvcN
-# AQkEMRYEFNhmsxoJQI7NEspp0ZXnDXi6EOh0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMVowIwYJKoZIhvcN
+# AQkEMRYEFDDo42Jnclp9jybE7mg9JgoI8etaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB+y8v1Sf1KwBLrzdm+/I5Nu7855NbUTOm9+3NMH4eELnul
-# zr0lDgU9yrlJx/zVTAtHjqvoxhVFuDOXJ4Z+2o99fVM3J5rIJ2kre3w8r5ihlV2v
-# RmBZl45U+R1ByO84x6IvPeUkE+ij72eVDthwCollHkdfHmVmHLnpmW8LkiXe9DsH
-# YpRD44g6QQzsnpZXS7+VJlukxOsgil3gccry4lpgjO5RC24YNNmMH0ob6sdDfMLB
-# oj1D9R3PIE08MMguuCgQvLOR9Y4kIZMBGay8wTA/TTHwBV9EDfQz7vOjjlkEuBuY
-# BdckrIHucM4IWmS2/dJ2II9GE3vdSHlC7tX4QpFZ
+# hkiG9w0BAQEFAASCAQCAMOy0wYtiJlXBCIwyzPmoISNZtkEID+2TJLf086ghZvXj
+# t+47fwnZKoej6hCQogj0Wr1BBFbEdPDEF8YRuUmPqJ/Q67lqvmF9/k7ywA3T+RNM
+# /H49Is0DiPiU6fxmkMEU6FlbGY+o0gCNlG1fE5hr7IyvZbW3/82OvuZ+tGzP2xLi
+# tXvHweC6j16dgHe5vXU0CDsw/GUf+LoaF92rG+yGfd+JDr+/qPC7LoaOF+lTFahG
+# 2hhk4q+U8Bx7eUuB2zsyUq0x9lwqCrORq+0yZMEjEDb8rDBoulCauBxPLMuIboZI
+# cE4bxzZTSeM3N5WB1AJNUdtzncCROIwtWIh9r8t0
 # SIG # End signature block

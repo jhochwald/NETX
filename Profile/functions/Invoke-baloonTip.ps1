@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,144 +15,144 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Invoke-baloonTip {
-  <#
-      .SYNOPSIS
-      Shows a Windows Balloon notification
+	<#
+			.SYNOPSIS
+			Shows a Windows Balloon notification
 
-      .DESCRIPTION
-      Shows a Windows Balloon notification
+			.DESCRIPTION
+			Shows a Windows Balloon notification
 
-      .PARAMETER Title
-      Title of the Balloon Tip
+			.PARAMETER Title
+			Title of the Balloon Tip
 
-      .PARAMETER Message
-      Message of the Balloon Tip
+			.PARAMETER Message
+			Message of the Balloon Tip
 
-      .PARAMETER Icon
-      Type for the Balloon
+			.PARAMETER Icon
+			Type for the Balloon
 
-      .EXAMPLE
-      PS C:\> Invoke-baloonTip
+			.EXAMPLE
+			PS C:\> Invoke-baloonTip
 
-      Description
-      -----------
-      Show a windows Balloon with the Title "Title" and the Text "Message..."
-      as "Information".
+			Description
+			-----------
+			Show a windows Balloon with the Title "Title" and the Text "Message..."
+			as "Information".
 
-      This is the default values for everything.
+			This is the default values for everything.
 
-      .EXAMPLE
-      PS C:\> Invoke-baloonTip -Title 'Diskspace!!!' -Message 'Diskspace on c: is low' -Icon 'Exclamation'
+			.EXAMPLE
+			PS C:\> Invoke-baloonTip -Title 'Diskspace!!!' -Message 'Diskspace on c: is low' -Icon 'Exclamation'
 
-      Description
-      -----------
-      This shows an Balloon with the Title "Diskspace!!!",
-      the message is "Diskspace on c: is low" as "Exclamation"
+			Description
+			-----------
+			This shows an Balloon with the Title "Diskspace!!!",
+			the message is "Diskspace on c: is low" as "Exclamation"
 
-      .EXAMPLE
-      PS C:\> Invoke-baloonTip -Title 'Reconnect?' -Message 'Should is reconnect to Office 365???' -Icon 'Question'
+			.EXAMPLE
+			PS C:\> Invoke-baloonTip -Title 'Reconnect?' -Message 'Should is reconnect to Office 365???' -Icon 'Question'
 
-      Description
-      -----------
-      This shows an Balloon with the Title "Reconnect?",
-      the message is "Should is reconnect to Office 365???" as "Question"
+			Description
+			-----------
+			This shows an Balloon with the Title "Reconnect?",
+			the message is "Should is reconnect to Office 365???" as "Question"
 
-      .NOTES
-      Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
-  #>
+			.NOTES
+			Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Title of the Baloon Tip')]
-    [System.String]$Title = 'Information',
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Message of the Baloon Tip')]
-    [System.String]$Message = 'Message...',
-    [Parameter(ValueFromPipeline = $true,
-        Position = 2,
-    HelpMessage = 'Type for the Ballon')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Question', 'Exclamation', 'Information')]
-    [System.String]$Icon = 'Information'
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Title of the Baloon Tip')]
+		[System.String]$Title = 'Information',
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Message of the Baloon Tip')]
+		[System.String]$Message = 'Message...',
+		[Parameter(ValueFromPipeline = $true,
+				Position = 2,
+		HelpMessage = 'Type for the Ballon')]
+		[ValidateNotNullOrEmpty()]
+		[ValidateSet('Question', 'Exclamation', 'Information')]
+		[System.String]$Icon = 'Information'
+	)
 
-  BEGIN {
-    [void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
-  }
+	BEGIN {
+		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
+	}
 
-  PROCESS {
-    $notification = (New-Object -TypeName System.Windows.Forms.NotifyIcon)
+	PROCESS {
+		$notification = (New-Object -TypeName System.Windows.Forms.NotifyIcon)
 
-    # Define the icon for the system tray
-    $notification.Icon = [System.Drawing.SystemIcons]::$Icon
+		# Define the icon for the system tray
+		$notification.Icon = [System.Drawing.SystemIcons]::$Icon
 
-    #Display title of balloon window
-    $notification.BalloonTipTitle = $Title
+		#Display title of balloon window
+		$notification.BalloonTipTitle = $Title
 
-    #Type of balloon icon
-    $notification.BalloonTipIcon = 'Info'
+		#Type of balloon icon
+		$notification.BalloonTipIcon = 'Info'
 
-    #Notification message
-    $notification.BalloonTipText = $Message
+		#Notification message
+		$notification.BalloonTipText = $Message
 
-    #Make balloon tip visible when called
-    $notification.Visible = $true
+		#Make balloon tip visible when called
+		$notification.Visible = $true
 
-    #Call the balloon notification
-    $notification.ShowBalloonTip(15000)
-  }
+		#Call the balloon notification
+		$notification.ShowBalloonTip(15000)
+	}
 
-  END {
-    if ($debug) {
-      Write-Output -InputObject $notification
-    }
-  }
+	END {
+		if ($debug) {
+			Write-Output -InputObject $notification
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKSMYgb74KAsB4+/NcZGVGXOy
-# B66gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb9W3xiYkrnry7lgskcvaDE6H
+# AtqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -173,10 +174,10 @@ function global:Invoke-baloonTip {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -192,12 +193,12 @@ function global:Invoke-baloonTip {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -294,25 +295,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTUa8jMfjnsY1W2vLxz8a9pZYqD+TANBgkqhkiG9w0B
-# AQEFAASCAQBpR0E213OwhyM9nq75pmBV9829gtGyus71nin4WkbhaWjVdcqmn3bN
-# Y7M/mPIC/hRg8HJsjhhThE/JHm3mkAUcBTDkBJOYkssAM0oVDRm71z2wcH5OBiQb
-# +76XjOHVXG4QVwTwA+tx5v7Z6WUI324VBGDYJwJ5vX3mkQWZeCeRMwfHf09ydmlS
-# 24Typ05MQmJhhjVaQkjz1KKVTSwrMU6oAnas+HNMGcfu/4SC/iqWpIoZRkc9ktbx
-# b7ZAtwyPg8KWbrEwm1A3KNlimfYWfovZ+uKM7V9tCxYudsv5emwj9FO8OqoWDDjx
-# DZZ6qis2ulxHQZZNQdROIGYW0BmrDMY3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS4/409u3WuFWNBPq7RwDn15yZAGTANBgkqhkiG9w0B
+# AQEFAASCAQAL3Wki+MdnsaiRSFCj4TU6W/1YDQdgn27VGYCvED40Iv9fID/CybxY
+# 8RGdCKU9Zv8cXpMIIc2saJpRN5lTy7BimFI5J5D/JEWW6vZLMwTqsDVRQ2m9WutQ
+# diOoGrE2tuGQgq0FtVzeRor5OEKPBNnUkyaYUWiyI4BIAkZQ4dbFov4pLtzH2hlk
+# kZWumwT4ftNp3DoNCsXiViv81DmTjbO5L+UsKKpjRsUBFJgsfGhHyELYmqqNEssD
+# +d15E45Q0Xw7XqjMD5mTa2haGLO/mxdog2fYGvnhyoUc7YMyuhUkyULYHbYugMAf
+# L834Y/akjitk8mKj1SWK7H5wbjetkvDUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1MlowIwYJKoZIhvcN
-# AQkEMRYEFNhxJ148jmguDAzG3IadzxpKmz5nMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0M1owIwYJKoZIhvcN
+# AQkEMRYEFCcPEfjZY+Xa1+GgWSTxNNaAJNjPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCeBQTBrj8FB8rFSq0rOZ27RQGpG9M0GGfIhHfJD50U/zpv
-# cwg39hBmi0xxbc8Kq0sejs3Yh3d0dirAp8YWQ4/5c3fHma93Ckq7df3EALSRQHEC
-# IYrhqvpvGfFqkRivXyPzB2A7VAL/4PDrHV+Rthh40JNtja3DSfCzHM34I63N0N49
-# 8ZbT22wCykLLGPIOW10Gm9EP064IaoSnRjPQ90USHNOrXhuNBZNiFy2uoPoviYMi
-# lbv859UdKEpmVBT9L6f2AXrML5veE/H1sLx3d6xF0bdvJA9ru4FpOTeQ7m4TXKTW
-# iXsB79zep6wn7bY7BlMloEiRGYs6I6qG1xFSFVya
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQB3s8tlkn3kkbADfnDfg86QjiBtg9LWVsxl4Tt6mq1fuh/S
+# Nx6ucqm+nmJS/W15scDFvlK1KundoXxuh6jKQsaNzJatcEx4HFr5UvPh5NMfh6Ak
+# tBpHFek2cglmZ6KYB3pJ/ahphxoqqZyvVSMA6Y+neeG8r5EkeVXg6dSHSUW9M3+v
+# Q9vkRxbJ8PtKSGzbAEk+y0+IcxM6fIIMWl+QXutbYFoLGBf/GrMKNloY7wT7TbYz
+# MUc3UhKo0n8jO1CVof5B24ZKM9t2g/MSg4kCk05FjadWdZQUozejnikXd3/rtLuz
+# E2aOApSGLLnfBjOHlYqrhW4XixPgM3mXKlmdpYfb
 # SIG # End signature block

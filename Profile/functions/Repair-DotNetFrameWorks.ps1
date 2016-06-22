@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,118 +15,118 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Repair-DotNetFrameWorks {
-  <#
-      .SYNOPSIS
-      Optimize all installed NET Frameworks
+	<#
+			.SYNOPSIS
+			Optimize all installed NET Frameworks
 
-      .DESCRIPTION
-      Optimize all installed NET Frameworks by executing NGEN.EXE for each.
+			.DESCRIPTION
+			Optimize all installed NET Frameworks by executing NGEN.EXE for each.
 
-      This could be useful to improve the performance and sometimes the
-      installation of new NET Frameworks, or even patches, makes them use
-      a single (the first) core only.
+			This could be useful to improve the performance and sometimes the
+			installation of new NET Frameworks, or even patches, makes them use
+			a single (the first) core only.
 
-      Why Microsoft does not execute the NGEN.EXE with each installation...
+			Why Microsoft does not execute the NGEN.EXE with each installation...
 
-      no idea!
+			no idea!
 
-      .EXAMPLE
-      PS C:\> Repair-DotNetFrameWorks
-      C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe executeQueuedItems
-      C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
+			.EXAMPLE
+			PS C:\> Repair-DotNetFrameWorks
+			C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe executeQueuedItems
+			C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
 
-      Description
-      -----------
-      Optimize all installed NET Frameworks
+			Description
+			-----------
+			Optimize all installed NET Frameworks
 
-      .NOTES
-      The Function name is changed!
+			.NOTES
+			The Function name is changed!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  BEGIN {
-    # Cleanup
-    Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	BEGIN {
+		# Cleanup
+		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 
-  PROCESS {
-    # Get all NET framework paths and build an array with it
-    $frameworks = @("$env:SystemRoot\Microsoft.NET\Framework")
+	PROCESS {
+		# Get all NET framework paths and build an array with it
+		$frameworks = @("$env:SystemRoot\Microsoft.NET\Framework")
 
-    # If we run on an 64Bit system (what we should), we add these frameworks to
-    If (Test-Path -Path "$env:SystemRoot\Microsoft.NET\Framework64") {
-      # Add the 64Bit Path to the array
-      $frameworks += "$env:SystemRoot\Microsoft.NET\Framework64"
-    }
+		# If we run on an 64Bit system (what we should), we add these frameworks to
+		If (Test-Path -Path "$env:SystemRoot\Microsoft.NET\Framework64") {
+			# Add the 64Bit Path to the array
+			$frameworks += "$env:SystemRoot\Microsoft.NET\Framework64"
+		}
 
-    # Loop over all NET frameworks that we found.
-    ForEach ($framework in $frameworks) {
-      # Find the latest version of NGEN.EXE in the current framework path
-      $ngen_path = Join-Path -Path (Join-Path -Path $framework -ChildPath (Get-ChildItem $framework |
-          Where-Object -FilterScript { ($_.PSIsContainer) -and (Test-Path (Join-Path -Path $_.FullName -ChildPath 'ngen.exe')) } |
-          Sort-Object -Property Name -Descending |
-      Select-Object -First 1).Name) -ChildPath 'ngen.exe'
+		# Loop over all NET frameworks that we found.
+		ForEach ($framework in $frameworks) {
+			# Find the latest version of NGEN.EXE in the current framework path
+			$ngen_path = Join-Path -Path (Join-Path -Path $framework -ChildPath (Get-ChildItem $framework |
+					Where-Object -FilterScript { ($_.PSIsContainer) -and (Test-Path (Join-Path -Path $_.FullName -ChildPath 'ngen.exe')) } |
+					Sort-Object -Property Name -Descending |
+			Select-Object -First 1).Name) -ChildPath 'ngen.exe'
 
-      # Execute the optimization command and suppress the output, we also prevent a new window
-      Write-Output -InputObject "$ngen_path executeQueuedItems"
-      Start-Process -FilePath $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
-    }
-  }
+			# Execute the optimization command and suppress the output, we also prevent a new window
+			Write-Output -InputObject "$ngen_path executeQueuedItems"
+			Start-Process -FilePath $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
+		}
+	}
 
-  END {
-    # Cleanup
-    Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	END {
+		# Cleanup
+		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0X2FiwdBOPU+ou1fUrWfAepF
-# EzigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUz6eLvOZ5vNtUeg4KywdJypyj
+# qVugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -268,25 +269,25 @@ function global:Repair-DotNetFrameWorks {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSX3k5ji0yk47zr0WfqThzV0VFCsTANBgkqhkiG9w0B
-# AQEFAASCAQAEQP+3h5sgWx1EMXnwV66qdWTeSvC2J2FABUWL5jcsToCCt5gjZ60d
-# oyNHBUkB3kdaOUjdm+76ELXyRXnsDsPjJ79h+tTtbVQPjoz0yWy2v2pwtah+6rNG
-# b/Dg4K6BxkviuCVbO4vFzYHenEVASzBGn1LhwzrtD9KC6ay/0Ly93eP891S348ip
-# DccTLnDHzsr+jbKuXqA3u+gwuJhPcoKKrPkNqEgAMEUuOfzYerP8aAxo6LPkMtCh
-# AOL4wp5Y1VTFDeWI3ygh3ME09zHfKcqxGCht0szGzlFQEThpw+YAbiMoC90K445Z
-# u7YlugZtN/ZRgeTq4SEXYX/k9ZfKcYV2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTBcnABGP4bfVwy1bJz6onTDLM/MjANBgkqhkiG9w0B
+# AQEFAASCAQBYhI2K2PvTU7GeFq5WDMpk3ArrU+PLpuslTcN5JwyNW8pAQDbLhuDX
+# cHOJD9iJYYWOgp92xU1UOrN7jSjKI5hIi87CBbgNNjiMEgDMt3uTr8+dW50UvMI7
+# 2QrxsqS0XVW6GLHrsbJLBl1RQn8uPWv5+UR3z98RycVn/vlXbAXuzp2RSoXdl+nG
+# e9KIZTpZfZvsvHv2mTQmySyOTwnqBXLZ/83g4IqzZtadd6KydgbNUVWy+K7uxx2A
+# 20ujrcxmm4hUiLgCrPUKJbYBx+E57VLwr/dYSFr+MwS/Kib8WLdpzIRGSxDVXxOF
+# SEOPeY+HTiYTbojMNxtoyPfMo3OOEqnJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwNVowIwYJKoZIhvcN
-# AQkEMRYEFH6kAsW1nV/3IAJIPnNx1AEJlS75MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1NlowIwYJKoZIhvcN
+# AQkEMRYEFOdpsD1xSCRRD/suK2URgxdZq4NHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBFUYicv8q+awnPeJ6xQBYQbqMPS0LIs1wK9hSUheiV5dKM
-# AiozQgHDmuSVnNkIUi1S7daePgECH8LrALbT+EuyGB84//FurOrW8Dh6dEOwEFKE
-# NJQNuU7g7BaqEMVJ9PtYZksPnyQinE8QsIUAR4SkbAY+AvqzjxRBUk/E94nmf5sm
-# LnZFdcP3MAPVru2uvc1uwAW7HVXDf6Jc30ReMKQvfKvSgYR6Z27NTFIN5LbaDko6
-# dAER6a8HOW3l8/aLsmoC9+k8VD9bNeF9rptsrmaRFuetCJ83/IVldMBK7egtPrZx
-# mI+rZcyzjrpGmjqQFu3SeewhPic9hA0xeWa5lgXx
+# hkiG9w0BAQEFAASCAQB9iUctqaYZpNt695NZCRDUp1lUCozE0XRrV4lwQQD0PhB5
+# 5oYMPIoLSRkjpZFpgIbEsD8JgF5P27tq9zx9catE7LFStQdifKHT1j/FTNnDc0gJ
+# d/NtrxUWIfEhJCjWnSEJ+tFPHqWmQa+g4xK7jrpQ6wU0KOGWcgIz2G9XQBe6+0eo
+# yZLlxSaY0fjStWsVzIT7fVuWV2eduKymD8IE9MKrwavCCt2A9Sut3HQA59zAUhhX
+# +85JLejbTc026Y8mQzDAPXLYEY342uuF+KB9MRxRgQ+kcw7ysXM/P4WpHlEJF3Zi
+# jelIDphCU1nrYSPFifxWFnuSZ1sNvuLUJfeGis4R
 # SIG # End signature block

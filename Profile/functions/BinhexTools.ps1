@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,151 +15,151 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:ConvertFrom-BinHex {
-  <#
-      .SYNOPSIS
-      Convert a HEX Value to a String
+	<#
+			.SYNOPSIS
+			Convert a HEX Value to a String
 
-      .DESCRIPTION
-      Converts a given HEX value back to human readable strings
+			.DESCRIPTION
+			Converts a given HEX value back to human readable strings
 
-      .PARAMETER HEX
-      HEX String that you like to convert
+			.PARAMETER HEX
+			HEX String that you like to convert
 
-      .EXAMPLE
-      PS C:\> ConvertFrom-BinHex 0c
+			.EXAMPLE
+			PS C:\> ConvertFrom-BinHex 0c
 
-      Description
-      -----------
-      Return the regular Value (12) of the given HEX 0c
+			Description
+			-----------
+			Return the regular Value (12) of the given HEX 0c
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      ConvertTo-BinHex
+			.LINK
+			ConvertTo-BinHex
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support: https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support: https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [ValidateNotNullOrEmpty()]
-    $binhex
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[ValidateNotNullOrEmpty()]
+		$binhex
+	)
 
-  BEGIN {
-    # Define a default
-    Set-Variable -Name arr -Value $(New-Object -TypeName byte[] -ArgumentList ($binhex.Length/2))
-  }
+	BEGIN {
+		# Define a default
+		Set-Variable -Name arr -Value $(New-Object -TypeName byte[] -ArgumentList ($binhex.Length/2))
+	}
 
-  PROCESS {
-    # Loop over the given string
-    for ($i = 0; $i -lt $arr.Length; $i++) {$arr[$i] = [Convert]::ToByte($binhex.substring($i * 2, 2), 16)}
-  }
+	PROCESS {
+		# Loop over the given string
+		for ($i = 0; $i -lt $arr.Length; $i++) {$arr[$i] = [Convert]::ToByte($binhex.substring($i * 2, 2), 16)}
+	}
 
-  END {
-    # Return the new value
-    Write-Output -InputObject $arr
-  }
+	END {
+		# Return the new value
+		Write-Output -InputObject $arr
+	}
 }
 
 # Set a compatibility Alias
 (Set-Alias -Name convert-fromBinHex -Value ConvertFrom-BinHex -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 function global:ConvertTo-BinHex {
-  <#
-      .SYNOPSIS
-      Convert a String to HEX
+	<#
+			.SYNOPSIS
+			Convert a String to HEX
 
-      .DESCRIPTION
-      Converts a given String or Array to HEX and dumps it
+			.DESCRIPTION
+			Converts a given String or Array to HEX and dumps it
 
-      .PARAMETER array
-      Array that should be converted to HEX
+			.PARAMETER array
+			Array that should be converted to HEX
 
-      .EXAMPLE
-      PS C:\> ConvertTo-BinHex 1234
+			.EXAMPLE
+			PS C:\> ConvertTo-BinHex 1234
 
-      Description
-      -----------
-      Return the HEX Value (4d2) of the String 1234
+			Description
+			-----------
+			Return the HEX Value (4d2) of the String 1234
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      ConvertFrom-BinHex
+			.LINK
+			ConvertFrom-BinHex
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support: https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support: https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [ValidateNotNullOrEmpty()]
-    $array
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[ValidateNotNullOrEmpty()]
+		$array
+	)
 
-  BEGIN {
-    # Define a default
-    Set-Variable -Name str -Value $(New-Object -TypeName system.text.stringbuilder)
-  }
+	BEGIN {
+		# Define a default
+		Set-Variable -Name str -Value $(New-Object -TypeName system.text.stringbuilder)
+	}
 
-  PROCESS {
-    # Loop over the String
-    $array | ForEach-Object -Process {[void]$str.Append($_.ToString('x2'))}
-  }
+	PROCESS {
+		# Loop over the String
+		$array | ForEach-Object -Process {[void]$str.Append($_.ToString('x2'))}
+	}
 
-  END {
-    # Print the String
-    Write-Output -InputObject $str.ToString()
-  }
+	END {
+		# Print the String
+		Write-Output -InputObject $str.ToString()
+	}
 }
 
 # Set a compatibility Alias
@@ -167,8 +168,8 @@ function global:ConvertTo-BinHex {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5hAelXE+KuW0/y8i+XAGVa0/
-# KXCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQUcg+E/Dsf9R7W3GbAPo4J5z
+# xyKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -311,25 +312,25 @@ function global:ConvertTo-BinHex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQdZLcqzl8ZdMD5mrsZScZzuA29DzANBgkqhkiG9w0B
-# AQEFAASCAQBR0V1YIaKxN0HB1tdO8sQx5cugD0DV6HBQGUXI+UBaReVWFnULE+rj
-# CcUcarLHykaD2eVzBN6dWRbvzDC5MN4zPK2Z4eGqPEml9NnXywHTXjzWiMS5Khj5
-# 5vpmwIU6wMXjxR1OCevOXdGkC0m7D0NM4vk2XLJ/+vZNzKmZzvLHBCx2oCJTSgYQ
-# IbUb4DQ8rO/j9SszC1+KTNq1jpxvZaLiKhx6WhfzxEVMb3Qpekyakza3BkuiBaHv
-# sF9Do7knLkl/F9LtyiZYp5reo6itYdsVz+74oiYovzoMWRrjAAnntErPyL+Nge2W
-# kRi4xsgeQ6H+tXB+ilyrN+u6E1OdnIVJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQY/MIkcrZXJTy69v0IycryVPX7VDANBgkqhkiG9w0B
+# AQEFAASCAQBNybw+TnONNFXvOGsUqCAzX6qn3uRtOIzqL/gvwmFWg3JwViPhvoMa
+# pBtReDo1yyL//5Mvm420GfVKKW7L72CRYeNYonC9KRQO/F247hEzYFNpj6ZaYOx4
+# ek9KISvV8mQV+19x2xYE8P+ae+gNzxPS+H95PaaaoIWf4i5JvLgpEdXDxrUXG/Fl
+# J/HLVpJZpu76OMs7eXecYXUGkkMOxHU9dAHMxw5VQvyAAN4FhXCID+gwfiglyH15
+# M5DTbFDMNJhwjebDq0FBcfH03zlYw8RqppjMxaODs9LsPCovfAZ4SeAroRUJJcAK
+# vvlIwErSysLj4ovCZIw7AEmf5OSx84itoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyMlowIwYJKoZIhvcN
-# AQkEMRYEFNbJrxpx2Gy8QH/WyWvDcAbzp8Y+MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExMVowIwYJKoZIhvcN
+# AQkEMRYEFCYKLfNNoPZNa8BgkuQ3f/C+O/H5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBm7asi9M3OUTNIgaJHZiXHi50plYyvVTm3NvaoGF4jaFJe
-# brFGqggTaabMDW3jukOThS5uq7Hertog5/3GXcOaxWmiFRWuG9iOIS1WVW4AUJLt
-# U2lvy5BnjkkqBEEWlHbPo6pz1G+s9x/SO/F5s5rsIJN/vpbm+nc49QpXx/LidwAP
-# c4utHX7GBux5tEDwVDl8rmVl+dFD+2d4nVGHy6374cYZBNp/48rs4RBPMm9ugNjW
-# tMKZiszndc/2ZS8XE3ZQvEgxMZ1PBzTlGydbBbjnz6aXJs7BzXLzyR1AEObnJqvR
-# MGebtMxOqNmEnVSbHrzhQMakRO6AruDU546HXaoH
+# hkiG9w0BAQEFAASCAQBNLHiAdTr3M9NfR6H3oa984RM+ctVVwNM7oO9ftTevcBjT
+# rNWuQjY3L+AwK6IFE8u1p7ESynXIS7PJZrqXEpU3257ax66l/JwUSBdt+iBMqIlv
+# OPqUYUs8D7QdhBvF53Eel+rbolBp7p7QGJSZHWRoEfS4/A2otx/lE5J0m70Q1PSU
+# KYTvHdb89OkBB3/LGeK/Dw6cacZ03bEuj3R2i2PITVsmeDJDQDRg6OWKbSRdWrNk
+# dpPWJxkBPMQ/iNtVWPDRvJ897INsLwsFj3ROjqv+r/y2DNoyZ/6dydVSo5AnQQoX
+# zj54iUdIn+Uu54d6Xj8uEXnDrzaAHVpNYbKxOR+C
 # SIG # End signature block

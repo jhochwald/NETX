@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,142 +15,142 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:ConvertTo-StringList {
-  <#
-      .SYNOPSIS
-      Function to convert an array into a string list with a delimiter.
+	<#
+			.SYNOPSIS
+			Function to convert an array into a string list with a delimiter.
 
-      .DESCRIPTION
-      Function to convert an array into a string list with a delimiter.
+			.DESCRIPTION
+			Function to convert an array into a string list with a delimiter.
 
-      .PARAMETER Array
-      Specifies the array to process.
+			.PARAMETER Array
+			Specifies the array to process.
 
-      .PARAMETER Delimiter
-      Separator between value, default is ","
+			.PARAMETER Delimiter
+			Separator between value, default is ","
 
-      .EXAMPLE
-      $Computers = "Computer1","Computer2"
-      ConvertTo-StringList -Array $Computers
+			.EXAMPLE
+			$Computers = "Computer1","Computer2"
+			ConvertTo-StringList -Array $Computers
 
-      Description
-      -----------
-      Computer1,Computer2
+			Description
+			-----------
+			Computer1,Computer2
 
-      .EXAMPLE
-      $Computers = "Computer1","Computer2"
-      ConvertTo-StringList -Array $Computers -Delimiter "__"
+			.EXAMPLE
+			$Computers = "Computer1","Computer2"
+			ConvertTo-StringList -Array $Computers -Delimiter "__"
 
-      Description
-      -----------
-      Computer1__Computer2
+			Description
+			-----------
+			Computer1__Computer2
 
-      .EXAMPLE
-      $Computers = "Computer1"
-      ConvertTo-StringList -Array $Computers -Delimiter "__"
+			.EXAMPLE
+			$Computers = "Computer1"
+			ConvertTo-StringList -Array $Computers -Delimiter "__"
 
-      Description
-      -----------
-      Computer1
+			Description
+			-----------
+			Computer1
 
-      .NOTES
-      Based on an idea of Francois-Xavier Cat
+			.NOTES
+			Based on an idea of Francois-Xavier Cat
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-    HelpMessage = 'Specifies the array to process.')]
-    [ValidateNotNullOrEmpty()]
-    [System.Array]$Array,
-    [Parameter(HelpMessage = 'Separator between value')]
-    [system.string]$Delimiter = ','
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+		HelpMessage = 'Specifies the array to process.')]
+		[ValidateNotNullOrEmpty()]
+		[System.Array]$Array,
+		[Parameter(HelpMessage = 'Separator between value')]
+		[system.string]$Delimiter = ','
+	)
 
-  BEGIN {
-    Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-  }
+	BEGIN {
+		Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+	}
 
-  PROCESS {
-    # Be verbose
-    Write-Verbose -Message "Array: $Array"
+	PROCESS {
+		# Be verbose
+		Write-Verbose -Message "Array: $Array"
 
-    # Loop over each iten in the array
-    foreach ($item in $Array) {
-      # Adding the current object to the list
-      $StringList += "$item$Delimiter"
-    }
+		# Loop over each iten in the array
+		foreach ($item in $Array) {
+			# Adding the current object to the list
+			$StringList += "$item$Delimiter"
+		}
 
-    # Be verbose
-    Write-Verbose -Message "StringList: $StringList"
-  }
+		# Be verbose
+		Write-Verbose -Message "StringList: $StringList"
+	}
 
-  END {
-    try {
-      if ($StringList) {
-        $lenght = $StringList.Length
+	END {
+		try {
+			if ($StringList) {
+				$lenght = $StringList.Length
 
-        # Be verbose
-        Write-Verbose -Message "StringList Lenght: $lenght"
+				# Be verbose
+				Write-Verbose -Message "StringList Lenght: $lenght"
 
-        # Output Info without the last delimiter
-        $StringList.Substring(0, ($lenght - $($Delimiter.length)))
-      }
-    } catch {
-      Write-Warning -Message '[END] Something wrong happening when output the result'
-      $Error[0].Exception.Message
-    } finally {Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
-  }
+				# Output Info without the last delimiter
+				$StringList.Substring(0, ($lenght - $($Delimiter.length)))
+			}
+		} catch {
+			Write-Warning -Message '[END] Something wrong happening when output the result'
+			$Error[0].Exception.Message
+		} finally {Remove-Variable -Name 'StringList' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmfyvI+ioM+I4XRcQzMctHeJf
-# cO2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUr89khpWEQooE5Xsk9CDZ19sd
+# HEygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +293,25 @@ function Global:ConvertTo-StringList {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQj9198yYtFCbKsJJWnSk9b56IU1TANBgkqhkiG9w0B
-# AQEFAASCAQAg/lenUX+m8M5orX4Nx5Zw0NZmLcEKcTsPHF0jEUzHPxhIenhwqm3y
-# e9DlUaOiOv9KO0smrodepfd6IQQyNfDU2TsaB/gsKmu+lIF6sS6OV+RNqfupz86N
-# AVgk+rSwf/mJ0FFRr4UEPAcLpx3Y/PQjzEdqZPOtsiKDtoBk1t/DBqGVGo7sljJl
-# adDB2JnB3uWGzNGMgZ0U43MZajWvrlMWJM2uF1UfP/P60sfSQOPxp3Ak+ok14bCn
-# 34ltL4BMg+YQlAO2vsaKfhIHhP5SMnX6in4eksLkKjwZXzKMQcUcu2G2CPdowW9M
-# AnovJ7cokL9TrL1nzByulE3NjwDm+RIAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQn8yXX+6+IrUtMWieN5wTBvG1VGjANBgkqhkiG9w0B
+# AQEFAASCAQBaqY81JJwz+IMLTdttrosz6vl7doI/nsB4ZrLKPj4QW6O94GL6WGO8
+# OP6YeViOof8fBTLoXK4wJJlQOvFHuyr4igxzUJiSLmLjhNm94v3lN5MzofysgCCt
+# fQh0r6ajENU7u7XFZke2/WP0V+fY5BLdYmkUSYXKxP6HO5aNZ27OyzBygUAo9mZ1
+# F6GCt1QthEtaqWGatjezvjtNx7oZvwrqat9EExWr4N5FcgRSKApqMVpkC+z9uI7t
+# qgOMEoBY1RW17NSRyiTwE51CwvhCXIYk80GPhodEQPP/0R/yx1gD0ZoOUU1rVVil
+# gsuE7bAmxw35G4yGLyigoHHcpo70c8m9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyOFowIwYJKoZIhvcN
-# AQkEMRYEFMK3cQjxPcLg3Yv7+KMdx5+vBvGGMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExN1owIwYJKoZIhvcN
+# AQkEMRYEFM8/E/iDynsJk3I9f6q8zyY9bRtFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBS67pRmmlkrG4CqyMrBt7AxogXkxZ4H2narT8+cdKI2Svi
-# XrXG5i7J+78cHSZkcqYXA7s+fxT39P3XfDNn+W2d1Cjat0reJywXyrNafAdniA+N
-# 35yvZHkOxoUOnBViLllDuMM+CMRUlnJB5DQSgcsnJjyUzSZhjsTqvqWszKeaE1PG
-# a8TKJjXjRsfjBGoItvTc1PmtLMttHD8auZnoiaciEwp2/t1w5uPnUjqIx11lKQwi
-# zpFROOS43cnd9wsPao0Il3G8uZO5hFdTKlquzf0eXA+iaGD68Uc2Us6z0yDfsnOT
-# qQkp1FzN0vYv2ZC4YPC9nmkhrxu5ERICE48gXSlO
+# hkiG9w0BAQEFAASCAQBG/JXnNXsC6JVQ92AfKYR44BCWg/EUIAnC4XOpW/a8cW2R
+# ErzOvqB6vBnFOGxOiYNtGFQVpr2YTJK2/I8yZV1AsqF1UyC0syNNYBFtSfpGVSZc
+# OND+xf11z09af7Qn2cJpsPgJojtLMsD75b82EE5gmDMCL1fmOiohWjlPpX16q5hd
+# 9iDJEu98CFP1l4sBpYBLFF+pMB7kL/kauK6Bm3ZhoEe1AFkgs/j3ZYjJ30NyB2Q3
+# MGR8PDR7zrOIVu5wp0UvC6VdeA8o6J+Jmc9otuMCy8aPf4TPM7TrVqg4oPHo2FlK
+# dbvU3UZFzl7fGKtIctcJJiDCwolAgdMdLUQxJ5DQ
 # SIG # End signature block

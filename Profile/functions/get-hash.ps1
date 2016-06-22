@@ -1,12 +1,13 @@
+#requires -Version 4
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,110 +15,110 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Hash {
-  <#
-      .SYNOPSIS
-      Dumps the MD5 hash for the given File
+	<#
+			.SYNOPSIS
+			Dumps the MD5 hash for the given File
 
-      .DESCRIPTION
-      Dumps the MD5 hash for the given File
+			.DESCRIPTION
+			Dumps the MD5 hash for the given File
 
-      .PARAMETER File
-      File or path to dump MD5 Hash for
+			.PARAMETER File
+			File or path to dump MD5 Hash for
 
-      .PARAMETER Hash
-      Specifies the cryptographic hash function to use for computing the
-      hash value of the contents of the specified file.
+			.PARAMETER Hash
+			Specifies the cryptographic hash function to use for computing the
+			hash value of the contents of the specified file.
 
-      .EXAMPLE
-      PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
-      069DF9587DB0A8D3BA6D8E840099A2D9
+			.EXAMPLE
+			PS C:\> Get-FileHash -File 'C:\scripts\PowerShell\PesterDocs.ps1'
+			069DF9587DB0A8D3BA6D8E840099A2D9
 
-      Description
-      -----------
-      Dumps the MD5 hash for the given File
+			Description
+			-----------
+			Dumps the MD5 hash for the given File
 
-      .EXAMPLE
-      PS C:\> Get-Hash -File 'C:\scripts\PowerShell\PesterDocs.ps1' -Hash SHA1
-      BC6B28A939CB3DBB82C9A7BDA5D80A191E8F06AE
+			.EXAMPLE
+			PS C:\> Get-Hash -File 'C:\scripts\PowerShell\PesterDocs.ps1' -Hash SHA1
+			BC6B28A939CB3DBB82C9A7BDA5D80A191E8F06AE
 
-      Description
-      -----------
-      Dumps the SHA1 hash for the given File
+			Description
+			-----------
+			Dumps the SHA1 hash for the given File
 
-      .NOTES
-      Re-factored to make it more flexible
-      (cryptographic hash is now a parameter)
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			Re-factored to make it more flexible
+			(cryptographic hash is now a parameter)
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'File or path to dum MD5 Hash for')]
-    [System.String]$File,
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
-    [ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$Hash = 'MD5'
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'File or path to dum MD5 Hash for')]
+		[System.String]$File,
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
+		[ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$Hash = 'MD5'
+	)
 
-  PROCESS {
-    if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $false}
-  }
+	PROCESS {
+		if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $false}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUloSdu1460B64fdki2cjTFpPt
-# bPugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+P/zb2liclLj/klgS1YNfldV
+# U4WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -260,25 +261,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSi2KoxEhJTMl1ywo0AbJXtSO03uDANBgkqhkiG9w0B
-# AQEFAASCAQCIIr6pkOmSqrcJ7CioPWc7ugnTy8ujPzwEMD1AhDLuErotCTy454+S
-# d3We8VSBKecVnTODXcKWimvPMqsgMbxnPgOOWWtWfQTnTwKhYNgYSJKXcCa8Mefo
-# yJ069pJ8p8ihJRS5MYPcXKerhlBpK2+468KNXQtaqO0BuGuWrz9UFmlSyy9WgyYG
-# kpCPgWPPB+jrmNhY+PCCUJsXbkPL99Hr1kcF8sW7AfSVDBPNLt4rTO0zlJmxgdbz
-# Nxb9LAcDlFEjdWk04WFrHokltmBunSCHm3DjbYl7m1eKNrYl+JUTmVTR2Fv8brlb
-# b22W/2QXjcboXwid42oBy8h+Y+xT9iYNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQRXksu4VngSgpCqwpOgR28pximYzANBgkqhkiG9w0B
+# AQEFAASCAQB7W70l4RCxtQJmjfbqz2poccB2C9rtBN0y3aUcI5o3o1t2xVPxoTSi
+# UGzN3jQW6S2FQwQerujihjgFqyN7LS+4bY2mw2JPXx8YMkvZyDgOABDHcV8OsE6C
+# cuJXXQaBoe9Z5IoYJuXvPkxflTSGjJDE9TSYdhVvdh6PvScnOHEIN4zTZLe4+onZ
+# 5C14RfRUfzhp7xQY900kbmJrVfX9EUMfPkiwOqrQtvHWABkYjdqgE0oZdTZOBUnr
+# aXxoz4u2VO6ORRAs8Cxynp5lIklZdWB6O0/Xai4Q0vAtXgNNBvVinNkT8S7jjPmv
+# l+aBLQBmsfVaBBlI7HWimlo/wPJq89BMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNlowIwYJKoZIhvcN
-# AQkEMRYEFFD9fdN3ttUv9pCf3Vw0rcaPl+ryMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNFowIwYJKoZIhvcN
+# AQkEMRYEFB7QlYa0nDVkiRhkImWi82x/NvUlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCYAMUGt0A6b0omFLy2X4hcVHGVvnpLJYAQOxFFB3XKR2Tt
-# 59tzCC98C4vK9frsyaUrjKe+NdgqDDci64pwbnpdGSUAYyEu9vzVdAtLE0ouvKQI
-# UEjQtcbjK/a+wQ+/nTELaRNgmqMIHSNj4BADW9OVcAhlCP4UMsGe5KhwWjYhGRaC
-# jJ77R/DciYcOVTKhkCae61rvIuGh5DdB409kHNT6nI4pZO9CwmEnxhEWPz9sljSH
-# lEvL5yfXLqg4KopIMVL1Tu1gJvzAxq5yOAdYp4oSCgljnJH18ia8Ou75Ha/ANIqG
-# m7auBdk4HcbSpHq5Axz92+k6h3fIHvVoJH/mQ51v
+# hkiG9w0BAQEFAASCAQAcLXgbqGDS4j3bO1UeL8McTzr/wZuMo5jH8UBsJqX2OA+c
+# VZ6rrCIFovZLQ6kksbXPuF8osUMvKfCKa1fTd544/0tN11QVFMRHmZPth9JvT73F
+# kbxKoesytb1aC5aYGUWpM54NVr7HKgSxYA8pgvEyxRP9/e73HmzeGFCL9ZDPLzgx
+# 8erM5P+Lpn9NkN8wsgDMlA/Te13Ue6vLzzCOdW9H+EsCFQ6Ol2Q4cx9yE0QRZ1Hn
+# H8LFZIYl1Br6QhCcOomvsqmItDlyxkbd8SazOAhaLDX4Gw0mHARTchXsZcF22MRH
+# fpLGHdj1pKDvZ5Cyu5J95Mtg/WZwnqioIeiOo0+D
 # SIG # End signature block

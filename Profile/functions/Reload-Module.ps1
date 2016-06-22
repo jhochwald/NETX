@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,104 +15,104 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Reload-Module
 function global:Reload-Module {
-  <#
-      .SYNOPSIS
-      Reloads one, or more, PowerShell Module(s)
+	<#
+			.SYNOPSIS
+			Reloads one, or more, PowerShell Module(s)
 
-      .DESCRIPTION
-      This function forces an unload and then load the given PowerShell
-      Module again.
+			.DESCRIPTION
+			This function forces an unload and then load the given PowerShell
+			Module again.
 
-      There is no build-in Re-Load function in PowerShell, at least yet!
+			There is no build-in Re-Load function in PowerShell, at least yet!
 
-      If you want to reload more then one Module at the time,
-      just separate them by comma (Usual in PowerShell for multiple-values)
+			If you want to reload more then one Module at the time,
+			just separate them by comma (Usual in PowerShell for multiple-values)
 
-      .PARAMETER Module
-      Name one, or more, PowerShell Module(s) to reload
+			.PARAMETER Module
+			Name one, or more, PowerShell Module(s) to reload
 
-      .NOTES
-      Needs to be documented
+			.NOTES
+			Needs to be documented
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Name of the Module to reload')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('ModuleName')]
-    [System.String[]]$Module
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Name of the Module to reload')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('ModuleName')]
+		[System.String[]]$Module
+	)
 
-  PROCESS {
-    foreach ($SingleModule in $Module) {
-      #Check if the Module is loaded
-      if (((Get-Module -Name $SingleModule -All | Measure-Object).count) -gt 0) {
-        # Unload the Module
-        (Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	PROCESS {
+		foreach ($SingleModule in $Module) {
+			#Check if the Module is loaded
+			if (((Get-Module -Name $SingleModule -All | Measure-Object).count) -gt 0) {
+				# Unload the Module
+				(Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
-        # Make sure it is unloaded!
-        (Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-      } else {Write-Warning -Message "The Module $SingleModule was not loaded..."}
+				# Make sure it is unloaded!
+				(Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+			} else {Write-Warning -Message "The Module $SingleModule was not loaded..."}
 
-      if (((Get-Module -Name $SingleModule -ListAvailable | Measure-Object).count) -gt 0) {
-        # Load the module
-        try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$false -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
-      } else {Write-Warning -Message "Sorry, the Module $SingleModule was not found!"}
-    }
-  }
+			if (((Get-Module -Name $SingleModule -ListAvailable | Measure-Object).count) -gt 0) {
+				# Load the module
+				try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$false -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
+			} else {Write-Warning -Message "Sorry, the Module $SingleModule was not found!"}
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSuLWwiwsqi4DPcJtKLjOgZ0Q
-# lI6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDppg0qyamOLTlEHDOwo7eFeB
+# a+ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -254,25 +255,25 @@ function global:Reload-Module {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRee/Uef1I304H2OLMnSqyVpFy6IzANBgkqhkiG9w0B
-# AQEFAASCAQA4YMwHeiNiTg2ycpSN2TZyR2lm5uxD0t+1nZMTMwjm90dXz8NLFIRz
-# lwwMsX8UtiYb8dQSIKtEskBJSkHA3I52W/ORvcH1tXvBm4nHa1bCk+u1B78KzAs2
-# Nc9D1PI8SsF90PtI3IT73Lp6AQKnEKErJqmaMU/sBVBLlCWrugjR46zrJq5LDDsb
-# zQp4OWaxEkce+VVRpUI+b3wzm00iRHUcCiFnS1Eht6t9JakAZF1AnPvUk3MOamv2
-# yehf26Aw8EpPGuYK/PjYEgMd+npREZAVHLsMGER4B+JGbwy5R7O4WWQHEMkjQ9xx
-# WrxDRF3aIc4rVRhbuxUYhCq0Tvwi74lioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS/2Ew7qAamcliNP6M+zCkxRkWrfjANBgkqhkiG9w0B
+# AQEFAASCAQBc9xf2EdP8g8nxKY90rj4+LplyH1jmBJXNzFWGEypxU9LJM6ZeQKbE
+# 4oP5uK8ywXubmsVHM5B5xi8KV22QnOyS+3zWVuQI5+EmF/4uTfF8mQC1bbbnj8AY
+# RsY0Q1E85G7S6sOXfcNaXlXEqo0kkDvcspzNOfNNg6sOzIpqEC8Ajy6hELfizrjt
+# 27ab4QX2UgSct9g2Gx7OCiYPTwEFo2nDxrKpcLH2Y9F4TA2WCRbcslTam472cBBw
+# WfI2L2rGFSJVeIzDfh+yOCLiE5BJloZLDs1fSmqYs2d532nbBFZiKnEcEz4s0PIY
+# GCha9y355j5eB52TtrHJ0wKx0WmYsE9LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwNFowIwYJKoZIhvcN
-# AQkEMRYEFMP1jWdaXtVfQ1eSMIfuAyBBgzHgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1NVowIwYJKoZIhvcN
+# AQkEMRYEFOkwhZP3RJTUDMVwuzvEUleSPjlwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBCv9OWfkfueIwS5gn0Pz06j1KuRTnK3s6MGcoWMJNj/hvb
-# ZFr/DmlkB4qvPnQuuMK0asNkThP51+1IpwR+IUCZJ9ke0cqtEc809+1yu5L/goGB
-# iot61qQ2UfUwU/rbeo5qlHUSdOjTZbo5GDZFLP9soyAYkHigpQReri/G7vVJ9cbH
-# zj4/dXPfpBwzYK8aH/EzM7yQ+sS3eg7GsjRAENIAJg4jKSAnyAJPM95dqgYUqiKV
-# Wr+YtUUi+BvdKirxD01ABT9X2I5G8RozHKstNG8zpYNIz8AcS2M7iiPnvn1grELn
-# P9lVpVwALmxfz6Iyulmb1ZIBH8E5+Mr9Vt1Jx5/B
+# hkiG9w0BAQEFAASCAQAmr8Q53VjHOBS2UnCZ+020Fum6TAwO6TBq7u5fK22QNF9G
+# Y00U5ekNYaE3PzcOOYAdzLj1JdG+NiE3BfAn30w00MwRipAaa+ph0qD7bDSyW7Ma
+# 2G3bFUP0Di2tbY58ZQhiYgcl6LQj8RCYroYYI9YdNF/RKRQdLH1uk4b6zjTmbcXi
+# 3cmPLv6+GRhEj8gUabHZhvoQkxu+9Z7aepTUuBUKGMEfPLvT1FmMp4zdqQdQZhkU
+# AoekT95bGv6g5SJyO08R6UXsBcdJ2vSQC+lSDPeQlzym4gVvIhMMSrQiSgYceCKj
+# DKHqnxj+8/F8FrjJxA5qeanqdY7EUh9a3EldnpZ2
 # SIG # End signature block

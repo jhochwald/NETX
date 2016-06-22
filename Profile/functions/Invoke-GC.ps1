@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,68 +15,68 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Invoke-GC {
-  <#
-      .SYNOPSIS
-      Do a garbage collection
+	<#
+			.SYNOPSIS
+			Do a garbage collection
 
-      .DESCRIPTION
-      Do a garbage collection within the PowerShell Session
+			.DESCRIPTION
+			Do a garbage collection within the PowerShell Session
 
-      .EXAMPLE
-      PS C:\> Invoke-GC
+			.EXAMPLE
+			PS C:\> Invoke-GC
 
-      Description
-      -----------
-      Do a garbage collection
+			Description
+			-----------
+			Do a garbage collection
 
-      .NOTES
-      Just a little helper function to do garbage collection
-      PowerShell sometimes do not cleanup and this uses more memory then
-      it should...
-  #>
+			.NOTES
+			Just a little helper function to do garbage collection
+			PowerShell sometimes do not cleanup and this uses more memory then
+			it should...
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    # Call the .NET function
-    [void]([System.GC]::Collect())
-  }
+	PROCESS {
+		# Call the .NET function
+		[void]([System.GC]::Collect())
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name run-psgc -Value Invoke-GC -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -84,8 +85,8 @@ function Global:Invoke-GC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO+zBKp3Ttek4IGR3TH7cVLG1
-# U0+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnXPDGMukhZQup4Dsm0aBPwAm
+# VgygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -228,25 +229,25 @@ function Global:Invoke-GC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQg0LHvc2uktFhExYcSMF7O8j2XvjANBgkqhkiG9w0B
-# AQEFAASCAQAJcUL9hqa9W6brBzl60VLLUAUhdKHOJ4eMzDZ/IIjbAUT9PnawZEMs
-# VqAJHT4SUVhvSxpfPH7h1PInaYgH2kkAD64E/XNYbhmyqxDsgr+5qj6fWoIKbX1d
-# iiv4dJuBW0bfvKHgkIU1QtHZkOFGO2JY4IAe0aLjOmr2o4cEUo3haDIB9ywuXJl5
-# rPGl7vs9g0K74wbuFGO3aRFpcEgEDf/9Ih0rXCIWyfy0TTDzcrFfwiHuxWqIYUn7
-# TlOcfygruPqB1ebRBfVKO/L8vW3Zrxlq0CJ+ZKcrOZDUnLFD4wUsCxy48amkoqGN
-# Ln3Cy/VqK9lJr74cdVDw4D+DVTg/JdiMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR5QdC9lYENKq5a5AI5kRMUFUQyyDANBgkqhkiG9w0B
+# AQEFAASCAQB0N9ReDif8kbEZ6D9iENbkPfz/SCAUPSoBXqwt4kXsdPdQtDLwG7s0
+# 0RH9tI0CFr8HZi3TYpnH9mGex5H/IRS7gFn0sD58XBte88uMjndPZIAAt+Y/gZKY
+# 6pCY6r7g/+FuMeZNslAjbEFlSyoRG/EZe6ymteW2RQRitwefxtFg758FKXYzGbHU
+# Y9UO+toXEmOzpwQEsXNF7tCPbuCZ2AoP18OT0YCpCva3Pv4u4dGLDL/ctRz4ldy0
+# n87aRKoKNnSC3vfurPjQJPwktWXkdwLDNXyeRJJE8MCP8vqa7er8P4dmEoSvzlY/
+# dY2pioJj/eRg5zu1KaufHdtRc1YpsK3JoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1M1owIwYJKoZIhvcN
-# AQkEMRYEFG/itRhnn8tOoEmns/tZ4jMhtKHqMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0M1owIwYJKoZIhvcN
+# AQkEMRYEFCPnPMlYhJJblZthHz5UlSCa30fHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCG6Lyy9DQElMubAYazXfjH4/qkegFKpDNZ/zqx1oENaaSf
-# dDPfy+3A6nh81Yx1qeJ21rJv32CQL4XPipCdADdCvzYi3OQVq8oJet9mZSMVTuAS
-# 3D3yNGrpwuQ+UlH20BoQCvnvjNi7xKfIpVVw/7mIKQ4jyj6IUn5vwrnmWBVz4MH0
-# QjQayCNTUtiCXn8J9p8U/noeDj4H5wogei6g1ioD/40UHhn7aZN0lisAmOsmyhI9
-# wlEVKjk+DsQEoXNh+CgnDlObSaIZTIDy2GMRwsaHPRXFZqrulKMQK7XRg91iOI75
-# 14hk8r/8FV5aVKXPGVEaTGoFwMn0URDs+v55+jVt
+# hkiG9w0BAQEFAASCAQCAdsE10t94Hd+5NQ5OjA8sZy7u96c+85y15S9syxZLrakL
+# z1N7cQ0LzHMFnEkPulgMYN35wrbnoeZNDgbe8FHGUjBVdbWkG+2BoRfVyY7fBCEz
+# y18hkGr1LYgSnlbXsCS7K/00S+lsEfG9VRCt2W+WNn66/72SiPjS7bGYa/H9GK/c
+# ORVFGpbLo7Nwlvy4tnC6ASUTA7dAZLw2z2atFs4D1TOk+vp/k3A2AMeU/NDJ12Tn
+# xBYoXXwTHqcCrLDbAn/IONMXvxGN8ctSVqRCtuvgVxXqdDPiPNnJf7dy0GgD8U/U
+# HXgrUH78CQfUGUMYWaPioPOX9RKxDfURkfjJFS5h
 # SIG # End signature block

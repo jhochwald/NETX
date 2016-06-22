@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,227 +15,227 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-PhoneticSpelling {
-  <#
-      .SYNOPSIS
-      Get the Phonetic Spelling for a given input String
+	<#
+			.SYNOPSIS
+			Get the Phonetic Spelling for a given input String
 
-      .DESCRIPTION
-      Get the Phonetic Spelling for a given input String
+			.DESCRIPTION
+			Get the Phonetic Spelling for a given input String
 
-      .PARAMETER Char
-      Input that should be Phonetic Spelled
+			.PARAMETER Char
+			Input that should be Phonetic Spelled
 
-      .EXAMPLE
-      PS C:\> (Get-PhoneticSpelling -Char 'Test').Table
+			.EXAMPLE
+			PS C:\> (Get-PhoneticSpelling -Char 'Test').Table
 
-      Char Phonetic
-      ---- --------
-      T Capital-Tango
-      e Lowercase-Echo
-      s Lowercase-Sierra
-      t Lowercase-Tango
+			Char Phonetic
+			---- --------
+			T Capital-Tango
+			e Lowercase-Echo
+			s Lowercase-Sierra
+			t Lowercase-Tango
 
-      Description
-      -----------
-      Show the Input and Phonetic Spelling (table) for 'Test'
+			Description
+			-----------
+			Show the Input and Phonetic Spelling (table) for 'Test'
 
-      .EXAMPLE
-      PS C:\> (Get-PhoneticSpelling -Char 'Test').PhoneticForm
-      Capital-Tango  Lowercase-Echo  Lowercase-Sierra  Lowercase-Tango
+			.EXAMPLE
+			PS C:\> (Get-PhoneticSpelling -Char 'Test').PhoneticForm
+			Capital-Tango  Lowercase-Echo  Lowercase-Sierra  Lowercase-Tango
 
-      Description
-      -----------
-      Convert 'Test' to Phonetic Spelling
+			Description
+			-----------
+			Convert 'Test' to Phonetic Spelling
 
-      .NOTES
-      Simple function to convert a string to Phonetic Spelling
-  #>
+			.NOTES
+			Simple function to convert a string to Phonetic Spelling
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Object])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Input that should be Phonetic Spelled')]
-    [ValidateNotNullOrEmpty()]
-    [Char[]]$Char
-  )
+	[CmdletBinding()]
+	[OutputType([System.Object])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Input that should be Phonetic Spelled')]
+		[ValidateNotNullOrEmpty()]
+		[Char[]]$Char
+	)
 
-  BEGIN {
-    # Build a HashTable with the alphabet and the matching Phonetic Spelled
-    [HashTable]$PhoneticTable = @{
-      'a' = 'Alpha'
-      'b' = 'Bravo'
-      'c' = 'Charlie'
-      'd' = 'Delta'
-      'e' = 'Echo'
-      'f' = 'Foxtrot'
-      'g' = 'Golf'
-      'h' = 'Hotel'
-      'i' = 'India'
-      'j' = 'Juliet'
-      'k' = 'Kilo'
-      'l' = 'Lima'
-      'm' = 'Mike'
-      'n' = 'November'
-      'o' = 'Oscar'
-      'p' = 'Papa'
-      'q' = 'Quebec'
-      'r' = 'Romeo'
-      's' = 'Sierra'
-      't' = 'Tango'
-      'u' = 'Uniform'
-      'v' = 'Victor'
-      'w' = 'Whiskey'
-      'x' = 'X-ray'
-      'y' = 'Yankee'
-      'z' = 'Zulu'
-      '0' = 'Zero'
-      '1' = 'One'
-      '2' = 'Two'
-      '3' = 'Three'
-      '4' = 'Four'
-      '5' = 'Five'
-      '6' = 'Six'
-      '7' = 'Seven'
-      '8' = 'Eight'
-      '9' = 'Nine'
-      '.' = 'Period'
-      '!' = 'Exclamation-mark'
-      '?' = 'Question-mark'
-      '@' = 'At'
-      '{' = 'Left-brace'
-      '}' = 'Right-brace'
-      '[' = 'Left-bracket'
-      ']' = 'Left-bracket'
-      '+' = 'Plus'
-      '>' = 'Greater-than'
-      '<' = 'Less-than'
-      '\' = 'Back-slash'
-      '/' = 'Forward-slash'
-      '|' = 'Pipe'
-      ':' = 'Colon'
-      ';' = 'Semi-colon'
-      '"' = 'Double-quote'
-      "'" = 'Single-quote'
-      '(' = 'Left-parenthesis'
-      ')' = 'Right-parenthesis'
-      '*' = 'Asterisk'
-      '-' = 'Hyphen'
-      '#' = 'Pound'
-      '^' = 'Caret'
-      '~' = 'Tilde'
-      '=' = 'Equals'
-      '&' = 'Ampersand'
-      '%' = 'Percent'
-      '$' = 'Dollar'
-      ',' = 'Comma'
-      '_' = 'Underscore'
-      '`' = 'Back-tick'
-    }
-  }
+	BEGIN {
+		# Build a HashTable with the alphabet and the matching Phonetic Spelled
+		[HashTable]$PhoneticTable = @{
+			'a' = 'Alpha'
+			'b' = 'Bravo'
+			'c' = 'Charlie'
+			'd' = 'Delta'
+			'e' = 'Echo'
+			'f' = 'Foxtrot'
+			'g' = 'Golf'
+			'h' = 'Hotel'
+			'i' = 'India'
+			'j' = 'Juliet'
+			'k' = 'Kilo'
+			'l' = 'Lima'
+			'm' = 'Mike'
+			'n' = 'November'
+			'o' = 'Oscar'
+			'p' = 'Papa'
+			'q' = 'Quebec'
+			'r' = 'Romeo'
+			's' = 'Sierra'
+			't' = 'Tango'
+			'u' = 'Uniform'
+			'v' = 'Victor'
+			'w' = 'Whiskey'
+			'x' = 'X-ray'
+			'y' = 'Yankee'
+			'z' = 'Zulu'
+			'0' = 'Zero'
+			'1' = 'One'
+			'2' = 'Two'
+			'3' = 'Three'
+			'4' = 'Four'
+			'5' = 'Five'
+			'6' = 'Six'
+			'7' = 'Seven'
+			'8' = 'Eight'
+			'9' = 'Nine'
+			'.' = 'Period'
+			'!' = 'Exclamation-mark'
+			'?' = 'Question-mark'
+			'@' = 'At'
+			'{' = 'Left-brace'
+			'}' = 'Right-brace'
+			'[' = 'Left-bracket'
+			']' = 'Left-bracket'
+			'+' = 'Plus'
+			'>' = 'Greater-than'
+			'<' = 'Less-than'
+			'\' = 'Back-slash'
+			'/' = 'Forward-slash'
+			'|' = 'Pipe'
+			':' = 'Colon'
+			';' = 'Semi-colon'
+			'"' = 'Double-quote'
+			"'" = 'Single-quote'
+			'(' = 'Left-parenthesis'
+			')' = 'Right-parenthesis'
+			'*' = 'Asterisk'
+			'-' = 'Hyphen'
+			'#' = 'Pound'
+			'^' = 'Caret'
+			'~' = 'Tilde'
+			'=' = 'Equals'
+			'&' = 'Ampersand'
+			'%' = 'Percent'
+			'$' = 'Dollar'
+			',' = 'Comma'
+			'_' = 'Underscore'
+			'`' = 'Back-tick'
+		}
+	}
 
-  PROCESS {
-    $Result = Foreach ($Character in $Char) {
-      if ($PhoneticTable.ContainsKey("$Character")) {
-        if ([Char]::IsUpper([Char]$Character)) {
-          [PSCustomObject]@{
-            Char     = $Character
-            Phonetic = "Capital-$($PhoneticTable["$Character"])"
-          }
-        } elseif ([Char]::IsLower([Char]$Character)) {
-          [PSCustomObject]@{
-            Char     = $Character
-            Phonetic = "Lowercase-$($PhoneticTable["$Character"])"
-          }
-        } elseif ([Char]::IsNumber([Char]$Character)) {
-          [PSCustomObject]@{
-            Char     = $Character
-            Phonetic = "Number-$($PhoneticTable["$Character"])"
-          }
-        } else {
-          [PSCustomObject]@{
-            Char     = $Character
-            Phonetic = $PhoneticTable["$Character"]
-          }
-        }
-      } else {
-        [PSCustomObject]@{
-          Char     = $Character
-          Phonetic = $Character
-        }
-      }
-    }
+	PROCESS {
+		$Result = Foreach ($Character in $Char) {
+			if ($PhoneticTable.ContainsKey("$Character")) {
+				if ([Char]::IsUpper([Char]$Character)) {
+					[PSCustomObject]@{
+						Char     = $Character
+						Phonetic = "Capital-$($PhoneticTable["$Character"])"
+					}
+				} elseif ([Char]::IsLower([Char]$Character)) {
+					[PSCustomObject]@{
+						Char     = $Character
+						Phonetic = "Lowercase-$($PhoneticTable["$Character"])"
+					}
+				} elseif ([Char]::IsNumber([Char]$Character)) {
+					[PSCustomObject]@{
+						Char     = $Character
+						Phonetic = "Number-$($PhoneticTable["$Character"])"
+					}
+				} else {
+					[PSCustomObject]@{
+						Char     = $Character
+						Phonetic = $PhoneticTable["$Character"]
+					}
+				}
+			} else {
+				[PSCustomObject]@{
+					Char     = $Character
+					Phonetic = $Character
+				}
+			}
+		}
 
-    # Loop over each char
-    $InputText = -join $Char
+		# Loop over each char
+		$InputText = -join $Char
 
-    $TableFormat = ($Result |
-      Format-Table -AutoSize |
-    Out-String)
+		$TableFormat = ($Result |
+			Format-Table -AutoSize |
+		Out-String)
 
-    $StringFormat = ($Result.Phonetic -join '  ')
+		$StringFormat = ($Result.Phonetic -join '  ')
 
-    # Create the new HashTable
-    [hashtable]$Properties = @{
-      PhoneticForm = $StringFormat
-      Table        = $TableFormat
-      InputText    = $InputText
-    }
+		# Create the new HashTable
+		[hashtable]$Properties = @{
+			PhoneticForm = $StringFormat
+			Table        = $TableFormat
+			InputText    = $InputText
+		}
 
-    $Object = (New-Object -TypeName PSObject -Property $Properties)
+		$Object = (New-Object -TypeName PSObject -Property $Properties)
 
-    $Object.PSObject.Typenames.Insert(0, 'Phonetic')
-  }
+		$Object.PSObject.Typenames.Insert(0, 'Phonetic')
+	}
 
-  END {
-    # Dump what we have
-    Write-Output -InputObject $Object
-  }
+	END {
+		# Dump what we have
+		Write-Output -InputObject $Object
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDIBte35mYw2h1amvKouy4hoy
-# /0SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFNWBxy7M/K6o51aSeL9bNhpQ
+# jvegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -377,25 +378,25 @@ function global:Get-PhoneticSpelling {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSFAEul9Zddk8AxfnsQ/K7DhBLaWjANBgkqhkiG9w0B
-# AQEFAASCAQAnzR161NWQW/EBk8mn50oCWqQpPTwJQWmTIudvSGi+hDTYlJ8cHpen
-# k5GejIMmkUHa0xSeaxbrJjQfcWpxuuQwojqWkilMW40HD3ru7UxoZ6bSJKTkQFEf
-# uEOm6P40tuHnvXzw9oNPbTjh6iolQcW4/qX6ELVX3bRC7hGe2Us+UhwGGKX7zz0e
-# j8sq8TsT57cF2+sDzjrCBkwQd8JHnqM3aIC9dZVLr7BDt+krLxww/bYdFU0pBPgo
-# Bl1Pd2MFKuC7jZ1XDAOcM27nfVHIyl1GxDBhdp6On9kSiP6QdhwjknBzVZdItjbl
-# ieP0nR32tu0waI2+6hUCtQbl7Mv94PQioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHn/naWEV6k9MzTmNRZisoeWmQrjANBgkqhkiG9w0B
+# AQEFAASCAQBVmpiSyu6uWEKvaKwOOcUBOr4VPejUpPX90aWSEhO9bXh6GxXgciLX
+# ANvUxPDgR22xUeIJf9ocSm/Q8oUvYXC+L3LVOFKe9Ce6+gAhwY6KmGGckGQNx57t
+# 2xzPD7tMYjdDRqbyToyag2bo/2jyYQoiN2zs3JxnC+Yew8DRVb4hfjQ9+mPpXnd7
+# N8bMFG+O/FQV/LfHv5YZytj9OosM4ebTWP7Ya4w0j+E79N9pOnk6UvZihBUNcjOZ
+# rZlJen2z+/M5Vh33LQbfBfUM632iZxdteEjZwJjCxM8OKYTiCmyRDk+LvJzJH9Bq
+# xsunnnuVzBxO6TBIdQBwR9/Iuul7IY3ToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0MVowIwYJKoZIhvcN
-# AQkEMRYEFCnoohBM1HJff+IKFG+SsYL5YKqLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzMVowIwYJKoZIhvcN
+# AQkEMRYEFJD9SlznQz5vTJakqGFt548Y++8VMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAVXy9zU1A+wRvjaJbuKT+/+ngBYSMbbPGR0qxgHSrHYC2t
-# xN1qJS7IiZRwABgR8JnzeKOZgkdRY6YaN4g2Fn9QTysbCkbtKATRXNr/9ySvCqPL
-# WCoA1frR8ZQbwsTk77vpmoTzx0qfjFg+1GW7hQ+wDR1w5K1LQ1pwDojjyyPbrCXX
-# 7gRMRhCn29Wcmv1piICxkvsMi4HBA8wU6v3a/Mml59dViBjD4e9upHczQEQo2cZx
-# EpZs6v8kMz12FMQIzVtsb0jMe2nuVkF6CAjIp8vr8wgt3LRkc0kzS3IrFWpS4dhT
-# lX5GWYF69hpzpPsxu+v+vBlsbeRCckEOt15DQepj
+# hkiG9w0BAQEFAASCAQAktlniUgD1n0ueYpCj1HXQwCnyZXc85in+avbbrSmWrOJu
+# 5TbMV5W7My5wJ6v1cYxnz7B5AiHZtO4AjUHhSjHb+XykY6UWSWpQTSmy6NU3JD2C
+# tU4c0ia4YsuD1WLJJZtgiaHlGRx2yjCK95PtJCPbepFVbYGZLZiuGuhqL45S9PWp
+# i9Ezu+gwllhkJUzR8+O/rQj83H+tYal0rPXYC6PfjGC9ZonP+0+KYook29OBTujL
+# LUGRvjVsHoPwUlAmPWDpYUMIV2MZNF1vLjI+27FC9U/ZS7/kcb/CVQEFDU8kI8lS
+# bZrkEdbFKfS3zxnRTvO1AtYQt3L9gO68MEcpymNk
 # SIG # End signature block

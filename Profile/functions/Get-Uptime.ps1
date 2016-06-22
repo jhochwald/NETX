@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,83 +15,83 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Uni* like Uptime
 function global:Get-Uptime {
-  <#
-      .SYNOPSIS
-      Show how long system has been running
+	<#
+			.SYNOPSIS
+			Show how long system has been running
 
-      .DESCRIPTION
-      Uni* like Uptime - The uptime utility displays the current time,
-      the length of time the system has been up
+			.DESCRIPTION
+			Uni* like Uptime - The uptime utility displays the current time,
+			the length of time the system has been up
 
-      .EXAMPLE
-      PS C:\> Get-Uptime
-      Uptime: 0 days, 2 hours, 11 minutes
+			.EXAMPLE
+			PS C:\> Get-Uptime
+			Uptime: 0 days, 2 hours, 11 minutes
 
-      Description
-      -----------
-      Returns the uptime of the system, the time since last reboot/startup
+			Description
+			-----------
+			Returns the uptime of the system, the time since last reboot/startup
 
-      .NOTES
-      Make PowerShell a bit more like *NIX!
+			.NOTES
+			Make PowerShell a bit more like *NIX!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param ()
 
-  PROCESS {
-    # Define objects
-    $os = (Get-WmiObject -Class win32_operatingsystem)
-    $uptime = ((Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime)))
-    $Display = 'Uptime: ' + $uptime.Days + ' days, ' + $uptime.Hours + ' hours, ' + $uptime.Minutes + ' minutes'
-  }
+	PROCESS {
+		# Define objects
+		$os = (Get-WmiObject -Class win32_operatingsystem)
+		$uptime = ((Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime)))
+		$Display = 'Uptime: ' + $uptime.Days + ' days, ' + $uptime.Hours + ' hours, ' + $uptime.Minutes + ' minutes'
+	}
 
-  END {
-    # Dump the Infos
-    Write-Output -InputObject $Display
-  }
+	END {
+		# Dump the Infos
+		Write-Output -InputObject $Display
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name uptime -Value Get-Uptime -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -98,8 +99,8 @@ function global:Get-Uptime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUybNuov+0rveFFhYBYAzq9ko6
-# oB6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqYWSIf72wZtzWIfo5BTBl207
+# eKGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +243,25 @@ function global:Get-Uptime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQDHuHiB3sP1IqMqX7FJOQmpmmYdzANBgkqhkiG9w0B
-# AQEFAASCAQAcE2hddAzD7ip6I+S9Us2JPj+zkhscN/6nJFYVA18evNJWPm7fSfHL
-# BCWeOoNWpZGEy7eVzcSUM8MF3T337GIaznIIO1PxtwlwGQi1NKO+8Mb3oBVMPxUz
-# xtG6C8QgbxFCHN36Dkb9gnT9WefHXNcUtfoAK14T6YDZdQato6XNa1FjcJiyGDDv
-# 42/bqe9XHevgbOdNkblv3lcLMyJhnwt2b0MjdsJR8gFg4umE6CRKw8JptJN7j57g
-# dt1UkgJdik/cTAaR5zwPUkX8TWiyrMVZZkZ6umXcXJ3wp3vWCb9YNU1kboy3T6rC
-# 5JWxV6KR4sKoZF1HdNkAqlWdIJ+z5J1joYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRLTq5G7bFwNGeX5dMLCb8Tl8ODyzANBgkqhkiG9w0B
+# AQEFAASCAQB+4RFHfcbcUfF/0d5LkPcJh6WJfLKBYGYb/UQTGuGB0UjOuIr8pQmh
+# ZrQ/YBMmC7DnJD68wWokGy3+9byUBdwPYeEB17H6aWeNGEXlnCu1kpvMGXtTa82E
+# 9iwBCBdKSbwZJwE0FMcdvJaTcwVIKXYdwKrhOsfNTj7ylNOcz6GnB8gxlwS/cuq6
+# NfB3ABSJ6HomEB181EMIjMClbmgHq69qQrxs4v00VCWfZGgAwZjaRGpMu5imH2N0
+# pWgRlH/0v3RJVLWoLiwwre/tDvNlYIRX+bUAng7uhJD1xdHf/4eU0Mnp8YVU3r/+
+# oLACkpVTu32tbekRFAcjy7eus//rQVkpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0N1owIwYJKoZIhvcN
-# AQkEMRYEFJwm6CE6I58YqOuf4cE78hEqLPUjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzN1owIwYJKoZIhvcN
+# AQkEMRYEFBc33FuDazxk3qH7sNoKkf8dXWTQMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBJzgNvjO72Dd9yfupke1kn+NQrA1iju7Em/glkJhXFrbzu
-# JZOv4fWQ1WPn2uL6qV+gbCkZaF5f8W4sM37KgSIKCKB7D1KyzN9Scgos7TOusDQ1
-# 1RRtAtAe2hgzftAI7ah62k2FuemW7zrvGfprcpsskpeP0v1qVg2wwsCz7vFXp4DJ
-# 4rpTQKhHGbxKll8o1rodFDivThIsCO1h7pxmLp+WMsXuT3JnxyvekmKGftYbJPn2
-# luq1/SdrXaMvCInUEU0zEbcC3JupZdtV08wScgZc3BbFdw39gUiWdjSRHEIS6QK3
-# xjL32VwiYt8kXWFhihrK6YKXdzIgrWNR9Eg8IdMg
+# hkiG9w0BAQEFAASCAQA2wENgTVvUcImTviQpGYdeSf+n5weFcuvjjAk1EWk3QroM
+# PcAxEUwDkl0/lDPvKGzxJENvneyAE4oIaSWXMynrcP5rZzb8oPprMuW1WbzQgF0b
+# Lx4rqmfoEO9B1ed05geScOysDIbAvsl+agD2T46Q9/hHUsQ6IITwOaVkWIQjAyb/
+# Cir6iEU9zMtHwnB0pfx8i4+w/efJjuMOtOvaHZnl1H/SamexedFc72hmSwmDWj1l
+# czv95YT9MFk6gLI660n+sRSecqkjQKLtlzg1mqn73IGf56LPyzs3aB8kOofxL6X/
+# wghttQonEW0gDa+cX/2cWlVcz3kZxJ04e6dL3N8J
 # SIG # End signature block

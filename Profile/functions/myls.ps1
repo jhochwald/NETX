@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,94 +15,94 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 # Make Powershell more Uni* like
 function global:Get-MyLS {
-  <#
-      .SYNOPSIS
-      Wrapper for Get-ChildItem
+	<#
+			.SYNOPSIS
+			Wrapper for Get-ChildItem
 
-      .DESCRIPTION
-      This wrapper for Get-ChildItem shows all directories and files
-      (even hidden ones)
+			.DESCRIPTION
+			This wrapper for Get-ChildItem shows all directories and files
+			(even hidden ones)
 
-      .PARAMETER loc
-      A description of the loc parameter.
+			.PARAMETER loc
+			A description of the loc parameter.
 
-      .PARAMETER location
-      This optional parameters is useful if you would like to see the
-      content of another directory
+			.PARAMETER location
+			This optional parameters is useful if you would like to see the
+			content of another directory
 
-      .EXAMPLE
-      PS C:\> myls
+			.EXAMPLE
+			PS C:\> myls
 
-      Description
-      -----------
-      Show the content of the directory Where-Object you are
+			Description
+			-----------
+			Show the content of the directory Where-Object you are
 
-      .EXAMPLE
-      PS C:\> myls c:\
+			.EXAMPLE
+			PS C:\> myls c:\
 
-      Description
-      -----------
-      Show the content of "c:\"
+			Description
+			-----------
+			Show the content of "c:\"
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
+			.NOTES
+			This is just a little helper function to make the shell more flexible
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
 
-  #>
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Alias('Location')]
-    [System.String]$loc = '.'
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Alias('Location')]
+		[System.String]$loc = '.'
+	)
 
-  PROCESS {
-    # Execute GCI
-    Get-ChildItem -Force -att !a "$loc"
-    Get-ChildItem -Force -att !d "$loc"
-  }
+	PROCESS {
+		# Execute GCI
+		Get-ChildItem -Force -att !a "$loc"
+		Get-ChildItem -Force -att !d "$loc"
+	}
 }
 # Set a compatibility Alias
 (Set-Alias -Name ls -Value Get-MyLS -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
@@ -110,8 +111,8 @@ function global:Get-MyLS {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuPXslgWAoClGkHL9uAfyuAoZ
-# 4FygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfKnsfSxsaaAyO4nSCFtlcCj+
+# 8R6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -133,10 +134,10 @@ function global:Get-MyLS {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -152,12 +153,12 @@ function global:Get-MyLS {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -254,25 +255,25 @@ function global:Get-MyLS {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR4QGOXywwxOZN8K2pqs6Enx0kWnjANBgkqhkiG9w0B
-# AQEFAASCAQAt57lAWrMQJxgzwx79A9Bjx1vL2rdECAATokKkjLdPk4q7R1FGT1F5
-# gjXxnRvlqYWQmZsceVlAh7CmhX2BAHDYhWSElOrz3aRIZPqvBkMVYZZAcIYTEVLg
-# TMAefVZ6VlxH5kl6c+TnjvC5ObHHfNYpuaMBkoPHq0yWKR30Yh7Oxd+Oau9MjjNe
-# U0//bb2H+hnxOCgDW+qu26gEIXnLqI9BPDY6K3PcagB24zocOoKRnvsi8Llt3tDF
-# Z5IUJzTmdCVQ76dZ0SbJOd6AqTpJvtdKxZMCLdPv1vORWsDse2pOFmst88ITQPpN
-# fDVBFvyigjqj/hYaBsYFbkzo6VcrY7cLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ1Ioi8vfe+BLNQ4cJbjxsKVrCDRDANBgkqhkiG9w0B
+# AQEFAASCAQBkO0Kqlbk+BcncnJwbbuilh7Rq6l5F+dyGuXKkeR9JaJcfclDreLn4
+# aJ6UA+Mt/Vq05dnadEdSJn9U6El3TCSLCTj9xIr0ouZVQ4qhFcIkDDCEyvha+iNi
+# 5GsMSlcTpuBCTztN+IoPeE7fHBaXTOhbXdHzY3AHoyS4hAzmVdsX4VxSw+KkGYO+
+# xiHuk9ImZUUl3bGqgIPEk3NiJvaS3jOSCvc7FneY2KH1ewmLB4Nnqyy66mZMsxsQ
+# 2yxBq0Je5YRJl60UMVtbKYb9dms2P4ow0aCwN9FEZI+YKVNoEXGHpArxs9ZVDjHG
+# JCdaDealmyEjDGWyoqXwHvfoHtbBQxProYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE1OFowIwYJKoZIhvcN
-# AQkEMRYEFKp4DJOzyow80uMoQR1cdXSuJCqOMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE0OFowIwYJKoZIhvcN
+# AQkEMRYEFPnjVFRVVfV+rKBn3/1y8cf/gHSwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAgvYqC/cj0L6Z67vsTy33EGZm7fv5QqnEZdsuj9pgw5iSY
-# +8uRQ8PFLeGJuRUarS6O7oeM6J2TLt0PubGVd/+AWroUeDbpbBhecY8jeg2FL+aD
-# z7IOOdzLNoIg2iJ4p1/JCMmtpRhnr4X2mG6MxHzovBwjqGKm4VrifMKW68QerQ8C
-# vjTwjj33MqkAeJIp+cACXFA2TIlq8Moix4polegf6JMdwaRLRLlHsnMDypOEi2cm
-# lPCLwn/YoFAMQa+HKdRZcKo7CkqF1mG5Fq3ZgPxTJiQXHX2jPkPhdHtLILKTvjYi
-# hJrjnxZ651292999XIqVnx2AWKoZ+I/mnngTA+xJ
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCbGG75LeJkrJavgmUpNVbWxLLx1DCsarEhviPYB46uP4xY
+# QdjGpfYhYtdNlar3yP4hgPrBh6KrzVHteQQysoTO8hrSeHPW+TVgf28kj3WYxatt
+# HcOFpPjC0NxXLZRiCW9TK7ies2uMDvgy0pFdTywYvgXMQog4mQ/bwvI05sQ8MTco
+# 4e1uK4tq+ATrjLrdjDn32jW24DmLmIxZUbwMAWM+ArbJsXd5VPcwrvm8oG8d8ll2
+# vSDLoFCrMgLLZYvdD8prgJcV3tLVrbDWEpc54LlzntdJ5+jiEB/67xZBgLPBOGou
+# DXgnCCfGz33ba0vKbe0wg83zgmgnz/aM6m1jzVNW
 # SIG # End signature block

@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 3
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,288 +15,288 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-Whois {
-  <#
-      .SYNOPSIS
-      Script to retrieve WhoIs information from a list of domains
+	<#
+			.SYNOPSIS
+			Script to retrieve WhoIs information from a list of domains
 
-      .DESCRIPTION
-      This script will, by default, create a report of WhoIs information on
-      1 or more Internet domains. Not all Top-Level Domains support Whois
-      queries! e.g. .de (Germany) domains!
+			.DESCRIPTION
+			This script will, by default, create a report of WhoIs information on
+			1 or more Internet domains. Not all Top-Level Domains support Whois
+			queries! e.g. .de (Germany) domains!
 
-      Report options are CSV, Json, XML, HTML, and object (default) output.
-      Dates in the CSV, Json, and HTML options are formatted for the culture
-      settings on the PC.
-      Columns in HTML report are also sortable, just click on the headers.
+			Report options are CSV, Json, XML, HTML, and object (default) output.
+			Dates in the CSV, Json, and HTML options are formatted for the culture
+			settings on the PC.
+			Columns in HTML report are also sortable, just click on the headers.
 
-      .PARAMETER Domain
-      One or more domain names to check. Accepts pipeline.
+			.PARAMETER Domain
+			One or more domain names to check. Accepts pipeline.
 
-      .PARAMETER Path
-      Path Where-Object the resulting HTML or CSV report will be saved.
+			.PARAMETER Path
+			Path Where-Object the resulting HTML or CSV report will be saved.
 
-      Default is: C:\scripts\PowerShell\export
+			Default is: C:\scripts\PowerShell\export
 
-      .PARAMETER RedThresold
-      If the number of days left before the domain expires falls below this
-      number the entire row will be highlighted in Red (HTML reports only).
+			.PARAMETER RedThresold
+			If the number of days left before the domain expires falls below this
+			number the entire row will be highlighted in Red (HTML reports only).
 
-      Default is 30 (Days)
+			Default is 30 (Days)
 
-      .PARAMETER YellowThresold
-      If the number of days left before the domain expires falls below this
-      number the entire row will be highlighted in Yellow (HTML reports only)
+			.PARAMETER YellowThresold
+			If the number of days left before the domain expires falls below this
+			number the entire row will be highlighted in Yellow (HTML reports only)
 
-      Default is 90 (Days)
+			Default is 90 (Days)
 
-      .PARAMETER GreyThresold
-      If the number of days left before the domain expires falls below this
-      number the entire row will be highlighted in Grey (HTML reports only).
+			.PARAMETER GreyThresold
+			If the number of days left before the domain expires falls below this
+			number the entire row will be highlighted in Grey (HTML reports only).
 
-      Default is 365 (Days)
+			Default is 365 (Days)
 
-      .PARAMETER OutputType
-      Specify what kind of report you want.  Valid types are Json, XML,HTML,
-      CSV, or Object.
+			.PARAMETER OutputType
+			Specify what kind of report you want.  Valid types are Json, XML,HTML,
+			CSV, or Object.
 
-      The default is Object.
+			The default is Object.
 
-      .EXAMPLE
-      PS C:\> Get-Whois -Domain "NET-Experts.net","timberforest.com"
+			.EXAMPLE
+			PS C:\> Get-Whois -Domain "NET-Experts.net","timberforest.com"
 
-      Description
-      -----------
-      Will create object Whois output of the domain registration data.
+			Description
+			-----------
+			Will create object Whois output of the domain registration data.
 
-      .EXAMPLE
-      PS C:\> Get-Whois -Domain "NET-Experts.net" -OutputType json
+			.EXAMPLE
+			PS C:\> Get-Whois -Domain "NET-Experts.net" -OutputType json
 
-      Description
-      -----------
-      Will create Json Whois Report of the domain registration data.
+			Description
+			-----------
+			Will create Json Whois Report of the domain registration data.
 
-      .NOTES
-      Based on an idea of Martin Pugh (Martin Pugh)
+			.NOTES
+			Based on an idea of Martin Pugh (Martin Pugh)
 
-      .LINK
-      Source: http://community.spiceworks.com/scripts/show/2809-whois-report-Get-whois-ps1
+			.LINK
+			Source: http://community.spiceworks.com/scripts/show/2809-whois-report-Get-whois-ps1
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
-    [System.String]$Domain,
-    [Parameter(HelpMessage = 'Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export')]
-    [System.String]$Path = 'C:\scripts\PowerShell\export',
-    [Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)')]
-    [System.Int32]$RedThresold = 30,
-    [Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)')]
-    [System.Int32]$YellowThresold = 90,
-    [Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Grey (HTML reports only). Default is 365 (Days)')]
-    [System.Int32]$GreyThresold = 365,
-    [Parameter(ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Specify what kind of report you want.  Valid types are Json, XML,HTML, CSV, or Object. The default is Object.')]
-    [ValidateSet('object', 'json', 'csv', 'html', 'html', 'xml')]
-    [System.String]$OutputType = 'object'
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
+		[System.String]$Domain,
+		[Parameter(HelpMessage = 'Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export')]
+		[System.String]$Path = 'C:\scripts\PowerShell\export',
+		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)')]
+		[System.Int32]$RedThresold = 30,
+		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)')]
+		[System.Int32]$YellowThresold = 90,
+		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Grey (HTML reports only). Default is 365 (Days)')]
+		[System.Int32]$GreyThresold = 365,
+		[Parameter(ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Specify what kind of report you want.  Valid types are Json, XML,HTML, CSV, or Object. The default is Object.')]
+		[ValidateSet('object', 'json', 'csv', 'html', 'html', 'xml')]
+		[System.String]$OutputType = 'object'
+	)
 
-  BEGIN {
-    # Be Verbose
-    Write-Verbose -Message "$(Get-Date): Get-WhoIs script beginning."
+	BEGIN {
+		# Be Verbose
+		Write-Verbose -Message "$(Get-Date): Get-WhoIs script beginning."
 
-    # Validate the path
-    If ($Path) {
-      If (Test-Path $Path) {
-        If (-not (Get-Item $Path).PSisContainer) {
-          # Aw Snap!
-          Write-Error  -Message "You cannot specify a file in the Path parameter, must be a folder: $Path"
+		# Validate the path
+		If ($Path) {
+			If (Test-Path $Path) {
+				If (-not (Get-Item $Path).PSisContainer) {
+					# Aw Snap!
+					Write-Error  -Message "You cannot specify a file in the Path parameter, must be a folder: $Path"
 
-          # Die headers
-          exit 1
-        }
-      } Else {
-        # Aw Snap!
-        Write-Error  -Message "Unable to locate: $Path"
+					# Die headers
+					exit 1
+				}
+			} Else {
+				# Aw Snap!
+				Write-Error  -Message "Unable to locate: $Path"
 
-        # Die hard!
-        exit 1
-      }
-    } Else {$Path = (Split-Path -Path $MyInvocation.MyCommand.Path)}
+				# Die hard!
+				exit 1
+			}
+		} Else {$Path = (Split-Path -Path $MyInvocation.MyCommand.Path)}
 
-    # Create the Web Proxy instance
-    $WC = (New-WebServiceProxy 'http://www.webservicex.net/whois.asmx?WSDL')
+		# Create the Web Proxy instance
+		$WC = (New-WebServiceProxy 'http://www.webservicex.net/whois.asmx?WSDL')
 
-    # Cleanup
-    $Data = @()
-  }
+		# Cleanup
+		$Data = @()
+	}
 
-  PROCESS {
-    # Loop over the given domains
-    $Data += ForEach ($Dom in $Domain) {
-      # Be Verbose
-      Write-Verbose -Message "$(Get-Date): Querying for $Dom"
+	PROCESS {
+		# Loop over the given domains
+		$Data += ForEach ($Dom in $Domain) {
+			# Be Verbose
+			Write-Verbose -Message "$(Get-Date): Querying for $Dom"
 
-      # Cleanup
-      $DNError = ''
+			# Cleanup
+			$DNError = ''
 
-      Try {$Raw = $WC.GetWhoIs($Dom)} Catch {
-        # Some domains throw an error, I assume because the WhoIs server isn't returning standard output
-        $DNError = "$($Dom.ToUpper()): Unknown Error retrieving WhoIs information"
-      }
+			Try {$Raw = $WC.GetWhoIs($Dom)} Catch {
+				# Some domains throw an error, I assume because the WhoIs server isn't returning standard output
+				$DNError = "$($Dom.ToUpper()): Unknown Error retrieving WhoIs information"
+			}
 
-      # Test if the domain name is good or if the data coming back is ok--Google.Com just returns a list of domain names so no good
-      If ($Raw -match 'No match for') {$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"} ElseIf ($Raw -notmatch 'Domain Name: (.*)') {$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"}
+			# Test if the domain name is good or if the data coming back is ok--Google.Com just returns a list of domain names so no good
+			If ($Raw -match 'No match for') {$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"} ElseIf ($Raw -notmatch 'Domain Name: (.*)') {$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"}
 
-      If ($DNError) {
-        # Use 999899 to tell the script later that this is a bad domain and color it properly in HTML (if HTML output requested)
-        [PSCustomObject]@{
-          DomainName  = $DNError
-          Registrar   = ''
-          WhoIsServer = ''
-          NameServers = ''
-          DomainLock  = ''
-          LastUpdated = ''
-          Created     = ''
-          Expiration  = ''
-          DaysLeft    = 999899
-        }
+			If ($DNError) {
+				# Use 999899 to tell the script later that this is a bad domain and color it properly in HTML (if HTML output requested)
+				[PSCustomObject]@{
+					DomainName  = $DNError
+					Registrar   = ''
+					WhoIsServer = ''
+					NameServers = ''
+					DomainLock  = ''
+					LastUpdated = ''
+					Created     = ''
+					Expiration  = ''
+					DaysLeft    = 999899
+				}
 
-        # Bad!
-        Write-Warning -Message "$DNError"
-      } Else {
-        # Parse out the DNS servers
-        $NS = ForEach ($Match in ($Raw | Select-String -Pattern 'Name Server: (.*)' -AllMatches).Matches) {$Match.Groups[1].Value}
+				# Bad!
+				Write-Warning -Message "$DNError"
+			} Else {
+				# Parse out the DNS servers
+				$NS = ForEach ($Match in ($Raw | Select-String -Pattern 'Name Server: (.*)' -AllMatches).Matches) {$Match.Groups[1].Value}
 
-        #Parse out the rest of the data
-        [PSCustomObject]@{
-          DomainName  = (($Raw | Select-String -Pattern 'Domain Name: (.*)').Matches.Groups[1].Value)
-          Registrar   = (($Raw | Select-String -Pattern 'Registrar: (.*)').Matches.Groups[1].Value)
-          WhoIsServer = (($Raw | Select-String -Pattern 'WhoIs Server: (.*)').Matches.Groups[1].Value)
-          NameServers = ($NS -join ', ')
-          DomainLock  = (($Raw | Select-String -Pattern 'Status: (.*)').Matches.Groups[1].Value)
-          LastUpdated = [datetime]($Raw | Select-String -Pattern 'Updated Date: (.*)').Matches.Groups[1].Value
-          Created     = [datetime]($Raw | Select-String -Pattern 'Creation Date: (.*)').Matches.Groups[1].Value
-          Expiration  = [datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value
-          DaysLeft    = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value)).Days)
-        }
-      }
-    }
-  }
+				#Parse out the rest of the data
+				[PSCustomObject]@{
+					DomainName  = (($Raw | Select-String -Pattern 'Domain Name: (.*)').Matches.Groups[1].Value)
+					Registrar   = (($Raw | Select-String -Pattern 'Registrar: (.*)').Matches.Groups[1].Value)
+					WhoIsServer = (($Raw | Select-String -Pattern 'WhoIs Server: (.*)').Matches.Groups[1].Value)
+					NameServers = ($NS -join ', ')
+					DomainLock  = (($Raw | Select-String -Pattern 'Status: (.*)').Matches.Groups[1].Value)
+					LastUpdated = [datetime]($Raw | Select-String -Pattern 'Updated Date: (.*)').Matches.Groups[1].Value
+					Created     = [datetime]($Raw | Select-String -Pattern 'Creation Date: (.*)').Matches.Groups[1].Value
+					Expiration  = [datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value
+					DaysLeft    = ((New-TimeSpan -Start (Get-Date) -End ([datetime]($Raw | Select-String -Pattern 'Expiration Date: (.*)').Matches.Groups[1].Value)).Days)
+				}
+			}
+		}
+	}
 
-  END {
-    # Be Verbose
-    Write-Verbose -Message "$(Get-Date): Producing $OutputType report"
+	END {
+		# Be Verbose
+		Write-Verbose -Message "$(Get-Date): Producing $OutputType report"
 
-    #
-    $WC.Dispose()
+		#
+		$WC.Dispose()
 
-    # Sort the Domain Data
-    $Data = $Data | Sort-Object -Property DomainName
+		# Sort the Domain Data
+		$Data = $Data | Sort-Object -Property DomainName
 
-    # What kind of output?
-    Switch ($OutputType) {
-      'object'
-      {
-        # Dump to Console
-        (Write-Output -InputObject $Data | Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
-            Name       = 'DaysLeft'
-            Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
-        })
-      }
-      'csv'
-      {
-        # Export a CSV
-        $ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.CSV')
-        ($Data |
-          Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
-            Name       = 'LastUpdated'
-            Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Created'
-            Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Expiration'
-            Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, DaysLeft |
-        Export-Csv $ReportPath -NoTypeInformation)
-      }
-      'xml'
-      {
-        # Still like XML?
-        $ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.XML')
-        ($Data |
-          Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
-            Name       = 'DaysLeft'
-            Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
-          } |
-        Export-Clixml $ReportPath)
-      }
-      'json'
-      {
-        # I must admin: I like Json...
-        $ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.json')
-        $JsonData = ($Data | Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
-            Name       = 'LastUpdated'
-            Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Created'
-            Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Expiration'
-            Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-        }, DaysLeft)
-        ConvertTo-Json -InputObject $JsonData -Depth 10 > $ReportPath
-      }
-      'html'
-      {
-        # OK, HTML is should be!
-        $Header = @"
+		# What kind of output?
+		Switch ($OutputType) {
+			'object'
+			{
+				# Dump to Console
+				(Write-Output -InputObject $Data | Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
+						Name       = 'DaysLeft'
+						Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
+				})
+			}
+			'csv'
+			{
+				# Export a CSV
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.CSV')
+				($Data |
+					Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
+						Name       = 'LastUpdated'
+						Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Created'
+						Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Expiration'
+						Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, DaysLeft |
+				Export-Csv $ReportPath -NoTypeInformation)
+			}
+			'xml'
+			{
+				# Still like XML?
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.XML')
+				($Data |
+					Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
+						Name       = 'DaysLeft'
+						Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
+					} |
+				Export-Clixml $ReportPath)
+			}
+			'json'
+			{
+				# I must admin: I like Json...
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.json')
+				$JsonData = ($Data | Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
+						Name       = 'LastUpdated'
+						Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Created'
+						Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Expiration'
+						Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+				}, DaysLeft)
+				ConvertTo-Json -InputObject $JsonData -Depth 10 > $ReportPath
+			}
+			'html'
+			{
+				# OK, HTML is should be!
+				$Header = @"
 <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 <style>
 TABLE {border-width: 1px;border-style: solid;border-color: black;border-collapse: collapse;}
@@ -308,11 +309,11 @@ WhoIS Report
 </title>
 "@
 
-        $PreContent = @"
+				$PreContent = @"
 <p><h1>WhoIs Report</h1></p>
 "@
 
-        $PostContent = @"
+				$PostContent = @"
 <p><br/><h3>Legend</h3>
 <pre><span style="background-color:red">    </span>  Expires in under $RedThreshold days
 <span style="background-color:yellow">    </span>  Expires in under $YellowThreshold days
@@ -321,50 +322,50 @@ WhoIS Report
 <h6><br/>Run on: $(Get-Date)</h6>
 "@
 
-        $RawHTML = ($Data |
-          Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
-            Name       = 'LastUpdated'
-            Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Created'
-            Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, @{
-            Name       = 'Expiration'
-            Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
-          }, DaysLeft |
-        ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
+				$RawHTML = ($Data |
+					Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, @{
+						Name       = 'LastUpdated'
+						Expression = { Get-Date -Date $_.LastUpdated -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Created'
+						Expression = { Get-Date -Date $_.Created -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, @{
+						Name       = 'Expiration'
+						Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
+					}, DaysLeft |
+				ConvertTo-Html -Head $Header -PreContent $PreContent -PostContent $PostContent)
 
-        $HTML = ForEach ($Line in $RawHTML) {
-          if ($Line -like '*<tr><td>*') {
-            $Value = [float](([xml]$Line).SelectNodes('//td').'#text'[-1])
+				$HTML = ForEach ($Line in $RawHTML) {
+					if ($Line -like '*<tr><td>*') {
+						$Value = [float](([xml]$Line).SelectNodes('//td').'#text'[-1])
 
-            if ($Value) {
-              if ($Value -eq 999899) {$Line.Replace('<tr><td>', '<tr style="background-color: #DEB887;"><td>').Replace('<td>999899</td>', '<td>0</td>')} elseif ($Value -lt $RedThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: red;"><td>')} elseif ($Value -lt $YellowThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: yellow;"><td>')} elseif ($Value -lt $GreyThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: #B0C4DE;"><td>')} else {$Line}
-            }
-          } elseif ($Line -like '*<table>*') {$Line.Replace('<table>', '<table class="sortable">')} else {$Line}
-        }
+						if ($Value) {
+							if ($Value -eq 999899) {$Line.Replace('<tr><td>', '<tr style="background-color: #DEB887;"><td>').Replace('<td>999899</td>', '<td>0</td>')} elseif ($Value -lt $RedThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: red;"><td>')} elseif ($Value -lt $YellowThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: yellow;"><td>')} elseif ($Value -lt $GreyThreshold) {$Line.Replace('<tr><td>', '<tr style="background-color: #B0C4DE;"><td>')} else {$Line}
+						}
+					} elseif ($Line -like '*<table>*') {$Line.Replace('<table>', '<table class="sortable">')} else {$Line}
+				}
 
-        # File name
-        $ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.html')
+				# File name
+				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.html')
 
-        # Dump the HTML
-        ($HTML | Out-File $ReportPath -Encoding ASCII)
+				# Dump the HTML
+				($HTML | Out-File $ReportPath -Encoding ASCII)
 
-        # Immediately display the html if in debug mode
-        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {& $ReportPath}
-      }
-    }
+				# Immediately display the html if in debug mode
+				if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {& $ReportPath}
+			}
+		}
 
-    # Be Verbose
-    Write-Verbose -Message "$(Get-Date): Get-WhoIs script completed!"
-  }
+		# Be Verbose
+		Write-Verbose -Message "$(Get-Date): Get-WhoIs script completed!"
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUN6q79qO/Qpbkx0msGCg6s4XQ
-# fmagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmgwJxd2BV6bzRG0uSJILHfn/
+# qIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -386,10 +387,10 @@ WhoIS Report
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -405,12 +406,12 @@ WhoIS Report
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -507,25 +508,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTUHDlOy6nCwR3+8WFTv6QG5Tc+EzANBgkqhkiG9w0B
-# AQEFAASCAQAQARo73Ln0UcRsl5ZULULa6XH9SR5Zv4cRgqlvMB5T/62RgmdPP+Fb
-# OcdPAgad45onDSghovux2XuDXetp2v4MWQWDDyjDBDfLr1rntPIczNEJNDuMXDBo
-# LP9on0ZnCUcd318YVR61kwaeMPOpHtpQ+pDJDFA002JXj2EOTD+MRGx3+0IdCHET
-# SbXEPWr91sM0jRZ0PBef9aH6S8yCjoYO2Tf6T5aZaHpdLUgdLwFvUgr/LQtHyC7E
-# ivhOHF4oiJRXi3vR6o/2lWBtkpASig+JEexgE8dh9YPQyeZV6OQzNtHgXDhUv6N0
-# MYjhwI6E/0apPtWkmN5RjrNfjq92E6o8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQjuEUsFFYkiDSgM0DfcyRTnjYY1TANBgkqhkiG9w0B
+# AQEFAASCAQBnYwMkW0tRKTwwg+ybpThDkPecCH913x0iWO8pVut/DnKyixW9kaT1
+# nKHKImu6xPQHwg8l9Pv9/I+PC2Ihvqv/mi4G9pKLaGsBe/zTR1H9WEjyDUxPBEaP
+# HVN4oG8rNfpVVNP5W1ogSN0iza/1rq0n9BBKsQvz0ETx5VicJoIMPVP3RIXnDB4w
+# FE8audfR3FLKk6fkgbZbMjhj6uU8Y/jop6YhvEFlgL7CU3mcHN51hPybioPd7faI
+# h2H2E5i57++NpedfDxUyYTnz5pmVlEon8x/PjmHFwUllz7pib0EEoudDECoDKed2
+# SpoicdrBbBKUzuYafawRYbZiRdv7njrzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0OFowIwYJKoZIhvcN
-# AQkEMRYEFBu4JZ1P9TipHo8WEQrpXzEqcjmFMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzOVowIwYJKoZIhvcN
+# AQkEMRYEFHbicIckKbmAcxM98rZr6/AaCrzJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBf4Ddjz2Un12Hd3dDQ6+nHhGNtZegHDAW51xyRSKPE5fuV
-# DpsCF49vhd+YRlfBz1p66mXgGoIAsl1MIYKSwhf/pQnlRt9ejbq/KiHga1FTzMXx
-# FxX1r5UXT+J2jIA967BcqqoStFZ5MahbWiKPRyMPbDf++xCQXrOQfWtcKaN+0gQF
-# hyczUyuc6INhRaldT4Aupz4/3B+vcf+nnAWNO5vQV0z0NuX/TCwyHoCvaNbKiJOe
-# Fwo+1nJXsCYO16xihiewz2UOlAwc/IjJRSHKSdxmctfH8YSHpA4f3sYZjHPHNCyD
-# wgwzKAdIxPYnSJSxfSa5/1icM2CRp9ge6vheAI7C
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQAf23RenYfhigbWFR6pEW+4DoEv4bKteek8+q7Uv0Bizk/Q
+# Yxc/5wwqQ6y6X/S4g/153MDIVn9uo+bEHA5yKok1CvESKOLm6SAPcC+DL//X9J/0
+# RRTKwYwskYzpvWUzO620BhZPMA/x4Ay4vRZ/GYCBijABEgTrPkouXuFg6ssql5I+
+# hVT0lwDDW6h2JNW7Na6HqqUs9wGcsiO2NL1FxyLsGnTWRZFBPIpy0r/PosaQqDnu
+# SmYn9LBTksui3dvOYrfn5QLXKBkcU+2GiAXW4rRrC7Ig47ab7p8poJ9nNz/GN6a4
+# VaUyspnFChJRg0wZWNUJNW9hI3a3A1TgoK1kx1IN
 # SIG # End signature block

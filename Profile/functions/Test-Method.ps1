@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,114 +15,114 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Test-Method {
-  <#
-      .SYNOPSIS
-      Check if the given Function is loaded from a given Module
+	<#
+			.SYNOPSIS
+			Check if the given Function is loaded from a given Module
 
-      .DESCRIPTION
-      Check if the given Function is loaded from a given Module
+			.DESCRIPTION
+			Check if the given Function is loaded from a given Module
 
-      .PARAMETER Module
-      Name of the Module
+			.PARAMETER Module
+			Name of the Module
 
-      .PARAMETER Function
-      Name of the function
+			.PARAMETER Function
+			Name of the function
 
-      .EXAMPLE
-      PS C:\> Test-Method -Module 'NETX.AD' -Function 'Add-AdThumbnailPhoto'
-      True
+			.EXAMPLE
+			PS C:\> Test-Method -Module 'NETX.AD' -Function 'Add-AdThumbnailPhoto'
+			True
 
-      Description
-      -----------
-      Check if the given Function 'Add-AdThumbnailPhoto' is loaded from a
-      given Module 'NETX.AD', what it IS.
+			Description
+			-----------
+			Check if the given Function 'Add-AdThumbnailPhoto' is loaded from a
+			given Module 'NETX.AD', what it IS.
 
-      .EXAMPLE
-      PS C:\> Test-Method -Module 'NETX.AD' -Function 'Test-TCPPort'
-      True
+			.EXAMPLE
+			PS C:\> Test-Method -Module 'NETX.AD' -Function 'Test-TCPPort'
+			True
 
-      Description
-      -----------
-      Check if the given Function 'Test-TCPPort' is loaded from a given
-      Module 'NETX.AD', what it is NOT.
+			Description
+			-----------
+			Check if the given Function 'Test-TCPPort' is loaded from a given
+			Module 'NETX.AD', what it is NOT.
 
-      .NOTES
-      Quick helper function to shortcut things. / MBE
+			.NOTES
+			Quick helper function to shortcut things. / MBE
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.Boolean])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 1,
-    HelpMessage = 'Name of the Module')]
-    [Alias('moduleName')]
-    [System.String]$Module,
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 2,
-    HelpMessage = 'Name of the function')]
-    [Alias('functionName')]
-    [System.String]$Function
-  )
+	[CmdletBinding()]
+	[OutputType([System.Boolean])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 1,
+		HelpMessage = 'Name of the Module')]
+		[Alias('moduleName')]
+		[System.String]$Module,
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 2,
+		HelpMessage = 'Name of the function')]
+		[Alias('functionName')]
+		[System.String]$Function
+	)
 
-  PROCESS {
-    if ($pscmdlet.ShouldProcess("$Function", "Check if loaded from $Module")) {
-      ((Get-Command -Module $Module |
-          Where-Object -FilterScript { $_.Name -eq "$Function" } |
-      Measure-Object).Count -eq 1)
-    }
-  }
+	PROCESS {
+		if ($pscmdlet.ShouldProcess("$Function", "Check if loaded from $Module")) {
+			((Get-Command -Module $Module |
+					Where-Object -FilterScript { $_.Name -eq "$Function" } |
+			Measure-Object).Count -eq 1)
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnni99F8PyY8QJtAbH/riIDTM
-# uzagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1uPGQPJ2Tl2NDXEAlIEYUbwd
+# qJOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -264,25 +265,25 @@ function global:Test-Method {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBREEoWtrJZJNOT2aLmDfBXyK8lnCDANBgkqhkiG9w0B
-# AQEFAASCAQB6kXLZLB/cbmtwkxv6Gi1mNAYEGzB9GeM0lVwcXOmOE5OTXQpzqhpz
-# ENQadaInDK70qahisgRBxUPzXfjx2ezFs+c7KoEDXNrdnQ2P3lQeIlVDpJM2HxK7
-# jB1uw5+dTxRwSKVd5y/LbnJSnxFOYshIWjQ4qlhbrgmmu3PM/DIVfJMDNTGSxAIq
-# 706M78KoVLPtCqcpCYiR6ZkhjWdEzlqvpJpoSr+U1uRqxr8K83Rxz/McYuRL2RlJ
-# HPlX8fQJA38klJtwQnSdrzsOqJlr0Z8F666UJBoXLzsRmdDdmaFgfTWI2DnS9284
-# Y6HykcRIPZn2QETFJnuJ4+fQPOPWf5UtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQTrpQBhJhvJ+HsEcG4OvcTe7Nb5TANBgkqhkiG9w0B
+# AQEFAASCAQBtce2tylNUAZREKxz2I6MzEXlCZUey/PEgvTgWjSr47wb8IxZ0o/P1
+# ERK/fUpAHp6a0Sk+R5bCAkC5t8H9NOBf5czeB333MSPs+7dfIvUD0il4asfTQXEE
+# VzMAXnZHL2sBq6whP3/gkcsbcGeSxZyPmycCN5IKplndN3HOqd5GiTP2ElFl0Xns
+# /aLYu2XNmsH2OXttWNvlgmR260lziZ/acJsJwcUJf4e8wWzQy8O/uD3egLr64OOQ
+# qii0U03apMGQjStqgrMlueL538lUJoQhlPRIZIXUst1OxFgQdOK9haDjwthiecsc
+# WlKz2qg/oneSxFdFjbPBANV7a2pHq/KzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIxMlowIwYJKoZIhvcN
-# AQkEMRYEFOVaYuDiebsg3dq6T719igA2csTRMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwM1owIwYJKoZIhvcN
+# AQkEMRYEFD/LWckhiXt3loQJjxTT1pFGewKaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBhjSxnnLPvq7YUVOYvRmpLODnGEoYC0IL204DFbYH1Scyw
-# 0NWzeo1JZLqKCftjjSaD/d7/kX0L30N2djeQT5Qlb/21sNA0t05RuV7zD1sk9O89
-# 6uTXZ7K9kNMxOV8S2nSda77mG9TNm/3P3QaP0uOANlRUJvEDRMRGwj66TqccQMct
-# ge11km0aOREC+TsBpTIrsIKUiXf6EYz4rxNVc36MlkMAsxm/N+Z5/ID+I4SmOjvX
-# 7cNmTjg2wcjubSeNkhMF/WIsIOvM0/8X1XN6QuVwzd3W8melRi7kZhl+UmZSy87N
-# qS1hMVFy9SCjMhN4ttc76tvUdc7j3RH0qK4SslHC
+# hkiG9w0BAQEFAASCAQArrakULEQHFik+EybXIB5rpyhrAUypMc22+5rmYOX9L0Wy
+# o9sl1Rg/YmWZfsd03Vaq9ghIqMJm8VsqKxrPnIcGvSYnR5+ePzkUYgl8JZLeip7l
+# tcURn20ySYbKRSR3pnyjFSm5HjRUg+wpEmiOMA1H++3dd5oaPco6JcvG2NDFdtyP
+# eMWFt6eSYh+tc0WjecHzgjoOD4/xDBe6nqUoi7NwPIKGnl9PEmEzydXEd2VWOACp
+# XnPPg6B/teXex2g6Mtuu+VTEiw8Dg4ZYbQBU+wW9Pk33pGZYcurAe5hUZWR9JhVN
+# 3qD39j30+DwdErRl+BwXYD8/38IHn0IbYLq7JeeD
 # SIG # End signature block

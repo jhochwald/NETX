@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,108 +15,108 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-Calendar {
-  <#
-      .SYNOPSIS
-      Dumps a Calendar to the Console
+	<#
+			.SYNOPSIS
+			Dumps a Calendar to the Console
 
-      .DESCRIPTION
-      Dumps a Calendar to the Console
+			.DESCRIPTION
+			Dumps a Calendar to the Console
 
-      You might find it handy to have that on a core Server or in a remote
-      PowerShell Session
+			You might find it handy to have that on a core Server or in a remote
+			PowerShell Session
 
-      .PARAMETER StartDate
-      The Date the Calendar should start
+			.PARAMETER StartDate
+			The Date the Calendar should start
 
-      .EXAMPLE
-      PS C:\> Get-Calendar
-      April 2016
-      Mo Tu We Th Fr Sa Su
-      01 02 03
-      04 05 06 07 08 09 10
-      11 12 13 14 15 16 17
-      18 19 20 21 22 23 24
-      25 26 27 28 29 30
+			.EXAMPLE
+			PS C:\> Get-Calendar
+			April 2016
+			Mo Tu We Th Fr Sa Su
+			01 02 03
+			04 05 06 07 08 09 10
+			11 12 13 14 15 16 17
+			18 19 20 21 22 23 24
+			25 26 27 28 29 30
 
-      Description
-      -----------
-      Dumps a Calendar to the Console
+			Description
+			-----------
+			Dumps a Calendar to the Console
 
-      .NOTES
-      Additional information about the function.
-  #>
+			.NOTES
+			Additional information about the function.
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(HelpMessage = 'The Date the Calendar should start')]
-    [ValidateNotNullOrEmpty()]
-    [datetime]$StartDate = (Get-Date)
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(HelpMessage = 'The Date the Calendar should start')]
+		[ValidateNotNullOrEmpty()]
+		[datetime]$StartDate = (Get-Date)
+	)
 
-  BEGIN {
-    $startDay = (Get-Date (Get-Date -Date $StartDate -Format 'yyyy-MM-01'))
-  }
+	BEGIN {
+		$startDay = (Get-Date (Get-Date -Date $StartDate -Format 'yyyy-MM-01'))
+	}
 
-  PROCESS {
-    Write-Host (Get-Date -Date $StartDate -Format 'MMMM yyyy')
-    Write-Host 'Mo Tu We Th Fr Sa Su'
+	PROCESS {
+		Write-Host -Object (Get-Date -Date $StartDate -Format 'MMMM yyyy')
+		Write-Host -Object 'Mo Tu We Th Fr Sa Su'
 
-    For ($i = 1; $i -lt (Get-Date $startDay).dayOfWeek.value__; $i++) {Write-Host '   ' -noNewLine}
+		For ($i = 1; $i -lt (Get-Date $startDay).dayOfWeek.value__; $i++) {Write-Host -Object '   ' -NoNewline}
 
-    $processDate = $startDay
+		$processDate = $startDay
 
-    while ($processDate -lt $startDay.AddMonths(1)) {
-      Write-Host (Get-Date -Date $processDate -Format 'dd ') -NoNewLine
+		while ($processDate -lt $startDay.AddMonths(1)) {
+			Write-Host -Object (Get-Date -Date $processDate -Format 'dd ') -NoNewline
 
-      if ((Get-Date $processDate).dayOfWeek.value__ -eq 0) { Write-Host '' }
-      $processDate = $processDate.AddDays(1)
-    }
+			if ((Get-Date $processDate).dayOfWeek.value__ -eq 0) { Write-Host -Object '' }
+			$processDate = $processDate.AddDays(1)
+		}
 
-    Write-Host ''
-  }
+		Write-Host -Object ''
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqCHAptPwIIPv8x7TdClNPLmU
-# 3KWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFaDfaVg7xF6Go6Y16TDX+gA/
+# gpugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -258,25 +259,25 @@ function Global:Get-Calendar {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSBY0qPk1BIswPFdRbv0tVHiQHXczANBgkqhkiG9w0B
-# AQEFAASCAQAYvTIUe88nGOA5cRTkMykg4D+yhyu2USBhrXfiUTblZtXaHiPxClZm
-# lwQjYMx0NytXpTozY8P5gEWW4xqOaCTBLwI2rQD/2U2lDSnXuCoPLpeeQb629Nab
-# HlkUyZmBW6LqFEKvQZh/HE7CDZcfQFPOQlYzb25gWcnI4rRdL2kW0gkqZRtMb14W
-# n897uo5ZyBB2vEO66a90VHI626TgKa9/Vb3Ygik9AafYQqnBnj9FBlzFHIkozZmm
-# q+lM/gT8tWd60BmtIu8av60p7imKx5hSpT0FmKeTvLXRfIQxEuXDAXrn/M2MzUfB
-# NcMuqzG17twBVYMQH0IgYJtWv3ktU4iSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSGcdNWLEONPeetAHRFYZlNKTQt1zANBgkqhkiG9w0B
+# AQEFAASCAQBDXtzml5OO4C4Gc3oC91MeBkSQO8ZTP4S1XsWkpzmp16EYLyoWFi/v
+# KhwIQ7nRPfq6wRPw7XNq+sq9ycbIUo4MXgWLlUflv4SIgN4h5QzaCPuoJufhNX0n
+# Gv1OZa954ZN0o+kJmxcv170BbV/e5aQcZzYjOngldj48hcfTc6oF1ridhR8A6CvO
+# DiaI8+GjIpLjCe6msVu6SQiYXH62VBQU4VBBlvxbCVBmFnmA4CinScnF4guPTPFx
+# LxJGw1n3P/M0KB5dqXaVpikuUjFSUUsECP+anhCrntVRT0U9e5MD/IoU1aj8Wbso
+# shJX/4YxH1ufRF26kmk7NkuSSlWjJOIsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNFowIwYJKoZIhvcN
-# AQkEMRYEFBmy8lBWFuOBgg4EpQN3LxpRTiW/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyMlowIwYJKoZIhvcN
+# AQkEMRYEFAFI7yX2nOJWjwg2G3BVMy8zGBI9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA/ssZbsunLLcuafMTvJgTviPfbbzsbqQB3m3/DN/dH25lY
-# T3CdTxd+DA5k8z70sbRc51xug7d3bIwFP5ioMATi00qGvteYv32S9TBM1OGkEih8
-# vUNMD/S7csmPvvo3A8ZwlsfT8uMcJ9wxiHYAdN9H4zKBikDCYXNKg/0uY7YTB9cO
-# dlUdsF5X9/0b/x+tCmXbyBe3F0BstUpS1JdU2dGsRZL4b/njSzNOu4AgilS82gCW
-# 6uH1w8PezPUQ54sUe6OHOAO8wwctURWtb1vYMEfnqLmH82JfO9XYOF/oiRu8XY1J
-# uPlVDXgN5/++zEgFM8Cz7/7e8j/++R+DT2SqOZ//
+# hkiG9w0BAQEFAASCAQA3FmNF5N5PKNMT5dRwh61akHvz8/0w9qudfQcAOqKQGch1
+# PChv/OtM6DZ0253XzoO7mo8QGbdZrlOKfe4TyZOH1sKu4BjYO9Dl8YAD6PcS1kj3
+# PLG5s4juGJ7pqh/+aJvLp0EOQfKbLVpAIuiMrAhkAZmiQil1MInoybPTrLTS4BvH
+# QYKY3Zv/Mm7Uvf1HXKMgfBJu/TgNgzs3bCmasAp+Zz0EM3ROb9x4q1akqrAx0yHY
+# Gt02McD23e71PtllHa6S0YRnBLsoDuXbBqxZ9vMfx6cAPoiaibafmMLRu3KLScs6
+# SC3zNx1v36KrSbvbvXVcMsjbdIxP46JroeL88Ift
 # SIG # End signature block

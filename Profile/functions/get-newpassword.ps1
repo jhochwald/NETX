@@ -1,12 +1,13 @@
+﻿#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-22
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,176 +15,176 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-NewPassword {
-  <#
-      .SYNOPSIS
-      Generates a New password with varying length and Complexity,
+	<#
+			.SYNOPSIS
+			Generates a New password with varying length and Complexity,
 
-      .DESCRIPTION
-      Generate a New Password for a User.  Defaults to 8 Characters
-      with Moderate Complexity.  Usage
+			.DESCRIPTION
+			Generate a New Password for a User.  Defaults to 8 Characters
+			with Moderate Complexity.  Usage
 
-      GET-NEWPASSWORD or
+			GET-NEWPASSWORD or
 
-      GET-NEWPASSWORD $Length $Complexity
+			GET-NEWPASSWORD $Length $Complexity
 
-      Where $Length is an integer from 1 to as high as you want
-      and $Complexity is an Integer from 1 to 4
+			Where $Length is an integer from 1 to as high as you want
+			and $Complexity is an Integer from 1 to 4
 
-      .PARAMETER PasswordLength
-      Password Length
+			.PARAMETER PasswordLength
+			Password Length
 
-      .PARAMETER Complexity
-      Complexity Level
+			.PARAMETER Complexity
+			Complexity Level
 
-      .EXAMPLE
-      PS C:\> Get-NewPassword
-      zemermyya784vKx93
+			.EXAMPLE
+			PS C:\> Get-NewPassword
+			zemermyya784vKx93
 
-      Description
-      -----------
-      Create New Password based on the defaults
+			Description
+			-----------
+			Create New Password based on the defaults
 
-      .EXAMPLE
-      PS C:\> Get-NewPassword 9 1
-      zemermyya
+			.EXAMPLE
+			PS C:\> Get-NewPassword 9 1
+			zemermyya
 
-      Description
-      -----------
-      Generate a Password of strictly Uppercase letters 9 letters long
+			Description
+			-----------
+			Generate a Password of strictly Uppercase letters 9 letters long
 
-      .EXAMPLE
-      PS C:\> Get-NewPassword 5
-      zemermyya784vKx93K2sqG
+			.EXAMPLE
+			PS C:\> Get-NewPassword 5
+			zemermyya784vKx93K2sqG
 
-      Description
-      -----------
-      Generate a Highly Complex password 5 letters long
+			Description
+			-----------
+			Generate a Highly Complex password 5 letters long
 
-      .EXAMPLE
-      $MYPASSWORD = (ConvertTo-SecureString (Get-NewPassword 8 2) -asplaintext -Force)
+			.EXAMPLE
+			$MYPASSWORD = (ConvertTo-SecureString (Get-NewPassword 8 2) -asplaintext -Force)
 
-      Description
-      -----------
-      Create a new 8 Character Password of Uppercase/Lowercase and store as
-      a Secure.String in Variable called $MYPASSWORD
+			Description
+			-----------
+			Create a new 8 Character Password of Uppercase/Lowercase and store as
+			a Secure.String in Variable called $MYPASSWORD
 
-      .NOTES
-      The Complexity falls into the following setup for the Complexity level
-      1 - Pure lowercase Ascii
-      2 - Mix Uppercase and Lowercase Ascii
-      3 - Ascii Upper/Lower with Numbers
-      4 - Ascii Upper/Lower with Numbers and Punctuation
+			.NOTES
+			The Complexity falls into the following setup for the Complexity level
+			1 - Pure lowercase Ascii
+			2 - Mix Uppercase and Lowercase Ascii
+			3 - Ascii Upper/Lower with Numbers
+			4 - Ascii Upper/Lower with Numbers and Punctuation
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(HelpMessage = 'Password Length')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Length')]
-    [System.Int32]$PasswordLength = '8',
-    [Parameter(HelpMessage = 'Complexity Level')]
-    [ValidateNotNullOrEmpty()]
-    [Alias('Level')]
-    [System.Int32]$Complexity = '3'
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(HelpMessage = 'Password Length')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Length')]
+		[System.Int32]$PasswordLength = '8',
+		[Parameter(HelpMessage = 'Complexity Level')]
+		[ValidateNotNullOrEmpty()]
+		[Alias('Level')]
+		[System.Int32]$Complexity = '3'
+	)
 
-  PROCESS {
-    # Delare an array holding what I need.  Here is the format
-    # The first number is a the number of characters (Ie 26 for the alphabet)
-    # The Second Number is Where-Object it resides in the Ascii Character set
-    # So 26,97 will pick a random number representing a letter in Asciii
-    # and add it to 97 to produce the ASCII Character
-    [int32[]]$ArrayofAscii = 26, 97, 26, 65, 10, 48, 15, 33
+	PROCESS {
+		# Delare an array holding what I need.  Here is the format
+		# The first number is a the number of characters (Ie 26 for the alphabet)
+		# The Second Number is Where-Object it resides in the Ascii Character set
+		# So 26,97 will pick a random number representing a letter in Asciii
+		# and add it to 97 to produce the ASCII Character
+		[int32[]]$ArrayofAscii = 26, 97, 26, 65, 10, 48, 15, 33
 
-    # Complexity can be from 1 - 4 with the results being
-    # 1 - Pure lowercase Ascii
-    # 2 - Mix Uppercase and Lowercase Ascii
-    # 3 - Ascii Upper/Lower with Numbers
-    # 4 - Ascii Upper/Lower with Numbers and Punctuation
-    If ($Complexity -eq $NULL) {Set-Variable -Name 'Complexity' -Scope:Script -Value $(3)}
+		# Complexity can be from 1 - 4 with the results being
+		# 1 - Pure lowercase Ascii
+		# 2 - Mix Uppercase and Lowercase Ascii
+		# 3 - Ascii Upper/Lower with Numbers
+		# 4 - Ascii Upper/Lower with Numbers and Punctuation
+		If ($Complexity -eq $NULL) {Set-Variable -Name 'Complexity' -Scope:Script -Value $(3)}
 
-    # Password Length can be from 1 to as Crazy as you want
-    #
-    If ($PasswordLength -eq $NULL) {Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)}
+		# Password Length can be from 1 to as Crazy as you want
+		#
+		If ($PasswordLength -eq $NULL) {Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)}
 
-    # Nullify the Variable holding the password
-    Remove-Variable -Name 'NewPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		# Nullify the Variable holding the password
+		Remove-Variable -Name 'NewPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
-    # Here is our loop
-    Foreach ($counter in 1..$PasswordLength) {
-      # What we do here is pick a random pair (4 possible)
-      # in the array to generate out random letters / numbers
-      Set-Variable -Name 'pickSet' -Scope:Script -Value $((Get-Random -Maximum $Complexity) * 2)
+		# Here is our loop
+		Foreach ($counter in 1..$PasswordLength) {
+			# What we do here is pick a random pair (4 possible)
+			# in the array to generate out random letters / numbers
+			Set-Variable -Name 'pickSet' -Scope:Script -Value $((Get-Random -Maximum $Complexity) * 2)
 
-      # Pick an Ascii Character and add it to the Password
-      # Here is the original line I was testing with
-      # [System.Char] (GET-RANDOM 26) +97 Which generates
-      # Random Lowercase ASCII Characters
-      # [System.Char] (GET-RANDOM 26) +65 Which generates
-      # Random Uppercase ASCII Characters
-      # [System.Char] (GET-RANDOM 10) +48 Which generates
-      # Random Numeric ASCII Characters
-      # [System.Char] (GET-RANDOM 15) +33 Which generates
-      # Random Punctuation ASCII Characters
-      Set-Variable -Name 'NewPassword' -Scope:Script -Value $($NewPassword + [System.Char]((Get-Random -Maximum $ArrayofAscii[$pickset]) + $ArrayofAscii[$pickset + 1]))
-    }
-  }
+			# Pick an Ascii Character and add it to the Password
+			# Here is the original line I was testing with
+			# [System.Char] (GET-RANDOM 26) +97 Which generates
+			# Random Lowercase ASCII Characters
+			# [System.Char] (GET-RANDOM 26) +65 Which generates
+			# Random Uppercase ASCII Characters
+			# [System.Char] (GET-RANDOM 10) +48 Which generates
+			# Random Numeric ASCII Characters
+			# [System.Char] (GET-RANDOM 15) +33 Which generates
+			# Random Punctuation ASCII Characters
+			Set-Variable -Name 'NewPassword' -Scope:Script -Value $($NewPassword + [System.Char]((Get-Random -Maximum $ArrayofAscii[$pickset]) + $ArrayofAscii[$pickset + 1]))
+		}
+	}
 
-  END {
-    # When we're done we Return the $NewPassword
-    # BACK to the calling Party
-    Write-Output -InputObject $NewPassword
-  }
+	END {
+		# When we're done we Return the $NewPassword
+		# BACK to the calling Party
+		Write-Output -InputObject $NewPassword
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCufVUBgQutXtXTaXZP0Of0Ou
-# LtugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2BFCodrP51Zrd9olwnWhPauD
+# arigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -326,25 +327,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQzW9KP+VepxVTx4H1DwRDgTs7n+jANBgkqhkiG9w0B
-# AQEFAASCAQCK+uJE/YD17s9jjv5LcAiHC1yGKG8GAM2KI33zm3ktRA6E6wIRUfUZ
-# aIm1LYycZaEFmmkl4onNkNdq3SiVhDVWsTKyT8bvOBTeewOcz6F7Iofr7GM+NI06
-# t3DidAzp4VHp8Ecu997/N0/D2GyrqJYKYzCNm2noiU3N4BGQ7q4iGFaDJY8o7BtP
-# iaW8VH1uTTIZk22j80TCvZc7MRzH/BMetQEalopZ4XiTijWPMyoCnLp0gTbvU6Du
-# 6TU5K4N0K6TTxu4gZrne3zEjE/Zysh8X+WbgZonD3cWVrfHjGy0ymL3geX8T/OTC
-# sJn5rPa467WRjhycfYBwEjwJZAvnammzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSL/SVxJ86POE3s52a7X713Fp1gmjANBgkqhkiG9w0B
+# AQEFAASCAQBjdULzqq9+BLREaoGryjaNgsDTEZWdGqjH2cj1Znrce2qbiGURKWpo
+# 04RgmeCymYthLOeAnIBD6pndVjRcOsqATzO6VOzMBiY7ZJBjl9QHozCIn1VqNlM5
+# PiygY9iMSGxQeFSUnrf+7sk/Y1ORqx7CHElqI8TAkceUIh8Smh1yUp2dwwUwD2/S
+# 7PNr2P/XWdfhIysIGn5l4gXteeHveZk3L2pJ2zofPuwvXxiBxxPBjNI20+kPCKPv
+# lHAdqrTgVx+MUGU6RL3FXnVEoMDfE1lhWfsQnC4U9L2FI6uWws9E46gwt+uO7zPX
+# f6Eh68HvlTnUaxbQP8/bPnGmR+hOecH3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0MFowIwYJKoZIhvcN
-# AQkEMRYEFFn/MYwPg8hhkcn7Nu9Z5ZZNxbrnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyOVowIwYJKoZIhvcN
+# AQkEMRYEFBFp0pYo+MV1Z6Ts95vv5eqaXBaEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQB9flJ/UWDVE1ac26LG4Wb3n220BOgTBAh3n2TDaD5Fc2L6
-# +dn1fh4zbM/Eq/LyxHPD8s6PNxTUm6boRfKZIMXtyvnF+QQel0mo/mTarkSGObol
-# 6oqpTNbcpnHmRwFybMipui50SNVjogUS3Qx0n3F7i7y3FIcZ1gabu+pIVaFM6UQ8
-# 5r0esAE3fgY+m+hRfzzPuaD/9AI6V+XHHELihNUTaUmQqa70Yy3DmPlYT26WbPaF
-# krM14sDroqgvJf3qG2Fo5afRy9doAFAdbcXEtAJCsPGR0ODZDlF+FjDjmmmTsCwu
-# sydstYK/pQB00YOLM5JY8GZIKyQaVF8ZN9lUXb6P
+# hkiG9w0BAQEFAASCAQBZUkvUInjbkd/qNLiwTQro3v8kZsBnr+Llpkxt5dEswsve
+# DQX34NZpjWzF9vyyr9OZpgIsHwyqoPIFWOUAigu+DHyh0C11n/FBDTt4N5PPZK0C
+# RFqwHpKZVAnAiI700hGyv0q6Mz7+xQxV33F+EJ451vcwt7kH31+X51IDCJFkPZU0
+# 3bFxbJJHopu/rCJbsyZpjFPJCIgb8/BYsliLzPxAP6f8j+HzTHwSdHowJmoM6IMQ
+# 5YJK9yEOcOBiRPv+YC0jbv+aKNCzAlCw+yWBOf5Ix9q4NgHJklBm/c48zV4P0EuJ
+# 5wq8xP0HOZGScnvCFfu67F0CF5MQeFnK0xDRq2+a
 # SIG # End signature block

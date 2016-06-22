@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-	#################################################
-	# modified by     : Joerg Hochwald
-	# last modified   : 2016-06-09
-	#################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-	Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,71 +15,71 @@
 #region License
 
 <#
-	Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-	All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-	1. Redistributions of source code must retain the above copyright notice,
-	   this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-	2. Redistributions in binary form must reproduce the above copyright notice,
-	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-	3. Neither the name of the copyright holder nor the names of its
-	   contributors may be used to endorse or promote products derived from
-	   this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-	By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Add-AppendPath {
-<#
-	.SYNOPSIS
-		Appends a given folder (Directory) to the Path
+	<#
+			.SYNOPSIS
+			Appends a given folder (Directory) to the Path
 
-	.DESCRIPTION
-		Appends a given folder (Directory) to the Path
+			.DESCRIPTION
+			Appends a given folder (Directory) to the Path
 
-	.EXAMPLE
-		PS C:\> Add-AppendPath
+			.EXAMPLE
+			PS C:\> Add-AppendPath
 
-		Description
-		-----------
-		Adds "C:\scripts\PowerShell\" (the default) to the Path
+			Description
+			-----------
+			Adds "C:\scripts\PowerShell\" (the default) to the Path
 
-	.EXAMPLE
-		PS C:\> Add-AppendPath -Path 'C:\scripts\batch\'
+			.EXAMPLE
+			PS C:\> Add-AppendPath -Path 'C:\scripts\batch\'
 
-		Description
-		-----------
-		Adds 'C:\scripts\batch\' to the Path
+			Description
+			-----------
+			Adds 'C:\scripts\batch\' to the Path
 
-	.LINK
-		Support https://github.com/jhochwald/NETX/issues
-#>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 	[CmdletBinding()]
 	param
 	(
 		[Parameter(ValueFromPipeline = $true,
-				   Position = 0,
-				   HelpMessage = 'Path to add to the system path')]
+				Position = 0,
+		HelpMessage = 'Path to add to the system path')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Folder')]
 		[System.String]$Pathlist = 'C:\scripts\PowerShell\'
@@ -105,29 +106,29 @@ function Global:Add-AppendPath {
 }
 
 function Global:Remove-FromPath {
-<#
-	.SYNOPSIS
-		Removes given Directory or Directories from the PATH
+	<#
+			.SYNOPSIS
+			Removes given Directory or Directories from the PATH
 
-	.DESCRIPTION
-		Removes given Directory or Directories from the PATH
+			.DESCRIPTION
+			Removes given Directory or Directories from the PATH
 
-	.PARAMETER Pathlist
-		The PATH to remove
+			.PARAMETER Pathlist
+			The PATH to remove
 
-	.EXAMPLE
-		PS C:\> Remove-FromPath -Pathlist 'C:\scripts\batch\'
+			.EXAMPLE
+			PS C:\> Remove-FromPath -Pathlist 'C:\scripts\batch\'
 
-		Description
-		-----------
-		Removes 'C:\scripts\batch\' from the Path
+			Description
+			-----------
+			Removes 'C:\scripts\batch\' from the Path
 
-	.LINK
-		Add-AppendPath
+			.LINK
+			Add-AppendPath
 
-	.NOTES
-		Just a little helper function
-#>
+			.NOTES
+			Just a little helper function
+	#>
 
 	[CmdletBinding()]
 	param
@@ -139,10 +140,10 @@ function Global:Remove-FromPath {
 
 	PROCESS {
 		foreach ($Path in $Pathlist) {
-			$path = @() + $path
-			$paths = ($env:path -split ';')
-			$paths = ($paths | Where-Object { $path -notcontains $_ })
-			$env:path = $paths -join ';'
+			$Path = @() + $Path
+			$paths = ($env:Path -split ';')
+			$paths = ($paths | Where-Object -FilterScript { $Path -notcontains $_ })
+			$env:Path = $paths -join ';'
 		}
 	}
 }
@@ -150,8 +151,8 @@ function Global:Remove-FromPath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUf4OYE2QFsZ1Tovx9LEQZWWcJ
-# SU+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAKyxHlwB2Oje1WPyGb/q7YFk
+# giOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +295,25 @@ function Global:Remove-FromPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQW5oxaH/UdRaZBgazz05fcqJ2d3zANBgkqhkiG9w0B
-# AQEFAASCAQCov4UaPAxrLLR3fN/AvB3yQY7Q0ysoYskwG37ClFh/1mFaGQcYmSBe
-# 4x08UFv3WAG9QzoUKcrvh/5xUntZHRhXk0uocvNsJZKugxSwAQIkd9eGJIfpI8Os
-# V04DU+bdSAkRJ372Oa1iTz4sI6RuGqeekB89TNbfyGaMg3t3RluB664xu1IOOFNO
-# RifE110J5Yq5fj1/rq+mBK91WeNkisdYf7HVmOY5MIvYR/SrZ8pR9K/p+ZR2/Ojb
-# 1De7BcrhHpSfvIk+IgjoYBh9Ung8uX82JHH5k5+Zum1m+P5qGsakyBcM5qFBT/+W
-# iDkFNq4MDtkUjzqb9p7L8+b3D2BBzmCzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSXHpSCYlewDz/q0ibIDeUh82Z9zzANBgkqhkiG9w0B
+# AQEFAASCAQB/CsoIy1dq4O7uvtFXGhmx2TopQjhBkGkIEOsFdKUdZXyANRAI36Xb
+# QHB7O1Qyid5lCoIwNcBNFWH2Bv76hj0MOGapQ5fGCc4C8GNor6FDd7SeLIkamNHI
+# 7VHcuRJ1NWjcIRUaa3ZZ1yfCr2nCCvqgQ+y5w6iDJiowP/Hy3DHyWrxY6iZUbHF0
+# pabHU+rJmsaBoXrUby8uJm6xZiYO8ISv/qfdBV8tFk55DSQgEhcZY/mX9AYm9tga
+# S+wFPXvcxmz7zOO2mGGrZb+zFXpPsKrM0mQ5eFMEwNaJJB6O8G7pQrcged416HZ0
+# TzImvbtE4kVKclM7N5kEeOvhC2yJTTzkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwMVowIwYJKoZIhvcN
-# AQkEMRYEFMz9yjRQLpnLwXDbjq4U1SBwBij7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTE1MlowIwYJKoZIhvcN
+# AQkEMRYEFBFUWosQ1j2h41hJxR0ZC73kO3CMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAB7dQkBzBBiLifAaSNmEOpWzcQkoNxiR00nb6u6+BjOUta
-# bj7CYQ/ml8H5SA0QatnbMpdWXE6Wp98AqkKngmy5oqlF2etGVnHdB7zWrUAHclpf
-# frQezBlPJEPL6h9s8ZeixHFBSQBVxuc//Wgd2RQoHR1ns4gbjwl5b+MSyKZDD9aY
-# vnWnzoRH9Zrcja/t2gVVsy35jnplIjwUb3SUBRcK50oEN90a4ijySSvWZNQF93eT
-# ec0jKjdbqjYI1i6cn2vrNqAW6XQmzjSS4Wpb2Awd+VbT9EJpYcWPkIAhsJYaDzFA
-# OcMXZPmuNfNGmJCP6G2gONgESbSW32SgdOhvAlHi
+# hkiG9w0BAQEFAASCAQBizQz9ZbR2Y8pJWgMSv4toe0uOB2II5OajYKpRKj56hHvX
+# pfsw3ZgRRy/4rCnHKDIC4cfTgaZHmZ1W1LVbIkXEN44RtCX/k3fuffFikooSYFUp
+# YBfUXxSdWv721opMmQKJkrmC2zusbhIIhEP2Ve/mSQ1VWkl2l4VHvNn/tMif185Z
+# 8RyTGhRbFpx9vywHR6C7jdM4YDpsWyPQFpYUoDNpn/EDiA6aw5zKetX+mdVyfXmu
+# 8O26QY1n7kTGr+CePxrdcCS2WEtbmqKBjAUeBALYo7QIWpj8glVDQLm+JlSOrcN0
+# 2TDg7RnC/1MGjD32ix22X6CUghuhe8I6WQX4Xf/V
 # SIG # End signature block

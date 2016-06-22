@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,108 +15,108 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Get-Clipboard {
-  <#
-      .SYNOPSIS
-      Get the content of the Clipboard
+	<#
+			.SYNOPSIS
+			Get the content of the Clipboard
 
-      .DESCRIPTION
-      Get the content of the Clipboard
+			.DESCRIPTION
+			Get the content of the Clipboard
 
-      .NOTES
-      STA Mode only!
+			.NOTES
+			STA Mode only!
 
-      .LINK
-      Set-Clipboard
-  #>
+			.LINK
+			Set-Clipboard
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    if ($Host.Runspace.ApartmentState -eq 'STA') {
-      Add-Type -AssemblyName PresentationCore
-      [Windows.Clipboard]::GetText()
-    } else {Write-Warning -Message ('Run {0} with the -STA parameter to use this function' -f $Host.Name)}
-  }
+	PROCESS {
+		if ($Host.Runspace.ApartmentState -eq 'STA') {
+			Add-Type -AssemblyName PresentationCore
+			[Windows.Clipboard]::GetText()
+		} else {Write-Warning -Message ('Run {0} with the -STA parameter to use this function' -f $Host.Name)}
+	}
 }
 
 function Global:Set-Clipboard {
-  <#
-      .SYNOPSIS
-      Copy Content to the Clipboard
+	<#
+			.SYNOPSIS
+			Copy Content to the Clipboard
 
-      .DESCRIPTION
-      Copy Content to the Clipboard
+			.DESCRIPTION
+			Copy Content to the Clipboard
 
-      .PARAMETER Import
-      Content to import
+			.PARAMETER Import
+			Content to import
 
-      .NOTES
-      STA Mode only!
+			.NOTES
+			STA Mode only!
 
-      .LINK
-      Get-Clipboard
-  #>
+			.LINK
+			Get-Clipboard
+	#>
 
-  [CmdletBinding()]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Content to import')]
-    [ValidateNotNullOrEmpty()]
-    [System.String]$Import
-  )
+	[CmdletBinding()]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Content to import')]
+		[ValidateNotNullOrEmpty()]
+		[System.String]$Import
+	)
 
-  PROCESS {
-    if ($Host.Runspace.ApartmentState -eq 'STA') {
-      Add-Type -AssemblyName PresentationCore
-      [Windows.Clipboard]::SetText($Import)
-    } else {Write-Warning -Message ('Run {0} with the -STA parameter to use this function' -f $Host.Name)}
-  }
+	PROCESS {
+		if ($Host.Runspace.ApartmentState -eq 'STA') {
+			Add-Type -AssemblyName PresentationCore
+			[Windows.Clipboard]::SetText($Import)
+		} else {Write-Warning -Message ('Run {0} with the -STA parameter to use this function' -f $Host.Name)}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPV3FMwwqVPG1KHCUTZwVWqY3
-# LbmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/CnlHqW9TXQfnTssnA31SCSG
+# Nt6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -258,25 +259,25 @@ function Global:Set-Clipboard {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSbSRRGiI5sIvW5Owc5a7qS1zNVvTANBgkqhkiG9w0B
-# AQEFAASCAQASlmmVxudy5Lk1ZV+YBx2Fe/8xVbWMsJMJ52OCxnWG5KDFUppoh89H
-# TIsBeGWQCLBFmZeFEFPrkwT6mnrV1bZjUJQ3Rs0+HarxtzrxZBcSjb7ENv7rDeZ8
-# n+7VjFgZr0/ntrjRiR8iiMG8v9AoRc2lpMC/SCeMS2SBDUSn8j4F8nOt74DgtrU4
-# KDJkRglstwRWFTLfNz2vqY5YfgRcnlUC7Vvv16LT9RiogkCwEKe0/rDRiQy6SAnb
-# JTjDW2U+bAfO37WJ1RTiH/vfJmnC7XqNyfgpdKp89mANPlrrNpoMDuJ7dkvUctTR
-# UNL0PIqcFxYYpT3phN71aYAvnkgheP6yoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSE5bM9kgHmm7OLHDkVEiGea251LzANBgkqhkiG9w0B
+# AQEFAASCAQA/4aMBnVGMmazzpWGnvTU3/1BKO9p0Ul2HQ1AlLq9GQwDsvZR6yMoi
+# dzsRhz6/Qta7N9hUTXEvc+GgPdfuGc/OONhrWYgGG/dPmycChQbq6mxAPcJ0OnRG
+# xZWLOzED3lzdCRbvn86MdaSTrD5vDQI1DqWorbvVTuNRrwdearaCWcSBLQo98OsR
+# ahCUq7RnwBtRYvqpkpCPI+kmv2lq3y/H77C+Vu9pPzu+aX5RBoS12IefMQZGsPky
+# 9/ltAV4QHLMa9tHe1rcUvUtxnhCJ/uKu+81PcAjFXKZdziW7Osthd5YOejGoqaQZ
+# hRbr9UsxaC7aln0Xh2VF/gtLPaEYXQHQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyNFowIwYJKoZIhvcN
-# AQkEMRYEFKXTQoeeB0kzjJ3fR4n1KYbU2PK2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExM1owIwYJKoZIhvcN
+# AQkEMRYEFBzJhVUp09gKefMSRep3xbx0ENIOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCQmwlsHeMzYcvRZ/X/vIDc5c1WwQtyb9FJaGyX9hQgodn5
-# aAOYPRPkXaYe9IcNgEpK7Of2jx87LUnt8OOvr9tCfOUP9heRpgID/BQNqpVfZg5X
-# c+8q4GBecFH1tCu6khtgCpYy4N+PqMzVPVAQlcgoqGbDmT1s8nngeVzwoXEG1/qk
-# lRs5XKbuWUigJxanTIXCrTP4lGdMzA2eqLbj8NHtPmvQvnr/BcbA/J8UUGdexatT
-# 3kvBxf71QFLZvG5Y6oJ3KQiy+xeMCcqCUSUVul/XCWf1yoA3jlZuWH2TyRIB80SR
-# rzDeBeYNS+WOsUwk1YUp9DmV80p0XegasxnfLLw/
+# hkiG9w0BAQEFAASCAQCPe8m6n8bd3Ji4xTII1jIixbiIuK/8elbiA3gPHwaJires
+# T0X1ddGWOj54k7yIY9FJvb+fZBAF2MXbwsgxz9XoR5IdimMKWih5eBnKm57QgKBC
+# haJuqFUDv85MD4hVp+LRHgHauu3gxNalV305tZtlEoRUrb0m2CKmSjga+zEOWt5n
+# kC91grADh8mOR28uTZJdPugKkKFofWE76MHpQI8bKXMJV3pUpyqGqRHWAFj9r++v
+# J2gX2tsgtdjqoCUkmCNLrfNowZO7Hyl32tQfAQOemvN+Gd3iK+sB+PmjDJpurjlq
+# 5AhtshsRGp8MzYdSHY58GYAMX086u4MTDlK9pAKr
 # SIG # End signature block

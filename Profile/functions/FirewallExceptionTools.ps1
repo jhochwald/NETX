@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,95 +15,95 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-FirewallExceptionRDP {
-  <#
-      .SYNOPSIS
-      Enable RDP via Windows Firewall
+	<#
+			.SYNOPSIS
+			Enable RDP via Windows Firewall
 
-      .DESCRIPTION
-      Enable RDP via Windows Firewall
+			.DESCRIPTION
+			Enable RDP via Windows Firewall
 
-      .EXAMPLE
-      PS C:\> Set-FirewallExceptionRDP
+			.EXAMPLE
+			PS C:\> Set-FirewallExceptionRDP
 
-      Description
-      -----------
-      Enable RDP via Windows Firewall
-  #>
+			Description
+			-----------
+			Enable RDP via Windows Firewall
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param ()
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param ()
 
-  PROCESS {
-    netsh.exe advfirewall firewall set rule group="remote desktop" new enable=Yes
-  }
+	PROCESS {
+		netsh.exe advfirewall firewall set rule group="remote desktop" new enable=Yes
+	}
 }
 
 function global:Set-FirewallExceptionFileSharing {
-  <#
-      .SYNOPSIS
-      Enable File Sharing via Windows Firewall
+	<#
+			.SYNOPSIS
+			Enable File Sharing via Windows Firewall
 
-      .DESCRIPTION
-      Enable File Sharing via Windows Firewall
+			.DESCRIPTION
+			Enable File Sharing via Windows Firewall
 
-      .EXAMPLE
-      PS C:\> Set-FirewallExceptionFileSharing
+			.EXAMPLE
+			PS C:\> Set-FirewallExceptionFileSharing
 
-      Description
-      -----------
-      Enable File Sharing via Windows Firewall
-  #>
+			Description
+			-----------
+			Enable File Sharing via Windows Firewall
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param ()
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param ()
 
-  PROCESS {
-    netsh.exe advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
-  }
+	PROCESS {
+		netsh.exe advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXitCN5wlBRD3hjCqQRz9J+qt
-# oxmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjhWC8hek0u+gfr1JVaeXRZpM
+# eOOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +246,25 @@ function global:Set-FirewallExceptionFileSharing {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS9rbCWoruVKg4j4SGbMRzhKMRNETANBgkqhkiG9w0B
-# AQEFAASCAQA6Ab8sXXprMcXABrei46Y9E67DgVgeGIkvA5mel/IW+JNObtpgfdey
-# LaVhekcMsAUqVVlnZfyCJuhbMXaNXo5bvjBTPrwLoBebg4eica7ZUfBfRHehj641
-# 9DRrsFNhp3J4RghFbSy0NJSkNVEm6jdO0zg3i9Aspv4metPDbQZJIXzTTAQmoXBe
-# EZIVOFneXW3Cz9yLwvmKt7xJMU0LoZQMSYXHbT7uiQubEl0/hHMZCyFavT9mbHm3
-# pzqsbCPcN1gBxOkjJJL0JtY8kf8CUgQJjLl6WutQumgyZjgzxOLQXEx2SACu4SLq
-# tGn1K6jRdqVcA/YkYyFk4XEpJ/BmZl7ooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTqDfYugPBnGFs9sQxAfiY634klSTANBgkqhkiG9w0B
+# AQEFAASCAQBczhoQiHsYxQe6bxp2Nr0qjrYBTkDPPPw1/49Zpfc0toApdc1IEfm0
+# qWjN0CmBBC4ya6ooKQceXX3LLByhLYRATDDFZykHg4iRQpiYgGa0MJYgBLNgc4MV
+# mxHo9TqbEdL9le8y4kMOnIKY9bHa5iOIXzu+GpSaQu5Sp5KR3F5nqwPDX+8lTLt/
+# yTAq0MGc6OGvzFeTJIC4ACMbU9aDBItk3OUznfuT6PU9PzZTFWNLbgED6R01DcQi
+# euLq3cXochLDpjZ1g26fj8Z3T0kImXXAHKrqcT8wRGvKotFXHfICPnGLVIvJHiYi
+# oQEeW/VF+EXr1tl+CVu1bIBnuqeyt12doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzMlowIwYJKoZIhvcN
-# AQkEMRYEFFoHkEsSWPCFLuPDze6cuuegjY93MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyMFowIwYJKoZIhvcN
+# AQkEMRYEFGdyF+a6G5XDqfgA/M3/P85LBQ1YMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCNF0yQsaHbDkj05EYxq3GJS3q0Fs4jRyX50TapRYOl80hf
-# qYAKMG25+zLGxmf93kWU8ymrMlSHzz3uTd0i8P6XgjXXQaBu1aDPzC9qyON0zx/J
-# hxj3mImLeeDv3oFptc52KExMsUA6b6DTH8a5lAneJb3dW+fE1MuKtVkX8lI7RjVX
-# A6xZ/s8HDNnahwwOfzRD9hJ5NPaPiLqUjk5lP8cYn9waaDeWm+sCRUssWFCL33xN
-# bkLMh4t3e+a8pzzk5Dt3IGiDuzyYWfYe2ek0YDo4rihbLS9xsrlqplUNuMafb9Mx
-# YhTlwVnRBGQLaKovRVZV1wyiqZ+KbcGlxbj+9GBz
+# hkiG9w0BAQEFAASCAQAU7Y9EKxR/S2Y/2mKQAbOw6kW6uH6L9PPfzvjsGDZy/DkZ
+# Iuk1jz+TFdhPnvbh5NQ9E5Dq2jDNIF2X56pkaHPGeReKYplPNRBbdFP6hxaKb7mi
+# jNYmIWg3zrEsnX8sMp6wgoho1XqYMznzds54cZILk9twbl5Kg0eJPYAalij6Y2uc
+# hae83cwHS17mYq4bkjwkiYKL/ARKG4uk74w3ZVCZIuI1/V6Z3UbEjivweU3YaaO/
+# hZBjIzUZGqHIwanCf+KjONwecHLCajuWWKZKhmv5Sk9SM96h3ag3Le0xS4qADeMk
+# ihBVzU0DiBWY4Bdn9tFo6iq2kp5KO6j6rpFvPDrS
 # SIG # End signature block

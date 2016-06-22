@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,115 +15,115 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Global:Set-DebugOn {
-  <#
-      .SYNOPSIS
-      Turn Debug on
+	<#
+			.SYNOPSIS
+			Turn Debug on
 
-      .DESCRIPTION
-      Turn Debug on
+			.DESCRIPTION
+			Turn Debug on
 
-      .NOTES
-      Just an internal function to make our life easier!
+			.NOTES
+			Just an internal function to make our life easier!
 
-      .EXAMPLE
-      PS C:\> Set-DebugOn
+			.EXAMPLE
+			PS C:\> Set-DebugOn
 
-      Description
-      -----------
-      Turn Debug on
+			Description
+			-----------
+			Turn Debug on
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
-    Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
-  }
+	PROCESS {
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name NETXDebug -Scope:Global -Value:"$true" -Option AllScope -Visibility Public -Confirm:$false
+	}
 
-  END {
-    Write-Output -InputObject 'Debug enabled'
-  }
+	END {
+		Write-Output -InputObject 'Debug enabled'
+	}
 }
 
 function Global:Set-DebugOff {
-  <#
-      .SYNOPSIS
-      Turn Debug off
+	<#
+			.SYNOPSIS
+			Turn Debug off
 
-      .DESCRIPTION
-      Turn Debug off
+			.DESCRIPTION
+			Turn Debug off
 
-      .NOTES
-      Just an internal function to make our life easier!
+			.NOTES
+			Just an internal function to make our life easier!
 
-      .EXAMPLE
-      PS C:\> Set-DebugOff
+			.EXAMPLE
+			PS C:\> Set-DebugOff
 
-      Description
-      -----------
-      Turn Debug off
-  #>
+			Description
+			-----------
+			Turn Debug off
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  PROCESS {
-    Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
-    Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
-  }
+	PROCESS {
+		Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$false
+		Set-Variable -Name NETXDebug -Scope:Global -Value:"$false" -Option AllScope -Visibility Public -Confirm:$false
+	}
 
-  END {
-    Write-Output -InputObject 'Debug disabled'
-  }
+	END {
+		Write-Output -InputObject 'Debug disabled'
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+iJvQvrzRap3BCbdsJvzxS6L
-# VgWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0kJoVI5mXlar079UXPDMHrJZ
+# y1qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +266,25 @@ function Global:Set-DebugOff {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRoiX5ezOysKzKgELrvIazXvqLevjANBgkqhkiG9w0B
-# AQEFAASCAQCdFcUZRYsoniqA9eZINwgjU9CFhJW24fnuj9s4R0AWeIjUkmYBKlr2
-# veVYmzF6ysRVpMyjrWQbL+0hEELWXY0sBsGsydP8k/jKNWlBhAUXH6zFV781LGhE
-# iPuYgvKjsRtbtT0unZpSP2859IKWCLrZzUpoVkXZwPcU9XlDsmzFP+cBI5v164fK
-# qlfPKH79Jdl1hWSJh94wC1SpBg0lAYgvg7XXwm9SyfZIl5oy+aYSWqCn6n8RqRy7
-# 9i0BkJ5nOed0d2tJ0/S+6JBW+gGRDsHXMDXuZngmjZkwpVl7vX5AhfY70kn0crl/
-# /kzxhXnF5r0jRqVgEGaIIX8+AfyuJyrToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQLV7vjms7jqjdkcQ3T9EnGrGBOHTANBgkqhkiG9w0B
+# AQEFAASCAQBbrXuIlmx4TIohNH/qgb+EMZRhpRfK4aL8zG8Hw+df3MNU2kX3mn5x
+# Wxca1z18WmuTiJwD3fBhfKK1ptk2bt1P+wYkOvwMiUt1hiiViGA/eMXt7YVy5YNk
+# VFtsTXRnGMqYXZpt9yUml4mT7o8tSuZsxIJWZ3+k3FnxQJNYFvjCVf36SVeNkpfE
+# uvnmLUpoN+0GWRArEu4ou3gCzgSIj/DlB7kABtVBh+kNFMrXLroEFa/YlqJC2d9i
+# WpQuuPhYTWkaiA+TzOhIjl/ByRIAp6eY+PZHYYd7J/f8NCcUut4B5e5lYqxfpeZR
+# jllmYYp7Gl48OuJEeqDN3YMsu3e/hH4+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwOFowIwYJKoZIhvcN
-# AQkEMRYEFD4tgS7IItsE6g+8WherKObTRmoWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMFowIwYJKoZIhvcN
+# AQkEMRYEFHc7YuZGlH1RgKyVsnjhjtue6AgOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCY7qIFrTmHyNlRVH/LPJaNRbeJGGTt0xFt9PmGyN/5f70w
-# R9zQLSKQVNo2Edi09z+gInzQn6rJUz+/3avfT9CXWmg9fuv20uZr+bx9g935X8Rq
-# FlhhuWSozx+NgQula30xu75uRsSj+/WaRrJDOJONHT9AhN+XPLch+ArYSrH8YDAr
-# Gr+TE8orcRJnDaW9j3Ft0pQvFccLbSHoUgX79lAWR8g/emJJbEy621qPQTN7e3MQ
-# 9ec07Dom3TS76/PMvlNDx5+h2KxmNIEOxFpT7y4x58UaL+bC0C+Wm2hMIuQ/HeDw
-# z+B7SiiYYntKlONigEARGkaILiuyjYW1muQ4k+Es
+# hkiG9w0BAQEFAASCAQBY+cbfdl+jRGvXBtertlahLbnHdwGhiSeu4xLYet9jSolI
+# VxAxSSv7saZ5Ud9BLNBcofKoHrKkyavGmk0snOnu3uQYR6XVli8F/7upXc0+lIde
+# NCMyMYCnbz0B6MI1sWEAW78m0zLhgmnkiCGtLlcWAsn4n3cKK1qLzogVscbud8Fk
+# xHL/WOuh+ZXhOodCsUR+Yzx9bQS5fD5vpwIA06+fO//FCjLWbXZT2/EZk+GmR1OJ
+# LIb9LVncAKr6rw9Q/s5cmvuAllFRA2Htrkuek4vgD++B9BnSB5WS3LA1DB1z7EUX
+# YPSGAG8jlvo3IGsoTtCkfmUCppjlHV+L3YA/ddO0
 # SIG # End signature block

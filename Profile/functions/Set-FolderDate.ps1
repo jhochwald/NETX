@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,129 +15,129 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Set-FolderDate {
-  <#
-      .SYNOPSIS
-      Change one folder, or more, last-write time based on the latest
-      last-write of the included files
+	<#
+			.SYNOPSIS
+			Change one folder, or more, last-write time based on the latest
+			last-write of the included files
 
-      .DESCRIPTION
-      Change one folder, or more, folder last-write time based on the
-      latest last-write of the included files
-      Makes windows a lot more Uni* like and have some Convenience.
+			.DESCRIPTION
+			Change one folder, or more, folder last-write time based on the
+			latest last-write of the included files
+			Makes windows a lot more Uni* like and have some Convenience.
 
-      .PARAMETER Path
-      One folder, or more, you would like to update
+			.PARAMETER Path
+			One folder, or more, you would like to update
 
-      Default is C:\scripts\PowerShell\log
+			Default is C:\scripts\PowerShell\log
 
-      .EXAMPLE
-      Set-FolderDate -Path "D:\temp"
+			.EXAMPLE
+			Set-FolderDate -Path "D:\temp"
 
-      Description
-      -----------
-      Change "D:\temp" last-write time based on the latest last-write
-      of the included files
+			Description
+			-----------
+			Change "D:\temp" last-write time based on the latest last-write
+			of the included files
 
-      .NOTES
-      We intercept all Errors! This is the part in the "BEGIN" block.
-      You might want to change that to a warning...
+			.NOTES
+			We intercept all Errors! This is the part in the "BEGIN" block.
+			You might want to change that to a warning...
 
-      We use this function in bulk operations and from scheduled scripts,
-      so we do not want that!!!
+			We use this function in bulk operations and from scheduled scripts,
+			so we do not want that!!!
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding(ConfirmImpact = 'Medium',
-  SupportsShouldProcess = $true)]
-  param
-  (
-    [Parameter(ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
-    [ValidateNotNullOrEmpty()]
-    [System.String[]]$Path = 'C:\scripts\PowerShell\log'
-  )
+	[CmdletBinding(ConfirmImpact = 'Medium',
+	SupportsShouldProcess = $true)]
+	param
+	(
+		[Parameter(ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
+		[ValidateNotNullOrEmpty()]
+		[System.String[]]$Path = 'C:\scripts\PowerShell\log'
+	)
 
-  BEGIN {
-    # Suppress all error messages!
-    Trap [Exception] {
-      Write-Verbose -Message $('TRAPPED: ' + $_.Exception.Message)
+	BEGIN {
+		# Suppress all error messages!
+		Trap [Exception] {
+			Write-Verbose -Message $('TRAPPED: ' + $_.Exception.Message)
 
-      # Be Verbose
-      Write-Verbose -Message 'Could not change date on folder (Folder open in explorer?)'
+			# Be Verbose
+			Write-Verbose -Message 'Could not change date on folder (Folder open in explorer?)'
 
-      # Ignore what happened and just continue with what you are doing...
-      Continue
-    }
-  }
+			# Ignore what happened and just continue with what you are doing...
+			Continue
+		}
+	}
 
-  PROCESS {
-    # Get latest file date in folder
-    $LatestFile = (Get-ChildItem $Path |
-      Sort-Object -Property LastWriteTime -Descending |
-    Select-Object -First 1)
+	PROCESS {
+		# Get latest file date in folder
+		$LatestFile = (Get-ChildItem $Path |
+			Sort-Object -Property LastWriteTime -Descending |
+		Select-Object -First 1)
 
-    # Change the date, if needed
-    $Folder = Get-Item $Path
+		# Change the date, if needed
+		$Folder = Get-Item $Path
 
-    if ($LatestFile.LastWriteTime -ne $Folder.LastWriteTime) {
-      # Be Verbose
-      Write-Verbose -Message "Changing date on folder '$($Path)' to '$($LatestFile.LastWriteTime)' taken from '$($LatestFile)'"
+		if ($LatestFile.LastWriteTime -ne $Folder.LastWriteTime) {
+			# Be Verbose
+			Write-Verbose -Message "Changing date on folder '$($Path)' to '$($LatestFile.LastWriteTime)' taken from '$($LatestFile)'"
 
-      $Folder.LastWriteTime = ($LatestFile.LastWriteTime)
-    }
-  }
+			$Folder.LastWriteTime = ($LatestFile.LastWriteTime)
+		}
+	}
 
-  END {
-    Write-Output -InputObject $Folder
-  }
+	END {
+		Write-Output -InputObject $Folder
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8FKYtW6NJssDxUQmy3q7SZpM
-# tzGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQGVbYjg3ZQwp91UxSR05Oq7j
+# 3IKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -158,10 +159,10 @@ function global:Set-FolderDate {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -177,12 +178,12 @@ function global:Set-FolderDate {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -279,25 +280,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS80BVrpUuVa9ZO0kvdiMtuPNMueTANBgkqhkiG9w0B
-# AQEFAASCAQBiei9MmkQLXL0Kz8tbNN/WH+pTCe7EDBPMaqmXvy+yH9Y1uGvTHR6x
-# pwJCNQx6kDpbVB+4avnzJn9c/f+raJYb5zKqbNWpzTs/KweFmBkU+l867U5pSxZk
-# /qNAM2XBQsnsjsOlsEMNJqnMQtSWUzbgxVPFiS9yEoHEm0usMrEeg0nt6OswEa9q
-# Xd1QAhaBo57S4/KLZnN8ZE8BBiXL7g0lTfIbteNrFmLRhDPFfE7joBcN74DRb1IA
-# Mf81fjR4tBUgow+NwCwwSgxhWB0vXByiaWINeiRy+9wvTNhIoyuQvAU0QUIqs93h
-# CJ2LrMP3NGWU0I87IeYINdbptFV3lVS/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSEAglPGvuwrxedm869PMpp0ueVLzANBgkqhkiG9w0B
+# AQEFAASCAQBpREfKfzi2Ezk0H2uacE/tzdEblFAHYX0hXO54N328Gqt3gilH4dU6
+# Dgl1WpfmlOHFr6NvBaKGTUYzniE0QRaLnB+wW0OQWtog2iXEOpBag3zu0o1hfyty
+# HnCUmw330DhN4vNxVG/6G2gpxG3PMnOrhQqEN3//wqGphK8BxneqlXz3cb0rR74E
+# qD3R4kQcb8C9pyCLSgVpwWBW3n0D1gbSe4ffe1feYRDdFLEXjIaCYo1ocArEZv9r
+# XPLJB58oqTMhtrUveW56fJY4SX9JfyHYiV9pYXhanNK0lRP0gILSjh7aVxKNR3CL
+# AFSMVAUItmoy+dyFFbzRuWvJt+BjQCqVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzIwOVowIwYJKoZIhvcN
-# AQkEMRYEFNLjofT1Nr1ZPtkbiAYfz7sPwbdxMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTIwMVowIwYJKoZIhvcN
+# AQkEMRYEFG7gmtLuFv0ForeZcOgC/jlwGDz4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCSIMvCKft5T3RfibsJsiHZjV3IcKmX0rpjqXLMANswDBSX
-# q+2XMCS2Iz8VXAa/iErTQCbZXba7e2D8AoxjpyPEmZmn+u7wVUx55BV3kc8DO/AV
-# xb/IjE2XhNl/GhFVVJuZWH0V5OWpEs/Xsrmd6kaZWzTrzNtYvAtoVHGwMeRm0jbQ
-# 7NBkzVfMmN9OcbiyGhDWY+R6wwI45tM/vjJiD6eLbAu9bjlamjvrKrBEmbURQO3N
-# /vN8PBXxl1uv6THT8URTM3AJkoHsrRj6gNr2fk8lBcBNuCKUKM6YhCiM/Z4tCNdM
-# YV7UsS1W0QOVDSLZh5BR3Tw6nMZjva6pqfFSYRp8
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQBwc0oJXBuyNvQG/aRfF0fwfvU1/ksgq7kt/l9aZm+Q6xG0
+# imn7a3GMbCMwG1eJ3G8SWM2gOUzNV9QsEdPmmOtH38gOrGXKASEu4zH+m8Xuw/Ge
+# MjgTkLbCDW74uDKRCu/NuTqPXwU/mSt4iRDHAg4gz3+orsHYp1riCOySzcuyGa5o
+# /4gzynd18PXGcBvujDN6WqJFtt0sUIimjpP7l4EEQI5+dVJxdYsuzFudW1mAoup+
+# EE8zI4Tcm1HtjSN8xnOxAPJsw1hTpYFNa/Id1EbQpH+1omGbKgAF5WtYBZ73Lx1h
+# ZhMCYPZHT/3o8VEFI2pRCwzXirh4nCJURnIsmd9R
 # SIG # End signature block

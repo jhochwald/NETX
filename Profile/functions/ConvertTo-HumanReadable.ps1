@@ -1,12 +1,13 @@
+#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,127 +15,127 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 Function Global:ConvertTo-HumanReadable {
-  <#
-      .SYNOPSIS
-      Converts a given number to a more human readable format
+	<#
+			.SYNOPSIS
+			Converts a given number to a more human readable format
 
-      .DESCRIPTION
-      Converts a given number to a more human readable format,
-      it coverts 1024 to 1KB as example.
+			.DESCRIPTION
+			Converts a given number to a more human readable format,
+			it coverts 1024 to 1KB as example.
 
-      .PARAMETER num
-      Input Number
+			.PARAMETER num
+			Input Number
 
-      .EXAMPLE
-      PS C:\> ConvertTo-HumanReadable -num '1024'
-      1,0 KB
+			.EXAMPLE
+			PS C:\> ConvertTo-HumanReadable -num '1024'
+			1,0 KB
 
-      Description
-      -----------
-      Converts a given number to a more human readable format
+			Description
+			-----------
+			Converts a given number to a more human readable format
 
-      .EXAMPLE
-      PS C:\> (Get-Item 'C:\scripts\PowerShell\profile.ps1').Length | ConvertTo-HumanReadable
-      25 KB
+			.EXAMPLE
+			PS C:\> (Get-Item 'C:\scripts\PowerShell\profile.ps1').Length | ConvertTo-HumanReadable
+			25 KB
 
-      Description
-      -----------
-      Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case)
-      and make it human understandable
+			Description
+			-----------
+			Get the Size of a File (C:\scripts\PowerShell\profile.ps1 in this case)
+			and make it human understandable
 
-      .NOTES
-      Additional information about the function.
-  #>
+			.NOTES
+			Additional information about the function.
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(Mandatory = $true,
-        ValueFromPipeline = $true,
-        Position = 0,
-    HelpMessage = 'Input Number')]
-    [System.Int64]$num
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Input Number')]
+		[System.Int64]$num
+	)
 
-  PROCESS {
-    switch ($num) { { $num -lt 1000 } {
-        '{0,4:N0}  B' -f ($num)
-        break
-      }
-      { $num -lt 10KB } {
-        '{0,4:N1} KB' -f ($num / 1KB)
-        break
-      }
-      { $num -lt 1000KB } {
-        '{0,4:N0} KB' -f ($num / 1KB)
-        break
-      }
-      { $num -lt 10MB } {
-        '{0,4:N1} MB' -f ($num / 1MB)
-        break
-      }
-      { $num -lt 1000MB } {
-        '{0,4:N0} MB' -f ($num / 1MB)
-        break
-      }
-      { $num -lt 10GB } {
-        '{0,4:N1} GB' -f ($num / 1GB)
-        break
-      }
-      { $num -lt 1000GB } {
-        '{0,4:N0} GB' -f ($num / 1GB)
-        break
-      }
-      { $num -lt 10TB } {
-        '{0,4:N1} TB' -f ($num / 1TB)
-        break
-      }
-      default { '{0,4:N0} TB' -f ($num / 1TB) }
-    }
-  }
+	PROCESS {
+		switch ($num) { { $num -lt 1000 } {
+				'{0,4:N0}  B' -f ($num)
+				break
+			}
+			{ $num -lt 10KB } {
+				'{0,4:N1} KB' -f ($num / 1KB)
+				break
+			}
+			{ $num -lt 1000KB } {
+				'{0,4:N0} KB' -f ($num / 1KB)
+				break
+			}
+			{ $num -lt 10MB } {
+				'{0,4:N1} MB' -f ($num / 1MB)
+				break
+			}
+			{ $num -lt 1000MB } {
+				'{0,4:N0} MB' -f ($num / 1MB)
+				break
+			}
+			{ $num -lt 10GB } {
+				'{0,4:N1} GB' -f ($num / 1GB)
+				break
+			}
+			{ $num -lt 1000GB } {
+				'{0,4:N0} GB' -f ($num / 1GB)
+				break
+			}
+			{ $num -lt 10TB } {
+				'{0,4:N1} TB' -f ($num / 1TB)
+				break
+			}
+			default { '{0,4:N0} TB' -f ($num / 1TB) }
+		}
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjR/LjwAiuhoe5CC8+nSBSYpy
-# IJugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx/31Uh8PrUOMU0WZk8M5rpYC
+# WpmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -277,25 +278,25 @@ Function Global:ConvertTo-HumanReadable {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTR3McP8iSouFY2HIczx5GD614aijANBgkqhkiG9w0B
-# AQEFAASCAQASvEJuhItM6NJQYoxS/myUd9GzDAU9xPrcwohL4XHAdwCatmc9DehL
-# uARItrT+3kRXdff0W6U7EtgNat1/hBvuTcShbmgvse8sGrDdfpkc2Qs5fDKavcE9
-# qUmhkWbFj+ObpMVdw2ieQE9Bx9B3+aY0nykKRAPBeFO+ilK5wTKTbk9JHhWAAOcm
-# loeGTQowOtvIu5ZeeJ1s6QhSgfWdLtPPhrYVM8zU3xqKi6fytnJePEfAeSn34r6y
-# GDFngr7kK+Lb5xxmPH/bdBFZODTUbcaBWUBByLpDQQA3XZRxC+524xbelUtz+Mmb
-# DO8DF2HwJ/fKn/mT9yAy18XPTlbsRfFPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTc0f1ZIstGuqdUeK3f7gfcUFwADjANBgkqhkiG9w0B
+# AQEFAASCAQBK2AtF1EoJczJn2QqKUcVxpMsPMkUmMNe1B8Ni3Wi4Nt5mGDQgIjKh
+# sHTfLMgKAOejdryiC/HazwsdFEQhAcTWCQuw9qksM9HrOfEkWaKCi3C/m0VhyBs3
+# QgtLBVYuUgiuDmcOh+FSg2sLrrDR61tuhcVLPeeKi2kO3V/PSzM+V0Ix269S5uGn
+# YRE3clu7hXPA42n3Cv3oV0UdWmnvfwpYhR7rjRFCiEh67CsNIz3vpRZqw+VCY/No
+# CSjimRCFFhclwnHMqyZ/w8fWKVE1WF1BurFPkI0bPVYAxb4ys/TTm6c/BxnZ1ZUF
+# c7qD1WpoVYO9f+LQAHFBwcuAQILAvWiSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEyNlowIwYJKoZIhvcN
-# AQkEMRYEFNaCJD//GxTWmrX7MYRUtAA9dK/nMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTExNlowIwYJKoZIhvcN
+# AQkEMRYEFCxGFL3Qurigivc5vCCTDZT7+kQXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBJhNP1/JqAFm93FaSLqst6a+A+t7E0vmzAaVU0XdXGthiY
-# x1VT+j8OMvZrZFd9ZupTdA+JB4g3qs6o+cSRipkb11DpfEDuAc3raWHj93yFl/aN
-# 10LLw8eMruKi2XBdxY9X351kbzSzCd67D8R7HLLQQdh9YUbb3sxSMrqPFNq2QXTJ
-# gKhpdr8CqqNciUKiedqkX+1a3s7zdnzdEVr7Q/d5I1XAXTKWEEad4/UUTdl3ym92
-# ODMwiVyBY23J+NMuuXDLkW4Dshqp37ihpNN03G8xaHJ/JQ4mtdg1ex30S/XvfkFN
-# XA612M2mV9bYYxjz0xZNRhNGra1pOVxlnF0bhPFS
+# hkiG9w0BAQEFAASCAQA3rBoOsFQARRA5QtgKGHwiIuFX8aDWOmq1ksEqhY1RNUB1
+# iUUBE8XW57Wi502CH6nQePEAAV2cFEscFGLuxyNXna0l9o/CVnNtF7wOZo3k2XtT
+# mHHotq6QgBJig7DgWMaHhR595TJ+0Ox/DrJvknlyPP0vlry/F1hfN2QZtLTRYZzo
+# pbtXp4haPVpTH2cCY1zdbyCvJrNmAKfaEafBjGi9MEH768gDSQ3z9RN+LxCfuHeh
+# Y9VbQ9hutcUCijNNZaLqmAXqEK6ssUIe5l/RqeFTXiJL59TTxkgoHh09kjfOD4eR
+# aeGAs8ynpE5Yx/K++viIvNgEBKksuOP4d9fSYsAm
 # SIG # End signature block

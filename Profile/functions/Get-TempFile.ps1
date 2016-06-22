@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,124 +15,124 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-TempFile {
-  <#
-      .SYNOPSIS
-      Creates a string with a temp file
+	<#
+			.SYNOPSIS
+			Creates a string with a temp file
 
-      .DESCRIPTION
-      Creates a string with a temp file
+			.DESCRIPTION
+			Creates a string with a temp file
 
-      .PARAMETER Extension
-      File Extension as a string.
-      The default is "tmp"
+			.PARAMETER Extension
+			File Extension as a string.
+			The default is "tmp"
 
-      .EXAMPLE
-      PS C:\> New-TempFile
-      C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.tmp
+			.EXAMPLE
+			PS C:\> New-TempFile
+			C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.tmp
 
-      Description
-      -----------
-      Returns a String of the Temp File with the extension TMP.
+			Description
+			-----------
+			Returns a String of the Temp File with the extension TMP.
 
-      .EXAMPLE
-      PS C:\> New-TempFile -Extension txt
-      C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.txt
+			.EXAMPLE
+			PS C:\> New-TempFile -Extension txt
+			C:\Users\josh\AppData\Local\Temp\332ddb9a-5e52-4687-aa01-1d67ab6ae2b1.txt
 
-      Description
-      -----------
-      Returns a String of the Temp File with the extension TXT
+			Description
+			-----------
+			Returns a String of the Temp File with the extension TXT
 
-      .EXAMPLE
-      PS C:\> $foo = (New-TempFile)
-      PS C:\> New-Item -Path $foo -Force -Confirm:$false
-      PS C:\> Add-Content -Path:$LogPath -Value:"Test" -Encoding UTF8 -Force
-      C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
+			.EXAMPLE
+			PS C:\> $foo = (New-TempFile)
+			PS C:\> New-Item -Path $foo -Force -Confirm:$false
+			PS C:\> Add-Content -Path:$LogPath -Value:"Test" -Encoding UTF8 -Force
+			C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
 
-      Description
-      -----------
-      Creates a temp File: C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
+			Description
+			-----------
+			Creates a temp File: C:\Users\josh\AppData\Local\Temp\d08cec6f-8697-44db-9fba-2c369963a017.tmp
 
-      And fill the newly created file with the String "Test"
+			And fill the newly created file with the String "Test"
 
-      .NOTES
-      Helper to avoid "System.IO.Path]::GetTempFileName()" usage.
+			.NOTES
+			Helper to avoid "System.IO.Path]::GetTempFileName()" usage.
 
-      .LINK
-      Idea: http://powershell.com/cs/blogs/tips/archive/2015/10/15/creating-temporary-filenames.aspx
+			.LINK
+			Idea: http://powershell.com/cs/blogs/tips/archive/2015/10/15/creating-temporary-filenames.aspx
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param
-  (
-    [Parameter(HelpMessage = 'File Extension as a string. like tmp')]
-    [System.String]$Extension = 'tmp'
-  )
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param
+	(
+		[Parameter(HelpMessage = 'File Extension as a string. like tmp')]
+		[System.String]$Extension = 'tmp'
+	)
 
-  BEGIN {
-    $elements = @()
-  }
+	BEGIN {
+		$elements = @()
+	}
 
 
-  PROCESS {
-    # Define objects
-    $elements += [System.IO.Path]::GetTempPath()
-    $elements += [System.Guid]::NewGuid()
-    $elements += $Extension.TrimStart('.')
-  }
+	PROCESS {
+		# Define objects
+		$elements += [System.IO.Path]::GetTempPath()
+		$elements += [System.Guid]::NewGuid()
+		$elements += $Extension.TrimStart('.')
+	}
 
-  END {
-    # Here we go: This is a Teampfile
-    '{0}{1}.{2}' -f $elements
-  }
+	END {
+		# Here we go: This is a Teampfile
+		'{0}{1}.{2}' -f $elements
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn9tqwyq+2gj8NqZk52BvEqQP
-# j72gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGEf6N1UdceXEMDRuEI8Rgvet
+# esKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +275,25 @@ function global:Get-TempFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQlNxjLAOgKzpDZez2O9HEicbmXFTANBgkqhkiG9w0B
-# AQEFAASCAQAArsWQdYhuEvhm/vhCUcQvE7laURoLiPlu3amABzlpiirp3kgfsGde
-# 27Bek75xYoPueJ5e7sB2kPe0mNx6xkwRNcFrOKpZKiWRAh+xSq7DFCX+BmdYUrRZ
-# 6BTuWSv9yD6+RgNFShBYvRdxdIBm9gzwVksDLQYYJkOB1skrKw+jh5BP/0pOxZB0
-# l6ulz9O+Lqae+b4Qz73WMZNF+XbaDs733wMF0Y/7HjGGyFQqt8BULXBjxE4diIG/
-# eStcrXnrGMTj7GqqJRZl7wm4fJ8Tc0HQug2WczBs93gmZ9qZUUJvUS/4UsGpXwQ8
-# m+is4XHMuSpc++WCNqBbsCV+WBl6w/dvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRL+gLoQO719oWTbo65RWiU4S5N4TANBgkqhkiG9w0B
+# AQEFAASCAQBFIoifnCCacFgEzsf8j6TngirJ2Jne6HrKsYhBREfwFdW6g1Za5dSa
+# fuof8+k41Ej4UOmnRbUANHH1v+/Mc9fYWH8l/LyKd7f2Hlez2Bvj7AWaphW/cxnG
+# cESh6jHEFqN2GlRypFGGYcVVhy04MLftkw9imLfXrqkInklP/ClNQ1evVHKeqmH+
+# UNydzKNrG7W0i5MlnZN9OsJO6qLyqorXyNCDfHYlnRUMuwVoesWSK8v3DBF6DIDZ
+# YImiKStDzT68s4pEXWWoRgcqEAv306LrH2d6khhmnJ1KnsH9JZWf7GYYC+mGz+zy
+# m+7LPFc8B6bfUMiuatpNLaS1F3PBQR4/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0NlowIwYJKoZIhvcN
-# AQkEMRYEFDUXrRKxm5cAZpVbOiFpRFMXS0RuMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzNlowIwYJKoZIhvcN
+# AQkEMRYEFJeBlgI2Eu30OHk4GQaDdS9zRS5QMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCvBFQVRVlQu2lVcvunV3r0zw61N9R+4vakEr9A62JWxmjs
-# heoge7yX58A/6ldjfFs87Gu91SbrLfn7Dx5/bSpDQh7gf8YZ//aIEI5FDlhi9cH/
-# cYbSTxh01If1F6Kcp5ccsZvO8JLx3NafKDLTNQG9xwpaGzLvpug/P+pEgg471qyC
-# rEW01utc3aReTYZp/D9Le68nsc5KpM7Dm3nN/fSkWcMV0Ov5xkOx0aX897IE0dfG
-# 6OMAREJLfrSk/oBPxIB8ZU6FLzh+IWViNWIjkoQU1nt66/EtoGJP67OMOLue2Qvi
-# Rw9uJsNCUyfSjrYXDIVbSm/+Q/CPoLy1g0byvovS
+# hkiG9w0BAQEFAASCAQBzMDwtPJWc1riohMPmfDISfzH+R8PIwiI4SaD+EatSUPG6
+# /EjSwOn0GmrwqBbYNXdti+eJEIMKs8pSK70Fl5Y8o8vxiTFJ7ZgWQVJg3kPnpHfs
+# 1HOw/T4g8comYvBO7otyFczOkR8W7inHo4UtVrCu8PNn81xYnIRfLgIovGTDIWzc
+# SZYQBSeclQtpxSomV2vE1hlsBuQ/xvTOAa3X3vBQee7s4OzKFiTkDuB1/YXHRqqO
+# 5lMvocjJw96IfSzduDhHjR76+/KTLcoCSjwwH7zff3BVUH+7hd9gZYWeTh3tiBBX
+# rm51/EU+hdCB3FUhSEoHcaQM9B0amU3D+kfgwsum
 # SIG # End signature block

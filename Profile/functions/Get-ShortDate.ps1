@@ -1,12 +1,13 @@
-﻿#region Info
+﻿#requires -Version 2
+#region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-09
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,77 +15,77 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function global:Get-ShortDate {
-  <#
-      .SYNOPSIS
-      Get a short Date String
+	<#
+			.SYNOPSIS
+			Get a short Date String
 
-      .DESCRIPTION
-      Get a short Date String, just the date not the time
+			.DESCRIPTION
+			Get a short Date String, just the date not the time
 
-      .EXAMPLE
-      PS C:\> Get-ShortDate
-      05.03.2016
+			.EXAMPLE
+			PS C:\> Get-ShortDate
+			05.03.2016
 
-      Description
-      -----------
-      Get a short Date String
+			Description
+			-----------
+			Get a short Date String
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  [OutputType([System.String])]
-  param ()
+	[CmdletBinding()]
+	[OutputType([System.String])]
+	param ()
 
-  PROCESS {
-    (Get-Date).toShortDateString()
-  }
+	PROCESS {
+		(Get-Date).toShortDateString()
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ66y79mqVAmn238QoiR5LHs3
-# 6BagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGljUP7UkwlNcdKmCXn9birje
+# wJ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -227,25 +228,25 @@ function global:Get-ShortDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRR2YStXVHic0UTeLejqB6W4ElYWDANBgkqhkiG9w0B
-# AQEFAASCAQAYkwO60hhO+U8UkE4hE5kkY/6UTGaD0RYgLhhQLCBXhgXMl+BE6Noy
-# ht/V5Ybgb9BNVbUqjJOUorp72DV17a1wj/6o6mpRC9iqSHhKwYB2jcHp2Anv99C5
-# EzsdLndSesBtUidBDkmb0iqMdrsG0GhnhuEgNcit5/81K+r/fAHYVaeXJQQTkiwg
-# GQE5cbdxmFyam4PG6pq8lM2VjAr2m9H2aPpnk6oeZdM/KIr9EtCmPOgWJdMuiiVB
-# E9auVYXsEAnmsd+qyyA66nHYUrFyPTfu/nHpUjDLImSJtS0ovp6XAjR/e+8Zavr6
-# Vb5YzGmbYAQ65xWkqvKaht1siTwaxe0roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRxQIEAbuzraA8C7gHnNHL+/+4ePTANBgkqhkiG9w0B
+# AQEFAASCAQBuQm7tDEcPZDL0rR6uz4//m6UOFiIVo2NXL9jzYw7t8tjMboDcG6jU
+# 2IWG4DBFO71ue5JK3d4wn2fMGPf18MO2NWTkl+QZYWTwOcmgc/hdKb5FVPLGwBID
+# HtjmceEOWB6n+LGjotwi+5QYjdB0khkSzCHZ+qTctzqPyX7pIUlrs6XLzBRMKjWk
+# iVJwp2WFWhfOwZOJP4mStIwHRxcrKBAmbj4l4+JRqKw/wlomFkFO1iXrfo9WgHqw
+# pES/5MbMu9S6TvlxnpoOz9ctJzhhpc41e0dUXuJshOpAJ1eG5BevuiZPFtxmHdpK
+# wYEyC16daA4Qgvcji2/ucMxDEOAr73yLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzE0NFowIwYJKoZIhvcN
-# AQkEMRYEFDYAfAr0NlTTXdL9G/KwldSXYLLpMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzNFowIwYJKoZIhvcN
+# AQkEMRYEFPVEx8O2y69ucPpbQqUrTk3gjerpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQA48HWHgrLrjyJGsmVydiQLBVTIrSh7NpWGcuwkLcUVbHsS
-# qWW+Kc0pQHgC/oCTjCYYoeCkEmDxq/cIsjlQoHfGOW/XxT/gjpVU55XrCWb0APWD
-# xLIhOFw/Y5sIHbP6i+pYoxsVXbFeJkChTxI6sFEdMF6H62iiTIroIKE5PZR/HX9t
-# tIdBeNSM9U67NGrK7aiXsqs3aKvGZlZ/Rbux9Fk0iGAYJ1GSZqjqcM++R4GISvrf
-# XCob0oM92X4Fadbyc5A/SCtUtn9dudezJAUW9LQ8AN9GCFUmL+Y+2wCKMPdCy9sH
-# CHYBPs3lm+lCpglv12i6OS9K0a+UEBs44odMVrvI
+# hkiG9w0BAQEFAASCAQCNrmkYZBEHLNsp1cyFt3JMmq1oAwLgAsFOi3k6eZtCQ6IZ
+# IwrxKlLu6fgz4tlJhbpgIiqhjnhxi5xxdioyWREX4792P2LQwD8ZkNkfHYUJ75c0
+# /CHEWqaXCChl1ExNrNyDsgxh3Q6e7pVNQ2Bjwlgg78Bg4Gzt+A+VvKvjEgOcgs7M
+# mKNn0v0caRQtjhkq4z7CHkLsA3bWLGNbZEp+vBLtxVF9Y0FVARgF8oW1dB20+kEX
+# EnSG3EYg3BdGnIGcnQWWwW+80ei303Q2DC7fNPrHsId8nnzlzs3l6VdfzmM+NYph
+# AOsAa5e6MkAzXIZo20y7Az10esX7RtUFpIepGnmJ
 # SIG # End signature block

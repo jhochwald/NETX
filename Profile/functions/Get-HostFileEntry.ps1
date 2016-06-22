@@ -1,12 +1,13 @@
+﻿#requires -Version 2
 #region Info
 
 <#
-    #################################################
-    # modified by     : Joerg Hochwald
-    # last modified   : 2016-06-09
-    #################################################
+		#################################################
+		# modified by     : Joerg Hochwald
+		# last modified   : 2016-06-22
+		#################################################
 
-    Support: https://github.com/jhochwald/NETX/issues
+		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
@@ -14,109 +15,109 @@
 #region License
 
 <#
-    Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
-    All rights reserved.
+		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-    3. Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
-    By using the Software, you agree to the License, Terms and Conditions above!
+		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
 #endregion License
 
 function Get-HostFileEntry {
-  <#
-      .SYNOPSIS
-      Dumps the HOSTS File to the Console
+	<#
+			.SYNOPSIS
+			Dumps the HOSTS File to the Console
 
-      .DESCRIPTION
-      Dumps the HOSTS File to the Console
-      It dumps the WINDIR\System32\drivers\etc\hosts
+			.DESCRIPTION
+			Dumps the HOSTS File to the Console
+			It dumps the WINDIR\System32\drivers\etc\hosts
 
-      .EXAMPLE
-      PS C:\> Get-HostFileEntry
-      IP                                                              Hostname
-      --                                                              --------
-      10.211.55.123                                                   GOV13714W7
-      10.211.55.10                                                    jhwsrv08R2
-      10.211.55.125                                                   KSWIN07DEV
+			.EXAMPLE
+			PS C:\> Get-HostFileEntry
+			IP                                                              Hostname
+			--                                                              --------
+			10.211.55.123                                                   GOV13714W7
+			10.211.55.10                                                    jhwsrv08R2
+			10.211.55.125                                                   KSWIN07DEV
 
-      Description
-      -----------
-      Dumps the HOSTS File to the Console
+			Description
+			-----------
+			Dumps the HOSTS File to the Console
 
-      .NOTES
-      This is just a little helper function to make the shell more flexible
-      Sometimes I need to know what is set in the HOSTS File...
-      So I came up with that approach.
+			.NOTES
+			This is just a little helper function to make the shell more flexible
+			Sometimes I need to know what is set in the HOSTS File...
+			So I came up with that approach.
 
-      .LINK
-      NET-Experts http://www.net-experts.net
+			.LINK
+			NET-Experts http://www.net-experts.net
 
-      .LINK
-      Support https://github.com/jhochwald/NETX/issues
-  #>
+			.LINK
+			Support https://github.com/jhochwald/NETX/issues
+	#>
 
-  [CmdletBinding()]
-  param ()
+	[CmdletBinding()]
+	param ()
 
-  BEGIN {
-    # Cleanup
-    $HostOutput = @()
+	BEGIN {
+		# Cleanup
+		$HostOutput = @()
 
-    # Which File to load
-    Set-Variable -Name 'HostFile' -Scope:Script -Value $($env:windir + '\System32\drivers\etc\hosts')
+		# Which File to load
+		Set-Variable -Name 'HostFile' -Scope:Script -Value $($env:windir + '\System32\drivers\etc\hosts')
 
-    # REGEX Filter
-    [regex]$r = '\S'
-  }
+		# REGEX Filter
+		[regex]$r = '\S'
+	}
 
-  PROCESS {
-    # Open the File from above
-    Get-Content $HostFile |
-    Where-Object -FilterScript {(($r.Match($_)).value -ne '#') -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)} |
-    ForEach-Object -Process {
-      [void]$_ -match '(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)'
-      $HostOutput += New-Object -TypeName PSCustomObject -Property @{
-        'IP'     = $matches.ip
-        'Hostname' = $matches.hostname
-      }
-    }
+	PROCESS {
+		# Open the File from above
+		Get-Content $HostFile |
+		Where-Object -FilterScript {(($r.Match($_)).value -ne '#') -and ($_ -notmatch "^\s+$") -and ($_.Length -gt 0)} |
+		ForEach-Object -Process {
+			[void]$_ -match '(?<IP>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?<HOSTNAME>\S+)'
+			$HostOutput += New-Object -TypeName PSCustomObject -Property @{
+				'IP'     = $matches.ip
+				'Hostname' = $matches.hostname
+			}
+		}
 
-    # Dump it to the Console
-    Write-Output -InputObject $HostOutput
-  }
+		# Dump it to the Console
+		Write-Output -InputObject $HostOutput
+	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUsvwGa7XJvhjnG12Cj6t6Q6+
-# mKGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUu7Vft7kn3tYxX2foGHOvYjqI
+# DLegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +260,25 @@ function Get-HostFileEntry {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSN+SXJ7xkviBTwI2j02BIE40D7ijANBgkqhkiG9w0B
-# AQEFAASCAQCK6DOfMGTsWu9cqBTlRIBeWZiXDsqsllyJUI2H73Q6Q0MZGSW2M8C9
-# Ap174G1dxyIETIlQzrrE7l6HlCvXCZxO2do10bW8fbqNXzvkt8ikVcxxJ1N73mOB
-# JrzoZnFWSzlMz/x4tnsh3Y4n8QIL59dlPClExuZcWRQNIR2JTeX+ZecIkMHZsAXm
-# 02x6wYUOd1CTk4+cUWkNawAWKIXS7gp5jLivjPoQBxL2nYcguuJd/wELZD+zP4Eh
-# q7tkOEgcohWYGBJMdsA6zpaBrBfiUnqylRt3JUqgmXSYUawYHncZlgI7pOwC7U/t
-# 0M8eSgJzLQrBhj88bELcGFdwTtWs5v6noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSlQqs/lk+xs7h09XKVKToSvQFuJzANBgkqhkiG9w0B
+# AQEFAASCAQAnZUHvvmFt06P7UAWu0aQasORwJc4NqdwiYSkj0QEnmnNlKoaIh0uX
+# s69AwR7y6OfUpl95IZ8ELLLmbCAaL1AQDFGwIeBJ70gRgV29OzEj7RVNFqOyfefZ
+# OOTLF/Jxt0IVLwCHBLtApJBekBwi4vOrBggw7CmgrDOsEsbD1VwVik3Jz3Qe3FhI
+# 3jW8dcZO265k+NCHZBbuniQoVib0cyfkMvtNkQrC99xb3Z1X8rVtGv+tKAprQe6g
+# HyIF5g+0Ony6hJl0sMdRwJKspERtrB4TVfONIFk/TJHAN0cnb7yklrSC6EzVbJqk
+# TNghnmgUNYkvRPbS78roStaonl5DCN6FoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMTE3MzEzNlowIwYJKoZIhvcN
-# AQkEMRYEFPN0zp7Q7tN/9IXcQ1TuIoThSBqgMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyNVowIwYJKoZIhvcN
+# AQkEMRYEFODZIPcZPawtte3Y/YR4MwB6F3NLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAypxHtbC3m8tXBpvU5A0jIgjB2VrqDO8s7XyDnB/Ewnx1e
-# Lq48zlZc1dFqf+eFn/ZbTDyovFfBdQFBYnWm1hmAA7K+bFRdQmCZrEYoG93yCi1m
-# YZz6LcKgTDKw9GwQGq2aa9QlB8OoDBbnKFMOkCHuwdhPMWqrkK/d8mbQWzkyXEgp
-# Tvx984uE+FTdn3TO31ToJJpS3ZQ8a6ef13L/FOqhMQD8fKdKTN9rDUyXMfaE5Gik
-# fNc71Igaf6TlD0ELfYM8OTrhPKKZhWY/DS+jH2gxmAD05vovHB4rb4JUs7VdV7XA
-# 44nmYtLXnfBLUX4iOMAb126r9lwx8f8PHm/6xy9b
+# hkiG9w0BAQEFAASCAQAxXukPETHNXAv2ZWQPwo0iv0zYYARGJjNLGPHRCNtcz7dj
+# DMpzj+RH9mAY3BtklJmeSgwYGNhK2hBQf1TM5f2cDyLqpokht+XHI2Rcv87YlT9h
+# vWq+4Twd8adbspmmuC9tOTaKffe7iallPYD4PnYK2QEtZSG+bBLcD2+7UaK2WBUS
+# I7QtHFaF33SHwbBjFvwlOWwgxqWhtT4birenIbtdVgqVgKWaGFO0gid8aRcSSxAI
+# IWk/PDmynB/4FsfC5TMirbFwK47UjafJprJ8bJQeifwrLOFvA1nymwfZljJKZm1O
+# nHCIOxbwhCySe9XBucZMDvZH2AS7zqsDedD0Gysb
 # SIG # End signature block
