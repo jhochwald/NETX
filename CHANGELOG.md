@@ -1,7 +1,13 @@
-### Distribution Snapshot 1.2.3.87 (HEAD -> master)
->*Wed, 22 Jun 2016 22:21:47 +0200*
+### Updated the Requirements: - Latest tested Microsoft PowerShell Modules - .NET Framework 4.6.1 (HEAD -> master)
+>*Thu, 23 Jun 2016 13:23:07 +0200*
+
+### Distribution Snapshot 1.2.3.91
+>*Thu, 23 Jun 2016 13:22:27 +0200*
 
 ### Distribution Snapshot 1.2.3.87 (origin/master, origin/HEAD)
+>*Wed, 22 Jun 2016 22:21:47 +0200*
+
+### Distribution Snapshot 1.2.3.87
 >*Tue, 21 Jun 2016 20:44:53 +0200*
 
 ### Development Snapshot (automated)

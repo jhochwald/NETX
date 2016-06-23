@@ -1,10 +1,11 @@
 ﻿#requires -Version 3
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-06-23
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -58,7 +59,7 @@ function global:Get-PreReqModules {
 			Get all required Office 365 Modules and Software from Microsoft
 
 			It Downloads:
-			-> .NET Framework 4.5.2 Off-line Installer
+			-> .NET Framework 4.6.1 Off-line Installer
 			-> Microsoft Online Services Sign-In Assistant for IT Professionals RTW
 			-> Microsoft Azure Active Directory PowerShell Module
 			-> SharePoint Online Management Shell
@@ -89,17 +90,17 @@ function global:Get-PreReqModules {
 			.NOTES
 			Just a helper function based on an idea of En Pointe Technologies
 
-			.NET Framework 4.5.2 Off-line Installer URL
-			https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe
+			.NET Framework 4.6.1 Off-line Installer URL
+			https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe
 
 			Microsoft Online Services Sign-In Assistant for IT Professionals RTW URL
-			https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi
+			http://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/EN/msoidcli_64.msi
 
 			Microsoft Azure Active Directory PowerShell Module URL
-			https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi
+			https://bposast.vo.msecnd.net/MSOPMW/Current/AMD64/AdministrationConfig-EN.msi
 
 			SharePoint Online Management Shell URL
-			https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi
+			https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_5326-1200_x64_en-us.msi
 
 			Skype for Business Online Windows PowerShell Module URL
 			https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe
@@ -116,7 +117,11 @@ function global:Get-PreReqModules {
 
 	BEGIN {
 		# Is the download path already here?
-		if (-not (Test-Path $Path)) {(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1} else {Write-Output -InputObject 'Download path already exists'}
+		if (-not (Test-Path $Path)) {
+			(New-Item -ItemType Directory $Path -Force -Confirm:$false) > $null 2>&1 3>&1
+		} else {
+			Write-Output -InputObject 'Download path already exists'
+		}
 	}
 
 	PROCESS {
@@ -125,7 +130,7 @@ function global:Get-PreReqModules {
 		#>
 
 		try {
-			# Whare to download and give the Filename
+			# Where to download and give the Filename
 			$dlPath = (Join-Path -Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
 
 			# Is this file already downloaded?
@@ -134,8 +139,8 @@ function global:Get-PreReqModules {
 				Write-Output -InputObject "$dlPath exists..."
 			} else {
 				# Download it
-				Write-Output -InputObject 'Processing: .NET Framework 4.5.2 Off-line Installer'
-				Invoke-WebRequest -Uri https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe -OutFile $dlPath
+				Write-Output -InputObject 'Processing: .NET Framework 4.6.1 Off-line Installer'
+				Invoke-WebRequest -Uri 'https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe' -OutFile $dlPath
 			}
 		} catch {
 			# Aw Snap!
@@ -145,43 +150,56 @@ function global:Get-PreReqModules {
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'msoidcli_64.msi')
 
-			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
-				Write-Output -InputObject 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'
-				Invoke-WebRequest -Uri https://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/en/msoidcli_64.msi -OutFile $dlPath
+			if (Test-Path $dlPath) {
+				Write-Output -InputObject "$dlPath exists..."
+			} else {
+				Write-Output -InputObject 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals'
+				Invoke-WebRequest -Uri 'http://download.microsoft.com/download/5/0/1/5017D39B-8E29-48C8-91A8-8D0E4968E6D4/EN/msoidcli_64.msi' -OutFile $dlPath
 			}
-		} catch {Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals RTW'}
+		} catch {
+			Write-Warning -Message 'Unable to download: Microsoft Online Services Sign-In Assistant for IT Professionals'
+		}
 
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'AdministrationConfig-en.msi')
 
-			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+			if (Test-Path $dlPath) {
+				Write-Output -InputObject "$dlPath exists..."
+			} else {
 				Write-Output -InputObject 'Processing: Microsoft Azure Active Directory PowerShell Module'
-				Invoke-WebRequest -Uri https://bposast.vo.msecnd.net/MSOPMW/Current/amd64/AdministrationConfig-en.msi -OutFile $dlPath
+				Invoke-WebRequest -Uri 'https://bposast.vo.msecnd.net/MSOPMW/Current/AMD64/AdministrationConfig-EN.msi' -OutFile $dlPath
 			}
-		} catch {Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'}
+		} catch {
+			Write-Warning -Message 'Unable to download: Microsoft Azure Active Directory PowerShell Module'
+		}
 
 		try {
-			$dlPath = (Join-Path -Path $Path -ChildPath 'sharepointonlinemanagementshell_4915-1200_x64_en-us.msi')
+			$dlPath = (Join-Path -Path $Path -ChildPath 'sharepointonlinemanagementshell_5326-1200_x64_en-us.msi')
 
 			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
 				Write-Output -InputObject 'Processing: SharePoint Online Management Shell'
-				Invoke-WebRequest -Uri https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_4915-1200_x64_en-us.msi -OutFile $dlPath
+				Invoke-WebRequest -Uri 'https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_5326-1200_x64_en-us.msi' -OutFile $dlPath
 			}
 		} catch {Write-Warning -Message 'Unable to download: SharePoint Online Management Shell'}
 
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
 
-			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+			if (Test-Path $dlPath) {
+				Write-Output -InputObject "$dlPath exists..."
+			} else {
 				Write-Output -InputObject 'Processing: Skype for Business Online Windows PowerShell Module'
-				Invoke-WebRequest -Uri https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe -OutFile $dlPath
+				Invoke-WebRequest -Uri 'https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe' -OutFile $dlPath
 			}
-		} catch {Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'}
+		} catch {
+			Write-Warning -Message 'Unable to download: Skype for Business Online Windows PowerShell Module'
+		}
 	}
 
 	END {
 		Write-Output -InputObject "Prerequisites downloaded to $($Path)"
 
+		# Open the download directory!
 		Invoke-Item $Path
 	}
 }
@@ -189,8 +207,8 @@ function global:Get-PreReqModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjoIFvJmYUh7KJugTfzNTkRLu
-# Mn2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhO5EeRShWYDdIIS9NMf8qo49
+# 48KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -333,25 +351,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS15u8XzUC8ycxSqsHNtXi4Ga5I2zANBgkqhkiG9w0B
-# AQEFAASCAQA106A2nrW9dldv8U+sEB5lsRx9O27MPIgrphgMdV7CgxRlDsKTcpTV
-# fqvHi1L5vAe36L5fGAiVno0z+kSC9YbCY5Y4INC3L1XZCrrq/461vhu9skhEdA8R
-# 9djhX2aBHZnoo1E7/RjRL1n4pHSNBV6A8UANUpvAlKsBN4IeVJpdJ/2EWN2ya3ix
-# X4DbOxSTT73IwLB5NNKOWkZuBFYIJcpIM2AsFNvvJUAr+WXuMc7G6fDtb5/3SPTh
-# NSh6K0wdjSvV1q4/hrjuDqSi22m7h3bH7fm1IUa8oWKRXj2lUYMzenRSdEqhEUW2
-# 1lZaGfLcbYbC7ZjNtzuyBW5X1Lrq115+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSW4hhwjvbXk6C354XNqhcVrauBqjANBgkqhkiG9w0B
+# AQEFAASCAQAP/BVSwmuD1RaFCuEX3cJJwsImvMGT3W2ADwCfSxV97DkdPlZEHBlY
+# OtIEFEbcmW+enuSvKZUe0PGSz3o8ZBtx8Y7j6YtHVy72N5EDScfAs2xE5mBeRDBT
+# ekGhZia/kQrtS3MRmDvPySakabfdfG/LHbGHZWRu+jGQ6JGqOKnLQfmOhVjgsiSQ
+# frWhYvnCVYm9oKWkoGUhvaaKK8tkDz3Ialwqh8GPcxH0+teTQj0pIX8sOU7qXGjL
+# uwFEhh74tAy9c+bI3hBW3PNYnd4yMI3yUUk34oCb/L+thEpbCSM9UP+IvGtbz8gh
+# p2k6eFL4ctoNvHB1YgJOJjQvHwW6a5SgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEzMVowIwYJKoZIhvcN
-# AQkEMRYEFJISgC7Ux62WRDBqU5SERsdiFZhtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMzEwNTQyN1owIwYJKoZIhvcN
+# AQkEMRYEFOGSulkH7rNImsDYaelkAKf1XoKtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQCglu9owPV2RHka5qmqLYV19qgq6czp6TROLPEdJ/ir/sMu
-# 0E8dESiPTIISy22O10Bi5yn1Fi+8MTZ4d8tJnQAasH/rIEKFtcfFwft+VWLoIXP+
-# MdfHhqhEL8qP/Y3bqkyJvULJ46RLKsa+68n8VRUoxgzm5CreyFloP1N5zqF3pjyT
-# cc8C5USmr8U3cvmR5PRJAW+r1zlNZd/E7A2rSBOANRj8DcVLsQlHsGT/LDs+Kr5j
-# 6mWTpmM+eiZQ9EXZN7iykERlTq17RPKgiEkY9ls9JR1O+Ioa4tTLlLjsXFx/Y9C5
-# W2uzVtIWR01keaB+igdxIxLeTrEzqdhNro78jjj9
+# hkiG9w0BAQEFAASCAQBfmq6ywGdgIglAEfDC2CHCetUR7r6tVE0pL60TXBSsoxp9
+# SHQvBNi1ez55hyxo5KWwl196eIEj9rNEQYsbtu4QTr9O3ZfhHYPZgUNipiG5b85U
+# G7T5r17/nRmUTVyzJvFe2Fej/+U0XzjeazbhALP78an6TwjrjO16wlK9xdhhlVeW
+# IgNWVGwuZLZ4WBoD4//d03tXyFBz/iQz4QE1p7GBxLgkh9pq8Dqazi2P2l/I5Yht
+# iaQI/6tcwnY85pxf9meBP51TwA0OJiE07HZ2edjhO+bWUiH2qFoQgoeoGH317paC
+# IvG2olLN3UgEMlx5xeSVQxGNcqrn9FtzzyZT7bJH
 # SIG # End signature block
