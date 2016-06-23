@@ -1,10 +1,13 @@
-### Updated the Requirements: - Latest tested Microsoft PowerShell Modules - .NET Framework 4.6.1 (HEAD -> master)
+### Tweak Syntax (HEAD -> master)
+>*Thu, 23 Jun 2016 16:55:22 +0200*
+
+### Updated the Requirements: - Latest tested Microsoft PowerShell Modules - .NET Framework 4.6.1 (origin/master, origin/HEAD)
 >*Thu, 23 Jun 2016 13:23:07 +0200*
 
 ### Distribution Snapshot 1.2.3.91
 >*Thu, 23 Jun 2016 13:22:27 +0200*
 
-### Distribution Snapshot 1.2.3.87 (origin/master, origin/HEAD)
+### Distribution Snapshot 1.2.3.87
 >*Wed, 22 Jun 2016 22:21:47 +0200*
 
 ### Distribution Snapshot 1.2.3.87
