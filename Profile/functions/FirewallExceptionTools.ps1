@@ -1,4 +1,5 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
@@ -68,6 +69,8 @@ function global:Set-FirewallExceptionRDP {
 	[CmdletBinding(ConfirmImpact = 'Medium',
 	SupportsShouldProcess = $true)]
 	param ()
+	
+	#Requires -RunAsAdministrator
 
 	PROCESS {
 		netsh.exe advfirewall firewall set rule group="remote desktop" new enable=Yes
@@ -93,6 +96,8 @@ function global:Set-FirewallExceptionFileSharing {
 	[CmdletBinding(ConfirmImpact = 'Medium',
 	SupportsShouldProcess = $true)]
 	param ()
+	
+	#Requires -RunAsAdministrator
 
 	PROCESS {
 		netsh.exe advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
@@ -102,8 +107,8 @@ function global:Set-FirewallExceptionFileSharing {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjhWC8hek0u+gfr1JVaeXRZpM
-# eOOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVSrT7S45SBfvlCaBr9Uxd5RO
+# 4cigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -246,25 +251,25 @@ function global:Set-FirewallExceptionFileSharing {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqDfYugPBnGFs9sQxAfiY634klSTANBgkqhkiG9w0B
-# AQEFAASCAQBczhoQiHsYxQe6bxp2Nr0qjrYBTkDPPPw1/49Zpfc0toApdc1IEfm0
-# qWjN0CmBBC4ya6ooKQceXX3LLByhLYRATDDFZykHg4iRQpiYgGa0MJYgBLNgc4MV
-# mxHo9TqbEdL9le8y4kMOnIKY9bHa5iOIXzu+GpSaQu5Sp5KR3F5nqwPDX+8lTLt/
-# yTAq0MGc6OGvzFeTJIC4ACMbU9aDBItk3OUznfuT6PU9PzZTFWNLbgED6R01DcQi
-# euLq3cXochLDpjZ1g26fj8Z3T0kImXXAHKrqcT8wRGvKotFXHfICPnGLVIvJHiYi
-# oQEeW/VF+EXr1tl+CVu1bIBnuqeyt12doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSLYbUoLsCJliy1Pf0WMbukK/8vYjANBgkqhkiG9w0B
+# AQEFAASCAQBd6A+w0fNMxZ9IR+9y47rjlc/PLVtLShSmCnTeTglX2XaalvHYwXQz
+# QTS5LR+8wWiHZos9pB6gvc7R6xDCHp6dSTmpJZr30ApEjnLbIayEle5NrekkTRWU
+# eF8uiUbapSnx0dWLIBh2NUEqNvy7btFpzkpHm1oCooHGzVbERxmguo1xL49gHt8n
+# KihAzVOdPTz7+1uZtLn3F/NR+qHuGeMI7FqnErATFW8xNxJI6blTRAR2NYF2Tvw6
+# Cn+N4yYJHnHvS49KH8cZpfYa/6sPrG5bOlmmR6jlTEFa5QvOkduxftmCClITdAqW
+# f/85otmJ20hUTRtDoEQmW/LVRCjXSn+VoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMjIwMTEyMFowIwYJKoZIhvcN
-# AQkEMRYEFGdyF+a6G5XDqfgA/M3/P85LBQ1YMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyMzEwNTQxN1owIwYJKoZIhvcN
+# AQkEMRYEFEeV1GGHjra0/36fMVAeWsaov64hMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAU7Y9EKxR/S2Y/2mKQAbOw6kW6uH6L9PPfzvjsGDZy/DkZ
-# Iuk1jz+TFdhPnvbh5NQ9E5Dq2jDNIF2X56pkaHPGeReKYplPNRBbdFP6hxaKb7mi
-# jNYmIWg3zrEsnX8sMp6wgoho1XqYMznzds54cZILk9twbl5Kg0eJPYAalij6Y2uc
-# hae83cwHS17mYq4bkjwkiYKL/ARKG4uk74w3ZVCZIuI1/V6Z3UbEjivweU3YaaO/
-# hZBjIzUZGqHIwanCf+KjONwecHLCajuWWKZKhmv5Sk9SM96h3ag3Le0xS4qADeMk
-# ihBVzU0DiBWY4Bdn9tFo6iq2kp5KO6j6rpFvPDrS
+# hkiG9w0BAQEFAASCAQCdvdFo+cUJSVJLWuf7CPuc6Waozoz5p2tFPMAPIf7B2IXr
+# hRMsZldzINTCzhFnTzbRDKxGjsNpMOi54tnoJ0ygzcyTTrbojfK2aEob39IEhruX
+# pCCn8MZZ2uLaaT1+o7P1sKg10pcm8XMo+tX4ycGEM4YsSLbpk3l8wYdlDRw9LTdF
+# JN4Go5FqKBqXYdnXcBoxYYLh1DfTkYpJiRnpDfWzIGo9+QGXhylSVm0K+QLYSXn3
+# Eye7cDxJZyjIFYTdXvI5jvoEt20zC/WEGDwZQm/tNcNEAVr0DTp7Bbnjaa9b+DQY
+# 2E8WSt1Ljqnuxyh6tcTXhdZgsevxlsw6zNtu/wFZ
 # SIG # End signature block
