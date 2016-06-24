@@ -1,7 +1,10 @@
-### Distribution Snapshot 1.2.3.92 (HEAD -> master)
+### Development Snapshot (automated) (HEAD -> master)
+>*Sat, 25 Jun 2016 00:07:50 +0200*
+
+### Distribution Snapshot 1.2.3.92 (origin/master, origin/HEAD)
 >*Thu, 23 Jun 2016 17:45:21 +0200*
 
-### Tweak Syntax (origin/master, origin/HEAD)
+### Tweak Syntax
 >*Thu, 23 Jun 2016 16:55:22 +0200*
 
 ### Updated the Requirements: - Latest tested Microsoft PowerShell Modules - .NET Framework 4.6.1
