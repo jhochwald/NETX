@@ -1,7 +1,10 @@
-### Distribution Snapshot 1.2.3.95 Minor changes to some files (Syntax and spelling) Signature updated by Build Server (HEAD -> master)
+### New Proxy Info Script (HEAD -> master)
+>*Wed, 29 Jun 2016 13:19:51 +0200*
+
+### Distribution Snapshot 1.2.3.95 Minor changes to some files (Syntax and spelling) Signature updated by Build Server (origin/master, origin/HEAD)
 >*Wed, 29 Jun 2016 13:19:24 +0200*
 
-### Development Snapshot (automated) (origin/master, origin/HEAD)
+### Development Snapshot (automated)
 >*Sat, 25 Jun 2016 00:07:50 +0200*
 
 ### Distribution Snapshot 1.2.3.92
