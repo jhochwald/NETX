@@ -1,7 +1,10 @@
-### Development Snapshot (automated) (HEAD -> master)
+### Distribution Snapshot 1.2.3.95 Minor changes to some files (Syntax and spelling) Signature updated by Build Server (HEAD -> master)
+>*Wed, 29 Jun 2016 13:19:24 +0200*
+
+### Development Snapshot (automated) (origin/master, origin/HEAD)
 >*Sat, 25 Jun 2016 00:07:50 +0200*
 
-### Distribution Snapshot 1.2.3.92 (origin/master, origin/HEAD)
+### Distribution Snapshot 1.2.3.92
 >*Thu, 23 Jun 2016 17:45:21 +0200*
 
 ### Tweak Syntax

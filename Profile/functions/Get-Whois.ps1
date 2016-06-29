@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-06-28
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -151,23 +151,23 @@ function global:Get-Whois {
 		Write-Verbose -Message "$(Get-Date): Get-WhoIs script beginning."
 
 		# Validate the path
-		If ($Path) {
-			If (Test-Path $Path) {
-				If (-not (Get-Item $Path).PSisContainer) {
+		if ($Path) {
+			if (Test-Path $Path) {
+				if (-not (Get-Item $Path).PSisContainer) {
 					# Aw Snap!
 					Write-Error  -Message "You cannot specify a file in the Path parameter, must be a folder: $Path"
 
 					# Die headers
 					exit 1
 				}
-			} Else {
+			} else {
 				# Aw Snap!
 				Write-Error  -Message "Unable to locate: $Path"
 
 				# Die hard!
 				exit 1
 			}
-		} Else {$Path = (Split-Path -Path $MyInvocation.MyCommand.Path)}
+		} else {$Path = (Split-Path -Path $MyInvocation.MyCommand.Path)}
 
 		# Create the Web Proxy instance
 		$WC = (New-WebServiceProxy 'http://www.webservicex.net/whois.asmx?WSDL')
@@ -191,9 +191,9 @@ function global:Get-Whois {
 			}
 
 			# Test if the domain name is good or if the data coming back is ok--Google.Com just returns a list of domain names so no good
-			If ($Raw -match 'No match for') {$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"} ElseIf ($Raw -notmatch 'Domain Name: (.*)') {$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"}
+			if ($Raw -match 'No match for') {$DNError = "$($Dom.ToUpper()): Unable to find registration for domain"} Elseif ($Raw -notmatch 'Domain Name: (.*)') {$DNError = "$($Dom.ToUpper()): WhoIs data not in correct format"}
 
-			If ($DNError) {
+			if ($DNError) {
 				# Use 999899 to tell the script later that this is a bad domain and color it properly in HTML (if HTML output requested)
 				[PSCustomObject]@{
 					DomainName  = $DNError
@@ -209,7 +209,7 @@ function global:Get-Whois {
 
 				# Bad!
 				Write-Warning -Message "$DNError"
-			} Else {
+			} else {
 				# Parse out the DNS servers
 				$NS = ForEach ($Match in ($Raw | Select-String -Pattern 'Name Server: (.*)' -AllMatches).Matches) {$Match.Groups[1].Value}
 
@@ -246,7 +246,7 @@ function global:Get-Whois {
 				# Dump to Console
 				(Write-Output -InputObject $Data | Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
 						Name       = 'DaysLeft'
-						Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
+						Expression = { if ($_.DaysLeft -eq 999899) { 0 } else { $_.DaysLeft } }
 				})
 			}
 			'csv'
@@ -273,7 +273,7 @@ function global:Get-Whois {
 				($Data |
 					Select-Object -Property DomainName, Registrar, WhoIsServer, NameServers, DomainLock, LastUpdated, Created, Expiration, @{
 						Name       = 'DaysLeft'
-						Expression = { If ($_.DaysLeft -eq 999899) { 0 } Else { $_.DaysLeft } }
+						Expression = { if ($_.DaysLeft -eq 999899) { 0 } else { $_.DaysLeft } }
 					} |
 				Export-Clixml $ReportPath)
 			}
@@ -364,8 +364,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmgwJxd2BV6bzRG0uSJILHfn/
-# qIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEq2Z1hmxSTJ8N8/2YkptDlBv
+# aLmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -387,10 +387,10 @@ WhoIS Report
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
-# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -406,12 +406,12 @@ WhoIS Report
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
-# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
-# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
-# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
-# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
-# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -508,25 +508,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQjuEUsFFYkiDSgM0DfcyRTnjYY1TANBgkqhkiG9w0B
-# AQEFAASCAQBnYwMkW0tRKTwwg+ybpThDkPecCH913x0iWO8pVut/DnKyixW9kaT1
-# nKHKImu6xPQHwg8l9Pv9/I+PC2Ihvqv/mi4G9pKLaGsBe/zTR1H9WEjyDUxPBEaP
-# HVN4oG8rNfpVVNP5W1ogSN0iza/1rq0n9BBKsQvz0ETx5VicJoIMPVP3RIXnDB4w
-# FE8audfR3FLKk6fkgbZbMjhj6uU8Y/jop6YhvEFlgL7CU3mcHN51hPybioPd7faI
-# h2H2E5i57++NpedfDxUyYTnz5pmVlEon8x/PjmHFwUllz7pib0EEoudDECoDKed2
-# SpoicdrBbBKUzuYafawRYbZiRdv7njrzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRt7jMZTIgIcbpGNVXnsKM2beZrAjANBgkqhkiG9w0B
+# AQEFAASCAQBpoVntBt12B8vmzMlKkWOATkT5r9Kegj5M/p+mTASX6I/sHM/ZF3c/
+# wmjLVPo9iWnySbHfMHQ63SitW+B4R2o2C7pkIAakGrtckooIic+S39PZSA6m73qp
+# kBj7UPUS4ankYgfcAHOHf+JUk5DUoY/FsKj+OuaNskYub9iGn5i1F9z6Hb17px0w
+# MkMIlQ43wf3pdcmOmEb2rYhiv02eMb0xNyhiCtbZJhnWI9IdcvfPa6Dc1yp0akzE
+# qlMomaH77N8u+4s3wksEpbTaS7NSrK3SdGpVRQOi+LqFaUcD/09M+7SVHVrv6euT
+# Nhb+ryvSbM7/JqNz2Cjl7nRzl85FSaPLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyNDIxMzUwNFowIwYJKoZIhvcN
-# AQkEMRYEFHbicIckKbmAcxM98rZr6/AaCrzJMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
+# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyODIxMTkyN1owIwYJKoZIhvcN
+# AQkEMRYEFFzS3QDHM446tjwBWb8YNjin9zpLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQBNUrOHyuzux7Rj43O8lrCoMTJvG1SB0lnfkgb9gEdwFJNc
-# n/J7x9eF6E/FQv8DQhVo22Mz3WRSpbrlrLmW+j1PQD//Xd4hGq0v7wZewa4cShJ0
-# C/oZKz4ll51wnXelfS0bdfyPhlgQD6bcb9cs8RJL797pnWyDFcnuWhk2UMlrmTfW
-# fUZi2Fdh9m+IYSltEPhKbJ0nGsEtMDoXTqjyWintIwwojqscloDOBA/WB4tUtyIC
-# waHwoA2j4MoAapdurOQ2NsY8oH4VU8IdlPV6U9gZYmY9FDxCed/z10is2DEw9IAc
-# tQY+5lUhx/clkWv1h8e9IlQjBMNXg9nxyus9cOLC
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
+# hkiG9w0BAQEFAASCAQCQtrM2TVhLXkAh6OaOywiP/tbgfdw1+0N3nIpbzaMCuElO
+# UM9i18eQvYBgk83dS8wu7xOhSq9rla/wnRdcnLaiXSmMtnzAbIV0/sPCNu8IL9JY
+# jsxX5zsCJ93bfu942hu1ox88hqsQciTGlBSE37VGaERIOEHhEupAJZjRp6k81kAM
+# i8hYCYt2ewYP1+tcoPWVPvb4eJTkfokDf8v0JjKs9qoSq4nEQr7CJgEAtobVO0DE
+# RgRgIlRqzxGJJ8ikz9ofU1orIWkUFfs+ypXBYesPTU6UkqXfvoSakZvTNckgIQyc
+# hDQv/YILqVzP2DwUdFj5GrbpdeyBmGUqJPBHEEeb
 # SIG # End signature block

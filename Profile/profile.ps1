@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-22
+		# last modified   : 2016-06-28
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -267,7 +267,7 @@ if ((Get-Command Add-AppendPath -ErrorAction:SilentlyContinue)) {
 }
 
 # Configure the CONSOLE itself
-If ($host.Name -eq 'ConsoleHost') {
+if ($host.Name -eq 'ConsoleHost') {
 	# Console Mode
 
 	# Set the Environment variable
@@ -379,7 +379,7 @@ if (Get-Command tryAutoLogin -ErrorAction:SilentlyContinue) {
 #>
 
 # Where are we?
-If ($host.Name -eq 'ConsoleHost') {
+if ($host.Name -eq 'ConsoleHost') {
 	# Console Mode - Make a clean screen
 	[System.Console]::Clear()
 	[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
@@ -387,7 +387,7 @@ If ($host.Name -eq 'ConsoleHost') {
 	# Is this a user or an Admin account?
 	# This has nothing to do with the user / User rights!
 	# We look for the Session: Is it started as Admin, or not!
-	If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+	if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
 		# Make the Name ALL Lower case
 		$MyUserInfo = ($env:Username.ToUpper())
 
@@ -460,8 +460,8 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfGoM0QUo3tEApuLP2ZVJnbIM
-# vGOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOmQO02nrd528K6VNcRMjY49o
+# 2LCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -604,25 +604,25 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS4QneYs+RBzK17K6DZ5wHGuRGZ9DANBgkqhkiG9w0B
-# AQEFAASCAQBu6I2Dj6Tfy3pPhI2qDBHI58C2Ozw9Hfb0I4TbVG8rVHo6jkjsrkHc
-# Wa/PA+0c4cw8dBpSLgTthloXjNvFsIFCy34R8YiTpLsdy26ifpbEKUqIzE0I2mN4
-# geNs4A/ag9nqbtSr91PEhZqUN6jt84dqyxcImhSdSx7S3mko+q902+txZZjo3B0i
-# +71sLA9zoWUtUzqf+Z8YPZHnV42pUmUNgPJ7wXNHuo5TlcVFdb/71dWZQlbs//i/
-# Wpxl1qt8rIDM9SWfom3n7N23I0XdK5RbT9hdVPupHGfIj+4hNtu5SmvjOOtIlx5G
-# 2pXBgP/ZHWMd2Os2gpbhAOnjw/eCr04QoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSn1vOK8bTPNWJlQgwL66SLMeCV9jANBgkqhkiG9w0B
+# AQEFAASCAQCJR1LWIF6ARTQxCvN32hwrYdtCAxDqkNPExBXB1Cwkt9woV6c31Ca+
+# BuBVybe6hx5ehBUHuMyCNw7AxnhNw+B5tTKzfuXeBhMAjsqZmBjb8I3wwqhluh4N
+# Y3bplaHg4VgHmu8e0rjl5NaF3OrxEcZu7/Nk2h6n4DKWeLVzhlkU6r9tnII9fBSb
+# NxS9DH6SyoGoa/JVPPpVNESxC0F4UQKJnOOk7fV+LQB3c9JypTpJl4vkGM7d/eiG
+# hlth+cWCV6fW4CydGmiFVdG0e03ToKcOg006luSBctPK/LqGAN2UtU4+JOR2AaUn
+# XAkpC+xtXSXAYpIVIVPgbW7F+JaP9QcxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyNDIxMzQzN1owIwYJKoZIhvcN
-# AQkEMRYEFBtI+gOetD60boLonDi40rwqbxK6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyODIxMTkwMFowIwYJKoZIhvcN
+# AQkEMRYEFMVjRa+7KScOZyGbQPuFo9ge/OOKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAULyHy7PGWszGVPsuQtg0+gJioVC/Zpy/Qyu4eLvRP6Q79
-# ujWVzNsrGC5l91XwVav40UuIkCK7O5PpJ4vStLWFlb9zMaeLtBGaEOPxfOB/WUAR
-# /PCTGaEnvtSi7AyN3M6dFQD6fmQAKKE4Qe1UyP6M3aT7mgoe0JO46dFooPbbk5Di
-# QPmMPYHt5tR68IetHukP7YuevmIXhb6JO69SqTDFcTWAmsd+fKZzNzMA7CmlPdBi
-# UIyHzSBweuPFlIGXCFJ9Iws89SEBMiJYeRVj7hUBeG6VKi+jcgD6udIeKOYU2MOc
-# 8aVXb8efSIFKXOwvEmXhh0hEX+3biK96VnlIL7II
+# hkiG9w0BAQEFAASCAQCkhLzXXRv/eFgZoWK6XaRNFPjkkJ6OlS0G/UdRMtfMfLV4
+# GJtuQhpNN7vJwVhka2rO8EmoAmj1ddqweYhFYO5f3JkF6kOMM+9K7pSo8+5vyUwQ
+# 6qUQxGdkuxGMDRGvfOfoIuhsbeuaiMVXWXFcNN7t34eudbgpkUyK/X7enShvHrxG
+# KVawAF4AqlAiOB7OoEfrbnb46PP2BcEF9j22+5kjEoQAfjG3fdHLdUTns/K+BfvO
+# hmzdUwAZuc9uJkbj23oogudMlQ0SJHIqtWHmWFkBYgPOzNDfvss/et2ftEfn342T
+# gI9JTryRDOArE2buf+w3bX21OllkS2bYrfmFOIuj
 # SIG # End signature block

@@ -1,10 +1,11 @@
-﻿#requires -Version 2
+﻿#requires -Version 3
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-06-28
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -49,7 +50,7 @@
 
 #endregion License
 
-function global:Get-ExternalIP {
+function Global:Get-ExternalIP {
 	<#
 			.Synopsis
 			Gets the current external IP address.
@@ -57,13 +58,65 @@ function global:Get-ExternalIP {
 			.Description
 			Gets the current external IP address.
 
+			.PARAMETER Speed
+			A description of the Speed parameter.
+
+			.PARAMETER Ping
+			A description of the Ping parameter.
+
+			.PARAMETER short
+			A description of the short parameter.
+
+			.PARAMETER PingHost
+			PingHost to ping
+
 			.Example
-			PS C:\> Get-ExternalIP
+			PS C:\> Get-ExternalIP -Short
 			84.132.180.143
 
 			Description
 			-----------
 			Gets the current external IP address.
+
+			.Example
+			PS C:\> Get-ExternalIP -Speed
+			Current external IP Address:  84.132.174.61
+			Download Speed: 136,95 Mbit/sec
+
+			Description
+			-----------
+			Gets the current external IP address and messure the Download Speed.
+
+			.Example
+			PS C:\> Get-ExternalIP -Ping
+			Current external IP Address:  84.132.174.61
+			Ping Info for 8.8.8.8: Minimum = 30ms, Maximum = 31ms, Average = 30ms
+
+			Description
+			-----------
+			Gets the current external IP address and messure the Ping Time.
+
+			.Example
+			PS C:\> Get-ExternalIP -Ping -Speed
+			Current external IP Address:  84.132.174.61
+			Download Speed: 102,73 Mbit/sec
+			Ping Info for 8.8.8.8: Minimum = 30ms, Maximum = 31ms, Average = 30ms
+
+			Description
+			-----------
+			Gets the current external IP address and messure the Ping Time and Download Speed.
+
+
+			.Example
+			PS C:\> Get-ExternalIP
+			Current external IP Address:  84.132.174.61
+
+			Description
+			-----------
+			Gets the current external IP address.
+
+			.NOTES
+			Additional information about the function.
 
 			.LINK
 			http://tools.bewoelkt.net/ip.php
@@ -71,7 +124,14 @@ function global:Get-ExternalIP {
 
 	[CmdletBinding()]
 	[OutputType([System.String])]
-	param ()
+	param
+	(
+		[switch]$Speed,
+		[switch]$Ping,
+		[switch]$Short,
+		[Parameter(HelpMessage = 'Host to ping')]
+		[System.String]$PingHost = '8.8.8.8'
+	)
 
 	BEGIN {
 		# URL to ask
@@ -84,24 +144,47 @@ function global:Get-ExternalIP {
 			$beginbrowser = (New-Object -TypeName System.Net.WebClient)
 			$get = ($beginbrowser.downloadString($site))
 		} catch {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			if ($_.Exception.HResult -eq '-2146233087') {
+				Write-Error -Message 'Not connected to the Internet!' -ErrorAction Stop
+			} else {
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+			}
 
 			# Done!!!
 			break
+		}
+
+		if ($Speed) {
+			$SpeedInfo = 'Download Speed: {0:N2} Mbit/sec' -f ((10/(Measure-Command -Expression { $null = Invoke-WebRequest -Uri 'http://cachefly.cachefly.net/1mb.test' }).TotalSeconds) * 8)
+		}
+
+		if ($Ping) {
+			$PingData = (PING.EXE $PingHost)
+			$PingInfo = "Ping Info for $($PingHost): $($PingData[10].Trim())"
 		}
 	}
 
 	END {
 		# Dump the IP info
-		Write-Output -InputObject $get
+		if ($Short) {
+			Write-Output -InputObject $get
+		} else {
+			Write-Output -InputObject "Current external IP Address:  $get"
+			if ($Speed) {
+				$SpeedInfo
+			}
+			if ($Ping) {
+				$PingInfo
+			}
+		}
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzHIPc8jxpq3SVvAfkxzbo8L0
-# snqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsf5YhgFXGQSM/P2/aHu4Rwu3
+# rI2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -123,10 +206,10 @@ function global:Get-ExternalIP {
 # PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
 # IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
 # SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
-# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# BJ8wggOHoAMCAQICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkqhkiG9w0BAQUFADBS
 # MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
-# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
-# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNTAyMDMwMDAw
+# MDBaFw0yNjAzMDMwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
 # R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
 # TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
 # AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
@@ -142,12 +225,12 @@ function global:Get-ExternalIP {
 # BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
 # bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
 # uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
-# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
-# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
-# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
-# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
-# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
-# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIFTDCCBDSgAwIBAgIQ
+# CSqGSIb3DQEBBQUAA4IBAQCAMtwHjRygnJ08Kug9IYtZoU1+zETOA75+qrzE5ntz
+# u0vxiNqQTnU3KDhjudcrD1SpVs53OZcwc82b2dkFRRyNpLgDXU/ZHC6Y4OmI5uzX
+# BX5WKnv3FlujrY+XJRKEG7JcY0oK0u8QVEeChDVpKJwM5B8UFiT6ddx0cm5OyuNq
+# Q6/PfTZI0b3pBpEsL6bIcf3PvdidIZj8r9veIoyvp/N3753co3BLRBrweIUe8qWM
+# ObXciBw37a0U9QcLJr2+bQJesbiwWGyFOg32/1onDMXeU+dUPFZMyU5MMPbyXPsa
+# jMKCvq1ZkfYbTVV7z1sB3P16028jXDJHmwHzwVEURoqbMIIFTDCCBDSgAwIBAgIQ
 # FtT3Ux2bGCdP8iZzNFGAXDANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQGEwJHQjEb
 # MBkGA1UECBMSR3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRow
 # GAYDVQQKExFDT01PRE8gQ0EgTGltaXRlZDEjMCEGA1UEAxMaQ09NT0RPIFJTQSBD
@@ -244,25 +327,25 @@ function global:Get-ExternalIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSfgV8GXkGwwIisXp5EetbyQQfxyDANBgkqhkiG9w0B
-# AQEFAASCAQCqtHpPFtwGEEYh2aVb3lrDv1hD7O5DJ/Jxr5wvrU8OvlbhsCp9o0yZ
-# l34EcIp1W6QAEoJS+3sCSryxmycobsKdUtVVQSmy80wp21lLTRgzfScU8pK6ocip
-# x/b7hyaDYnoxNP+PUFkpVUXp8SDcIiq5uKR94jWGhfNU1JOUHwij9tzeQH2M71gl
-# XX9nb6+3YE6qp+1KOORvMpJf8B7WHULIysaYl2grWmR9TeZxgs2i5W5UyRYKR9JH
-# G+jcV8SL5ZNh0jmweHaJRzJGeSeyqVhHOzhiwH2jPyQYxKJexGN2xDzXLHVc7N96
-# L6ocxrzhnIp18Ms1mMQkR5R10AHeWjfzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ5jaR6Y+RHYX1pxBiMvrL1suPEgDANBgkqhkiG9w0B
+# AQEFAASCAQAdIbeQIoHUWuZytzdFVCTc5HDOxrkUMVZu+viNBzHloNyQp4hmQxTh
+# K4IentuGxEjGQ9Ct4ool+KfgPgmkzjtUYPuZ0pN2b/zz8irSr+c3tDZaElQgvk0U
+# SrI2CgQxbqeAHlvhtRKIdxyBjNYqVn9HedF/+al2Jjcn+qR0M7T9qktDc5DwVh6p
+# BYXaINSLP22Nz2uzbWO9+MSSbihTut55KBYmlVbhhPG6wVEGG67is7c6HqfxNKMc
+# F9oQXdbUFvtWMJ423UZy2f8Isxe5CYulrIc9jRCEQLt4D+LT9zt+MbcWrscNIyq9
+# hVsoD7eOk5bAmLBmzKVx4EOQkMkorW/woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
-# 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyNDIxMzQ1MVowIwYJKoZIhvcN
-# AQkEMRYEFOKo86M5dHd4o0EF19QoevirjzqaMIGdBgsqhkiG9w0BCRACDDGBjTCB
-# ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
+# BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyODIxMTkxM1owIwYJKoZIhvcN
+# AQkEMRYEFNLO+2UUdaSVNVDv72ZK4B0NY5urMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
-# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQALunMt6S6AwpTpbW/Qr/JGnSlf0Zfft0nlJGKc2wQSMq8u
-# OUvpQpbyJVQ46HS0L5LpLkmD4qz6jm46N8fyyxYaWSRKSrAbJiJ+fARDFuWBts22
-# 0dJ+fh9UjOfTaCeTXeU5odLEq38FIg5gYOnPDU/xAgnQ1QnMYvNvJ9aJgmmKfoao
-# zCQK6qNLssjLGz6xV1AqwHEWf1+29cV8drDaIGcKq9Kc3NIqb5yiF8KVHe3g8/Kn
-# Qi3BLoxSVrac9ddPOGHWR67bwHO7FhF/T4KOZTrUTWYMhpdqgLul3tSSacC6hnam
-# f5MW2PJ3DSD+lByk+QXYPm4RFrq99KCsOuC6Y1w+
+# Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
+# hkiG9w0BAQEFAASCAQCJX3fNrdi9vFBE8D6w8hvJEHZWRusv2JFlmTD2MHkl+/kn
+# 7B0p3tYsxZDLwUMHvjOPCFBJ7k1LUOGGUGW7De+ZIb+HwbA2412ouiHm/FQs6MtJ
+# 9UCnDrsCgiGPVZ8pn23VOOnRRXi8KLH9pyIt0BnNTo0YZ0e1cto/W2SubTIxlJf8
+# vOvFh80f4rlxXqyai1/iXjaO7xLpm6parF+FqEHIXbjvM6Cp6CTD0awtmXIjoNFP
+# H/3x6qcARYiGJnvlXzhNiOhn9jlom9/ypJpsE1BGfc3V1Kg5Hb75yvCmQ6Ffq3zV
+# 5+gi39hmPFHo7/ptcOrWP3VsblpkCqRqW+7mLDUi
 # SIG # End signature block

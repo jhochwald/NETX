@@ -1,4 +1,4 @@
-#requires -Version 2
+﻿#requires -Version 2
 <#
 		This functions are based on the work of Robert Nees
 		Licensed under the Apache License, Version 2.0 (the "License");
@@ -100,7 +100,7 @@ function Global:Compress-GZip {
 		}
 
 		if (Test-Path -Path $GZipPath -PathType Leaf) {
-			If ($Force.IsPresent) {
+			if ($Force.IsPresent) {
 				if ($pscmdlet.ShouldProcess("Overwrite Existing File @ $GZipPath")) {
 					Set-FileTime $GZipPath
 				}
@@ -228,7 +228,7 @@ function Global:Expand-GZip {
 			return
 		}
 		if (Test-Path -Path $GZipPath -PathType Leaf) {
-			If ($Force.IsPresent) {
+			if ($Force.IsPresent) {
 				if ($pscmdlet.ShouldProcess("Overwrite Existing File @ $GZipPath")) {
 					Set-FileTime $GZipPath
 				}
@@ -270,8 +270,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo9gVK6uT1HL186mE165cdkaW
-# NACgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUExDDilvEHmFE/2nbF15NSPni
+# XxWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -414,25 +414,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTs9ysrd4wlKKhZWTbq8XkrhOkwvzANBgkqhkiG9w0B
-# AQEFAASCAQCQ95nHvIbfH0ctRv9b2A3B1yjlNUyEiRi6xd2/AZfBVmYYXv1M2RS5
-# TUgrX/uIuEGQmXM0U8hjJsMt5KOzsx3F7OpT2zeJeUIq+kiWk6RwGplhreoumP3j
-# mzxdJqcCJllaQHVrSwseAWYfpSgcFliVdim4Hf/RdqgxdDuV1I9NYaCbclSP6xhr
-# VtpwSpGkarZDAd7XqKCrb525w2rlJq7mRXB0KAfclw28OW3afjUo56FfwqtOfxz5
-# 1V7NIEVNRj3G4wRdcBZY6QsJZgqsneObU61lCo9/TVJJ7DpCHXU6OiuOmjwl3Vb0
-# OlLWiGstt8eGW42LOCf4R1pKOJzuBEvBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQQ+pDukRzQoompJjd+NscsQh6kwTANBgkqhkiG9w0B
+# AQEFAASCAQCnrpnuPT83VDgs28KNo2QhJjWxEEa0C3JuhU4ReWYsCATALaTw0rg2
+# nPqNGvMtQNn4d417L9pvOQIeI9xMTdg6AoCzxunEi43AJwvbj+CQbbEqtTKLTH/W
+# qnoXsIC/3ppC7c+VBI95dhB9nENV4SHtIeNEqsmAa6YJM0oo1fU71k+Qce7wtfp5
+# 6SNaNkVbZIDjOFqTfdxO+TPzCs2x4YYWFDKz1ZbyfEF4BWXDJmr/cjMSH2RUw2wR
+# TZlInjTeksrEsUABbljJ3I1aC+tete8AA2LASVAr2cV/jEwx89BKIB620h6y9Vlr
+# H2Hc4o0UoIZWvaj3M8DM8Brlq/klAe0noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # BqCB0z/YeuWCTMFrUglOAzAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyNDIxMzUwNVowIwYJKoZIhvcN
-# AQkEMRYEFBNGrY3CugX8bSiliP66pPSF7KHlMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDYyODIxMTkyOVowIwYJKoZIhvcN
+# AQkEMRYEFAmZjUJJI3Yf4/xLvPrArcrpjNRiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUs2MItNTN7U/PvWa5Vfrjv7EsKeYwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEhBqCB0z/YeuWCTMFrUglOAzANBgkq
-# hkiG9w0BAQEFAASCAQAU9+yN5yLaYkDVUJhbrLSSlnouNVIgjlqEiRrad2gU/2ta
-# D4q4PIUAvzOgE65JbrsKE+3RUklCLlbjBUDRcwd/xYGzk7tEuml5KidiEj6qp4x1
-# J6OGa2vuRQODP6SS85Y+J5UpvyQmUzLWiIpYWtw8tUwXGfIMPxGDjTuo1GzCHrxP
-# QSfqkW7jMxhPTmx/CayNxK0E+l5rg5xNcZ7mPxOUoHDQxyof7yH93kUbkA3KURBk
-# FVYBFnIcA0XjY0vpT49JLSQZK/8TV+xKypJrPtijYthSnfbygmGNBpM7q19QeK/t
-# Dwy95/mKO1Aau1or8+E7FYOiN01YcRsWMePOyJ1E
+# hkiG9w0BAQEFAASCAQBZjkM5uXMDhxixyH1U0llIls9D2N5k983hvcXzcnB0Gaee
+# GhDO00CQ0iCj7wcgpKXluaDfJ7fsdDe7n1qzwE31govx/SpZyVuwjyETkdMGKC/N
+# gOaqO+uqxGO3UKXlIIVtDkwklKbOltTGBLRT2JQRaiL6G7HlD144QbBZCUkBEbmi
+# n51JN2U84ir982bvwDShHzfQ+LYrkOJUBf3YXLh0ozJXW1coF0jRMvFahcEgz/iH
+# 9e3w7d1ggodKj5Sjtr7ovLczpTJKv11B0NMm9DFPevO6pAgR7+1Hf6r7rIyiUFvL
+# xxJobl1Myz1lrtEEXcGzePsGUEglGTlxurNRNHtp
 # SIG # End signature block
