@@ -1,11 +1,11 @@
-﻿#requires -Version 2
+﻿#requires -Version 3
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-05
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -50,86 +50,237 @@
 
 #endregion License
 
-function global:Repair-DotNetFrameWorks {
+function global:ConvertFrom-CurlRequest {
 	<#
 			.SYNOPSIS
-			Optimize all installed NET Frameworks
+			Parse a Curl command to get a parameter hash table for Invoke-RestMethod
 
 			.DESCRIPTION
-			Optimize all installed NET Frameworks by executing NGEN.EXE for each.
+			Parse a Curl command to get a parameter hash table for Invoke-RestMethod
 
-			This could be useful to improve the performance and sometimes the
-			installation of new NET Frameworks, or even patches, makes them use
-			a single (the first) core only.
+			Could be useful if you have a example Curl request or the API documentation just contains
+			Curl based examples (often the case).
 
-			Why Microsoft does not execute the NGEN.EXE with each installation...
-
-			no idea!
+			.PARAMETER InputObject
+			Curl Command to convert
 
 			.EXAMPLE
-			PS C:\> Repair-DotNetFrameWorks
-			C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe executeQueuedItems
-			C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
+			$RestParams = ('curl -X "GET" "https://echo.luckymarmot.com"' | ConvertFrom-CurlRequest)
+			Invoke-RestMethod @RestParams
 
 			Description
 			-----------
-			Optimize all installed NET Frameworks
+			Parse a Curl command to get a parameter hash table for Invoke-RestMethod.
+			In this example we use no headers!
+
+			.EXAMPLE
+			$RestParams = ('curl -X "GET" "https://echo.luckymarmot.com" -H "Authorization: Basic dXNlcm5hbWU6KioqKiogSGlkZGVuIGNyZWRlbnRpYWxzICoqKioq"' | ConvertFrom-CurlRequest)
+			Invoke-RestMethod @RestParams
+
+			Description
+			-----------
+			Parse a Curl command to get a parameter hash table for Invoke-RestMethod
+
+			.EXAMPLE
+			$RestParams = ('curl -X "GET" "https://echo.luckymarmot.com" -H "Authorization: Basic dXNlcm5hbWU6KioqKiogSGlkZGVuIGNyZWRlbnRpYWxzICoqKioq"' | ConvertFrom-CurlRequest)
+			$RestParams
+
+			Name                           Value
+			----                           -----
+			Method                         GET
+			Headers                        {Authorization}
+			Uri                            https://echo.luckymarmot.com
+
+			Description
+			-----------
+			Parse a Curl command to get a parameter hash table for Invoke-RestMethod
+			Do not execute Invoke-RestMethod, just dump the hash table
 
 			.NOTES
-			The Function name is changed!
+			Based on the Idea of Nicholas M. Getchell
 
 			.LINK
-			NET-Experts http://www.net-experts.net
-
-			.LINK
-			Support https://github.com/jhochwald/NETX/issues
+			https://github.com/ngetchell/Parse-Curl
 	#>
 
 	[CmdletBinding()]
-	param ()
-
-	#Requires -RunAsAdministrator
+	[Alias()]
+	[OutputType([Hashtable])]
+	param
+	(
+		[Parameter(Mandatory = $true,
+				ValueFromPipeline = $true,
+				Position = 0,
+		HelpMessage = 'Curl Command to convert')]
+		[System.String]$InputObject
+	)
 
 	BEGIN {
+		# Load the Helper Functions
+		function Update-CurlRequestBody {
+			<#
+					.SYNOPSIS
+					Helper for ConvertFrom-CurlRequest to transform the Body
+
+					.DESCRIPTION
+					Helper for ConvertFrom-CurlRequest to transform the Body
+
+					.PARAMETER body
+					The CURL Body
+
+					.PARAMETER data
+					The CURL Data
+
+					.NOTES
+					Internal Helper
+			#>
+
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param
+			(
+				$body,
+				[System.String]$data
+			)
+
+			BEGIN {
+				# Load the Assembly
+				Add-Type -AssemblyName System.Web
+
+				# Do we have a body Object?
+				if (-not ($body)) {
+					# Nope! Create one... Prevents a null pointer!
+					$body = @()
+				}
+			}
+
+			PROCESS {
+				# Convert
+				$body = @($body) + [System.Web.HttpUtility]::UrlEncode($data)
+			}
+
+			END {
+				# Dump
+				return $body
+			}
+		}
+
+		function Update-CurlRequestHeaders {
+			<#
+					.SYNOPSIS
+					Helper for ConvertFrom-CurlRequest to transform the Headers
+
+					.DESCRIPTION
+					Helper for ConvertFrom-CurlRequest to transform the Headers
+
+					.PARAMETER headers
+					The CURL Header
+
+					.PARAMETER data
+					The CURL Data
+
+					.NOTES
+					Internal Helper
+			#>
+
+			[CmdletBinding(SupportsShouldProcess = $true)]
+			param
+			(
+				$headers,
+				[System.String]$data
+			)
+
+			BEGIN {
+				# Do we have a header Object?
+				if (-not ($headers)) {
+					# Nope! Create one... Prevents a null pointer!
+					$headers = @{ }
+				}
+			}
+
+			PROCESS {
+				# Split the input
+				$dataArray = ($data.Split(':'))
+				# Transform
+				$headers.Add($dataArray[0].Trim(), $dataArray[1].Trim())
+			}
+
+			END {
+				# Dump
+				return $headers
+			}
+		}
+
 		# Cleanup
-		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		$ParamList = @{ }
 	}
 
 	PROCESS {
-		# Get all NET framework paths and build an array with it
-		$frameworks = @("$env:SystemRoot\Microsoft.NET\Framework")
+		$tokens = ([System.Management.Automation.PSParser]::Tokenize($InputObject, [ref]$null) | Select-Object -ExpandProperty Content)
+		$index = 0
 
-		# If we run on an 64Bit system (what we should), we add these frameworks to
-		if (Test-Path -Path "$env:SystemRoot\Microsoft.NET\Framework64") {
-			# Add the 64Bit Path to the array
-			$frameworks += "$env:SystemRoot\Microsoft.NET\Framework64"
-		}
+		while ($index -lt ($tokens.Count)) {
+			switch ($tokens[$index]) {
+				# Remove the Curl command itself
+				'curl' { }
+				{ $_ -like '*://*' } {
+					$ParamList['Uri'] = $tokens[$index]
+				}
 
-		# Loop over all NET frameworks that we found.
-		ForEach ($framework in $frameworks) {
-			# Find the latest version of NGEN.EXE in the current framework path
-			$ngen_path = Join-Path -Path (Join-Path -Path $framework -ChildPath (Get-ChildItem $framework |
-					Where-Object -FilterScript { ($_.PSIsContainer) -and (Test-Path (Join-Path -Path $_.FullName -ChildPath 'ngen.exe')) } |
-					Sort-Object -Property Name -Descending |
-			Select-Object -First 1).Name) -ChildPath 'ngen.exe'
+				# Convert the data parameter
+				{ $_ -eq '-D' -or $_ -eq '--data' } {
+					$index++
+					$ParamList['Body'] = (Update-CurlRequestBody -body $ParamList['Body'] -data $tokens[$index])
+					if (-not ($ParamList['Method'])) {
+						$ParamList['Method'] = 'Post'
+					}
+				}
 
-			# Execute the optimization command and suppress the output, we also prevent a new window
-			Write-Output -InputObject "$ngen_path executeQueuedItems"
-			Start-Process -FilePath $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
+				# Convert the header parameter
+				{ $_ -eq '-H' -or $_ -eq '--header' } {
+					$index++
+					$ParamList['Headers'] = (Update-CurlRequestHeaders -headers $ParamList['Headers'] -data $tokens[$index])
+				}
+
+				# Convert the agent parameter
+				{ $_ -eq '-A' -or $_ -eq '--user-agent' } {
+					$index++
+					if (-not ($ParamList['UserAgent'])) {
+						$ParamList['UserAgent'] = $tokens[$index]
+					}
+				}
+
+				# Convert the request method
+				{ $_ -eq '-X' -or $_ -eq '--request ' } {
+					$index++
+					if (-not ($ParamList['Method'])) {
+						$ParamList['Method'] = $tokens[$index]
+					}
+				}
+
+				# Convert the MaximumRedirection parameter, if present
+				{ $_ -eq '--max-redirs' } {
+					$index++
+					if (-not ($ParamList['MaximumRedirection'])) {
+						$ParamList['MaximumRedirection'] = $tokens[$index]
+					}
+				}
+			}
+
+			$index++
 		}
 	}
 
 	END {
-		# Cleanup
-		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		# Dump the new Object
+		Write-Output -InputObject $ParamList -NoEnumerate
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBDwPQbSyCr10DvJhxDcXYnQ4
-# ldygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXNBGxpOgJM/oyEoOozY0l0wL
+# MK+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +423,25 @@ function global:Repair-DotNetFrameWorks {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5wwR7TaQhrHA+Cf5FhmsieTykPzANBgkqhkiG9w0B
-# AQEFAASCAQBP1Fj34THcv3c1uF49Qn3xDuSD9Q/yo7L3OR883Gf7JJwmYTDh8DGR
-# 0JRuDirHJ7qqNVMwUtOsDnoPWxkuYacdp+/1SPrPNSNFVqz9nUNuqAY5iUeuzuiF
-# 8XZJF61cfy6XrycCjdMm1Ed/fnA16+RFpbkFMDZrkPFg0fITxdXayeVg6lq3hLV5
-# cxPYEERIrKAHhCueYZFziIE6cWI/4wJrWcW2yYt0HdZgYdgi7JHQfolK2+Xaf88j
-# OlEZ3UDBGXkhyS/bRxyQy0R7MRE4u00/SG1fAwXrYGydwxXBPdOZzDWnCTk+ZEfG
-# JzfrauFj23KaUjXdACjHc718g2NIY9g8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQlMSKO04EFRTutC0s5xA6IoOl4SDANBgkqhkiG9w0B
+# AQEFAASCAQAJ6tPmt1s/HtXTOu/3eUnsoE2brFdvNMyKWIl4Sg/I3GyFQQxxpEd/
+# d7b0h+uF0R19jvKKoA1zbehrwNxAQuss8l84eHSlCm/ZnwkOyAUMI6nIMbOmdq9E
+# W8Gg/L2HdxxaFILxFdVi5WpNZ5+K0uKKUj2CULmPNiz3wsZlvAMADx+t69NHOBXi
+# HNjG9q1isn5WW2myihL2zFrOhbBrYII3S4DD9FKrkNqx6NwLTxAek/ixtHR8gSPX
+# JeIVqLtRbLs6y414Wqc59pcJQLwzbk/q9/ZSgGQ3j5ovedcl8kTYecWwNccZHAx9
+# I/KTIx+DLCuYcBnryRvjIxuX0tpIMF72oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxNFowIwYJKoZIhvcN
-# AQkEMRYEFIm4zmMVo17/ZNQ9MXK9iAy7R7QbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyNVowIwYJKoZIhvcN
+# AQkEMRYEFFgo3Ytu0vNoRFVy/cNxpXA26BrRMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCBMuDkLjvh0DEObKGoM5AsOPJ7kjpCfKPDBS9h0ivO0uF6
-# vZ4xHSLN5Y5GLZkjgtuILs7No7bxiRWgT/fbinHZ1GpJSrmFWwwzlAUqC11eWt/o
-# f0WA19v52+pRdzpUuEtg7sZS3wLgUe7vcKHvh3R7zj8UzxqZK1hMaePswERfWP3d
-# gqVecePaFMtrHkT9Oxkoh3DK7/oLtMdIzBhq8bRugMAyft6ICcpnDyK40ofP7LEE
-# 4fpcy+p9XRHYy0oBnU8sB7H4cHN0Fxl5EaaK2Qp8ZLhC88pY8Tog9tW/i8o2bdDf
-# goztpy/A0vfulVBeN/6ZoxunJxfksm0VEmCK5bKY
+# hkiG9w0BAQEFAASCAQAYNLbugrjY2ICL49b74nmYAMRb2mlt1WTWAm6BeOW11HNo
+# si/XRM5cYWVERENxlhg9AAXhJsFKMBVSxAoMN6j4lqmC8EEq63dqdrZIF9tR+25B
+# 5hHlnNOg73HV+Km9e6wks/Z5ANc7OlTBIl7bA+ShAG/oMst/JLTT7D8VOhQjpQ3r
+# XwEIDHDZRneATyejNPQAjEa39bSd1TsJ+G4+uHWqwSF6gpS0A7DoKMHJbiy5kP0V
+# zw6PZjN227T44WU8hI3ZCJcqNVJ4ir16joAvsK94M2cTDusr81vGc+UGbsUSw1wC
+# ccBNPQzcSxVrjT3KjzkDMdlYKr+7Y4s+2TugjfgC
 # SIG # End signature block

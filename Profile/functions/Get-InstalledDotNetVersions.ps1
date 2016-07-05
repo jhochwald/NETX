@@ -1,11 +1,11 @@
-﻿#requires -Version 2
+﻿#requires -Version 3
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-01
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -50,86 +50,140 @@
 
 #endregion License
 
-function global:Repair-DotNetFrameWorks {
+function global:Get-InstalledDotNetVersions {
 	<#
 			.SYNOPSIS
-			Optimize all installed NET Frameworks
+			Shows all installed .Net versions
 
 			.DESCRIPTION
-			Optimize all installed NET Frameworks by executing NGEN.EXE for each.
-
-			This could be useful to improve the performance and sometimes the
-			installation of new NET Frameworks, or even patches, makes them use
-			a single (the first) core only.
-
-			Why Microsoft does not execute the NGEN.EXE with each installation...
-
-			no idea!
+			Shows all .Net versions installed on the local system
 
 			.EXAMPLE
-			PS C:\> Repair-DotNetFrameWorks
-			C:\Windows\Microsoft.NET\Framework\v4.0.30319\ngen.exe executeQueuedItems
-			C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
+			PS C:\> Get-InstalledDotNetVersions
+
+			Version                                                                         FullVersion
+			-------                                                                         -----------
+			2.0                                                                             2.0.50727.5420
+			3.0                                                                             3.0.30729.5420
+			3.5                                                                             3.5.30729.5420
+			4.0                                                                             4.0.0.0
+			4.5+                                                                            4.6.1
 
 			Description
 			-----------
-			Optimize all installed NET Frameworks
+			Shows all .Net versions installed on the local system
 
 			.NOTES
-			The Function name is changed!
+			Based on Show-MyDotNetVersions from Tzvika N 9. I just tweaked the Code and removed the HTML parts
+			All Versions after .NET 4.5 will have the Version 4.5+ and show the full version in the FullVersion
 
 			.LINK
-			NET-Experts http://www.net-experts.net
-
-			.LINK
-			Support https://github.com/jhochwald/NETX/issues
+			http://poshcode.org/6403
 	#>
 
 	[CmdletBinding()]
+	[OutputType([System.Object])]
 	param ()
 
-	#Requires -RunAsAdministrator
-
 	BEGIN {
-		# Cleanup
-		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		$RegistryBase = 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP'
+		$RegistryDotNet20 = "$($RegistryBase)\v2.0*"
+		$RegistryDotNet30 = "$($RegistryBase)\v3.0"
+		$RegistryDotNet35 = "$($RegistryBase)\v3.5"
+		$RegistryDotNet40 = "$($RegistryBase)\v4.0\Client"
+		$RegistryDotNet45 = "$($RegistryBase)\v4\Full"
 	}
 
 	PROCESS {
-		# Get all NET framework paths and build an array with it
-		$frameworks = @("$env:SystemRoot\Microsoft.NET\Framework")
-
-		# If we run on an 64Bit system (what we should), we add these frameworks to
-		if (Test-Path -Path "$env:SystemRoot\Microsoft.NET\Framework64") {
-			# Add the 64Bit Path to the array
-			$frameworks += "$env:SystemRoot\Microsoft.NET\Framework64"
+		# .Net 2.0
+		if (Test-Path $RegistryDotNet20) {
+			$DotNet20 = ((Get-ItemProperty -Path $RegistryDotNet20 -Name Version).Version)
 		}
 
-		# Loop over all NET frameworks that we found.
-		ForEach ($framework in $frameworks) {
-			# Find the latest version of NGEN.EXE in the current framework path
-			$ngen_path = Join-Path -Path (Join-Path -Path $framework -ChildPath (Get-ChildItem $framework |
-					Where-Object -FilterScript { ($_.PSIsContainer) -and (Test-Path (Join-Path -Path $_.FullName -ChildPath 'ngen.exe')) } |
-					Sort-Object -Property Name -Descending |
-			Select-Object -First 1).Name) -ChildPath 'ngen.exe'
-
-			# Execute the optimization command and suppress the output, we also prevent a new window
-			Write-Output -InputObject "$ngen_path executeQueuedItems"
-			Start-Process -FilePath $ngen_path -ArgumentList 'executeQueuedItems' -NoNewWindow -Wait -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue -LoadUserProfile:$false -RedirectStandardOutput null
+		# .Net 3.0
+		if (Test-Path $RegistryDotNet30) {
+			$DotNet30 = ((Get-ItemProperty -Path $RegistryDotNet30 -Name Version).Version)
 		}
+
+		# .Net 3.5
+		if (Test-Path $RegistryDotNet35) {
+			$DotNet35 = ((Get-ItemProperty -Path $RegistryDotNet35 -Name Version).Version)
+		}
+
+		# .Net 4.0
+		if (Test-Path $RegistryDotNet40) {
+			$DotNet40 = ((Get-ItemProperty -Path $RegistryDotNet40 -Name Version).Version)
+		}
+
+		# .Net 4.5 and later
+		if (Test-Path $RegistryDotNet45) {
+			$verDWord = ((Get-ItemProperty -Path $RegistryDotNet45 -Name Release).Release)
+
+			switch ($verDWord) {
+				378389 { $DotNet45 = '4.5'
+				break }
+				378675 { $DotNet45 = '4.5.1'
+				break }
+				378758 { $DotNet45 = '4.5.1'
+				break }
+				379893 { $DotNet45 = '4.5.2'
+				break }
+				393295 { $DotNet45 = '4.6'
+				break }
+				393297 { $DotNet45 = '4.6'
+				break }
+				394254 { $DotNet45 = '4.6.1'
+				break }
+				394271 { $DotNet45 = '4.6.1'
+				break }
+				394747 { $DotNet45 = '4.6.2'
+				break }
+				394748 { $DotNet45 = '4.6.2'
+				break }
+				default { $DotNet45 = '4.5' }
+			}
+		}
+
+		$dotNetProperty20 = [ordered]@{
+			Version     = '2.0'
+			FullVersion = $DotNet20
+		}
+		$dotNetProperty30 = [ordered]@{
+			Version     = '3.0'
+			FullVersion = $DotNet30
+		}
+		$dotNetProperty35 = [ordered]@{
+			Version     = '3.5'
+			FullVersion = $DotNet35
+		}
+		$dotNetProperty40 = [ordered]@{
+			Version     = '4.0'
+			FullVersion = $DotNet40
+		}
+		$dotNetProperty45 = [ordered]@{
+			Version     = '4.5+'
+			FullVersion = $DotNet45
+		}
+
+		$dotNetObject20 = (New-Object -TypeName psobject -Property $dotNetProperty20)
+		$dotNetObject30 = (New-Object -TypeName psobject -Property $dotNetProperty30)
+		$dotNetObject35 = (New-Object -TypeName psobject -Property $dotNetProperty35)
+		$dotNetObject40 = (New-Object -TypeName psobject -Property $dotNetProperty40)
+		$dotNetObject45 = (New-Object -TypeName psobject -Property $dotNetProperty45)
+
+		$dotNetVersionObjects = $dotNetObject20, $dotNetObject30, $dotNetObject35, $dotNetObject40, $dotNetObject45
 	}
 
 	END {
-		# Cleanup
-		Remove-Variable -Name frameworks -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Write-Output -InputObject $dotNetVersionObjects
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBDwPQbSyCr10DvJhxDcXYnQ4
-# ldygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGdTZBiKTaWEoJoVqlIqPceUe
+# jnugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -272,25 +326,25 @@ function global:Repair-DotNetFrameWorks {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5wwR7TaQhrHA+Cf5FhmsieTykPzANBgkqhkiG9w0B
-# AQEFAASCAQBP1Fj34THcv3c1uF49Qn3xDuSD9Q/yo7L3OR883Gf7JJwmYTDh8DGR
-# 0JRuDirHJ7qqNVMwUtOsDnoPWxkuYacdp+/1SPrPNSNFVqz9nUNuqAY5iUeuzuiF
-# 8XZJF61cfy6XrycCjdMm1Ed/fnA16+RFpbkFMDZrkPFg0fITxdXayeVg6lq3hLV5
-# cxPYEERIrKAHhCueYZFziIE6cWI/4wJrWcW2yYt0HdZgYdgi7JHQfolK2+Xaf88j
-# OlEZ3UDBGXkhyS/bRxyQy0R7MRE4u00/SG1fAwXrYGydwxXBPdOZzDWnCTk+ZEfG
-# JzfrauFj23KaUjXdACjHc718g2NIY9g8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTu4wZ0EiuchHInhFy6rGfMkj1ikzANBgkqhkiG9w0B
+# AQEFAASCAQAPqXWNlll3HiJJkI9zFgg/PgVqwnY04iKBmfYdE7fMim/xYJzGH5Ub
+# 9XY3gHeYRFYAm1waBe8ikMsM34GfUQxEY8WIX0uh4fqM8+dvqw50heZCQttnaE9v
+# 13r3bnGjQw2ZI/tpkp2e6KmDPLsJo9qpJXauH6sKdTSdmdBMwS88WUgdulAIa+YM
+# /WZ5Y2QbTHMY2VPgkJU9i51yj4/lodepQWBxYysCr7XEO4c2FjJD/5+4IaHQQCms
+# fCApzmCXWf18NSd6Nwxp1M6qN3utrVb/POT7D6KtUf44vOsM9/ilg4DjuJbHWUDw
+# diXQmGZLz/H1LtqaCiy1bn87G+vXLJ3ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxNFowIwYJKoZIhvcN
-# AQkEMRYEFIm4zmMVo17/ZNQ9MXK9iAy7R7QbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzOVowIwYJKoZIhvcN
+# AQkEMRYEFI7Wl4rcWnhFuJxdWNjJNZyYEPRuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCBMuDkLjvh0DEObKGoM5AsOPJ7kjpCfKPDBS9h0ivO0uF6
-# vZ4xHSLN5Y5GLZkjgtuILs7No7bxiRWgT/fbinHZ1GpJSrmFWwwzlAUqC11eWt/o
-# f0WA19v52+pRdzpUuEtg7sZS3wLgUe7vcKHvh3R7zj8UzxqZK1hMaePswERfWP3d
-# gqVecePaFMtrHkT9Oxkoh3DK7/oLtMdIzBhq8bRugMAyft6ICcpnDyK40ofP7LEE
-# 4fpcy+p9XRHYy0oBnU8sB7H4cHN0Fxl5EaaK2Qp8ZLhC88pY8Tog9tW/i8o2bdDf
-# goztpy/A0vfulVBeN/6ZoxunJxfksm0VEmCK5bKY
+# hkiG9w0BAQEFAASCAQCTGaXjLdunxvfLPtyf/5KQyzO7umssOTnRYc0yXQxuy22O
+# 80STzdZXOngTR8uv+MSb8Yrn3YHygbt7Pjj1T0zXqd+FxgClutxP961vZO0wNCvC
+# klZSu9/8vdtdJ7wqcNF+jpMzplBvM9F/TZdPw3lnMMXSU7gOr44085wpckJunnDh
+# cfMCxVzw1Y+5+JLtT7lIQh+YZvH1nSwGeoLTlBR3FjtHomNh2t8NegNQIzYR7D7j
+# zaxCOhcsL4/utVCKQIXDbklSDKMYSxUg6Xqj2YKYM9zYfcOaLKpaIqc27NRi2tZl
+# C3xNgIEEl5/elxdt9aubpXbV6oSF2axcZGYyWqLK
 # SIG # End signature block

@@ -1,7 +1,10 @@
-### Info about timezones (Not only the the TZ applied to the system) (HEAD -> master)
+### Development Snapshot (automated) (HEAD -> master)
+>*Tue, 5 Jul 2016 21:26:01 +0200*
+
+### Info about timezones (Not only the the TZ applied to the system) (origin/master, origin/HEAD)
 >*Wed, 29 Jun 2016 13:20:37 +0200*
 
-### New Proxy Info Script (origin/master, origin/HEAD)
+### New Proxy Info Script
 >*Wed, 29 Jun 2016 13:19:51 +0200*
 
 ### Distribution Snapshot 1.2.3.95 Minor changes to some files (Syntax and spelling) Signature updated by Build Server
