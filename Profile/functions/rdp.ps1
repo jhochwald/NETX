@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-12
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -104,7 +105,7 @@ function Global:Invoke-RDPSession {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 1,
 		HelpMessage = 'The Host could be a host name or an IP address')]
 		[ValidateNotNullOrEmpty()]
@@ -158,13 +159,13 @@ function Global:Invoke-RDPSession {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name rdp -Value Invoke-RDPSession -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name rdp -Value Invoke-RDPSession -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsiAR1KUrS2n46oHYopr89KKW
-# 68OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhNt5aG8rCVIjWhYNv1Xxa9zg
+# pjqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -307,25 +308,25 @@ function Global:Invoke-RDPSession {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRYP06fq/+tdX+5ESHyFy32hEkuFTANBgkqhkiG9w0B
-# AQEFAASCAQCBBPoROJddJenzgCj9Ya5Z4tdyxA9dmu/EuPFA8VZRBBIF0FYniMYf
-# 1bk7FjWCKIuYYh76vjjRHtKFjR6yxtX6DyGXzbKdExsObJY7gaZTQUVc2mbja839
-# 7dI90aNFZZcvR2XuFG2rBy9xMjyaTnOdc9eKVM1KWxfFLhnbqDCLLvgrsV+JtSoi
-# RJhoxH6FPFYvhqaVD7fdAVUryDF9RuoeSWH89bYqxabn4VAEsFyfd3GWHFmMbWCA
-# oT2LuK3w5qR0HPuf9wKmSlDpOZ7fz99AAt4r30md4tUq1Yx8u3N/Bm24JgVf6NIK
-# O9W7o00hY0QIqCk0SOcqhY0wCGT5ArR2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRPwpsDJAmeJS5VJvbp2Ph2YiuKVzANBgkqhkiG9w0B
+# AQEFAASCAQBlQ+GE8ohcbQWXDch1WxP1Q70L0BDX8WxtD+UtWM1WveLlJXeSYDG6
+# U0tCT87/fc0g1p2cpJCjZo7kG9s1N/hOC16OtMapAODR+IH63zL0uLlqLldqd2Br
+# DXSMgSEGS6cLYhgVCTHJ0ohb+T09utVgEV/7ShZ64LOOP0JyjjN20CMYkbvN4n0w
+# HrbHeErttzu7W/OYkTJ0n88cRU48ck88n15w+rLYsYOpSxtBNQdUH3Kxw/aCyImh
+# Yl9JJlraWhl56wJFL79HJqpLehDI6/QvZJ2i8cIXArWDMrK1poX/gm/SZiZ6yKDe
+# wxo0yZGzHOqmZmGrNY2NBTRIrkdQaLB7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMFowIwYJKoZIhvcN
-# AQkEMRYEFPtrp+pYWTlWyKozPxaWdpQRx1SfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
+# AQkEMRYEFCyCSvT74wSlCz9yM4WwZxkzK0AmMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCRYwUlkLo6zEbQZwisV3TiFf3wyIewtGwyy5I4wNUhnqLq
-# 7VeviP/rCkx08lnn/uOz+ChMjoXjtUXLGI7gzBfCfQTJxLUloScdOhE6FReMoPuH
-# XJmd3DXUM/16v9WsTmPPjIaeTdP4v1bWaHLUCqETqJvMVHidfnIBXV0WQD3ACVYX
-# 9PHvLnHU5i617UdzfpSorv7oolhnHZzcLB7oDIV4b6XPG6a1I9bastBAiI4LsW2s
-# HRtaZ+dZFueGdfYhXMuiY/oEYlW/6+OI/TYfkUh9gNTyX049le5uwf1un/bOwEz5
-# kbLOfNEJtNmTAd10RxwgPPNGHrDFnxoMjBNvhrNx
+# hkiG9w0BAQEFAASCAQBuXee8ustY2mHFcR5VPtmWP/h9nbbVoILXMtzHuAps+kAY
+# sAYTgEQywoKkLKorGCR+ivvSJS5KK1gZrKzqV64H0w28D/J43wWrZsSidSYpYLii
+# asQEpZwL47Q9gm/yRhflhRSRj70QZh0mk2WFGHEsQOuX4PNhH8eiKltI1NL9SAON
+# Sn5bz1xo+N4PnB5cIx5/4214bQPWjIBtpm5vuJ7IVYSXg62NK6fhGize7g5//54L
+# DgbqCIn4pGGjqUdk3Z1RBxGEuZcjN467xNKSNpDFlGpIOle7S1LryUSKI+V0AoRq
+# rEaDQOLHCtbA9FoacPaAxnSK4qmVqBe//C9buy9i
 # SIG # End signature block

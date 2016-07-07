@@ -1,10 +1,10 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -84,14 +84,14 @@ function Global:Expand-ArrayObject {
 	[OutputType([System.Object[]])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Input Array')]
 		[ValidateNotNullOrEmpty()]
 		[System.Array]$array,
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Field to extract from the Array')]
 		[System.String]$field,
@@ -121,8 +121,8 @@ function Global:Expand-ArrayObject {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsqoC5TOGMtmaaA8z7F7ycZRv
-# lGWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSy6H2ylhW1en+FCOT/5ZQyam
+# mJ6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +265,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR6BrCIYbag2s9IBFM5Y1lPCuBFHzANBgkqhkiG9w0B
-# AQEFAASCAQCHNeWj+ZrSz6LJvGWYO8uJBk8U3piGCAtbZpmhY5+cR/L/HUItgs+w
-# aHqRbE6b63bf1q1GIfJWN55/YJDdS1FPb1j9xYETM4kiyc8Z7yQBrSQ+ILrp1gbD
-# 63qWJX/CS9y8NUoz9gff2o2KhMsQOF3hBdE5Won64dUVB22M2WVKHt6svMxogi0S
-# tgDlJPXDIefRVFSZy5WLmd9CxYvraqf8VZIpM/deCY5Ghct4rS9p99DpH0BcVYya
-# 15DONYrqlE03zYgvccwr2Kh09qj2kK2fzzh5LowaxERve5//uRcd7QJxSlQRvF0H
-# aqj5YvVNPN6WjgQa5aBv1OKUUDAL9bOsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRWca5B2P3jVfl92kRKKFwCn1zljDANBgkqhkiG9w0B
+# AQEFAASCAQCic7k4IPCze2U/BZD5sYc08uFgo94Zz7j2ABhcjx+fKj1lrsdFYILL
+# piZakVGDpTecf6QtbIrvg2GUXd4GHnXL9S3JKuu77XEiqAPjhMWGRu21ZOE6I1OG
+# ZdMZqWoLzDCan8wmSGHfL3rlVC5AcfApeLwFZstqhvKKtrHIjMyrtLsH3taeNJsT
+# fDRDUuVN9kWcTM6DqjOOVvErVpC7QjowPnNZn5s/nu7RC/Dc0xJrTDgFeaimPBnK
+# +OQewFLMUTUp1WZ8zLUal/YLuO1s1DLAoISqgN8Hk/q/Hmqo9Mq6g+bCEUE6zshO
+# JMRqKOFDTJalmosDuYWvdQ6XrBEd24vToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzMlowIwYJKoZIhvcN
-# AQkEMRYEFO2n+7UIy/hD1InVYynnPnd/m4PXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyOFowIwYJKoZIhvcN
+# AQkEMRYEFCCncxrDMFLnyNykw99p+MAG+eM0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQASFSPPI7Chz48JpwOZMn4rBVEe2NA8oagAYfQo5+BMtf1A
-# E3jKcBSV47cTrbMpkGe1F9sbNuudHNHLF5joJwt55roBX+leze7JRkYsbS5jYM+z
-# pucjb9UPyyE/MykDSfkADB/CHdhiXkUaHYnMSUHgpsqqeIZ0PjyeyrAIMWKxiqPV
-# J1z4yQh9hNOLXGa9IusWTvT3AxGWxa4xeR5r6+Q6+X/JNkkEW8q7Dj5o+/jy+4Ud
-# dzxadawqrUcc2J1iZ/rQH1f/CfoDnPAF2op62bNcsB+zEmsnRjV03EZo6HEIR9wV
-# K0UpSjO84AxAP3UgXsuO9MiDK4bk8mHJHJbmpFUX
+# hkiG9w0BAQEFAASCAQCAD4VPTrzhZ9sdStPTeEtbY8y8mtXdbp71Rop3RPUU/ptU
+# 9CGEOqDbdB2Ef5WjzUHL7br2atA4trLlr3WAkCYoUK8J0hGQ+CmwmGEvMRA6u1Hi
+# hrDYHqx90TbesvN6sGiNN49OvL4sE031Jmr9RV6lODiFcbQP81XQz83ZNOy4oV2t
+# K/0bsCcJeo6tRioAiCs0dJkJJSCthP59h15O0tbD+zJe6zhhJicJF2yeTcyaQ4HA
+# aVwFjKIvdz+72HUk1xcFG5YgA8lrwDnHoZTXspqz/3bCZF02fIHUHfchRMztckhg
+# QJqgNrv59H9jYvzEVmseSJINoo04R5ZKCgHo1Nsb
 # SIG # End signature block

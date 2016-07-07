@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -142,15 +143,15 @@ function global:Write-ToLog {
 		}
 
 		# Remove the Variable
-		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUoCGdQkUlkF1LCqJUaHYbQti2
-# XNugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDRT2yYsHU5G7D1DTgR7pgYOH
+# PPagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -293,25 +294,25 @@ function global:Write-ToLog {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTO3Ht5ri1e/q8HZqU8q8y7ZmZmgzANBgkqhkiG9w0B
-# AQEFAASCAQCCMuomoagrT+GiiUQw9TcqrYbHP6L/1AxZfOj0xL9JIUEn4O0W5vle
-# 9f2oDgyOWdSYMuQ7e1r0q1Jh7Sx7VLVVc/uCoU3M3MZUPsDn9KEmWy4+W7Dqan2r
-# V8gkpO3SKi/kF6ilTR499X1/MMr9ZXXv3gve893XaJsQ7zuMnaaJsxDPXn5wSCAQ
-# vjqni5YK8KsNXFplA32LBgJJSXuo2hbpaH1+Ry7q77v1Dv/IKjpZy9Pzhhtta58J
-# sKrq0q5LZqetGv5IEAqIQ2uA9OY4Zx3FaPsX1TNuayBobzoxiAuy/3rVtmlV/HFe
-# 5Y67dNsEu/ruqJ0Uuu5UiBOxOjca3N0HoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS470qvjZqR6sY/Dy21Ip+nyjIMPzANBgkqhkiG9w0B
+# AQEFAASCAQCMHCr7tadU0/VW9z2s5bCPdniHBuJCISEtdvABSikWS34fZH0R99Mm
+# 39BEgGWi9lHyays21AWwvYcqQZQNGH/qv7hEfYJ3/Me2tZye0pqVlWNr05v1nDfI
+# faJKATS/OjcYwtVa6AXiyGyFH/RrgeYv5MD7XGB1+FXJQOsMC5VVmdR8Izdd71u8
+# e0sn7jJs/GM+cZub4KxJQroBk1Ugli/8buT3Sxhm81QSevW3RWrmeW5+ZO5TxPnb
+# hUW8zVfy99qwyrCxO90pAx53lRGdJJ7JMKd87WpDlMaOg+DsVVcTZZFHpk6gzPyG
+# 6hOj3oEU0d8p4YLJrOyE8ukmavVjF7ESoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQzMFowIwYJKoZIhvcN
-# AQkEMRYEFOf58DfbGc1v3u/8CNm4Z3klLWcdMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNlowIwYJKoZIhvcN
+# AQkEMRYEFLU+01IOsMPSycfRl/WRfgBy8a4YMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCOEWC8c2Z7gpqYeMW45/IQvixbjj+6RjuA0e0Vhgel4Vt6
-# LkAi2naNlcvZzZBQWgc6UFUyrJfph6X+qfGpTodUOoRksd/QmuCvpp/Ost/rLZNI
-# 2U3C6Ro+f20tRw34UHWN3cWX33pZAzq6UtD9G8CefyZ73mGWxW02bksz/DmxluMQ
-# SsEbtm2zg74LZrYWKkFJOT7mBSfmQZstAqsgKsIWYwE9CZsaRlbQHhsTBebxOErF
-# Yqg3qWzzuWyq9uQXBXi2vDGviay3WoGKzFaRaqffmIfJ5D3mSijijv82CYlKKruc
-# MCb3g7PqOaErQsluz0TA/zO9URWuyiGU77si+hf4
+# hkiG9w0BAQEFAASCAQABVpd4BbeOqnANkhLFI4FvoxhF/rms2e8Wa0JkijSntIcB
+# qOzbI0SUppqGXx7AFb00G4ohL1++KZjrOqUdIZLzIHufxhpVph+joFGh//0xULjB
+# Da+lqdJsQYEpMn8y2YPRXB9xL04EMYZhHQ7dV3gtOFmnSP8gLmIOjvJlCKBnX9VB
+# imYRL7LLXB2WgoLAJ+xxoAHqt7pATs57j6SjmtVC/9vOcmkP4VG4bVaO9ANbnRBL
+# rBqf8ad2r1yE4fsmDmiSzkWKcR22YTwNRnm6H0zwdG3lClFUk2CaVtZf6L4y8V4y
+# eJE24C9ILiPKRY/k3h2m9BBakd1cMtxo7XoUfp+o
 # SIG # End signature block

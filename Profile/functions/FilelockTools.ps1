@@ -1,11 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-12
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -72,20 +72,20 @@ function Global:Test-Filelock {
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'File to check')]
 		[Alias('File')]
 		[System.IO.FileInfo]$Path
 	)
-	
+
 	#Requires -RunAsAdministrator
 
 	PROCESS {
 		try {
 			# initialize variables
-			$script:filelocked = $false
+			$script:filelocked = $False
 
 			# attempt to open file and detect file lock
 			$script:fileInfo = (New-Object -TypeName System.IO.FileInfo -ArgumentList $Path)
@@ -95,7 +95,7 @@ function Global:Test-Filelock {
 			if ($fileStream) {$fileStream.Close()}
 		} catch {
 			# catch fileStream had failed
-			$filelocked = $true
+			$filelocked = $True
 		} finally {
 			# return result
 			[PSCustomObject]@{
@@ -127,14 +127,14 @@ function Global:Get-FileLock {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'File to check')]
 		[ValidateNotNullOrEmpty()]
 		[string]$Path
 	)
-	
+
 	#Requires -RunAsAdministrator
 
 	BEGIN {
@@ -185,8 +185,8 @@ function Global:Get-FileLock {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb9jDr4hJsqTZK8a5gf+EHKjK
-# c0SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBgOdVTiIQYKkjyW5JAfW7jkg
+# ajegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -329,25 +329,25 @@ function Global:Get-FileLock {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRVtrLmzlIcgeRKj35MFFhySYHuVDANBgkqhkiG9w0B
-# AQEFAASCAQBsSMsXxyNGGmYYmbE6Ig7qAS6oWOXtwS3Y7gDzEotLcEQcJEjIia0Q
-# BhfOEyMJj+zyE+3CgJg0sz0fhgZDHzGub/DS9jc39TFfRbPSGAsfPXMS1Xp309UG
-# M8BmOJaolUq8cN0McxjpCgUqYzCH0OaDFTlQJBYunhgruE+tKQncx42jGeXXpEi7
-# 6BFA+AzbuKmSjuev0dAEv0iO4Nnkv7Ben/8m6iBVUX03eZ9hwW2FSiMfh4NiBv0S
-# o7T+/BjnpZxGKi0qV+LyKie3ZZwCXIAspw3IuEs2fQ3Hq3SwsO5DQUCYqhlbn8na
-# +R2SURIPkjEc6r4vXPrOTGBZfP7E7WUyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBROS2WZu3bsnZ1AdRDQIEolLqFR0DANBgkqhkiG9w0B
+# AQEFAASCAQBGybPKQmpG1T2pCX7crWLJuZenjqLyyl0WfIfm5KaQUqgpAfx5p8Lf
+# UbvmHoZ3hNkrMmgD2z5Xtl8uvJz5Fkr0umBko3PEL5yvN5QVWe/J0aj+E/7XR56c
+# 8seHMU0Uh7/HdKZsgPMgdyBtd14SaqdhqZ2VC6yyGHJODIUv2zeJPNEMFaHEplRU
+# V1b7S34SrP3KRNiMAr5yVPxIxaHzl+vMt3qycvGa9G3I14FlIXazxA3vUiAieGa8
+# Di9U5CpMQ/sfhBcwhPpE3lPRD58i6G8YVF32LR9WzR94wqzm3kjbh7RS9Ldczyjc
+# 4mJD4Pl75aT0OyWXtLI63hOT7XDs7HQPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzM1owIwYJKoZIhvcN
-# AQkEMRYEFFYmVfV5MtN7GwY94lQYnX+0btYYMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyOVowIwYJKoZIhvcN
+# AQkEMRYEFE/O2FHVhFrdtQHYDWj3fpe3j6O8MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB1F/lyDtBt8yvi9dbnPpqVBuzCAALtyozoYczxugDt4sVC
-# mLQx9ho80RYSI8teuvdfCQw0uJhzsPeLSUvGHAS9iag69Oujbj3bz09iWt8+cZJA
-# jDqYPfw1moiSDSopp2kFyCUzQnOktm5OQDwRip4orS13s0HoXFASYe0Gh9Oivsiu
-# ijw5E1KCh/tfmL7ppHnPvcW3pa6xSkS/mQ2wSzn4XsBUaFqEBxyNZHPPeh36vja7
-# dyP+rBHCQH9ru+KPUjw13ef5CZtHJrKE9kdYowRtSMmgwlQ3nI2DJScLIbUw+W5B
-# 0lAMNIKK2LkLypTAcHxovukD1QIH+qs9/33cbYIp
+# hkiG9w0BAQEFAASCAQAtgoMFOwP/y7C3rvYKVfoVWdw5V1EVV24eItupIEO793J3
+# etdQ8pOBCzCvWRZzO+WrmQ4xjRRohlhoD2FUOc/xVWI/b04XzCvIW389l9Amdhok
+# mEhf8ePwd4WZ12ejGxJ+9RscG91B45hJh03xw2DnVRsg8c4gI3QNWj0eim5xL0rc
+# la+h9WLeKC205/A2i6Mgbp5MKaUv+GO3SsFb/zoFY2ujy1sZJR9hJ4PSORRZBu4m
+# leNGmC2Kk23ClAjslNY+t3snDQ9DcZOS+EnJy9jEdV0jwb0LTe+bFeHoYRtEXXOS
+# 7f55aZiEJg9DGeD3b8K3UgLPORBqae76GGP0ny7A
 # SIG # End signature block

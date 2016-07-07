@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -151,7 +152,7 @@ function global:Get-NewPassword {
 		if ($PasswordLength -eq $NULL) {Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)}
 
 		# Nullify the Variable holding the password
-		Remove-Variable -Name 'NewPassword' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'NewPassword' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 		# Here is our loop
 		Foreach ($counter in 1..$PasswordLength) {
@@ -183,8 +184,8 @@ function global:Get-NewPassword {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgEGtqo4bMuxfGhXc1mwS11lh
-# zQagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8xnB8TSEAyf+ZhHft9j4JN4/
+# XqWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +328,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSxCcayVB6GXwinmvwKn0xdNYkIADANBgkqhkiG9w0B
-# AQEFAASCAQAUB+Oib6vnkL2ClD+78rgukE09tCzd4tL7crrf2YWU4GOOZEjkMRnf
-# 1RcxP3uXmZBJSsYN639uVjaAH0c/XYKDNyV6gIEGNATi2NWGcQ/rb5iLLlOHohIk
-# baop83RShOuGCgaUNENzSuDOA6+rWk/p/x1NRZ12rVuhL0PB624CvB1NKoyf/m7S
-# z+xxPPWPFeZe0zD5L4cADlBiqMkiCrMFLR5rs160td9xox7Q329Et7LYTNZOdIO4
-# xkS4FeGhKjblJE5ZeOeQFANFvadZtSvbbBj5c48Y01sloxH1dzLJneAYRaBlCU4g
-# VPMEPUokYI4BtPslFyUT2igIm+onIYAZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS80d57dPKRutNSMDNxcVI8Er21fTANBgkqhkiG9w0B
+# AQEFAASCAQAMmedHdHZaL7HVOJZbqGBqwyJMqpT6viNgEcXexAkR6NKIChAtaenU
+# AC9uzmwoH27pa6ukEZiQlcssJRB9Mz2E2i8jsRsTI/BB6ziXl/qV/ZYU7+98v0q4
+# jDx8lvIz2BbtdRS+iZQQY3WOcrche9znCA916U2rQ/CXEJ8LhPq37HQaPhmhp5yy
+# 6meX7ntN8PyQI0Jbo7a++nA8DVcURdztiCbgj1t3aCH8DcrlBpqUV7BTuL3xpii+
+# YTzzkQfQZjvM82gyv1aU2RP4LNDWAy7X+S9/SkEt+GQiPvV+SCy8AhjjjC8miNFq
+# mNYoyiKehFt9DjbdHDfJyMPjN7UOGiiToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0NFowIwYJKoZIhvcN
-# AQkEMRYEFJNCg5g+vW2RCOJZC9/iD1dc3+WVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzOVowIwYJKoZIhvcN
+# AQkEMRYEFCFv6niCr3+1N5xRJRTNsUFFGWi+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBDFDMaAO6Bavgk2SWRpKBJzKmz7iB7pkk95XPqpCL067Wd
-# cHeRe5IpP191CHgNdxP0BunzGqnOnnLg6ka3ql/xwVYkKNUr0XDe+oPJwVqobwY9
-# heySry8dHZybz/fLlRcxLxYALVEDxqFUnrDBui03ab3Q8dwUXSkNKuqpXfrT2f5W
-# CRTZXdOkF6yimAsT+CublhMjlo6DMbha0vfg9yPMjEZ0HqZyGu2QdG6dLDqApAao
-# 0LN8rT035kbc5kFcSl72F98i1zdKiAWHjuO8ksUlupRsy9Kx0YiwAuQiX8Pg6N3Z
-# r9PIzVAbysIjzhjIYyT7W2bTxkQdHxCfYtjVklRU
+# hkiG9w0BAQEFAASCAQAsPlE+Jb5BATOYVVTMj0eEp3EqDSGdOy5c0HjL81enpTQF
+# q40OtS9ILLTAqnwRdrT8t5u1b0s8VDhlfis75Sb0RFgqeCD5bxW/ZICGSLwhrsFI
+# Rn9XqVWZ2CphDdzJ6hIz4l9mRmIjEom+iJOXgmlQejGAIk6mkcOzDbxmxIAIo1n1
+# OpHiF6UnN9sWi/mXEBgdOohXo4fDkxCMnnxkpnHqZgCo+4GKMwf/QqVf9VD6YSRo
+# pvJyoSz6iGcAOFKP1JjPK/Owl1CTdgEmpewmSgxHTsLJwFp6uV2GLjxf6TDUobQO
+# hUZOxOkOx5jOhXx8jD8Kkj23M2qyxTPek77wOuSC
 # SIG # End signature block

@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,8 +81,8 @@ function global:Reload-Module {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Name of the Module to reload')]
 		[ValidateNotNullOrEmpty()]
@@ -94,15 +95,15 @@ function global:Reload-Module {
 			#Check if the Module is loaded
 			if (((Get-Module -Name $SingleModule -All | Measure-Object).count) -gt 0) {
 				# Unload the Module
-				(Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 				# Make sure it is unloaded!
-				(Remove-Module -Name $SingleModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 			} else {Write-Warning -Message "The Module $SingleModule was not loaded..."}
 
 			if (((Get-Module -Name $SingleModule -ListAvailable | Measure-Object).count) -gt 0) {
 				# Load the module
-				try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$false -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
+				try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$False -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
 			} else {Write-Warning -Message "Sorry, the Module $SingleModule was not found!"}
 		}
 	}
@@ -111,8 +112,8 @@ function global:Reload-Module {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDppg0qyamOLTlEHDOwo7eFeB
-# a+ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+AjFZ4CkHJB59IPgSRlRhaiq
+# LD2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -255,25 +256,25 @@ function global:Reload-Module {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS/2Ew7qAamcliNP6M+zCkxRkWrfjANBgkqhkiG9w0B
-# AQEFAASCAQBc9xf2EdP8g8nxKY90rj4+LplyH1jmBJXNzFWGEypxU9LJM6ZeQKbE
-# 4oP5uK8ywXubmsVHM5B5xi8KV22QnOyS+3zWVuQI5+EmF/4uTfF8mQC1bbbnj8AY
-# RsY0Q1E85G7S6sOXfcNaXlXEqo0kkDvcspzNOfNNg6sOzIpqEC8Ajy6hELfizrjt
-# 27ab4QX2UgSct9g2Gx7OCiYPTwEFo2nDxrKpcLH2Y9F4TA2WCRbcslTam472cBBw
-# WfI2L2rGFSJVeIzDfh+yOCLiE5BJloZLDs1fSmqYs2d532nbBFZiKnEcEz4s0PIY
-# GCha9y355j5eB52TtrHJ0wKx0WmYsE9LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSYEQH9/le7vIRQJWNdEJwMGKcT7TANBgkqhkiG9w0B
+# AQEFAASCAQBxfzbvWTon17KuRn+Bg/seUPipj3ACXnwHL2TKzMTSTGc+2dnOCxzv
+# c3V95XA6MoJRg9P17UhlFUx2gIwYs/RqJTmvIgthXau5Qy0z9Cf52qKFq1nsrMcA
+# NUcOgR3u9QI3ZjqfSjHhQcH8TNRtS9tNia6LyWGruHd0RAzuGQ8FjZlZTuZe5nOG
+# qDU2EnE67pvvRSuCJDZq8mQomqkuxfnLxkfIISy3OUVtE1tL7Vd8Qd6XYleGuzrV
+# bFFWuFZXaJry1ziqS8nnODbTkQ/5x8ZgppkYrTe1IwfeJAyjce3glVt2HpI6VffC
+# ceEvlSwRuoklhBh3kDFR8CbzqgytVwQioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMlowIwYJKoZIhvcN
-# AQkEMRYEFOkwhZP3RJTUDMVwuzvEUleSPjlwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
+# AQkEMRYEFDXFDtUB1EN64SkBaJHdpyLByEa1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBdDiyUC1+wHE2H67EicgrUJuwZNoHr2mFP/ZH3+op5V1Dl
-# bKfI9iv6qL8Pmc9RS14lL+rQPDUl0PNK29SOrEupgHGcldIgAVvYpe925uXKBb/v
-# E/26/Pks2OzEOx91or14dw/7Fp8FmoRbeedNqhBe2AMESsNqJc6j4KuyXSmoNEPW
-# 9cSnjf4c4iE6chg8AlvVU7DZsfceEuUXPpFh0uvTYkts4iav3gOSW0ON9/f8WgYj
-# cYE/PtJRtW1E+hoGi+bQdXSJhx7LUn+zB3fwWXeGRIdIHT5xhg6HdKfsB2t5H/DR
-# kUsrg6Wu6NN6OsPtQAdaSPgCicYX8m+ajNbbZTaF
+# hkiG9w0BAQEFAASCAQA6OXQoFd7QS9GieE2o0b6ECO3TJh897TjSsdnwYsjz/xQ5
+# 7Bf7/jxWvHQ/4JjeTf85opofwHyaEn74N/UNYMX/Gk05RwT0fn9VzeBieVjegfwu
+# jhvpDHXELBMv9z/AkbE3xEb0Slp84id1gcIglisakfAgAxGpswoO2Ms8tlwUY5QW
+# 3Nodds44VkOgB2ukyKzUcdK8AWqvt+BxYxKi9HxjL8JE9PeoNOiYCzn6yntXFiPY
+# NoLmhlMuJfKlbkx57uAilhEiYQFwKyumjp+IJg6+BNniehzoz4Df4YjsXvqCzlcb
+# ss8QlnnTCnvHK2d00zVYse0HJ6l3cJ+bBXrY1+CM
 # SIG # End signature block

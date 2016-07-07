@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -93,8 +93,8 @@ function global:ConvertTo-EscapeString {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'String to escape')]
 		[ValidateNotNullOrEmpty()]
@@ -157,8 +157,8 @@ function global:ConvertFrom-EscapedString {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'String to un-escape')]
 		[ValidateNotNullOrEmpty()]
@@ -181,8 +181,8 @@ function global:ConvertFrom-EscapedString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsqsdAKxTS1X/ZoVFEwHzNoIY
-# 19ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU03Nu2+858MhHGkOW0EZ4AwuZ
+# VaSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -325,25 +325,25 @@ function global:ConvertFrom-EscapedString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQaQmOVWe6sYGYcsw35bSyL6oc8tjANBgkqhkiG9w0B
-# AQEFAASCAQBG5ePpFMNviMtStn5PQWKpLK87829oM2ULV2yK9fNXv1sRu6qQSrSp
-# Mkt7CcEI8FpgAOsRdgwzt27BCCbHH46921bUWUytPp55pvzBF04wCsnxfh9f/AXI
-# ukYNOIsHD3JxA+NfVdQrq6R3nB3RgXJ7Oa7Kt0zHykWz7qGtx6xsIdMnH3ngYOkj
-# W6FvIKAkOuDOwH3kxCbmLTU/Qp8LYfQVthrcJ3GN14WvNlILr+5y9YulbixHaqvR
-# SBqv4bWFJBWfYO5oXjzHWhhGz6cLeU87tKc1GpUYAAqDsBkk7mZxob2SQPm3vRen
-# fENncLaLZbZKZhNUJogKedHeHz5qZXKEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRLmw6NyxHI/a7TxlfBHTNQKliO3zANBgkqhkiG9w0B
+# AQEFAASCAQB3kOj/0I6Qir3xoO3GSqFM1hTgVWPAjtzifaLIfPOrjtVmaPuufuKS
+# fxnagfu7JrIC130w/BK2nF0gij0HMU9QdpIzubBQJRHwma2QKWHLmqYqoao36sFq
+# h4X8rIGMSfdKSCcDEvReMrVjQGYGWRmekjPZrzhuiyFqhr67fzNp7R7XtptSW61e
+# vraCIwOqkH4Z/s1i0sVZARF+Td0wT0/fhnclwWbPdrgRxtTkiZRnj7DYCKboFoLC
+# Y0OpuDnT9Bq7fBgQN391XYgtrgISaa8UzmPduPRNhGoGltL1WEId0J32rxa3B7oA
+# kUsfevWw+yWwVWXLY9QybBvH7vkFzOXuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzMVowIwYJKoZIhvcN
-# AQkEMRYEFKp5EkxPz0xeDAMAsGSbsT+mMKQBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyOFowIwYJKoZIhvcN
+# AQkEMRYEFMkxiwv6T+8clRbZ5MqiYe0YdTpiMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCXawxgXbqCdvJupUqzT6DdJ7IRm0Mz48ICMMrlef1jipXC
-# wpBuSxjz8Qi4zVoDpHfg7y6vODpCiDiHr235kU2R/E3BwA3JbGVR63Kg5zkuvELG
-# 4B+SEf9UGM3Tt3/Ylm39jkY+LztfwtZ0d5Ss6yzjqYVV5IbglqDN0PBMowYV0Lez
-# yG+WOLiR/cGWbyaZ2dttVQLjRNs2vRmxQY1ZyzlV3WnRy/WQfpocFB/qH2rDMvHc
-# OZDmC3uBz1GvbH6a10c2wxVHGNdDrathnBwSwvFk9nQXmNIHGnkzWVgYU9zGjt2X
-# NcDGO44fZVMLYSu15Fo88T4hG+euyoiHpBSAilKN
+# hkiG9w0BAQEFAASCAQB4f7S7SpTN6rsvv0SIRAmnLTbAJ3uzn+87itcMUDTKmYWO
+# BRTAXggZrihGnTR1L4M4R89JodyJF943w49cbYFY6pmq3v1MX6lmGW1twTdoXeBh
+# 8nIqaIQrMOZCjncniTBY9utW4SMC+xqsiOG15LgEihH3OiOSh0noXLbyZst5AXWz
+# YCEYfYpfVOAxOaPtfe2GTElddRdsjPpEDm8hUQIRt7lLGImNQLc+mEM0VPEKGGCJ
+# LPQI5otuYd8wtV2dv9WjXT9TE3bYHc506l9XihGOk4Uj/U5v9Az4RBG/v5jqV8UP
+# nm6M913fCmS1YZo/nzdJ4PKEBkpMblZbWi9ukpHA
 # SIG # End signature block

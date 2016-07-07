@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-12
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -75,7 +76,7 @@ function Global:Install-PsGet {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param ()
 
 	PROCESS {
@@ -127,7 +128,7 @@ function Global:Enable-PSGallery {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'None',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param ()
 
 	#Requires -Module PowerShellGet
@@ -189,7 +190,7 @@ function Global:Update-AllPsGetModules {
 			Inspired by Homebrew (OS X) command: brew update && brew upgrade
 	#>
 
-	[CmdletBinding(SupportsShouldProcess = $true)]
+	[CmdletBinding(SupportsShouldProcess = $True)]
 	param
 	(
 		[Parameter(Position = 1,
@@ -218,7 +219,7 @@ function Global:Update-AllPsGetModules {
 				try {
 					if ($force) {
 						# OK, you want to install all available without confirmation
-						Update-Module -Name ($InstalledPsGetModule).name -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
+						Update-Module -Name ($InstalledPsGetModule).name -Confirm:$False -ErrorAction Stop -WarningAction SilentlyContinue
 					} else {
 						Update-Module -Name ($InstalledPsGetModule).name -ErrorAction Stop -WarningAction SilentlyContinue
 					}
@@ -234,8 +235,8 @@ function Global:Update-AllPsGetModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpZFYZL/pkFdzj9s4qDwTyFQD
-# nFigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC4z9CoPI70m5gLlzJsqVwEWP
+# VoigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -378,25 +379,25 @@ function Global:Update-AllPsGetModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTgDT6NImHpc3zqX4pTrMYxQekfxjANBgkqhkiG9w0B
-# AQEFAASCAQAesawUHY5uoVjwN6R/jLTL3ik0BWp/eR0pmkpWftg+btGov+KxrVMZ
-# kPFB7B5JlvVrE2xvkPrXbvjT6gY4XknQkWPhGo8b8CgEiT8JE8ByCWZboJ712NYR
-# hXFnVdiz5Slg/wGWb4oFkznke0y45O5sPXdCNUIXuqkkB/eQ8dhkuGOLqAIZQP3y
-# 3YUaUP7Zd/A+BGFEOVXFJsv4SnSsQP+KwlZ8DbfMuGaCz1Ov1V2j+2pR5Go/p44L
-# 6Kjz/BthWyNNJqU5c/hFLnFMVggX/LhmL9gdQ+2I0jQXU556VYD2oMcZtiT/5spb
-# /H3ZD992q9QPcVSniZC3Gn6jCRRaJ2IEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT3ESfQx7zgFRDgxxhGKz0jNjoIHjANBgkqhkiG9w0B
+# AQEFAASCAQBOWx/Pd8NDvUR4I6TDm27CuLc4Q+dBzFuM8TfGtoFf2vfR2DO1fIXU
+# I2/lCD+xkw82xAxsj4tbH8kT7juD8LecAF00nWguFRDCCpaP05vf2WGDvfjzKGRN
+# yM2w/p+61cAWx8/yCbAJA/5l66qu0DzNFFOQnmayUEJzaOeyXw4jOPC8PNN6rfzY
+# p+LsX6OrGV8e4HmSOECRq6z7NVD3xF+699i/ODRU1sSn3k/W1RxJQIHfvIHCrkup
+# skd/DXSuAR6U7S6N5uxc/Dktv07D6Fx8UnUk3KQvVPbK61I9vbeKPljyUEHxzNBI
+# p1CIEvIql2EeCZLMamzr22fHsDpN7OfZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMFowIwYJKoZIhvcN
-# AQkEMRYEFGa0RWawcqvz0FYOJTJqWtpW+aozMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMlowIwYJKoZIhvcN
+# AQkEMRYEFNev0TdRZg3sNVJciQPlSdVkcVQlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAobrLDZn0cLIEVy+i1xGt8Vr1sY1SEw0gnHtnd6Hxnyhhj
-# voTnJYs6GvIxxx2BrlJHogd7w9fT/CoELCjFF/bp0wJVnCL7iau1aId4Wn0+zX64
-# de+THaozcOXt3tYVuRcoRwMxJSng/tOuxtfuE60QLznOfzPbg38ZzCW2ozt1BAon
-# OtHb7CvNrIOWcOqoOAu78um1rhvVjTErkdbAjGghfTCferGLDZ18Wa6+5O6sGlCv
-# 4BPFEo66KBpvRoZXOmsSMass5ypUKeRSqwOdTJUlFbFxegixtnAfECi8pgOiQHmd
-# EK5d1nin6VdV0JenfJGf0sEvBBd+IjrL6JzDMZ0A
+# hkiG9w0BAQEFAASCAQADutwRMYv94fsv1soX3i/jnhYHpllRnKd1iZrR2vn6cxkM
+# sW4oXgFmwE0X5yxNCoSHfRwiHzldZqKtNEmSxqugMhCGEX6n/ANnBRdwjjTHOCty
+# 6G8SK0EdBLCHDkygCIrYb+i46ecTaXkWq02jgznTxsfnkEjceEuZyCsgO1HD2dV/
+# htzcO+6XKNCDa79NT+Y2Ck8WYCXEcG3ImiUMBSBSkMNnl7zGbzmc0hpTwJWHCvnX
+# Gdgj1lnYeATQWeo3h0lSsw3DC40fi+q4uhmqmL5Z67VYo2GHP/6SbhpO5/d2+h6M
+# F6tLdfQkXKwwC3gBv8/opsJVosJX9WXkULqC0noF
 # SIG # End signature block

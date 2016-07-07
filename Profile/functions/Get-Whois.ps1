@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -126,8 +126,8 @@ function global:Get-Whois {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
 		[System.String]$Domain,
@@ -139,7 +139,7 @@ function global:Get-Whois {
 		[System.Int32]$YellowThresold = 90,
 		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Grey (HTML reports only). Default is 365 (Days)')]
 		[System.Int32]$GreyThresold = 365,
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Specify what kind of report you want.  Valid types are Json, XML,HTML, CSV, or Object. The default is Object.')]
 		[ValidateSet('object', 'json', 'csv', 'html', 'html', 'xml')]
@@ -364,8 +364,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEq2Z1hmxSTJ8N8/2YkptDlBv
-# aLmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUB45jFqIHE2CtPGt1QkXaa6sI
+# 9legghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -508,25 +508,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRt7jMZTIgIcbpGNVXnsKM2beZrAjANBgkqhkiG9w0B
-# AQEFAASCAQBpoVntBt12B8vmzMlKkWOATkT5r9Kegj5M/p+mTASX6I/sHM/ZF3c/
-# wmjLVPo9iWnySbHfMHQ63SitW+B4R2o2C7pkIAakGrtckooIic+S39PZSA6m73qp
-# kBj7UPUS4ankYgfcAHOHf+JUk5DUoY/FsKj+OuaNskYub9iGn5i1F9z6Hb17px0w
-# MkMIlQ43wf3pdcmOmEb2rYhiv02eMb0xNyhiCtbZJhnWI9IdcvfPa6Dc1yp0akzE
-# qlMomaH77N8u+4s3wksEpbTaS7NSrK3SdGpVRQOi+LqFaUcD/09M+7SVHVrv6euT
-# Nhb+ryvSbM7/JqNz2Cjl7nRzl85FSaPLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTANOF72PMomcn2Xnw7hk4/GVAxCDANBgkqhkiG9w0B
+# AQEFAASCAQBzpw1eOSLLeDkhYl8KCveTi+Kfjt8lG1gi/wghJc1tXZDxpqea7uCC
+# sy2ageXwvVBqTpbOwymYzKmt06sen0D6zDb2gzL8dRpZl8fyz3XJLiKMSnQlshJx
+# hGIHizSk8qAMAvFWfeTyZbjBQhO+QnRblAm93OvNyVp4hww0qjC5C/Yn6sH2wmir
+# iP93XiOs+oSqSrkKUSFU8GhiTSRj438cV4rxH28LWmZGsQEFeVXqpm5/I2971DW+
+# ytbATabOlMotDdmZwrBZBe+dYdM6+iLjE/vzlCNoUoWbyF5sr/U5J5mDi+JzDZdx
+# EdB6DiXUup/+yEeOzxG6oWT5dmQeGCmwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM1NlowIwYJKoZIhvcN
-# AQkEMRYEFFzS3QDHM446tjwBWb8YNjin9zpLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0OVowIwYJKoZIhvcN
+# AQkEMRYEFBgKUPC2z+7/BO2Ja+5WO0KRUBfJMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJyBOoVVrbDpzx6FrKo1tKV4iogBP6j4C8cXirdxQ/icCR
-# vcAlk4+bNo3OkqYBSJiV+2HqAYytEweD7vlC8QKPadRqlm2MEQUWw81w3NvFekbJ
-# U6s6YbqWGWUmF9T5VDFbIArbH3tJ2DbvZRtQPOGoH6TsFmq66o6D3efCW/KLulBn
-# kyDZOHwLaq8X9jnhzT8H2rk4QPYpLAaxaEL5BfbZy/D9ENcekyetxR6otaj8gXYk
-# lgnngPB/oeMmUCS2gEDsUFTgmTLLQ6hYzQxfXIut2POGLVIMyzRp6LGlTTxRBxiu
-# XkYn0CH4FWa/fobclTKn0AR6DnqWV+l1RuNT1ucp
+# hkiG9w0BAQEFAASCAQChcBZ8MN2ZNdkx+oFMPVgHMmrd1/XIqe3TUyT3J02VPjsY
+# RNjTMbHZIA1ZW9hUwCrQlCfRoYbUQijQ9gSjee0ComZVBKuf5M/jFQbn43qxvHNA
+# dzHWtCXRG489umJ7zTDsYWY+eob+frssIJc5M+KG7KrPR6e2rehWsvG6y1v90AqA
+# iymrBOeUPwJDNgnRDpUeAhvpgffQ7aoQaYSQYqi4nl1o00p1p0F1nLLF2kGJV8gy
+# dTs/IEyPvgBlSPhwJs+L1BdMr0YtxOWy54YySnwMb9x0S+K5a8Q88E22QlF6hET2
+# Fxc4bi5G5JxBzKvHXam/wamL08vUipfz1BJ/Wne7
 # SIG # End signature block

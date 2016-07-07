@@ -1,10 +1,10 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -77,8 +77,8 @@ function Global:Get-MaskedJson {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Regular Formated JSON String or File')]
 		[System.String]$json
@@ -116,8 +116,8 @@ function Global:Get-RegularJson {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'C# formated JSON (The one with mased characters)')]
 		[System.String]$csjson
@@ -131,8 +131,8 @@ function Global:Get-RegularJson {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxaJ6kNKrdJM8uyKQRr3AMs83
-# lv2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUt843xYUudqPtFfqenabknVsw
+# yIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -275,25 +275,25 @@ function Global:Get-RegularJson {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQi1111aM63EPSCqLyjhaHbGTY6XjANBgkqhkiG9w0B
-# AQEFAASCAQCru7hOl6KHwFIX7uwvGanJp89B48ePZQ0/PdIfIyFTj1r5cGpZs5yi
-# nwgdrpcQOWSYpBttVnZk1TElM4K3/PYoxfMeUEUMKK4pyc71TM7qXj61OZAImEej
-# K6zZQYBkBescshgGb6V+jevm3rB+ety7Y/F74x7drZVDlg8TwlccUTILb+72g9uH
-# DuODt58Oc3nQdE7KQ4Sqs4m1JWEnR/0QhXOFfkuGtzmK3EhWtQJ4apoCZd2lXmdy
-# aaBgTqht3WXY42phxt1bCzmHLaTHrBPZyMV/GL7A+Wd7pr1bu299R4c0pr+cTAyp
-# c0gbatthfYqWFwpLAPcnyt3eg6MWp2AXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS1vkoWbb4xDxUgFJtQlCirJZ2EmTANBgkqhkiG9w0B
+# AQEFAASCAQCuqMmdmTaGWwNwnrcUZZ+5PyHPz8QFhNXobrAIOi3htW+Pf2Lrvn+l
+# V1yPHZ13fokUsKq+lWxS6FsMhqIZ5n2tY1WSLaRk2CGky88Nti7t9pSs0uEkpkM3
+# r2dAuF1/O2Xs+c2x93MIERNdaFj6UasWbf3s3jAuuQJeD9JvQ5BoL+miohmvsrZb
+# 1uW2rn1n4tADY8mYt5jXlt69gvJwXbp1PVsmgZ17qgq5tAzcI4lbPGADlKR4D9tE
+# SBEKeLdXboGl2sHSP1Xwo0URTmse5siuamdlg2f2VEe+jjvFjcJSC8cJKe1iKWSc
+# Hz7SD3kFhwAjIqzOIzY4NM3YX3KX5jp0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwNFowIwYJKoZIhvcN
-# AQkEMRYEFLEI11VyGLsuluKPuDO9ifop0a92MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NlowIwYJKoZIhvcN
+# AQkEMRYEFJHzFe7Ml4J5/CmQ6gEedD0Ly6mEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB8l3GqsbSiHJ53KgIt7Uzla2Jr5ZruivvckPlnPyyn+Rfw
-# 3Ich3uBVXP6260KEYh1Nues3kdmnyFuhUVtJ8h7Q1TENsPmpbW97Bq7zBKEQ2W5N
-# fLCvZOLk+XT0ZDFZSDaS4ZTQrlpuUucG5PIqfIkQLLY6/WzdabP2OfGDe2CW4ouu
-# l3GICKlinBTaCt5OE2hCQBzw1LAO92dvReepIXAVy7rtHaQC++hVE4M/CPFIMlKI
-# ySC/MQQFPt8IUkDCy3KHyzslNwHyYJcIt+fCxbr2+J60F0jkvnneeZnnTNewcL5T
-# yMYpd5B6vUogovpv3pX7aKBUmJrkDcr8AjrIdD+1
+# hkiG9w0BAQEFAASCAQCmI/Zrv4KZS63EpxJXQNfMQPzses7gF7vKzyqa5egdGexA
+# 9t31yaSLFSdmB+/etQ9rphDu5VCFKwJ/6R3KW79IrReW20uDiORAbx28DJKzXThJ
+# KwCg+YPyhLhrZgD9Nfrql1BfnfhbhbDVMX/VB2N8jb+79255pF4Qcc1+tyedbl04
+# nwKKyIRzKenx+RtZi43OnSMu9YjUtANWXgPNqyeiCf+xsIgM6Fgo/mDmVgJSDmjz
+# bl7k1AChdvgEyd6G3aDTob2EBqBq3Vbono4256M+rUuXglgxjxKFqEqwvUJk3y2c
+# nyy4Km0uZIEmo25O/2NfYNKpAQLHlqIiFeCqJi8B
 # SIG # End signature block

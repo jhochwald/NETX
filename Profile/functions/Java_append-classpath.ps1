@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -81,7 +82,7 @@ function global:Invoke-AppendClassPath {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param ()
 
 	PROCESS {
@@ -93,13 +94,13 @@ function global:Invoke-AppendClassPath {
 		}
 	}
 }
-(Set-Alias -Name append-classpath -Value Invoke-AppendClassPath -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name append-classpath -Value Invoke-AppendClassPath -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8EK2HEsQK/ylBuUtT9JOCvfz
-# 2tugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmHFSAOkcxcz5sW22nvahK9aA
+# 7hWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +243,25 @@ function global:Invoke-AppendClassPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTVQhfVzN61NJAzZk5F4tc0DWQwnzANBgkqhkiG9w0B
-# AQEFAASCAQCLNxJV9NULlaQBRsJZonWoID8N+FcauwSDmXYSXk+H/5ahnoBQ55RL
-# UTPXVrXFV8nLgp7c6aqvx1cMxXFlhvpKb1hR4dpsETXW+uIZB0KEhC7evpll7dtg
-# T9dyiutkqncAyUfT1B2XkJyWGobo65TUh5R1BoSaruGTSM+R8wvWTQF2KmxvHnqH
-# bp2w480cDMelQAkbibB86g8smuPB1Tz44te9NDRcRxLJSrTAtL7h4yexcKRFzYav
-# vQEZmUcryB6TRNIpyRj5jjRsAfHSwWJlrdAQ6mn/5hpPZbKpiWPL/zjUvhH1M67z
-# Z7K1piMt3WMPNXNwzND5Ja3kiT3vn5d8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT7Lm9Xz6+ViK3o20KLVCfSfefBGzANBgkqhkiG9w0B
+# AQEFAASCAQCPf5Fvr+wb5RHbRDBch8kK+3JT+Rio1oU/dwgcv8XXSDXUnmtE+Qel
+# AU3WlizZkoTsPD0jkslMyRkX1olLQZi7yfnEHC4/ppQwRFZNJvkS+r2a6rUc/PHY
+# Mp3CqoXKxhP05OMM6osZUeXhjcBvaYAr3TN+1HEoxWOoOVjmZOnTo9a5NgEakJ07
+# fvB6RiWev9/M8FEUc2ID6ft31+dTfX51PLXUEZnGpwEjkmjexXDBwafM1eoCztSC
+# cvsNLa2Cd+XPbN1Q2+Fz0HxEKGJZ/xQSM0pijwlw7Qa4rPnymqNF6DBbkBaRhGBa
+# I/EsTzvNC9iJbG3VqA5QYtNjfLusTroMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwNFowIwYJKoZIhvcN
-# AQkEMRYEFOtp84NnrN9GV1+tDviAwfEz6e/4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NlowIwYJKoZIhvcN
+# AQkEMRYEFIfQNAylhDbYf3ublzgjm3Pj/OXLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJtfm3vmmI4JOHCnxEgMgOobyHq0wtIjr2gnuOySjdXcFy
-# de/T+9wRoX2B03GxMQIxCgAc7BJBT99hmQzFVGQyViI7vDA3p5RoJyX0zpfWBB+q
-# 95TipgZ09lCzGEiN0W8W7OyBcBOBllm3PGIIT9jEgXu6iTLu2u6kKi7JJBKsgEXb
-# z34o8LcpCq2T56p4K/qUrDRO+TbOPypaV0iuKV1wctzldcv3WUDPIKqCLbYfGbpJ
-# Ww2T5Hb6+x+kVFH4eauKe7NGo13BQ64+YCVSDT059WVnUq/QzXEJN6x8Oybu3JTo
-# UBvnU9p8IYnOx58wC4KornRpsAzS4wIYZWZ7qGsZ
+# hkiG9w0BAQEFAASCAQCuoo3voiJ2PbjLehEwRXH9fsD+Sa3o74IdU7qKeLxL5Fgy
+# 7AxOtfoHHSphMZUj50wmaO/l/rshOHVylryBBf0vqPehuOPU59g59tpITyEoVN5+
+# mbEox0SeGYwPQQ+RuCm3omdClbKpTEGdVL9sjrsNdy187QD5Q0wVziPeOypeIVQS
+# 02Zq4/m/gieTt+0zZkarM0iQtlKfp9viX3t+ojdfjh7/6h6gGaI9MS6+rPpJZgbT
+# 7I3PTiuo2hKYCaznj3edwkRsQdk4IYPUDrr7D99SnxnYC4izQXi5lUmOf9dMkXfF
+# Vikr/hKsMy0Ciqp3Tyf+Xbe+9hoczr4fRt0P+5Jb
 # SIG # End signature block

@@ -1,10 +1,10 @@
-#requires -Version 3
+﻿#requires -Version 3
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -88,9 +88,9 @@ function global:Get-HttpHead {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 				Position = 0,
 		HelpMessage = 'The URL for inspection, e.g. https://www.linkedin.com')]
 		[ValidateNotNullOrEmpty()]
@@ -156,8 +156,8 @@ function global:Get-HttpHead {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl4lyN8zBWJOMHb7f2UPv0tkS
-# sWCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgR+FB8K1GT5F/T0OpVOEn5ix
+# HjygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -300,25 +300,25 @@ function global:Get-HttpHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTmlATHQyk5IC60wBsyteG288bNlDANBgkqhkiG9w0B
-# AQEFAASCAQBBSPtLNsdx9h++76dj2Emlw6sJf5YvRZfCDxe4BKvjiVdIlNIJy+vy
-# GWvfzJkZioi1zvr/ppC1nPTgq/MMY06G7H9IB94XQ0gMjxdUEW8MrVo6WLCR9F3f
-# 7rPLh4j9foxnPnUyHeW5VkWFMu2hN4dOZMni4D8Jw0gCR6fp8xyavWSjRjJYreZ+
-# 2YZr+UvwNXK47zCmh7JmveQtpP8tV7u2aiuGOkp/CROmfZjsqiIXGNQnhKLbtf77
-# szfAiAuEqUydLeUf3tHGfnHHZ5qTQrJQSdZbrX0p0DdnI/NFGCMP4gku+2gFGPR1
-# 1rMAMqecrYxjFN3NHJOT87BCp3gRl/7XoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSHCPcGIyndehkmpk/nA2i4K0dTlDANBgkqhkiG9w0B
+# AQEFAASCAQAyL1ehEQc6Xhf1nOpWA6a4bBkAKPMSZCdrVo6npY4ZyxwdZ6wpKpDP
+# TF3fLMhQPlxIGPenLb7DhErIZZX4OpZ5yIdjHZnTowgWf+K+LoCIeFyfxu/GXpa4
+# vFnewe1XtM8ucRX0pbbVl8UOd1U6O5rQ5qCKmTX/w+YLWVTH/xReglAh6Ov0QdNT
+# CYnAfUWq0Vfs4evGGj3EmwW/M9KzCv6xWR7ekm5ECPYdQIlXiwbBdd9SUM9GC01h
+# YF8pKEx8tSP8cYB+fvNuAsE8lrjutHQDOF+0Us4SPRHvHiHau8CD4N6yVwnt/uAC
+# 1U2glvaOuMh4uW7PqkW37Crayqdd86LsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzOFowIwYJKoZIhvcN
-# AQkEMRYEFK/FFyg7mxIMWGQ0F89yzWx9NnyQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzNVowIwYJKoZIhvcN
+# AQkEMRYEFCaZ1RIXVBkl2C7Jo3uhzzhtJ2IhMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCQ23cUtDJIosNmXaOMF6qYwE1PHB6f8nZ3fVO76XBRBaJg
-# JVa7pq/6K8gxRsN5oyDODxa7QOSltrH29/QES7NP43DsVVTXPIwDOae95yr03aqs
-# QvxNkNAK5SYvTj0o+hwTSER0ROar0MwGFutQJLFo8mHarp0k/4aZE7m9BBJKOMm/
-# nPoOWr+/jYqMNfLlGk8hLRka9gBuyAHyiZSkIQ8krE8bWwZW13ia6StpDURVmmTa
-# vtdbJ2uufsTnvlANAm+CGh/ZxbxPKt6qs6xORJGuGZ4O/DFRGhx/wPw3Kh+7F5m8
-# hd4Chc9gdocRBMajKJnNE34e2h0vWMsuzUxq+khS
+# hkiG9w0BAQEFAASCAQBknuHI925SEHyhAuAyq4EFTM5dzWFnPdFIZsJTO7zNXVft
+# TFndKUeoGyH25GX7P0NrqM89Zz+wLj6doLyVLHIeel9dlqHBX5bcwKf2XrcSK/Le
+# xSyFX0tbl2+meVSA8fFgIqd3Nlo1DTlsoSTuP+R41qA5RHIs5xHXsHvA3u5ua9+F
+# ItRQG+nkZ7S7EKw1hA/9CbBE2PnJQSiMD+t3MWEJtzpxsS1vzI54LGTohjlShHDa
+# t8+3t6HJKtUVw1mYdwLUXS/zX5KGsaE4W0WtD7axWKx4yfJMrpJPjNW2niiXeSeF
+# N8w3rs7lOpD6kc70t2DZdrrD6IW0g6T9/N/bKGDV
 # SIG # End signature block

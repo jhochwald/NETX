@@ -1,11 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
 #Requires -RunAsAdministrator
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -101,11 +101,11 @@ function Global:Invoke-NTFSFilesCompression {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 		HelpMessage = 'The folder path that contain files. Folder path can be pipelined.')]
 		[string[]]$Path,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 		HelpMessage = 'The count of units that are base to comparison file age.')]
 		[int]$OlderThan,
 		[Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
@@ -164,8 +164,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsi5DBtJtfYD7W9yLKZ8LcxeQ
-# MCegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcwg3nafgIFlg5UUFqhewCe1I
+# JoOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQSNcHwTNMqfv63qhCBTnUsXdl+3DANBgkqhkiG9w0B
-# AQEFAASCAQBtXKNmf5j9RK8Rbf7vwkPQkeBqVKpacDJZy4agfGkMXymXsXH4dqt0
-# bnuxxSq4LrkjhwBoX4ElB/ap+Q356+jCphwWoJfpuhdITPLXrmrG0nls32bni2GD
-# gDmNs1RlAWjP5WnZkI1rMYX/Lm9zPZViFOgdPEPYU2fne57aFzTZyUuNp2pMWknQ
-# S3lO29BnXuLT/5d2yR/CgrutBgiC/1pTg/EHw+V5CTt5tMvcDiKujmODH49bEP3W
-# 8x4x/pMQ1DIj46HI/OAqeAGoHu2BRSw+wk48+8Q37ApYwFGU1blhkSS9KSwleN4B
-# jYfAaK8XfTHnjg37WdhdYYwSnT2kyP+ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSRiBF4CY36C+i+a6Q+jMQw2FaViTANBgkqhkiG9w0B
+# AQEFAASCAQCeJnCKglwuxOcMmKvgTt3SgMDGob85dxTP9TD/dpOCZF+rkqiID0D9
+# H7ghKoCaZ7+ybDa1naSGZhdbMmSZv8u6JhmcX9Wl2AO+ao3VKXOfXb1Jg961vCAw
+# om/0jCUEBtxIoDSyqHsbTwrAejlmMo5kF7QbL7bWUIIKXwuBbafGpqjUxIH3Nc7j
+# iGd05K1G1ydh2tp47jBtMED7Kcbi9HoPE83N/1CFFnegdgXjHv4wnQPMriXRT+XY
+# rZUgoKJCnbqKzY/PLTqXG5rFPy8Wkugja7/BIiILYOeUyYRNGr+L9F5CKqsl39B0
+# CrxYCSfnSxRoHBeaEhiqfn1HduNCKHiXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwMlowIwYJKoZIhvcN
-# AQkEMRYEFNGVbYeJDmAeAlHViz3bMAUYfCNVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NFowIwYJKoZIhvcN
+# AQkEMRYEFAifjo9u+yBqjZS6oJoSqt6ZfaqVMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBTFHZ0jbPbAm70zlf3nZF+ge7W0CQY8yqMuAl301TvRrYJ
-# peYySu6H4s9di1/AMer0qcFnrSJBiO4SVgzr+RGzNg+5sMmyDuBDeFLXjtp93DG6
-# 1cHrh0W18Ac5yT6cH2pMWZmkWMByzRKCA/GVB4441zNBoTScHr0KZL66v68LtiSj
-# ZJ243FUBF4vaRGGQtOgNIUM8ZYrtdOOIfAULf26pjmnRR8iWFFPI2hnwS6pujnmc
-# TVHxvfxMYPWGAzWu9WqxXMyTrierOE2lwpvR4x+Zyzy/h/hskiLLRGdiFs9NMA47
-# LdiAFbn0kSXQ26meSjD7u2KqoIZZ43TjOQgw0uj/
+# hkiG9w0BAQEFAASCAQCdeDPZYIxMptbr8x3UE7vnBcs9/hRWzVI4b8JE7kb0h9as
+# unj/yW+LMK06JAqz41yodZSGrKA3kAgzcjU8jaGNFBFWRuHVPcRWuAt4McylW8DG
+# s31aiEKcDn9paapdCi/0NLgXoQyh3nKZZ/q6HkfjMpSUsgsZJ23cAxmpJ4UNRDHf
+# ICbIvwmiLr96Y6S6yurRB4qNJRn0u3of903nQU112tFSvqp5hvFMt90ZBOuTlh6j
+# v3c/MZ6g1o2K5wD8Yrsg8Jg1oznbCfNjg4ni7nohgfI7XsFQFA0HR7x/g5Gs9lO5
+# +pZj/SbRLWAgd9xjE7qgBftHoMQ4FCkvQ7LLI0sT
 # SIG # End signature block

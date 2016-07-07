@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -73,7 +73,7 @@
 		Support Site https://github.com/jhochwald/NETX/issues
 #>
 [CmdletBinding(ConfirmImpact = 'None',
-SupportsShouldProcess = $true)]
+SupportsShouldProcess = $True)]
 param ()
 
 
@@ -81,23 +81,23 @@ param ()
 function global:Get-IsWin10 {
 	# For some Workarounds!
 	if ([System.Environment]::OSVersion.Version -ge (New-Object -TypeName 'Version' -ArgumentList 10, 0)) {
-		Return $true
+		Return $True
 	} else {
-		Return $false
+		Return $False
 	}
 }
 
 # Make this Shell clean!
 function Clear-AllVariables {
 	# Delete all variables that exists
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
 Clear-AllVariables
@@ -129,7 +129,7 @@ function script:LoadScripts {
 
 		# Load them all
 		Get-ChildItem -Path $ToolsPath -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue |
-		Where-Object -FilterScript { $_.psIsContainer -eq $false } |
+		Where-Object -FilterScript { $_.psIsContainer -eq $False } |
 		Where-Object -FilterScript { $_.Name -like '*.ps1' } |
 		Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
 		ForEach-Object -Process { .$_.FullName } > $null 2>&1 3>&1
@@ -159,11 +159,11 @@ foreach ($MyModule in $MyModules) {
 	# Search for Modules not exported correct
 	if ((((Get-Module $MyModule -ListAvailable).ModuleType) -eq 'Manifest') -and ((((Get-Module $MyModule -ListAvailable).Version).ToString()) -eq '0.0')) {
 		(Import-Module $MyModule -DisableNameChecking -Force -Scope Global -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-		(Remove-Module $MyModule -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+		(Remove-Module $MyModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 	}
 }
 
-(Remove-Module -Name 'NETX.Core' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Remove-Module -Name 'NETX.Core' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion WorkAround
 
@@ -437,7 +437,7 @@ if ((Get-Command Test-Credential -ErrorAction:SilentlyContinue)) {
 		Write-Debug -Message 'We had an Error'
 	}
 
-	if (($IsCredValid -eq $false) -and (-not ($Environment -eq 'Development'))) {
+	if (($IsCredValid -eq $False) -and (-not ($Environment -eq 'Development'))) {
 		Write-Warning -Message 'Looks like your Credentials are not correct!!!'
 
 		try {
@@ -460,8 +460,8 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOmQO02nrd528K6VNcRMjY49o
-# 2LCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJE68hPrHLtppjtZNzV2CeBrR
+# 44KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -604,25 +604,25 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSn1vOK8bTPNWJlQgwL66SLMeCV9jANBgkqhkiG9w0B
-# AQEFAASCAQCJR1LWIF6ARTQxCvN32hwrYdtCAxDqkNPExBXB1Cwkt9woV6c31Ca+
-# BuBVybe6hx5ehBUHuMyCNw7AxnhNw+B5tTKzfuXeBhMAjsqZmBjb8I3wwqhluh4N
-# Y3bplaHg4VgHmu8e0rjl5NaF3OrxEcZu7/Nk2h6n4DKWeLVzhlkU6r9tnII9fBSb
-# NxS9DH6SyoGoa/JVPPpVNESxC0F4UQKJnOOk7fV+LQB3c9JypTpJl4vkGM7d/eiG
-# hlth+cWCV6fW4CydGmiFVdG0e03ToKcOg006luSBctPK/LqGAN2UtU4+JOR2AaUn
-# XAkpC+xtXSXAYpIVIVPgbW7F+JaP9QcxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR0QcOT7puDZyLIV320NpM98YQsazANBgkqhkiG9w0B
+# AQEFAASCAQBgjoKlHJJUOvxkXr4f/LpW+0mrHsA3nvh9YZeepbarWnniwpknoKcc
+# 1w7g3iNm1pNCGn0dCwCV0oiR0xpmuF/YFtSxFX+no7xbsdIwfwN/blVZDy+0SUaf
+# 9FdD1QOtB4rRdQ2HCybctl/DtsVN9mTsCDa7E+UbvuBnFANQJQG3cgDweaxLDDV0
+# mPbq1GaDZsSkh2ofNo51T/0llU1y41lwgrLZRSO9xaZU/R1ZMwB9EZbL80GkMdF+
+# WDrpBJPCGpcc9gehkhv4MhEj/EJG2eVT8R73KfSAM1cnwWDDxLRDqVCbx3tMAmiK
+# buDTUjQrPsEaVnGicVji4upRBiiaQVdYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyMVowIwYJKoZIhvcN
-# AQkEMRYEFMVjRa+7KScOZyGbQPuFo9ge/OOKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYxOVowIwYJKoZIhvcN
+# AQkEMRYEFFo9m89rNrGrYUrhWfzlWiiC2yIMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQACzZM0c1abXgqP8QlUHSsZIj+ObyusmwI/TCY50lUWFKkk
-# 2wiIBW7IFEjU+nWngC9YVER1Zsf/aNpRXgZqNoSjCnm/5jeb96dun0o3n1e9owN6
-# 0W4nC5VWJZyBY/SUXT4hBqeQOVy7p5/SV7maFOwA8ttsVLehHQLCfLxkJ/TAr2n8
-# 4qPusZO0oPqBXCaRAY5n9DDMGeQPVbve3PhnPElxyduRxwSJGj1cCsbLb8LWdjsG
-# R/biTdtpEwZb9gNhU5H3SNtthr0P+GcCkWuyW2/yYmD67xQNZptaERtBieNtu1Xb
-# 6Iy0HSHkRslrf8w5wZgHYHBj+HbY5KFGSdw9x8z9
+# hkiG9w0BAQEFAASCAQCtPb+3l/kij5k7sz+2/btZ2J/cniNtAcQxYnQPRcHEcZpL
+# rZDdEbCQLIe6q1BflCS2MsykKOQJSZJojD/SbHDFkk7J1lLo85pp3Vs3vIaIGu3P
+# PzTbuieXSFgZAVjxMquI/orIEAxJKWFm5UCt8vLXPNcxl8S3DTMhMtkgHoaQCfJu
+# xRAt8zyANqhN4bXlNGCmvhgPwhhFuVm2aGMgR/eIHeNmT3qKP0XSIzJMOTbQbTIE
+# fcRTaQqGOrnGSJAwJ8P1NUEir1sSrIpOFiJuMYEgSXZIvFp4G3ug5gTAibUhne2r
+# AjgTHkNoRzlghPAU+FmyztIMUV9mmI0qMCHMnli7
 # SIG # End signature block

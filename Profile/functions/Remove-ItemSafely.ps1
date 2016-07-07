@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,15 +80,15 @@ function global:Remove-ItemSafely {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'The path to the file or folder')]
 		[System.String[]]$Path,
 		[Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
 		[switch]$DeletePermanently
 	)
-	
+
 	#Requires -RunAsAdministrator
 
 	PROCESS {
@@ -119,8 +119,8 @@ function global:Remove-ItemSafely {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV8UXf/H3GcNQW+ct9xFGTbOU
-# eT2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpr5fVAE6gams9H4nxJ5CvVIA
+# m0KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +263,25 @@ function global:Remove-ItemSafely {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQcdZOy4Ao4zecSubMyHEZjULAxiTANBgkqhkiG9w0B
-# AQEFAASCAQBrpU2QcbNLkXOirjyNZjZ5Rer6XWSsW2B9T4kKusg7OiNhbjmuwrdv
-# 5jFGcDIiyaxvbgRYAIPqSMjUeWOVgkhOyUjJPwCE2tBA58inQPKNVRcRGDS/UdzC
-# WPtwOiR5qsoaSmuyUN1H5ihy7QNOVl7crGPtuGz36z1voJmSR2wROMm63r96JgLd
-# 9ojHKnoKci/gT6M873XbG7L6RzSu1B9HnjHS3hNI6nEKdZrNOVsxfqOzhtg9My2/
-# p6InKcfDKf2IM2EAicMBlyOkbfr6RTc8hvgfUmrGT6MWLZFm/mm34W5O/ehdFTcg
-# JvwmmXkaCL5HWfM/+KBoD0ycbpNrXYyZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTfaknmlDA+gK8G7KCOkA2amEnhvDANBgkqhkiG9w0B
+# AQEFAASCAQBnbDeFpmUt872Zm7uNSvCZWaacckubJtXpZ8epalDzGgGEXqr0Lwqu
+# EE909QxaBlFF/YuROBo06nvnK/YBBzsAFa5Ncdo5U7kayh0geLBdtLEHPA+gVcL6
+# kA8R6HRDVKJSF2rwNf1BHu0fLvb47kAAgAPVQz4DQWqOMi5PmPywrEKQ71z/us4V
+# 9JRbQRrRH3YdCR/mR5REy2oXUL1mms/u/3A27GRrYkLfyBCBpziXZ0M+4lA8I86c
+# ysZmlvWN1Hojza/RZQjyLKSRqBGA159Jb1X8gEUy2JU4v7rODVP/JZOFKjjzKZR3
+# ULLu8lb4jIETSeCoMKGQ++FZfWvozRFwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMlowIwYJKoZIhvcN
-# AQkEMRYEFBB5zznmVXxT+v7aF9W6Df2gjdODMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNFowIwYJKoZIhvcN
+# AQkEMRYEFN6YRXbW1Zuj9IULQxB+uEZRI1XtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQADgVtFBGBiBrW5LvTRHpcx9Pz97fePdsJqg4sA6B02gTXA
-# TxOd+6quuM+txc4ZqaAPCyVrJJrp3+hcACP39kgnTcmPwgeq/5rAENlTS4irLJ7E
-# SwQGJOPUtyC1BgX55d/yP914W9f6c0LvOpfR1lOBTGbU4G0ctzp0mQR8vkfmhUgV
-# EPcP4MTtwr4MVJ2dq8UJlq6CGsOutYww1Ce3EiIRFbBc6xPe8LVd/yrmErLVFdRS
-# Pt4VP/GB0fplvVaPQMzHgtnCHbIxHPJxTxhBLTmDHQgUEyybtvwoTdcBgdaJbq3r
-# FsdxKEy2RhDbsoKMwZAyGIGyiCJfZHizp7Uo9OGL
+# hkiG9w0BAQEFAASCAQA2X5ENQS1+BM8JWqSTdU87LE4DVF1iTmn2DHWxse6VKOTI
+# Qq2UFzhhF1VKhwtID2V5XNqunrpGZ0Uep0CYEm0qKjuK9rQimvGcy4qdZR04bpZU
+# O151zFdl4XGmdH3PPZNRjjSwwM9CHQ9FB3mms45sxy/Zw0usdIzfk0cj6WYbVbz0
+# FjE029qn/Njm/sSodpBwOr+P9KVCj9IXrdYLWzeZKzqtbjl47bhe/42DmaNErkT/
+# GV7LXmOJpao5ye0Cu6bE3Jl1CVJ5nMtjwCmcrfX55wPkdERjNr9Z/ksuk26L4CeE
+# 2o9XLefVfrxZ+7c8KM8ohbEHOU7emINsktGD72PK
 # SIG # End signature block

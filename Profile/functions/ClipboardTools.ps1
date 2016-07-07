@@ -1,10 +1,10 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -96,8 +96,8 @@ function Global:Set-Clipboard {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Content to import')]
 		[ValidateNotNullOrEmpty()]
@@ -115,8 +115,8 @@ function Global:Set-Clipboard {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/CnlHqW9TXQfnTssnA31SCSG
-# Nt6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUU4DrJdNqRXPLKPI9UpCPHFnB
+# jCagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +259,25 @@ function Global:Set-Clipboard {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSE5bM9kgHmm7OLHDkVEiGea251LzANBgkqhkiG9w0B
-# AQEFAASCAQA/4aMBnVGMmazzpWGnvTU3/1BKO9p0Ul2HQ1AlLq9GQwDsvZR6yMoi
-# dzsRhz6/Qta7N9hUTXEvc+GgPdfuGc/OONhrWYgGG/dPmycChQbq6mxAPcJ0OnRG
-# xZWLOzED3lzdCRbvn86MdaSTrD5vDQI1DqWorbvVTuNRrwdearaCWcSBLQo98OsR
-# ahCUq7RnwBtRYvqpkpCPI+kmv2lq3y/H77C+Vu9pPzu+aX5RBoS12IefMQZGsPky
-# 9/ltAV4QHLMa9tHe1rcUvUtxnhCJ/uKu+81PcAjFXKZdziW7Osthd5YOejGoqaQZ
-# hRbr9UsxaC7aln0Xh2VF/gtLPaEYXQHQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSWwq/05xlTIceqWAJuJ1/g7+XmIjANBgkqhkiG9w0B
+# AQEFAASCAQATZjRS1TegTTEs2/MKKAynJildERT0+W6APwbp3GdORSe9eRuTyjpf
+# WV98V9zREq4o7Nlz9g49bdsV+90rWVjYMHOYuOixu2OdSIFqTrBQ4EvepxkMEAmX
+# hOIlYP9UH38Vtf4SHDifUqT3dHUdHc5yYoZGbZfrOgfahqRzXNAnRMQNEtj7qMi/
+# zlAU3Wm15+pZxDR/fTOly5GPLG26YZXHpc6/CBpRYNCb8rxKwgMdQ7L2oQ5IP2lB
+# B/U3tdL4fKMDe9nigu9q7FFihfJ2u42OVPOW3W4v1YgGA0Km1dxXKQPmFDNZmtya
+# JROajp7WpE6vvlcRdw89OEdQWcceJxWfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyNFowIwYJKoZIhvcN
-# AQkEMRYEFBzJhVUp09gKefMSRep3xbx0ENIOMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyM1owIwYJKoZIhvcN
+# AQkEMRYEFJQNNWdes/2LOOu4/WT1I1EtDqvoMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAt2FnlBjoMD7J7+raTsXfuvdWv7JkiIXH+/grwEqu17uqs
-# Y9885TSj5vv8TdpDO2kEPrIxWUeN77wrl075fCybhxrdnelCIxpNETdO65uH1c1i
-# Cj0n8b8dEdFQKqeqFsk0G+G1akEDCX8RedZ+OvA5nD/Hi8GdGgKgMV399fpqHRF/
-# ha7UDafs5mfKrQdTm/ym/AJgcwHGY0xHNbvLC3REHlp+ZOkW3QR99nTpkNO670YJ
-# 9+cDBjGPlfmPk2SMcgB/T2x3hDwssJz3aIJkdKqDMGfXvNCGZFdQEw55+XgHnWFj
-# CUGnCPodcguYvTgFQEBYbXU7LrWQrDEeaY8VDjU5
+# hkiG9w0BAQEFAASCAQCSDed24hJylERT7uMoglnTQf7qEN36CThzayfZJeof6n2Q
+# jR6lN8ZirL31mhFYwbLoPVk4anp9eBze7nnUWw7FdvoilkxS+dFEWNBPWaS+sRO6
+# 3pLMADFUYTVwkd50tytWllqdnpIlp9NRXk3CxQF1wzRy9kke7Coun/tZTve/PGfk
+# 6Pgve5ZFvEUQNX7puurUiOG8uWzn3C1Qic64mpKfmPDv76SpHu5C7bOHlt/5S30k
+# Uwj0h4epUrWPaUNIIo7umX2D0mEjknGjXvrburl5nJpDiyQyHyaXpiWit6eu8vNQ
+# 580AyXVg1T9niXOY7pX0g7rI7H3Ffu270g9Juzjm
 # SIG # End signature block

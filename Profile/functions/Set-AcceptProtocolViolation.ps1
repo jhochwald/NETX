@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,7 +81,7 @@ function global:Set-AcceptProtocolViolation {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param ()
 
 	PROCESS {
@@ -108,7 +109,7 @@ function global:Set-AcceptProtocolViolation {
 					# Check for the unsafe HEader Variable
 					if ($useUnsafeHeaderParsingField) {
 						# Looks like the variable exists, set the value...
-						$useUnsafeHeaderParsingField.SetValue($instance, $true)
+						$useUnsafeHeaderParsingField.SetValue($instance, $True)
 					}
 				}
 			}
@@ -116,13 +117,13 @@ function global:Set-AcceptProtocolViolation {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKAuY9o/h/UistVPx1AnG7EKo
-# gyygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1L5M9EzquxM2hAnjuJhwE24z
+# 6FqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +266,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSldMYGK5GwDh/KScJXJQJiZMbG6zANBgkqhkiG9w0B
-# AQEFAASCAQATHI1e9fyiCnE0dIo5+E0waa9k5vHpGVN2IdTG4Ukad3PDYgv53i2p
-# MG+RF2qEfwNDsxFv2qLbfrGeCJWeqvTjXUeNMWZ8fHlv1sDcfmre9pey9S3r9DgW
-# jd/+eYGOMQ9u3KNg60Sw4fDYz6OqagTh617sApqBw2owy2q2yz4LLUOXHAehicXq
-# o4Q+kCzFczXZNUGFSjhFpwgrWczkd1vRaSs9KZgV6/9UZrdyWqUiKCIgXd8dqJ6n
-# UJn5BP/r1rSzdQVyY9ORvxXFEvTS93jJ0tVaP+9RwY3C9199Hdql7pIcNNeZBe/u
-# +cjQLTiN4P0eR1+dg1yypduE1cPvtdy8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT9tO0SKkO7RnCxAEXfl9DnCr9C5jANBgkqhkiG9w0B
+# AQEFAASCAQCDoE+3WYSjH2IgJf3iuswlo+74dM9VO3MGtXfXCjtY/ePQyWg0WQQp
+# qf8GcFuFjVVwPSMTS1KQeuFtAYrAQ55g+xtaEXbgHCzldgJbOZ23+6TxBVI1wKqQ
+# SdTaQafu+UUIWnSFgycYF7Mes0j7vOdNCbN8oTkyit/W3jqTm85TtZdYtoht6jmc
+# iA3R+s4PrKWE5V3PMSfmrMji1Q6WzlqRG4S9b64XvWwiTygUYb+OdCaBwU1gfLLR
+# WQBFLTzrIQWXclEHDkRhAAhbRR+LtyjqGw1SG8rhNCrSnVh2vVlMUiHgeUCzSGIL
+# UxB+KGYjv/zf+CszL4sJ9Plm3xLgxKsWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxOFowIwYJKoZIhvcN
-# AQkEMRYEFMJdOFu2PWRETaHhksHPfaZZmXKvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwN1owIwYJKoZIhvcN
+# AQkEMRYEFC3E3uPnwD2uIpaSCHwXadFGh5nuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBEGyyckgoMtP8ZkhPY+vHfyWqMNI9JJKFm8X19xL0nExYh
-# FdZ0Wuc8b6yIhyL4szotZWmOObygF3EUcmctg9/UPsQ2ERlaQiIuVhW0QB8DI8VG
-# sNdTn0x348CTfndJ4YQ0nEdliCEaPscCrNs5RCN+jbtSkvfoXv+jG7r2cd/oDskK
-# imNmNX0T/QhpIdVnUaneXalTHfYflH0HweCWZzeRdcq7XT0HNu1nKFJNYCcU/vSO
-# pt2itLBB+/UkUJw4TSJuYXfn+l0644jGOlT9p1guqDVsZ1pNNDNSFWoaJOFY3p9c
-# F94ljHmuLHnWNzC/IMLej8fTi0z6NRF/79b/d2dk
+# hkiG9w0BAQEFAASCAQAtAE0pdHAOgnctX70KiPGOUyCmvDDDXhXhsgLqME2OAGX3
+# cfulXAelcNViAvykcDJa2x2TauKsp2NVv5ERAWkmL5COWiuT/RVnVvE8TIVr6w56
+# weZ1NPnUrGGOZpx/vAR9eOUr5vtpOvS/rxJljyQpsVGOo62JQ1O1HOI/79u2xZiX
+# +m0R62GqJnJmX110jjvRjtvdl+K4Gs7oGo9UCrMVNBwYx2WcT9uR+sLraaSQutdr
+# NuhAOZCfX2vyYrLbU/JcyikQLAYujMkqUc6JQuP1Mr37ETdnELKTzoARYC/TbkZl
+# 2YH1epY/HOx38QtoXg9ZOA5D51LJf+oKnKsnc5Cz
 # SIG # End signature block

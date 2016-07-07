@@ -1,10 +1,11 @@
 ﻿#requires -Version 3
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -152,12 +153,12 @@ function global:Send-Pushover {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$User,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 1,
 		HelpMessage = 'Your message, can be HTML like formated')]
 		[ValidateNotNullOrEmpty()]
@@ -184,10 +185,10 @@ function global:Send-Pushover {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -267,7 +268,7 @@ function global:Send-Pushover {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
@@ -286,10 +287,10 @@ function global:Send-Pushover {
 			Write-Warning -Message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -344,7 +345,7 @@ function global:Get-PushoverUserDeviceInfo {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
 		[ValidateNotNullOrEmpty()]
@@ -356,10 +357,10 @@ function global:Get-PushoverUserDeviceInfo {
 	)
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -374,7 +375,7 @@ function global:Get-PushoverUserDeviceInfo {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
@@ -394,10 +395,10 @@ function global:Get-PushoverUserDeviceInfo {
 			Write-Warning -Message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 
@@ -409,8 +410,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURXQkKXZl0ZbiJlzFc2utQcm/
-# TgygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9P4pGModIEQrQV1Sbe+SlfiM
+# FIGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -553,25 +554,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQwWPITd2fjpXNLmgvJ4crI+sWHTDANBgkqhkiG9w0B
-# AQEFAASCAQCjrrN1D7vhA+YujeTbMDfsQihzFtyYjX53dMIA9dQaHstOFQfCGMcE
-# pRV46A9NPgjRaaHOdyroxeOW+qxXC/Az6eoRCu7H9G8OwS1f8Oh7On+jO2+LkJ3H
-# Ki+viG2fzRMVGcGD8AwzBxYJy6p3rKVz+oCds7xiZdAvkRIUVDaRu//5/th+eWqi
-# Be6Mt4kMy0JaE3y4q0Cp0acYjS9F7llEFgpwdeeXXJ+hozBmoZqbNXbit2cqdyFc
-# usgEuk2wrnOTErwA9uGs1l8oSyu7Ml9NFTnIDTH2qvQz+m97t5YNSrh8bt5K3QEy
-# c1UOH9L+HM+NUgaY7WGvXFJyiPDh6tUNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQwheisYzXheihzwDrmOyno51HEbTANBgkqhkiG9w0B
+# AQEFAASCAQAmR9+wyhpRa8BLKpBWetBx1+51exNfCzRYyd+uFxGgPe8UfUy1sCCy
+# aEtZecXBERzMvar0SY6kk3c1FEmgGfTph34GQGbceQa95z3Wv4ZJrdnIjxseuxsx
+# Eytba4dkDFF5UDn3xsxjSW6PMjpotyxvs6t2m6DCr32aTqtqJSXzSzR/Qt4YOcIH
+# WFyg0dYJ0z9chr3jHN0EFfvBJG83JhDSPWolRXKH1sVo6Oqxnz82YU3ou0yLGEqG
+# 2dv7Pec1MeH/63i9hFm2XkXBF86fmUXsEZqai+LrwmnhRhTJyomwKZ9YK/rkJeyX
+# 3zJta0ux02oVxAM3koTBVnzRUic47/iWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMFowIwYJKoZIhvcN
-# AQkEMRYEFAaP8zRKAGPip5gNKcLYbdgwFnlfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMlowIwYJKoZIhvcN
+# AQkEMRYEFOie8ZPwAUk66IlcHtPMOGjnAXDkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAJeXBmqOIJci+UE52oS/DALiYupNayTYhmTvlUq2aiZkog
-# v6KyEJFmzu6o4iJZiCTA4LXbaHqllWUHDAgxzse/apHTu4ePzL+bj3y1dY1lu9/n
-# TuqeztTR6DhMAx34SczuDzVdbZGPFi3RZYNM8G0Bqdm1+Yvrc6aS1YFrtdq2ZcGS
-# EcR4cZuzy7dI/PcK9fJw0EhIIKz48PAwE213RUI1qluqKUZq1DFWa21f9ReFWNVu
-# bSG4d1NyYFkDLYIvmNZchsarqPfA0O+ZtJk2oXyOAENX0uQloY2dt7UO6oH2B22Z
-# Ij7iQ8cxLnLbAlnif40fG2PWmDJbI2n2gQBqrzX/
+# hkiG9w0BAQEFAASCAQAA7h13tPD7XbeIjLV9qPCdny+LDlXJVxbl650GK9H0DfDi
+# /Ya/nKjTGnv33UoIBluAGmsN995njMz4yk+vmXQBF3gLnyLau66kCiRVL28M7FO6
+# ylixBaD1LwgKIyUf2SibDnXaAHBqsbjzebQQiJx3BGnE7dnA4gGF3VHbEHwmqlsa
+# G70d3MHdrL7gX12FwQSmlnj6etGhZaWSDWZRRGWAZzSvU84SZbmgpARrMxP34RMG
+# KbphFgNxD9mTmLsXGmvfCi5TKx/C5c1Gi0r5PKcMTSVnJByhviOM744cNdjVZv25
+# SnEh7nxxvSSAajDxYHOGmsNaSvIDPxqfdLCL/lI6
 # SIG # End signature block

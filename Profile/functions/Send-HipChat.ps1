@@ -1,10 +1,11 @@
 ﻿#requires -Version 3
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -92,7 +93,7 @@ function global:Send-HipChat {
 			inside HipChat applications
 
 			.EXAMPLE
-			PS C:\> Send-HipChat -Message "This is just a BuildServer Test" -color "gray" -Room "Testing" -notify $true
+			PS C:\> Send-HipChat -Message "This is just a BuildServer Test" -color "gray" -Room "Testing" -notify $True
 
 			Description
 			-----------
@@ -103,7 +104,7 @@ function global:Send-HipChat {
 			It uses a default Token to do so!
 
 			.EXAMPLE
-			PS C:\> Send-HipChat -Message "Hello @JoergHochwald" -color "Red" -Room "DevOps" -Token "1234567890" -notify $false
+			PS C:\> Send-HipChat -Message "Hello @JoergHochwald" -color "Red" -Room "DevOps" -Token "1234567890" -notify $False
 
 			Description
 			-----------
@@ -141,27 +142,27 @@ function global:Send-HipChat {
 		[Alias('ROOM_ID')]
 		[System.String]$Room = 'Testing',
 		[Parameter(HelpMessage = 'Whether this message should trigger a user notification.')]
-		[boolean]$notify = $false,
+		[boolean]$notify = $False,
 		[Parameter(HelpMessage = 'Background color for message.')]
-		[ValidateSet('yellow', 'green', 'red', 'purple', 'gray', 'random', IgnoreCase = $true)]
+		[ValidateSet('yellow', 'green', 'red', 'purple', 'gray', 'random', IgnoreCase = $True)]
 		[System.String]$color = 'gray',
 		[Parameter(HelpMessage = 'The message body')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Message,
 		[Parameter(HelpMessage = 'Determines how the message is treated by our server and rendered inside HipChat applications')]
-		[ValidateSet('html', 'text', IgnoreCase = $true)]
+		[ValidateSet('html', 'text', IgnoreCase = $True)]
 		[Alias('message_format')]
 		[System.String]$Format = 'text'
 	)
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -185,7 +186,7 @@ function global:Send-HipChat {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression, could reduce bandwidth
 		# Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Set the URI Variable based on the Atlassian HipChat API V2 documentation
 		Set-Variable -Name 'uri' -Value $('https://api.hipchat.com/v2/room/' + $Room + '/notification')
@@ -218,12 +219,12 @@ function global:Send-HipChat {
 			#>
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'headers' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'post' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -231,8 +232,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUk4kpI90Me2WaKRE3lvkDLrs4
-# FjagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqZytrKiAVKy3uzsVks3VzBpz
+# BiigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -375,25 +376,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTuheWcT37ax1cPg2zA4Y/IxrF57jANBgkqhkiG9w0B
-# AQEFAASCAQB9sAvEx2nTZxsrTd/9NSCVpC3erQv0TPY4/tU5Tahc7qIdF7kNZDAB
-# xy54VMqcHUFYnckHdkSHj881ppzBTGvn4pyF7NtDBBdsdvd1i/B7ZfyJQjGQOyzV
-# 5QvlxTVzlzvPV0HAnSA2KstnV1Gdp3b0AvxMmjRvrBYlkw+f7ofywmL5tfgTHjhd
-# VJmWv1wetfPnRJRvMC6O4h5tKt6sYuwbPeUp/ePh8aWB6AQMKWMjV+qi/UK3RV/k
-# OrVvWlt/jHe5tT2EdGA1zm91th5+phnqf0sYSio4wZJ0mUEWNEMZPuhIV2nPu2iQ
-# S3saBL31Lt5Dt6vvRr8HHdKyDnd7HT4qoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRtu2jebrnHkltu4BMtqZx1ydEWxjANBgkqhkiG9w0B
+# AQEFAASCAQAA1pz8wSWzUsbS/ewXb72XFVhB6NGiH0ssIMA9J2m6ptMXjIw2Bt5k
+# 2eMDQNGSw8JcSwH+efOuijqt+2FwJuLfAni2/FNlAdOhiM9q0tTxsUs6lZFaiBBf
+# q4ZecqWa3P+6BP4QxQCJAHTvhk4rlpIKwqmPkMgnxc3TBsGcSfstYTjzwmQ2DiZg
+# pfkXJVmiynvCaid8c74CZC4QZ1e2L3JoM0HnJara/gJxpd6Vt9PHdWPCZ/S/aEdZ
+# zM5jRWJA6DZ4MJHPVb/aW4pcgC2un8pu5ZUhO3lItfNy7w7M/RyNhaI5jqDb+7Wy
+# 9eYaX/fB4QbmzM81sEXILq8L568fxzY4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxNlowIwYJKoZIhvcN
-# AQkEMRYEFKRXLMKeUpd9kVDjK+cXwcMaTMGkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNVowIwYJKoZIhvcN
+# AQkEMRYEFEtQIwBadBeU9Q7Z0NxK6XC/89yaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQABSW0uUA2KZlREaliY84o7+ANeE+KMKp4gtJfyx0hMaECL
-# O0mwVKmHH6gVsU3Moghx16KOi2fRqrU3C1f6Yl+JCttZHR6h6HZbNEVhbTznHWRk
-# y4W6Rv8By8Fp4kvI0oow6zQPaKUz5q7KFnRrmZdxEwWJkUOVUJTOkmGRKFoRWgos
-# HomuIp/K7+V3XglvO/stRu4wSolc8dPt1IcEfXDGk6EvHE1DJx4bb5J4H6q5lEMM
-# dxyLI06p5MsXhmrwwlQ3IF9FUP8LZLqgo7Sj66+K3lklXjHJIR48QfNH90RUyBtZ
-# 1rdBC73/5k5SZKipSd7rIb13N8+SmdC4DzbKrBv6
+# hkiG9w0BAQEFAASCAQB+gDuKxm0bNMC+RtI5HWipYVGDFYrqdEBZBQligdVsTUlQ
+# 3ROzWon7yBMtPKxqo6Nro7PGUo1sCzEPiZtsK9ePqI12rX8TehNy5HXBa71Ja9TO
+# +Ayjx90ZkPWFYMnEmNibDZKjYGiXjTKslU1bwu3c1+8OCBFXlOPxTZKUkKWu1m/U
+# 73+ldLWGvM17JhQLybGLfgpt4ZkoM74ilFIDGS+ao5EG7w+Ysg05VOTJGc/y59Kk
+# wvWpQ2f17oiDQ1zqCKvPOoyaOK6neSGLtYao2ErlY1kAm/lQ6AJrlMHMvxwt9wYJ
+# yGbF4E90qpUIcveGPaThADMehsn4uAj82OqmJXMM
 # SIG # End signature block

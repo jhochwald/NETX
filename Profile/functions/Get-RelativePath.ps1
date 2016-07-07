@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -84,12 +84,12 @@ function global:Get-RelativePath {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'The folder to build a relative path from')]
 		[System.String]$Folder,
-		[Parameter(Mandatory = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipelineByPropertyName = $True,
 				Position = 1,
 		HelpMessage = 'The File (or folder) to build a relative path TO')]
 		[Alias('FullName')]
@@ -134,8 +134,8 @@ function global:Get-RelativePath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZOEsxZ/ke+rwQAPAfW+MCuyz
-# 4c2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkbG9ZemfScvM0l9ienaJe5bB
+# qRigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -278,25 +278,25 @@ function global:Get-RelativePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS+dPduy+TaM03Te8Yjcmg240XM/jANBgkqhkiG9w0B
-# AQEFAASCAQCFAibrIDbnrKM65DoJ8zwjoboReZysvnRlFP9c8W2oc/+7ECHNFyZv
-# Y6X2LZB0sohIOC8zJmZtJCQ/zXu4lOnMRz7GB3QeJYBtbUmHuH12acUTQGMeUZYY
-# N17RSUan4YSPuOo8n51g5VuCdrjFJB0E2q1HHBkoI6LzDOtqn49aDy016hHIs68E
-# PeORP18b4R0kTgliFEGw+Ovt03t1EAiaGomTt81SjNCtXU2POp+Ueen+0HJEb2KP
-# 5CjZ3q+acwl9xrPRpS06yER04dz8Q4TP07dBANGITjWQRqHDwb2Kb+17dZDU3r/6
-# cwLfL+99Cccpnoq64wnrLjLC+EkIGhocoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRq1p+tCCLJrf9HqXXIDVPBCGClHzANBgkqhkiG9w0B
+# AQEFAASCAQCr1UPTplW5scsSkiDFKCfOZp7CINVRWVBKuSanLK2375SvaDXu5BMG
+# ZBa2VEpwhuIpY4go4tKMqeiZtDz9msHQN7DPfY/Ur2IwWe8yPk6DQi/MV+WsrYT8
+# vGTfjWIFACjZPi6QN6y2G1GFhRmCK3Uymv7+njqG5o4FK0R8UXatY4SQXCQLJ0sN
+# xbN08mjdopRi9tkHAqH+RctCLPVHjIQR7y0EVTIMYMUGfkjmZ6QpkDpBE1QfoAkh
+# TTbYvhkczxc4FaSBn+WsGZ6rVRpnursiipPDzuzt/BDIZjT4IXSZFIPOn/qHCpKB
+# FtzTHQ1j5bV1F9d/7fiNlWP45Z6nE6sioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0N1owIwYJKoZIhvcN
-# AQkEMRYEFA2uDRcWLarAZsSYHiCHlyVZsG0aMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0M1owIwYJKoZIhvcN
+# AQkEMRYEFA6raDhNsoY03FYtDrZP8LWmEPG0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBWPlH1DN9wdk6gOf4bHwT5063ij33JS0vOgLq64NUeyBzq
-# tOaBWwgc0bX3LtqN42nPGL/dp3N4MmYYyfzKHKKgn7pokirZAl8CXs5rSdzNCqjk
-# lFje9BuFBwDrbU9+YCNzyVgzrKMLRfAKt91BTMu4AAFSpKVrfvJP+1LagS9n4naM
-# 3c9qerwlESdxWxqGIPQtakN7TrhYDBP8xjsfBFCW9SsnbK35ZmUpENs8qMpkZMM1
-# eMOExnV7crk4fZG/vqUyDRUqgmfFidzpUOWdw7+LLCTQXJGLTTx04pouGGy5WKTZ
-# 4Nmj4eFeDm/zfC4dkgRx8z5W+687fvepMDERWzxJ
+# hkiG9w0BAQEFAASCAQBynqLpl82Z611FIxs4+BAuFHJN81xnoQjiQUtf5iG2RdZN
+# c26Jt7UfIs2FclRJ1Lmvetohsjq2VCAu9LCq/D8KktX0QfqBZQyaGAE4cU1eaQjy
+# b9bU4fjua2E/5WZBwoSpyDxeem5zE9/cqu/G94tR0tYZuDnEuW0fUllJsc1/ek55
+# rk1t87bn/PDTgGdzOpo9oYcUKxl4K1WreS5z0C1xvmykeOpwCRnYnatHMYhT0a2R
+# fDMdeD23pzcjQwqI98B5pDPA3qGYfqYXCY1KjUMOnmkF/RDY8mhWTDrlLgko+jxB
+# ySQJJ9O7q3FXuGEc/OqBG18UTyFozfzs0BpKpSo6
 # SIG # End signature block

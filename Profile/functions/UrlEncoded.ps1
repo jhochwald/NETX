@@ -1,4 +1,5 @@
 ﻿#requires -Version 2
+
 function global:ConvertFrom-UrlEncoded {
 	<#
 			.SYNOPSIS
@@ -85,12 +86,12 @@ function global:ConvertFrom-UrlEncoded {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		$InputObject
@@ -104,13 +105,13 @@ function global:ConvertFrom-UrlEncoded {
 
 	PROCESS {
 		foreach ($Object in $InputObject) {
-			$fReturn = $false
+			$fReturn = $False
 			$OutputParameter = $null
 
 			$OutputParameter = [System.Web.HttpUtility]::UrlDecode($InputObject)
 			$OutputParameter
 		}
-		$fReturn = $true
+		$fReturn = $True
 	}
 
 	END {
@@ -121,12 +122,12 @@ function global:ConvertFrom-UrlEncoded {
 function global:ConvertTo-UrlEncoded {
 	[CmdletBinding(ConfirmImpact = 'None',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertTo-UrlEncoded/',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		Position = 0)]
 		[System.String]$InputObject
 	)
@@ -137,7 +138,7 @@ function global:ConvertTo-UrlEncoded {
 	}
 
 	PROCESS {
-		$fReturn = $false
+		$fReturn = $False
 		$OutputParameter = $null
 
 		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject)
@@ -152,8 +153,8 @@ function global:ConvertTo-UrlEncoded {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUiq8RrtMwWZbuAZ2IfotFp927
-# jnygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuor2SKEQ0AZWesw88Dj1ynob
+# BRKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +297,25 @@ function global:ConvertTo-UrlEncoded {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRPu/pVRQr3JTYPKis2vVwt2Q4BoTANBgkqhkiG9w0B
-# AQEFAASCAQBX5cPt05+IC1nuFum8kmmMdAiruXcsp5jsCbqueP3ixODRUmaVK+C2
-# JpDmyPSsJWtjQMWadb3+l074VKPTq5zuFDfM+0q/wlsOgiV0BNStDeKRrVAyqmej
-# M5X1rg6yQEcdZgP9Pw6aAaO4ZI337uuE/fkiJknl/B0tXJnjiMcweu6LKwbc01gJ
-# Q4yria+wmVyoPGMlnL3XPam1Ek6rZaQa6QJ9RBw9eQ+9G+bLcT0LHWuccmyKTHvA
-# o4GyRmyzyBm9apBAN1MWvVe93zM0wm209xXc70ObpkAI/XW5f/id2Kp+IFk6TumY
-# Lm5Wr4rqBDglG+N1v9rTTSdxuu2REDiQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSwQGi5YPmK2n5AOlRC7EckD7PUuTANBgkqhkiG9w0B
+# AQEFAASCAQCtkPPmKrsPBFvReEMa3hlpj5mvx58xzYPtScXtAr1XN0ZhE2D77Fo+
+# 1om//lQaLWa8UQTt6PeZFic39yiOnQ1vuXk2W2UvPrct0DeeSEgKTVl1Ntjtj8xL
+# sgpSkxrv498vBFS3decP+nf7ExYNJLvDf68Ec1SscBu8YWpYqbNVm9rsfgjuwgE6
+# obXLf1wiVNUp4TUxrMhJD26kWL4BAzW6FVF1+8Jw9VXveSfTLkI59d591vNikVbj
+# 7plqkocEycwJ951ouuDe33uQzvzaI4h+t/51PQaSRqesCqECZz0gBarGtT7hfKFL
+# mIxMxl32rValdRfkQkr4kPRxKbzt9EN/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQyOFowIwYJKoZIhvcN
-# AQkEMRYEFA1Xu3GQgI/P4FDHOkf5ZQKsTNr3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNFowIwYJKoZIhvcN
+# AQkEMRYEFNBM6ufKVbLOuarx2Hfjk6qW9fS2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAjdBmAzawNw1Eka9iFEnEGC95LHgj2pXqiUbBcTJGPoPyn
-# eTWEqlwnTRwXREgywIs0ulTD9hnO8Y2TAAlBeFBGlqZGOtJ5qgPz9pQ872T9d3ms
-# YwstC8J57wg7nskBKFfIKSBd+fqKo6f+1s5rKgRoOAFRtjQj6G/y7OHyMkp5LKfe
-# NJ735cdVjpEM9CyHRuqZVsuk23pApaoaFWxsXfNXI3y88yYUWXpxnN410Y9KGYwL
-# XxQOEVP9qCt4ac+eIDbSwRvDu4o285maDBknSRQbZzSDRVd67Gh4p3y1QF8SUg5z
-# uokK1aX7Oly/eC2gO5h/I7dp47XDNlMXKGSInyI3
+# hkiG9w0BAQEFAASCAQAKDNJk2c7yFakiovp6cxafkfe/tAlRUfvXdqnSPbuTMnRr
+# Mluo994eTsil5Nf3hfLbI0sIK6CxvYYmG38fvmrZQw6hRv5mMKH2fOc+znRdt2a/
+# wLsWW8LxM3hdOgaBpeQGKz3wUzs0n7s7NtyIH4dJIb8NoE8dGXpTAmZSk0YbDY03
+# CcXjeczJp+yp6K5JVPt1yDPXbbkYjH8HReIQttTEB44roDsUvokB/0BBT1c/9vSh
+# ZlTVxV2eZJoGAljdZQFP2qO/rvos8N2rHUuuUWb2+o82xk73hkHlmtybyV2wTT/r
+# OnaCD5gnmqIW60dZqBzQo5Uo9AiQsN8Ydc+JmIUD
 # SIG # End signature block

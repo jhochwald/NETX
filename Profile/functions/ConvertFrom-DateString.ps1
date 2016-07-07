@@ -1,10 +1,10 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-12
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -114,12 +114,12 @@ function ConvertFrom-DateString {
 	[OutputType([System.DateTime])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'A string containing a date and time to convert.')]
 		[System.String]$Value,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 1,
 		HelpMessage = 'The required format of the date string value')]
 		[Alias('format')]
@@ -128,7 +128,7 @@ function ConvertFrom-DateString {
 		HelpMessage = 'An object that supplies culture-specific formatting information about')]
 		[System.Globalization.CultureInfo]$Culture = $null,
 		[Parameter(ParameterSetName = 'InvariantCulture',
-				Mandatory = $true,
+				Mandatory = $True,
 		HelpMessage = 'Gets the CultureInfo that is culture-independent (invariant).')]
 		[switch]$InvariantCulture
 	)
@@ -158,8 +158,8 @@ function ConvertFrom-DateString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJH2C/cOgC5xR7Nh78FsIW4hk
-# ayygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVdjJH4crWgpB2Np7392VTtVe
+# urygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -302,25 +302,25 @@ function ConvertFrom-DateString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR84lK9nmKFbkVlK5AbJuOW21rgMjANBgkqhkiG9w0B
-# AQEFAASCAQAeBSKCUt7qD2l0orqHlIs8AAuyj1YqhQk/w/o773sYRmH7YXNe6rts
-# varMtQFShg0CPfEP8AdVDivPe7XHh5GiCas+49R4WoXJ1kq/2VSxtBppTrRUKUAy
-# C2DWk3YtXrWf1N27yf7bbDl/vqWBuQ3eUlU2RY3qvsNFLB6xI7wbS3acFZ1HECZU
-# mC34zMfbmIb7k/MYyirIn4oktV7PS96KgjixXTUzrTakQjbO7p/iEewHYDOqdV68
-# dq96Z48qZBrIg5oXUPQt6moY07N4Tyflpzo/5hRCkfug3lnyZqFnIHMimrjC4bs0
-# Jif9PyiRdRAvW3z1XXYKi6xsZG8KQU1doYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTiV1XvYqpqYTHtCZWq1KvdAM7s1jANBgkqhkiG9w0B
+# AQEFAASCAQBq1cnC4PAmNdOhuV0R7DWbAVSMSPHQCnHvACd3hHBPLbhyeoJei0if
+# fMU4DyQ9HBO/Lpfo//RcyYbBhKAaMGpjNnujRgrHaL3Z0ZGYhfyGYoGYPD7KvZAr
+# EbNHqpfNu6sornWoMlRk0IviZiNNMxrvwIp60FKTogQxVkDkrlhEOmmjazqt7WXY
+# 7yOVTSR2ZQb1tWadByYypTi2vAdvQBCcMt1mlZg94QthCOtyGI9KJyHL+wRDLKRA
+# wVdcyhZT6kMJmzSojrCx3aoqKrm9AgcRu7aUt0IimONqSmSZUL9/jH5pKE+3wcV1
+# A9dDBhBkSd2ETfjjTDlJzb/JtaVRHYGToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyNlowIwYJKoZIhvcN
-# AQkEMRYEFGMU9wZtTQRuJwetKcPPoOqgCYTIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyNFowIwYJKoZIhvcN
+# AQkEMRYEFDFSvSp/3nRj/SFVb3SFA9B5h214MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCSGvu5jjsgoEDuoQIHo2GwJClWAbleXyLinV+7fu/0pmAf
-# wZnaK8wpabjfqsggHWVx2AUSD8Pwb4raZeX3KBZFkWAR6+1tBulGboDq2QQJweCo
-# nT6GcFZgnu+ETDo+CNZpydw10hxoLzWDE7rStWhR4AWTZTLwdjrJ+O06ShxrJgbF
-# F+rLYUgUa6H9UTe2fwzH3jWI+n6cC0ViHtTaIaGjkYnIxVYs2UYdM8vQ4PSMB8HE
-# fehGJdeofTK5/7tlRshb7vRtavtml/OgF9pm2ikac7JOmelYE0B2NnGEEpGN85DJ
-# n4JeYhMM6nCuZaaz3l7xch1/ahdd7IddTs83g9L0
+# hkiG9w0BAQEFAASCAQCdQt3W+/sDKP9bRvKQRIcOGWvc6MBRUEtnwe8wNDboEf5x
+# P9etKlUhBEAoqTnWmU+Vty4yEsURESCgDGCSawQfOHYXQeqs6X519RPnqz15rt0w
+# uXxm90Ot8j1wLR12rukc9AEm+XCBtIwAHbC+KiD09hvD9qwLAJwBJb/Vp4hXBA1y
+# 8CVfgYs3vXrSZO9gNS48i0Ceot3J21EaoLYZM5nqS814OSJQ3s1/pYxWk36RQRbj
+# VG3CVoQcRYLEabzekWzgV0MMuF4UHagYoFmfF92d6Hklow+H9NtYMEk9pFypG87d
+# q725mepWRd4EjAApVHx4NFkx4mSYeDIIeHb4twf/
 # SIG # End signature block

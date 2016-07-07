@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -126,11 +127,11 @@ function global:Expand-CompressedItem {
 
 	[CmdletBinding(ConfirmImpact = 'Low',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.')]
 		[ValidateScript({ Test-Path($_)})]
@@ -165,11 +166,11 @@ function global:Expand-CompressedItem {
 
 	PROCESS {
 		# Define a variable
-		Set-Variable -Name fReturn -Value $($false
+		Set-Variable -Name fReturn -Value $($False
 		)
 
 		# Remove a variable that we do not need anymore
-		Remove-Variable -Name OutputParameter -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name OutputParameter -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 
 		# Loop over what we have
 		foreach ($Object in $InputObject) {
@@ -196,7 +197,7 @@ function global:Expand-CompressedItem {
 		# Cleanup
 		if ($ShellApplication) {
 			# Remove a no longer needed variable
-			Remove-Variable -Name ShellApplication -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name ShellApplication -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 
 		# Set another variable
@@ -207,8 +208,8 @@ function global:Expand-CompressedItem {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpPt2LiBKq2U/KWfRVNbv6Zug
-# IVGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhIsR/tEdjkNFUHfoHLkguZeO
+# +WmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -351,25 +352,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS1+wRtoZDn+4sgsJgvt3qtl6IQrzANBgkqhkiG9w0B
-# AQEFAASCAQAgQW8hPmNrhPsMnfOdr3Sq2kLQPZl/eANOEFLtQtyNdOs1QTkkm/JJ
-# pRj39Ob+0mVD8JBR+T9O/Q8Oi12MXYOSVNE6MkgBjgxiNkHUALrzYpQ4UWpamAMB
-# WnbBwNEz7DXZABdqYwuyen/SG5bOAvofQnQ+q0bz8YIzhNYSo12Yq8hh4ChTvdJR
-# wMSLilojNo7qnk3ARkM5Sx3TwVMPLjj3QJzS2W+/IEtpAsXILy1Jr4xj5P8tcKW+
-# DEYqtuUs+UmWe2AevkXoUasR1Z9D88TbPLAaSTSl4RhbVw1GLJvTOoisX2Qb+hCI
-# Bw4vRgnwsOLB31VWZRlqGb35rpNHAad2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRfAUH3IlJQh67N/gljjONa5o4tdTANBgkqhkiG9w0B
+# AQEFAASCAQBSSUAjyU9BnNBuakJCVSU7Dt+pMeLMyHnXpyxWDYT87NmFpWazl9Q6
+# qw0ulapfHqWp3s/+LNnxExUIYfnd21aUdzBLOwCb/LLD3I1g57lAkd/Iz4cX/ABl
+# 2fhIHxB1aLBfJHtIhndfTMMvAY/dZ46sL5cF8Hu3bbxBx/MgFIZ6PfcMRiHUvN1/
+# vy3mJtMdqsJXI3BgvLlbqnn37CK1qEdnwqk5l5m1ZKEml17kVfCIANkZ9Y9/Y5WL
+# vlOaZu64JLdf1q2wzssHIBq5rc6It+iWhmVE0nKXcgLBx22OoF8dRFwP8jkC9x67
+# OVoO532WoH3AeTcRIv7O8dheWHDYojZpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzMlowIwYJKoZIhvcN
-# AQkEMRYEFM9eNI03vMOrjAtmM94lYmlv43JvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyOVowIwYJKoZIhvcN
+# AQkEMRYEFIyFrbqIVaASRarVt2pPX5VBIeTuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBceCdZ1smz4rDXH6D1tUmyEmxZcpaDY+ZC+1u7PxYIxODT
-# tPMi/rmnlhkpwYAohOplP8sicTMOhKmgqZk2C0snJlXKb20DWmhWjrNT4ucfQXEE
-# l31+BE9IjX0O0C+ln2I7GOnm93RwfnIZh739XBZxZB2DPNNZjbwy+3g5Iv19mD2O
-# a9g+NlgeKbo5Rusbb+9abYWuVd1JWggibZ2Sxd6G5gldrqvF1KVsx2ELgFS+3yJP
-# xi7g4w+A71zklqGLSUxrp2PViEb7sldNwmrEtMdcsQJQiaR9v/EOPREy86sF/paN
-# R7QrOSDW3Kb1Ov5rDjg/WAWktwUlOEkQ/vEuIzmR
+# hkiG9w0BAQEFAASCAQBYwA5+LACSGFPh3ZagFL+ShUqWYSDSt7bnmvBYpcITkFyz
+# srcAahghEM3UjhU8JokJh3ywdhOMUdrQ2uOhPrBz1yrnPqjtIbrpFp9MI3nHg8RP
+# dylSsrRrf1RATxUOSE6e0EhiBYt/9lJ6kCGEuyxazQ6jUMmdVVNpXv58MGtodSpr
+# RkdTEyMMNVZMfTjslq+kIfC215n2vdi0/IryGMd7rFoQDXsYMsFlFkNz4NK7DHo8
+# NtqDCWGpLR5If+sENmf20uorbOPZmYp0+onGa3+ICr6lr9gK7jGHBF033DOooZu6
+# KgoC6EsL02fgV96G382X12e0Y4hcv3nuMLrAnrr3
 # SIG # End signature block

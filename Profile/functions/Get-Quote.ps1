@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -91,46 +92,46 @@ function global:Get-Quote {
 	BEGIN {
 		# The quote should include the author separated by " - ".
 		$texts = @(
-			'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover', 
-			"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley", 
-			'Good is the enemy of great. - Sir Jonathan Ive', 
+			'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover',
+			"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley",
+			'Good is the enemy of great. - Sir Jonathan Ive',
 			'There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive'
-			"People's interest is in the product, not in its authorship. - Sir Jonathan Ive", 
-			"I think it's really important to design things with a kind of personality. - Marc Newson", 
-			'Intelligence is the ability to adapt to change. - Stephen Hawking', 
-			'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking', 
-			'The best ideas start as conversations. - Sir Jonathan Ive', 
-			'If something is not good enough, stop doing it. - Sir Jonathan Ive', 
-			"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive", 
-			'Any product that needs a manual to work is broken. - Elon Musk', 
-			'Business has only two functions: marketing and innovation. - Milan Kundera', 
-			"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison", 
-			'Great companies are built on great products. - Elon Musk', 
-			'Test fast, fail fast, adjust fast. - Tom Peters', 
-			"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)", 
-			'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)', 
-			'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)', 
+			"People's interest is in the product, not in its authorship. - Sir Jonathan Ive",
+			"I think it's really important to design things with a kind of personality. - Marc Newson",
+			'Intelligence is the ability to adapt to change. - Stephen Hawking',
+			'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking',
+			'The best ideas start as conversations. - Sir Jonathan Ive',
+			'If something is not good enough, stop doing it. - Sir Jonathan Ive',
+			"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive",
+			'Any product that needs a manual to work is broken. - Elon Musk',
+			'Business has only two functions: marketing and innovation. - Milan Kundera',
+			"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison",
+			'Great companies are built on great products. - Elon Musk',
+			'Test fast, fail fast, adjust fast. - Tom Peters',
+			"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)",
+			'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)',
+			'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)',
 			'The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)'
-			'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)', 
-			"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)", 
-			'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)', 
-			"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs", 
-			'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)', 
-			'Why join the navy if you can be a pirate? - Steve Jobs', 
-			'Innovation distinguishes between a leader and a follower. - Steve Jobs', 
-			"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs", 
-			'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs', 
-			"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs", 
-			"Things don't have to change the world to be important. - Steve Jobs", 
-			'Your most unhappy customers are your greatest source of learning. - Bill Gates', 
-			'Software is a great combination between artistry and engineering. - Bill Gates', 
-			"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates", 
-			"If you can't make it good, at least make it look good. - Bill Gates", 
-			"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)", 
-			"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison", 
-			"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)", 
-			"Don't count the days, make the days count. - Muhammad Ali", 
-			'Everything you can imagine is real. - Pablo Picasso', 
+			'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)',
+			"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)",
+			'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)',
+			"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs",
+			'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)',
+			'Why join the navy if you can be a pirate? - Steve Jobs',
+			'Innovation distinguishes between a leader and a follower. - Steve Jobs',
+			"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs",
+			'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs',
+			"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs",
+			"Things don't have to change the world to be important. - Steve Jobs",
+			'Your most unhappy customers are your greatest source of learning. - Bill Gates',
+			'Software is a great combination between artistry and engineering. - Bill Gates',
+			"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates",
+			"If you can't make it good, at least make it look good. - Bill Gates",
+			"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)",
+			"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison",
+			"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)",
+			"Don't count the days, make the days count. - Muhammad Ali",
+			'Everything you can imagine is real. - Pablo Picasso',
 			"In three words I can sum up everything I've learned about life: it goes on. - Robert Frost"
 		)
 
@@ -180,12 +181,12 @@ function global:Get-Quote {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name 'texts' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'text' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'split' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'quote' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'author' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'arr' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'texts' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'text' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'split' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'quote' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'author' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'arr' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
@@ -262,8 +263,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUw74nFlSlU+UzsrkLUWiWLUH+
-# +nygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+/B6yRj8LF980dvLK816LsaB
+# 6dmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -406,25 +407,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSsDZGQw+mtoPo13DMZKfdq/8SnFDANBgkqhkiG9w0B
-# AQEFAASCAQAzjLs5nzQx+4K2T+vbod7OKhQYYmHrqtAsGEWPo6JRQ+jzk3R7mEv5
-# H8AdFjp/5fGHiJzUT4QMVm9eJQLxyvSsQ8r67qBXsa3/yIAa49BejSj3dS+mjRqP
-# 3EajCS9YpNAlnK767RcVXmLhb3u8pcZILe/nxX5MF/T4DGNpDQ/6kYjBFHFlJ8AL
-# Fxt2COfevc4KiDBbHuip1szQ1CyZDHNg1f2Ke6bhQzGQ3NnfndmLm5f3YjhToBG0
-# XHwzh1otVew4ljoxk92Aonc5/NdZGQv5o9Yjz7C/fEAvnQXGzc/bKwV7u1xH2Cw0
-# vjitl0ariED7CEx5n+rntMoF3Iu0AY/IoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRaSHy4ETA8v1q8yIxrNcsOpmmTAzANBgkqhkiG9w0B
+# AQEFAASCAQBMzQCZxqwxoFdRTTIc1USF8Usks0JlRe2+X5VyiN/Wjh/6EWq+mp5F
+# y7Y1AktgSqvNBKWY08IxYHtEQERF9WOtCC1vK+lBxtTD5c3oWJVfPvy8dpS/09If
+# LZlJmX8qCoGaktIbPiwkfB99wv/9V/kH9GWSg6AcgNuqBaktE+KfLejuf4Hnkmxr
+# ZV/I9LhmNLEs7iwIHc5P/OS8bFFTwctZbkUvkXq37cfct26nxLLe4jsd6eS47/oT
+# EvUV0y1TH2PZpXqXGmoipSvjtSp6voYOdJoO2EdtwaBElO8tU50zASYJlPKQ7Icg
+# Vbub/2+p5WCtwNmKBfgkhilbZ6YJ2U/woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0NlowIwYJKoZIhvcN
-# AQkEMRYEFB5OmvHo7sGi2g4j/LGRNacEOVQlMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0M1owIwYJKoZIhvcN
+# AQkEMRYEFDVbOy6K8ursFIeoXOZcj/dpyda6MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAuYv0GrpIlbDaXnyZRNqpnq5GbDLt1O/LfwQY3rc5rqDCp
-# Gcp87NHBGA4Oc2BrWHDx0ek2FlpyLEK8KAcgzZOMWYXzas4mdJIlP1feE1ueouqK
-# 3oHg3Lc1qwsfrmg4RIDNm5782lWTL8heZpexb8Szwn93IlQeeijO5ykITxqKEjn0
-# YVURXu6CzMQykYFFSJ4uGSkrCCGJOiUrBBONY5QB2EARusjIDubnLEQ4rZFuPJMC
-# k2hC2qaly2AxPaAqO/AH7mrg2eoX8mNcA8Bwkq/dtTLgR/K+8lfPrn0k63wDGu1/
-# TwN2GOySdoEwpc3s1A0uZYcM2HmI3K8PIBNNXvM1
+# hkiG9w0BAQEFAASCAQAEWlxs+bDhY9WhkbOpUytf3cmKJ8wCouf2SDcJFJS4vTpM
+# D25PdtX5Ip3KWu1ZevqxUqWvbtouhZNCfOsNRGNzS9nQRoaV0HU84e8wrhQpkZXq
+# sUJAbKThxAdmLtPuv7b4CxCLLfUnuytv0lEuvePjSYp+y5h38AhHu4NPrDdkRxxZ
+# gFcVxjHHEKB0l2eN48tethKgnDjlrGGCzePVKrdz1QLlgQBbfiaiBd/ayuJnRz+s
+# i/faiPtuuJhZUy0aWN6AYaAx5VD71vahHZt6xkedj7BgaxiSV171ZWDf7x6o7L8O
+# erQxLBax7NR0I/Wyk1D+aoD3hRx3hLCQEqt+p0ZC
 # SIG # End signature block

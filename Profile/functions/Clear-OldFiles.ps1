@@ -1,11 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -78,7 +78,7 @@ function Global:Clear-OldFiles {
 			You need to confirm every action!
 
 			.EXAMPLE
-			PS C:\> Clear-OldFiles -Confirm:$false
+			PS C:\> Clear-OldFiles -Confirm:$False
 
 			Description
 			-----------
@@ -86,7 +86,7 @@ function Global:Clear-OldFiles {
 			You do not need to confirm any action!
 
 			.EXAMPLE
-			PS C:\> Clear-OldFiles -days:"30" -Confirm:$false
+			PS C:\> Clear-OldFiles -days:"30" -Confirm:$False
 
 			Description
 			-----------
@@ -94,7 +94,7 @@ function Global:Clear-OldFiles {
 			You do not need to confirm any action!
 
 			.EXAMPLE
-			PS C:\> Clear-OldFiles -Extension:".csv" -days:"365" -Path:"C:\scripts\PowerShell\export" -Confirm:$false
+			PS C:\> Clear-OldFiles -Extension:".csv" -days:"365" -Path:"C:\scripts\PowerShell\export" -Confirm:$False
 
 			Description
 			-----------
@@ -108,7 +108,7 @@ function Global:Clear-OldFiles {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $false)]
+	SupportsShouldProcess = $False)]
 	param
 	(
 		[Parameter(HelpMessage = 'Files older then this will be deleted, the Default is 7 (For 7 Days)')]
@@ -122,7 +122,7 @@ function Global:Clear-OldFiles {
 		[Alias('ext')]
 		[System.String]$Extension = '*'
 	)
-	
+
 	#Requires -RunAsAdministrator
 
 	PROCESS {
@@ -140,8 +140,8 @@ function Global:Clear-OldFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQ9pInrRS2w6D22so+QbNwL3q
-# Ff6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/nqtwPVRtTuwfci2z3liLusb
+# DQGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +284,25 @@ function Global:Clear-OldFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRYFKCOwKuO9+cdvvlDAa9gGqLuIDANBgkqhkiG9w0B
-# AQEFAASCAQCHwNsTeq2sm1AcRXdp4caTtNiVpcWi3uafGrEE8GZbdTb8RJBkiCwT
-# RsHxTwR/F6l9qWh7JdR3ai0m2cm/JyfhWvrW0wcbqDhfhlW46EVaXFbGTK0XrAuR
-# tx5mxwSYW2Awrd1TxmnsK/euwARxr6ARhsRRZzD5FBDZWM+uYB/tGSagb2bhPApJ
-# csE8x9GrvSz3fWhX32DK3vGCS9frO8IeAU0eZ2ErHwwUaU2pb6hh5ZQxJwf07I7Q
-# hCpRvX4FeO3difRtLJep3C3E5q3pzCG/MPCN30h1eVURbSn5QvZQhzc2/lamns1I
-# y4Ys1EbP+EDKGyeF77ojK8oP/bIMP0iioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQJsxgt/ZkfGnjQtr6gDttfIl9B/TANBgkqhkiG9w0B
+# AQEFAASCAQBgQBUdjYvNeHL16CNywNPUOhrCC6Kicq43V5MIGtXfKLfGG07Lzxb5
+# TtShiWLXugKODBzKLWkBBFIYzUTJw9eY1nqYX8UXJu2LXfuAFRRZrBZfLNkGDLL5
+# wXxpjsNa882HdkEtXEZjFJK2rvPbP4c9D/ZsbrfXsRqAG4YMDGgOJIxZZJCENDOO
+# J7wlLfws49pLDxzPOWRyRF0hNgn2cAyssZIKhgfvsVgNlwl6dCGQC1EpAQIwqiLB
+# FuzbHtmzTqPGjzKc5+ngpX/yXn4YNQQ+DXYSZMjIKKVA+d2+NjGZCCG+Ej6pFA2h
+# aTqRq3avdm7jmptv6JtxFI/sfEwpNwbloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyM1owIwYJKoZIhvcN
-# AQkEMRYEFHB75jNgq0lFBqcI3qvqI16vyyQMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMlowIwYJKoZIhvcN
+# AQkEMRYEFExWmn25cpvO8mx5CbKBRXTfA88mMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBI9x66Uw4YsNvYVk/xRIp9l9FFE2sGVjZRdcg+2KkuFFWk
-# /vDxv1j02kirM5IuKzFxP4FNTAM+dDM+Sd7wDlp60MBnDtxasEeynT3rq5UPuDjM
-# zxd0oQW8+m2blkpoc5Zr30nnzEL8z/HBAPL1vveQYaRt3Fpr1LPbHoA0lfYJyE11
-# zA/5k4zJlYa/+Mcg73ABUaXSKHmwqSHVr7uIKz+MUH1Rl7YU6eDMXXO4SNiDlx8t
-# uzcMjCZyMBBAsNMZQrSf/TnenUPRolKKjQnvgdZ2EbNc8XuGttXJeIq//GRu7zYU
-# Gnx2zC8X/xmbqMXTKqgbG19GW4j5VS1ZzsgWZTtt
+# hkiG9w0BAQEFAASCAQCS34WDL+7sbDDKZo2C+HSLLYh5h3A7PVE1JmQjFJBU7Jcl
+# rx7xEOGNC+pfYJ51opPe0a/Pi/12VFFakWr5PP/aIyWscrSSrntekVl6RFOiraiO
+# tPMGx9gFvEVi81QS9llSBffsRSm2o5QAW9zPFCFBVSwakZtlG04o+Y2F+JXz2ANV
+# fwCxha1z2uckT4DfBNDGke5MYMw4sG4na4pDucmuRhX/X9quEImPSb7ihtTdDUxJ
+# w7wxQKvON2Gjxu+Age+3dwOUYs9XKZgzvDo35ubxOCmhyxHl6rTMLzM8BGN0du2N
+# TafYyzdF6+eWhEEXBeYf6nGmShzDIwcEsUBPXE+H
 # SIG # End signature block

@@ -1,10 +1,11 @@
 ﻿#requires -Version 2 -Modules NETX.Tools
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -103,16 +104,16 @@ function global:Open-InternetExplorer
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'The URL you would like to open in Internet Explorer')]
 		[System.String]$Url = 'http://support.NET-Experts.net',
 		[Parameter(HelpMessage = 'Should the new Internet Explorer start in the foreground? The default is YES.')]
 		[Alias('fg')]
-		[switch]$Foreground = $true,
+		[switch]$Foreground = $True,
 		[Parameter(HelpMessage = 'Should the new Internet Explorer Session start in Full Screen, the Default is NO')]
 		[Alias('fs')]
-		[switch]$FullScreen = $false
+		[switch]$FullScreen = $False
 	)
 	BEGIN {
 		# If we want to start in Foreground, we use our helper
@@ -127,7 +128,7 @@ function global:Open-InternetExplorer
 		$internetExplorer.navigate($Url)
 
 		# Should is be Visible?
-		$internetExplorer.Visible = $true
+		$internetExplorer.Visible = $True
 
 		# STart un fullscreen?
 		$internetExplorer.FullScreen = $FullScreen
@@ -145,8 +146,8 @@ function global:Open-InternetExplorer
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUm025HkRZ0yxaYcqx5inhWK5W
-# c4igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC6peEM+J+6lHyIM3PdYSJzT/
+# 5N6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -289,25 +290,25 @@ function global:Open-InternetExplorer
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQf0v0PQJyKzOT0QJowT8GyM/MbYzANBgkqhkiG9w0B
-# AQEFAASCAQBThD8lbAl6F/Ua1N33Wa7M876DIOhqyGdz/sNhJmepdBY3sRQAvHJc
-# MSayp3SQcahvSQJNErq0Xf0r2Bq68O5FYPgoazokHlKpDRayP33nhgOuJwS8kyVe
-# dsO3/ZzV2MBKX/ClbeL53DWfBmVAiNH5rQzGLBhXGYhWsByusrM8NyguBhMH2bwY
-# UwcdRVKHv9CuFjEsJ0h05P2FLY9TB09AHz9g46Ud9PtaQIqLCvJQvpAUM69Egkm7
-# mo9ClTZQ2ggAzQpLzhKj5oUTSOY+bp1A0BEUp6B9925FjDuFN16NJwEECkvQPbiL
-# VJAzHkZjWpJAplBza5v1ND+rpSgLZ/akoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR//7FKoA++9hd4US3bLMJG/hEb5TANBgkqhkiG9w0B
+# AQEFAASCAQCtj0V4u1CCwiCqptSbvbPxQIcV/cs0NHJiOd3VdFgHebcFa6BxNVnS
+# 3TV7KcHN+YXCyz8rP/FoFy+rw9v3xPNTzY70c9+0NokLkivPTUw5EVvHeIkYykxN
+# XN8+ni+mGuPnEzOC32k2Gm/n1liyEPHlAinaIo56hM0zI6qqMJxrTw2LbHKV8i5j
+# Y/T5wEsvteZqrpxoFEn7Fav/vw0wRaZL9rzjt44OF/tlid7ucjA67Q24NCeEZI6c
+# j7yobRaqZ1pid/lZ7PyFbIkvQJ5blWElNQwQ2IdSLs1fNDq4yW2OyHG9wxzPdmyX
+# EUgRsV5WfjVrrgw4UH7sRBS8GrQU0WLfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwN1owIwYJKoZIhvcN
-# AQkEMRYEFEEOAbbeLR0kVZI0R1yXWIoIOdidMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMFowIwYJKoZIhvcN
+# AQkEMRYEFDgJ7WqrVOtJwqsZHfdlkVcNJLCaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAC85UEoXJ2TgHjenfXyIYw66985Sgt0UwZWG+z+rNv+2Dd
-# SIjiKG2WdFD9MXc/fL39SiXsgBIdKpbmQiwY6gLHX+Y+KSK+Ilaf/up3ZoRwzQMM
-# /vfaReHP8xBfNV1PVNhzv0TZQvfkXOF8ZdaZBcTz0pq6LjsQ0SqkV6AK+9qE+ciL
-# uhz+cuUcNKXMNQY2KVfl1RPZ2sJ+qQhaqptfEvN3CXw45b5IyIAq3CDRgn8TVJk0
-# ahFA/XaKMD1EVNWF1b8n1QrhOigOBcAVYfxGpKsnsLfhhzqn+x7oPOb0PuMIT6Bi
-# knhFwTphSILLJG3pl9eg48FEx6z0rL/IMv8uUMll
+# hkiG9w0BAQEFAASCAQCZeveUdJf82R7//bYuHP9Fqzx3HFMiKjNXhiQN+50rcAha
+# svfmyC2dK5Yofv06SGcHsqJ7liNjvRuV91VKo51KzlZ/FUj1lbUi3/e5PqLwymyS
+# dyw1rYLYfbIeZ5MLdq0djl8qa14RhUyyHiczBpjM2S7MJvHFd0DHi8jtP1JhtPL5
+# L4p6GX5+eLM9nNs0qg+soyWCQYo6q+m19o1TQ0oH3MgHNcxct36xTmpqfY+3fLmI
+# vr4b+gKp8n2mdgp88Qi9BJqYRrEVTNPTdQddzgkt9xX4o4B7bSaosY6gjklzDH/h
+# VL9LjhYEzRuVY7zgWPhFsMBgf2QVUuOCvpOQhO6j
 # SIG # End signature block

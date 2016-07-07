@@ -1,10 +1,10 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -96,14 +96,14 @@ function Global:Get-EncryptSecretText {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Path to the certificate that you would like to use')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$CertificatePath,
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Plain text string that you would like to encyt with the certificate')]
 		[ValidateNotNullOrEmpty()]
@@ -177,8 +177,8 @@ function Global:Get-DecryptSecretText {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'The encrypted test string')]
 		[ValidateNotNullOrEmpty()]
@@ -211,8 +211,8 @@ function Global:Get-DecryptSecretText {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWeYyFm1bpT1r9ixyMCGvMuYO
-# 7JKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/pRWOE6STRpZBaLjeVtJn30g
+# rXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -355,25 +355,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTpbfiJ8T04/y3r6/uRtQGSO0HodTANBgkqhkiG9w0B
-# AQEFAASCAQCsqrDdj/WqMAXeKgj2tHdgyzIJDwYdGdCgEGvVQ6B+KsTuvTuVCelD
-# zqR2bpXydASLmPlhz6izvw0vN4q4o3mW/HtySpM+HhR4a3K+d8eWZnF4gXQOf4KC
-# rhlXboSxQdM8IEnOtbm3jWFMrMYdQ2ADJE9aQLnSL9o5RvOGHotnp3sfii3G6QK2
-# JHBxnz73BesP11eoPWPC5lCtVxN7bIfKgB5KMD9G8r3kXCqbosTguA+47FmapTMy
-# Gp+T8Zq6eyzNQt8tJbX2mEVGlFDv7g0sawbZt7YrfQxHiTlHAyxtCoM0f2nWmBUg
-# OCy+sc/sRbXNxk0SQt4Axu+Wx5Df4L19oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTiVj1rLUI9aMWxTUN3xS0upRnApjANBgkqhkiG9w0B
+# AQEFAASCAQAmQPw9d5dv650B/ed4m2k5dGH0QS9vyUpAj5nLi0GKWSAysPksbeHx
+# cVO94isUakbPMgc2jXy+rnYqhmLSJ3jdC2DSU9HF8zN4WCGbDvBde81AFT6JKigQ
+# PfhqQMfb0kP/Bdb+u7MTxafkSCsmh0s+KVLF2UsTG9d2bFuUQsUmXoaX18LmQ0Io
+# wZmtPVR2sbIYw/23cIdpFcChECjsUuoJ8omNhTGVP9p34bpybmiorXc7G+nFxxB2
+# vdOIrfI8o5UfSidOwK/tJ1yPLcbRx4JNCg5fQ7qbxddsiaHSW+sAol9QBQUDyn/N
+# Yx1wf465ifAhydMkyV4XsamoNLpNC09VoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxNVowIwYJKoZIhvcN
-# AQkEMRYEFApuFS3IMwOfIy6QVLArDOTTzBxuMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNVowIwYJKoZIhvcN
+# AQkEMRYEFJCyEsknEf7iJpq8XbphFfGfPT9JMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCKZdYHx1Ulp2yczmHYFTvnDf5vethsA7C/lVrRx0z1SxOn
-# usuOLhPmrgxrP8BELmft9L9yfFi3aKgKav9pXoL3rH3VzF/6kjgSllGMlq7C7Rgb
-# 4IUihLPrynnbB5evnAHjSJtChs77hItVoXZIaeBUAHNf+pTHo7MjOH0XSuSHg+Vt
-# 87K/qpoiNN+vmT05LfTyQ6VtWE6VFIvTohfO86EkbGhZTfejE6NcP39PTOUCmM9o
-# 9dSa+lqf8Nksq6UOlhRdAHoi2nGIcWBbITCngJb8PQTzdvbPdrkNnPmzAaPqRLlG
-# fQ9zBSUp8861NcYpq0KkDm/xVm9SyTiOHVMKI/iA
+# hkiG9w0BAQEFAASCAQAKynvwgJe60+cCv0G9qg+Qaok5u2LYmey2jksen5BYYsRg
+# IIXf0Uh8OrsDRizlN+fXojAueYVLUJdZvYCUem9B8mMguVOu0HVitlNjYh780BVv
+# rfYYVwJw4a9YA0Gw2FpTtWX+VrZ33t2STqwkR23pDk25K1jRzU4pcHBuKDZtGiWJ
+# 5WZ3XrwSf+DwlbaIgoEunApUm/y/VJ6mIn9VPjO8HRU3e4iIrl0lGuev+jYFIm2L
+# saNp2SmXgh9VnK6SkBu3A1dMhcfJaD4m56mWQz10RBp6fSIEqucYKrEs6YA7SRMb
+# WdkohnTCVFBfJq3Qjd2PeOFw00c98uyozOnxqWeM
 # SIG # End signature block

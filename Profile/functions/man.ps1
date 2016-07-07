@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -93,13 +94,13 @@ function global:Invoke-PowerHelp {
 		Get-Help -Name $args[0] -Full | Out-Host -Paging
 	}
 }
-(Set-Alias -Name man -Value Invoke-PowerHelp -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name man -Value Invoke-PowerHelp -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuq/0yLZF+5uA4e9kMdLSqO97
-# uESgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV4+kDB70gqOfTsr3D2Q1BJ8D
+# 57+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +243,25 @@ function global:Invoke-PowerHelp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTdOZBLTgNP9DtjtUtZRJXw2Hke/zANBgkqhkiG9w0B
-# AQEFAASCAQCu0YC0VyUiDWLwwcP6g31Jar0SHtkfZBJJYI/yw2Zs1jqZo0cY0r71
-# nGqQmttHWFQ7AlBRRc7VqHM6ED6tHbjIuxgiyZ4RZ9xAx7dR77PLuJPjaRtGXWbj
-# HrArcyTH35psmQLFo9codwD3A349pIXVZ+euPl5AIWbFy+LBAjUAl6qcUayDoX87
-# jbMOqPLuEWx/4R49oLYwPip06fRqTgZ9V+itdjgKPM97oMeKS1WobD2dBizHN0cl
-# 30T71KfmzcQeYwUULxn86Z1IONZZCk3jJ/UgBr2129Aq5uJ8SRZqlaFG//2qKSn3
-# EmbOtOr+6IhylTkk9EkREZgLZavWYAr8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR8tyrNmhiEzE8RG/YmWq55pAE2ADANBgkqhkiG9w0B
+# AQEFAASCAQBLJSo6L3J+jnjQFj2yCYM+qFl4pc0YlzX+mTKWndZXvGYQN82Fm6pM
+# 24M2RgNFbocP5Lg3eOItICu4lbJo7FgvZCMwixycYniG6yW8YpSmWCTpcdCGoDU2
+# CjbPO34gxvkqArIV2rLtaQKO6iOxkC0n1tgqUY2dqobdhO7sTTZH+Wqw7WPP/NW0
+# Ukn4FnzICAgT+GoNxivNTZoQEw28R49lJ30RNCcD25IfF0qkqmCPmd5//iSniU1i
+# pQG8VFRrdYM1km0dqFXgHqemM2TI8cNx+BAmpdmZf+wDA2JZUBbXYW7klRR7ecV2
+# aNucL5qLImEDR43rOsIAbydVu+RrTdMmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwNVowIwYJKoZIhvcN
-# AQkEMRYEFF9VN/t6jOEzWDMBt+FxOGNCBVC8MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1N1owIwYJKoZIhvcN
+# AQkEMRYEFPHNv01GQp5no7lptMuMJ4PdfdavMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCUpgnNCSHfVz5A1c8C34NMaCnLf6up6tFCjFcePT7KRsxV
-# ZyeQtmI/HkMEq3XhXz/Zs6GzZz3W9bUjxFvKILN2CxcXhg0yKbYBB6O3Omy8pOQw
-# t+HdyX+UbEwFiC64Bh0HQ5hqGypLXE43dGA/WmxCirGPHWFu2LaXq+e9JHVyiqE7
-# OOcnpuGRQxrfQZbXVIQa7ustVkcw5NbsK5rD6MIXzC7y27dej9nYl/BTrESzIF4M
-# MrVFZTJ6nP5gOQO4/HxsxJ8J1oY8iAj1BkGXL0QbpkDuJThwAMKJBZYpvCUdY0Nc
-# cWo/GNDdotZ1EFouuz1y0T6tfdRX0G4wh/k6/eOY
+# hkiG9w0BAQEFAASCAQBl5UmmPHshYqN55XuepxeijwF+irQfBTZvxnxQfh0c+RqS
+# 4Oan0ngkyuhh1Sl6izhgctn7TDDEX6LRs3G95UpckCMKjBUJHZm5ZDQMdQddpQoS
+# 7Irac9qlZK9L+js7/is/gI61C3eOlD0yPfAmC7+OqEAV9+5A6GPlG5uMQBB3EV6U
+# 9EfF4q/JvIVQIji+nmg7fh7qEADFKCrddj4v06VMy5xi8m0BEcgewyWtUbmA1hJW
+# 3qzSyrJvhEyQgv96l+tXluHnE0IuZWV5SmAgGQriXuUDdPPtQgMBCnUVeDBuOAtq
+# rciHWa/fDxeHHET7BKKL3umQ2u/688N4rdM9rTcy
 # SIG # End signature block

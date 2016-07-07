@@ -1,10 +1,11 @@
 ﻿#requires -Version 3 -Modules CimCmdlets, NETX.Core
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -126,7 +127,7 @@ function global:Update-SysInfo {
 			}
 		} else {
 			# No idea what to do without the command-let!
-			Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 
 		<#
@@ -176,24 +177,24 @@ function global:Clean-SysInfo {
 
 	PROCESS {
 		# Cleanup old objects
-		Remove-Variable -Name Operating_System -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Processor -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Logical_Disk -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Date -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_OS_Name -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Kernel_Info -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Uptime -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Shell_Info -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_CPU_Info -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Process_Count -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Current_Load -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Memory_Size -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Disk_Size -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyPoSHver -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name AmIAdmin -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name CPUtype -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyPSMode -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Operating_System -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Processor -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Logical_Disk -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Date -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_OS_Name -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Kernel_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Uptime -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Shell_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_CPU_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Process_Count -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Current_Load -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Memory_Size -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Get_Disk_Size -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name MyPoSHver -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name AmIAdmin -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name CPUtype -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name MyPSMode -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
@@ -386,8 +387,8 @@ function global:Get-SysInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUa/Xdtpwn27Q/4ephoNVBHIv+
-# zTagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURnWwWm+2//LVkOTAgGfMBxoG
+# HQGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -530,25 +531,25 @@ function global:Get-SysInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQOgXIBLPAR8lbARaVZaER6lxhRjDANBgkqhkiG9w0B
-# AQEFAASCAQAngXK80ZYTlMdUutKlz9RuZfRlaOoTPOilX99tS6PlkRds7PSwNlZd
-# ecR7/Wxv4fb7DxjtAz6sahf2ReHYYDHgOsiaE6wVUUhNvukv23FlhrqGgn3vxeMS
-# KIrnJNzwbJBogwZ4WSxBeUP51+KQA/cyXeKqNZo+Fy69eD4S+Zz7IAdEj427BPup
-# 67jmuVB5kavrooP/LV6aCfjk0UNGe0SavkZcPCdbgP0fIFRJpyBBR8TyEyAhCJWw
-# sA46SjfgAL8qkXEeE1tFVdQnz0UiKku1IvXjnNqd1SiRYMEZ82qfrf8+jGMwl6Jd
-# KCQ3D6nWmf+g/aPPZZA7Ohd9LCY5ZsdqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRwVK0M8fxY4kuQqse3vbooe1HSVjANBgkqhkiG9w0B
+# AQEFAASCAQCW+QijzGDVBRcSp+IiY/+f0i2u6grGghdlVJ/hgzl8H3V4QqpiP/bn
+# p310fxoVIYH7jnNuthulb2Mk83Cw6RIw6qy+BgF64H+Vr89u5ZCTI8K3ZYFeUH/U
+# fb59zHurtqydlF/oRjG03hOLf+K+LiRqsAwv6HUHeD8vWCTYN8HWKAhfvEvZN6kQ
+# 4omZ0qscrufhJwFDWQ3+IwOsBZnSYWZ2mCToMLd3zDURguzarCXwB4nRzbRqtclM
+# vJ7K/uxjnlPMN7CeyffAoU97K6QPlRDvxe+9pGQJGG3S+vyg06e1RpDGqHvaKv53
+# OYEVdwgvAQggI8KLptkBFf2cn1jr8X+noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwNlowIwYJKoZIhvcN
-# AQkEMRYEFLNLvJ+cwOWxI15ngvKp+tWL9eEBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1OFowIwYJKoZIhvcN
+# AQkEMRYEFMMViTQ/VaKtsXXBkOC8Sg0A64C3MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCBwJBSujlRjWRdadLuK3wDAM3tYEH9TBy3eEnZpfiy4yVv
-# 6oXqFF6S7KDFiB6+U9M2CB7oOhoIBoX7xcXmq5TJxWTzKZAunPX+iw5/BhroYsov
-# 0rJDG0OA3y0SGtxzb2ZNgSXe3sIDQXemwb0qy1tfXULL9tleAxi9M/keEYno9ikh
-# vLqcGlKur+KZVn1ctsVWX8gpesw5cNthsEXk3cvrpk9nG07NwinxKY1W6UcwPtiP
-# Onfu+n6lYY3+RuwhW86n2e8IiHPrbNZLbckP+SM4xmDVXdj/5esyrmOjhrz7grSZ
-# k8IEEkYZI5YRTbZRuCyj4bLqUCPtiZoNEH1Skxpt
+# hkiG9w0BAQEFAASCAQBeVFTrNq24GrVk0N4LDWdLt9Tw+rkzw1ah2X7c+ZfaumEO
+# LgVDYl77J5wQAVA6Y1sI4QkjpJskIQjAlbi3lIpea04GPxCc4jzRtBhrulYV3JCL
+# 6bsMRrxfu36LphN/gWCMIDCpJzlbP/tvJST9AXkVDWO+rO2vvg5/+9GPrGlQoRY+
+# /FEixC5u48b2iNAXKCaAH8Gr2tCMESfyZq20TW+ZGKyRTG34HJ2U+T6jkuXwbijI
+# R8NMfYxTdMh7sGPRtzyBdu87ceYs08vXkbFQDP1GvB/u8ge5iaaSIU4YjgDjEv3S
+# 3jGgUH0R9TIXYrwekGy0pug87qKedNek/0DEmOJz
 # SIG # End signature block

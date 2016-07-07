@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -90,8 +90,8 @@ function global:Get-PhoneticSpelling {
 	[OutputType([System.Object])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Input that should be Phonetic Spelled')]
 		[ValidateNotNullOrEmpty()]
@@ -234,8 +234,8 @@ function global:Get-PhoneticSpelling {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFNWBxy7M/K6o51aSeL9bNhpQ
-# jvegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgYbW8rV+cOL1rT6VcNPblJoC
+# QIqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -378,25 +378,25 @@ function global:Get-PhoneticSpelling {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRHn/naWEV6k9MzTmNRZisoeWmQrjANBgkqhkiG9w0B
-# AQEFAASCAQBVmpiSyu6uWEKvaKwOOcUBOr4VPejUpPX90aWSEhO9bXh6GxXgciLX
-# ANvUxPDgR22xUeIJf9ocSm/Q8oUvYXC+L3LVOFKe9Ce6+gAhwY6KmGGckGQNx57t
-# 2xzPD7tMYjdDRqbyToyag2bo/2jyYQoiN2zs3JxnC+Yew8DRVb4hfjQ9+mPpXnd7
-# N8bMFG+O/FQV/LfHv5YZytj9OosM4ebTWP7Ya4w0j+E79N9pOnk6UvZihBUNcjOZ
-# rZlJen2z+/M5Vh33LQbfBfUM632iZxdteEjZwJjCxM8OKYTiCmyRDk+LvJzJH9Bq
-# xsunnnuVzBxO6TBIdQBwR9/Iuul7IY3ToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTrBGYbmzCLI0XjGh9qd2sKvBfdljANBgkqhkiG9w0B
+# AQEFAASCAQCaHzewdn1nvGRNyypZ7SA24xSvpijmRSMslBPAFXAtLDqdeFU7Nw7s
+# LJIb4MQipdC2o3yqyUUovi3zkmbiZEd6pn7e+rWA+JzF45F3UokwyrMWMEFcYqpQ
+# CSjgKRyV16/jfCM8qkSI/khwIWD4FXkOrl+Za5mxJibuCsIZKAxg5bwixCmKIre1
+# 3+hI3cxnhbatJdOp8qQ7BL5RnzGXrIzaKhpJEtowbufN0xwUz9jJN2eI5HfWJKYQ
+# O8FJWY3ZuKF3Uz3gsga9zY/nlHi7zCVh3TI5Z7QRbWgIIaBQdQ9YvR7AFmI7M6vK
+# AYG2mYvZP1P2GU8RGCPOl89cJm+CqHi5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0NVowIwYJKoZIhvcN
-# AQkEMRYEFJD9SlznQz5vTJakqGFt548Y++8VMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0MVowIwYJKoZIhvcN
+# AQkEMRYEFFuKdGLbRs5boR5bEKv2nrKi3hwpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCgo8btapofgkgZqB6AWVu+t2lL5pKvmatIA333+hRJA0R4
-# 1yf/9hdWAUp+Ic4ibB8nmnPgaxtLFJ4KM0Fg6Q3BwV0jweoAw6lXD+lHeVO9Svs9
-# k22IAyh41N83/srR27gZ8CelZmSvJKP/xCPdXzYeVj90TibJ6l6+JT3bbH+WESOP
-# vjIf6p2NX4kYvsOhLlzniUUvcf/XNdvWbnp9fRcOWg/CRHXDbiRkwtOncVAt7Ki9
-# 0UyevoQ86jRYR4IXClFvYXGw2VyLdv7ZyXg/TwSpk+8IR43VQZISZ6MGWemzpWTM
-# Waf3mdzF55nBBx+4PDbzrHbT4LffncAuO+sz8ird
+# hkiG9w0BAQEFAASCAQA1bFekPymOEbKaZuvz9e1v5kmfh55eamodxBZZZWPODfuS
+# EEI5imnngVMA0/Ui1pMeXi1qi4f6M/kWqxU8a1AVaXLtQnWeF6VzhvPdyVox9I3a
+# OWslpQDmJkskLDR3mprRHt5q9Lh9B3fyN5SSlS42liw1ClfihjYb0MjnYWyHIwnW
+# wiovQh4F61OBgBmfJQKcI6SsbPA9R1Kdcz78iB78eJB+mjZdhmiXBX8p1EpuR423
+# iTwrtkiTA6DPDvFoL5Knm6wCOV4OodjpG1E9oMvvJF44GUupNlQQP1bq/cAIYt9u
+# g0Vh++V6EtHsItv0I8LEWzExrew9MqPOvY9JzRWM
 # SIG # End signature block

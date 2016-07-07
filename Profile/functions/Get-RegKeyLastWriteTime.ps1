@@ -1,4 +1,4 @@
-#requires -Version 2
+﻿#requires -Version 2
 #region License
 
 <#
@@ -78,21 +78,21 @@ Function Global:Get-RegKeyLastWriteTime {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('CN', '__SERVER', 'Computer', 'CNAME', 'IP')]
 		[System.String]$ComputerName = ($env:ComputerName),
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Root Key to query, The default is HKLM')]
 		[System.String]$Key = 'HKLM',
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 2,
 		HelpMessage = 'Registry Key to query')]
 		[System.String]$SubKey,
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 		Position = 3)]
 		[switch]$NoEnumKey
 	)
@@ -226,8 +226,8 @@ public static extern int RegCloseKey(
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUULjoAtirEi7eOVzdgeKo9Hrk
-# cwigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIXtLpIhiGoZt6NceOKEJrBPM
+# 4rmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -370,25 +370,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRGWYjyIIj8y95nFfdMuyZKU4NKgTANBgkqhkiG9w0B
-# AQEFAASCAQBkDXI1lt0Ux1fMC6QQv2cNyMSomID+mBUtyfo8Uwy6fpPrbxpzG7z+
-# sFrq0VqrVCqD4KN9y2lnD/ldPGrH7Uu+NF3A1dxNj/dnHTTxV1+KLlrfHnF8Uh/v
-# fEzlQypkgQWCExgyP3OpofRjCoHsC1hpsE3nsgy0SD4WJ0OsSpyRIO4qbCDZP26V
-# dD88kU5dNmp+iE8R04BlB4NJ40nC2ORPWoOsw1M3roUbKk6qKNNzAE/0tp7ouWFD
-# 06ybVx3Fqq+dGRntSfLVa92YbnJXZuP31z2bfDqvcOqwjrc50N8J+ylDVn1bf710
-# Z8XPXvENls/8zFu56z+7XSePTEM8YAc9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTK9zAsqi94t/LPPreThiBFCFPQAzANBgkqhkiG9w0B
+# AQEFAASCAQBgdG/zjyHFV86xauiU+Aruny/LWD/tukSixWkzwrTaCAVYPzDGB2Lo
+# hyhOVdjz6+h6OqniiMTYv2f9hd9iHVOnNHDuF+GyY8te1qGKnfGI7oDHz7Dynj07
+# XmFkYqzHyokxkfxpSKc1hCMjA7dAjfvqoKHYo8rktYCft07UV2vXYV1R2wCgqRpZ
+# uwgSJZNOzA0wTJR1SfSTHcPsAh1iB94J6qgEM3BllCDJuSdxGBIX7t8NXsWHNqra
+# RE73oHFP3uFW8D50Xova9LgWUpJ3AbbGQ5bcykfO9jMg0M6vcIcIRIhR3eBzT7Kp
+# EBWk4Cp/42My5cHWEEd/Xz+gClUpIHKuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0NlowIwYJKoZIhvcN
-# AQkEMRYEFFhfYycRevJaVqPbK/V076rsB5EnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0M1owIwYJKoZIhvcN
+# AQkEMRYEFHq/DrgsasdKKvb2xrb+3p9Fevz3MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA+ztpx1SP1ODV2lp/wcyBPVyQLHSIQDXH9ug2o/0iaBRsl
-# LgRMRlgzclY9ntnl9qi8PYK6iqtogZEi8u8II1M7RG6ysAmL19lMlxzVY9zTYd5U
-# 8Gy+STLYlhF4pz+fwugFM4TGN+zGze7hFWWKP7SEqYhJ301O5jw7knP+qUb7lo9U
-# jF+tqR9Z7aKgqkx8Hhw1+0aCguGoPwdJupJ5Yxe9xL+bQpCqygX0QA8g4Nod3uIC
-# RQhnrWRiJXmDUVZB3hHkMGcvSAWpZhfVnOlYiJdbQz54ZqIGlWMZVWk1BvsZBS/p
-# 2KGSP5sx4w95muvOtFj8I/Rwocdyq3prCQy2tmMf
+# hkiG9w0BAQEFAASCAQBUYBg0CHqqJbgkpYTNwww+TpRjwjH2DwAG1Ji0hVJ0UR0D
+# UUu1zfNY2BW462l7ZhGWrCdnvciBweXBmXbgmPyh7BHfysQJ4qtS4LFSZbq+80H4
+# xecMF/+R76lhm6W/fp3tFefuOZFgn+U0tDHYROy0NvKhmIPu0ccXz1PICkSA7xEB
+# acJ0afJRLzsRK0c0O0x3ccyRe1Tj51xC6pRhg8BXp2Z2QGDEwNrC4HGs0lXaiEMI
+# fA/hNxThS6hwLLRt35ViK2gvyjNkis1GiD85TODxrau6Kdaw4wbn8Y02hvQ0pGuR
+# LqAhEucdFomDgub8u9nhBUxWlB5Zo/V8H+4SCSyY
 # SIG # End signature block

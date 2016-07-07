@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -90,7 +91,7 @@ function Global:Get-ValidatePath {
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'A string containing a directory or file path')]
 		[ValidateNotNullOrEmpty()]
@@ -102,19 +103,19 @@ function Global:Get-ValidatePath {
 
 		foreach ($pathChar in $Path) {
 			foreach ($invalid in $invalidChars) {
-				if ($pathChar -eq $invalid) {return $false}
+				if ($pathChar -eq $invalid) {return $False}
 			}
 		}
 
-		return $true
+		return $True
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFl80DjKjFY+23m5eEskWo6aZ
-# xaOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUant7cN4mshqPY26H3JSgPy89
+# 7xugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -257,25 +258,25 @@ function Global:Get-ValidatePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS7FaWfezMr3/h7qBKMqSLBU4FAQzANBgkqhkiG9w0B
-# AQEFAASCAQAk+dmj/k7C0P0hqph6chaaPJc2BB4+UIVWRDo8O+cnCbQe/jkA4O7H
-# R+32Hfo6ogqt9ER8pk3GI8YU1AeO6Y+k7DgR6t/oQhPbIe22rfiDGJKGAUbVaY4u
-# Dql2Q/VHt5xfh9MuaJXM8clQh55bMq/43EmRfWNEMTcrdSB2X/RwVAtGEbzVnGmP
-# lnmlzd4u6dxcXblPJe9I7zD59ib2dMrJcTjiYHhhiUW0vim1GKMPj826zj7OqhAy
-# Lk62fJAb0JWmpQ2UQFKQoizHSx7ITroCg+dFDVg3EqGTHnL1LrQj42harsCMBfpH
-# PxdwE1zPli9WDjkZCbH3vwYfRRAo/bvKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBREBEpaSpplj0m49V67FkCX3h80PDANBgkqhkiG9w0B
+# AQEFAASCAQBf+la8mAMK/RxbQmgKSiblD19SPBJc9AX4SE2hkDsU6MYSu5UKEFWI
+# E9EefEPOTUhYtjFtoXlWsUjSaiT9n7u62yTrUiy63vnpYdyf9LF3Gw8DtmN4Z8dY
+# oc89IDBgrD0oaV0qEM4EaqhgLRsAv5YgPsz4aJWT7QT0nlYvVZNqydc5HJkFHfQN
+# G1+YkymzS31Y97wqOmWpqzCx2wy4FSCD00v0ftyDa+nUcTj/YiTm+/98gfMshBdb
+# KH+z2xVRK+0hsHGr2mTDsgh8fk67FzxjtqdnLBJU7pHtgaFEvAiSEmOHM2maOeeK
+# nHHQzne0w7mfC88fsBSHoGCu0v7jZs9zoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM1NlowIwYJKoZIhvcN
-# AQkEMRYEFDODm0QAv3/CmU1ZWxwwSEz/b6zZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0OVowIwYJKoZIhvcN
+# AQkEMRYEFNH+qTH617U+8MQOz9UJApOrnpWFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAfjTFC/I/lLR5ij4TQD19HFlEsdjxfwjjlVsUkq8IuMTZP
-# wJt5UftjtOqI58Wj8H9JcZAIJ938vaAZTj8EU/vh7RY7FZkZgUfjVVPxGoAUBfkL
-# a7KmuucQ9v7qeoX1tU26c8ziUt0ATVn9UDE6oaET4PNasY+Q8NY2wl58vHa5mjbJ
-# 6VkZ/CubKS/tiCgp/SvTa7YriNHz2RvnnwZiD3nxRzE8ZqiqULnf7D3jeeCYq1Wo
-# lI9/Man/qsTq9XRGsvMgiun+Z4fsITPTtjALaCEU7zDp9Bct5amnBMafRMWkslEu
-# 1U6dxqcWIAMpeG6q87r8/k1WI2DkxcjW++T+Pik2
+# hkiG9w0BAQEFAASCAQBt55kqcRcr+LcPkCBHV5E88VR98190WzR1bVZWv9TLjYQ2
+# P3tWoeWKWbTeC9fDl+0h58QhawjKtF3YVaboXbowsfvh3rovPXQPwFT2UqeXe/UF
+# dBx+exoNtEftAEIXNBkWBjgX/64xGahNK9SQ+m7VgIeaDPed9jFRk9gW9vXEOtt6
+# emfzOlanhT7FY+Y7H9q7uuwBDze375932hVBu5gno4InmaUe2cIFYviFnkahgvJ/
+# 96la4K6UN45g7rIUJLCpxUnxyudmfP73HsPb109bIajbhg8rhXhHeqfd8HfDlurz
+# BvF3GYzRAHn1BXyMvH6uwhTglGX3vhTBuU40rW09
 # SIG # End signature block

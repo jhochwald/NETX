@@ -1,4 +1,5 @@
 ﻿#requires -Version 2
+
 <#
 		This functions are based on the work of Robert Nees
 		Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,14 +63,14 @@ function Global:Compress-GZip {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'Input File')]
 		[Alias('PSPath')]
 		[System.String]$FullName,
-		[Parameter(ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'Name of the GZ Archive')]
 		[Alias('NewName')]
 		[System.String]$GZipPath,
@@ -121,7 +122,7 @@ function Global:Compress-GZip {
 
 			try {
 				$buffer = (New-Object -TypeName byte[] -ArgumentList ($_BufferSize))
-				while ($true) {
+				while ($True) {
 					$read = ($input.Read($buffer, 0, ($_BufferSize)))
 					if ($read -le 0) {
 						break
@@ -192,14 +193,14 @@ function Global:Expand-GZip {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'The input file')]
 		[Alias('PSPath')]
 		[System.String]$FullName,
-		[Parameter(ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'Name of the GZip Archive')]
 		[Alias('NewName')]
 		[System.String]$GZipPath = $null,
@@ -248,7 +249,7 @@ function Global:Expand-GZip {
 
 			try {
 				$buffer = (New-Object -TypeName byte[] -ArgumentList (1024))
-				while ($true) {
+				while ($True) {
 					$read = ($gzipStream.Read($buffer, 0, 1024))
 					if ($read -le 0) {
 						break
@@ -270,8 +271,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUExDDilvEHmFE/2nbF15NSPni
-# XxWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6UMOaR1KFZI0mIw0Wc61TiEG
+# DDWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -414,25 +415,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQQ+pDukRzQoompJjd+NscsQh6kwTANBgkqhkiG9w0B
-# AQEFAASCAQCnrpnuPT83VDgs28KNo2QhJjWxEEa0C3JuhU4ReWYsCATALaTw0rg2
-# nPqNGvMtQNn4d417L9pvOQIeI9xMTdg6AoCzxunEi43AJwvbj+CQbbEqtTKLTH/W
-# qnoXsIC/3ppC7c+VBI95dhB9nENV4SHtIeNEqsmAa6YJM0oo1fU71k+Qce7wtfp5
-# 6SNaNkVbZIDjOFqTfdxO+TPzCs2x4YYWFDKz1ZbyfEF4BWXDJmr/cjMSH2RUw2wR
-# TZlInjTeksrEsUABbljJ3I1aC+tete8AA2LASVAr2cV/jEwx89BKIB620h6y9Vlr
-# H2Hc4o0UoIZWvaj3M8DM8Brlq/klAe0noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT4DrgDBx0uV9WitzYo8hFQ6tnOYTANBgkqhkiG9w0B
+# AQEFAASCAQAcIK9290B2FMoM5Lr2uaMSjZq36V40xoDDKNbaOk7MvgC7NoHCBxgm
+# 5lTF6Xl57KcQUthIhpvd0WxWphUckvl5V4JYZ8PCHQ4ugvzPDSvOfkTc0pR86KUG
+# l040UuEyXl7XUR4OogqozVljuG0itqucGALVzY/t0f7Q911un+5OBUpElnHsILbM
+# y1K3TSve7vAXCdtSeT753FQiGxOL4+POO97PQ+hQ2Eh0Uv+3k+I1p7GWGn/aMMm/
+# NIPsNxnxO7xaN4OF71r3WShIYhdhipG1HoaEbhJ4QcJBvAy536ICj9I9Y6aQaXxN
+# +wwZYScOK8SlK+NdWAG0JISyWRwqT3oMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM1OFowIwYJKoZIhvcN
-# AQkEMRYEFAmZjUJJI3Yf4/xLvPrArcrpjNRiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1MVowIwYJKoZIhvcN
+# AQkEMRYEFG9xkHzLB0koqSZd6PxfVSGz0dsaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA4pZySLuKV2lsAYw6oQ9BJI1Thl8068hJYDSS4id3X+2LW
-# P2g6blCGokZvbRuhA4yOydIhE0vWV+F3kxZ5JkN/8wWNSu6SO5KArFdn3ktHIx7g
-# CBPoZZkYCVPqV/tr0N04YNf7tK3QOa2VC9LypcDIjy4Nwv1myUaR+9kzw8uf5+7h
-# MFv6ofvlkDP9gOrOk3En3aF0YiZUiOsoF4S82slxBAVm3p5Ip7U5PYlTVkpmv8Tq
-# ZC/DHEKpzC4pAS5Hm0UuGuzLgt13Qe5Bx9b3jzJZjRH9Js2RNJZCAXoDwZTtJ1ho
-# 9mjmFamhKYXFIik6tEGZ2nl4vgLR+qrkvH7fzIol
+# hkiG9w0BAQEFAASCAQBp0c3bkUJpn60Vh4Ry4J5io08CTDS3U65m8Z7lUwwBzlpY
+# dtr1EXJkVEnxWKOXXPz3YiBsl0r3mbNZgqVf0oWCEHWurwjDHK3iQkQ6kpIOqnD8
+# 6n5bF/S6/pMYbUCCPG9x8swzzOg3DcY75JMzU1CgOTfTpkpsAtEkQAQJ0x5nkQ1a
+# JEeXEj6WT5WopvsG4AuSadDrXMg6TunJYiNwPTcTAYrupqPExTcdzW43BmdbgaAo
+# 4IM+mKuvMFz3P3HxWmODD4fDHAjGaIQgaB3qpr+hRCqUFqNyAwFU36kLjqSZcS1j
+# Y9bM4x5nQZ3ZsRyU7bpKwUkERxX5ZmIrS0+IHa9z
 # SIG # End signature block

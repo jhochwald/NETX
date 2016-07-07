@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -97,18 +98,18 @@ function Global:Test-TCPPort {
 	[OutputType([System.Boolean])]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Please specify an EndPoint (Host or IP Address)')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$target,
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'Please specify a Port')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Port,
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 2,
 		HelpMessage = 'Timeout value (Default is 1.000)')]
 		[ValidateNotNullOrEmpty()]
@@ -137,18 +138,18 @@ function Global:Test-TCPPort {
 		Start-Sleep -Milliseconds 10
 
 		if ($Connect.IsCompleted) {
-			$Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $false))
+			$Wait = ($Connect.AsyncWaitHandle.WaitOne($TimeOut, $False))
 
 			if ($Wait) {
 				$Socket.EndConnect($Connect)
 				$Socket.Close()
-				Return $true
+				Return $True
 			} else {
 				$Socket.Close()
-				Return $false
+				Return $False
 			}
 		} else {
-			Return $false
+			Return $False
 		}
 	}
 
@@ -164,8 +165,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo2HmhYEMEkyNDk0SByhGN00v
-# 7QCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULSJzzavgWU/iZiPtb7jHOWq/
+# Yf6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +309,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRlAAXDDwaUVKYdhELFEitTHFBMXDANBgkqhkiG9w0B
-# AQEFAASCAQAGNW3aqxyDNRWQRTl/X5pb74xFQ9b1hxxDPPkNgRxvaunwslfm5z4M
-# L/hq/a1bUjXc+XQuWuQ1sTbWtSjO0EVqjG1qBk/voNctESEfMlf+S+j0fs34RfAC
-# JzdEde24/8v2lLPDtE9vSgbBZK9IAsr2Fli0nixwjxim3dpwo7Qj/lz+1ukHPfBH
-# AloGRe1/wP+jkwRrX7mWIhjWY1UyyyuGyjM4S/s1ktkXP+yX0BTzMhgC2qcnQeFH
-# l1JxqQum78dh8++/0Vbra6vtoDtGaZ73Yt5kAjenBin/3OgFszMWbXUNiPgPD1bp
-# 0Ix2QZQBhE9bj271/FC1ZlPuos37BrH7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQHtMfXgmjuNM6BbR02GBhebEYdJTANBgkqhkiG9w0B
+# AQEFAASCAQBklU3ubf2dwWj3lwX0RppFZfIaennK4Cf6A0ZsWuyiokD4Q7cGdCac
+# s9iU2mLgZglchlDr+NhcSj8NmVBHeQhlSR1PjjmzOeqY6jq5je/asvWN7pykoVqT
+# 8HoGPs13Y9wpC+2vK7VKgnKSVQSCM/cl0gjc4LdLdChSJrHSgETPa1zqUM8fTYUl
+# QfUHKkhMUtG69iaIePIRI8IsT6H40Hqs6qfUQB3APYEtKp89R5dnLy48dajfltPK
+# KHomAuiBgwtjgMPT3Jyu79Z5cyZPudWtpM3UfYJsCccVUPvb7g9JYHbFZLIQYq+C
+# XrYoa3VrwFzZCcI/rRIwhzMUp3Y+wKjwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQyNVowIwYJKoZIhvcN
-# AQkEMRYEFEE2YOASFXqgP3+iovZaq1YJasjBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxMlowIwYJKoZIhvcN
+# AQkEMRYEFJTD+hoXyEH8dVJ9+0lfSSMJO1oeMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBmgUjrbn0IEp9O5XzbovYfWaVGKbRZhJw4NaFI9QUpex59
-# GDn+VhGgaIhg+wuXcGpDPrQGylQwuVosamJgGwFzEX/0+tv4F9JymaDuX1GcjgV2
-# amE6Loc/LHy+DOVqc/6F2sBqYF6uYn1b6PXEcv+PiUOdzDIOZXPADw8x8iq6S6gd
-# lBmEnuZItYkLjHTJSC4I7IJYYP8EVAYhwrOun6G40+Os7Fv7bRq4gWNm678QVjq3
-# 5DicyyXYtciX17b3lV9JHEJDEeFSR5oDhkk7OrYiTzx28X9ZKItmEci4Txnj5cKK
-# hk7F2RHDHP3Xc/cbGX96HPkiX/FdU4Bx6i7i3rCJ
+# hkiG9w0BAQEFAASCAQB7XgN5uW6ovhHC8dw2c1MA8v5fxxc4n3m6oFX9a8wlSttz
+# ehmiz2DaHMWzBHMhq19XHWsfSm98czkF4khkuW3wZ1CvOSowKKjPUJpCRoh2WwQk
+# aiGYOY2GwG7hlA6S9RrqdLxuKmqpfGO+DILwb+g1j99jNASBeJ0T2Jk6KRGkLhL6
+# Laip2sN0GyPoqhTcYdHDXPnrRYYawonTIJQ2zxNa0yRKNWkmMTva8L8AIOQ3YhbA
+# iB5EP+/Huo9kGhMIjPAFmDx1dhB1dLiLqBkJFJj+nledYXJ0RN+urNav55brMtwq
+# DX9H2dB4hjD0oFaxrxgbXRLNd+vbKs6kNcq9yWJS
 # SIG # End signature block

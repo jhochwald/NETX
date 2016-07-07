@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -87,7 +88,7 @@ function Global:ConvertTo-Base64 {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Unencodes Input String')]
 		[ValidateNotNullOrEmpty()]
@@ -97,8 +98,8 @@ function Global:ConvertTo-Base64 {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'GetBytes' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'EncodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'GetBytes' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'EncodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -154,7 +155,7 @@ function Global:ConvertFrom-Base64 {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Base64 encoded String')]
 		[ValidateNotNullOrEmpty()]
@@ -163,7 +164,7 @@ function Global:ConvertFrom-Base64 {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -176,15 +177,15 @@ function Global:ConvertFrom-Base64 {
 		Write-Output -InputObject $DecodedString
 
 		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUY695dXs6+8PhrN2VV8+KNXWt
-# bMKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP9ZlnZ1xvZf/PwzrR2lhVOP8
+# lGagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +328,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT69ygZ8lD/H3g9mgm1bUOrhMOZmjANBgkqhkiG9w0B
-# AQEFAASCAQAwdLDTxqBcGakcRVqOwJf9GBCAK8p31afRYFbsCgRAVK3kpP/oAmMq
-# 9Ch8646MJp8Fx9IPUhVpyq/jkESMKI34NLSXQ6yriX1iAm9ywz9iVjGA96fOvPwa
-# IXi8NnIsC+v1d0y7jWnV/nTY9bXbSw74B7WlJvkj4lWnDW3/Yc/s823shnsCkX01
-# zUWH1iwUgRqec0NpJgV/e1vEgxLqVdM+ntLhvLCmbI4AVxuOqQsQVlWSmD6QUjMF
-# yM6Wq8ttGpjbT9RiI8OjMg0LLbEr2kgqY6s1BNXEY8UocZ+J7AVPAH6FDamFEUHI
-# 5LS4ve1UZ4jUNwIzRp0owFMlAYJqnwtDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTwccduva3MUmBRtH0+0NtF0ilmDDANBgkqhkiG9w0B
+# AQEFAASCAQAR/+egkgxAXTZTCHKEtIgB+ltAjyS61/GEQw82Be6hpAo8O2mkHjSV
+# 36PKF/Ian58v3A4PTwsvjbqapGieDodSnnIfTwDXzfvpciAMdE0n1Mi6sm7L4aJa
+# RnIWjbHVyGVB7CoaTtbOxC1i6T92rnAAIOz6X20t6w/Vq6RVFpmsYhY1kzCdySrH
+# wPcrAdxoaNjrXZGGl7rtW89xAtFlnPAvMxk9o3guzjODjnO/spqi34uMzd0QLzyF
+# vSt638lDvteIYm/IzqievCN3UL0ozHf5LfdzrTwcUs4eWF3i4D37/gZSsYd9w79R
+# umtdSu/3t/tUwyPQLjjJCDsD7Q9BZJG6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyMVowIwYJKoZIhvcN
-# AQkEMRYEFLWL9JwNoHwGOFo/0WJ3c12r1pIAMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMFowIwYJKoZIhvcN
+# AQkEMRYEFJJvvq1ZP7cBXAj5h9MOCiLneLnNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAx4Uh12ZJuWHXObO3bIxCzCL4EGoZc2dpHyvsRr+Wthv6v
-# kA0DuyBnG092IZH4rQy5HRzxhxKfbm+xVs44BbnwB6t15+tFt69gilqQU9KnfTwy
-# PvUndrdD5BD6DehSN+NGMbzc37pywU/Bb90MGoxBcRGGqHOeautH/BF2R9NQhqY7
-# 8UB43EUq6WRKFdVdUJajO6xC4CdkPzoYEdPOnLecIqpnbKWz7NsJQzJEuEMD29iD
-# AKDa4aHNrWU2ZlbqeM84ktycsr3ka7Knvb/Rdn9TjTAatm5rBO73+AuXZx7TbcWv
-# fQ11MN9gAgdlHXLsMAqIIn2euBaBIuWi0OWG9SuS
+# hkiG9w0BAQEFAASCAQCnKWabGJl2GQC9Q1aWybqS8QMRbKPZEwrMhqjXrmi4Agy9
+# y/Li1PaUW1PGJ/LDHrPThY7zGz0nNiyU8rEKx+xIxCzOwolvfFL/Yk1C4CpjeJ4T
+# geXsulUrO/+/o/1F5sVk0LFUDAR7l83NEYk8w1v9V15iB7Ge7rvz90QXZqTOV9w6
+# V+MmeJ/0Wgdq35zpx3JbhiPoISoIzvb7usyDdreDlchsgdqBhIe1j8/QN5AI0eKE
+# uruoQte22fTopIDkVbQvenT8lLhcIB3VDUd5/okAFJcKDpBbEXUk9Nf4uKnv6xrh
+# eg0p5NY+GUychUZrcsOQyU/xSc+stChVawrSxjuD
 # SIG # End signature block

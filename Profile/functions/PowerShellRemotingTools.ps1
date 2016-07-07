@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-22
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -76,17 +77,17 @@ function Global:Enable-WinRM
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param ()
 
 	PROCESS {
-		try {Enable-PSRemoting -Force -Confirm:$false} catch
+		try {Enable-PSRemoting -Force -Confirm:$False} catch
 		{
 			Write-Error -Message 'Unable to enable PowerShell Remoting'
 			break
 		}
 
-		try {Set-Item -Path wsman:\localhost\client\trustedhosts -Value * -Force -Confirm:$false} catch
+		try {Set-Item -Path wsman:\localhost\client\trustedhosts -Value * -Force -Confirm:$False} catch
 		{
 			Write-Error -Message 'Unable to set trusted hosts for PowerShell Remoting'
 			break
@@ -141,7 +142,7 @@ function Global:Get-NewPsSession
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Name of the System')]
 		[ValidateNotNullOrEmpty()]
@@ -188,7 +189,7 @@ function Global:Set-CurrentSession
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 		HelpMessage = 'Session to use')]
 		$session
 	)
@@ -210,7 +211,7 @@ function Global:Send-Command
 			.LINK
 			Invoke-Command
 	#>
-	(Set-Alias -Name Send-Command -Value Invoke-Command -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Set-Alias -Name Send-Command -Value Invoke-Command -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
 function Global:Register-Script
@@ -225,14 +226,14 @@ function Global:Register-Script
 			.LINK
 			Invoke-Command
 	#>
-	(Set-Alias -Name Send-Command -Value Invoke-Command -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Set-Alias -Name Send-Command -Value Invoke-Command -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCTsKAAiygrnnccdhzMVmZrt+
-# OfSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDaelNFHQ3m7njCzhK1hQmIER
+# xFqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -375,25 +376,25 @@ function Global:Register-Script
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQjWhb0LgO3OOdk6V5UAog94l86NjANBgkqhkiG9w0B
-# AQEFAASCAQAcM+z/Pl2cZetuCx9Q41fRf48pDwwXdKRDmbU/rVFzE+1gZfJMJckL
-# zrY3B1LJwh0jCAhnyHVnsTB9fAu2zTtV+8y94+vSHKNJwQHsdTm5iVoUiTMBAD9t
-# Ja/Pru2OfaCOQvhS3O+jrrbOXiNMyz1/vNzMoSntF66JgDzQEfZEofKWAKDh83Y5
-# a32YbmlQPseINuk0Pdm00lcNxzi9rT3SBg1ByHy9+9+vmVA3iCEOAUBbDa5rLruH
-# uA1eMAtdFNf9WJZUFzeSUdMmyoQtLMIz72ZcimsbXJYPvMZOfR9XqcvPc/anZ3/j
-# LYAMaQ/uG0j/Is8HGVcj0wFWx4PWf4SroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR4dW3u6PvdJRlnF9qTLsg2YUa6HDANBgkqhkiG9w0B
+# AQEFAASCAQBiS9wX7CUocmDrgl8HSYLjABHTZ7SSMjRwpqL3nLi2J/vaz+QEJ1hp
+# jdErPYkk43Dbt/ZYmHOrSsMuNXOsiYXfvMUBkVh+FhwyUaaSw0q6PsF5R+59dO1x
+# OqPQ+l2L7fMHw635JHaiH4Nbrsd6ddgKrLHHySLAfCcV/5A1mFTsoiKaEisYeiw9
+# e7B8zW4Dj2+9Zlz4GNBRbyibuV+gldw6HSZx9K7smZykO5gSODhsRehwLdHJ2vso
+# Ii3v666kq6wZ/NvYA+k7/HojYSzm0DjLYLQlYsaQznaCgXclgF0eZ/6BJgsg6vA3
+# Wkiq/ISrpx6py3AnJZfMdQfx6S+w6exXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwOVowIwYJKoZIhvcN
-# AQkEMRYEFN63LxhQITeqQ8avl9/uRRKo3l/3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMlowIwYJKoZIhvcN
+# AQkEMRYEFIzpX3MYVwpzkKowDz+kW1LZ4HsLMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBbyjZoDTMqJvw/g4lnZzAHhyth6B6kl8l167rXbhYFq6XH
-# Uep0pHT0v/fUwRLQRgVN9UomVgkLKfPMrwBBQw3Gi5Ddy26CotigDHGWwdXLeZRA
-# ExjF7Ih11rMqhaRJ9rQR3YoICtfgJXekfC1ZzjSc+8fUoRiJXCQjOcuE7heA1o3j
-# 13CJzL1lzdZ2Gmb+6eNqunQam3nvv0NKkjOAO+b+fHyObbP/GOWUnaRqs91RmZnp
-# EZMekqUzardUgTzSGJ9WmjVqHq6ww3dXcWdUzypNDgce5qjNeILOSrYd51UVO93C
-# /g/WOh/vUWZ3M5Y3UfB40RVm9fRXsscBCj4z3yBq
+# hkiG9w0BAQEFAASCAQBR1eoOrn097YWEH3TWYWAedTq2JADEXfrOWl35DlMQszak
+# wDfLXOeUxxiOADTb//vWSH6vra2aB07MoyQxwHZG8KkJx6q9bEywyNqI69fRZziA
+# ffCrKWIqo5a6xdaBpn6v22T0fHLtgHtAV8Qj2T/D8dIw9sa5F43mGjC0o7ysDcj1
+# 9DAN+5GD+W3EUVkMeVRTgIP7k1QqxvtOTEoqcoGMGkqwgyFyUg5GUgCqK2OYXc0t
+# eIKkoqjYyxGky+jT95eZJYVxN5NeNBmO82bjW153uE3OWCVKYHB5OQauQFcEwIwe
+# G2tjPmYMT3ex1zlWRG7JyK7RBsv9lksB1oM0Hgnp
 # SIG # End signature block

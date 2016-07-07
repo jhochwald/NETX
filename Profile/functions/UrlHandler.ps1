@@ -1,10 +1,11 @@
 ﻿#requires -Version 3
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -83,7 +84,7 @@ function global:Get-TinyURL {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
@@ -93,7 +94,7 @@ function global:Get-TinyURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'tinyURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'tinyURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -114,7 +115,7 @@ function global:Get-TinyURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name tinyURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name tinyURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -153,7 +154,7 @@ function global:Get-IsGdURL {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
@@ -163,7 +164,7 @@ function global:Get-IsGdURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'isgdURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'isgdURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -184,7 +185,7 @@ function global:Get-IsGdURL {
 			Write-Output -InputObject 'Whoopsie... Houston, we have a problem!'
 		} finally {
 			# Cleanup
-			Remove-Variable -Name isgdURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name isgdURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -221,7 +222,7 @@ function global:Get-TrImURL {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
@@ -231,7 +232,7 @@ function global:Get-TrImURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'trimURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'trimURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -252,7 +253,7 @@ function global:Get-TrImURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name trimURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name trimURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -291,7 +292,7 @@ function global:Get-LongURL {
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Short URL')]
 		[ValidateNotNullOrEmpty()]
@@ -301,7 +302,7 @@ function global:Get-LongURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'longURL' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'longURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -322,7 +323,7 @@ function global:Get-LongURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name longURL -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name longURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -330,8 +331,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlt0BGlNEn0IWf234RjMLEkcg
-# 20SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU84qCrAZb+oJz+uh6wli/+B/u
+# A0agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -474,25 +475,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSIgObe32FLOi7o4imeAzzjIhHyIjANBgkqhkiG9w0B
-# AQEFAASCAQBdTRLEJUbwXAo9qTPzkwTof2HktJLFs6csy3fWfkReuFAHH4TNV36I
-# qc8U3Pho1FyvbAL+pYfnJ4wLPUaJfXGQY72PS9jHCg4tM7TviP2012HzLX0ry3sY
-# f1xJOTSARyNUVhFsFH54Z8X5Lw5Ykom2Dxk9wXgNyLHQHGLp1BnvUgee9MLXENXX
-# ZZ51qs204VAvuo4NSxT7PiTMn/9Es3LfVYqxRbBiV6f9jTHLAO7tpUFDHNbkHVO3
-# zj2HNdgoyx1NqXyJKT5SWntovP3AMC10oItsTtDfA6Fm0iKd1kSZr6I4lvCTm+se
-# hRLJ8LzXp3fQFkJKxdJufN+4ya8YUqCaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBStTEoriOymkRhetGp2PxkTwaNNKzANBgkqhkiG9w0B
+# AQEFAASCAQAo31xpWKa33C5auovTeVM7/ilSLGoGayFZ/zS+zrCG3GJQLougL4eT
+# cZ0pwfyIsFUL/uU9GBRSss9fzd+110G2hh/HEcdr4Vmv+bK8ERTlYqrl6M9pa/Jz
+# vWWoAdmIAKGXgyNKGnwunSwCetD0xbBxOIXIN0SjOIPcayz9n8xg/SLAueGWQitW
+# aYOoZAZRun3hXk1rr+E5p7Kp2rphm3M35q4ZcD417Axm26PoOvOKssJBYk22YYkp
+# s1udaIvPwX5gIRgsAVmj37y833JwP+jS3kw0GukKsrC6AZVd8BaROl4QBH3FgUhO
+# 5bMyo5+6RCeSgEeRHpYNExR2kSqrowkloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQyOFowIwYJKoZIhvcN
-# AQkEMRYEFBlBrh3FiKGVWicXIxnnY7K8wcS2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNVowIwYJKoZIhvcN
+# AQkEMRYEFNubmuD5BFrzyh/8j7aTUSAwdUYhMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB8rpLEYMHCfp1pggI65Lq7TIhrx0iV6IGTdE87QtfVbKto
-# WlRk5nv5My0LEg7HMoX3IaC+zHAcBHndafcKp+1yTbStqRkaAwX33NuO9iaV5U5s
-# +hYZ2F47OGEvsE+tnDtCNToxlQBTI2VQdz2KHpZDcfWz3aXH0ccXdW4jX6rGOStU
-# DJg07OTlYA6vES4wXjYSd6+gQLIAMXqfgjcI36aN3f+pFb0RvXskxWRBDVOUHo2a
-# H2eJpBBTfRWpsIDT8CdB0PE2WMfsar/XjSotI0THv+rGi6YL2Bxav7ev1oXnEQLS
-# ULJRanpTMui1h5g2f+LF4gFOdm664YORQBd3Lh3h
+# hkiG9w0BAQEFAASCAQAEmAeH7bRKXMaxtiQcXJyNY0Jvz/nQqIa9NTP+kgt4mpDX
+# AyNjrXmmMl9jBubBqt7VIb8jTtSxKFh6Kmh6Mp3EdhZoUbrl5j0WSCSZa2nxExfd
+# ViBL4c3MLbLZZHbYcNcM0z5OT3lpxPrF9IpMuOovNLVg40W5GsOo/Jz28dVOiZ4B
+# hUQSAixUTqkDE0u2B9SDM0p7Y2jKT6CWLKmnSEO9QZ6OC8ExuINNXNuIntoN/KpH
+# XHg/R12sNwazYu1nYR6subnhQN0932V165Lolsp2r9YZd23rnboFXsk2E+3EIZrT
+# tiL4SchAq2/JeRg60ZrMERo6ZFiqDI1jJPZjCXKh
 # SIG # End signature block

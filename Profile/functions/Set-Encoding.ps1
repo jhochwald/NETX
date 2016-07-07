@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -105,13 +106,13 @@ function global:Set-Encoding {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true)]
+		[Parameter(Mandatory = $True)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('PathName')]
 		[System.String]$path,
 		[Alias('Destination')]
 		[System.String]$dest = $path,
-		[Parameter(Mandatory = $true)]
+		[Parameter(Mandatory = $True)]
 		[Alias('enc')]
 		[System.String]$encoding
 	)
@@ -142,7 +143,7 @@ function global:Set-Encoding {
 				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$false
+				Remove-Item $dest -Force -Confirm:$False
 			} else {
 				# output to file with encoding
 				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
@@ -168,19 +169,19 @@ function global:Set-Encoding {
 				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$false
+				Remove-Item $dest -Force -Confirm:$False
 			}
 		}
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name Set-TextEncoding -Value Set-Encoding -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Set-TextEncoding -Value Set-Encoding -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUo9o/b0kEftiy5li3YTyCJWOl
-# jXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn+OCPuAqSQLUHut1VmNPA2kU
+# s1SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -323,25 +324,25 @@ function global:Set-Encoding {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQGCENa3HFBc6OXayizd82uaCM4UTANBgkqhkiG9w0B
-# AQEFAASCAQAzOUmNP9zAkcPQL+oHoALKF4RCIrRfvx9+uSUBFpTi2qoYhvK6+cVi
-# VQs7EiXMV9I/i+2wOMg4hpY2mtaBF+d5uPxj52nMPcgOd+gcBhgE039SvjBP4u4B
-# ViQ/kBMcVjCZezhXpH6oIdM+d3zWQZHuSesplTetFEYSv4uKeknBVWigtQKg3Mpy
-# Swp7WJeeUWf7CF437RVyVdGLkC7S2g+Vp/5VItftLeYhs6aylQpWhcTT+bwf705f
-# OsHJ42ZaAzoIvaAwEhrjqkERGNJZVql7CByqbYAZ6q3rHzi37iWuO+KAf75I+qY7
-# jmC0gxudX872yxNGnRHaXDAc3anwO9pFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTX1YIy1I6TNcV0iVaBLfuRJamIFDANBgkqhkiG9w0B
+# AQEFAASCAQB4wmBXVRTYl5SgJDTfyVsNGT9Rcd+DyNKzqtfbE+D8JMN7Th2ajOmt
+# EfywnA86d0FCHwyoz7XZn2VC2SJYVbgUIS1azS5g68aCbQI1JaYmHwC3yS3e+kqT
+# fRPRAJs//aUInZ8F27N+qfUnqxfy/+vdpaSI3KEDgUznBno8JvRAfNfBMMcchVU9
+# beAQ97FYJqU1O4G1hy+cWj/S6d/0z912FZ42g70u36JIfMrkkKpEbXiiB7K7x4R2
+# NDh+p33PRNuWAVWniFmVRK4ZzhrA7GuK4dcKl4hRjjhas6j1hksEC+JLbVT9Q50S
+# 1L2nFL5XUHYvjzd+poEiLaCj7GXuLi4VoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxOVowIwYJKoZIhvcN
-# AQkEMRYEFI1bmoZvTr+nnnER6SVR1d0UII2XMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwOFowIwYJKoZIhvcN
+# AQkEMRYEFPCuIg9mLQetvQO8R/1zx7HMANyFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAf7Z+Ui5wgz0pKz39/bsEUWsQuQJggiPRyHhkK6HBe9xuu
-# idhBg3LGtXoPuJwfjjDlrQCnogVfcR06MRXdVj10X2WdiLAsbZhf4fC4J7K9z3Dh
-# 3Vm4VCFL7m157osbnClQ2dcAouV7IkNJimEmNvsnCaaFVW1Rg18ImJv59clGX3g7
-# GycBW0RV9JaJwodiUweTc7cpZu4XsdtE83TRvlpmgQMjyuA8c+jYUPQpohSAwKyc
-# vmuVzgVKBSBjV9mlVbeho+v2GNCMpJ3mzFIipRh3gpowtIvEU2y4XkdcDfqHxmxC
-# fdR+7Cz9s6Hdm4G696St1NKPk8jg1kP8KR5mvb4I
+# hkiG9w0BAQEFAASCAQAu/ZKkH/OuJI47t4agdavLz2XjS4XW0XbkjG0DJgB4EWO9
+# kYB5FYkC1zGisLkW/Sz5f5IRCdX/aKfi8pHE9HrX1eiETKttsDuGo+AucKFNFNNr
+# Ci3ZrlalpiQcogiTmD4nl2slnsyvTaiY5s9njk/gFic442m5//oAhGw6oMpGU5c1
+# 8XXfO/3QBNT4bzO4/0QeZZZFtsXrAtg8InyRYBRiAHxekf5AFdbJVVjJUIDMEvpq
+# Nxpxk2QSYHF6i2BBrVd6WwcUeMuFXTO69WKJwYi5rFNNYWMeQkNktPFbSeMoLuoX
+# 7Mt9rXqxnO9nUCN70tUkTXnxaAQIeoOgYKReFAYS
 # SIG # End signature block

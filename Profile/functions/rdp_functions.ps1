@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-22
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -161,12 +161,12 @@ function Global:Disable-RemoteDesktop {
 
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 			ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param
 	(
 		[Parameter(ParameterSetName = 'Main',
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'Specifies the computername')]
 		[Alias('CN', '__SERVER', 'PSComputerName')]
 		[String[]]$ComputerName = "$env:COMPUTERNAME",
@@ -318,12 +318,12 @@ function Global:Enable-RemoteDesktop {
 
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 			ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param
 	(
 		[Parameter(ParameterSetName = 'Main',
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'Specifies the computername')]
 		[Alias('CN', '__SERVER', 'PSComputerName')]
 		[String[]]$ComputerName = "$env:COMPUTERNAME",
@@ -430,8 +430,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXivNWSr3vVmE0OiOQXeKAyVy
-# o9igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUROZrgpCr3kLWGANx7HsokD7g
+# 9iqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -574,25 +574,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSp0yGSBKy3ngIHmdj6x2AFni9V5TANBgkqhkiG9w0B
-# AQEFAASCAQAa3jfRSB4u3NahB9M5fTd/8NyQ3Dx5nU2aQwXYxXzsoVRuJrKwwb1P
-# iA9grDI54dBj27jSfXx1oLJvqUTuOFdWbSOEi4LFRFYt7M0Lz3/rY8h14yZo/iYI
-# J0yASTBWkL1hkrpXhoPJk3QJqjxJvIjwkJzlp8d43n9PS605o3ErUZ9hAjcV4Blo
-# L/84wVA/5GJVZLX0cDPv5AwzJb38f2UifCZOLzOuPXn7tbpm6H1CvNh+i3ajJqax
-# FxicxpSNO6sQDJuZQtkWTXPx7QzzUh4N1bC18lZUSql+TEg4MGnScYVbqphYvJ1J
-# LZshHaaPuOQQpLIDh8WgYNYd5oQxl4looYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRfOR/OFOJa96C9Or0jlNbtXMEnKTANBgkqhkiG9w0B
+# AQEFAASCAQADvlAsDFJplNd/Hfh7z3I8VQpvWX5RIi81VZF87wvPi7b+TH7mNUpF
+# Rae4ANXiJFo4aka+Hzn/v7mOSOoZ1A+DLnGsSgWgr7PzPmZdBSRP+s1AxVijRgVy
+# BKX0TgcFlNYRUgm2m0BTSrFKEGuSErTmPtUC0sw4V00bwD66cIvZBZFIaOoNF4r3
+# 8iSa1O707iPmKaxFVgMqaPPaND0XwAo5PyB9aJsNkzWliaRKZZsGuldBshVQcX6o
+# 9jGkUV/Rs4vwL1QRYroKoSWEBZGwhn2C+quP3wySHuJpCM2TH1Nutd/g3UvB3RNl
+# F7cPtuYhbWqRtK1u795V76D53SxPrP9ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxMlowIwYJKoZIhvcN
-# AQkEMRYEFPHTCP9tPd/lUDGGPI4FTgiAm+SnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
+# AQkEMRYEFHU/AhzTdM+5F2yOz5bSdLbMSxSzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBzdMZkK9ca2B/amDj6yHqAkVr4Y7MMl2hCvqY2qHkq97kN
-# qDLdJUj+sCjvQsYmh7Jxwb7mv/CL11UTfLFWydjBw4smuBy/rsm0vbgKlAsZXUl7
-# Z6QNKO/nUs7RKhUQ8dzKr4T4RUZ+QmJJDWVLgiBCtTQXGIukt8YXDvUQpFlGRZWb
-# 5BgIvN6YOgbl4sDxjQ3KGVQNwPUHd57KU8dMoT7wSdLHOAdYQT7FYfUKaH9nd5P2
-# NDMaTPZ8E+oHEhOWWHdYE/UNimLsmUxYHlxacDhWsttVUY2bREMu0ckfJFY0LTkv
-# d6gKgeeFU27+fyvV/TX61eNiAkEaQd9mPzWscbzl
+# hkiG9w0BAQEFAASCAQCY7pYUq215gK6xPNtuqjiHKEdwhraUs0YXJc3rab0dAlKZ
+# EMqJHt+0QGKBYB8OsAcs1khb7zxltleumLNPz7mbYVFpczfT5AqPANItEt/2eseH
+# h0cR1dVsX/sT+wsqPCC3SBJ1zA/mQZOYNhvIyDl9tM9cY1+xJQPNAnAZ4qx/5Du3
+# kVWgIr8Napgx8rFuhkaZN1beEdR39BeQAxtohG1LicI7W+CbmpcEQhQTFQwOKTZ7
+# svh1oLMKwC+KyirK67sqwTBuNvfUPgbxxb2QOPdh2DKCt3UBb7AyG5LHZOuHjPQ0
+# IF0fcBOvnCxBlc27ePbq5zGuN2to+ciTS9IlG7xa
 # SIG # End signature block

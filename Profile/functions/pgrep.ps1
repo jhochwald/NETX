@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -73,8 +74,8 @@ function Global:Out-ColorMatchInfo
 	[OutputType([System.String])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 		HelpMessage = 'Matching word')]
 		[Microsoft.PowerShell.Commands.MatchInfo]
 		$match
@@ -184,11 +185,11 @@ function Global:Find-String
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true)]
+		[Parameter(Mandatory = $True)]
 		[regex]$pattern,
 		[string[]]$include = '*',
-		[switch]$recurse = $true,
-		[switch]$caseSensitive = $false,
+		[switch]$recurse = $True,
+		[switch]$caseSensitive = $False,
 		[string[]]$directoryExclude = 'x{999}',
 		[int[]]$context = 0
 	)
@@ -206,13 +207,13 @@ function Global:Find-String
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name pgrep -Value Find-String -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name pgrep -Value Find-String -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3ePmx7iodses5vhJLwGEBl7w
-# xGSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhmUgReN1Tm1uMauAC35NEFRT
+# bxKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -355,25 +356,25 @@ function Global:Find-String
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRHWHboEOi1Vvm9suS4uM9xK01DUTANBgkqhkiG9w0B
-# AQEFAASCAQCJvy5Gg8J7J6OOyyo2JhoaaAgs+0e+A0Ioijqww90itoIrsCjuk4Ao
-# G1Ei3jbeWejMfwgOGl0tw7KcFVqTG3Ci6ILzSjrggRRITIwWDHvWcZZnK08vItJ5
-# nfbN/qaI60HHK07Xo40eVX0Mrr3iI/t+nvR6uw4C+lNdJuMCL5sQEkLu7iaYdslH
-# Keb4kQxKv3cd9qTh8O2CFSAJMk23goR2gw9YTrElfI3HuCzsrPoHfb/jUpyJ7et0
-# IFnpjzbKsmP6ImnQOZoGzst0qIgVnJ3F6x+HLLmd2pVU5XGex5T7Ob51NQvmT8D3
-# tLTSKuNTN4NlKye4bKNAJQpH2q0cXDotoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQCeCI43C6jEoKmnxelZlmxuN81MjANBgkqhkiG9w0B
+# AQEFAASCAQCVOE7sqozaUe2M9SfVEP0ZgZ+qtAkSZaMV+MI4B36HZxvcsAyT5wPj
+# queaGDztpdQ9cuJMlqzb5H0xYO10+r442C5AJOorsWGrKy21VVEmJV18FRDOY3q3
+# oDPUEMTmbW+weNQw93+3CQOHXZBcDd/eL6l7/JcQa22vshisMFDw5WpNb5FYpESl
+# VpyYvGWkazjxmzQfqTO6rhV6ZRX4hNX6GGIJfN0MlsSiWMZrhj/JgvqhtbWPq+Vy
+# zQAETGi3bn2Bw34ruDdWxpNFlav/of3MTvKeUox2/hZ7w2drydF/5Nev09AEp4xu
+# herDC1u/HBO7/uVU3xFBXXjyVbXzjxc3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwOFowIwYJKoZIhvcN
-# AQkEMRYEFJp12TWxjFC4m4OvRDEw99COaqoaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMVowIwYJKoZIhvcN
+# AQkEMRYEFPpF98HAHwS/dkoVX8+gC21rtqcaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCICUGBJTykbceq2tsesTXGjxaByvFhq3m9UgVXrhIsne9W
-# I4aSt5aq3MCPxpQ9RI/jikkVCJ0brmIHDFq/SDVtlmWxF27gmV6dtpOhblWZ2NtB
-# 3XUXESpWWnaCwxhlLWZfHqts4+JR4S05suYV9B9VG2x8qjO1fTUL5AlTUpCmnkTw
-# GrnwwZ80/0GeD+X8KanFQpRvEMXpcmKUWN3kQh5EOipkTmrBn0dsvl0M45s+Icwx
-# uHsVFjoNDQG/tsIYm9RKxZRKXBjjR25XdWTfSIuaGBON8xirPRi3J8wG3HA65FAb
-# G+WETnsjROnU5hP18cZcsshC+7m8KSV0J87JsCOS
+# hkiG9w0BAQEFAASCAQB5r/W8aCxy1WEfnc5RDyD1CQnbcAB9oltNdVWNbwU33esz
+# igdveesNQKeRvHZxRlFoDAYQK2LaLchurh7s9GB7HsXwH0eGb1bj6Y/jkt/VVsnP
+# iAfJ/oy8whZp7hsvF2FfaYfkA5W4hrCS4jY4JiF9ahPgFXpwlYRtyT4MLNqs8kzv
+# 1zek+VTAfMI/tEBSk36l+zqUHKxhtOoGWyz47yFTVqyUqhQGfKcPc+tOcGYwxb93
+# 1ogaZAY72PQPXuhsM10B1MzZ3xcCkdUAN3h6uZLAYzGHQVoyTKPdIFZoUGyDPosV
+# KE2H0cLUF9pvDR/tjdnyCCjauSG5mJzUKNe6s2Un
 # SIG # End signature block

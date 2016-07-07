@@ -1,7 +1,10 @@
-### Development Snapshot (automated) (HEAD -> master)
+### Development Snapshot (automated) Minor Refactoring and tweaks (HEAD -> master)
+>*Thu, 7 Jul 2016 16:44:03 +0200*
+
+### Development Snapshot (automated) (origin/master, origin/HEAD)
 >*Tue, 5 Jul 2016 21:26:01 +0200*
 
-### Info about timezones (Not only the the TZ applied to the system) (origin/master, origin/HEAD)
+### Info about timezones (Not only the the TZ applied to the system)
 >*Wed, 29 Jun 2016 13:20:37 +0200*
 
 ### New Proxy Info Script

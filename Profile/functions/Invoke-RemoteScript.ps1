@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,20 +81,20 @@ function Global:Invoke-RemoteScript {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'None',
-	SupportsShouldProcess = $false)]
+	SupportsShouldProcess = $False)]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 		HelpMessage = 'The remote computer to execute files on.')]
 		[Alias('Computername')]
 		[System.String]$Computer,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 		HelpMessage = 'Any folders (on the local computer) that need copied to the remote computer prior to execution')]
 		[Alias('FolderPath')]
 		[System.String]$Folder,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 		HelpMessage = 'The Powershell script path (on the local computer) that needs executed on the remote computer')]
 		[Alias('ScriptPath')]
 		[System.String]$Script,
@@ -106,7 +107,7 @@ function Global:Invoke-RemoteScript {
 		# Helper function
 		function Test-PsRemoting {
 			param (
-				[Parameter(Mandatory = $true)]
+				[Parameter(Mandatory = $True)]
 				$computername
 			)
 
@@ -115,15 +116,15 @@ function Global:Invoke-RemoteScript {
 				$result = Invoke-Command -ComputerName $computername -ScriptBlock { 1 }
 			} catch {
 				Write-Verbose -Message $_
-				Return $false
+				Return $False
 			}
 
 			# What?
 			if ($result -ne 1) {
 				Write-Verbose -Message "Remoting to $computername returned an unexpected result."
-				Return $false
+				Return $False
 			}
-			Return $true
+			Return $True
 		}
 
 		# Be Verbose
@@ -163,8 +164,8 @@ function Global:Invoke-RemoteScript {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUsEfYECZh/5eOL9ZLvfnBbzu
-# 4WegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwsyxBjvCb1IZyUXMda9fI2a8
+# 7GigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -307,25 +308,25 @@ function Global:Invoke-RemoteScript {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRyop7MfdA3k044KJ9ENAHPej7SpDANBgkqhkiG9w0B
-# AQEFAASCAQB5uza1amMI2HEdxBTEpoiRVTsbVE5mc6GPTFs+qsTTbzvzlzHBWHEK
-# Nh2e/b7uNuVFhwlz5h3bPrefAyVeDETslxyXnWTqYLi6IkPD+aMzIHklhr1M675V
-# eo9/zOb5cDhcuIG4a4qnMX1ys4FHVMAvDo3TTYc9MRfyyvGPXgawK5PdhTworKQf
-# O5BUOQhnieTCa/h9oZAx08fX/W/OTAsKWQq3GSAfC44upDJwiAGO00D0xVRST4w7
-# nVIUxs14iN0ExiRsr7HwMtj2PpTWuVDJ6jfbOz2w83oErpZbJg+QTnGIFHPai+2p
-# BTcCCu+DWat5iCYgi5WBHqBXvqLwPgOCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSwYB1oM/HPzxotyWtZmWZdJsF3GTANBgkqhkiG9w0B
+# AQEFAASCAQAcP0Ha7tCELQ4Nzr5qnMwJaNKofP3KZSatUKXgJefEAT75v6L+qVd2
+# 9ebURGLaH/qribCQBYVYeLSEFHYE262AczzU+qmvkJwLeJuMXujeoC63m5AmJCaN
+# EIfsjGvy87bMB5/8a2wxtm8CwKz1iCHCJ3xWSJDvWiUGMBmRFSl0Csup0TvVnI8T
+# ShJ9SmXxRvhmiAy3g6LTcySdbSOwmoh5e4mOAgNxQtA9ltqSV5s3DOcpljpMP04z
+# Pw/1Ph+oX3YnE3sfxVmScd/imbs9Tn/4FwCenXkmaxNBLTJBGocx9ZwyH1R3s5Mc
+# k2yl08gZQlsiJIh0NaXSUasmXXKt5aEQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwMlowIwYJKoZIhvcN
-# AQkEMRYEFJn+mcbQR9Z0CaMYdab32AdzCOm5MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NVowIwYJKoZIhvcN
+# AQkEMRYEFACJMzqbdMPPn43ebFkbyw9bUf1oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCYmazXkJ9lCmza52exHlnb5J2f9N993eJphGtxGL2MS+9G
-# E06EApOU1E/HQy5tNKklk5p1Ow3Nkncl9vfdUcJ36VaGCB3K1CXUJkSb9LHVp95D
-# SdNq/UddLu9Wuw2mJQoj2pG2KTn3aIQA3Woe0xF4EzGXdA7BtDc2ccJJ7UGHkWXX
-# 3YpmBaocUAB22YpUqDPrq17XOTrGH+k77dyLrSL1JhYRfYkEtbkIEA2zj+LMddQx
-# WZ7iilkQUnuI77b0b3td+RAhwssTQBGwz1QEdyOXtLlR+6cIrSqMIwhrZihsXMcs
-# gF5MyzrGgpB8+BLfOqSn4d5s7pipoP4bOOfLASHB
+# hkiG9w0BAQEFAASCAQCS0y4hJ4+2AIURSD50agHBiFiBNOzTPF307t8SQtR9kncB
+# Ffzom7Az29exoeZWtggqLeYJepJhysJ/jsYe70FrrRoS/NwL5beHiWbazqCy0/xb
+# ncuwcmrz1/rHFpnb5A35RT+mhrf+NTQ8i0mbZlEE1HyTgAQxkbCIMu5lQ1aGEC+X
+# klUelMv4V7+sONkWzhdqB54QahiLTjmaBT5U0sQDIO1//cXl5s50+gBKU2LuUW2w
+# APqLunNwl8YYBE4dXyh9psXvZh+CV+zzgQkJUBCrrZ+FsgruF9YxxTv4bKonhw/n
+# mVD7CTTt0feUg/9w/xQ8r18URJaeB69FCtTn4XNU
 # SIG # End signature block

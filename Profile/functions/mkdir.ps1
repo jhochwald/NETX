@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -84,8 +85,8 @@ function global:Invoke-MakeDirectory {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'Directory name to create')]
 		[Alias('dir')]
@@ -95,21 +96,21 @@ function global:Invoke-MakeDirectory {
 	PROCESS {
 		try {
 			# Do it: Create the directory
-			New-Item -type directory -Force -Path $Directory -Confirm:$false -ErrorAction:stop -WarningAction:SilentlyContinue
+			New-Item -type directory -Force -Path $Directory -Confirm:$False -ErrorAction:stop -WarningAction:SilentlyContinue
 		} catch {
 			Write-Error -Message "Sorry, we had a problem while we try to create $Directory"
 		}
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name md -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias -Name mkdir -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name md -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name mkdir -Value Invoke-MakeDirectory -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNCVGVdqa5TCh4FZZI/fZU1LG
-# o4ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO+7yC0g4YdPXzFEPZT7Y1RzF
+# IMCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +253,25 @@ function global:Invoke-MakeDirectory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS9SaCoc+izXkUTy+q4zQMtLpzkBTANBgkqhkiG9w0B
-# AQEFAASCAQBh6XFLRzjGq0qny3/J5MAIwBnwGeUApHIz3S5DaKvbjxnxJPIlEXT4
-# D/bSltYUgZXqZiy1MMRyoW0l4Rtt5QswGobv8l5jTcMg3s8jOx8zdmWsuI3MkJhP
-# KBjvmb+yAARZHVgTsxCOW1LcriDob/yXhWDqSomdN8LXUFeOfmak/EuayFHzGir9
-# iN74O3Gzf1KJ9/Cj6YAeOtn1KEyE/QUNBOGLh5n5tvLd9U6Tj4SLAK5cQBLqPUXK
-# Ax5ccJ4HLRBg62ngstzchh+Y5iAHgbDOv05a4324NfyIkRIHF2xWUdDehdDYmuJK
-# OulXA2HV42061k0P0Pd/xMCWDLf8gyx+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRfPKyY+e4Swre5hSMWxedfJDI3XDANBgkqhkiG9w0B
+# AQEFAASCAQCSaj9bVPZ4wuVakqYaz2kJeAxPl+JhaF2CLRZudfx8n7g8RRSnMNF4
+# 9UiSGoVNweupe7ATolAk8AeRnBXo6fRArIXBlCuemhiPHwP/bS2sb7zMUc11/Ih8
+# SmiMjO51aiYTHFfmi58qU7Csivt7p6F1jxhYoAlaEdw9Dy+uerBJ6RvDMnH6BgtE
+# 0cp8TTpQu5NeP6D8DXbh9GTegGamSi/WfoOeIVse6fQH/z8ivMRyEANuJ+tp5vs5
+# V+Z0BX+vOyG1XWqAOm5N4KGZrxwKtpaoOq2DFhVMQA1Vr9nuuenZJkx0Sjx+l2jm
+# zHb+DKpMLzKZJ9NIM2+7qcMJbhifHAFboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwNVowIwYJKoZIhvcN
-# AQkEMRYEFPnd6cSsVctef/T/tlkNwc1Fo3CPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1OFowIwYJKoZIhvcN
+# AQkEMRYEFHiCvLRxEqMK9Z9SPUX/Gl8tOL2ZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBnDdEilch2w9ItCUr6PPjFdAyk04cbPk/WWrNlSupngFrj
-# pG7+48hWqllt5Ik5CqqBsYheDj5z3gcoLBpSSB64ZiUSe3y6TF7IjjK5+kX2URNk
-# aVeJ3PzMzueSRCOA8Oo8j5EFc+0JTceMLKHdjHIOAXuSEtXtMHUYuygI5NrJ0/tm
-# NoRy0hXhlCwX5VwDtarL2LKDMGEpLAjoWNXPMOFLOynueR7M+F5U+gSRs1RxvrPj
-# S8JXUQadY8c/3zNdj+E/iCzCUjehDyZKMM8lsABVc6hzvn9qSwHa37GMAEcgCyRE
-# hHrTT3o/ZRFj2K4/sUmXZ6j56Lc3QAZDcmgRLETv
+# hkiG9w0BAQEFAASCAQAkvFc2/xf1G1xIxt4O4UD6qHwTBjW6qRUa6o8jUfkR+4U+
+# IzHIu/9ZSVfxWbyUCjFNLMSZaMy2BzkemAyYaat9SF9geNldj/GGncH+QdXf/pFk
+# eJdO0otwv2gwH5DDW0dI5EgR4JgDdntSKok8/LwgvC/QfCcZMxIZsbpJrbj7YGfq
+# y+kPa6EpI32JKlA+7og8KTjj+IDdGSRqUFH6UMFYYkqUcONEdTz23cGq7shlyqj8
+# BClh3qX2iZOpQKvQ/FPg4VN9tLmS6ToQW4TpoUCkuvVsvlccMwwgXzPFVTXmxAfz
+# 1ZmwMgYl5TEl9Cj5V7dwNcVUZVBD0FInR8Zic8NI
 # SIG # End signature block

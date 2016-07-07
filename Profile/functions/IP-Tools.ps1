@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-22
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,7 +81,7 @@ Function Global:Convert-IPToBinary {
 	[OutputType([psobject])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 1,
 		HelpMessage = 'The IP address which will be converted to a binary string')]
 		[ValidateNotNullOrEmpty()]
@@ -192,8 +193,8 @@ function global:Convert-IPtoDecimal {
 	[OutputType([psobject])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'An IP Address you want to check')]
 		[Alias('IP')]
@@ -282,8 +283,8 @@ function global:Check-IPaddress {
 	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipelineByPropertyName = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipelineByPropertyName = $True,
 				Position = 0,
 		HelpMessage = 'An IP Address you want to check')]
 		[ValidateScript({
@@ -406,13 +407,13 @@ function global:Get-NtpTime {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name Get-AtomicTime -Value Get-NtpTime -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-AtomicTime -Value Get-NtpTime -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsojULJ7Z2R/yc/uZiJ26OyB0
-# pjegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8I6SVGEUuQD2Z0vxNOCMnIe8
+# T2ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -555,25 +556,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTVLC+GGPTEqF6sqwc6yoZ3q1E1vDANBgkqhkiG9w0B
-# AQEFAASCAQCu4VI3pxlI2IbeDRku0Ec/SmHbEwrucypEgcc4avhQ3B8zBeFNYjgT
-# UftWlikQDl+R17gSA7samRNcSOVI+EKPmlCJY06mXlwlxWY3OL4Tkpy+x/uDMLXi
-# EC9PmT1zHdkw7nrbkEPBEnnzeyQNEyegpXnY0aTKzSWb8F4F35cVtNxPca1dNUDf
-# E7Z4qaEuNUF1CX//a3r7bQymmPDKoq0uCxJ3inXEkypLQXKNce5GjYajCBQxJcmy
-# 8Qz8i//GxPHzfd1VejHiuU63oNoep38Uyl5w5YJkAWWGVRfx5QIshu1RsQ8CRZuD
-# ochqkdhpN/BrlwE7zyrwJrR7X2067bnNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSW2hv9py6pTzXHl9o1xCULyh1dKTANBgkqhkiG9w0B
+# AQEFAASCAQCgGlyN5/AQeYYnHfaBZdFdfcrmQYVRxegeP6SwI7pXivKaPTqOOKNL
+# iY/+maZl8chxu7aFAs5IUBnXixJjeNSbmV67N8sgUvtHIrqrIixeHVDRPGTyxDRu
+# ggxhGQSaAqEi+VZOVPhpJBIeiEiHNEvf9jL7mSSZgRC5LG9ZjcldTnRPSUSSu565
+# TTor8sZJktAjVvu88t9zWJzLyx4ZsoBMotNR6vRX5RHAzTLOKSjj152nMUz5Y2/k
+# Ugiog8YJsPFocy72nDxyeIHZ5aFjvZwQs/b+1zss6AfWKLmatWh1Xm/0DZwekZAz
+# i64vwfu8e0OJn71yXIUay0Zpkzq0wiHYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQwM1owIwYJKoZIhvcN
-# AQkEMRYEFNoM4QraowkDsvYc3Ts+EZlviuIBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NVowIwYJKoZIhvcN
+# AQkEMRYEFIIGvO1AzrgEk1zeImAcx6Im/bDPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAHwXMimIpZwwOgze9lXfFZumHR43skSrm3ILalVN2B1Q4n
-# lViCwOuaCqAa3bKw/SMQDtVaH5oyMia6q7JVvvypwnguXahwrxZTQIJFmOnDS3I7
-# sgH/7J0P5FgdX+lHQjopYJEBBoZX6iSMwFMuAUCE7E+gkEARRaqo0MXBeH8sQ/uj
-# wKvn7pBGdXGrzMDcZMlIUhsOEK4lTkOufLsIq8R5dL+DFf73kFSEaGq793iaNN1w
-# Yyo1mx7gtzmwDYaP7m4eALmBe8nTFPEPVueR3UjfiB0beoxy6pZ0bjH15lRziJOZ
-# /5SncxBKG1MMIx6RRyzqEaemZvjhcJnU3aULMg3+
+# hkiG9w0BAQEFAASCAQAT3qXy3OL+0znbsRjIG8+TNyyA0VpbfypwdeCuiAO93oVp
+# 6BQ3PruDl3BMG9msJEbIa/xzL3+UKkPTKOoY8lCC0BW5nXa7RT4zHV/PHarYNkop
+# gut7NliltDlarvMKOKx31AQVTeB+ou2f1de9CvYQ/TTXCM02u1WvFTEtud/RhEbc
+# mp1M76q0rd+YieyvYqXbnfqtvBNYymz3IikljM1yFf/5Gg+xb1F3bDeyfm7pRdQ/
+# 6iplDHGk6AHwZ8/+A004zmsKmy2nWTkrjdMp5F4UOgnwEN0GA7ayxAqfpjVb4+V0
+# IhdZtPhC/aZinMZbXVOxU4nLAZFDKMcziLuZsPi+
 # SIG # End signature block

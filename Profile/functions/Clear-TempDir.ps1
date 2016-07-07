@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -69,7 +69,7 @@ function global:Clear-TempDir {
 			# You have to confirm every item before it is deleted
 
 			.EXAMPLE
-			PS C:\> Clear-TempDir -Days:60 -Confirm:$false
+			PS C:\> Clear-TempDir -Days:60 -Confirm:$False
 			Freed 407,17 MB disk space
 
 			Description
@@ -94,14 +94,14 @@ function global:Clear-TempDir {
 		HelpMessage = 'Number of days, older files will be removed!')]
 		[Alias('RemoveOlderThen')]
 		[System.Int32]$Days = 30,
-		[switch]$Confirm = $true,
-		[Switch]$Whatif = $false
+		[switch]$Confirm = $True,
+		[Switch]$Whatif = $False
 	)
-	
+
 	#Requires -RunAsAdministrator
 
 	# Do we want to confirm?
-	if (-not ($Confirm)) {Set-Variable -Name '_Confirm' -Value $($false -as ([bool] -as [type]))} elseif ($Confirm) {Set-Variable -Name '_Confirm' -Value $($true -as ([bool] -as [type]))}
+	if (-not ($Confirm)) {Set-Variable -Name '_Confirm' -Value $($False -as ([bool] -as [type]))} elseif ($Confirm) {Set-Variable -Name '_Confirm' -Value $($True -as ([bool] -as [type]))}
 
 	# Is there a WhatIf?
 	if (-not ($Whatif)) {Set-Variable -Name '_WhatIf' -Value $('#')} elseif ($Whatif) {Set-Variable -Name '_WhatIf' -Value $('-WhatIf')}
@@ -127,8 +127,8 @@ function global:Clear-TempDir {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJhTSZPVMJUB0+PFuBtnmycJT
-# FPKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU36KfXdzm0gtEN/WtzBO8+ccU
+# 9tSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +271,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT7oRMzV2LBBBJE3XCC9G0Q8pR4EDANBgkqhkiG9w0B
-# AQEFAASCAQCpkG8HDVt+l0mPsfIivZlAg0Mc4w58Ttw7xcwInijsHy6KDAKQdPkt
-# Adu9xCGFzeb4MJWjUMpFRUHAOgvujA/sPEBKCObIFHgH3XPUBkCQ/hBntK4Jy+Af
-# 7hPeUGKomnW7/aZLnAGqp1ncCMnSJei3dAdhys6XuCyBawIN1hWu42fEBib8phL9
-# CwQFVG23KvocPfv5XcAHxUkuotSsG0gxvLAms3nhISdfwKufAQw4RWaHQouQvJ19
-# hSpxeQzVLhO4rMa/SgLLnNoxCN/nIgQkh1oieJBiBxDXm+qCYYdnz313sm5BT4Fy
-# bULPFLVxXmFSdruWJWubtyWtf0dLku5uoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRn/fDbJP+IQnTYVf1RH/ULE96wuTANBgkqhkiG9w0B
+# AQEFAASCAQA1+fj5HIBgQi3BjerCIkdUTK7VQY2KeCu6rsewykk90Rs0tKz37R2C
+# sKaqsZEhEkMZxKFeqHBGZh+Q3Z4IXEBvZF2U7/UaHWAWJHaq3odT3qvpOZ4sRn7F
+# Ny73FRLK30sfJRE5swWT5JfWg6RUi0tIXc0w+JCyaukVaF6n87A2NMhbMY1w1Q0P
+# 6ZACmASdM71b+TeTP67uM4kTm6q2vrDDznCNWUTnG5QsrVcSTCsR2UihCj9g2h0W
+# 9Y9AcAx8O8JbR6j8VZxxDAU9WopxnNxDiEIErEEMdaklNWyczzNYhgcI+zZwI+lo
+# IJWWpTRYRQHfii3oXipRG94MAYzPrsv7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMyM1owIwYJKoZIhvcN
-# AQkEMRYEFAhjAwOgzW5CxvCFO0LnqjHLbnfzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMlowIwYJKoZIhvcN
+# AQkEMRYEFJVrOs29VEOl9N4dP8I/WKCPMyhNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAccDsenhw6Vvo9MveZ7AZJyWTzACpuSIc1KvUjbyAQ2GC5
-# wDZQkR4nbI54ae4bYVCNTMiIjwTXLYkUzLK/m0kG9qenzQ/7ZoOb17QXwI3W9St6
-# sCFaLU4gnWGLwwQTp3EXT/kEfK3Ky5Nju9MyG3HOHuiKg2iOhAaCawc/0JY7gG3i
-# lxtr7Q1Gi+6ZN2pn0Nk1+iNuKhz4uqFuB/UsxZCVB24fOuhwaluFWg6I/hYGh80/
-# t+X8IqbZRME3R7cEXyiYLL6E4Dhe4luZSaJ5Xp8O4kJKVudz1ijeQsKdpQPi1dLV
-# I0PYNH5VDQsmFl/2l72TmaeIp6cC6C9eo1waOfjw
+# hkiG9w0BAQEFAASCAQBxSQvUbkGGAoK2HNT9f9Uqq+JFg4itUrIM5+6VCh46NnPr
+# 6nWbUu/LDDl8tWtGgD+fpKOYFv/LvJWDafxrm6qJvEOOWwrzeUo6hQK6etHrlCxC
+# AGUm6HwH+Icd8y4nu0R43aw+1IKmpiElyFjexIokLbBXHc58ZRjNRz5hUYvFRFHj
+# wq+HFufcFbvH1kJ2p+0Gt3lssjr8JVKqOLGdQiBeu5iJi9qpnm24dhqvOxPdEUMn
+# Ep4LJxOmBRYVXQ10DLPkPkHlIsrWXgbYqle2ZEvv4Lflp1nkhY5LO89QRF6FzUTp
+# gPvGkExGybGdHaEbNg9TlJSajuNM0/fpQQyY1JHj
 # SIG # End signature block

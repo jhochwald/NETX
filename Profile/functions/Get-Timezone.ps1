@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -105,8 +105,8 @@ function global:Get-Timezone {
 	param
 	(
 		[Parameter(ParameterSetName = 'Specific',
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true,
+				ValueFromPipeline = $True,
+				ValueFromPipelineByPropertyName = $True,
 				Position = 1,
 		HelpMessage = 'Specify the timezone that you wish to retrieve data for.')]
 		[ValidateScript({
@@ -196,8 +196,8 @@ function global:Get-Timezone {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmIodvXNdUOcu8HaW06CzMCkL
-# zE6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2DV4ROSLeD0b45NwYAPRF1WF
+# v/SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -340,25 +340,25 @@ function global:Get-Timezone {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQBhONwS1DLcba8I/SP1kXbkowMOjANBgkqhkiG9w0B
-# AQEFAASCAQBmT1PTMQd5k2vNfb0HSQA4/umLbldJcgmClbk74W820uSirlbQGSlg
-# XwVO9Xn0roXjYon1zncMAD/+6fpOm0q302iCfXh8W90xZrbEWB7+bqaZ7MHHh7zs
-# wVLMVanUfrLA9nfvZt0yA2h458Me2rmPKYLQGWBM8w9SJn1fCJUfkIWvWzi/mfiG
-# +BcEZbOLdhpHUGCez4Z/ynUDWKk3B2Ho6Ca2LTOq30QJvUOJl/xWeZtQJek1407z
-# toCpvQApFCxfkeHtKoltY6CUdDZwCuDZdaQZ/Yl3rmUNQ3VfdfY26f0yoVTer/1Q
-# Wv6wW9F1GECGVg0A2Hp3H42vpbDc5HQCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQZ8PMnRHMWSvt2IyqPAJOnPZ18fTANBgkqhkiG9w0B
+# AQEFAASCAQAwvsxYs6DLSnsojLvHdsvjm9pgPw9U4K9Vna8gcDsHwzYBn83ANyVB
+# XXp/NIxEjf0BEKgk+AUk8/MKTzOxSApl8QQHFlJkB2eIo4YlNZxzvH4EnrU7cY7/
+# XEcoIeeR+Ujz5INHrpTp4RiKCCX+Qul9JzIaqTG4D+mGRU9OLEGJSAXNoL0EfEYM
+# ummmkz8qG3YXyyedqRwY/+2p6KqU2IfwjVFWUaJA+8NvwyAIPgdP9bpEcauf35Eb
+# Ga+AcXazPTmEMv0jMi856Zio+0FfkPnVlBaa2l7DlBQos7QYRffi2ifSnN7bLoQ8
+# PHEtI4x6PzwjrzgUUTMoQbERhN9LLNJRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM1NFowIwYJKoZIhvcN
-# AQkEMRYEFMl5B9QsNzxhYedTHNm7CmyxUWfFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0N1owIwYJKoZIhvcN
+# AQkEMRYEFJoj30Yy/Ej5xE0SPQKuMA6MqT5rMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBynbuhiDHBLQm6zgAQofH4kyA2mCgwzXRW9t9wMmWJ4lh1
-# iTHbnGaBwqconoYOSpP7OXzUP88cAQHPk9G5EBAWq977BwwKojlYOeDOTI5rEcug
-# cNtIBqS560cPDc+VahQGbih9owzl3cj1iRsp6GIug5cRjSoBb7ovAZc7w5Puidi0
-# lbKfrQK/ia4RGWToiIkfhR3H38DXuezryGuw5FI71UFTT4Kuby+0Nu8ydf50yEhT
-# +rwA6RMAELJAwj5OPMUzjR1P1eRtSutwifJpyS8Y3JgEgiZ5zX7+2GkxQHhlXEdZ
-# YOtV7qeDuBDKNbWxOxl36igIFZuXhUwCFOQ56KeJ
+# hkiG9w0BAQEFAASCAQBB7V9DfHRzDpSa7H5dJ8XkLcWj9J68jN7nANPQ+tidfMX9
+# QJEUz5C6sROaDlfbe7f/JA8U8Vg8QNpoa/R/3K7UE17DBr7nDJXQwqdPgQcEArIm
+# A+8OIxyyUCYUIei+f17Vei8NE+fBSotP2TEpjV4ZpYueaxhkGkwFI4d+RGOXMkzN
+# i2L3u8WyohNdAFObPOKe6XFjDoIaKcnzQosVxtvCCc3fe5V3epn0FS2LukUlSaC6
+# rw2BXztqity4riug2kgfHP9v/J+Wrds9f6WmAmpSkyCIw7szgtlVRVFdpMWoFQsY
+# D1Y8lt4G4caaPkK5l98qkbjmkInim9ff7JXi2lfx
 # SIG # End signature block

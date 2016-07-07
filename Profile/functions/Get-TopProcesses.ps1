@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -85,7 +86,7 @@ function global:Get-TopProcesses {
 
 	PROCESS {
 		# figure out what uses the most CPU Time
-		While ($true) {
+		While ($True) {
 			# Get the fist 30 items
 			(Get-Process |
 				Sort-Object -Descending -Property CPU |
@@ -100,13 +101,13 @@ function global:Get-TopProcesses {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name top -Value Get-TopProcesses -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name top -Value Get-TopProcesses -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvocWVKZsQLLyPRRTL08Dvg3F
-# Uv2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2yXrlzC1Umv7x1v8xSlQ8pxF
+# IVKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,25 +250,25 @@ function global:Get-TopProcesses {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT/qaiZy63gOkT0cNPgz35LvVHa/jANBgkqhkiG9w0B
-# AQEFAASCAQCQYYa39mPsNbhNY3x2W+0UsrgXbcjZP9ro9NFHIC1KHMBTNVS5neAI
-# ZGWW8QeAfjEOHNUjj7ZGBNNxlezdipt+hJSnimOw0PywZ9X07xN2akUqaBn8+Ouk
-# 68+mwgLmaXnl7yfPOUnPbh+PwV5F4T83w5Zs+3i/DKGn+HGbwYErJgvaTUZksKtU
-# pMi4XKLRX7JPxFDN6yWHpBy1/mXF0DVadOrQZ+HJ4X/Wk7EztTLjNVBz+ztpWX0W
-# k5/CxZPlfhPXQ95nsDcLVBbvq9Pe7n70Fzn6xrrT5EPh9gJIvft/Hy6pv8Ulgfvz
-# MCkaqkfJl+5zSJmaW4HLqCGTdq5B1pyLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT0Z/Cg0yJb+eVlTGQxoT4zGH/SBjANBgkqhkiG9w0B
+# AQEFAASCAQBLaQbYf/8D/KpyQ85IkAL8MnG1Gyi5gxR3YWuR2pdxNy6us0illawr
+# 0C0WBBuA6wS/DjQXFgRfG9hCyUJJUr9S/uSLYXDHrhYWdmhLr1f/tXEaB4gncbPx
+# LvDIjrNN4PFeQMv/HQKT1G8DfTgjrLjiei2ErMacFnk0KXy+CPK00gcHIh41YnIs
+# 0XTYZm9f5wGJRyIzRRR8zy+KtFE3qMvcF43VTWqvWT+P1rvgBXz3Ayrbe2toU4mA
+# T4B5gNUOfZc0b7d4ssFTeYDA4VlJt9PERWIlCqz/RUkqV66CTL10FT3EANg+NYM1
+# VDKZ0EoS/ZG01Yf/QXmy6tiyUPEba0QOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM1NFowIwYJKoZIhvcN
-# AQkEMRYEFLU4SGIbnUUxCVjCaWaCsBiVpT0kMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0N1owIwYJKoZIhvcN
+# AQkEMRYEFBrCCYch/7ryGxEw+jejpQpUeXhuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCA5iXGiNVe1drGuIdfYBSuxKZ5t60uRYBKnRcrGeWA4bbZ
-# 3szEaS7cZzXSgz5xGK1nPv9T2LmpREYGM/w5CrUvDx401S7RjiBwGfWCS+OEdSMd
-# Uoyocr9QAZfTb6B6TvgEJp1BcF3b6iiZ2WspQR/J5fbTehGGoesH5ZQ92UFwtRw1
-# nXTOsgbwGM0Ac8sRZDhoYOtL4642X+xRiQHwIEKENcIf15HzjTxOJG1LRHDIAena
-# 1X04cVWKUZIRzUOCf4hgazji46BD7W1PPGKtlq6srC93EZKNOdr/mLT4v8niUsV7
-# JTySHkYd12qCPjaSgx9HlY4hPJhf7BwdNN+DNHdt
+# hkiG9w0BAQEFAASCAQAttDZ4UTmW48KceCBoKLbPlpdwvVEKEZrLuk1HLcWCw5MQ
+# ac/l5f2sEvL6edrA5GZmvyutw+FNficwvFuZSaUL2WRH8FbwKRsM7W3xntQoNWbo
+# JEbB6y+pnSsSZY1iK+65QYak3tWWnLqUrGBewIy5nKYT2+xRgYPPdngqGbFwSG1J
+# WKPSReiLCFu7I67o7HWzWXw1gnfCOKVmZnLGsE6CIdUYa4uM8412FIsQ+ghjBO5W
+# 5f7TGaEaIu8AKIz7YYAbgZwF3tiOzZ9f/6EJRoeWpH8XCCL23auPFTZp2THzCGon
+# tio21rwRok/vUK3uX7eBV7RG6emfK0SOdSRc+beW
 # SIG # End signature block

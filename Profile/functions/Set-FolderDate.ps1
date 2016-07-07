@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -88,10 +88,10 @@ function global:Set-FolderDate {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	param
 	(
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 0,
 		HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
 		[ValidateNotNullOrEmpty()]
@@ -136,8 +136,8 @@ function global:Set-FolderDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQGVbYjg3ZQwp91UxSR05Oq7j
-# 3IKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmB5EpQPHIP+tqd/ocgI/h1dd
+# zAGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +280,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSEAglPGvuwrxedm869PMpp0ueVLzANBgkqhkiG9w0B
-# AQEFAASCAQBpREfKfzi2Ezk0H2uacE/tzdEblFAHYX0hXO54N328Gqt3gilH4dU6
-# Dgl1WpfmlOHFr6NvBaKGTUYzniE0QRaLnB+wW0OQWtog2iXEOpBag3zu0o1hfyty
-# HnCUmw330DhN4vNxVG/6G2gpxG3PMnOrhQqEN3//wqGphK8BxneqlXz3cb0rR74E
-# qD3R4kQcb8C9pyCLSgVpwWBW3n0D1gbSe4ffe1feYRDdFLEXjIaCYo1ocArEZv9r
-# XPLJB58oqTMhtrUveW56fJY4SX9JfyHYiV9pYXhanNK0lRP0gILSjh7aVxKNR3CL
-# AFSMVAUItmoy+dyFFbzRuWvJt+BjQCqVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQT6dn1bmJqyRqzExwUADtcWgAeezANBgkqhkiG9w0B
+# AQEFAASCAQAoCoVsGxRh/9AGxyjIj3LHkbi5bR0MlFQ+hjx2CkO3x4cWEtemzELZ
+# lEb1iWLrcNr6X4nmwKT5WsoIh36PIwHTmsIia0VkFog+KQ8R6zDX9X/5uZlGO0vJ
+# FX9YfzeRjGOgUe9pFuJWkYLaFI8mWTvWWxw03U+exUL64EPLOB4MMzOdVxj0Otsg
+# Sy+T+uLoe8dchdk64CO/iguXkPkAIZGUalSOz00wNRXZUAvxXccTmUKOZhhTnT4f
+# BE73TNuaPBiztcMKJt0luKqp21ZDQVWJrE/xwOWvSrt9AqzsjUGh+1mdZOyMS9qy
+# tv2GFp2z+uBt6BFho41EwLkuBfx8ElfWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxOVowIwYJKoZIhvcN
-# AQkEMRYEFG7gmtLuFv0ForeZcOgC/jlwGDz4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwOVowIwYJKoZIhvcN
+# AQkEMRYEFLFocVvOcvP/8QjNEmGfV37SfXLmMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQANBIrjjcez+9iEw9tzmNbFJXUFglQNxzUuRhEB7nX5MyD+
-# pBzImUSNjrD3XziAZr88t83e0BbYDkwY1e1xyY/5+Xt5WVXZ8ypFwKvp9spvGnaD
-# VUcay6rNhqoj71VRgl4UQG7MUE17KTmsNHULpplrpj6OcgyGDwTgz1D+Ao3JNm8E
-# EA5Im/If3vnEeKwYYDbbOnBnrxfpV9ytre0oocKZ+YDldzSJsmwF2W4AFyqG4NIU
-# yvaDcEDd57qD6PlAkK60RSHnYAEyPHoWNgSgC2wXWtgcZ31Cp8bdESMwaXCO2w3X
-# RatsZY5/1YOcdttpdtvCSY3XGK40qvvpsjGUnv8D
+# hkiG9w0BAQEFAASCAQAcOdXS/kWdh6GZsBgA6v7d2ryYjl3soAe1hfdhX2g3XmyO
+# IDbdXmYSm1lJikzhKq18Glz3le+06qO/PVLO8iubPwRveCleN1U23DhIWFC67s3q
+# Dm2Uov1xRJukr2QFQi+zXcUtkcdtvs6r8o3DwmeWr/gf6Fvfu9uVia7eEgltMVJz
+# RUEgYh20mp4bA6IxuGOLSJY9WCyltLttIvYqY25958quxsr7rUrPJrLw3PbBuGHN
+# tNgBWbYKyHMQOkAQn3PUbo4eJaYuquG9iohpg6pvASdoO2+jHqpRjBamxujHYZH3
+# 1bYhJUwf6aTCUmXVCnFwS660DqqCk0DHRN4iISeX
 # SIG # End signature block

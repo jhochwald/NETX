@@ -1,10 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -99,13 +100,13 @@ function Get-FreeDiskSpace {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name df -Value Get-FreeDiskSpace -Option:AllScope -Scope:Global -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name df -Value Get-FreeDiskSpace -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2JmRNNl6b3NLz7KvVJW2v98n
-# T7ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlVV+sEt+c6RsQEJ0Tqr+Hi1S
+# NM2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -248,25 +249,25 @@ function Get-FreeDiskSpace {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ6u59KXO3ixDfUW55tW7sFDzAjZjANBgkqhkiG9w0B
-# AQEFAASCAQAZRhUkKY8+ltHwzBjCLJx6GHwiM7ooJvH1TAsoaEkt0puIBvKqvwVo
-# n26bj8WKkX6sdxAYnemk5ZtmZUUffNXhTK9QjQbd64BgYZRYi+cdj8n1lZaoWtV7
-# /WkaHejOo6K79/cWQTjC8EIiQSQ4tMaUUN1HXajTa9DHRRldYltpqKXFHoSrHJ3b
-# Bbk1f+gDsbqWTnyEBfOfiufg2AhBWsGEkIGa2KuKs+gWvc4qhAaYod+hNPOKJ7Md
-# vKZ3Om7aj/Ec0kUNhBIF274nU4ZOKIJrn95m6LOhnhvNmR59P5Cf4tVGAt15ibGE
-# RO9vmm//2ZZ+dTAE/HT4TocXpSJY5ejxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRYriVTdL6POwu1w5VSGmyb3wDmhjANBgkqhkiG9w0B
+# AQEFAASCAQAD2gQhOERNO2DnEA+gz0asg5JPuH/6eGaQxcflgEA+dv2Tnb/2LFsM
+# DUPg50qZTEpYXHY0XfwBoQ/I5Gsl9d/GkvaHVjfwGktnBKLVt+cZVrcLmMjbLXDp
+# xbIGAvCSIILJSyfFjaPPQ5ydvtCh4b+jX4u0naINMhlozUTKfGRVXJU7C07sDkTT
+# tqaE6oBREAp59Sx1zcAMrhvmqoe4RK2ciciHRM/UBPdeP5q2+IvPEEH4lQAlvfN9
+# cnvnP1zw6/ZeCi0CCcaElyOYoNp70YHHp+XG+6/Re92IrNqkPNIbLxlnCphutLWb
+# dzpb+PaFjJtHcI/gX18BA+ZAey2w0t8roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzN1owIwYJKoZIhvcN
-# AQkEMRYEFOlwBypfKbzMjTAFjgKsRG4nzte1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzNFowIwYJKoZIhvcN
+# AQkEMRYEFE/vPc596PdtVm3y85SShwpTHQx1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA30uBo8/eKqONFekKVGIhFQ5TID/rN1JCANWmIbswdNpCu
-# A49e0sScvAnj56NeZLyZkUiJzqK1zDX0ZV06T2eGSfB5NUHcIBdLXVBOsObcLwvz
-# Gwy+nUzGHOUaX8L5CKPJt+Hrk/8OdJGbnV+jvOd/a3KVjhekgG7L+TVhPZrFazrF
-# VXbjXYfV6m6+aNuumflzToR2+M/lAKa3baw0B0L15FyZ4ytr7sNTzuGgX3e5W9pr
-# gMNPFQb0k8PoN+QysRDt9kbM9CqvWg7p5ampLSPjm5KP/1f8kKQZMyRqEGBsoIHT
-# sKSWX1EVUwc0N1voOIKWtNzHCGzfwhdRSX/vDcS/
+# hkiG9w0BAQEFAASCAQBBLDj4NbMKNQQkcxAzMuJVV74Dujrx+MqFyKkKH31y+pbM
+# jY3JEUAflCenmd1sbQkyOXI9SXMHlu31Y1yISMbJffjQFm1WoRP36wSp5Sz+qWZI
+# TBdiS18OxVOUvkVyD3dyJXyx5cE/IpbVjLXxVP4a7bI3fiA1Hza+ggZRFWmP9bg4
+# d+eXAxlaeO+CSC9hWclHzQoojJdoANLzHtQrqSSMNAq5ZaMsiZQJXWtI3kbohnII
+# jT7w2byGXMgMD0f07DPrM4WAN82aYWUacu+s2yE4e6FC178DPgzNSNTGJNL00ABi
+# m+gdU7oPsYGo8D6rycx68q3w7/dLiwPhpnHW5Ria
 # SIG # End signature block

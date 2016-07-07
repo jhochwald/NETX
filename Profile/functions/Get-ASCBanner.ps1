@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -98,15 +98,15 @@ function global:Get-ASCBanner {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromRemainingArguments = $true,
+		[Parameter(Mandatory = $True,
+				ValueFromPipeline = $True,
+				ValueFromRemainingArguments = $True,
 				Position = 0,
 		HelpMessage = 'The String')]
 		[System.string[]]$InputString,
 		[Parameter(Position = 1,
 		HelpMessage = 'Is this a String that should be dumped as ASC Art?')]
-		[switch]$IsString = ($true),
+		[switch]$IsString = ($True),
 		[Parameter(Position = 2,
 		HelpMessage = 'Character for the ASC Banner, * is the default')]
 		[char]$ASCChar = '*'
@@ -251,8 +251,8 @@ function global:Get-ASCBanner {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUu8a38xfPVjU6ooelheOz4Ri7
-# TfygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEBtHlRXpwKoh+PQiyKiqdzNJ
+# MBmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -395,25 +395,25 @@ function global:Get-ASCBanner {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTw96gyk0x3e8DVbUQJy+63Aaso0zANBgkqhkiG9w0B
-# AQEFAASCAQAz/ptde06ScJyelQ701uVAuh9x4IG1Bvo+cJ2aZ0ux1/1d5Doy71ab
-# HaoL28dj/CjcWv+5D3W+nl9QD85XM6fqrOY1szp7Nm4iEICfKuwR0+G33rf9O2yH
-# +bF+/NqL6zhczEoOGcfW5zW+KeXK/G7KQ5z99RgI87bocZq6Ml3guIbVQiy3enFo
-# /qPwhPVGpaASIe+UUbDzVQ448+ijLo8j3mcF06MCXbO8baFLrutFx1VioucTCbwl
-# cmtRlQh8ZvweRbVVtI9UCos4HOMY9oIn/yMG3gSERR6YFY0QPNVkDDr8k1rw/HOQ
-# Mz9cBfNg1TblwuHyqB+QVdJWdanFSHckoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSQrz34c7Gilf9Tgc7/2+4fVopVLTANBgkqhkiG9w0B
+# AQEFAASCAQAxzXdjPXIDmk4Cuf0qygqidiGa0vmZ/nb1A80KYb9l6h9FVuMsV06G
+# G+ps8YpByp22cx7b6qVgM0D4XFB8RSsxTkf2zbK0yHlMTape8A1auGq5qjIRxsv/
+# LPnSBGrOMZMpad5mUsWiotaBBC+muFpwtz6TmWdkqz1GkSBvL4ECYHB9uFJYo0jy
+# IrBqlxdyxLIxY5JlVFw/N9PB/9cTFNeTqC2aDu9XLAHHAp7MCaLK5PklsgghamaF
+# lyEoYk34xypWqNokoaRccM3I23vm0Hi5ebHdX7+lqHjKHEZxKaH7nRcPQx0tTULO
+# 4U2H/CP60NPTY6/0IOTf1rHrZhrKb60coYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDMzNFowIwYJKoZIhvcN
-# AQkEMRYEFOw2WceSG2zGICfDXPAY3uq2cCg3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzMVowIwYJKoZIhvcN
+# AQkEMRYEFBQgN10/i/I/QRCoL3qYG11EJ/zKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB+BPHIu5mAPhFWRTfS3/yV0msrJuLFy16IVFTKmx1QcjP9
-# 3SJILrczd8Xg6Am8llfYlNPH6IYmtCrCqoqJwz65AAXnKihR1oOxv7V3yVAIq044
-# LvVjRyREFktSvsuoKFPO3vTdYCesR7MRPiMN/Xy0VC0IfZaO+ofVOlAr8Y7CWJfB
-# g9X11OEHhFGCeZdmAAtepLBePs6fy2e9q5V/atc8peAt/wIGa8Z8rmSfio3bw3XW
-# B6T7VKP3JtJxtdgjHS3B0eWTunqxk7pQwSljMBChdnqe9iNFxwVqt9kcKiihCubM
-# 5JoA0ZGR9rcWcfn+exPk3K/UdJeg+lm/tR8aCNKo
+# hkiG9w0BAQEFAASCAQBJWBvLwNMyxyH4pXK4qHtoCULXsicr3slshbTWv6cMOpKK
+# mewDtCEWyR7BRjpdL5II9hRKR9kSvJdpq5y9bOtjfydyIo6QYNKBqVhOKM9493pM
+# L9dmQ+ttUOV1KsiNI6lAGVFQa1Eqtg4rNDIXshuwGDMezKg6koW97zvLWP5oDeVi
+# wj5vdWIFK4c93rf7yAtUXHE4NuCDOPm25DfKtCaXu0Hz49lcARVZVS1e24ESyOuf
+# VOe0fnz7+gsPTPXVkjuN25/oESiEmVXmouTjnloOeU4th5LnIezWFUJD0HpMILh8
+# ALR0o35zV2iYKRSo/KzUyejB12vAkEO9Yy0i9uJW
 # SIG # End signature block

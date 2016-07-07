@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -67,7 +67,7 @@ function global:Remove-TempFiles {
 			The default is All.
 
 			.EXAMPLE
-			PS C:\> Remove-TempFiles -Confirm:$false
+			PS C:\> Remove-TempFiles -Confirm:$False
 
 			TotalSize                     Retrieved                   TotalSizeMB                   RetrievedMB
 			---------                     ---------                   -----------                   -----------
@@ -79,7 +79,7 @@ function global:Remove-TempFiles {
 			without asking if you are sure! This could be dangerous...
 
 			.EXAMPLE
-			PS C:\> Remove-TempFiles -Confirm:$false
+			PS C:\> Remove-TempFiles -Confirm:$False
 			WARNING: The process cannot access the file 'C:\Users\josh\AppData\Local\Temp\FXSAPIDebugLogFile.txt' because it is being used by another process. - Line Number: 96
 
 			TotalSize                       Retrieved                     TotalSizeMB                     RetrievedMB
@@ -126,17 +126,17 @@ function global:Remove-TempFiles {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'High',
-	SupportsShouldProcess = $true)]
+	SupportsShouldProcess = $True)]
 	[OutputType([System.Object])]
 	param
 	(
 		[Parameter(Position = 1,
 		HelpMessage = 'Remove temp files older then X month.')]
 		[System.Int64]$Month = 1,
-		[Parameter(ValueFromPipeline = $true,
+		[Parameter(ValueFromPipeline = $True,
 				Position = 2,
 		HelpMessage = 'Remove the System or User Temp Files?')]
-		[ValidateSet('System', 'User', 'All', IgnoreCase = $true)]
+		[ValidateSet('System', 'User', 'All', IgnoreCase = $True)]
 		[System.String]$Context = 'All'
 	)
 
@@ -179,7 +179,7 @@ function global:Remove-TempFiles {
 				try {
 					$fileSize = ($_.Length)
 
-					Remove-Item -Path $_.FullName -Force -Confirm:$false -ErrorAction Stop -WarningAction SilentlyContinue
+					Remove-Item -Path $_.FullName -Force -Confirm:$False -ErrorAction Stop -WarningAction SilentlyContinue
 
 					$sizes['Retrieved'] += $fileSize
 				} catch [System.Exception] {Write-Warning -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"} catch {
@@ -203,8 +203,8 @@ function global:Remove-TempFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNJqAV/FLUQ8CyCjr5bVSsMFl
-# NjegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwdWspUfEG20kJJJ0doSbCYrl
+# vJ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -347,25 +347,25 @@ function global:Remove-TempFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTjZrlUIN5OnXdss178RZWyIX7ohDANBgkqhkiG9w0B
-# AQEFAASCAQBNRuTuerijS43tRFBybU2QIi2NZizLEEir44AMcpwk/r3TuaoRPL9l
-# iww2ZbTZpqeraClKGw+UWojeS44uY7B5mmObgqkMmSxiBkUFGjzGrE5D6tP9/Nmz
-# tzM+y/MeP/niOsvlP0x8Ik2OhcG2yKOxmhmhQSpTFK0pXb6xb/cpBUR+jjb+bcPX
-# 2wzGDM39p49KQXnheUzK4PeWNcWYeAsf7hzhPuxBQNnlHH5U8kBX89z2vyr7fmaS
-# TYnWhOYvDHHkM2NnSi21mAgREtq/6KxEYAPwY/LUla+M2hTyUjtDddTMBJFgx2Cv
-# LexYLS/i0eIez5mHzIDyVXk8TEFlGj/goYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQkcv3QkimcpVxHtLnue12m1TKY+zANBgkqhkiG9w0B
+# AQEFAASCAQAlN4kHc3MQv7M19mYeoqB3A6OlFKsejkWBqArUye6dNXDmmRyGYBna
+# HaRFdR+u1AmRfeg6RAhlJVRVH+/+gkzaW2zNZqvpWcGYCuIVoSn5LEy1Kc+anbgs
+# 5YZYVevGWCXYQTFDus/nPSVSrPWgOrvsh4RySTx86h40dMr5ocwN7RffjsjBOaME
+# 64rvLKSnAZPKR8UUSoQglFAZINMjr/5uzBekVudu1UYfYuAII7Ygj/wZtTnLJvBD
+# bcQR1cA1pSiRg+AFHoHNbq9PyMmB2JQbYUfNIaQjhhaM1S5P78hZTNcCfaa94DlK
+# Ddf4v5MZNdS0YRTV+Liqt1U4v8zCRt+OoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxNFowIwYJKoZIhvcN
-# AQkEMRYEFMvk8OqmmU0pT1l/auqCoC+iBelPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNFowIwYJKoZIhvcN
+# AQkEMRYEFEiAbeqojzOvzBUMGKphsSxVDJepMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJPpM3odKQMY9yOJMmxi7i1BbQ5V9Sq5zB9VMGJ4U98D0G
-# FjcGTN4XNvp5xjwPYu7FF6V7U7HNetF5sOaZ9Ye9m9yRhC3HiE6AWBfk9Eojrv6p
-# SadNUfX2PYQNW3451LdNQtOAE83yTLmClXiB7haRo33AnusDoCHOynlHhnUD5CkJ
-# 0dGOBXpAGHinXLdPCpQgAOonaYo8uOzqTI8avDWVFIUx1sQClNl3pKKkVijqiHrM
-# ydx7XBqltnPIDkJiMSVtgHIOz0gOK2+hdIg1HH43QpTa0jiZLoN4Pco0j+m5BCaZ
-# GqcN5OvZq8RZ+KIkcrm4ii05ZplWm8cKpvaO69WG
+# hkiG9w0BAQEFAASCAQAo8fFne3trJb4dJxNw/jV2eKRsktv/gP//AMdSJ2MKQyhZ
+# 6Ish+m84YQwQKPKGCPn5nIaoZu1WCfwR5sGc0g96uPhHKaTILohrMJ1p6mYRHByt
+# qMh2ya2K7dzT/VLDHlVmW3cIMfRxuZcuR1hMW3LPCBTt51W2sCS55lKEOTDmsyc5
+# c6UbSmRAGHMMmDXLOuYIObrPeon/Bw+ZEais1Xy1LychQ6BHBuQxAqCNeUmYPv2X
+# MS/KyDHhbMdRXZ73izZNw8zqZqg1471eLny9E3XE1HI+0UVRV9pAgOGmW63vE9+f
+# 7Dq0UzAGpGN1wa6MXZ2/S3UO3raceMK+28ksvDRh
 # SIG # End signature block

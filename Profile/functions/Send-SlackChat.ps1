@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-01
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -112,12 +112,12 @@ function global:Send-SlackChat {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 0,
 		HelpMessage = 'Slack Channel to post to')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Channel,
-		[Parameter(Mandatory = $true,
+		[Parameter(Mandatory = $True,
 				Position = 1,
 		HelpMessage = 'Chat message to post')]
 		[ValidateNotNullOrEmpty()]
@@ -134,9 +134,9 @@ function global:Send-SlackChat {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -154,7 +154,7 @@ function global:Send-SlackChat {
 
 		# Convert the Body Variable to JSON Check if the Server understands Compression,
 		# could reduce bandwidth Be careful with the Depth Parameter, bigger values means less performance
-		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$false)
+		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
@@ -173,9 +173,9 @@ function global:Send-SlackChat {
 			Write-Warning -Message "Could not send notification to your Slack $Channel"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 		}
 	}
 }
@@ -183,8 +183,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUz8EJJcBIBTpi7Ot5i45MoFmG
-# fB+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvQft0vlpPV52+kQe8o9T1eVg
+# W6WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ85pRd4tR6fy4D00a7S+sKMLqkXzANBgkqhkiG9w0B
-# AQEFAASCAQBnxpBr8nsb5AR6XszZz8ZwQqdE4IUbT3HxPfKJFPNOByNYPUm8vAs8
-# A8I+UtwpMslcxjoAfRhkTammAUIOCnftkoOOQNn9UwQpAMe8JHbfpIcn/RytvLhR
-# zYCKIP5u6qRSOMWD6QRo5yqyb70+Zv8CM2mIxcgE+b/fqvUTdj3cTFv4rgiJU5/F
-# 4cQBts3O1KDrEB/4k0MbUQu8uPoBFmoEWKZqrDNJgIUNTMGi017ZTKtYy8twwgpj
-# WP+kI8KNyDawfx9EnpGAEp7hZqT7+a7jv9PerZezEFlQUwycONY3CEygkl8H3cTG
-# i3j1mpRoKkePx431S7bVemPdzhKoAAmIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSkJ+v3gAtr86zFEq+qvW2Hr0s/HjANBgkqhkiG9w0B
+# AQEFAASCAQB9wwHImQ3tf7OSP0I86JxbyZNWKzCpETaJiF8XK/Fu3yC01mlVeXV+
+# vjdF8hqBF+NqSn9A1g+9qXEYjp+DCVSI4t85NRVnoT1jHxM34kmrCGdvWEwmaTSb
+# rkhFLXic6pz8+NqLEstj/qDaWCG2idaJV9Unti6unGDHLEj73oR+gbGpB4cPAXb+
+# Hc9Fqz4dHNZVkCqKfkeQN+Resf9vCIYholCnX7Nv6R/LVBX8AcrO4lCEobGClmpW
+# +Si3dthSyBRiQx3psK+N407dBxx5sMe1E9smnP+F4jyjpsc94PEtygXzBG/rneud
+# BfyrVCI1LG7yQnGDO7IPADPfmt5ONKiLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDQxOFowIwYJKoZIhvcN
-# AQkEMRYEFKfPhfwmwFViigFVaxGakjfAs3U0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwN1owIwYJKoZIhvcN
+# AQkEMRYEFCDaIbPtfHKkKpqWYoqJO6lKWtlDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBEoD0qYF0TEzCVQLHzEJtPSikqopoKRmWlqwZ42LfoeNUL
-# rLDrdPqSfJxYQvzEAR9lkgNeUaUlhPIeMT1J02xRQDn7iJiQsoEUq6iXurI/qQoS
-# jaHJhYGemTh6EoA7eTbNMKTUiNkfmBC15TuUVX17IPwmm9h0g4356eHvXh+696uv
-# Fo4i8DXP72oQXJQJDr1ONh6t48jCw+/ogqg2i73hbpB3VDLEfG/XIu8xUCU/1Cru
-# LFiqJmhO5iRIk0/ROjOfjVd7H9DYxKi6XIKx0JPjsmnV7PQ2J7dGL4wY21ghRIFi
-# Q5+Lp6kvxIdZwtv+ydj597vYcFVnD3DfWYUQsb7R
+# hkiG9w0BAQEFAASCAQA8x6PmitIzAviR2CI6FMXdhjP9J/FZJjcirW4btOaEW0aY
+# u/1WUly694Mb/vvqb9Kx1XC/1lR0gR+9eTtUcgKAZ4QdvABraLbgeWcEfD+AhPp6
+# HbeeYWwaQdc+7UgRtCF2+UVjBLHf9eMhZO1ezSG/fTwkOpvwvop3hxlzx0JlQymY
+# mYw3/tlzpo2SXw8X+92E+xfWjXK/ZFQR3jH3cgz47W0TU9yrR3QmTLoFOPIMuAxy
+# agVPoK+/YdU7o5mwpJMoVVJUAo9zIgP01TPXMpZq+EcNJAC0xJjfC8m4f/oUQciD
+# ZR1Ji92e5x4PNGPvUeOCFAL0vF7cvV5WbNxbhybD
 # SIG # End signature block

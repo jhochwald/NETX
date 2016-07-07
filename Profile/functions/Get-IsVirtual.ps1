@@ -1,10 +1,11 @@
 ﻿#requires -Version 2
+
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-22
+		# last modified   : 2016-07-07
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -89,10 +90,10 @@ function global:Get-IsVirtual {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_BIOS -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 
 	PROCESS {
@@ -103,19 +104,19 @@ function global:Get-IsVirtual {
 		# First we try to figure out if this is a Virtual Machine based on the
 		# Bios Serial information that we get via WMI
 		if ($WMI_BIOS.SerialNumber -like '*VMware*') {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
 		} elseif ($WMI_BIOS.Version -like 'VIRTUAL') {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
 		} elseif ($WMI_BIOS.Version -like 'A M I') {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Virtual PC')
 		} elseif ($WMI_BIOS.Version -like '*Xen*') {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Xen')
 		} elseif (($WMI_BIOS.Version -like 'PRLS*') -and ($WMI_BIOS.SerialNumber -like 'Parallels-*')) {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
 		}
 
@@ -123,26 +124,26 @@ function global:Get-IsVirtual {
 		# So we try some other information that we have via WMI :-)
 		if (-not ($SysInfo_IsVirtual)) {
 			if ($WMI_ComputerSystem.Manufacturer -like '*Microsoft*') {
-				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Hyper-V')
 			} elseif ($WMI_ComputerSystem.Manufacturer -like '*VMWare*') {
-				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VMWare')
 			} elseif ($WMI_ComputerSystem.Manufacturer -like '*Parallels*') {
-				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Parallels')
 			} elseif ($wmisystem.model -match 'VirtualBox') {
-				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('VirtualBox')
 			} elseif ($wmisystem.model -like '*Virtual*') {
-				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($true)
+				Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($True)
 				Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Unknown Virtual Machine')
 			}
 		}
 
 		# OK, this does not look like a Virtual Machine to us!
 		if (-not ($SysInfo_IsVirtual)) {
-			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($false)
+			Set-Variable -Name 'SysInfo_IsVirtual' -Scope:Script -Value $($False)
 			Set-Variable -Name 'SysInfoVirtualType' -Scope:Script -Value $('Not a Virtual Machine')
 		}
 
@@ -155,18 +156,18 @@ function global:Get-IsVirtual {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name WMI_BIOS -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$false -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfo_IsVirtual -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name SysInfoVirtualType -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_BIOS -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name WMI_ComputerSystem -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb22yyn1YwUMlZpGmTZVTgFm3
-# llygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUp5PS1IK8goocW7z1i3enreeh
+# tAOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -309,25 +310,25 @@ function global:Get-IsVirtual {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSN+EQtNI93RdcSu4kNnv3z8wGSWzANBgkqhkiG9w0B
-# AQEFAASCAQCXYb/OkpNs7lBVJyHUaO+5qA7SePc39aFpPUDjEsOrTgHQOBq66ZVr
-# 9yYMI6ghtdJSmm+N6ZqOBO0hUl+QbDRsQ8BaIDW7Zn9M9uB8Ad+TUlFRRgA9NO8g
-# Ll6tevz3UcSA3yGR17CGkJMjTxliuXrRiL5OaRKxeF8yOyLFNwnsy89Icr/vL0tq
-# 6wRVVtZp3Q5XibwhD8YZD/7+Hrtc2HSuVDfxucsDF9Dp5mRYIMG2kUzpLkKQkmkR
-# TNR14/7dFDBe3xX2FtiLzByxL8Cu9FcET7y7zF33tpJfLUeLtUfuY11XrLMvCjEY
-# aZqCBXaTC0h50lKHNe9YHUt41QOKtju9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTtquVwHxhafLaAfjjUTQcOdG03zzANBgkqhkiG9w0B
+# AQEFAASCAQAeSLQ1IDPciZy/byEcQY5Z1XrOda6xLQkUZ2Cpf6ocoqYujfJDTn5o
+# 4q/8cZ4rSMmlQlFYJ4zz7tPcpw3zSu/LeykTL/+sqKdq8x1FUFTj3O4aQIDE/86W
+# tAHkFz4+YEcqYeKNF8EgWT+SWui4gLqp8udYCYcPT0UdsPw0i2yZTfzrTRqvoNkl
+# 9ckccb9i9At37w3G+lXa76YHTNjFqo5UXa443FW52xp6FKVig9MSRr6Ej1hPMTAf
+# 5jdU2Ddjcy14MLztJkRLwjaKNRm3sMne2p0Hj1p2Mk11xjbqxrkEhexNfAqdloc/
+# AZbD+0HvDj863A8yvTHTMcFqZqzxlZcWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNTE4MDM0MVowIwYJKoZIhvcN
-# AQkEMRYEFOonhY5BmMyPo2LtTOUg6aNzsSBbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzNlowIwYJKoZIhvcN
+# AQkEMRYEFL4VMM5mE9HfrYhg0YKghPL//3ZJMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA7ldFJP95L8OjF2i29fqXJ60LDaZhUrk3afjRSd/+g95nE
-# R8lqxipO0rlt69tKRKEVHcg2U+/de9O55x7FpgQUyM6apPItIWRwuqDd78eirDQP
-# aF/n+/aZqISXJwSvPy2dWwq6q0Zk2IBYw0JKF1B4/cp4RF3BTT7MrBebV5k3NAxY
-# 9mRYxBPhx83WRyxmujnDRIZhXlzeB6wWiY3ljaMzekHz0jLemHV2U8EjfqbJIaLJ
-# hvw+dfm3GvWReQSjzotuZHySqMiG+Y1XEg/ThGQ3HRJJkS4tnM+Uf+kVx8oEely1
-# NEq2OI0LS6E+y2EVyzEpdmcvGP79eDz8FFVugUrs
+# hkiG9w0BAQEFAASCAQCT6iLQgKyl0vN/oILPbqmg6WrBAwLVsW1O8m+TgYfxBWxN
+# mgsxqhHg+g2jzcG/qh+JakvxLrvamGgEVfjjBqaT9qJJRDrCm8QEZBThjDAs2pjc
+# F+gsdrmlS/knOjEnxdVra0+t0UezLoTOXxRrCjQupntKYjHSB1RQKv97Wu150WfL
+# uqN4QFqjlTvBIZ5BkQMYYznbPuPCtkmJyaPalTfi5T4M0fQ80qqkvTZ/Rv19Yrae
+# yUsF1AI0xCDu838wFtIrnAFNFI2PO3nE1q48vs+y+rhLQpxZj91VxVjOB0N/YoQR
+# Hmoz9JFKFHJgMw5M53sF00psbHX1fGWX+nIx2aK9
 # SIG # End signature block
