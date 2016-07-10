@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -164,7 +164,7 @@ function global:tail2 {
 		# Is the File given?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:'Error: File to tail is missing...' -ErrorAction:Stop
+			Write-Error -Message:'Error: File to tail is missing...' -ErrorAction Stop
 		} else {
 			# tailing the file for you, Sir! ;-)
 			Get-Content $file -Wait
@@ -175,8 +175,8 @@ function global:tail2 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbe+l+vIwB+JK+x/43WqY2X4R
-# SaSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+blBQUq/c/lssoL1gsgVwcn+
+# Ko+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -319,25 +319,25 @@ function global:tail2 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTD40VBTvnCSVZpPjz1hWKpHwatGDANBgkqhkiG9w0B
-# AQEFAASCAQCR2D5A+YtLfTv85tbBC6dQq1J739ndK5iIATiZ9EAh9rGNpYybzKW5
-# rL/rWU5zCAC1kjKJRQZ10rIWjvPmBPjEafLwoFrfBL2vbMRNnWSojiXVIMwI3TXl
-# 0nBMfzSV5SGMx8Fvm1UT920FPek/w9WFSNhw2c6Hox/is7X4m2GYsHF25+geXQHX
-# PnrxTOIA65t0aYcnaibty3/IYkd81zoYFAyjz7tAW5HSSQk2vNeoyiqRlAy0parN
-# I7aToF33+p4VpbkcqJVTGRc/e8J/yxdl3edxwYK4KcVoEcoNsmbQ0ZtliNFRdtWF
-# d7523lKpGDOoVcABTHltjuw08b/PlFN0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT9frkQkH0bqEI4ajp+j9Wp+V7SkTANBgkqhkiG9w0B
+# AQEFAASCAQB9OXm2ydRD1U8TmycOTYs/wDcriqk0KbLlYTHPfmd/Hz4Xh+fxHkou
+# V1ug+gZ7j2GQQq4nXNuUcGoJnYIWkn8BTyQ4P2vLqyw63cIVezL9JP7dz/9vxYmU
+# m2+Kq2jrfzI1VPzEsb7G3+yF+PvCgiidMghNRGyyGJzsZ7dmcLDZbJR7apKKPXre
+# oFSIIa/JRRVq8Q5tCkvmuXzDsBLFtl8ydhkGc5yQzFJQqSz49CbHepv89lGcJ36J
+# 8Mqv4BU9RQH9TWUjkjTI13IST8x+Ws5UuxEHCozdoQRrb74vud8QuQ7KZ6padVj/
+# NjGNBmC1WbgpO0eBqvuWfRmtbTfIWSn+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxMVowIwYJKoZIhvcN
-# AQkEMRYEFO6VXdnpBoWN6CZMkR7CDehAfV7YMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwMVowIwYJKoZIhvcN
+# AQkEMRYEFKXGdYx6FVTokpCWcBe3hmnNqcWPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCOdfTXRdrS2eLQYcLH9LEnQ584BfYc9Xk+wv0tE5qlUaJK
-# qFZBMZ0gKsqkxnVZ3lTPFl9Tco2/rZeLUNlpu3+tcNQig67YPVBGEh80xo4THfHH
-# umWiXUyDX1b3++weGp/hRh7wPcOhBS6PeGV+lmIz/OGwinWhLJDwpxhEgWKhtDSb
-# fv/kjKcAoerR/VS/woI1qhTDQt0GWSdR6KGI5unu5dFoPmI7Y0v3whu6V8gDY20d
-# KQEqMSeqbzva1GhqsdFmWm/B0BsosQYYBk+8uET7bMHT/kw3YPrVOicg0aLESa4E
-# 0Y4tBgcMIDUxh/aYteRGcZxqgHUqy8Dglxov1yGs
+# hkiG9w0BAQEFAASCAQAIDTjM4/cuUjpmbTXSf5bQwSRthQ0J73/FeHuAe5fJJypu
+# Qxh90kNtFkQES11388nHcQMRmhB+Wq8rBvD4KOwP7k53nBOw42jmtZGN3Z4IdZeD
+# +LzNJNjnD3xYnzam9cXnOSEBwR6OaMlOyqyGYM353q+sJvkv3Dar58XZkOEUf+HJ
+# K8j8CKqnFfJHl+78fVbJJtJ9s9bnyEDWMXARJEgJyBu4O/p5BPrH+WXumvYJ2D0Q
+# YA3M9CE9oRIw6J7TJJjI36k2YoVDxAzbWAZd+YYuirOJnM0Ms53GiAqGQ7ZMme2X
+# ikwFiaQSihoBTyZG6/4yM9niS4BUOj7OVaxXmhAJ
 # SIG # End signature block

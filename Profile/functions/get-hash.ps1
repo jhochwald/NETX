@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -111,15 +111,15 @@ function global:Get-Hash {
 	)
 
 	PROCESS {
-		if (Get-Command Get-FileHash -ErrorAction:SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $False}
+		if (Get-Command Get-FileHash -ErrorAction SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $False}
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPUT68U1FsjtBYMFR5oQjO5AH
-# eMigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgLGjsGEzOiN7e/vSPQFRoaJ2
+# u1CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -262,25 +262,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS2sHJ/Hu16fEyvZAgddharKk7FmzANBgkqhkiG9w0B
-# AQEFAASCAQCU1JmhMAFG8oFPgT6HyMAUR52QNdwE4uYAwTUVh6HMQWMLpxdPTM8a
-# 3cxtKQyJAZIP4ka+KF96aqrfqN4Iw+hEDH2KCnLOOCwQ8WDXI2JDpmsCj2nwh2mQ
-# tEBZ7j3oA8w4VompAk3ygCCgScMyA1iboNs9T2mpcEKkIpMTJ1V4bWGNxMP+Nbju
-# b/hMRJPQegZDC6gSuNKbUhnqbbHdfQyFiW+Du9EtI+YRpNSUIZ4GQnxLQvqCN0Tt
-# UbNez1adgonegfP1tU/TewbeLiaT0jxgl6vmpK+4oDkCuddr7ljCJGcU4kPoebUB
-# OCu4dcgmwrfL9XguSiE6n8bzUbMDVVlooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRRI4mMWVn/Qv03Uhxubb07DxZd+TANBgkqhkiG9w0B
+# AQEFAASCAQCISemoB3zLSpt++ooC/6JySQTFzXZvw9ubZEFD8CgGy57vPIQSpxMj
+# JqKaaXYkhu9rGL9mq4weGBuGhDwYYqNl69tijolzufFA4xeA7a9biMFkZHGmsr9g
+# BM4EgoPWGHmdDrxVdMtqE9rqmXqLEZsKtQg5dCfcYADOKl7ReJPRkEHbYC+1ZhoI
+# b3zyYSKgcV6ab5WJkyL2Qo1DUQqk0H21RollU/NmToCbxFzyQ/6zusYDyqbMGVAV
+# pffhYvHn2WVSUr4fQB23uYX0jo7tmJCWTjjbMYFbwA1aT/t0zUh8/f4PGToDmkul
+# dMKocUt3v4LFOhFy5gsj+WVMlxyqI+OWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzNVowIwYJKoZIhvcN
-# AQkEMRYEFPK/7E2DO1OWjx408XQaxxSNMPJ9MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIyNlowIwYJKoZIhvcN
+# AQkEMRYEFEDxLTWD0/YMJNwHobdBycX3txjpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBV8Tp+dyLYCkPmDmlb8wAcZviQBW7xOsjoA4afRCFS3ATm
-# f1lMCmYQ5Kw3lvsSboOCf/Ht5k7TWXKpm3UEPXga+MrzbU10Kd+aGpjVW/bh2cM9
-# prA1xB6jwwL+ZUQgq26fwHsisH/c7Wj1KqgwMMSX507WE3Li27VlaXsy26o3ORPx
-# ujqs6N6GfLEgnMeAvYuDPKQZXOoFQbsZnY4hQn4r7skg+2C8IUTY7tu0i7FQnbN1
-# ge2ksYqs3quQpPHAmg3s7KPBy8JO0CYFMZf1ke0/RcijSpEe3Yam2mkgf3wAdkgt
-# dzk2BHdulozH21OAXn4zwd4HzZDnbWE/h8+Gr3C/
+# hkiG9w0BAQEFAASCAQByipg4AA87ynbDX8H0jktAranbmLm8sMRMhf2rumbMNMY6
+# nivuAQek5Y+vMzDdFw2Ou3CroMTHFSChdhfNRximb/kew7wRq3NTfloWqo1Sk7eK
+# ZwZvAW7/JBauJas97amE+7WoUCy8tOf5n+umjsxKUoBve0Em8p8yO/WZXIhMC7uW
+# HNhknbhL5oP9iYZpNQM0ZkIhNNlTFCcYIr4NPf77iZUEFiVXip3PTtvDCdQdxMqV
+# klewObrHU5vq+AvlXTiy/v5V+76eP2A3mrx4py+7CtYu0dFwbRIDc1dF5nmmD4/f
+# qppxuQc1wD0GNgzlG+pSWwV46Yr+fNrRystAHbws
 # SIG # End signature block

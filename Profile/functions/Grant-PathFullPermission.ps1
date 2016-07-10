@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -97,7 +97,7 @@ function global:Grant-PathFullPermission {
 
 	BEGIN {
 		if (-not (Test-Path -Path $path -PathType Container)) {
-			Write-Error -Message "Sorry $path does not exist!" -ErrorAction:Stop
+			Write-Error -Message "Sorry $path does not exist!" -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
@@ -112,10 +112,10 @@ function global:Grant-PathFullPermission {
 	PROCESS {
 		# Get the existing ACL for the Path
 		try {
-			($acl = (Get-Acl -Path $path -ErrorAction:Stop -WarningAction:SilentlyContinue)) > $null 2>&1 3>&1
+			($acl = (Get-Acl -Path $path -ErrorAction Stop -WarningAction SilentlyContinue)) > $null 2>&1 3>&1
 		} catch {
 			# Whoopsie
-			Write-Error -Message "Could not get existing ACL for $path" -ErrorAction:Stop
+			Write-Error -Message "Could not get existing ACL for $path" -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
@@ -140,10 +140,10 @@ function global:Grant-PathFullPermission {
 
 		# Apply the new Rule to the Path
 		try {
-			(Set-Acl -Path $path -AclObject $acl -ErrorAction:Stop -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+			(Set-Acl -Path $path -AclObject $acl -ErrorAction Stop -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 		} catch {
 			# Whoopsie
-			Write-Error -Message "Could not set new ACL for $user on $path" -ErrorAction:Stop
+			Write-Error -Message "Could not set new ACL for $user on $path" -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
@@ -157,8 +157,8 @@ function global:Grant-PathFullPermission {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUT2xzFlLubuy8z7J2YDgiKFBs
-# 3PagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOzU7sbbm26j6rSomLPdSXrav
+# +lSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -301,25 +301,25 @@ function global:Grant-PathFullPermission {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSKs62KY2qByLlUb2jvP2hpotDfLzANBgkqhkiG9w0B
-# AQEFAASCAQBEN1tUyp0T96IqTLf5r/D9eA5gPUida64W+B/estVGZxh6Bt72UHyy
-# B2egBfCiS/bfnl1vWbOMgd+F/rQVCSSyfQrdIZC0f8M9HZEPSdJCD9x87WQLwJe6
-# GvZUtlBtSzSHbiiJLexf3l1oFTILxNN1Kzf1e4e+5oGmifIVE+zEWuMnElTrQpTZ
-# 5Mli3ekUh63XTBxafAjtB5lFYsmYxtw9CzyaX0+/PHnxRHIbAKVukQq/fhTXnrJp
-# KcQ4nTh2mgsM8AHKZkJIC8XTrcwHYqIxgHwyA7SGEbCF3AwWgwMCm0Arpm3cIk+C
-# jNQQNMQ+Gae5An8/keafry6hyROg/sRAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQhj+YClinCvmnC1Ydmh+WrKCQZkjANBgkqhkiG9w0B
+# AQEFAASCAQAT5iGdk45EE1OxNhn8+3vRz+pMOXHJs7btsXjNCZOa+TQLU4nyqQku
+# zUqVafDUYYL2DhQORodjhZp199cbDyQPxNao/JvctZWJqh57DzF3GF48/0p2Q4gv
+# 5QyHRjX1SlbN1ka59U6DatjvW1II3ZZxkXvqqmkW2d7Vm8ksM1g9c3ngNFB8LXDO
+# Qh6VZPPK4vPfdH/GXWiF8O2nengA2NHBdsf5aljVFzwNY3han0y84Xwpg1OSvuGm
+# 3ZJRH87F/3T2AnXvNQfdB3DIER3apTbuQ9rcCt0Rdo2MHSOoF5wgBK2HX5v+9/Tm
+# UnScRaCkvgfDz0I1CzgZUrfENDYocQ8yoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1MFowIwYJKoZIhvcN
-# AQkEMRYEFJiBWZehXlWqu33VySIGf+P8+RyJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0MFowIwYJKoZIhvcN
+# AQkEMRYEFO1Xtk7jrYZB4M9SIZ2d0gCVpMzaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBDHUcE1Kbs3g+oqiWStDbXy64RctDv9IDPbp97/zOMufh/
-# j6oSVh5qRU0VN2k6Qx2Of4NAg4QZOl9QtEzDFYtHNbkvjfpI4vLTmITUcappDIeq
-# 9r2wwtnXd1rqJdaW4mDeKX9oNsHpcodckFzLcbnOYq7SkJvV3eeWnmc7Qq1QjJfm
-# zmmL4c+Rk46dv7/dhhzQ9iRSGrMGA5tNPYqYyDFrUOH23hpxqwieH3IN0cOIe5qu
-# pyiS4Qd+IHlOcoOrSL5UhNTP5L40libq7UEFTD9Dyb0egtvGapORykB67wxkcLx0
-# Kgi0RM6LG+jMzmXm/MD/ze8TylBhMCb2yRdO5pN8
+# hkiG9w0BAQEFAASCAQBTJRZ74L8otabFKy8ILQvn0jCYFtlRgHp9pEqA2Nd09dIT
+# uFr1Y5J2FbLywRuSDI7+fa+85BFy68d7dTIEIQ1TIokspPrwMaSbAf3o8vJmczwY
+# YvA1N9RFywRyyXwPFGhGasBYIXAYcs1pdaVCPMYVG5kBERlKQbTaPrKxrWJqglc7
+# JWim7W8xdrth+/zBBA3ly4eLjN9Scw4toBVkZP9mveYawr4/MpYyMJkzY2hobhex
+# Ttrd+r7HlZlt2uaIrCSp7SXWSH885raqMqj2t9WcdjqINl1DprFbDYe8FTjvww5d
+# YLz5CxWano1P3YR0S6Qns0L6bqJLeH4sTb9a15aI
 # SIG # End signature block

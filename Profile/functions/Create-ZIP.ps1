@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -157,10 +157,10 @@ function global:Create-ZIP {
 
 	BEGIN {
 		# Cleanup the variables
-		Remove-Variable -Name MyFileName -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyFilePath -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name OutArchiv -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name zip -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name MyFileName -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name MyFilePath -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name OutArchiv -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name zip -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -194,10 +194,10 @@ function global:Create-ZIP {
 		# Check if the Archive exists and delete it if so
 		if (Test-Path $OutArchiv) {
 			# If the File is locked, Unblock it!
-			Unblock-File -Path:$OutArchiv -Confirm:$False -ErrorAction:Ignore -WarningAction:Ignore
+			Unblock-File -Path:$OutArchiv -Confirm:$False -ErrorAction Ignore -WarningAction Ignore
 
 			# Remove the Archive
-			Remove-Item -Path:$OutArchiv -Force -Confirm:$False -ErrorAction:Ignore -WarningAction:Ignore
+			Remove-Item -Path:$OutArchiv -Force -Confirm:$False -ErrorAction Ignore -WarningAction Ignore
 		}
 
 		# The ZipFile class is not available by default in Windows PowerShell because the
@@ -232,26 +232,26 @@ function global:Create-ZIP {
 		}
 
 		# If the File is locked, Unblock it!
-		Unblock-File -Path:$OutArchiv -Confirm:$False -ErrorAction:Ignore -WarningAction:Ignore
+		Unblock-File -Path:$OutArchiv -Confirm:$False -ErrorAction Ignore -WarningAction Ignore
 	}
 
 	END {
 		# Cleanup the variables
-		Remove-Variable -Name MyFileName -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyFilePath -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name OutArchiv -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name zip -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name MyFileName -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name MyFilePath -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name OutArchiv -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name zip -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name Create-Archive -Value Create-ZIP -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias -Name Write-ZIP -Value Create-ZIP -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Create-Archive -Value Create-ZIP -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Write-ZIP -Value Create-ZIP -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8T/QotAXtCDRMuMNjg2BKqIb
-# f3egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2y3zVhUF4AcNR2pgkjItjk4O
+# 80OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -394,25 +394,25 @@ function global:Create-ZIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ+JeBJHqy+Dc2yCN+OwcSyMBXGfzANBgkqhkiG9w0B
-# AQEFAASCAQCioyHbFjLrMRwPY5u+fFLuk0gwcDQyOtaPiyBwizQDou00n8APSXJq
-# oqJDkwRlP2MoaNi7yiS8iKIUfmepBmdhk7cwxzlS8u+b44qWSaL1i2NtbvJwM5J3
-# ObQYYbRJ+FY1uAmTBBJDFuHvRMe4hV6VV9kHIlDgmtFiLD3P6Fvh3wxum7QtdGkV
-# EbUcnUwCcs+cWlv/qCp4+yOtJtO8TkjjB0SNkil83ojbJ/nmZOr9DjiPCKpokVdb
-# Mr1nE2kf/YJCXU+LnMNzLxRF91kkcno4+Mw7oeNjC7b8uDhIzWwLtAz1w8PBz5H3
-# cF1XpFDNqFJtP2Xz3HIhI3rexNU3O5HEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSswW5VxzQZ64eSNFHTd0zo1CAeIDANBgkqhkiG9w0B
+# AQEFAASCAQAM0jWvLHEB2NN02oU89xpK3MbtRvPLeMKWgmHBEp6O6qKZSne/hzEd
+# AqucOHgPOgopM01rmAklwd54gJdf1tST9Dzo5MMYTxniYx93qFggsXh+TXHOF+XE
+# nZhhIm8Rq6Wn4+sSpL0o2qID1g7Tl53CmHVUQtZVwjWNRkjVtV17sSt7/drHZz78
+# DiX071BqNS6a/SohmKBiLoIMfLn2HCawZro8/0KEqiJ8UlXoZeMZD6O+rU1m50ns
+# qeWkdhOIQqGHGaCBO4AkVV8HqoaGMKkdFJHdn0ffMF1FXnQniFsHX+xfwF8KNg3W
+# IFzU6WOXXFCDfqduvJv3s+nLifdNQAHloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyN1owIwYJKoZIhvcN
-# AQkEMRYEFG665P9zkRMIoT+6Kx58v+worNxeMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxOVowIwYJKoZIhvcN
+# AQkEMRYEFKDCYSIlls/GtpgCZZTcu9IKN5FnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBKRcZ5+lO0LXR86Cu0eK4p53RdRWGgOzS3vv7rktEfzzhT
-# 5K70K1td2ArtzV8zkiwVkNtJO04Hd+MeS1EescBzI/ZOGBB+taicRxTf79HQHWOc
-# rgabi16Zpe5p2hej/OaD5XtdsAFCuV2lZGCDFK8LPPITC7UtG3S48Fn/iBpA6v8x
-# fOmNIVBsHpl9WHlfc6jCUhnYBDEMI1vGEtAWeAfWt1TFm1/dzUVeH2Py7aqnCozS
-# z8VfF7+WK0yLdHGDJJUg9v8MeiJmr0xw+TlpVBlefwTXDB8QuWxK8Go5O1ppN84y
-# SSdRgViNnJ3neozl2fCYYNtAjAGnBKFD51esElFY
+# hkiG9w0BAQEFAASCAQByYUYe15Lt0aCwbiM86l+eofS4Shv72jR+zK3di9mqCttm
+# rEGv4dvMaz9IxH8v4y4x8G8438NR7loi+tsMJxjNDFCUSx3BrGer4OCIN3s+tXzN
+# tCSg3RP+O0XyohVz6EIPE6JvE2OI+oDsckYtAxrcFZEKY/0Yw+WJtv85lGRtBpZi
+# 2NkBWovjtDlTT1VdvbKO7gawd6EwCQv9EPl2GrncJcvEyTTP1AH5tkz1iG290XLb
+# uRYTtStW9cxCguXm7VJxrOZ9F8T6dTTaozqdLa32bNilcsOb/PQPa73j+gOJtoJe
+# eelxmBFHBvt4CmWtyxhEd1+mHAtOByfvJV/A0Adi
 # SIG # End signature block

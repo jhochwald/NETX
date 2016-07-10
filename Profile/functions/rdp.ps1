@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -122,14 +122,14 @@ function Global:Invoke-RDPSession {
 		try {
 			$TestRemoteDesktop = New-Object -TypeName System.Net.Sockets.TCPClient -ArgumentList $Server, $Port
 		} catch [System.Exception] {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 			# Capture any failure and display it in the error section
 			# The Exit with Code 1 shows any calling App that there was something wrong
 			exit 1
 		} catch {
 			# Did not see this one coming!
-			Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction:Stop
+			Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
@@ -141,13 +141,13 @@ function Global:Invoke-RDPSession {
 
 	PROCESS {
 		# What do we have?
-		if (-not ($Server)) {Write-Error -Message 'Mandatory Parameter HOST is missing' -ErrorAction:Stop} else {
+		if (-not ($Server)) {Write-Error -Message 'Mandatory Parameter HOST is missing' -ErrorAction Stop} else {
 			if ($TestRemoteDesktop) {
 				$RDPHost2Connect = ($Server + ':' + $Port)
 				Start-Process -FilePath mstsc -ArgumentList "/admin /w:1024 /h:768 /v:$RDPHost2Connect"
 			} else {
 				# Did not see this one coming!
-				Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction:Stop
+				Write-Error -Message "Sorry, but $Server did not answer on port $Port" -ErrorAction Stop
 
 				# Still here? Make sure we are done!
 				break
@@ -159,13 +159,13 @@ function Global:Invoke-RDPSession {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name rdp -Value Invoke-RDPSession -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name rdp -Value Invoke-RDPSession -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhNt5aG8rCVIjWhYNv1Xxa9zg
-# pjqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8XfYdZKQ2rbKn0Ce10duZBjg
+# 5VWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function Global:Invoke-RDPSession {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRPwpsDJAmeJS5VJvbp2Ph2YiuKVzANBgkqhkiG9w0B
-# AQEFAASCAQBlQ+GE8ohcbQWXDch1WxP1Q70L0BDX8WxtD+UtWM1WveLlJXeSYDG6
-# U0tCT87/fc0g1p2cpJCjZo7kG9s1N/hOC16OtMapAODR+IH63zL0uLlqLldqd2Br
-# DXSMgSEGS6cLYhgVCTHJ0ohb+T09utVgEV/7ShZ64LOOP0JyjjN20CMYkbvN4n0w
-# HrbHeErttzu7W/OYkTJ0n88cRU48ck88n15w+rLYsYOpSxtBNQdUH3Kxw/aCyImh
-# Yl9JJlraWhl56wJFL79HJqpLehDI6/QvZJ2i8cIXArWDMrK1poX/gm/SZiZ6yKDe
-# wxo0yZGzHOqmZmGrNY2NBTRIrkdQaLB7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQUgHViTccKZ/eNNXkod9A7aH1ymTANBgkqhkiG9w0B
+# AQEFAASCAQBtqx1XWT1twsz8S5w9Pc4tzK2+u8Xck0RJnLZjp96xA/AaNKN8ctec
+# hoUPROXQGLeEyYr6RILNunR1kb30HMiwiT3u0vV22cYCUqtRv0/f5P2qv4uVz8hi
+# Jjub7XkZYLzoVQk0XiyGaGUsiR3LhxjhKV7R9GlVhLOxGW5MuwRBTrN38m7EY/cP
+# DAKgEfSKvi+XagkFYoO0qioeQ11hXQ8dVvbLCi/NT3tyJJNR8uLTJg4kOM44XWzC
+# WKaltLWHcugcXTWuDvqVfDDSMZ3QmpRm1lEB8tIyoDBNnHDD8XdXeNTgyDf5cV27
+# wYrHdK5rVonw7yyJFGIzAWXwONna74XQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
-# AQkEMRYEFCyCSvT74wSlCz9yM4WwZxkzK0AmMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1M1owIwYJKoZIhvcN
+# AQkEMRYEFJmY3JkRS4xVfGNvIFFuqio86cxIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBuXee8ustY2mHFcR5VPtmWP/h9nbbVoILXMtzHuAps+kAY
-# sAYTgEQywoKkLKorGCR+ivvSJS5KK1gZrKzqV64H0w28D/J43wWrZsSidSYpYLii
-# asQEpZwL47Q9gm/yRhflhRSRj70QZh0mk2WFGHEsQOuX4PNhH8eiKltI1NL9SAON
-# Sn5bz1xo+N4PnB5cIx5/4214bQPWjIBtpm5vuJ7IVYSXg62NK6fhGize7g5//54L
-# DgbqCIn4pGGjqUdk3Z1RBxGEuZcjN467xNKSNpDFlGpIOle7S1LryUSKI+V0AoRq
-# rEaDQOLHCtbA9FoacPaAxnSK4qmVqBe//C9buy9i
+# hkiG9w0BAQEFAASCAQAytK9Ai2qy7oZTtT6xbovdYyJy1VIiwW5kCfckhNu0IlI7
+# dEY74QV8hErTOqGJEhETCqCNxEMhQhM9mju6fRrpZaUnFisUN2ekmFXNvPbUaR15
+# f2BCncBg/Lj1vjhe48GApMpWAVbCcwjGeBJsWewYkMPWsCdkVL8ajFU5th6fY4GZ
+# G1XvI4XTXK+Agmq5rSKv+eDMNyoGhtnDzFtuz7JmEhdet8JwhgvgRHHzR2b3DIiY
+# 94sEY9irLm9BV2v3tlZ/8iKj237o5/WCXNHLs5wkhHCob4PbunhyeH4ECk6wpAw1
+# DSYEapNWufVdwGeeEA4zRi6FrQp0AQc9KcCvSgg8
 # SIG # End signature block

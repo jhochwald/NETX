@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -110,7 +110,7 @@ function global:Confirm-XMLisValid {
 
 	PROCESS {
 		foreach ($XmlFileItem in $XmlFilePath) {
-			if (Test-Path -Path $XmlFileItem -ErrorAction:SilentlyContinue) {
+			if (Test-Path -Path $XmlFileItem -ErrorAction SilentlyContinue) {
 				try {
 					# Get the file
 					$XmlFile = (Get-Item -Path $XmlFileItem)
@@ -146,13 +146,13 @@ function global:Confirm-XMLisValid {
 }
 
 # Set Alias for the old function name
-(Set-Alias -Name Validate-Xml -Value Confirm-XMLisValid -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Validate-Xml -Value Confirm-XMLisValid -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwEvp7LEr6eQ3h1Y7BclGzcu2
-# BHKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9U+kjXv5rS9gMPQ8mutVSgBB
+# mZagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -295,25 +295,25 @@ function global:Confirm-XMLisValid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS8J00lPlFArblD4qT30GgTDk1bKzANBgkqhkiG9w0B
-# AQEFAASCAQCZbyptJSbqQLnGcqdwjN7H6x5hD+hYdev0FxnfdfAqLtv1qD10V/vP
-# Uo9HVHgByj78lCHyVusUhP5w8O0nDipsRpPFdZ23gKTBmgEYwczP/omPJsZHyiEd
-# 3euT7ChUA/LDc/FuDWCVedfPX20BliqaiLqlGyvJ4NRgSI5KDlnakJ2NPZ2uz5BE
-# BiYE1dRcjEvJTmIdKE+QixDR9BaUkYW2qMJs7edtBemfamztVjO34MOyg2OFWeU/
-# zPEBKy4RpG5rdirxkz5NeTC/+YoObSnPOlYfdDAlyPjd4klMcDFwLFuO0pwkp6LZ
-# 5hIO4Yh2ij5J52rShGYtlEsNep1pr20YoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTPdK3xVbkGWdPlb6ZgKh2k1JlgBjANBgkqhkiG9w0B
+# AQEFAASCAQAA9zdUOaon9c/JDLfXtWMM+uYRJIdv73WrgRc1fYFx/S3K1am8cHc5
+# ojbRHGe0QBAz4wP9vRBywr9FxhGFxtDAtPGK00GeG3H38A1NF3LitD0FzyCVjVmS
+# shdEHk1l+KuLygo94S5yq7+iLev1g1S5sMzEnpS5xCd4OAKYAdHAWlUMwVRx3w3P
+# fDvnTeNzymi6jtfUxty1YghXmoo50xW0s9rLq9ObGXUeTsYNfryEAA2QGCK8PqTI
+# 9+QtQundZnceu5jxDqis+d4pht+aZAM9IeobP30Ib74GOOZl8wiQH7g3GYRK0TN1
+# xNwaJCvKoozYZiU1DiuiaW69L9VO8oYZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyNFowIwYJKoZIhvcN
-# AQkEMRYEFLAExMpQCfJUs9Sqzy2BEGkAfWTjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxNlowIwYJKoZIhvcN
+# AQkEMRYEFPTPpFRylGW4PE4me71vAjwyq5iYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCizjmsEct41nUcJt0MHvvn5jML7TPr5T1rEKii1xsPK47l
-# fctyzxrLPHxFlSVNlKi4YIMzECyJCVrerHQpCnEOZJ2vrXVeF1iG1JxJePiSz6vn
-# I+1Q5BN7AWF2swjYyBDNqDLRCMpgYYALlJ1p44IpYRwYz8A1XTAmYTLNLiobLH5J
-# WmRO2tDf04jSTbUt+2sAjEmCURhUeuyhvg7ryJG04Yu09LndZWucjyy6HSiSM0pH
-# cXE+f1ohWqET7Qj4wzn7/EWrBcyVdieNqycXxKvZHqzRwbQN69LkVqD4d7EjJUXk
-# JvHUfmm0PKbpnIqv3+ivpyawRYZmNRotvYdYgtgn
+# hkiG9w0BAQEFAASCAQCX+w3u27lKos9/C4SyX6RhT98CKIEkxgRubt04peu5VS5C
+# 9Qj7mRNCyfLAWxzj+TN1njhQxg++oFH3gVJlzXHLcvZjzQEdpKmg9gylA0ettx6n
+# s0YEaUd87ZVNixiGi8L8Y3/Dyz4/UmkHRBU+gJd40rZFbV2P0toDGJcwzzMmzaKV
+# vM9OCHNcnyXwzVPjW1pm1xzhGjxFQTvVaAowlwAVQ+oU+6UpbAttGKgoWZeoqV+M
+# be63/ZPD2ChkYWWm7JA1nyuCATeUGf1P4KeuXFwmOZOhjOSlXwWO2LMq9noeBl2Q
+# l/QLtacrz+oyNxCLgZIN9jU7W0goSQXT2lWo8yai
 # SIG # End signature block

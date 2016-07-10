@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -234,13 +234,13 @@ function Global:ConvertFrom-UnixDate {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name ConvertFrom-UnixTime -Value ConvertFrom-UnixDate -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name ConvertFrom-UnixTime -Value ConvertFrom-UnixDate -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgAissudNtuLmfkl0X7gRytOO
-# xpqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+YFXCSqUFkPksK9egITibC+e
+# a3ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -383,25 +383,25 @@ function Global:ConvertFrom-UnixDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQcyzkvPPT4AXCevehPrLkS99v+ozANBgkqhkiG9w0B
-# AQEFAASCAQAe8m8hPvwNFrDuWhNYSF3AcfunIpbVmFHO3OPF1Nr4DeEuDzPEPNw8
-# wOaRvpj+dNaInvXqBg97qdMc0EyDpis0wcwDz9jwHddTRfNLa8JL2Tuiy4uHTWP8
-# kPWXYCbjjQos7HPS0a9j1qZ1+qHHhT/JKyGSPJjP2iVcKFzP5a2EWu+Omef1YMII
-# m90Lx30YPf+CoukWQ2O9KyfDRiI1ilaB6/cXdPJkaj6yb4dR8mQllvyX6I7y21D+
-# /J+d2jbqLcLG9QSCPqjMDSD18adcP4XUdVjzQxvQ+oRRhVRGT/6ZDkdixoEAjdS3
-# HwSvYzySQpSkSVKYFvOPc2xL0zmrT1HqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT1xCjASHXyr2QQ6gI1/ezSsxjepzANBgkqhkiG9w0B
+# AQEFAASCAQCFo0bW31cw/XadEm4JnNBFVv8sxC8S7l9/dIkvX6BcaEVEOMJHSSej
+# XkIqn30aF+afexDfcN+LS1AoTo2jIDQIgjFXzxzR7zVSO/zhDYMPCi09oChHCPTD
+# D/kt27goTT6eLCZBl4nzxDxUfwdgT1Fa5ATEMUr6t6GteoFybm9ltP2Ax6S43GEx
+# wa2kr6LH/2Dx1xzX/ypYL1qMjPU4Kd7Fq+803akMFO2MylqOiU0oIcPkrdxT2fgV
+# dYeXgi1hyDY726iu8opWSiZOU3aGYtH0HBEp9dDcmmoysRDtdLJItZ5zaZdGtH+1
+# UyLqxD1+r6b9HySucrWdr35zrNvS56lOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNFowIwYJKoZIhvcN
-# AQkEMRYEFNVK4hs/qSk/qgL4IFhnmqfCSB7GMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwNFowIwYJKoZIhvcN
+# AQkEMRYEFMRzBstl3cp4+Upf+p8Teptc3rIKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCVXE8jDThDIth4IBJnHy9VRtiwE8TK0t0yXbmX/G6oiw3L
-# zbRGdXZQTxy88ODafTL+4p+66lSL3rXpWi3Oskky89y0Uyqn+ZLkoreoA7pVRq0w
-# TkXIKyxwEzs4cLocA1tSZQ+HWUdZTVZVCSzpWiQb39B/jtvFfD/m3K/FxsjudFw2
-# 0ZU7YTqMwujxLdzmaV5Upg2gfnqHjzxpxVJYa4dE7q0TkE36ruJDaew+LSj86qQo
-# hiRVlgZjK7uopuiPx4KgNDpSOPEu0SDwAJI9Kd3m876IDsTarkb5vNxMjyhzC86X
-# rhzMfCWupLAfWs1Kt++Nemk+v8QS4R7j8KTjbTsp
+# hkiG9w0BAQEFAASCAQAekQkgT0UEu62AdMUoyrO587tJdt8UF5fXqYD3BZCRDvuQ
+# gwBNV7+FkbOY+rJ4b+LnyeFEuDTGUU0ouegLUhW7H8odz4mx388F6RFEgNe6uc/u
+# rjAqTKjIJ4jJN0tE4NVK3ZMC1v2Fni6AwJdIiYKCs7CdkITltuWW3KaYS4VzMPxJ
+# AlhG8AugMOl9lRPkYIw57vB8u4TwiwsdVQqgDULKxlXytCHZ5XZzEYg/PCHNA3j4
+# WEygMbCA5DrEyMl/Zc5871orm9x2uMVsG9bOBxBrk26ZfcNCauKma+mKUh0y1ioc
+# XF7ee4rnKQYDRFKJnt4BJpJay91PXRX5K/0EVchv
 # SIG # End signature block

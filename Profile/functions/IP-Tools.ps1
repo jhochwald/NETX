@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -101,13 +101,13 @@ Function Global:Convert-IPToBinary {
 			try {
 				$SingleIP.split('.') | ForEach-Object -Process { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
 			} catch [System.Exception] {
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction:Stop
+				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 				# Capture any failure and display it in the error section
 				# The Exit with Code 1 shows any calling App that there was something wrong
 				exit 1
 			} catch {
-				Write-Error -Message "Could not convert $SingleIP!" -ErrorAction:Stop
+				Write-Error -Message "Could not convert $SingleIP!" -ErrorAction Stop
 
 				# Still here? Make sure we are done!
 				break
@@ -297,7 +297,7 @@ function global:Check-IPaddress {
 
 	PROCESS {
 		# Use the .NET Call to figure out if the given address is valid or not.
-		Set-Variable -Name 'IsValid' -Scope:Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
+		Set-Variable -Name 'IsValid' -Scope Script -Value $(($IPAddress -As [IPAddress]) -As [Bool])
 	}
 
 	END {
@@ -407,13 +407,13 @@ function global:Get-NtpTime {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name Get-AtomicTime -Value Get-NtpTime -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-AtomicTime -Value Get-NtpTime -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8I6SVGEUuQD2Z0vxNOCMnIe8
-# T2ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhNTNCmKQul46lRcTgTxWJBhB
+# 0dmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -556,25 +556,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSW2hv9py6pTzXHl9o1xCULyh1dKTANBgkqhkiG9w0B
-# AQEFAASCAQCgGlyN5/AQeYYnHfaBZdFdfcrmQYVRxegeP6SwI7pXivKaPTqOOKNL
-# iY/+maZl8chxu7aFAs5IUBnXixJjeNSbmV67N8sgUvtHIrqrIixeHVDRPGTyxDRu
-# ggxhGQSaAqEi+VZOVPhpJBIeiEiHNEvf9jL7mSSZgRC5LG9ZjcldTnRPSUSSu565
-# TTor8sZJktAjVvu88t9zWJzLyx4ZsoBMotNR6vRX5RHAzTLOKSjj152nMUz5Y2/k
-# Ugiog8YJsPFocy72nDxyeIHZ5aFjvZwQs/b+1zss6AfWKLmatWh1Xm/0DZwekZAz
-# i64vwfu8e0OJn71yXIUay0Zpkzq0wiHYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTSsV84rvTqMtyf7sbWA2QUIAKkajANBgkqhkiG9w0B
+# AQEFAASCAQBMA72s1+YyfhwtA91ZXNcnwtmmlYtChkc6Ylfy9AnDKCKb3Obfxuk9
+# /b6OseadRAlYh7v07Wn0BbN7a0awb0JSWu5XD9WKr5ZO+iNASMojBWFQeIBccAx9
+# QPfsN9GeBv8Sd7n6fmuigGxHOcQAxxEYxa6lrUl3R8cF370lQEdc0uEcRcaSG8MJ
+# fzjX2coY1KDstqfkWtLP/2z69ReiFpD2+RfmBjXvvzM5XnJgX89NGQiTAD0CY4A6
+# /g4yHVAdX1tnEEiU/p+0u4G6xJZiob2vujCpyJqErVCT62K34EJ99jrOPIcUm1oy
+# RtH7UbMQQyF0N0drE6wiO8giUnaii/GSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NVowIwYJKoZIhvcN
-# AQkEMRYEFIIGvO1AzrgEk1zeImAcx6Im/bDPMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0NVowIwYJKoZIhvcN
+# AQkEMRYEFEua2V7CF1MeOn0azv3ou/aGEC62MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAT3qXy3OL+0znbsRjIG8+TNyyA0VpbfypwdeCuiAO93oVp
-# 6BQ3PruDl3BMG9msJEbIa/xzL3+UKkPTKOoY8lCC0BW5nXa7RT4zHV/PHarYNkop
-# gut7NliltDlarvMKOKx31AQVTeB+ou2f1de9CvYQ/TTXCM02u1WvFTEtud/RhEbc
-# mp1M76q0rd+YieyvYqXbnfqtvBNYymz3IikljM1yFf/5Gg+xb1F3bDeyfm7pRdQ/
-# 6iplDHGk6AHwZ8/+A004zmsKmy2nWTkrjdMp5F4UOgnwEN0GA7ayxAqfpjVb4+V0
-# IhdZtPhC/aZinMZbXVOxU4nLAZFDKMcziLuZsPi+
+# hkiG9w0BAQEFAASCAQBM/RPBckvXEks2PfED6CeOoOpWkL6JqlxEGQp1nmyzggY7
+# WOjRA3EMLWYkKvz3LZK4qh9EDP8lTm3PBFlKXp/d7JezSsM/iuJVgjYHYIYLxecR
+# AHQ25E0qLPtiXO6szeal6lrueBebeBpFRIDO3adQHvq6MngjRWFlJDJBU8s9OvW7
+# AiCL7EJpU8jfeLmZsw/p2zas/V88a0OVoeopLRbzZLcK3Zt3pPLMDMXw9qQlZFyy
+# alZAB3bBJEoI46deKVX7jvd7cjOF34LVh91B6Cv6gR3eg6VRe7bkJVsU9INCFfzf
+# FRCPMDomr3tJETXhRrKiRci6TrFPW9p612BikXBH
 # SIG # End signature block

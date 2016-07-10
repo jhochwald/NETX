@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -152,7 +152,7 @@ function global:Remove-TempFiles {
 
 	PROCESS {
 		if ($Context -eq 'System') {$Target = "$env:windir\temp"} elseif ($Context -eq 'User') {$Target = "$env:temp"} elseif ($Context -eq 'All') {$Target = "$env:windir\temp", $env:temp} else {
-			Write-Error -Message "I have no idea what to clean: $($Target)" -ErrorAction:Stop
+			Write-Error -Message "I have no idea what to clean: $($Target)" -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
@@ -203,8 +203,8 @@ function global:Remove-TempFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwdWspUfEG20kJJJ0doSbCYrl
-# vJ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9XDnt8cucDLH/q+tgCUag4fj
+# ZdKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -347,25 +347,25 @@ function global:Remove-TempFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQkcv3QkimcpVxHtLnue12m1TKY+zANBgkqhkiG9w0B
-# AQEFAASCAQAlN4kHc3MQv7M19mYeoqB3A6OlFKsejkWBqArUye6dNXDmmRyGYBna
-# HaRFdR+u1AmRfeg6RAhlJVRVH+/+gkzaW2zNZqvpWcGYCuIVoSn5LEy1Kc+anbgs
-# 5YZYVevGWCXYQTFDus/nPSVSrPWgOrvsh4RySTx86h40dMr5ocwN7RffjsjBOaME
-# 64rvLKSnAZPKR8UUSoQglFAZINMjr/5uzBekVudu1UYfYuAII7Ygj/wZtTnLJvBD
-# bcQR1cA1pSiRg+AFHoHNbq9PyMmB2JQbYUfNIaQjhhaM1S5P78hZTNcCfaa94DlK
-# Ddf4v5MZNdS0YRTV+Liqt1U4v8zCRt+OoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQCJ+1gWOBRxqKODGyDNqgK2gZliTANBgkqhkiG9w0B
+# AQEFAASCAQBq7B/CsLlYHsGZctTGb6xrb6tjl3QBJ9/NIL+3kTt5dtdNssYPagEb
+# UoO7TSQPuCeLa552V0AvfLV/PTWUscQX8se2I7ffG2wOtNhtPEpQ4+HDdTeosKdR
+# mgy1ssdIM/1SLVTKLeJTO/F1Sez8SrPvoXjCAQLNg8PWW6ijOxS+03Wy7/gP+1Fe
+# t/p38Gkus+4FGn7PQaeMUkze2mkKoZSKF/CdwdEgVBQBFrLO39NLRB95HNdcqkaE
+# d4Lq+0QWJ7NQYBp1KLm2rW+Eb2jc0N1dzmVvNpKfreSpJ/tjEjCznV11TA7SBE4D
+# kKRGcNolv0JbPhMlY1WGTvRV4Fi5z2I7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNFowIwYJKoZIhvcN
-# AQkEMRYEFEiAbeqojzOvzBUMGKphsSxVDJepMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1NFowIwYJKoZIhvcN
+# AQkEMRYEFPpl/q7nnlHUxfNRFeEkia9k1dY9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAo8fFne3trJb4dJxNw/jV2eKRsktv/gP//AMdSJ2MKQyhZ
-# 6Ish+m84YQwQKPKGCPn5nIaoZu1WCfwR5sGc0g96uPhHKaTILohrMJ1p6mYRHByt
-# qMh2ya2K7dzT/VLDHlVmW3cIMfRxuZcuR1hMW3LPCBTt51W2sCS55lKEOTDmsyc5
-# c6UbSmRAGHMMmDXLOuYIObrPeon/Bw+ZEais1Xy1LychQ6BHBuQxAqCNeUmYPv2X
-# MS/KyDHhbMdRXZ73izZNw8zqZqg1471eLny9E3XE1HI+0UVRV9pAgOGmW63vE9+f
-# 7Dq0UzAGpGN1wa6MXZ2/S3UO3raceMK+28ksvDRh
+# hkiG9w0BAQEFAASCAQBxQhjikKdqqzm7SV7HR6qp2L/J+VA2tnxXDoCXAvzcheIm
+# OiD70B7ZywP+3/lsGJpqPwIwQc7I2H1fu25XbbSoag0IsWY33txL1wiaWF93nGfm
+# uDI3Cdqlm2J4ik3GBfUY8iLsJ/Le/O6fBFQlHmZXzxFLlquQuikPc7UHYgOnSppa
+# unnuBbVwksrt80iIWGbT1oWw9ZMGFpZaNVGEPUUHIzeaWEu6ftE4XZLQiFLjfrun
+# nMF1a7swIY0jnckSqNvLbpDqsstu3uBHU08CbF6h/qCtgYRIq2tTlQElbirWPDNV
+# soHyw56q1gV21bq0XYuVIptzSFMslwv6tcigdD4V
 # SIG # End signature block

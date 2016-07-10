@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -145,20 +145,20 @@ function global:Get-NewPassword {
 		# 2 - Mix Uppercase and Lowercase Ascii
 		# 3 - Ascii Upper/Lower with Numbers
 		# 4 - Ascii Upper/Lower with Numbers and Punctuation
-		if ($Complexity -eq $NULL) {Set-Variable -Name 'Complexity' -Scope:Script -Value $(3)}
+		if ($Complexity -eq $NULL) {Set-Variable -Name 'Complexity' -Scope Script -Value $(3)}
 
 		# Password Length can be from 1 to as Crazy as you want
 		#
-		if ($PasswordLength -eq $NULL) {Set-Variable -Name 'PasswordLength' -Scope:Script -Value $(10)}
+		if ($PasswordLength -eq $NULL) {Set-Variable -Name 'PasswordLength' -Scope Script -Value $(10)}
 
 		# Nullify the Variable holding the password
-		Remove-Variable -Name 'NewPassword' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'NewPassword' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 
 		# Here is our loop
 		Foreach ($counter in 1..$PasswordLength) {
 			# What we do here is pick a random pair (4 possible)
 			# in the array to generate out random letters / numbers
-			Set-Variable -Name 'pickSet' -Scope:Script -Value $((Get-Random -Maximum $Complexity) * 2)
+			Set-Variable -Name 'pickSet' -Scope Script -Value $((Get-Random -Maximum $Complexity) * 2)
 
 			# Pick an Ascii Character and add it to the Password
 			# Here is the original line I was testing with
@@ -170,7 +170,7 @@ function global:Get-NewPassword {
 			# Random Numeric ASCII Characters
 			# [System.Char] (GET-RANDOM 15) +33 Which generates
 			# Random Punctuation ASCII Characters
-			Set-Variable -Name 'NewPassword' -Scope:Script -Value $($NewPassword + [System.Char]((Get-Random -Maximum $ArrayofAscii[$pickset]) + $ArrayofAscii[$pickset + 1]))
+			Set-Variable -Name 'NewPassword' -Scope Script -Value $($NewPassword + [System.Char]((Get-Random -Maximum $ArrayofAscii[$pickset]) + $ArrayofAscii[$pickset + 1]))
 		}
 	}
 
@@ -184,8 +184,8 @@ function global:Get-NewPassword {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8xnB8TSEAyf+ZhHft9j4JN4/
-# XqWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzdB4FcZBOQ6Nc2Cfkiih5sFI
+# mECgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -328,25 +328,25 @@ function global:Get-NewPassword {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS80d57dPKRutNSMDNxcVI8Er21fTANBgkqhkiG9w0B
-# AQEFAASCAQAMmedHdHZaL7HVOJZbqGBqwyJMqpT6viNgEcXexAkR6NKIChAtaenU
-# AC9uzmwoH27pa6ukEZiQlcssJRB9Mz2E2i8jsRsTI/BB6ziXl/qV/ZYU7+98v0q4
-# jDx8lvIz2BbtdRS+iZQQY3WOcrche9znCA916U2rQ/CXEJ8LhPq37HQaPhmhp5yy
-# 6meX7ntN8PyQI0Jbo7a++nA8DVcURdztiCbgj1t3aCH8DcrlBpqUV7BTuL3xpii+
-# YTzzkQfQZjvM82gyv1aU2RP4LNDWAy7X+S9/SkEt+GQiPvV+SCy8AhjjjC8miNFq
-# mNYoyiKehFt9DjbdHDfJyMPjN7UOGiiToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQNbT6DRv+7WoFhxreihVaJurfdjDANBgkqhkiG9w0B
+# AQEFAASCAQAP+aUoqmB1kow50dSjYZoiVJJWP5MjajZ9/lK+LnZ5OWLZAV2Ok88q
+# KRw5OnSJklVH4M4BbUTAM2uTvxOI2T6DQLCqbmCjONG9mqMniy6l+IiWbYPTKymP
+# wD06cJMbkMhaTKW8z+8wuL73bCES0GyFjT7yFrEUgacj9RwxDWx6mJQRlnFs2jBr
+# hx5rP3KdtmRvjCQHZ1WvC2PB/ganyx+wQS23yZAJEGeEVcenrTomUZXmZ+OJGDFs
+# Ry/VALXlKQdvifdc3lAyMQSE26ae14+YBAScFqPIwQRIJufKvtfJAZ5Gy7aywpMm
+# R4U1gtFXL2idAsJmb3tzoPukIEJvZ9QgoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzOVowIwYJKoZIhvcN
-# AQkEMRYEFCFv6niCr3+1N5xRJRTNsUFFGWi+MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIzMFowIwYJKoZIhvcN
+# AQkEMRYEFBgVnIMBXaBlTheeiv5IikVHFAG1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAsPlE+Jb5BATOYVVTMj0eEp3EqDSGdOy5c0HjL81enpTQF
-# q40OtS9ILLTAqnwRdrT8t5u1b0s8VDhlfis75Sb0RFgqeCD5bxW/ZICGSLwhrsFI
-# Rn9XqVWZ2CphDdzJ6hIz4l9mRmIjEom+iJOXgmlQejGAIk6mkcOzDbxmxIAIo1n1
-# OpHiF6UnN9sWi/mXEBgdOohXo4fDkxCMnnxkpnHqZgCo+4GKMwf/QqVf9VD6YSRo
-# pvJyoSz6iGcAOFKP1JjPK/Owl1CTdgEmpewmSgxHTsLJwFp6uV2GLjxf6TDUobQO
-# hUZOxOkOx5jOhXx8jD8Kkj23M2qyxTPek77wOuSC
+# hkiG9w0BAQEFAASCAQAL3q14tNH+c+l8FegOuOXMbPmYG0DrsgyR3wxhEAF5Ndhk
+# ZSycqkbP7MaI/H4ltrHvibGPFsFQ1VmoQTj19nt4vEBOQNFla5xZhMntpGNA8rIM
+# 0We0tUAws8aYqMYOz3REAEodLFAyCY528YUqoKcaCerh+kQjwRp0OBiok80ZaBfl
+# zg//13MC7KPch4JZYKQy2NiD4XzlZlKM3m9tSU9O70Dp9B9tK+cXJPsH+im/VDY1
+# JlawouwQ61Rp2wGoxW0wqLLbGNZGQdyXtYouzl/Ay1eEXa5762FVHcoQ91GhYpXs
+# zLzqTFQV0gIZA9grNXBpvmaqwxgLpa3P9F9LmSXU
 # SIG # End signature block

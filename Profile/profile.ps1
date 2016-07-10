@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -90,14 +90,14 @@ function global:Get-IsWin10 {
 # Make this Shell clean!
 function Clear-AllVariables {
 	# Delete all variables that exists
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 }
 
 Clear-AllVariables
@@ -113,10 +113,10 @@ $env:ADPS_LoadDefaultDrive = 1
 [System.Console]::ResetColor()
 
 # Interactive mode
-Set-Variable -Name RunEnv -Scope:Global -Value $('Terminal')
+Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
 
 # This is our Base location
-Set-Variable -Name BasePath -Scope:Global -Value $('C:\scripts\PowerShell')
+Set-Variable -Name BasePath -Scope Global -Value $('C:\scripts\PowerShell')
 
 # Helper Function, see below
 function script:LoadScripts {
@@ -128,7 +128,7 @@ function script:LoadScripts {
 		Set-Variable -Name ExcludeName -Value $('.Tests.')
 
 		# Load them all
-		Get-ChildItem -Path $ToolsPath -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue |
+		Get-ChildItem -Path $ToolsPath -ErrorAction SilentlyContinue -WarningAction SilentlyContinue |
 		Where-Object -FilterScript { $_.psIsContainer -eq $False } |
 		Where-Object -FilterScript { $_.Name -like '*.ps1' } |
 		Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
@@ -140,7 +140,7 @@ function script:LoadScripts {
 LoadScripts
 
 # Make em English!
-if ((Get-Command Set-Culture -ErrorAction:SilentlyContinue)) {
+if ((Get-Command Set-Culture -ErrorAction SilentlyContinue)) {
 	try {
 		Set-Culture -culture 'en-US'
 	} catch {
@@ -158,12 +158,12 @@ $MyModules = @((Get-Module -Name NETX.* -ListAvailable).Name)
 foreach ($MyModule in $MyModules) {
 	# Search for Modules not exported correct
 	if ((((Get-Module $MyModule -ListAvailable).ModuleType) -eq 'Manifest') -and ((((Get-Module $MyModule -ListAvailable).Version).ToString()) -eq '0.0')) {
-		(Import-Module $MyModule -DisableNameChecking -Force -Scope Global -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-		(Remove-Module $MyModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+		(Import-Module $MyModule -DisableNameChecking -Force -Scope Global -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+		(Remove-Module $MyModule -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 	}
 }
 
-(Remove-Module -Name 'NETX.Core' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Remove-Module -Name 'NETX.Core' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 #endregion WorkAround
 
@@ -192,7 +192,7 @@ function global:Set-WinStyle {
 function global:Set-RegularMode {
 	BEGIN {
 		# Reformat the Windows
-		if ((Get-Command Set-WinStyle -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Set-WinStyle -ErrorAction SilentlyContinue)) {
 			(Set-WinStyle) > $null 2>&1 3>&1
 			(Set-WinStyle) > $null 2>&1 3>&1
 		}
@@ -226,7 +226,7 @@ function global:Set-RegularMode {
 function global:Set-LightMode {
 	BEGIN {
 		# Reformat the Windows
-		if ((Get-Command Set-WinStyle -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Set-WinStyle -ErrorAction SilentlyContinue)) {
 			Set-WinStyle > $null 2>&1 3>&1
 			Set-WinStyle > $null 2>&1 3>&1
 		}
@@ -257,7 +257,7 @@ function global:Set-LightMode {
 }
 
 # Include this to the PATH
-if ((Get-Command Add-AppendPath -ErrorAction:SilentlyContinue)) {
+if ((Get-Command Add-AppendPath -ErrorAction SilentlyContinue)) {
 	try {
 		Add-AppendPath -Path $BasePath
 	} catch {
@@ -271,10 +271,10 @@ if ($host.Name -eq 'ConsoleHost') {
 	# Console Mode
 
 	# Set the Environment variable
-	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope:Global -Value $('Terminal') }
+	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope Global -Value $('Terminal') }
 
 	# Style the Window
-	if ((Get-Command Set-RegularMode -ErrorAction:SilentlyContinue)) {
+	if ((Get-Command Set-RegularMode -ErrorAction SilentlyContinue)) {
 		# Set the Default Mode!
 		(Set-RegularMode) > $null 2>&1 3>&1
 	}
@@ -284,11 +284,11 @@ if ($host.Name -eq 'ConsoleHost') {
 	# Set the Environment variable
 	if (-not ($RunEnv)) {
 		# We are in a Console!
-		Set-Variable -Name RunEnv -Scope:Global -Value $('Terminal')
+		Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
 	}
 
 	# Style the Window
-	if ((Get-Command Set-LightMode -ErrorAction:SilentlyContinue)) {
+	if ((Get-Command Set-LightMode -ErrorAction SilentlyContinue)) {
 		# Set the Default Mode!
 		(Set-RegularMode) > $null 2>&1 3>&1
 	}
@@ -297,7 +297,7 @@ if ($host.Name -eq 'ConsoleHost') {
 	Write-Debug -Message 'Running a a GUI based Environment and execute a Console Profile!'
 
 	# Set the Environment variable
-	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope:Global -Value $('GUI') }
+	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope Global -Value $('GUI') }
 } else {
 	# Not in the Console, not ISE... Where to hell are we?
 }
@@ -314,7 +314,7 @@ function info {
 		''
 		('Today is: ' + $(Get-Date -Format 'G'))
 		''
-		if ((Get-Command Get-NETXCoreVer -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
 			#Dump the Version info
 			Get-NETXPoshVer
 		}
@@ -348,7 +348,7 @@ function motd {
 
 		Write-Host -Object ''
 
-		if ((Get-Command Get-Uptime -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Get-Uptime -ErrorAction SilentlyContinue)) {
 			# Get the Uptime...
 			Get-Uptime
 		}
@@ -359,16 +359,16 @@ function motd {
 
 # unregister events, in case they weren't unregistered properly before.
 # Just error silently if they don't exist
-Unregister-Event -SourceIdentifier ConsoleStopped -ErrorAction:SilentlyContinue
-Unregister-Event -SourceIdentifier FileCreated -ErrorAction:SilentlyContinue
-Unregister-Event -SourceIdentifier FileChanged -ErrorAction:SilentlyContinue
-Unregister-Event -SourceIdentifier TimerTick -ErrorAction:SilentlyContinue
+Unregister-Event -SourceIdentifier ConsoleStopped -ErrorAction SilentlyContinue
+Unregister-Event -SourceIdentifier FileCreated -ErrorAction SilentlyContinue
+Unregister-Event -SourceIdentifier FileChanged -ErrorAction SilentlyContinue
+Unregister-Event -SourceIdentifier TimerTick -ErrorAction SilentlyContinue
 
 # Try the new auto connect feature or authenticate manual via Invoke-AuthO365
-if (Get-Command tryAutoLogin -ErrorAction:SilentlyContinue) {
+if (Get-Command tryAutoLogin -ErrorAction SilentlyContinue) {
 	# Lets try the new command
 	(Get-tryAutoLogin)
-} elseif (Get-Command Invoke-AuthO365 -ErrorAction:SilentlyContinue) {
+} elseif (Get-Command Invoke-AuthO365 -ErrorAction SilentlyContinue) {
 	# Fall-back to the old and manual way
 	(Invoke-AuthO365)
 }
@@ -402,10 +402,10 @@ if ($host.Name -eq 'ConsoleHost') {
 	}
 
 	# Show infos
-	if (Get-Command info -ErrorAction:SilentlyContinue) { info }
+	if (Get-Command info -ErrorAction SilentlyContinue) { info }
 
 	# Show message of the day
-	if (Get-Command motd -ErrorAction:SilentlyContinue) {
+	if (Get-Command motd -ErrorAction SilentlyContinue) {
 		# This is the function from above.
 		# If you want, you might use Get-MOTD here.
 		motd
@@ -423,13 +423,13 @@ if ($host.Name -eq 'ConsoleHost') {
 	# Not in the Console, not ISE... Where to hell are we right now?
 }
 
-if (Get-Command Get-Quote -ErrorAction:SilentlyContinue) {
+if (Get-Command Get-Quote -ErrorAction SilentlyContinue) {
 	# Print a Quote
 	(Get-Quote)
 }
 
 # Try to check the Credentials
-if ((Get-Command Test-Credential -ErrorAction:SilentlyContinue)) {
+if ((Get-Command Test-Credential -ErrorAction SilentlyContinue)) {
 	try {
 		$IsCredValid = (Test-Credential)
 	} catch {
@@ -442,26 +442,26 @@ if ((Get-Command Test-Credential -ErrorAction:SilentlyContinue)) {
 
 		try {
 			# Remove saved credentials!
-			if (Get-Command Remove-PSCredential -ErrorAction:SilentlyContinue) { $null = (Remove-PSCredential) > $null 2>&1 3>&1 }
+			if (Get-Command Remove-PSCredential -ErrorAction SilentlyContinue) { $null = (Remove-PSCredential) > $null 2>&1 3>&1 }
 
 			# Ask for Credentials...
 			(Invoke-AuthO365)
 
 			try {
-				if (Get-Command Export-PSCredential -ErrorAction:SilentlyContinue) { $null = (Export-PSCredential) > $null 2>&1 3>&1 }
+				if (Get-Command Export-PSCredential -ErrorAction SilentlyContinue) { $null = (Export-PSCredential) > $null 2>&1 3>&1 }
 			} catch { Write-Debug -Message 'Could not export Credentials!' }
 		} catch { Write-Debug -Message 'Houston we have a problem!' }
 	}
 }
 
 # Do a garbage collection
-if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
+if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJE68hPrHLtppjtZNzV2CeBrR
-# 44KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcam6cfm0OBaGSITtmdPZ2ND5
+# fzKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -604,25 +604,25 @@ if (Get-Command Invoke-GC -ErrorAction:SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR0QcOT7puDZyLIV320NpM98YQsazANBgkqhkiG9w0B
-# AQEFAASCAQBgjoKlHJJUOvxkXr4f/LpW+0mrHsA3nvh9YZeepbarWnniwpknoKcc
-# 1w7g3iNm1pNCGn0dCwCV0oiR0xpmuF/YFtSxFX+no7xbsdIwfwN/blVZDy+0SUaf
-# 9FdD1QOtB4rRdQ2HCybctl/DtsVN9mTsCDa7E+UbvuBnFANQJQG3cgDweaxLDDV0
-# mPbq1GaDZsSkh2ofNo51T/0llU1y41lwgrLZRSO9xaZU/R1ZMwB9EZbL80GkMdF+
-# WDrpBJPCGpcc9gehkhv4MhEj/EJG2eVT8R73KfSAM1cnwWDDxLRDqVCbx3tMAmiK
-# buDTUjQrPsEaVnGicVji4upRBiiaQVdYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ/5NZoZ7xQwvpsStbxdZX5QWTW/TANBgkqhkiG9w0B
+# AQEFAASCAQAAIOesCLN6bhJN+pmXU5DZ7B2rs6URHf8aLh/EL05D8tYNbTLQXD3V
+# 3lJGh53NWsZxrAEtniSqFlZfAeB1QY1bDwpcs5kw1jU5MUZ7h7BGRwj79JwwB2zP
+# rk3zLKl9KjEj2ZzC/ZcVPz2bGe4ist0odcvnFoOPNWobM8tyMBdsFiaX/JC5ZFh7
+# nX91B71UBagU2EoYWuOXcB11qMkdMzWFX/OJRv+GV5f07VdU5PvQYJqtb+gxs1HP
+# K7a1OT0DWSB8M6Oi/48gOqC/GGs0tSX+d69GvCRtEaI8SDm2jVnKfb+eBB/afVd8
+# /ra9ofCCVYorqI1cqi1HIXEejNUtvRmXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYxOVowIwYJKoZIhvcN
-# AQkEMRYEFFo9m89rNrGrYUrhWfzlWiiC2yIMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxMlowIwYJKoZIhvcN
+# AQkEMRYEFIlMKZjSNN5La0S8wUXJRpyhDQQnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCtPb+3l/kij5k7sz+2/btZ2J/cniNtAcQxYnQPRcHEcZpL
-# rZDdEbCQLIe6q1BflCS2MsykKOQJSZJojD/SbHDFkk7J1lLo85pp3Vs3vIaIGu3P
-# PzTbuieXSFgZAVjxMquI/orIEAxJKWFm5UCt8vLXPNcxl8S3DTMhMtkgHoaQCfJu
-# xRAt8zyANqhN4bXlNGCmvhgPwhhFuVm2aGMgR/eIHeNmT3qKP0XSIzJMOTbQbTIE
-# fcRTaQqGOrnGSJAwJ8P1NUEir1sSrIpOFiJuMYEgSXZIvFp4G3ug5gTAibUhne2r
-# AjgTHkNoRzlghPAU+FmyztIMUV9mmI0qMCHMnli7
+# hkiG9w0BAQEFAASCAQBveVwmQ44+yWRNdhSHdHI5YuV8cUb1bF5OWS65aSPe61iz
+# 3QKSSeTBgOud80t5usFzSX/P2OxAy5/8VQWa1TiK0YT3RWybt2mP8/MY/acXplht
+# hzBgOOr3xPw65IiEFqu8cOlHaqr6r+KhV1ccx7trFeJJyTYEJ4mG0JQwhaborj5/
+# btFuMFs988tMwcaUoabAB9nAxiDWl5FHh/K4Zin4cbgUXgyPrUKJG0OI4XdbTe/j
+# O1WL7VKFMlIQmUyWge8agz5U8Sw701Qmw1mPHVZGbaJ6HU6R3NhB2ql9lUNhiyUU
+# oADph01DXt3+wBmKLLPt1kHwMsSTcL1eM9nKSIH3
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -181,12 +181,12 @@ function global:Get-Quote {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name 'texts' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'text' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'split' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'quote' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'author' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'arr' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'texts' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'text' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'split' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'quote' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'author' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'arr' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 
@@ -263,8 +263,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+/B6yRj8LF980dvLK816LsaB
-# 6dmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpxaaT0UufUKQ4MolHGS0B3NF
+# AtKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -407,25 +407,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRaSHy4ETA8v1q8yIxrNcsOpmmTAzANBgkqhkiG9w0B
-# AQEFAASCAQBMzQCZxqwxoFdRTTIc1USF8Usks0JlRe2+X5VyiN/Wjh/6EWq+mp5F
-# y7Y1AktgSqvNBKWY08IxYHtEQERF9WOtCC1vK+lBxtTD5c3oWJVfPvy8dpS/09If
-# LZlJmX8qCoGaktIbPiwkfB99wv/9V/kH9GWSg6AcgNuqBaktE+KfLejuf4Hnkmxr
-# ZV/I9LhmNLEs7iwIHc5P/OS8bFFTwctZbkUvkXq37cfct26nxLLe4jsd6eS47/oT
-# EvUV0y1TH2PZpXqXGmoipSvjtSp6voYOdJoO2EdtwaBElO8tU50zASYJlPKQ7Icg
-# Vbub/2+p5WCtwNmKBfgkhilbZ6YJ2U/woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSJ6VbP7tfcRNwH0h/sH64hW1KQZzANBgkqhkiG9w0B
+# AQEFAASCAQAAAw1SlqZdm1LAknKGcg0dfzlFoJqHQ1mROpRSMetbclp+V7hiEGGg
+# nBp2nNLx7+OlTmOI31U45kuOCdJfDT2IbPqOPBLiwDxuqNhlG8HIxtSTxfVVBWar
+# zNy3K3YNou5v5POIUJQHLaZo79VfUVSUYbMwHBdShEK6Fn9NhHYTwsfwJH4u6i16
+# yYFfWKgXCXzBF9T7ulYQkTbtk/xE3OMlSdbf+RNDSI/Isf58u9Abmj5AhMM1s07K
+# wxutcjK5w8PMG9wwp9cMa3Fi5QSI/N84LXv89rD3rdFRexxKrXXdsmFLEMyaxdRd
+# IF+VDvFjlbmUDuN7Jq0+RVILRvATQ0/aoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0M1owIwYJKoZIhvcN
-# AQkEMRYEFDVbOy6K8ursFIeoXOZcj/dpyda6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIzM1owIwYJKoZIhvcN
+# AQkEMRYEFGnJaQSXju4dqAhNScKji53nKHf4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAEWlxs+bDhY9WhkbOpUytf3cmKJ8wCouf2SDcJFJS4vTpM
-# D25PdtX5Ip3KWu1ZevqxUqWvbtouhZNCfOsNRGNzS9nQRoaV0HU84e8wrhQpkZXq
-# sUJAbKThxAdmLtPuv7b4CxCLLfUnuytv0lEuvePjSYp+y5h38AhHu4NPrDdkRxxZ
-# gFcVxjHHEKB0l2eN48tethKgnDjlrGGCzePVKrdz1QLlgQBbfiaiBd/ayuJnRz+s
-# i/faiPtuuJhZUy0aWN6AYaAx5VD71vahHZt6xkedj7BgaxiSV171ZWDf7x6o7L8O
-# erQxLBax7NR0I/Wyk1D+aoD3hRx3hLCQEqt+p0ZC
+# hkiG9w0BAQEFAASCAQCnTCkQITTdxqoVK7ZMs9FJs639EZbzOJybJLhtfPTJN5fn
+# tfVC9V4XcmzHe1tOQ2ZyhZnx4yGTTQOoNj+85SVtYj3qS0XK0wvilMgM88AE2PNQ
+# DCwv267EA0K0Q5BN0hPrA3t2ccokCMtllTtlARYzKD+UGmtNO+QGkv6/Kd7Eg3Zw
+# 22ijW6MnzKCIUxmVcVgDlLIt0l/SPOBE/hlou23SLl/aWwRUwEJE2fkO4StQO90r
+# 0sR5afpZmHF+jHLF+Vzq8EC5bL0+rAZa3l/PHktrFjdglHJByK0P6Z0GBO87VLGC
+# yg3nmhhhtNg/06BBHlpQdYgmoEigqWZ7RsRE8r4S
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -123,7 +123,7 @@ function global:Invoke-WithElevation {
 			if (Test-Path $file) {
 				$sudo.Arguments = "-executionpolicy unrestricted -NoExit -noprofile -Command $file"
 			} else {
-				Write-Error -Message:"Error: File does not exist - $file" -ErrorAction:Stop
+				Write-Error -Message:"Error: File does not exist - $file" -ErrorAction Stop
 			}
 		} else {
 			# No file given, so we open a plain Shell (Console window)
@@ -139,13 +139,13 @@ function global:Invoke-WithElevation {
 	}
 }
 # More Uni* like alias
-(Set-Alias -Name sudo -Value Invoke-WithElevation -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name sudo -Value Invoke-WithElevation -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqoB5QtNyFSwx5QM5ESZVusUA
-# p1igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUk3FoemkCBEm3GYXqqdop+gaB
+# Rv+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -288,25 +288,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRxUzZvm2aMuRIh7UYdrHwBMigqVzANBgkqhkiG9w0B
-# AQEFAASCAQAIiCY13hOrLMuDCMhIhsmPE4FANGvTkjre+NAEBWH1tiYoEVfkiNss
-# fYHNfDYyOF7bYxYLFC9/zx9TDLz68ke2znwt1dh56sq7woKUrwHVZNCjugJA1uaS
-# k/MzidogboTNUZLzZTZtbfTlgKePkBqiN9D2hfsNxA/0dXy/EtJBgsWQKIDx/Hl2
-# 8OwZF/qo9CkOugV6dU0xjAnJNlQmox8J2BbI7qpW/TvoFzc3tkWc5K5soKnkshj4
-# +ewcsSvgaURU9zxazQKl16SJQaQ3WwZCNcIJWcs3GYXz8LWl8uqp4IIo1vMsTYnB
-# /V14kfwiKtw2oeShr5YJpnLdi/nOKSUKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTADLaXcfWYY3+UrfcaunMgnnsdPzANBgkqhkiG9w0B
+# AQEFAASCAQAdd9Pv9rpqEg3Voy0uX4XsxXlSfp1aqHOWk4ayUY7qTTE3Q1fYPLCl
+# wZgvwddItaUXoTn2XMIjUHUwx7KchrW965AnxzsU0ttfyIaI0hqyJe4DqSy9QDkt
+# W8X78SuNU6aiQd1iIuNR5YhMBHnunmaKq3CLnfso9EytwtS4Mw15AQSAAU0rw0ai
+# r2s/+wEb2HIQqaPNJBpXvOHXr31boNP+1tE50yb3W1fBhGkXfemF+/H2ET7YNu93
+# x7rkhfmNzQEm2xzX7rIwi5c+9AUMs+eFe8LTSYDSqPo89EiXdqgq/mlcuvsnRi6w
+# Rl5Wb/Xf7dqWG/stvulSGRtFh0+vJHsdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxMFowIwYJKoZIhvcN
-# AQkEMRYEFBbW67+1hxnqsXl8ggPdB1/rx5B7MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwMFowIwYJKoZIhvcN
+# AQkEMRYEFABTOIVSTZH6QzBRlibEQHw7AcXgMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQANKX+WiDkJMF6HZq1xege9LsM1XJyQblQ5hOsQAptR/T1m
-# Ry/DIdTS8A/P6FYkodqYaDP/+bOjq2s4mJ6B/zwhSbV2ObLxrowDkchL6PsfW1mX
-# cNdv1/a9Ee4zWTLeDHEyfynq4akBG/V+5j68PCaDJjgcSn9UJutCnL9n9kHfDpxZ
-# iArD/A6EGinRoaq3w0biqwRDM0rMYoi/YPyzOdnw3ALQOto012p0dqqnVpRqBst4
-# nD3EUCwNrjZw1RdNf4uy2oUAeW066ag4MgZa+wsFWPLFWS8QQqQor+N0QVbPpOq3
-# KFBQG10g129mKC8rMmBWQ/zgR4Vf4eeMnev4owPb
+# hkiG9w0BAQEFAASCAQCr0ZMj7gzcBY9acOv/Kcqa138dzB34A1zJFIydfcK9CEtp
+# lQUWlonJKCa+YfT3pKqg9MSYxM9sgQw0/IrB8SZ5tAyxnpI4NYIpx6Xno3VLbuuC
+# X0H3T2PQlH8G7XRGIdnhAJK187nii9suDiav5THVAJ9zEXHKfiyK3tp+B1xBKbBt
+# verwLK0w3+zeKvBiok3W6p2kcQ3c625rSQU7lyZJ2Pf5FVNiorUZP7tof3d/EWLc
+# GupiKp+TQAaYcGJeGufI+LXbWk81g0895Rmo3sUVY8zbdc4UdadNj5z8mERcfras
+# mwozBu6SV/szkkoSxcF+m8JQER2t8igVWZmCj26P
 # SIG # End signature block

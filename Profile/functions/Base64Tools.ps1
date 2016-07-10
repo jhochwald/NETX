@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -98,8 +98,8 @@ function Global:ConvertTo-Base64 {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'GetBytes' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'EncodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'GetBytes' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'EncodedString' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -164,7 +164,7 @@ function Global:ConvertFrom-Base64 {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -177,15 +177,15 @@ function Global:ConvertFrom-Base64 {
 		Write-Output -InputObject $DecodedString
 
 		# Cleanup
-		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'DecodedString' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP9ZlnZ1xvZf/PwzrR2lhVOP8
-# lGagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGlYFJK5nNsijJzK490h5MxWf
+# ty+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -328,25 +328,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTwccduva3MUmBRtH0+0NtF0ilmDDANBgkqhkiG9w0B
-# AQEFAASCAQAR/+egkgxAXTZTCHKEtIgB+ltAjyS61/GEQw82Be6hpAo8O2mkHjSV
-# 36PKF/Ian58v3A4PTwsvjbqapGieDodSnnIfTwDXzfvpciAMdE0n1Mi6sm7L4aJa
-# RnIWjbHVyGVB7CoaTtbOxC1i6T92rnAAIOz6X20t6w/Vq6RVFpmsYhY1kzCdySrH
-# wPcrAdxoaNjrXZGGl7rtW89xAtFlnPAvMxk9o3guzjODjnO/spqi34uMzd0QLzyF
-# vSt638lDvteIYm/IzqievCN3UL0ozHf5LfdzrTwcUs4eWF3i4D37/gZSsYd9w79R
-# umtdSu/3t/tUwyPQLjjJCDsD7Q9BZJG6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQPX73TbGkEHCdu2vnZWrxAihgC+DANBgkqhkiG9w0B
+# AQEFAASCAQAcugTXlNxBVu+xoamSqmQ2tI4DnMLEB4bvEMkM78SA9pL5XpqlUTZh
+# 646oUyi4Nj++6q4f/iuHhjR8WF42v5qxsR2kEyoy5dAUA7vrcAxz0jUvvtdxX159
+# kOwPXZyDZry/DCRUqtIi0EXXJacoyQBs0xDH2Pak59n/Fn0biD4f5B8Zx0wbya9Y
+# oh0SFwHjdVPG56Tv1P/dRlXDT70/um9Ia9fSMeTRkr42FfpRFJ2sQ26EUpNBarWM
+# TmMCa73gVbWJEeC0TX0NboH4PdmEf2iL2Thji2J+6vlAZ7vCvIlxbXGMZsg0n18M
+# 03LacWey6eRfqo7u3NoqWcE+gTDEDlo9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMFowIwYJKoZIhvcN
-# AQkEMRYEFJJvvq1ZP7cBXAj5h9MOCiLneLnNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxM1owIwYJKoZIhvcN
+# AQkEMRYEFMfTxVw1NqZ7c/9sDjSxyzaIvm2YMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCnKWabGJl2GQC9Q1aWybqS8QMRbKPZEwrMhqjXrmi4Agy9
-# y/Li1PaUW1PGJ/LDHrPThY7zGz0nNiyU8rEKx+xIxCzOwolvfFL/Yk1C4CpjeJ4T
-# geXsulUrO/+/o/1F5sVk0LFUDAR7l83NEYk8w1v9V15iB7Ge7rvz90QXZqTOV9w6
-# V+MmeJ/0Wgdq35zpx3JbhiPoISoIzvb7usyDdreDlchsgdqBhIe1j8/QN5AI0eKE
-# uruoQte22fTopIDkVbQvenT8lLhcIB3VDUd5/okAFJcKDpBbEXUk9Nf4uKnv6xrh
-# eg0p5NY+GUychUZrcsOQyU/xSc+stChVawrSxjuD
+# hkiG9w0BAQEFAASCAQCsSFXa+65PkQsFEsQ4u+RxwIou1hARK4xpTrnEP8ljhB9P
+# xb1GfKriWUzwKpBk5Y+PEokxZfhCd/o//NUk+RVb4NzoyWoEIZWxQCtJ0mvyIEJi
+# XUi63YNeericy0BofbQXCzzUr+kC82kV8YKFT19qay6A1qJTmspAGaOsN0W46Z7I
+# Xb9kFc0DRKdLTeRqOuUdoICM8iFgMJ/swe/SZRIb1tjPqDhc//nyp9pSXac69v4y
+# dQ4HkV5XlOiy6Ep6L/+2YTpte5xsfhQ6Qq1DOahOfLLlw47kGDyrCdD98AU6mFH8
+# Of0snaVqFsdI4XseesJKQkgp10RNXOmk/nU47R2H
 # SIG # End signature block

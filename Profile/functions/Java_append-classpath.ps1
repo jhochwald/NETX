@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -94,13 +94,13 @@ function global:Invoke-AppendClassPath {
 		}
 	}
 }
-(Set-Alias -Name append-classpath -Value Invoke-AppendClassPath -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name append-classpath -Value Invoke-AppendClassPath -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmHFSAOkcxcz5sW22nvahK9aA
-# 7hWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUS7M2z94DkM76tfBDTbBzBzk
+# iPKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +243,25 @@ function global:Invoke-AppendClassPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT7Lm9Xz6+ViK3o20KLVCfSfefBGzANBgkqhkiG9w0B
-# AQEFAASCAQCPf5Fvr+wb5RHbRDBch8kK+3JT+Rio1oU/dwgcv8XXSDXUnmtE+Qel
-# AU3WlizZkoTsPD0jkslMyRkX1olLQZi7yfnEHC4/ppQwRFZNJvkS+r2a6rUc/PHY
-# Mp3CqoXKxhP05OMM6osZUeXhjcBvaYAr3TN+1HEoxWOoOVjmZOnTo9a5NgEakJ07
-# fvB6RiWev9/M8FEUc2ID6ft31+dTfX51PLXUEZnGpwEjkmjexXDBwafM1eoCztSC
-# cvsNLa2Cd+XPbN1Q2+Fz0HxEKGJZ/xQSM0pijwlw7Qa4rPnymqNF6DBbkBaRhGBa
-# I/EsTzvNC9iJbG3VqA5QYtNjfLusTroMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRuyOoRXNc6J+T8124itKWm5Fbj/DANBgkqhkiG9w0B
+# AQEFAASCAQAGiUl6R9Ohd1og3RVoLVUOWkWAb9HvECt19fvbalsLwUKjEWZckawP
+# Tocl+yforX1s3HixHu0QS2U4v5/On4PBidptohtRsYhyyo9boAbKtrKMwk5XItFD
+# Q35oBcxeNXzRqMWg5r99WqpOdCTRUYcKrwSsdT6qt+D/ca6We0S6vd1HhLi7PrY2
+# V8yloZNupoihP35U89ad6vRugmtIyYyamuzSc91tPr3qTXWKvXjwKuTTa9xdw0a+
+# nlrdXimfQLyzlhPOfxH0m9/wlkQNLpqwKG83NJ5ydTLilNxGF5+odNPkBcg8Xj74
+# XPpRR/h40Ehxhi2wMseD4R9qRfJCmzqxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1NlowIwYJKoZIhvcN
-# AQkEMRYEFIfQNAylhDbYf3ublzgjm3Pj/OXLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0NlowIwYJKoZIhvcN
+# AQkEMRYEFLtSEBmYbpY5F26mO1AgFbKPgqrPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCuoo3voiJ2PbjLehEwRXH9fsD+Sa3o74IdU7qKeLxL5Fgy
-# 7AxOtfoHHSphMZUj50wmaO/l/rshOHVylryBBf0vqPehuOPU59g59tpITyEoVN5+
-# mbEox0SeGYwPQQ+RuCm3omdClbKpTEGdVL9sjrsNdy187QD5Q0wVziPeOypeIVQS
-# 02Zq4/m/gieTt+0zZkarM0iQtlKfp9viX3t+ojdfjh7/6h6gGaI9MS6+rPpJZgbT
-# 7I3PTiuo2hKYCaznj3edwkRsQdk4IYPUDrr7D99SnxnYC4izQXi5lUmOf9dMkXfF
-# Vikr/hKsMy0Ciqp3Tyf+Xbe+9hoczr4fRt0P+5Jb
+# hkiG9w0BAQEFAASCAQCu17pi8nxjI66H1gBiVi/8T0ffZVMzClho50hy5JQJEgia
+# eLQcmfA5SqVZnLpCWwRAEoWaYBVPfiZ3dLrH6h/Fw8CfmvO7rNAxubwkDn7f7Cqp
+# naXSYbWCadQOf/cXn84Qo3HxG2VS6wnVwBlh0vWBtAfUfkqNERVbgW0EqjqiLwp6
+# C5D9K1DHLIecDDbdhyjSDrj/3t3ZsxcsasNsscmaOrcAec9L87aS3JT6V6cJjTzs
+# IvIGaBmndSNImilNpMJP6SeAEheXUCmEmepuAzjKepeTPncwwKv6BdwNSPnt2vbU
+# 9CEm4SxmEH1NskXgtbt3DM3QMrG2i1khS3PZGAiG
 # SIG # End signature block

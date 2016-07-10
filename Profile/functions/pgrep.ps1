@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -207,13 +207,13 @@ function Global:Find-String
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name pgrep -Value Find-String -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name pgrep -Value Find-String -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhmUgReN1Tm1uMauAC35NEFRT
-# bxKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUy+lt8AJdVIHx4KQFAfMlkOmK
+# z02gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -356,25 +356,25 @@ function Global:Find-String
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQCeCI43C6jEoKmnxelZlmxuN81MjANBgkqhkiG9w0B
-# AQEFAASCAQCVOE7sqozaUe2M9SfVEP0ZgZ+qtAkSZaMV+MI4B36HZxvcsAyT5wPj
-# queaGDztpdQ9cuJMlqzb5H0xYO10+r442C5AJOorsWGrKy21VVEmJV18FRDOY3q3
-# oDPUEMTmbW+weNQw93+3CQOHXZBcDd/eL6l7/JcQa22vshisMFDw5WpNb5FYpESl
-# VpyYvGWkazjxmzQfqTO6rhV6ZRX4hNX6GGIJfN0MlsSiWMZrhj/JgvqhtbWPq+Vy
-# zQAETGi3bn2Bw34ruDdWxpNFlav/of3MTvKeUox2/hZ7w2drydF/5Nev09AEp4xu
-# herDC1u/HBO7/uVU3xFBXXjyVbXzjxc3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSkeTsQuwr9PUUqeqqkCUon/DvBeDANBgkqhkiG9w0B
+# AQEFAASCAQCC0IEX3oyF+97+Kmzm2WitP8I9RIMHwvDB2z8gzq66hW4fSq6xTk4s
+# +FYJKy//9w21CAQ/eNGGiGT5VgbTEO+YA2cJngpTnXzCSdcGIDQwjcMDHvO9/Ula
+# Z6LUl1SOlqvPmCu9VQFmwpr679y03PnACGcMkpoTcnXdI2eIPmyG54xsOnM3mrjv
+# hTYK+wIFRbaieUZ0FTYwzvkLZ2ZtvLcUXvofVjBKA9nwlwo7w7DDF+RINhE7M4oW
+# 5+LLKHqb3NGl+OzvtHFu9TlLaHViZipr8kb2Emf8OJQo3qFkhXQl8GklnDj3CKxb
+# vnuPeG4gffobW6/nblYYBfNYULRzgc3foYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMVowIwYJKoZIhvcN
-# AQkEMRYEFPpF98HAHwS/dkoVX8+gC21rtqcaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1MFowIwYJKoZIhvcN
+# AQkEMRYEFDAmqOegI0MhSyh+wSB0Lutr0l0qMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB5r/W8aCxy1WEfnc5RDyD1CQnbcAB9oltNdVWNbwU33esz
-# igdveesNQKeRvHZxRlFoDAYQK2LaLchurh7s9GB7HsXwH0eGb1bj6Y/jkt/VVsnP
-# iAfJ/oy8whZp7hsvF2FfaYfkA5W4hrCS4jY4JiF9ahPgFXpwlYRtyT4MLNqs8kzv
-# 1zek+VTAfMI/tEBSk36l+zqUHKxhtOoGWyz47yFTVqyUqhQGfKcPc+tOcGYwxb93
-# 1ogaZAY72PQPXuhsM10B1MzZ3xcCkdUAN3h6uZLAYzGHQVoyTKPdIFZoUGyDPosV
-# KE2H0cLUF9pvDR/tjdnyCCjauSG5mJzUKNe6s2Un
+# hkiG9w0BAQEFAASCAQAtnxcvilh/Pe8AEgfWfkiugahmIKZaWHUSB7qGjM529K15
+# e+1i3qo3RTJ/pM7KiQCwzr+0kVfh29uc4FGfRcTUQZORh9tvM8Z/GB0U6aFGJcz6
+# EILdZvzFHub9hFZFbN92G+KZGklL6XypxM8sFUPkst4CzaBkr5oWkpK30v6vA+7Q
+# HPZ0mIEl9Rpk3ufxB2W/bk7kZGPsAO3UqWlb9pcOSSNYcRbwI0p/aWXQVpUI8CTB
+# 0zEPayF/vB8oJ35sbFUf2A3cyEjuaXGx15d4qPJ3HJenB+6nm7sRwr1la//W68QJ
+# MpEsHLI0R5T8efCyDyoxzJny6JVa8AwGf+IfjFC5
 # SIG # End signature block

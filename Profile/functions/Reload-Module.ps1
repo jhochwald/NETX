@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -95,15 +95,15 @@ function global:Reload-Module {
 			#Check if the Module is loaded
 			if (((Get-Module -Name $SingleModule -All | Measure-Object).count) -gt 0) {
 				# Unload the Module
-				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 				# Make sure it is unloaded!
-				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+				(Remove-Module -Name $SingleModule -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 			} else {Write-Warning -Message "The Module $SingleModule was not loaded..."}
 
 			if (((Get-Module -Name $SingleModule -ListAvailable | Measure-Object).count) -gt 0) {
 				# Load the module
-				try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$False -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
+				try {(Import-Module -Name $SingleModule -DisableNameChecking -Force -Verbose:$False -ErrorAction Stop -WarningAction SilentlyContinue)} catch {Write-Warning -Message "Unable to load $SingleModule"}
 			} else {Write-Warning -Message "Sorry, the Module $SingleModule was not found!"}
 		}
 	}
@@ -112,8 +112,8 @@ function global:Reload-Module {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+AjFZ4CkHJB59IPgSRlRhaiq
-# LD2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBSMeRT/xV5TusEnw3k8ogZXF
+# T9WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +256,25 @@ function global:Reload-Module {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSYEQH9/le7vIRQJWNdEJwMGKcT7TANBgkqhkiG9w0B
-# AQEFAASCAQBxfzbvWTon17KuRn+Bg/seUPipj3ACXnwHL2TKzMTSTGc+2dnOCxzv
-# c3V95XA6MoJRg9P17UhlFUx2gIwYs/RqJTmvIgthXau5Qy0z9Cf52qKFq1nsrMcA
-# NUcOgR3u9QI3ZjqfSjHhQcH8TNRtS9tNia6LyWGruHd0RAzuGQ8FjZlZTuZe5nOG
-# qDU2EnE67pvvRSuCJDZq8mQomqkuxfnLxkfIISy3OUVtE1tL7Vd8Qd6XYleGuzrV
-# bFFWuFZXaJry1ziqS8nnODbTkQ/5x8ZgppkYrTe1IwfeJAyjce3glVt2HpI6VffC
-# ceEvlSwRuoklhBh3kDFR8CbzqgytVwQioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSKxNK4smAafCQYUGyclkSH/LhQfDANBgkqhkiG9w0B
+# AQEFAASCAQAnehwV55x4nKksprLkI/ZN5oBfMvyeXuXv+Ta0obwsNbYhyRlDxchc
+# fnPQayJ1RotR63aFMWnqMxQnQOhDjUgybqisYQF3Dnvo0XVSBhExhmssA6JO+FmM
+# iWemJVQmawX0uAf7lf5jqXvLUBf90rpgLBpwQ8GjxXxh5NDCm2M3ZAcBA3DgqnmK
+# 00ZfYUfHDsX2+XiSBX1QvuANOj08lRUe+nNppLjE9NQD69ORRA8xfMGLX3m/qd5g
+# 84JhGXTpLgxXQddgDMxm2VDGB5efKmTBhpaOkTNeHUIeyfRNXwmdv6Lue/dsQ3Nh
+# Wj0jmkjXZEwipQwQgOk+3tw/G8ciTn0IoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
-# AQkEMRYEFDXFDtUB1EN64SkBaJHdpyLByEa1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1NFowIwYJKoZIhvcN
+# AQkEMRYEFMHQrh3SI/szJEWXfG0zHH8uJcKAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA6OXQoFd7QS9GieE2o0b6ECO3TJh897TjSsdnwYsjz/xQ5
-# 7Bf7/jxWvHQ/4JjeTf85opofwHyaEn74N/UNYMX/Gk05RwT0fn9VzeBieVjegfwu
-# jhvpDHXELBMv9z/AkbE3xEb0Slp84id1gcIglisakfAgAxGpswoO2Ms8tlwUY5QW
-# 3Nodds44VkOgB2ukyKzUcdK8AWqvt+BxYxKi9HxjL8JE9PeoNOiYCzn6yntXFiPY
-# NoLmhlMuJfKlbkx57uAilhEiYQFwKyumjp+IJg6+BNniehzoz4Df4YjsXvqCzlcb
-# ss8QlnnTCnvHK2d00zVYse0HJ6l3cJ+bBXrY1+CM
+# hkiG9w0BAQEFAASCAQAeb78qvV18hsjWRNeUCqZcn56iBUlkfQd4CGSZz0zWJLbG
+# W1BmbKPBQmtqFBvt4xKBrEpOA7TVRnUwHcsZ3iUUzpdGHLts/BeDjA/3fVuVpGxX
+# SNc55ihOhKxcTy+4tvYRIR9SVXF4Dx794ttX1weHU1AHXRFQPfNGUE1U+DT21Fec
+# QKl0v9iiNZPsKvdIt/qJTg6uD6tw2oOzJSeehb8ZMd9AkoSdSjIqZqhNYBgKt759
+# KgxXez4WKIt+zFAS4wHq0padthxhcykWNcmQ/C8J86HuD6N8EXc4ztEjvb9skxCf
+# g+qn0BBU9KCp2B/D1/J5dZUMOOJpREwLdf/4wWJo
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -102,13 +102,13 @@ function global:Get-IsSessionElevated {
 	PROCESS {
 		if ($currentPrincipal.IsInRole($administratorsRole)) {
 			# Set the Variable
-			Set-Variable -Name IsSessionElevated -Scope:Global -Value $True
+			Set-Variable -Name IsSessionElevated -Scope Global -Value $True
 
 			# Yep! We have some power...
 			Return $True
 		} else {
 			# Set the Variable
-			Set-Variable -Name IsSessionElevated -Scope:Global -Value $False
+			Set-Variable -Name IsSessionElevated -Scope Global -Value $False
 
 			# Nope! Regular User Session!
 			Return $False
@@ -119,8 +119,8 @@ function global:Get-IsSessionElevated {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUH7rElHcPRQ30gU/cma0MmTz8
-# mhegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUwiySLp8G1tjd3Q8cl1ZZmUm
+# q12gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +263,25 @@ function global:Get-IsSessionElevated {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR4Xh+lF+8+nlCbUo5jxQ07obpW+DANBgkqhkiG9w0B
-# AQEFAASCAQCoKWFklClWsI1ptHF1c4flxCvjSG0zXYOgved70OGcyeGyNraAnXLb
-# eCb4D72AUu0TOolD6021HS/dYJGS4Meo6uMgTPlueuZw+kV5HuqzB+S5NTZixkc1
-# 3d+RNX8j6ba4ChgKHO7xI8SsoJoUh6QWkCNF3/4VoYHjAXSonjpUDI1rFnpK2mCL
-# NXb0z+qVZdc9SYRSPh2f8c9zIG2lo98BctIYCleMWqsbk3dDQ7WhLxv6Rd1WUMdW
-# tYaopO9AH/LCtCiWfVuZLYqqrDMW0ZrU8gXMjKrLa0Wt/HJ+tZ1NaXoZ35xzeqAe
-# fztlbDHCXeE4BthTq6TXAU6QA4kMUS8ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSUK+bNgB28Sc3bIMqXSwT77hacgzANBgkqhkiG9w0B
+# AQEFAASCAQBpcrQNoyB8v2Yb5qx2sDc0d+e5P9c5yiQOyYoxevx/CEEazgmBYoMl
+# kfC0l+eBfrUNokzYnIXxcA2orDbrCat8QvzohlHrEH81NoMpxAErTbvgIm4UsUOj
+# rxW93z5dvI6vcefYI5yfw/85CdD78/tO9L1PuYdUwa+G9pvPKua7zdFLuen4+6dW
+# 7e2C13sZHBm3XHGn5F6Z2f7f4646eInsLSeZhae2kTWEexPRFQuK/s+kF6bc9bCB
+# 8V1oH+lFHej7YCtBfefU/vbWcX42xuggLnncu9s00DSQBGfsn3EAPDU8TE3lGF/S
+# R33ISRc37WDgQ4WXkV0ixVJPtfAGDTJIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYzNlowIwYJKoZIhvcN
-# AQkEMRYEFHqSMRrdlhR/ncUU2A4BeSg43QZ1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIyN1owIwYJKoZIhvcN
+# AQkEMRYEFHopvJJEtItVf0YoGpZKkL0eFt4dMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA5KOZpZWeio93KcF1y+PbYVJ/DAbdgrLDcosINjH0KEohD
-# yQpzmRgaoTApa3Q8KegbLX087B9bDFGBCJsBaJr7/atxL15hRrDpARLhjQcGqKPG
-# a9MuNDk/0yT4WezawgQTfb2DD301mIUOqWHlKJMeFGuy77vWZhHraZl4YY3rBk9I
-# vhct1Sw6qcdSJEvxuYyIJ2sKV60/riKYHuFPqpR8YSMXPJxNY7XdnKA+BVwJOBvp
-# r1mlhcVztxtR9/KugLuoY8s7X/F+annZ5UaniQYG7gZbSW+wBh/OyQwI9iv254+5
-# F31H+taT9YAuFgtqFmj/NGKQAlY9K4IIDD4RNQg5
+# hkiG9w0BAQEFAASCAQBlcRAZ/Esx2iE5kusNUS7wMo8AM9kfD45wmlq0alS4Yf1e
+# dnJ7N1vJkRlAYkIyOeIuRSCGYSrWjbdHLZmCMY9lNBrIqhpnMGFiRyz5z4dnOsx8
+# foHa4MSIP/tP18AsgVc9pleRUduqgJijKjJloQnBchXnt/xljzeoxsx+85GYN7jN
+# TJhN19oWXXnOJ+LowKQs1KPJTia5VL/y+gIUOwIIoHhNuJ/1aNtVhaZ5wYuc/NdP
+# p+6QO7hi4dVgKAzXYZVlRcszFwxRQthjGoHzuC/1Iv0mdzThaJmQWw02bc/245WS
+# YJGTOJK8fV2MiyOyGjAVM83vP0ePkR3kUYVKZ8Ah
 # SIG # End signature block

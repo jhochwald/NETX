@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -94,13 +94,13 @@ function global:Invoke-PowerHelp {
 		Get-Help -Name $args[0] -Full | Out-Host -Paging
 	}
 }
-(Set-Alias -Name man -Value Invoke-PowerHelp -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name man -Value Invoke-PowerHelp -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV4+kDB70gqOfTsr3D2Q1BJ8D
-# 57+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvFUddt6jn7lZlA/fTBPG/6o/
+# A6+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +243,25 @@ function global:Invoke-PowerHelp {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR8tyrNmhiEzE8RG/YmWq55pAE2ADANBgkqhkiG9w0B
-# AQEFAASCAQBLJSo6L3J+jnjQFj2yCYM+qFl4pc0YlzX+mTKWndZXvGYQN82Fm6pM
-# 24M2RgNFbocP5Lg3eOItICu4lbJo7FgvZCMwixycYniG6yW8YpSmWCTpcdCGoDU2
-# CjbPO34gxvkqArIV2rLtaQKO6iOxkC0n1tgqUY2dqobdhO7sTTZH+Wqw7WPP/NW0
-# Ukn4FnzICAgT+GoNxivNTZoQEw28R49lJ30RNCcD25IfF0qkqmCPmd5//iSniU1i
-# pQG8VFRrdYM1km0dqFXgHqemM2TI8cNx+BAmpdmZf+wDA2JZUBbXYW7klRR7ecV2
-# aNucL5qLImEDR43rOsIAbydVu+RrTdMmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRaSumAbT3hAojzUKR7hxr+KuVCXzANBgkqhkiG9w0B
+# AQEFAASCAQAix39Kxmck2bBe8Ki0s8p3RnBHY3WK/75zRrijp/qmL5oPXwdfL0a1
+# IbfqMf5JehszkL1cG8zPEysMrMNDfPLeGafHKKYZNEUbBil/YVk00k7CcH7iqwQI
+# TolTlefSHJtME1YqPecl4wce24ci6+Bkc8GFEmkLqs7mB9KPQMrhQrI22VUSVhAO
+# pSr1GyKSwKbKVOqZyTDLNSz2QUIcs9ij+AndRdcMTuW893iyU1FDvVxXGa1gvOTI
+# gA39Sls5UV8nyFwOPDPEQxpzrKXh9CjXSC0EiiEKLatzDZh2fCqBVbBWdzylXkj+
+# 8VKOIvx2jI8GL1zNktZpUmz+41c/WiLnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1N1owIwYJKoZIhvcN
-# AQkEMRYEFPHNv01GQp5no7lptMuMJ4PdfdavMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0N1owIwYJKoZIhvcN
+# AQkEMRYEFCnSs7NmEtefCRMm4FGWkoURAw/gMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBl5UmmPHshYqN55XuepxeijwF+irQfBTZvxnxQfh0c+RqS
-# 4Oan0ngkyuhh1Sl6izhgctn7TDDEX6LRs3G95UpckCMKjBUJHZm5ZDQMdQddpQoS
-# 7Irac9qlZK9L+js7/is/gI61C3eOlD0yPfAmC7+OqEAV9+5A6GPlG5uMQBB3EV6U
-# 9EfF4q/JvIVQIji+nmg7fh7qEADFKCrddj4v06VMy5xi8m0BEcgewyWtUbmA1hJW
-# 3qzSyrJvhEyQgv96l+tXluHnE0IuZWV5SmAgGQriXuUDdPPtQgMBCnUVeDBuOAtq
-# rciHWa/fDxeHHET7BKKL3umQ2u/688N4rdM9rTcy
+# hkiG9w0BAQEFAASCAQB8+v7XBnKjJkIskCpXSNwPCcUn3XeamX2JwYLyxK78rlYT
+# JBmTBnwNjbr25QpmGNmGtzN5nCu2e74626pCNMzOUIc1oiAg99sAN6bHbJ+KhxpF
+# xwTwmiuUjHShYzNr4UwC6ugj2kriLQRv826bL2HwAMbhCjZ+2flz0ukyLWv0LZJB
+# mJ1lxTclcQRHCo0SWOifw4MGLIBKiPrs6PIaPthJu0xW8xjww6dz9KzDf7lIQ74/
+# 2C2FWFmEdxXshp4UU8UBR15lxtyEr/7QbGSdkxixxK+Tk2DF8YZVSFYuDEOHH4qL
+# E1GRgA1/a4LLw2Nv4xPtL7w5IVpS0KIssa01FTd1
 # SIG # End signature block

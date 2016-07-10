@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -79,8 +79,8 @@ function Global:Set-DebugOn {
 	param ()
 
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$False
-		Set-Variable -Name NETXDebug -Scope:Global -Value:"$True" -Option AllScope -Visibility Public -Confirm:$False
+		Set-Variable -Name DebugPreference -Scope Global -Value:'Continue' -Option AllScope -Visibility Public -Confirm:$False
+		Set-Variable -Name NETXDebug -Scope Global -Value:"$True" -Option AllScope -Visibility Public -Confirm:$False
 	}
 
 	END {
@@ -111,8 +111,8 @@ function Global:Set-DebugOff {
 	param ()
 
 	PROCESS {
-		Set-Variable -Name DebugPreference -Scope:Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$False
-		Set-Variable -Name NETXDebug -Scope:Global -Value:"$False" -Option AllScope -Visibility Public -Confirm:$False
+		Set-Variable -Name DebugPreference -Scope Global -Value:'SilentlyContinue' -Option AllScope -Visibility Public -Confirm:$False
+		Set-Variable -Name NETXDebug -Scope Global -Value:"$False" -Option AllScope -Visibility Public -Confirm:$False
 	}
 
 	END {
@@ -123,8 +123,8 @@ function Global:Set-DebugOff {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3mqkkdBCxAwrwzdQ67Nif8ya
-# 5DegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwznZg9JqkSKWkV39FgRRY/Wg
+# +yqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -267,25 +267,25 @@ function Global:Set-DebugOff {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSbaKB4eeTpQDm4wj+9r0LyCD2iTTANBgkqhkiG9w0B
-# AQEFAASCAQBt/O5MlRXEBO/2dJByCERLuCEZjNYlHAnMxX6P83YYA3matx+U36OL
-# 9edm78Z1jkZLqJPYTv7GcFezdIeFDtLt1zcLpDoGt/LobBeQTEyqqhIGeeEXfGCt
-# 27NDd0I4UBiUkSmadZXgfI2QsyBnITbzyfgs/14EhHFHZPlSCfx4Te6mkmpr32ig
-# sgmkhYdstqXQ/UqNqeQ6OZ7JSKLN7TqhFevDZ+EX3mHtsdEnAz7Ro8eLgeO3bWdm
-# qdPyG+YfvSpk+7nq6lSa0u8yt0+HixJm/Cbf5tYlELI2b2ElkJt/KH8QUlQgpfT6
-# Ws34yi2Z7P35xxmrUsfuee2QLhdQTtv+oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSS9aSPO8PfTGqyyXuX+2TugyEePDANBgkqhkiG9w0B
+# AQEFAASCAQBl4sHp2cN3qD4Zuowp8uKwbehIkBAjXTsDsEYxhqq4vJzi0uxaBcQB
+# vU1GUU2B8IdC9oKaj/RoFA6xHhyYW5urKvyT+0KxT0hwQFQdkZxZUaZ1wbW7Kvuw
+# 4IaoBEFf7DK8RezhDCK6iIZqkCvnPLLikH3x6JEyQMDGUBCB4bNrsQfp11a7rhxC
+# qpu6BXyExHLVbRvYAPJQoaBDdkF9bcogZstyQj8sN1xHnrDzYLj+7XwWq7JL2KRX
+# rSHhBR/XCvTJ5rVk/FST3CVdWkNNwLKgMGxPuSrXiuy3oMTxgHEWhhBbBVD0CVE3
+# xFqDj5+CRkPLaxZGTpgNoUJH0NNKEtrzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwOFowIwYJKoZIhvcN
-# AQkEMRYEFMcnXeTQCXDSGHk7mTvpWcN5217aMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1OFowIwYJKoZIhvcN
+# AQkEMRYEFAV/v4mpVuYncSEU3C5kubTSCxRPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCP2RYevdQdDAeHieWwUd0pkfinirTp7aoHRIukWzpdKALa
-# coSeK5iZHV675N232/EpsmAu8Cv+XG2pW/9zglcx3vvM6mq56mGtPS0p1LLY5Biw
-# G0t+pz37DP7nSHPKMPJ1a/GSzlO42qPyhxtZD5c4IAFhn5NrwvG05dse9o7cvAts
-# svcHnu0SGb37d96pxMbFwkOIuKsyN8w0WtmaquiGhKEUxV6ESXCZgu9yK7YlNWDD
-# MuUsDIxTpo4vzH3204jxgqpwy4UKU48Z0YEEoQAeGNtYaRl+IhTaqN8/2ZRz4e4L
-# ShyzKlZ32O45S6sY0XOxyYjbZpiQ38gV9chG+QiP
+# hkiG9w0BAQEFAASCAQCKuPtls2N+BWj7iBFjWTCa9VR5KirrE9zcO8iF040rXP8h
+# PVmVjWbBObmQ2/JvxRhtapBkOzlWGQTcJudoJAOzjM9BW2O6yfPBbgEum0EKHZLK
+# irBDYR580DXlrM/LXdlwmhHx3ESRXdBUc4nMLJqEQyDasSDcJGaC4ez9TOPf5o5G
+# F6yiXIltfGepUa3dIl7upm3w82XA2o+P+4hGFbhX5d7CedTFxj8/r6mvCZaGr3xE
+# fLpdmW/nHez51h+u9Q/SWOoFmdJED1LyDKHODInxseH3vl7KINnq7WzN86OZUHsn
+# xnKtTIn3KS4DHpwOrehvaeaRNS7IUnsc54dQXB0b
 # SIG # End signature block

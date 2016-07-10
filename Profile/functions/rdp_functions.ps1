@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -98,8 +98,8 @@ function Global:Get-DefaultMessage {
 
 	PROCESS {
 		# Set the Variables
-		Set-Variable -Name 'DateFormat' -Scope:Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
-		Set-Variable -Name 'FunctionName' -Scope:Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
+		Set-Variable -Name 'DateFormat' -Scope Script -Value $(Get-Date -Format 'yyyy/MM/dd-HH:mm:ss:ff')
+		Set-Variable -Name 'FunctionName' -Scope Script -Value $((Get-Variable -Scope 1 -Name MyInvocation -ValueOnly).MyCommand.Name)
 
 		# Dump to the console
 		Write-Output -InputObject "[$DateFormat][$FunctionName] $Message"
@@ -430,8 +430,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUROZrgpCr3kLWGANx7HsokD7g
-# 9iqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV2CUdx46csfhyTRUThOm6SaS
+# CYOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -574,25 +574,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRfOR/OFOJa96C9Or0jlNbtXMEnKTANBgkqhkiG9w0B
-# AQEFAASCAQADvlAsDFJplNd/Hfh7z3I8VQpvWX5RIi81VZF87wvPi7b+TH7mNUpF
-# Rae4ANXiJFo4aka+Hzn/v7mOSOoZ1A+DLnGsSgWgr7PzPmZdBSRP+s1AxVijRgVy
-# BKX0TgcFlNYRUgm2m0BTSrFKEGuSErTmPtUC0sw4V00bwD66cIvZBZFIaOoNF4r3
-# 8iSa1O707iPmKaxFVgMqaPPaND0XwAo5PyB9aJsNkzWliaRKZZsGuldBshVQcX6o
-# 9jGkUV/Rs4vwL1QRYroKoSWEBZGwhn2C+quP3wySHuJpCM2TH1Nutd/g3UvB3RNl
-# F7cPtuYhbWqRtK1u795V76D53SxPrP9ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQl4DPiba399xmHJZSSESH667raazANBgkqhkiG9w0B
+# AQEFAASCAQCsDAEQ0lh7faqbsl45xcEjQzzDvPPvoF8MuNmr7bpy+X6Nm84eHKW4
+# pmH5EYGQVrHj3u64o0HZs6eNkO+5ZdH7/nZdcKluT65JuCmQvGvWr4o/+l3ZpXhH
+# EgekwEfg07gUUWmP0B8J6ZXNK3c/t1RRm4XT9dNDZwTilHTZK9kPPJvHDSa7Xq+b
+# NT+NwdY8eHASCJjt4ZsZTvEeFAOpS+aNeZGhSNTFQRGiFMMmgR73M3vlHKRuOOAd
+# vl+d2AgoQla7fDDv3zykSgHtO55bvDcI/z/N8ntDD2eUs/gnAJ1TdtADiDB/2v6K
+# zK+6grArzMyy69i15yNd4Xg+nhxwCo0poYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwM1owIwYJKoZIhvcN
-# AQkEMRYEFHU/AhzTdM+5F2yOz5bSdLbMSxSzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1M1owIwYJKoZIhvcN
+# AQkEMRYEFEgJmQo97zp5d63CDSRy2nxBAtMlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCY7pYUq215gK6xPNtuqjiHKEdwhraUs0YXJc3rab0dAlKZ
-# EMqJHt+0QGKBYB8OsAcs1khb7zxltleumLNPz7mbYVFpczfT5AqPANItEt/2eseH
-# h0cR1dVsX/sT+wsqPCC3SBJ1zA/mQZOYNhvIyDl9tM9cY1+xJQPNAnAZ4qx/5Du3
-# kVWgIr8Napgx8rFuhkaZN1beEdR39BeQAxtohG1LicI7W+CbmpcEQhQTFQwOKTZ7
-# svh1oLMKwC+KyirK67sqwTBuNvfUPgbxxb2QOPdh2DKCt3UBb7AyG5LHZOuHjPQ0
-# IF0fcBOvnCxBlc27ePbq5zGuN2to+ciTS9IlG7xa
+# hkiG9w0BAQEFAASCAQCUpo65r12cv7ZSzbOXJbiuc++vIFbEewcgA9VqkGr/CfVn
+# NyKDw2ldC1XEvFj0VaJihJq3i5GBEuoHa3QOXczPw4BpLUATulwCadmLpXO8kVZJ
+# 5QpUxDAqFSjjFNdhNdRiZ6BBI2/cjzkRjHaYIcA3blL4OBkOD2rsmTv49eqNF5hQ
+# MEmK0Y5G2xidxuBn1LizOb5ZUNosqTL0oLe4LQ/a+0xrHkdcRCGyBjuimzm3rCN0
+# NmgfcoiRVwLtncyfPnoLQ0XNC118hdkiTQnm9t8s9VGRj2K5hoWEzWC6TWDyyVjc
+# duR42QhjQwsfhZVjK95iMFDiO8ldWKiWzEYSTk+y
 # SIG # End signature block

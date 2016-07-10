@@ -1,11 +1,11 @@
-#requires -Version 2
+﻿#requires -Version 2
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -80,14 +80,14 @@ function global:Edit-HostsFile {
 
 	[CmdletBinding()]
 	param ()
-	
+
 	#Requires -RunAsAdministrator
 
 	PROCESS {
 		# Open the Host file with...
 		if (-not ($VisualEditor)) {
 			# Aw SNAP! The VisualEditor is not configured...
-			Write-Error -Message 'System is not configured! The Visual Editor is not given...' -ErrorAction:Stop
+			Write-Error -Message 'System is not configured! The Visual Editor is not given...' -ErrorAction Stop
 
 			# If you want to skip my VisualEditor function, add the following here instead of the Write-Error:
 			# Start-Process -FilePath notepad -ArgumentList "$env:windir\system32\drivers\etc\hosts"
@@ -101,8 +101,8 @@ function global:Edit-HostsFile {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl2bYPUhlio2tv5xQ+j0c+KG+
-# RamgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUh14IDC4jvdx/rvc6auziJx1O
+# Q3OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +245,25 @@ function global:Edit-HostsFile {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQD20pSwIDzoxKnFu0RT0CqnGN/KzANBgkqhkiG9w0B
-# AQEFAASCAQAGA6cEL5rtFdUFrC8gprRqO4ucTzqk0Cmdmj2irDViY9hEOrEAlsos
-# LITc+pBtkfjrhyvHvDW2mi0fNMhBonkigehDTKRc2iPnQYyJ0dMw3a8n0Hfi7qA8
-# Py7XxXeIgf/mZ1D+MQ72o3nRyfhSUZV1Zig9vzR/oBuAJEMvSjDv/PiArM1cHLtb
-# 4k3FiNRLY4MLMWIutndLAqxizj+wAEmYGu06/h2Su9G8k0KqsB+2XGXw3oPsxPnn
-# EcC4wY0/NbcxdV5G/UX8JrHWi7swvdL1XIzMSH1HFOWO91n1M7qhCvOMka7psHCI
-# KKDSTyBg4S8FsysEaDJxotRh+kMMaXVdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTBTaDYhr51h4sc77iMa18dJ7FRbDANBgkqhkiG9w0B
+# AQEFAASCAQB/6Bnto7nCRFiJFQkDGepXOCKbsnOrQ9+IRQmjzo1KwWcC07C00Z8J
+# 0gdBX01dIAg+CrD9ZH79cSDZrXq6hYclGMhu8OhN0MqvmTkR3xhQ41Oj7BQOejOY
+# WJWyGeImilVaflDfzVcpMVxDDQTOkg8hkX1RZn2GkvjRoY2mRRypv+3yQ+v/3uph
+# XWnFcZLfXzBVHMKJJuQRUI/hsX+gxi0f2BNt5yDFFzHTu52sjm75eIAgqozHEaMI
+# 3IwZNqIsd5q8OZuTYCasiP/ZprqqR4vdvcOCoZqgJMClpTv51ayO4mnQwGlKc/Nb
+# 8yRdzfQXpKyEzGf0na340jTQ5HbEsVM7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyOFowIwYJKoZIhvcN
-# AQkEMRYEFIm6a7Lfweb9KYyuEaO4qpk5gZaqMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIyMFowIwYJKoZIhvcN
+# AQkEMRYEFIRcA7RZOC44Z55eDIt7hLBJQCzeMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB2Iq11PdEknqf3c8Osh7sgXw1+OrAOr9IZQSiMtIwKkAdT
-# M6HbEwXpurJ9ZijVqrMkefJWtzMH7JlBKWtdbthL36wAwONb+/M5Yn4yPoRB7FSp
-# 0jsC+vuSHxvlyvE/w0Poxyjkdv46eot5fgQNAULtr7tQdIJ1vZUJAPQNlfD11+t8
-# tGBgrDzeeoDU+X4WdIzfWlyKo0XLYEgqGTM7kRpd4kpSD2X/2f2TyNbt0NQ33iTf
-# U86MdZLDw8fl27nEFLxCLw/tkS4Ww1qfdk77t6R+ZvcMQgCjreuYIS6vYGDkOCvQ
-# ZDR5pMtnj3BihA039mYrGDDbC/RERGuP7lb8zxkZ
+# hkiG9w0BAQEFAASCAQCWf1JLoBrgNgeK3h6jMGI5w0B3nZZaHtr9MCt+QL6iNO3I
+# VPbVbf6JbaVPCxphkLgs0Ml/Ki9ApnLww4C70BsM+wOK6QM9wPfn6yrcoKKhCLzC
+# PM5U/N8X2RRQMPr6pOledua5NS2mnYU8ymhuUnyTmvPB0drjWcySOvjCXcpHtvXm
+# IOgSvzBUBng/BLTymo0xgx5bQDKxCCD/lAfFeJqtvXc8VcT1jeTpwgbLLeOFIPbV
+# NOmjxtrxlL6LeQiu9Ea6BZEJzAjpK0a3A8PTOxNH869BMfgoEovArcrZl7mlhk4y
+# vOZsnUCNsAvv+TMIxUEkmbmpTBUEyEiNsdPIHITt
 # SIG # End signature block

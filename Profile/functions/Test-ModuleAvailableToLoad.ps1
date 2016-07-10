@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -102,7 +102,7 @@ function global:Test-ModuleAvailableToLoad {
 
 	BEGIN {
 		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+		$modtest = (Get-Module -ListAvailable $modname -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 	}
 
 	PROCESS {
@@ -117,8 +117,8 @@ function global:Test-ModuleAvailableToLoad {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULVzqzFEvojGu1D7cU47Bfpbn
-# y0WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/5/VAODg+6EQHseD7WGMN//Q
+# Y0GgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -261,25 +261,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSVul4wIVE8ZEuWRxq6Msjc8D70hTANBgkqhkiG9w0B
-# AQEFAASCAQCsrIBGITR/oS+clwvRNjMB/80lyG3/waXvPJhbpmBDXAviBQv+LVlH
-# Pk29ldCXg9tfHb0Kk3U0zGwdhEV/8wPSZyDhyutqJs898GQaOUCuawHZQEQRTMsP
-# /d9Og0aZ080ImBzfEOYulFWfQ+nx4uKaBfyT/HAdr7hF+0py3tl53QqntQQRO6s5
-# Q3YBJtFApCi8P4poKZ0y6XoAy6Olhq23RrW14SIsqvnGrYlm2zqwApnZgZtrfFxP
-# z3frTRmPvF/4DHfDuO7sRVJSXjh0pWjqg7yraJa/uXp7SvVLXxJjwBcblcWno+sz
-# SsY6g4MPWahx69oqc6+0TmMYgA8GmreGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ2To7yqoz1ltruMpClJeRTvjrf4TANBgkqhkiG9w0B
+# AQEFAASCAQAs3IO7VeMkibbC2L14vkK2Q2ghJaiJzsa1kv1CAK4m5g7U3Ppp7pwT
+# Sbz9L7HvUYAR4k4OuRQVgexKaCHp8mstSHk+buWzVUjll6917si2H3bcNy39RvTa
+# 60XFB2NSZrvVxgXSl4xcgai/7iblX3dfQPLRsF6wi2mfkLdxcmCZvOy60x9t6Thn
+# Sxx/CVAVm2U6laV91QrcWWcs26m0krB97xs7yNccioeoxTNAioeuslQgTK7TTwrX
+# 4UzNn38uiTcyNQNiDXjVLir4SDdIeXne1NGfuuvlEsO2bSjEu563rLt3wTzv8s4n
+# vBmFK3mY3pRqQ42jZopQIO0Q7XZ+W6fpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxMVowIwYJKoZIhvcN
-# AQkEMRYEFN5jlC5FKjlDG6Jg/EpJvrBgWLXlMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwMlowIwYJKoZIhvcN
+# AQkEMRYEFN4ISteyyMpHW/Cfn+PE/dmC3TP7MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCvmfj1GJ6ind8NTpLgqV1+f5bshlbl9EpRHN4blE3HMPm8
-# 9T7lmR1nBzFtBUS8O01xSiXiEyUpxaGs2s22JatcMiaVYYoF1Q4CP36L/gEJNz02
-# 2fpI0X81b5zEZfqOsHi6d6o3hSzENnI3TjySsnkwmA8OfwJ9If4RgA4Slz4gtMCw
-# ssS5vPhySdMaJ1QSbV/J1kg6oq2Y0Lz++E2uWVvdAs/7pID11WPX6piuDmUsT60o
-# kBjPVOeOtPYhZ6gi4//GsNNOEYnR5l86oE45Yvt3Tw8fPt0rj/rGw9fr+rCVbal1
-# C+jXaQDtsns3DJ8snpPLm1S+sV6JUHElnDq71kcX
+# hkiG9w0BAQEFAASCAQBMB1Qm6Ide3FGLQT2a9nbxJ7WEpBJUK/kkjjafsNS5G0LU
+# a5qO8rmwGXY0IgWLJeMiIDuDVMIsfyhMBYITv8yN4bWk1Zfiud8Q9vk6f9gZyMKu
+# w+wBWeqa7GHCpSuilt2X2O7uLfkeB+aJh7LtVJcYQi8HKgXHTBvrd8vbxwDcPni7
+# ELaGLl1zDeQ4cQFDWZLDTe67WFqutVQtg0pFVqyc5RZGw2VvkKuVyoZjtCMz1nc1
+# mDakf9h9H1EjbS0o6EkK5COT3lcEao7hODBq5AUav7i7d3aS/8otjlg6eFETN0jv
+# uTYXk2UhMUivi8axoJdzqlJjLZB2jRF9lL8PXeM+
 # SIG # End signature block

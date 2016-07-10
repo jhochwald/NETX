@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -185,10 +185,10 @@ function global:Send-Pushover {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -223,7 +223,7 @@ function global:Send-Pushover {
 		# Attach a URL to the push?
 		if ($url) {
 			# Encode the URL if possible
-			if ((Get-Command ConvertTo-UrlEncoded -ErrorAction:SilentlyContinue)) {
+			if ((Get-Command ConvertTo-UrlEncoded -ErrorAction SilentlyContinue)) {
 				try {$url = (ConvertTo-UrlEncoded $url)} catch {
 					# Argh! Use a unencoded URL
 					$UrlEncoded = ($url)
@@ -274,7 +274,7 @@ function global:Send-Pushover {
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
-		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
 			<#
 					Argh!
 					That was an Exception...
@@ -287,10 +287,10 @@ function global:Send-Pushover {
 			Write-Warning -Message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -357,10 +357,10 @@ function global:Get-PushoverUserDeviceInfo {
 	)
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -381,7 +381,7 @@ function global:Get-PushoverUserDeviceInfo {
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
-		try {$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+		try {$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
 			<#
 					Argh!
 
@@ -395,10 +395,10 @@ function global:Get-PushoverUserDeviceInfo {
 			Write-Warning -Message "Could not send notification to your Slack $User"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 
@@ -410,8 +410,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9P4pGModIEQrQV1Sbe+SlfiM
-# FIGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUobTC0g9Tyv+sjxnmlNvcIyvK
+# tUagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -554,25 +554,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQwheisYzXheihzwDrmOyno51HEbTANBgkqhkiG9w0B
-# AQEFAASCAQAmR9+wyhpRa8BLKpBWetBx1+51exNfCzRYyd+uFxGgPe8UfUy1sCCy
-# aEtZecXBERzMvar0SY6kk3c1FEmgGfTph34GQGbceQa95z3Wv4ZJrdnIjxseuxsx
-# Eytba4dkDFF5UDn3xsxjSW6PMjpotyxvs6t2m6DCr32aTqtqJSXzSzR/Qt4YOcIH
-# WFyg0dYJ0z9chr3jHN0EFfvBJG83JhDSPWolRXKH1sVo6Oqxnz82YU3ou0yLGEqG
-# 2dv7Pec1MeH/63i9hFm2XkXBF86fmUXsEZqai+LrwmnhRhTJyomwKZ9YK/rkJeyX
-# 3zJta0ux02oVxAM3koTBVnzRUic47/iWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTJ1pL0esVkTTbloavGV2BA/vPfaDANBgkqhkiG9w0B
+# AQEFAASCAQBUUv9gg4HTAw8ULp9hTjXJWy4AkLsdiqQd3QdztwC9Kv7tL+U4Wbnx
+# voGdNZ9Zkoj8IVRH/fhcLjTfYLW/EurBqxXVLpEK0zKZDk20x5LgezRPrdIlJx4o
+# 3g9lbtRWDGhMbnVAtoHe4v2LRQLdVpljJ5gXGf+dULgF1sxnpuWkxY0OHyx4pbHR
+# k5xxaoCNoxoYRawqMwo2McSaRR4N1dAh8tuPP4X9s7s4T5e7tHOZy9jszXTtBgbc
+# YWPpRMFFtXdpH+kuJgmA9AzX4SEFynMTa/qxUKmjriseeLEw8rGQg5B7HyB/CZIE
+# kLK40V639g1H63+mj2IJx+UdWmUG7ePEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMlowIwYJKoZIhvcN
-# AQkEMRYEFOie8ZPwAUk66IlcHtPMOGjnAXDkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1M1owIwYJKoZIhvcN
+# AQkEMRYEFOTN11YfNmnhvuBRoxW4D7KH9Nj8MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAA7h13tPD7XbeIjLV9qPCdny+LDlXJVxbl650GK9H0DfDi
-# /Ya/nKjTGnv33UoIBluAGmsN995njMz4yk+vmXQBF3gLnyLau66kCiRVL28M7FO6
-# ylixBaD1LwgKIyUf2SibDnXaAHBqsbjzebQQiJx3BGnE7dnA4gGF3VHbEHwmqlsa
-# G70d3MHdrL7gX12FwQSmlnj6etGhZaWSDWZRRGWAZzSvU84SZbmgpARrMxP34RMG
-# KbphFgNxD9mTmLsXGmvfCi5TKx/C5c1Gi0r5PKcMTSVnJByhviOM744cNdjVZv25
-# SnEh7nxxvSSAajDxYHOGmsNaSvIDPxqfdLCL/lI6
+# hkiG9w0BAQEFAASCAQBmLrj2beI6aanInXqc6vSu11NYQJyw3a8mcoRVp+okfCkK
+# Ute1WCoqhpcBIX/CGcg7xr9UVUzGEsi/G95cuEfUHGc/ioUx1eYnscPaWVIltLWV
+# NnYQSgREpD7NM6jhLCxK1ZaZ/Vf3BZF+TiXfBhR+xooWRqW+pjS66aE+4UK2+MWY
+# TP5nJderSKEkifur0agpGMPeGFZOT69lXmb0ur2Pd0YTnXSi9M2uPhkxSqLrdWKI
+# FM1Wr0rlTQK85NGZmfNl2AXCi7WF6LUsqv/8RnRgElWL76fZ5xRPNlHaAo2KvH9M
+# A7FZE4SVrPKCoo3eCDErZrSLl1kGDqeLF0vQQ5ef
 # SIG # End signature block

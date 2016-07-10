@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -81,75 +81,75 @@ function global:Update-SysInfo {
 
 	BEGIN {
 		# Call Companion to Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
 
 	PROCESS {
 		# Fill Variables with values
-		Set-Variable -Name Operating_System -Scope:Global -Value $(Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -Property LastBootUpTime, TotalVisibleMemorySize, FreePhysicalMemory, Caption, Version, SystemDrive)
-		Set-Variable -Name Processor -Scope:Global -Value $(Get-CimInstance -ClassName Win32_Processor | Select-Object -Property Name, LoadPercentage)
-		Set-Variable -Name Logical_Disk -Scope:Global -Value $(Get-CimInstance -ClassName Win32_LogicalDisk |
+		Set-Variable -Name Operating_System -Scope Global -Value $(Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -Property LastBootUpTime, TotalVisibleMemorySize, FreePhysicalMemory, Caption, Version, SystemDrive)
+		Set-Variable -Name Processor -Scope Global -Value $(Get-CimInstance -ClassName Win32_Processor | Select-Object -Property Name, LoadPercentage)
+		Set-Variable -Name Logical_Disk -Scope Global -Value $(Get-CimInstance -ClassName Win32_LogicalDisk |
 			Where-Object -Property DeviceID -EQ -Value $(${Operating_System}.SystemDrive) |
 		Select-Object -Property Size, FreeSpace)
-		Set-Variable -Name Get_Date -Scope:Global -Value $(Get-Date)
-		Set-Variable -Name Get_OS_Name -Scope:Global -Value $(${Operating_System}.Caption)
-		Set-Variable -Name Get_Kernel_Info -Scope:Global -Value $(${Operating_System}.Version)
-		Set-Variable -Name Get_Uptime -Scope:Global -Value $("$((${Get_Uptime} = ${Get_Date} - $(${Operating_System}.LastBootUpTime)).Days) days, $(${Get_Uptime}.Hours) hours, $(${Get_Uptime}.Minutes) minutes")
-		Set-Variable -Name Get_Shell_Info -Scope:Global -Value $('{0}.{1}' -f ${PSVersionTable}.PSVersion.Major, ${PSVersionTable}.PSVersion.Minor)
-		Set-Variable -Name Get_CPU_Info -Scope:Global -Value $(${Processor}.Name -replace '\(C\)', '' -replace '\(R\)', '' -replace '\(TM\)', '' -replace 'CPU', '' -replace '\s+', ' ')
-		Set-Variable -Name Get_Process_Count -Scope:Global -Value $((Get-Process).Count)
-		Set-Variable -Name Get_Current_Load -Scope:Global -Value $(${Processor}.LoadPercentage)
-		Set-Variable -Name Get_Memory_Size -Scope:Global -Value $('{0}mb/{1}mb Used' -f (([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)) - ([math]::round(${Operating_System}.FreePhysicalMemory/1KB))), ([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)))
-		Set-Variable -Name Get_Disk_Size -Scope:Global -Value $('{0}gb/{1}gb Used' -f (([math]::round(${Logical_Disk}.Size/1GB)) - ([math]::round(${Logical_Disk}.FreeSpace/1GB))), ([math]::round(${Logical_Disk}.Size/1GB)))
+		Set-Variable -Name Get_Date -Scope Global -Value $(Get-Date)
+		Set-Variable -Name Get_OS_Name -Scope Global -Value $(${Operating_System}.Caption)
+		Set-Variable -Name Get_Kernel_Info -Scope Global -Value $(${Operating_System}.Version)
+		Set-Variable -Name Get_Uptime -Scope Global -Value $("$((${Get_Uptime} = ${Get_Date} - $(${Operating_System}.LastBootUpTime)).Days) days, $(${Get_Uptime}.Hours) hours, $(${Get_Uptime}.Minutes) minutes")
+		Set-Variable -Name Get_Shell_Info -Scope Global -Value $('{0}.{1}' -f ${PSVersionTable}.PSVersion.Major, ${PSVersionTable}.PSVersion.Minor)
+		Set-Variable -Name Get_CPU_Info -Scope Global -Value $(${Processor}.Name -replace '\(C\)', '' -replace '\(R\)', '' -replace '\(TM\)', '' -replace 'CPU', '' -replace '\s+', ' ')
+		Set-Variable -Name Get_Process_Count -Scope Global -Value $((Get-Process).Count)
+		Set-Variable -Name Get_Current_Load -Scope Global -Value $(${Processor}.LoadPercentage)
+		Set-Variable -Name Get_Memory_Size -Scope Global -Value $('{0}mb/{1}mb Used' -f (([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)) - ([math]::round(${Operating_System}.FreePhysicalMemory/1KB))), ([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)))
+		Set-Variable -Name Get_Disk_Size -Scope Global -Value $('{0}gb/{1}gb Used' -f (([math]::round(${Logical_Disk}.Size/1GB)) - ([math]::round(${Logical_Disk}.FreeSpace/1GB))), ([math]::round(${Logical_Disk}.Size/1GB)))
 
 		# Do we have the NET-Experts Base Module?
-		if ((Get-Command Get-NETXCoreVer -ErrorAction:SilentlyContinue)) {
-			Set-Variable -Name MyPoSHver -Scope:Global -Value $(Get-NETXCoreVer -s)
+		if ((Get-Command Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
+			Set-Variable -Name MyPoSHver -Scope Global -Value $(Get-NETXCoreVer -s)
 		} else {
-			Set-Variable -Name MyPoSHver -Scope:Global -Value $('Unknown')
+			Set-Variable -Name MyPoSHver -Scope Global -Value $('Unknown')
 		}
 
 		# Are we Admin?
 		if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
-			Set-Variable -Name AmIAdmin -Scope:Global -Value $('(User)')
+			Set-Variable -Name AmIAdmin -Scope Global -Value $('(User)')
 		} else {
-			Set-Variable -Name AmIAdmin -Scope:Global -Value $('(Admin)')
+			Set-Variable -Name AmIAdmin -Scope Global -Value $('(Admin)')
 		}
 
 		# Is this a Virtual or a Real System?
-		if ((Get-Command Get-IsVirtual -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Get-IsVirtual -ErrorAction SilentlyContinue)) {
 			if (Get-IsVirtual) {
-				Set-Variable -Name IsVirtual -Scope:Global -Value $('(Virtual)')
+				Set-Variable -Name IsVirtual -Scope Global -Value $('(Virtual)')
 			} else {
-				Set-Variable -Name IsVirtual -Scope:Global -Value $('(Real)')
+				Set-Variable -Name IsVirtual -Scope Global -Value $('(Real)')
 			}
 		} else {
 			# No idea what to do without the command-let!
-			Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name IsVirtual -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 
 		<#
 				# This is the old way (Will be removed soon)
-				if (Get-adminuser -ErrorAction:SilentlyContinue) {
+				if (Get-adminuser -ErrorAction SilentlyContinue) {
 				if (Get-adminuser) {
-				Set-Variable -Name AmIAdmin -Scope:Global -Value $("(Admin)")
+				Set-Variable -Name AmIAdmin -Scope Global -Value $("(Admin)")
 				} elseif (-not (Get-adminuser)) {
-				Set-Variable -Name AmIAdmin -Scope:Global -Value $("(User)")
+				Set-Variable -Name AmIAdmin -Scope Global -Value $("(User)")
 				} else {
-				Set-Variable -Name AmIAdmin -Scope:Global -Value $("")
+				Set-Variable -Name AmIAdmin -Scope Global -Value $("")
 				}
 				}
 		#>
 
 		# What CPU type do we have here?
-		if ((Check-SessionArch -ErrorAction:SilentlyContinue)) {
-			Set-Variable -Name CPUtype -Scope:Global -Value $(Check-SessionArch)
+		if ((Check-SessionArch -ErrorAction SilentlyContinue)) {
+			Set-Variable -Name CPUtype -Scope Global -Value $(Check-SessionArch)
 		}
 
 		# Define object
-		Set-Variable -Name MyPSMode -Scope:Global -Value $($host.Runspace.ApartmentState)
+		Set-Variable -Name MyPSMode -Scope Global -Value $($host.Runspace.ApartmentState)
 	}
 }
 
@@ -177,24 +177,24 @@ function global:Clean-SysInfo {
 
 	PROCESS {
 		# Cleanup old objects
-		Remove-Variable -Name Operating_System -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Processor -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Logical_Disk -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Date -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_OS_Name -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Kernel_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Uptime -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Shell_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_CPU_Info -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Process_Count -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Current_Load -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Memory_Size -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name Get_Disk_Size -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyPoSHver -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name AmIAdmin -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name CPUtype -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name MyPSMode -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name IsVirtual -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name Operating_System -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Processor -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Logical_Disk -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Date -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_OS_Name -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Kernel_Info -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Uptime -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Shell_Info -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_CPU_Info -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Process_Count -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Current_Load -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Memory_Size -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name Get_Disk_Size -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name MyPoSHver -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name AmIAdmin -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name CPUtype -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name MyPSMode -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name IsVirtual -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 
@@ -309,7 +309,7 @@ function global:Get-MOTD {
 
 	END {
 		# Call Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
@@ -378,7 +378,7 @@ function global:Get-SysInfo {
 
 	END {
 		# Call Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction:SilentlyContinue)) {
+		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
@@ -387,8 +387,8 @@ function global:Get-SysInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURnWwWm+2//LVkOTAgGfMBxoG
-# HQGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqI1qq0/TvjDgxLLnIkFnGgsW
+# z9SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -531,25 +531,25 @@ function global:Get-SysInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRwVK0M8fxY4kuQqse3vbooe1HSVjANBgkqhkiG9w0B
-# AQEFAASCAQCW+QijzGDVBRcSp+IiY/+f0i2u6grGghdlVJ/hgzl8H3V4QqpiP/bn
-# p310fxoVIYH7jnNuthulb2Mk83Cw6RIw6qy+BgF64H+Vr89u5ZCTI8K3ZYFeUH/U
-# fb59zHurtqydlF/oRjG03hOLf+K+LiRqsAwv6HUHeD8vWCTYN8HWKAhfvEvZN6kQ
-# 4omZ0qscrufhJwFDWQ3+IwOsBZnSYWZ2mCToMLd3zDURguzarCXwB4nRzbRqtclM
-# vJ7K/uxjnlPMN7CeyffAoU97K6QPlRDvxe+9pGQJGG3S+vyg06e1RpDGqHvaKv53
-# OYEVdwgvAQggI8KLptkBFf2cn1jr8X+noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTSB3tAsHsUW4GtTGF6yvzBVQl3jTANBgkqhkiG9w0B
+# AQEFAASCAQBGaZUPJkB4djJA9r+xdGkpuOUGBVmPthTD/xFg+zvNjAF/rSv5BuRZ
+# 7G0w+ym9nFbyhHwrUJrGko6Mr2hUOQtN1xfkEx5+Aia40NY2Y/rn+zpQFRv9FHHP
+# uRBpgya7zStup3ZGzy/2hzI5BYnTqcvh5TplQndMQIgQiw9l7SPl714Vz++0+DTy
+# 3VHR6RBWaRfDO2bRFPKJKSBvVf9xih9X+3yMbHqTwUFCzZoSSdSH+0YNA3YjbnKl
+# GazWPFJ7VyeeR2aGzAMQi0PsyJd//wgjRVkWPdmcgkldKgEh2WuBn1JTa5M2ECY1
+# PdyzBuAq7GVg5TAUyXYh4SPPbq4fR/3SoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1OFowIwYJKoZIhvcN
-# AQkEMRYEFMMViTQ/VaKtsXXBkOC8Sg0A64C3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0OFowIwYJKoZIhvcN
+# AQkEMRYEFBJw/k2p+Y3Gz8BAZAOJGWAnLhUpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBeVFTrNq24GrVk0N4LDWdLt9Tw+rkzw1ah2X7c+ZfaumEO
-# LgVDYl77J5wQAVA6Y1sI4QkjpJskIQjAlbi3lIpea04GPxCc4jzRtBhrulYV3JCL
-# 6bsMRrxfu36LphN/gWCMIDCpJzlbP/tvJST9AXkVDWO+rO2vvg5/+9GPrGlQoRY+
-# /FEixC5u48b2iNAXKCaAH8Gr2tCMESfyZq20TW+ZGKyRTG34HJ2U+T6jkuXwbijI
-# R8NMfYxTdMh7sGPRtzyBdu87ceYs08vXkbFQDP1GvB/u8ge5iaaSIU4YjgDjEv3S
-# 3jGgUH0R9TIXYrwekGy0pug87qKedNek/0DEmOJz
+# hkiG9w0BAQEFAASCAQCbXHgm8Ee1KEDAD7COVEWvDAv1829lI+XNtizwWXDvZowd
+# OLA6PPhDCTp/hzkThy4zpOMF4Nx5gJKsyD2Hs2gXEal+CyR+luSy5q6pg3MTobhH
+# Ox5ECCmgIEI12k3w8xwJ9Ilp7lXs0qY2zSK88GmY2+SNjlJHF0p+tAkUDkrwteie
+# MIGnbpdoKIqCaCWKdRLELaMLSbBu41S464Zhy6/iOolKe86sq8gyKiGaV3zTY6/v
+# 0HEHbk7jh4scC9j4frK+kxt9TgbFV/i9CrzoqBEcV8V100tNOa5RTfZzyQ5OndMO
+# sNbaAQglzgk3/wNzbZjumJU9GZ+vRCVJqmESMRHF
 # SIG # End signature block

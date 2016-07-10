@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -94,7 +94,7 @@ function global:Get-TinyURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'tinyURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'tinyURL' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -115,7 +115,7 @@ function global:Get-TinyURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name tinyURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name tinyURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -164,7 +164,7 @@ function global:Get-IsGdURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'isgdURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'isgdURL' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -185,7 +185,7 @@ function global:Get-IsGdURL {
 			Write-Output -InputObject 'Whoopsie... Houston, we have a problem!'
 		} finally {
 			# Cleanup
-			Remove-Variable -Name isgdURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name isgdURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -232,7 +232,7 @@ function global:Get-TrImURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'trimURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'trimURL' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -253,7 +253,7 @@ function global:Get-TrImURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name trimURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name trimURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -302,7 +302,7 @@ function global:Get-LongURL {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'longURL' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'longURL' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -323,7 +323,7 @@ function global:Get-LongURL {
 			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
-			Remove-Variable -Name longURL -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name longURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -331,8 +331,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU84qCrAZb+oJz+uh6wli/+B/u
-# A0agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURiz5oRyea4BE2x6JVp7jXxCm
+# h66gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -475,25 +475,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBStTEoriOymkRhetGp2PxkTwaNNKzANBgkqhkiG9w0B
-# AQEFAASCAQAo31xpWKa33C5auovTeVM7/ilSLGoGayFZ/zS+zrCG3GJQLougL4eT
-# cZ0pwfyIsFUL/uU9GBRSss9fzd+110G2hh/HEcdr4Vmv+bK8ERTlYqrl6M9pa/Jz
-# vWWoAdmIAKGXgyNKGnwunSwCetD0xbBxOIXIN0SjOIPcayz9n8xg/SLAueGWQitW
-# aYOoZAZRun3hXk1rr+E5p7Kp2rphm3M35q4ZcD417Axm26PoOvOKssJBYk22YYkp
-# s1udaIvPwX5gIRgsAVmj37y833JwP+jS3kw0GukKsrC6AZVd8BaROl4QBH3FgUhO
-# 5bMyo5+6RCeSgEeRHpYNExR2kSqrowkloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQzfDxJ32rteEcJNl9CrKvY4Ni1oTANBgkqhkiG9w0B
+# AQEFAASCAQBMSGoD8457jBZDYuTtG5LsGFeb/Avz4rrSRID/da8WBvE42CSBUq2A
+# nF1il7eRa0MgFUxEtH2ecktxaown7rz+pcBv9pcyGdwnsQ/BIqBaG2k+wulazy4M
+# /sKF3InuTJzi22qbTDz43lNMKmEdFt4OIrcD6NvmTkuKFEDPIoAqSfCdT5xG8slM
+# UncyHnuAqC2fDnXnC/FHG2Hc4VKjOgh6pkqI+ueWFx7GHmDd0Ibb3sDvydDrb1d0
+# 751P4w1OufL2zC2LSXy3W/pu0MCQZd+Ryj7cveLlSB7L/4r0bQMOpR1nH+HwLMxH
+# 9q27i+Ra+KNxVEAOV+wFxSqueaK+iULmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNVowIwYJKoZIhvcN
-# AQkEMRYEFNubmuD5BFrzyh/8j7aTUSAwdUYhMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwNVowIwYJKoZIhvcN
+# AQkEMRYEFCYfuK3rJEO69jofZyp8j1mJ/SiXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAEmAeH7bRKXMaxtiQcXJyNY0Jvz/nQqIa9NTP+kgt4mpDX
-# AyNjrXmmMl9jBubBqt7VIb8jTtSxKFh6Kmh6Mp3EdhZoUbrl5j0WSCSZa2nxExfd
-# ViBL4c3MLbLZZHbYcNcM0z5OT3lpxPrF9IpMuOovNLVg40W5GsOo/Jz28dVOiZ4B
-# hUQSAixUTqkDE0u2B9SDM0p7Y2jKT6CWLKmnSEO9QZ6OC8ExuINNXNuIntoN/KpH
-# XHg/R12sNwazYu1nYR6subnhQN0932V165Lolsp2r9YZd23rnboFXsk2E+3EIZrT
-# tiL4SchAq2/JeRg60ZrMERo6ZFiqDI1jJPZjCXKh
+# hkiG9w0BAQEFAASCAQA66ZghohTta5wEYjmaS9RdM7ndt9SE5a95ePzyOw1oA8q2
+# 0Y9bz5A2WtUNruj9Kv0hcB7oA6F0RBKWYtiseQ7iu8nctgtGwF57/8NfgqnR3B2V
+# 2a845/vYbFUDIMsROjzSJB0DqulIXRYrZhnznq7X5LR/o3Ljw9WD4Z8LNeyb3Nas
+# 8LYjSGQOW/z/yY5JTaQRHpmCrej8PJAzmSxaUikgpia70Wt1y8Id0XwjlYOJ+ry2
+# mjej6uSqNg01TiILuX++1y9HVq/X5E6jx4mOeU4jOr8Mw+Kju/pPhIOmzzVXPoIM
+# ZoQvNynHYrjetRL4ijFcOqhRCb3mbKQ+nDWMgv8c
 # SIG # End signature block

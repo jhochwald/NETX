@@ -1,7 +1,10 @@
-### Development Snapshot (automated) Minor Refactoring and tweaks (HEAD -> master)
+### Development Snapshot (automated) (HEAD -> master)
+>*Sun, 10 Jul 2016 20:05:18 +0200*
+
+### Development Snapshot (automated) Minor Refactoring and tweaks (origin/master, origin/HEAD)
 >*Thu, 7 Jul 2016 16:44:03 +0200*
 
-### Development Snapshot (automated) (origin/master, origin/HEAD)
+### Development Snapshot (automated)
 >*Tue, 5 Jul 2016 21:26:01 +0200*
 
 ### Info about timezones (Not only the the TZ applied to the system)

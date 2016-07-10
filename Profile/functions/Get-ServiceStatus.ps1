@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -99,7 +99,7 @@ function Global:Get-ServiceStatus {
 		# Try one or more commands
 		try {
 			# Cleanup
-			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 
 			# Get the Infos
 			Set-Variable -Name 'ServiceStatus' -Value $(Get-WmiObject -Class Win32_Service -ComputerName $ComputerName |
@@ -114,7 +114,7 @@ function Global:Get-ServiceStatus {
 			Write-Warning -Message 'Could not get the list of services for $ComputerName'
 		} finally {
 			# Cleanup
-			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'ServiceStatus' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -122,8 +122,8 @@ function Global:Get-ServiceStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC7TyAvK3TJFVZlQLT3gFcL5y
-# ngOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP3s7jgWUfreKxq9V+bupccnE
+# aEWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +266,25 @@ function Global:Get-ServiceStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTYPK8iLJ7eZEFWhlPIbmQnjfdqqDANBgkqhkiG9w0B
-# AQEFAASCAQBh7AJowDbTuDESZ2Q376AkDdj7tLyPDwXuniWQUc4rVZcSC33fRAor
-# pDoVci3rCZTUM7NyCcDb26GApyNvnJJTDS9B1zbYlnhGjztgR8WZVjclrkhTwNP/
-# KfNtcortGk9uB5MoJH2xm26Hs5Sgr4sgMSC794a4qwMIKLZabwNB5aqsCiLu7Xnc
-# sCu8WX2TE5CzVTWUOQgMo6Pm8jcUu0G0uDF6uJpHJz0rUj6d95ixqo95Hysj5iOg
-# ssRkc+/nV6DLbNT6EutwKBebRvW53VK4SVzjfrqo1xM2UgAs2MIs1/5cUlv1h/4/
-# 3hqhtkKUKlFeiFL+SVDzTAQJAhD/LEaMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSUBLAU3IE5A9mjV6QkEpoKlMLK7jANBgkqhkiG9w0B
+# AQEFAASCAQCElp6AVxhtPeld+CiaVF5AY50MWiUJ6IGbxyxL1Q5m1pyFWvpFzC+z
+# /DtmQrwnJbMqhdtenntKBQe/B5HbcjVEkT2wzfx7/cTRhEUwEH8ZAY0hT86l5Jnd
+# T8ZOnDpSOuBRYY2zJcYAsqOBUKWdKMfJni4CSQMROTUGk29nvNZYVRyxHeHptXYt
+# cXKYpBLthIMzWgcumyaUwEvCnz84F3uH3vPGmzbeNK/Ad20c09yFQNIPmmL77U2W
+# 0AMhFMvBYUEPZns+y8771gKmKvioX3qlMbJk3P5Oya66ILFaazZY2cloI/gf0U1E
+# gIh1MQ+oLg2tge6rRrLRP4bHTBjJpntioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY0NFowIwYJKoZIhvcN
-# AQkEMRYEFGggElqgwa+sbv8qbYhOh4XAwfQFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIzNFowIwYJKoZIhvcN
+# AQkEMRYEFPtXLlABId0yGEX089GQfq1b2GX+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQABqZDef8yC/FiOTiYmBgXuSKZUY4IKNMh05xEsKlCjpE38
-# SRd/qWcr2vds9XoE5my1YYYFYiW0NBiEig1RHrFSXCS3qIcfy+UZRrshMYiv/Q33
-# 4/nJH0r5BrnGaoYAxQ8GtVjCTGx/AL5IfzD2PMHs3SocWe1sL4Fi/W0FeY22PqFx
-# DceKKuJ73RoUilMCxHnfAYPyb66ATC5RKwsReaRBVkBeKxXqoPVSFpqXO8bHRg46
-# oXkXAGysvlJHvFApJ9ZIKQCZyA0SMz09odAzn3vFa47ixB2Tn7PdJShqqpeUEHN+
-# WTaTcWx1lVse597EXxzAPXqf78Xmd30CswWxlXXX
+# hkiG9w0BAQEFAASCAQCt0h7nSRZYlhqn6J/BAvYezs6P0XjHDzbFk2KSYr/pQnqP
+# PnRYE8OFyi8HrYYON6+8QBCjJCAw71vTiPCDounsweQHbqOZ751Z6oaroz3cslnp
+# y6tcvaVjKs/clD4V/LoY8kqq3OIb40SHifD/dyMsSURJCMyroLQnupO+B4ZEuM2H
+# cgf0qtBqmROxbW9n2hgqR8hT0XFby8wvZeKKMLbacUHbcaQWPrpJwgA7swdnijRF
+# FhPdu2JyqzhnRS9qaD/xqads1r9zgynbz6QBQG1WiXIGseFI0GCQTyhZjUo1Hpn/
+# juQ+hqH4OZqfgKu7yu+MRJ/bM/mZI1BjrUvffrPW
 # SIG # End signature block

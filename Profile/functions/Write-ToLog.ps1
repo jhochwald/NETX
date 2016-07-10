@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -99,7 +99,7 @@ function global:Write-ToLog {
 			}
 
 			# Here is our LogFile
-			Set-Variable -Name 'MyLogFileName' -Scope:Script -Value $($LogFile)
+			Set-Variable -Name 'MyLogFileName' -Scope Script -Value $($LogFile)
 
 			# Create a start Header
 			Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
@@ -139,19 +139,19 @@ function global:Write-ToLog {
 			$Script:MyLogBuffer | Add-Content $Script:MyLogFileName
 		} catch {
 			# Whoopsie!
-			Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction:Stop
+			Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction Stop
 		}
 
 		# Remove the Variable
-		Remove-Variable -Name 'MyLogBuffer' -Scope:Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'MyLogBuffer' -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDRT2yYsHU5G7D1DTgR7pgYOH
-# PPagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJa6E7L1n78fmR/sC+fAelzln
+# JF6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function global:Write-ToLog {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS470qvjZqR6sY/Dy21Ip+nyjIMPzANBgkqhkiG9w0B
-# AQEFAASCAQCMHCr7tadU0/VW9z2s5bCPdniHBuJCISEtdvABSikWS34fZH0R99Mm
-# 39BEgGWi9lHyays21AWwvYcqQZQNGH/qv7hEfYJ3/Me2tZye0pqVlWNr05v1nDfI
-# faJKATS/OjcYwtVa6AXiyGyFH/RrgeYv5MD7XGB1+FXJQOsMC5VVmdR8Izdd71u8
-# e0sn7jJs/GM+cZub4KxJQroBk1Ugli/8buT3Sxhm81QSevW3RWrmeW5+ZO5TxPnb
-# hUW8zVfy99qwyrCxO90pAx53lRGdJJ7JMKd87WpDlMaOg+DsVVcTZZFHpk6gzPyG
-# 6hOj3oEU0d8p4YLJrOyE8ukmavVjF7ESoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSUqS3ht8j3sP52EfMsyeAWsYo1qjANBgkqhkiG9w0B
+# AQEFAASCAQBlZbADBNul6nCwYDS394C0+3+9ghBfOKT1+7Ksnu8LR69q+ttoN9FV
+# 7ECGIqRcZeM+CwVfNFO9KaU1ZOYSkOjgtHssRJrQqUmEoG/Re4fpUBYQkKRxi4b5
+# kXoWy9wsNj6j9QRe8ry+gvv8Dkx2PUJ9hhb9kMknxk5bulmfWKGhoBY9cH1o9TjD
+# QiMBvod79lsSNVbMBgAz7VUpsQLk1HfGAt7dW07fyjbuNzFMGWrtDjmWlGzRZOe7
+# RlvbGTs5wkTWgPCcB3nwPML72u5JtbFr+PIEtUWgFdGAAqByLuow3dH8lQ71PCdB
+# QuYRRPiLSlJZ7oQ9NxHvWypUAGaQTFJLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxNlowIwYJKoZIhvcN
-# AQkEMRYEFLU+01IOsMPSycfRl/WRfgBy8a4YMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwNlowIwYJKoZIhvcN
+# AQkEMRYEFLLmH2UBxhPFNUH/8dsGuuUpWlXOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQABVpd4BbeOqnANkhLFI4FvoxhF/rms2e8Wa0JkijSntIcB
-# qOzbI0SUppqGXx7AFb00G4ohL1++KZjrOqUdIZLzIHufxhpVph+joFGh//0xULjB
-# Da+lqdJsQYEpMn8y2YPRXB9xL04EMYZhHQ7dV3gtOFmnSP8gLmIOjvJlCKBnX9VB
-# imYRL7LLXB2WgoLAJ+xxoAHqt7pATs57j6SjmtVC/9vOcmkP4VG4bVaO9ANbnRBL
-# rBqf8ad2r1yE4fsmDmiSzkWKcR22YTwNRnm6H0zwdG3lClFUk2CaVtZf6L4y8V4y
-# eJE24C9ILiPKRY/k3h2m9BBakd1cMtxo7XoUfp+o
+# hkiG9w0BAQEFAASCAQAqeSRCH99/z9AGSB0sfbhlXJgKbFROiWagE/Zvivw1FdSM
+# L0g+luZigibUFE3Ol3iiwLUq0FDNbVCvSk5sk1NwtlOMDJ90jXQzer8DfJrpb60a
+# g1bSzfufh33ax433PeoEldjfD+9IiQJ2L8hGuD0Vp1jC9q+Mg2d6ntalDuCvjd7Q
+# UNNK8Gkitw5LOsAfd8LWBlE25qNYtjzd2kOmpqnzJIj8RLpWochMP/xkM3/EvAKX
+# EAG250FgHkjb9wVznvnpe4/cCPE9HJLvCsnWfx7VGUbwycZuIsegP9DXnpmgM5e4
+# 6uxLxZj783N8NeebVdMSYnax5kVcs87iNSJ59mIj
 # SIG # End signature block

@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -241,7 +241,7 @@ function global:import-session
 		# What do we have?
 		if (-not [io.file]::Exists("$file-pwd.ps1session"))
 		{
-			Write-Error -Message:"Session file doesn't exist" -ErrorAction:Stop
+			Write-Error -Message:"Session file doesn't exist" -ErrorAction Stop
 		}
 		else
 		{
@@ -254,8 +254,8 @@ function global:import-session
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcFQk1keKvMZbejV0r+P1MUmh
-# R3SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU132yUz6WvMYXy7CyC3wDBMeY
+# BjegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -398,25 +398,25 @@ function global:import-session
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRZlxGEyfiQ6qRQQQrmn3BaT7f/4zANBgkqhkiG9w0B
-# AQEFAASCAQCcpyFNZs+Gh0lRKRb00Pw4imaQiiECoUVsKMmT1eRcc4zWTMjpHhxu
-# 0oQlshncWhkeLGqBVa91qLFEQBjlDdXeMymz/Bmt2NgoEU3h2SR2X7/dO2XGdchv
-# Tj89Z1co3wnOCwR5zfKlsTyLyhIIbFEuCSdb/wVb+ESH4AlhHVKDiJ6J/KbgXxj6
-# j+2/90dDeiu6qn/phyyn6Y+nJ4phPtVIRPcbXtlVyPvLVsmnvTjtSSDYd79yXX43
-# DMLpTDVRC7zizL3PlQfO9PKKbA30CEXiFWpw9Z9Cl5KmfurtcrntLYQDygQ/TZ/Y
-# 5gNf2v/cpVobS4FTvjYaeKF+psCPq8RaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQfcg3eUrOdWplV/TmRLZ0AvuiKCjANBgkqhkiG9w0B
+# AQEFAASCAQBzg6pXh0Uyy+pOf8XQKD5i5uHlCORyWMJfH+JtFzqlDIi6IDA6pXSL
+# Y+hEflue4wFjgy1bSegQuLMcK6ptsvIFLL+vH6q2aYeNl9lpRP5gzCr+SkmKNMUL
+# eYrI8qTLQpj3sbCS9Dar9aAWC8wSN/xuma7jewRSIeqhgU/OPe7wE2Lw5yJzNTD4
+# YpLLb+UUfREDkIpj5rOXk8HOqnBqgUGIfs9wrCtUORbODo0kj0l5f5lfga91FC8c
+# DyiPzZ0d4GA/qIcEmTKanQMmUBrH/hOFyR6PGNsymOeRnQ7KSnE9WylRui+a4BeH
+# TgqCEToGOdV1hLo1wKFvSNcfcw9VxxuQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMVowIwYJKoZIhvcN
-# AQkEMRYEFGsRctbNbAlqf0Ij8Zw6UK60xOCfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1MVowIwYJKoZIhvcN
+# AQkEMRYEFHmuOaQg8EFyr4Kf+5m6S2rjlapxMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQADMA8lqaNUAaMQ/xLKcTErwVyo1SYmePkrJpfBuvmQjliI
-# /Pl/iyROvst914idwDtFmGS8yDJB4lMzvzoBKzYdqAr9cWwCeTuvp045Cns3CQKx
-# Sq8VobFzQIH7XW1j4AQJT8TBK94ybCWj6VXA0nlc9sc1VeJ5kUVi7DezWPEaYew+
-# jv0cjUll/5cNNjBepDiLIw8RlK6gYKjrNjophkxYHbYmWtSXmDS3gIQ3BeeA0b0l
-# 4NGqRuKAFFprCgdvc3z65DW+yFXEZ4n5Cy5TeoydfQORDKX7jEBZy9lqEElMJ66+
-# ELB+MrjcvFFEoHplrAVkMt5xTw5fy72MTpmxr63p
+# hkiG9w0BAQEFAASCAQCV0+ZFLp2+WjIw80lmzctW5PJmj7GUnrtBW8PoOwDWZ4Pp
+# /eUKSOeXHWq7nrntLs3ON+pkFsBTiqWctholCl4UIgfYUrXC5lcczG5mNKVOthub
+# dMfhGv+pnOdcHPpVeb82K48qbctGNf8ByCaCja9o5anabZEcn1HEZcyY/UY6WnZ+
+# QkqbLAWxRADEm4F1ChPl7k1nH8I28EA8cYWPQLqwpk6gEyJiCY2NIfXrqa6umvRU
+# mksdNEnCJpt6+iu0Y+2VpZaVW8tKKi/CFSoXaZIO1sGg33NJVwgEY86K7Bziwluz
+# gePHu1izql7vBrTYNYJbCCS+M2IpBN/HqZ41CI0I
 # SIG # End signature block

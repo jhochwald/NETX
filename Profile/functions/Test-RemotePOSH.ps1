@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -112,10 +112,10 @@ function global:Test-RemotePOSH {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Failures' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Item' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -135,7 +135,7 @@ function global:Test-RemotePOSH {
 		}
 
 		# Try to connect
-		Invoke-Command @InvokeArgs -ErrorAction:SilentlyContinue -ErrorVariable Failures
+		Invoke-Command @InvokeArgs -ErrorAction SilentlyContinue -ErrorVariable Failures
 
 		# Loop over the Problems, if we have one... or more?
 		ForEach ($Failure in $Failures) {
@@ -146,18 +146,18 @@ function global:Test-RemotePOSH {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Failures' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'Item' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'ScriptBlock' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'InvokeArgs' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'Failures' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'Item' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFCWWizEqYpX1G+FvM74zvV26
-# XnugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI16zGPfG4N3t3hH159Nec7/T
+# +zqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -300,25 +300,25 @@ function global:Test-RemotePOSH {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQNJumI8QPDgFfjE6Xwy5xAePfnUzANBgkqhkiG9w0B
-# AQEFAASCAQA+YD4y4IPJHz8cWwuDVpO0gvskJpUlDS9zaY1UcavbhomJA8WFpSA7
-# Hv6TkMnkZpqycAy37tr5oOacsy+YE//oWf3RtxNMyrrqq67TQDv7yxS2jNLNHTca
-# aOGWyDKejy2YSbB8i4TMyNaJHCf6jbK2e3F43iYF+18v7lTF284DhUNyRnkBXb4U
-# dvnAkorcC73A/xXKNVQQCHmX1BSyID3t5a7zgvj/85xQjQJAmPIy+2aeACbY9s/S
-# DGo3FofrY3FUFnJSgK3xR+OZNdJCpJf2zK0lFK6kEJ3I3+bwE2YVGgSP+okBWH9E
-# JfNDV9mAC+uRVdUvR44ltsPI1zxTs91ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT1I/aajwYH/gl14fQJDp3PcmKWzzANBgkqhkiG9w0B
+# AQEFAASCAQCp/foh/vXoAQXHsUd2f1C210n+iraRibPVpvTfTCKoAo/YafQA0hSC
+# Z1T9OCCpzotOkrKgbneCbBpwqMAvXiUimDI//dGWc2QBBoUjG08yOvaRWnCw+Dvy
+# QptgdHjZ/gIlJm+jBkn0phhnXkzwNy7Vb1MWhHZYYJtBq2WspqELUnxGk/oLPXbo
+# aY489oDASHAR32hI5smf8VvJymb7djrEI+e9w1HIT33oMSRf0IrBHgvsm4C+xEyn
+# 829Am1YDBrx9fzC8ydloZVfmalfKU5BEMio6Yg9eUAUtu/AXsNJlD3Rv0dBM1Hj/
+# 1lkze6LACIn1alywuNMSH6CIgRL9xazzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcxMlowIwYJKoZIhvcN
-# AQkEMRYEFGk719/vYSim88reoDhuJQFuqqm/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDMwMlowIwYJKoZIhvcN
+# AQkEMRYEFGWo2XL+4vnmBIuy94ONVyDnpAKOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBKNbJ1dURTEsoElDGtFmdAChu6Rz9DbeAK/frZ6fCpxMpq
-# mm/t/nLXRpK5UGP6xt+vECWUFTmvfGYqXMVnkACLfMYig9g4HPCHfwE7s2jL2FMN
-# EK3KGzhQ/vRoKRiY+pQzP70sp8Qjkfku7gsRjURJF94OMKv3uldzXi1x/t2Sxu5L
-# T0voG8niJ5R6wrlKxOpmwHKER3RifUnkOIi7TYLYaZRgKqq50MOOrOU1MAuzVUW8
-# rCVTM8bMIpbFbML00EQZbMEKPNYA8c8mxv8T1Xqx6mdC5z8l5gHnUauRIkVoQq2R
-# szGmfb9XCT+uqXrZWtMgn/+pfYpuQLNTGEbIUcbx
+# hkiG9w0BAQEFAASCAQBL2UPss7ZI8/POQPw1r4qcBECSL2H9xaOCw2pzje8W53J0
+# 37hGXrZFE6vFQQCPFc3TygQK8Ri1Tgw2iOQFkyefZlszNOVMNHyWfWen9trDOBMB
+# AUuRae2d+z4DWGiDpwd0dYXE79csr5Oew3iYlkHb7nRZ00+QTwXSkvnMGgsz73ZY
+# jBf6Y8JX5t4WarUXUKw2UekOqAUvWf5czByw4Gd859c3A3mVp+3+7rv2TY++oiPp
+# etHSnBAnm6OLOg28iuHLavdIr6tYeJRPG7o4TcSh0VV/N826rAV6IlB3QdWYd2m9
+# RRYqVAd1W62uJwO0mvdNbGMYK3c5ehWDcwjNb30l
 # SIG # End signature block

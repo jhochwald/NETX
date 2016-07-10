@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -112,7 +112,7 @@ function Global:ConvertTo-StringList {
 	)
 
 	BEGIN {
-		Remove-Variable -Name 'StringList' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'StringList' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -143,15 +143,15 @@ function Global:ConvertTo-StringList {
 		} catch {
 			Write-Warning -Message '[END] Something wrong happening when output the result'
 			$Error[0].Exception.Message
-		} finally {Remove-Variable -Name 'StringList' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue}
+		} finally {Remove-Variable -Name 'StringList' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue}
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQIb7TkLETqeaHx+mSU3UIgAS
-# SI6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwlOMOf1+m6ZPkcmrLVigMJgB
+# F0ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function Global:ConvertTo-StringList {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRfLFuvLafrowV3DBTZ52o3XYT0+jANBgkqhkiG9w0B
-# AQEFAASCAQBwlQJQCPicWidbxVRjA7L6aqDttWNd4DS/as9SFacZWeLpwV0tq5Qn
-# LVSo4H7oFU0Q2An7VNPomGxaTMQrtC6USl5Rl9xZipikH2wnlBXql7Jmtw7Cnc56
-# 7Ff+CpYz8Ftn8ZOZnnd6k4RmB4sXRt+iLcdLdlXsQ19uIUZuAoySrsBqOEsJkGjo
-# nomknlyW12RgIw2xZoxYGsIIRtAkcTuZgpKTLgRF0/SQGD+6mbPeaCnsP5T4hMws
-# 4pvFbj+AEdAtexnaCpl57JWFpxe8aFLhZegcqDknpaiztssS7R2Hpd6/1Fqn8coF
-# d+AJr/Ah5FanhqaOppu319PxPzes8urfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRo4XkVUHGwaZYp0HVqLwd4wfOEBzANBgkqhkiG9w0B
+# AQEFAASCAQBFGTUAy3bV58Pd1xRXjyeiLqnoplGv7DQjvPs6xvXyV8aorSKgOKCo
+# IfgL8ePYC0UEg2s+Bx9U/bdGcB1fX/VMA2D89hUXOv2HODomWoAQPvrntEyFHvI1
+# 9A1BtqhTsRZQsjCPIKXJaSd/zAYcJCRUpCOjujynw1Dq10wPHKY+7uxKf/3XhTZR
+# xrL57eeFqwdFnJlE42rzEmFIQjPSCcNTrmucrboFt3ICFO3HtVES9BjIUIlh1oNm
+# 3yTML1ev8iZ7HHBbo3pgdsFUvwaJhu79tgeN+jZ4G57XxvKz3T6+wH9YgRbw1NRu
+# cBISIpB3u306C2WVigbMvJB8OxaWgaECoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyN1owIwYJKoZIhvcN
-# AQkEMRYEFO71DOYTYtCOtcnJRMtsSP8dd30iMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxOVowIwYJKoZIhvcN
+# AQkEMRYEFMzLm95ptRpb+Frk2OYhtoixlCoYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBmmKVHzVzzmIxxq8D8BGEBvPp8lj5yK2JDcUl1O+V7UnKe
-# Kv3RhWWC1mSALcJkSZLPKZeKtZRoZLwPy7cpCyJ1K1iE/qwjSmIiEeRCmcahyJJr
-# 182zRMn6rYNgGsW90P1jgVYZRML8brxWmKGZJAjMYWC8dtbQqgVP9FCwQFMGqzra
-# hn20iGjrvEGpEGUxxHeVunxC23SriOE7yUFuyAldgtZ6nHYuO2SflL1pt5K9eEZg
-# yXNtfEoL0O8N3s47FOvizQHyldnVyG9/0/n7ah4a7by00czQyWzCU0Fkkrb9qbvu
-# ka8ukbdkRPkTjmQbFVWbd5AfGNeKwbQ4PBcgTk/B
+# hkiG9w0BAQEFAASCAQBqVArwgwn2Exbudnekdur9YOVISCToQru+feTYYUTsTCaR
+# Ov8Vljk7tFeUiFX9t+ttUsADVo7D30hpr/z91D+UmMZKqZnLHHJWS79ubaK1Zspo
+# n43QIfXIcTQZYCgXnnWfNM869/8yRwC1R6Vy/VM0hGioQdPyKta9najmewIe8Gew
+# Ecy/ooXrVTNEtWjo08xsAbdpAeaNictrYpMLsjBKyUClRLa5LcuAUy7T525d3eFG
+# QGHa/qvj9bo3rKwZZ1um5cVHDTyuSaFVSCn+/CjpFdGoXKghcePXeHAbjiT6KLhK
+# g7CX02GHQzruYKo0VXHTVCiAG+nooER2W5bQoc56
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -134,9 +134,9 @@ function global:Send-SlackChat {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -160,7 +160,7 @@ function global:Send-SlackChat {
 		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
 
 		# Use the API via RESTful call
-		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)} catch [System.Exception] {
+		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
 			<#
 					Argh!
 					That was an Exception...
@@ -173,9 +173,9 @@ function global:Send-SlackChat {
 			Write-Warning -Message "Could not send notification to your Slack $Channel"
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -183,8 +183,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvQft0vlpPV52+kQe8o9T1eVg
-# W6WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtQGusgawoUrpkQQQkd/CEuZz
+# 2i2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSkJ+v3gAtr86zFEq+qvW2Hr0s/HjANBgkqhkiG9w0B
-# AQEFAASCAQB9wwHImQ3tf7OSP0I86JxbyZNWKzCpETaJiF8XK/Fu3yC01mlVeXV+
-# vjdF8hqBF+NqSn9A1g+9qXEYjp+DCVSI4t85NRVnoT1jHxM34kmrCGdvWEwmaTSb
-# rkhFLXic6pz8+NqLEstj/qDaWCG2idaJV9Unti6unGDHLEj73oR+gbGpB4cPAXb+
-# Hc9Fqz4dHNZVkCqKfkeQN+Resf9vCIYholCnX7Nv6R/LVBX8AcrO4lCEobGClmpW
-# +Si3dthSyBRiQx3psK+N407dBxx5sMe1E9smnP+F4jyjpsc94PEtygXzBG/rneud
-# BfyrVCI1LG7yQnGDO7IPADPfmt5ONKiLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT6IiWBeXstoOL5qLnyY7Jiln4i1DANBgkqhkiG9w0B
+# AQEFAASCAQCW+dA0Vuy0rS0pV3TsUETTWuIAvymUGyNAuNtkfJ6p2e93stFBeFwf
+# It5ornkSUYNg4ANHPHK1/buMovdeeN4hSWSF+fGIkPbKIARFsr1/vdObIaVWPtCd
+# /+eQcIM+MDTLuBNhOc5rV8qZTgBrHnptSvUFBeF9ZN4epeNY6nWRSAEdIjK6l+0i
+# 5v/g66CO16SlKuDrGj88UPlxkbmICl5lklVWlsHlKrTcRAgte7SgE0Ax/015IP9O
+# FSJNeotoT9ypaW8yJzBZUl2Od4IIYBZpIqdUB5JlCdiA0Od+avNb2YAMlDf0R6BG
+# EM/YwWLxekwJ4vT9AKmxqlbnmei2U+tuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwN1owIwYJKoZIhvcN
-# AQkEMRYEFCDaIbPtfHKkKpqWYoqJO6lKWtlDMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1N1owIwYJKoZIhvcN
+# AQkEMRYEFEHPZqjnU6fFw6aP+E5tRu2dX/FzMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA8x6PmitIzAviR2CI6FMXdhjP9J/FZJjcirW4btOaEW0aY
-# u/1WUly694Mb/vvqb9Kx1XC/1lR0gR+9eTtUcgKAZ4QdvABraLbgeWcEfD+AhPp6
-# HbeeYWwaQdc+7UgRtCF2+UVjBLHf9eMhZO1ezSG/fTwkOpvwvop3hxlzx0JlQymY
-# mYw3/tlzpo2SXw8X+92E+xfWjXK/ZFQR3jH3cgz47W0TU9yrR3QmTLoFOPIMuAxy
-# agVPoK+/YdU7o5mwpJMoVVJUAo9zIgP01TPXMpZq+EcNJAC0xJjfC8m4f/oUQciD
-# ZR1Ji92e5x4PNGPvUeOCFAL0vF7cvV5WbNxbhybD
+# hkiG9w0BAQEFAASCAQB+87mjdsrSQNlQESB3KFhs09druWhpSVfzb2VW6YPctKs7
+# 7wtOHK+adz+pRh7Nbmn1JkAScW9+/sxM9xEWp2tgb5NtpHM0d35Mrh5LbTbLv7ZS
+# GFc+5iA6Pmim/ho72fbJG0gw8N4XktIWfz4JIAt/QHvWRB63rMBl7pNlQeETxg77
+# s6e6Pfh3lYAWcfv2J/6dnLP9I4q3U28FAg65waU992Pu2ZuiNquxlgiD0yz92vkp
+# ibC1B1NVV8s7Km+ubC8fXmCRYsSksDE09eNISEagj4JHGGHhvTpwJ/iMQNhIk5sQ
+# qvtU2jteqGGicgW8RpyeL5J1WCEyRyrAWd9I1aYk
 # SIG # End signature block

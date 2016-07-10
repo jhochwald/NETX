@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -128,7 +128,7 @@ function global:Disable-IEESEC {
 			# Set the new value for Admins
 			if ($Admins) {
 				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
-				try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue} catch {
+				try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue} catch {
 					# Do nothing
 					Write-Verbose -Message 'Minor Exception catched!'
 				}
@@ -137,7 +137,7 @@ function global:Disable-IEESEC {
 			# Set the new value for Users
 			if ($Users) {
 				$Key = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}'
-				try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope:Script -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue} catch {
+				try {Set-ItemProperty -Path $Key -Name 'IsInstalled' -Value 0 -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue} catch {
 					# Do nothing
 					Write-Verbose -Message 'Minor Exception catched!'
 				}
@@ -152,8 +152,8 @@ function global:Disable-IEESEC {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPwvLs/KXIRLdTpM9yzgPavOl
-# g0ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7lnqox5q0a4SbybTzP2xhmNu
+# VP6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -296,25 +296,25 @@ function global:Disable-IEESEC {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS6DdItlXdll1cjJpJYhHLoKuOGKTANBgkqhkiG9w0B
-# AQEFAASCAQByVYlCu1u+pdfF3iVyJD+0MRKm+uz78rsHxTmM/3jTgk/Wo1Ztrttg
-# lXzkBqRNAir/asFstpIGvDCRTQtYc2kpo+AIOJw0BqPH4VCyzZlcLCtqmverQtBZ
-# B6DaIxFmeI62XiNXKdmbbmQZswlFPj+c9jfBRX6sk6s6bZ2Qr6YqI6xtoyGhmITm
-# Cm5MBAkevauAaDQsKAVOJmMl0OqQEgxSdWsgEx2m5RQ2v4niZAs+X+V6K0kZR+d8
-# EFperBVW804g0X6bOw0kqU4+CS+OYcESf+p9qE3W/zI+t98oJHeGKOIKOdifZe5A
-# MVTC8xN8S0BXCo+JWjLJ4Ouk3GDkrUSCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSaks/FiYzMpCCuUknJtT1vstuK8DANBgkqhkiG9w0B
+# AQEFAASCAQCsb7nelW/1dmTH7qF0HeqXSyMUVBle9MfcihCziNvn4Wl8ROhFUhlR
+# T30glwSsvxpx2wqtyvHwZnHSu4nELM1u8bsQOKH+VZbD7ILa25C48AzRkkTLGG2z
+# msj7ZVNGlqFbGQzXo/SdjRWMi9ydLNg7V16FYScJDDNUoC863m0CAGgyQF7rUrAz
+# IXNCEi1bOYwZd93Nx67xLDn12eEZUWfTAOIq/pezbTOTC4lNam/wI7lEf1Yba2Qn
+# Aq71hb2wfO5sNQqXWxA1X3Q5HFIzT5i+Dvd7coFO7+S4Oku+WwCQrJpdCaV64mww
+# W59dqFmOPpqiVEcCIaWiX11nGHCmBGesoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyN1owIwYJKoZIhvcN
-# AQkEMRYEFG5rUBCaHZ0dZmFx+aa/Dq/Xv7ODMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIyMFowIwYJKoZIhvcN
+# AQkEMRYEFG7TuDC7FaISFHjkKH6mbcwyFUcqMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBsZ3OvLSWsI5uVn270nygvCpefx9jR7noNb+y51RqUpZyd
-# EeuUVaZQEcW2YC0M/xfXazKxJhJr5aCUz1ZnQWH0W+5vs78/hZApudI7vNmhQRpG
-# zvxZa9gOySyh8A6rIg/hy8WEmfhp6TRcHftrGm1/RZYstIso08P86g3JD+a2pBjX
-# lhCLFtkM9cwDT2Y1a8IKced/riABXP5whcI5AdEUP+VyDE5lOfln1TbPxoYnJRsH
-# A0qGjmcsM7IuNo2Hi62dkwSPF26H4ZG0eoqsunhm+cJHQCTTz3vcJd7zWh82p6mZ
-# tDVhL7RN/WOBbuDoJvSutkFDRgwYKTAM0ZrJn8N5
+# hkiG9w0BAQEFAASCAQCltfzyzrAJ/EjXuIMWJlP2eBOOOVfUbd6gxW7QzwHHmYAi
+# zkpXOrxxK8FRGnvwiIpV7dQIHT2U3xt1pD2yMXiz4I/3k6PicVpT2rAID8aztN5O
+# qBSpoN041XlM2DKmhpcySl7nT13EV5WA/52eh1WTzVWFjSEa0b2KrPvQhO4II9nA
+# Etr1pZ8p7ebSGYVhqfKtUV1UZUomhkGEK5h9GJxCBqOaLIk3qMGMxj1GeYCem1pV
+# Wq7bwDQemGC7pvZ26gn3qq1Zx4d5aEF5rOiz2xX4V8xMdgAgbG7InxU7WenrbG9o
+# rKUe2J8Nr5PBedr4eOas5I3+WKfAMfePbvjsdhwU
 # SIG # End signature block

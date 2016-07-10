@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -108,7 +108,7 @@ function global:Get-TcpPortStatus {
 
 	BEGIN {
 		# Cleanup
-		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name ThePortStatus -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -126,12 +126,12 @@ function global:Get-TcpPortStatus {
 				Set-Variable -Name Server -Value $("$PSEmailServer" -as ([System.String] -as [type]))
 			} else {
 				# Aw Snap! No Server given on the command line, no Server configured as default... BAD!
-				Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction:Stop
+				Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction Stop
 			}
 		}
 
 		# Create a function to open a TCP connection
-		Set-Variable -Name ThePortStatus -Value $(New-Object -TypeName Net.Sockets.TcpClient -ErrorAction:SilentlyContinue)
+		Set-Variable -Name ThePortStatus -Value $(New-Object -TypeName Net.Sockets.TcpClient -ErrorAction SilentlyContinue)
 
 		# Look if the Server is Online and the port is open
 		try {
@@ -143,7 +143,7 @@ function global:Get-TcpPortStatus {
 		$ThePortStatus.Client.Connected
 
 		# Cleanup
-		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name ThePortStatus -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 
 		# CLOSE THE TCP Connection
 		if ($ThePortStatus.Connected) {
@@ -154,18 +154,18 @@ function global:Get-TcpPortStatus {
 
 	END {
 		# Cleanup
-		Remove-Variable -Name ThePortStatus -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name ThePortStatus -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name IsSmtpMessageAlive -Value Get-TcpPortStatus -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias -Name CheckTcpPort -Value Get-TcpPortStatus -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name IsSmtpMessageAlive -Value Get-TcpPortStatus -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name CheckTcpPort -Value Get-TcpPortStatus -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0CoaCajmq4ZYisNb9RvFQ30q
-# jlCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULjZFUQMumwMtOk/6KpKg7tLz
+# xmKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function global:Get-TcpPortStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSgpkLmFreWWCd6Ooz6dt4OtGyl4TANBgkqhkiG9w0B
-# AQEFAASCAQCq2zY1HJrdZ1Fr9huajBZBnmWk39aIinzsh7FDSMuemr7NgrOoKA3u
-# 9uc1hbO9X25htU6ARc2ktlETWkoeBRtwHNPb7mJXgesi5StN0A1M3uKBIJIyXTKk
-# 83dsCT6vOic9V5Ivt//5mx1aMmhMtxGS0wQLW4p1DlR15PdgZGNKmlCtn106r7rz
-# ut4sHPc6hd8ZVQi+qZZ36WSjZ3Z/3WWXELu26qOMSbcX3w7eyHPYh3/EEHZc4iL9
-# JtWuD4h0nBXljLslXydimMCqcRKYYAdaER8+WLnduqtWnAn/kgkkJXkwD1Ye5Jt2
-# q3Pg2WlfQEg/XGf0phrUjc0jbjFVa1ttoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSOHUentz31Y61saMxDJQ5bCgZx4TANBgkqhkiG9w0B
+# AQEFAASCAQBf8v3WtoQpIE2D98/AgGhRz0m0cUzLez8UMRATWfo5Ja3jJEXjbk2p
+# 8bphbMPkrli8crO5YRzApsN+5j+rvCXagEXTECCaKRJxuU0M2vOpyH9suP5eZLQ/
+# eod1J5MRE4h3CkIRBmqz1M2wr8d0jMCHrCnKj5WTvK/ksQuqoO3jR1v4mJJGMOSC
+# J08+jk9Kin6I7r0nZJ73GPPVdNRvT5UAgbEErBgHDgKzBUgPoCv/tvUuRTfDHPDc
+# WFYybAE0o+XpkGbpSz9QcxI2hfM/Uydjkr5ckwE5OaVvMRlmgceewYr8og4pwvGa
+# IU0tZmlv5PTxZAObaO6ZhUCaHcvC9kvHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMVowIwYJKoZIhvcN
-# AQkEMRYEFLJNAGMGvRzzhd3fmXC4sGDnddNSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxNFowIwYJKoZIhvcN
+# AQkEMRYEFD5McZ9cmL4Mr6HWlCjk3m27jAxIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCCwnEiipSKu0+ar52dzsgwgB45DppsUW3wozqO0n/pujrj
-# T4xLClhvOKLmGloBpizR6/TwGg+gJpFM9DSwPADerlfqyvQ7JFcYP6pwLCPuYNw/
-# xLbsGVrn4EdoEVwg+GNjAiCOkYLWSTXpqikYSPbaM9iHUOPx0XCpGi4WGEg9kAvm
-# eeUsmeXectDLybTjH5KGyKUQga2o2IM2AUO97GsE+uJhD3XeS+oIJk/8MtqWaXPM
-# t/AimGN83Bv4w9rT+ueS5pgP1ydvgshzmulVF9e/3GRxE26IXBXiHhDf48YWyVQw
-# tdhs95r27pOeVdExWm21Rr1eZsYzYxJyTC6eKQx9
+# hkiG9w0BAQEFAASCAQBf8PFc69zhmDoKFVFsgUl6X3PSmpSgGZQGc6jWoUKBJjBq
+# GcpnclsuDVyGvXOcdooXV2JA7cSGkVghseORCRVpi0JFZUB7c+7bw0F/9r6LTLjF
+# EbCGvXskEiMe7fF234HKeiq/koD5iEzOfM8btzJbNsH3BFzpNU+796ZdCC/0982x
+# Y+OFcBP5pbfL6GIEYvrFDqGexzpdqYJB5XCg5pF9ZR2BlW5Y4U2+ZuOzNG/qWNpx
+# gQDd+xovgM3nalIvojN2s3t7+MK3DeuMk0so8OMHRuvvx8+sLM70H3HXMh1tRl0g
+# JhoE028oq7ouyY0KKAfxEB4wPFO2lDSYRsfpIAAt
 # SIG # End signature block

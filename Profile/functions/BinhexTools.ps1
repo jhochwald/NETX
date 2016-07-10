@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -106,7 +106,7 @@ function global:ConvertFrom-BinHex {
 }
 
 # Set a compatibility Alias
-(Set-Alias -Name convert-fromBinHex -Value ConvertFrom-BinHex -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name convert-fromBinHex -Value ConvertFrom-BinHex -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 function global:ConvertTo-BinHex {
 	<#
@@ -164,13 +164,13 @@ function global:ConvertTo-BinHex {
 }
 
 # Set a compatibility Alias
-(Set-Alias -Name convert-toBinHex -Value ConvertTo-BinHex -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name convert-toBinHex -Value ConvertTo-BinHex -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1SLDcSxZJn4i6Kk9olGGF9un
-# +PygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlNmJgYVDPr1Lg9kc7COV/W/H
+# nBegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -313,25 +313,25 @@ function global:ConvertTo-BinHex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSl3mqI9wq7X6qQyw/FPaNSM9tiAjANBgkqhkiG9w0B
-# AQEFAASCAQCkllroxp4BcvdKFGzwgy+fUv0UcA/kOzZiEnJg5k10yDjik2hqfOGy
-# vykkYVPdpu4zX5UZ36oWiq3FMTXpaD1nuzoNynstv8kJhe71OpBj272unCgTmw8Q
-# bzpwVVMkzz9DXG8OrIf2a0Xd+adQE/ybSMZK1Hxd9VHdIE7jr87oUolxx9DGtqtt
-# wNMcZ4ztFxU54UjC/HJEzyy8ZNOW20KZ1dEI8l4rMFvKNNa3KTjgva9E+AON6Qzo
-# oeolWir01SgIq2BFi7U7YNtnhaQXMvVNAaot56TR0pvSuAwAFKx7+8beELzuW0ov
-# KbGV11vWnrGpODMNjxY06RQD2db+kwafoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSL1+HtwMUOJdepCw2Het4kQ0ZBRzANBgkqhkiG9w0B
+# AQEFAASCAQAFL3x/OhlJD9tchCK/yT+hd37zNdXWD0kKq3viaZTtG1hry2/Jjk8K
+# t5VU2D8c/4Hk6RTMgMTxfNAd3ppLVC6GUQ0ogF+k6YOql7A3QhfMaA5AN4VFfs+4
+# Kd89oQKMSM52tZxV3UL/iYhpdfciX5psheIae11rM0KLh9FbQfeofRfB1nan8D9Z
+# 8aB+xdah/Wnh7QWWLjeL8XCMn0f2gICEpHHX4sNsvE/LacoVSJ6DXV6Kpokv9BvZ
+# 4P4vkK62BuYzAcc/v2/r1AKHwiUEE5nlSTDtmEQi4dfLsFJgz2iPuYF97qh3kZlL
+# 1nMo06mKRZLdeqTxQK0Bff+edC5X8Fw2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMVowIwYJKoZIhvcN
-# AQkEMRYEFBHHVrfd9aqJMQXVH2mk8Sriqf54MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxM1owIwYJKoZIhvcN
+# AQkEMRYEFK5R6WOTeBHnxyIf/EMkKYvOWsQnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCe1MVZ0+sB9YG65k/nTmf2o2rjaOSnbfVtZnwfhX7VW5Pn
-# 5Z8Zcoxo32rrnseikQx/LjkM94Dp2yL50vqPSr2Zjn9uQV0XPLoWiQTnm/+L9q4x
-# gPudGcrl7JbmwbJeSu0j39UNvdE/8zahguJ4NpwAFHo0bCCatDEuTks91kqOU27I
-# Xiuo4/W7EMKxGBX1lAGS5Qrz9zmzK+xphxIVItODUkecJ93bYBqcG+bOq4zTYo9W
-# HFBXcKtoBxCsOe0DzVMpEtKvYvSFwz5+3lssKru3vQYwfJS/tNSp4rryg2J4YhWt
-# k8qGhn8Y8Qhs8xyOKF1MjrLLGUsCf7M7owzMjWov
+# hkiG9w0BAQEFAASCAQBGGZZQcIEXGfXX1/5DjkLuLIZos5Q3GTdH227p/lapeb6R
+# uq1TQZg+pE2YiDc4c5F+ZzhG5XgiTYaS7DQYmiCPJyG6f/0NdUJAkQ/1WlayvEcg
+# Wqd7oQJJE82cv+dZPelvMzhyfCnqMJOMzTglv6lwZAuUygczgSzjqiDfBZShRvlU
+# rcJDJRfwCvwQpZSJ/YWbOke8Uxr71nOqWbdeXEGnoZ3kZx6YuSPdkHliONEQdrd3
+# VoCDC8K+HrMphA1CJvrjuQpybabwhT1JQHEabwicNU8ihc81G6+Bn6Q64yBKpMS9
+# MB1APDyF9tFj+gvE+X/KL6w6phBmxThWrgfGaoQH
 # SIG # End signature block

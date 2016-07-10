@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -82,15 +82,15 @@ function global:PoSHModuleLoader
 		# Load some PoSH modules
 		(Get-Module -ListAvailable |
 			Where-Object -FilterScript { $_.ModuleType -eq 'Script' } |
-		Import-Module -DisableNameChecking -Force -Scope Global -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue)
+		Import-Module -DisableNameChecking -Force -Scope Global -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqUxTH8nmNIWB0sHFeSBQC6vP
-# uw2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTAGWZzeBvPZBVj/d5WDG6Tro
+# IZKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -233,25 +233,25 @@ function global:PoSHModuleLoader
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRGN3ZP1cJriLOhgs36JBTUNzUAlDANBgkqhkiG9w0B
-# AQEFAASCAQBxTBUHFzvD8f4Z97TQYZj0AHMxNY08cfB4TYYQdmeGBfH7TiUWk+WW
-# ITDazl7z9etoAVzlOAeKNWrJkcyzIe/gZgnCUwQGWG9RaAkwNgLSE9G2CdqiWgx/
-# KdUtO1NznhMyyQMYPb8j2pWFOPFidNVfJilf8xaiFhztc3v/zKgNiAXjzsHCFdim
-# UVhUQUPYHGkuifAO8snUnHxYldSighQCzYyI3q1WlwRgbq5ocwc+yNbtkzplNalJ
-# CQ42sqZInjDUDwCQD2Gm0SgfMf1mSeWlut5J/iSfQl+0bEddaPlrSLK8oipOGgzA
-# bXSfi0wvko2BcJKZydXVczkxy6BkvnNQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSLWlv8Rh/chuWOoc+0nGdK6BsHRjANBgkqhkiG9w0B
+# AQEFAASCAQA5gY1rOYnaVX83bsJRf5jLFvCTRSi7DA3gdeGGttvaLubWNEu4kjak
+# bWYiWvWTEWfC67uf0+PPZvDVg9FPNI3HRewdEhV5QiDb4UbFYPOtLpJPDYdXGCKc
+# 9XKWycqmMMBVbV0iZ366Ay+ngVxISavGVvhNv9mSpZMHqh1YZq7y+gdFYIdbhRuS
+# uOzW5GXYdoexmYV8u1VbGeSU94gr3iJzZfzv7n5EUJFpkvfeui3qIwI0nS2i2fvv
+# GO7HUlJdoQpQRPtZ9UOCb7YnHmHaEpfIp8XNItH0GtrEaeLDypGaTYw2rKw2STG1
+# InhMbJTIcPNFNLMAu54AdJslAC9s7VHcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwMVowIwYJKoZIhvcN
-# AQkEMRYEFIzC2mv+6V9hgZQgbldyjkV0k5SLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1MVowIwYJKoZIhvcN
+# AQkEMRYEFDV44Mc/AkkIyT07/yPK5d+ME3zOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA8mYtBHIfWUE7JUnEXHHfK6ceTHh1xUjjKn4i1oyMqMYRD
-# teTwIlFuTOE1pg67SruAJMjUom3kAGWEEAGsbSrkTk12T9ZItC0w8I9NS3ZDrDgw
-# bn77uTwwpkv2trW2ztM2neiJPOAtNn/3RRcYQbq+51ZLneAOqqrqWBTExezGfIJJ
-# m32GqeujYDydbgKVKoWnWCA7aIAYQupslpxJwHaec+PQbSAqna/M62WiW3zk8z8q
-# /XhP2Uuy+0i9NGjRB2aLS8YZYIkVuKZcAPbOPxDIDOcsQp4RPGvxUjteyX5ABIXC
-# T7frexigPmA2te7A1117pkxoDZ3nBznzdBdJLZWo
+# hkiG9w0BAQEFAASCAQCY/h9QiVmhPqwOgnFo3tDqwdP8WRJX5V7Z1q7Vh1PmR0v9
+# SA5gPZ3zjFYskMMqT/tnW9GIcy5RtxmqQlyvld5TNQthccCY+NoxxkPqH7VF9i5X
+# +UtLLvy7KoBybROqswH9khSjaHuXqrmsS4n6QoOhlwLteUc3LBQTRblmtAJnoXoC
+# fEezgAB/VIE8LOtDLAkd7255t0Mt0/Fj3XGTwT70iF+B3GIlYV8UleJsRb0S+T8M
+# 0nuOrVo4sw1yiAwIH113LcnQLIsRbTIXLzo70owf2S/Y6T/vJEHzH5fxDb3IzaxG
+# uG79fJPp/UYblgsEydCwwaR/VMr77ky+SviZgl/G
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -117,13 +117,13 @@ function global:Set-AcceptProtocolViolation {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name AcceptProtocolViolation -Value Set-AcceptProtocolViolation -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1L5M9EzquxM2hAnjuJhwE24z
-# 6FqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKHORe+IcV3QoMDO11NB1uIb+
+# 3HKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +266,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT9tO0SKkO7RnCxAEXfl9DnCr9C5jANBgkqhkiG9w0B
-# AQEFAASCAQCDoE+3WYSjH2IgJf3iuswlo+74dM9VO3MGtXfXCjtY/ePQyWg0WQQp
-# qf8GcFuFjVVwPSMTS1KQeuFtAYrAQ55g+xtaEXbgHCzldgJbOZ23+6TxBVI1wKqQ
-# SdTaQafu+UUIWnSFgycYF7Mes0j7vOdNCbN8oTkyit/W3jqTm85TtZdYtoht6jmc
-# iA3R+s4PrKWE5V3PMSfmrMji1Q6WzlqRG4S9b64XvWwiTygUYb+OdCaBwU1gfLLR
-# WQBFLTzrIQWXclEHDkRhAAhbRR+LtyjqGw1SG8rhNCrSnVh2vVlMUiHgeUCzSGIL
-# UxB+KGYjv/zf+CszL4sJ9Plm3xLgxKsWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSmjkawPDOcYDnNyUiAQ+pJZLGjEjANBgkqhkiG9w0B
+# AQEFAASCAQAELfoB28BDJgnkv+xOXyEdqdWnzdX4LeI/2ak1xIJzyVeotwFJzH7X
+# ilPDxAaGGNmNekbgLaVdeR/JzGtk6bl9yx4/G/fNSbn683M9+IOyGRqONj+Ck54b
+# gAIVw0ESQmPG+EC5k626R/jkzMIAAQUGEarx4CdNgYzgBLaG2tpchts8/O47UR03
+# ngRWyExSA1veXx5r/63viRBepSTu3gIWRLmmpB5pbSNywZyQ7f1oPQl9K3jjNDx8
+# 52aZ5ALtUeymyRPZ2g+yPV5tSeucG22UIt55AVPrbfINB7nbz9rly9OPJcxz4nlC
+# acGd7u6rFjJyZJcEgQ7/7QTz1I5NYLqooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwN1owIwYJKoZIhvcN
-# AQkEMRYEFC3E3uPnwD2uIpaSCHwXadFGh5nuMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1N1owIwYJKoZIhvcN
+# AQkEMRYEFP1nyZ2EKMozGxf4GWNBhE2WtSUvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAtAE0pdHAOgnctX70KiPGOUyCmvDDDXhXhsgLqME2OAGX3
-# cfulXAelcNViAvykcDJa2x2TauKsp2NVv5ERAWkmL5COWiuT/RVnVvE8TIVr6w56
-# weZ1NPnUrGGOZpx/vAR9eOUr5vtpOvS/rxJljyQpsVGOo62JQ1O1HOI/79u2xZiX
-# +m0R62GqJnJmX110jjvRjtvdl+K4Gs7oGo9UCrMVNBwYx2WcT9uR+sLraaSQutdr
-# NuhAOZCfX2vyYrLbU/JcyikQLAYujMkqUc6JQuP1Mr37ETdnELKTzoARYC/TbkZl
-# 2YH1epY/HOx38QtoXg9ZOA5D51LJf+oKnKsnc5Cz
+# hkiG9w0BAQEFAASCAQByQXuSR1SZrmAvRtlEni9ecBzmMLUxEbsiu/ZpOX9IZD/C
+# eXq3UMGuayT/z1s7nkFgOOTiKNru7BGaoD9zqaCTtSvSiisf49JHJvXIX2SKPWSE
+# vU8wi1vc9UESpZYRbOYuHQXa95KczxEbF5+S1t/1m39OaH8nfQi2gtLQ9QuHfIm+
+# /pMrRNInia/gRQXFz+13j0h4WsVEl+KhpL53+CLpsnVtS7Q7G4stUbjg9I8gfKKi
+# Atx6WUBU7t4TdXfxx6RZbvN/HPwesA603i6M8Ls6VANqdihdy0CHy6S/OWofdk3P
+# LSGAa6e2/dbXMQFrdAsq5Y2M3IOKGIa5eaoTNfx0
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -114,7 +114,7 @@ function global:Invoke-PowerHead {
 		# Does this exist?
 		if (-not (Test-Path $File)) {
 			# Aw Snap!
-			Write-Error -Message:"Unable to locate file $File" -ErrorAction:Stop
+			Write-Error -Message:"Unable to locate file $File" -ErrorAction Stop
 
 			Return
 		}
@@ -125,13 +125,13 @@ function global:Invoke-PowerHead {
 		Return (Get-Content $File | Select-Object -First $count)
 	}
 }
-(Set-Alias -Name head -Value Invoke-PowerHead -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name head -Value Invoke-PowerHead -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzuHPLPTrNa+epqNbUWQ4OpoH
-# gXWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZDAZC+/pPY9ihzl9G/zeFoUT
+# NaagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +274,25 @@ function global:Invoke-PowerHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR+NGj4yrnWjT/r5qbnT6/1vUjtFzANBgkqhkiG9w0B
-# AQEFAASCAQA9e5guVPmD0juIaxQ9ReTjNZpqARJ/UuZ4IqeALV/gyaAFzl+zMrLM
-# f0rooF32SzGpVoRmHgg49ThV2I/mso6H6iIyD9mXfJiNMXX+4OnIEPE/yQufQFWx
-# rc64l1i2ZiHKoHDsOo+bgm2fKUKe2ql1AqjuU2SaIx1PhoptMIxUJz8OeBIMYcyI
-# zOx6I+WHD5z5a3Gx/KYzt2XbpZlUmrmlIKx04R2g0nlab84cSxktL4P0DIJ0F3pY
-# tLkBDkR9gJE1a4liBqaoYjU7DRyL+UcbEJ2XlUQXYEQX54vhIGideEgvQ0b3QIQe
-# KTrRu5JF/69B4at48X9wP9aezl1jRkhboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRSpLHTOEFyEqJ0O7A7VrE0qlZ4ZjANBgkqhkiG9w0B
+# AQEFAASCAQBPIwz2iRd3BPDYXOCnfq5wY6Hdyzjq2azJKqwVkm9+kfled95gH0iZ
+# uc6Ge0kh92JEDLCS8U5yujaJrl5ZS89QNjyiW3Jz/W6gxaOdKuChieWH3FVj+qKh
+# mW0p3BBj0IQ2nk7CV1JnbBLcP7uDh+Khyg8Whl+V9gR0VfnZQBv5AeUT+uVx5iN8
+# zKcygUv4hhGzMU5QFiTRG4q+hQgKcetR25rICmRVKjaH6FC9RKgds660yfzGQV2O
+# 27I55j575RSL4t8KqGGW7Juj5+IZJ8kolNayQ5XMxA49mNDHcFwR0W6QBCoab1kh
+# O6FCgbXWgORGnIH8HxY58acehPbJF50uoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1MVowIwYJKoZIhvcN
-# AQkEMRYEFK7FjtbEyegUms5ozx5L/vBGt4UCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0MVowIwYJKoZIhvcN
+# AQkEMRYEFB8yUzxUoYe1Wo2m+VnThzPjtzSMMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAiQ3bYphCsyYQKzaP8xE5eyHOZdr3o0mzxnM8WhLnjcahF
-# /lvfrlBPXh3R7GRjjQ0T7SHXBwko8EpjIN8H1c4EP0WJMerTqshSqinD2X76QoAA
-# 5qghFKrDgC2sx4IGGtTwlO9NzrPMzVWlaA3SPJfbnHHk2GmeLarcK+BaaO1XFAIC
-# dMui0veRdnIBFm8JojJxQB4RHru6WqGr7YL4/xX9fhyll6p0kz55IVKIWc5J20XQ
-# V7vDPkHyGBLrV3QOtS0l2DSJGo6tZyJzmVN2R1dBwu9LWVXROJ0mmub3o+GHS4kH
-# YthUz5X3XpIH9XiLPkYRKjeQYr7/yhOiZlvhlzao
+# hkiG9w0BAQEFAASCAQAFphkzQngMDU+1lA7UTOqoUPA/TlbOliHbkyUJUbX/Gz93
+# L5v9edxAra+HZ4I3hBm7SKwRlLHsfOlhT63LY8kCQ6x8y8UOFEqRO3DjDxR1eEmA
+# uzcPCqCEhmmou4T63DsrIymO9Kbimn+IlPjvuASEXmHxAqJ0DncXERFIbWwPKr1T
+# FWsbwtEIxSOrCg7llPOZKytkd8VstAmy4iSdP9LIrW90zxWvozJSdOazpnq/H4ds
+# mMQ1AH849VcgSzHYn1WAUMi3JfHEuByLoVzLyqD0HD0nfh1LLNUzlmqBa5vsNbiS
+# 3GIx7oiBDpY01ZEvZS4fcmwi8nlEiGkXiZoVXksH
 # SIG # End signature block

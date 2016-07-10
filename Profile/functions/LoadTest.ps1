@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -78,16 +78,16 @@ function global:Reload-PesterModule {
 
 	PROCESS {
 		# Lets check if the Pester PowerShell Module is installed
-		if (Get-Module -ListAvailable -Name Pester -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) {
+		if (Get-Module -ListAvailable -Name Pester -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) {
 			try {
 				#Make sure we remove the Pester Module (if loaded)
-				Remove-Module -Name [P]ester -Force -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+				Remove-Module -Name [P]ester -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 
 				# Import the Pester PowerShell Module in the Global context
-				Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction:Stop -WarningAction:SilentlyContinue
+				Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction Stop -WarningAction SilentlyContinue
 			} catch {
 				# Sorry, Pester PowerShell Module is not here!!!
-				Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction:Stop
+				Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction Stop
 
 				# Still here? Make sure we are done!
 				break
@@ -102,14 +102,14 @@ function global:Reload-PesterModule {
 	}
 }
 # Set a compatibility Alias
-(Set-Alias -Name Load-Pester -Value Reload-PesterModule -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
-(Set-Alias -Name Load-Test -Value Reload-PesterModule -Option:AllScope -Scope:Global -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Load-Pester -Value Reload-PesterModule -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Load-Test -Value Reload-PesterModule -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZ5MKPi5wGWcb5frvjct8x4K2
-# V6egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYQDbFxZPPxsp37T+ixuaHJME
+# GvKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +252,25 @@ function global:Reload-PesterModule {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQoenKFFg3Frzwioe4CmY30D1DpyjANBgkqhkiG9w0B
-# AQEFAASCAQBh4FBEzHeWlGyAFGFOXU4KdLN0dQ75BZDwUwsSEV3yA37hJX16E2W8
-# 3KjM2PZ0nE2PoOJGKIsoxe0GxEY6QNWI9UkvdMgVo45ggkoe/xu5p6uE33pRI+K/
-# P2QwqrH8c+Q17LIqus17YO1WRiu5bEXLWAdkYKUag1TiRjvRqCVlW7orPWMWYHPV
-# xqxcfBmaPe6CBkFtLLb2HRCvSyZuUZrE0eNWGXmXgfsRIVW8655cF7CaLBoXGFcB
-# 2mCjf0mCdbkdtV4axe5PYz55Y0zFER6sTEsAK3i+1gAuqfdRH/gqKzKZRNwVMwo/
-# 8nKFpW2Xka3FaOBNktKEFpnEeVCHKGiRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR87idcA+5wlQXLIhRTND9VfL6/3DANBgkqhkiG9w0B
+# AQEFAASCAQCfAdsVP7MHk4hxlV7VgEb+OoiWMlKA/Z8YxCPcqC6iU7lIdJnQSb9i
+# +tV1YSc/Mf4wgOsNoAt8KStOn5+i4L8bxaB9MX0d6HBkARTznO0FiheGgzGUJxvz
+# 6rp5hG5KKFPxsZVMYupmsh7hXkDm4DohBlVkTI/29O14YOpUIl41XcGoygZJvdtd
+# DXbBUQGrg9V/117uNPfozOTn4FcFbnGeiBZ3TxbdeG1kQPoRBzD/JVNNijaKt44W
+# j5WIK5eyO1C/C83LJbLND08sJyCT81EyfS/k0LB34l7+hQaL5887v7hxMwYDAUW/
+# ttPS7pa2U4YlHpzI/LpVH+DzjJvgv0I5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDY1N1owIwYJKoZIhvcN
-# AQkEMRYEFFaL+Jd18d0z6W2Y3rrD6mNskR4sMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI0N1owIwYJKoZIhvcN
+# AQkEMRYEFLWP/qYZXWiI34FMJqwR2OkwkDbNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBAKwHJtMBIUqbVRfbbn4cUl9gFbb/FTm6+D32jkyBrkeM8
-# TjjE1kyvGqdgIO7G7/bPsafZPzlgsN++MzPbscXhGChVcd7d8pL45uWItAc4BD2V
-# 0gu4FGeHJTx7io3IIfc45UavG82bDA3TI7mde84uBuS9+w690/4GG3gA+Hzl1ttY
-# ItuOoZYrFbqaFZZ1Un8L0ZB9S047O8YS2GlabT7AqhlRQQNiHvElO6hLk6Q0NddD
-# 531fgSoxbrhIwkwlJyQKGiOPfq+OIxSTfLMAjdyPB3XeGMNDEEVg3O3nk6QCH5rE
-# eTPrq0OqwAd6ZvhcCbWhEBP00hvjozmTqH8asqA4
+# hkiG9w0BAQEFAASCAQALPbz1WUPHmZyq/s3aFKEoXRu7SRphPwJ6Xly9VBPaFhF2
+# 2cs6dNXcA6rr5udYg2zYyv/fySj9danIhKdGtkdOAbFV3PRGRtAfSQ2uQjwUkPtF
+# 6tp+0GorV8SEBnqw2Npk5VnO3RrjRPh6NALJWtPQtcqo9jHqGAa571AMVey/Mieq
+# YVNoTFfghSo/fh8R6T2inLOMnrOC/KoaVEXxW0s93tkNpA87pD3v/a5mLu1hHgvY
+# WzXGLnqHLwMmR22m6+ikI0srhb2M6wJx+xmoYw0HSzTyxEMH7y11epZxSajwN0sc
+# 4fCDAWHr8ccECHL9fvYO/e62VhGYE2nwl/eiaghO
 # SIG # End signature block

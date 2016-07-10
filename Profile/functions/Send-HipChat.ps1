@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -157,12 +157,12 @@ function global:Send-HipChat {
 
 	BEGIN {
 		# Cleanup all variables...
-		Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-		Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+		Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+		Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 	}
 
 	PROCESS {
@@ -197,7 +197,7 @@ function global:Send-HipChat {
 		# Use the API via RESTful call
 		try {
 			# We fake the User Agent here!
-			(Invoke-RestMethod -Uri $uri -Method $myMethod -Headers $headers -Body $myBody -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction:Stop -WarningAction:SilentlyContinue)
+			(Invoke-RestMethod -Uri $uri -Method $myMethod -Headers $headers -Body $myBody -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)
 		} catch [System.Exception] {
 			<#
 					Argh! Catched an Exception...
@@ -219,12 +219,12 @@ function global:Send-HipChat {
 			#>
 		} finally {
 			# Cleanup all variables...
-			Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
-			Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction:SilentlyContinue -WarningAction:SilentlyContinue
+			Remove-Variable -Name 'headers' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'body' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myBody' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'uri' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'myMethod' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+			Remove-Variable -Name 'post' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 		}
 	}
 }
@@ -232,8 +232,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqZytrKiAVKy3uzsVks3VzBpz
-# BiigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUd26kpErv1uZe5wd5yWMCzmHb
+# xxqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -376,25 +376,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRtu2jebrnHkltu4BMtqZx1ydEWxjANBgkqhkiG9w0B
-# AQEFAASCAQAA1pz8wSWzUsbS/ewXb72XFVhB6NGiH0ssIMA9J2m6ptMXjIw2Bt5k
-# 2eMDQNGSw8JcSwH+efOuijqt+2FwJuLfAni2/FNlAdOhiM9q0tTxsUs6lZFaiBBf
-# q4ZecqWa3P+6BP4QxQCJAHTvhk4rlpIKwqmPkMgnxc3TBsGcSfstYTjzwmQ2DiZg
-# pfkXJVmiynvCaid8c74CZC4QZ1e2L3JoM0HnJara/gJxpd6Vt9PHdWPCZ/S/aEdZ
-# zM5jRWJA6DZ4MJHPVb/aW4pcgC2un8pu5ZUhO3lItfNy7w7M/RyNhaI5jqDb+7Wy
-# 9eYaX/fB4QbmzM81sEXILq8L568fxzY4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQiXoFfonoHPQH3nBn/Po3uxpPCADANBgkqhkiG9w0B
+# AQEFAASCAQBVD3jelds6YKB/VKzpZ5WHzgpWjZ/9lafHTzs8u9UtMsmyE6S6qAj7
+# zhl62Ue8Ihrf1inrGI2dVg0nX/BOwt7Tnv1CppyzIse19YMJ8+xHy3kFwemxPEx7
+# 9HL9FW8n5Retylurni3pnkzqH2hBd1B1FkTgdNQcAyeKcbn7kA7E0QcnLLpA4u+d
+# YpQm2sietLBZbSUHgJv+hkbpJK9umsFjlpotS5hTePhpsfSKI0xopoKcN3EExKjW
+# Qvg9dbJ2sbWQmRW4Y0/c4pJhRADEUoqXYMGmu1Wv7X/iBInSlo5Qvfe2Gkt4HfjI
+# qpVlh0VeCFtWol1gRPEPwR4ePquqfEhsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDcwNVowIwYJKoZIhvcN
-# AQkEMRYEFEtQIwBadBeU9Q7Z0NxK6XC/89yaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDI1NlowIwYJKoZIhvcN
+# AQkEMRYEFGOMXSm9Rjz9kUqCLtDZHQFMjthWMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB+gDuKxm0bNMC+RtI5HWipYVGDFYrqdEBZBQligdVsTUlQ
-# 3ROzWon7yBMtPKxqo6Nro7PGUo1sCzEPiZtsK9ePqI12rX8TehNy5HXBa71Ja9TO
-# +Ayjx90ZkPWFYMnEmNibDZKjYGiXjTKslU1bwu3c1+8OCBFXlOPxTZKUkKWu1m/U
-# 73+ldLWGvM17JhQLybGLfgpt4ZkoM74ilFIDGS+ao5EG7w+Ysg05VOTJGc/y59Kk
-# wvWpQ2f17oiDQ1zqCKvPOoyaOK6neSGLtYao2ErlY1kAm/lQ6AJrlMHMvxwt9wYJ
-# yGbF4E90qpUIcveGPaThADMehsn4uAj82OqmJXMM
+# hkiG9w0BAQEFAASCAQAPqyTGs2898zEA82pENkRIoHJLjqvTwxiJjiTfsNXQ0szS
+# gHdheT81EF2zMb17sdZKJBKGeouGzCxUQmQV4fHZqwe4cwqaZZJEle8hYrasdiro
+# hSTpoAd+SBTpIhroH4OCxT8LpMw5Znie4sYVp9pbInTBMfoP+XOTqsytq3YUqpK8
+# /b+yuEbSxvKgXCQdHvtg0TE07OPaG0rX4mDiy/gpYwUTNV6ioJEnNirwdOrO1uCs
+# mR/CT52Hp21FtTz3wb0n6hdCR6yoTwN0ZZFjcNrd9qFdEbi5RKj2mEvldvGDtoeD
+# rvQQx/K2x927uRK/jI4w4oqvt5uS36SP1AB0Sr3h
 # SIG # End signature block

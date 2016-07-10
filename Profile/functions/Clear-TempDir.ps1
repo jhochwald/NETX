@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-07
+		# last modified   : 2016-07-09
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -116,7 +116,7 @@ function global:Clear-TempDir {
 	Get-ChildItem $env:temp |
 	Where-Object -FilterScript { ($_.Length) } |
 	Where-Object -FilterScript { $_.LastWriteTime -lt $cutoff } |
-	Remove-Item -Recurse -Force -ErrorAction:SilentlyContinue -Confirm:$_Confirm
+	Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Confirm $_Confirm
 
 	# How much do we have now?
 	Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
@@ -127,8 +127,8 @@ function global:Clear-TempDir {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU36KfXdzm0gtEN/WtzBO8+ccU
-# 9tSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6VnPtiLuCKiRG2K9RLTiFxDU
+# K72gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +271,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRn/fDbJP+IQnTYVf1RH/ULE96wuTANBgkqhkiG9w0B
-# AQEFAASCAQA1+fj5HIBgQi3BjerCIkdUTK7VQY2KeCu6rsewykk90Rs0tKz37R2C
-# sKaqsZEhEkMZxKFeqHBGZh+Q3Z4IXEBvZF2U7/UaHWAWJHaq3odT3qvpOZ4sRn7F
-# Ny73FRLK30sfJRE5swWT5JfWg6RUi0tIXc0w+JCyaukVaF6n87A2NMhbMY1w1Q0P
-# 6ZACmASdM71b+TeTP67uM4kTm6q2vrDDznCNWUTnG5QsrVcSTCsR2UihCj9g2h0W
-# 9Y9AcAx8O8JbR6j8VZxxDAU9WopxnNxDiEIErEEMdaklNWyczzNYhgcI+zZwI+lo
-# IJWWpTRYRQHfii3oXipRG94MAYzPrsv7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSnwNTPhfUfzfaXRPKCwiFdCt9g9DANBgkqhkiG9w0B
+# AQEFAASCAQAXvbXtg+8nlEDYNaW1IDkMkldMbhK0jUl5AT10ZSzqHvbGZgnsBszi
+# zaWbyU/IS6DEcYIOk5K4oUEvXH1+5LKG44ngMKOo4Eo3N3fgk2Y85HIxpcz78SPL
+# cIKMReNyCyRZQkzl7I9aO3gBwmSloitjk+Z0jF0FkuTnd3Yhj1VzJEg4eH2+p/AZ
+# JjWN65a8GXrPMn10NGharPMgbxeLZf3EBer+iHU2fs+VQjZkyB8HylQZI42FtXIs
+# EpDzA4exL7m+Vrx+qQ2G6EgUtKSE+aUJvtNFzp/skWZJz78wemEfQof3Vm8/czAr
+# zBtmqd7o+6GKKE0ouSkSmSLiPvkHslEioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcwNzEwMDYyMlowIwYJKoZIhvcN
-# AQkEMRYEFJVrOs29VEOl9N4dP8I/WKCPMyhNMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxMDE3NDIxNVowIwYJKoZIhvcN
+# AQkEMRYEFD4KFk2Aalx/3kPgl0qAcYTdON4UMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBxSQvUbkGGAoK2HNT9f9Uqq+JFg4itUrIM5+6VCh46NnPr
-# 6nWbUu/LDDl8tWtGgD+fpKOYFv/LvJWDafxrm6qJvEOOWwrzeUo6hQK6etHrlCxC
-# AGUm6HwH+Icd8y4nu0R43aw+1IKmpiElyFjexIokLbBXHc58ZRjNRz5hUYvFRFHj
-# wq+HFufcFbvH1kJ2p+0Gt3lssjr8JVKqOLGdQiBeu5iJi9qpnm24dhqvOxPdEUMn
-# Ep4LJxOmBRYVXQ10DLPkPkHlIsrWXgbYqle2ZEvv4Lflp1nkhY5LO89QRF6FzUTp
-# gPvGkExGybGdHaEbNg9TlJSajuNM0/fpQQyY1JHj
+# hkiG9w0BAQEFAASCAQBnBLgQoX/1HOXezBVjtzZpFPNLoGX1E7rgZFLtK1kzOD2+
+# Yk54xm7QxbVyPnj6VwfwLHD9hTqAOWYNi98/RZ1UWYWMCU+SUYcaI4r3LV6nvThQ
+# 5HNVBGb/nUQwZoFVggLzFm/zQYsDn3E/GnLU4k37B7LDx3I5eXc/hvOwU8fPdDAd
+# 6gU6Oj7X2lR2nNhdqrANH1UbfnYHCPqnWF0J5/Day6ud5jRNuiYDk7OOTWElZS88
+# v3tkrzKt5/Q5Q2+6sGAoyAbBkni0GWHIiUtoO5Ws4aVJObjntRN5PqPEqGkby97z
+# 6Gd+b1eYBKRthgwt6oLrHVeyVlSaHKT06x/H7bsX
 # SIG # End signature block
