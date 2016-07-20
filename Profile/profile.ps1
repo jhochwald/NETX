@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-20
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -76,8 +76,6 @@
 SupportsShouldProcess = $True)]
 param ()
 
-
-
 function global:Get-IsWin10 {
 	# For some Workarounds!
 	if ([System.Environment]::OSVersion.Version -ge (New-Object -TypeName 'Version' -ArgumentList 10, 0)) {
@@ -118,26 +116,31 @@ Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
 # This is our Base location
 Set-Variable -Name BasePath -Scope Global -Value $('C:\scripts\PowerShell')
 
-# Helper Function, see below
-function script:LoadScripts {
-	PROCESS {
-		# Load all the NET-Experts PowerShell functions from *.ps1 files
-		Set-Variable -Name ToolsPath -Value $("$BasePath\functions\*.ps1")
+$IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource')
+if ($IsNewModuleAvailable) {
+	$null = (Import-Module -Name 'enatec.OpenSource' -Force -DisableNameChecking -NoClobber -Global)
+} else {
+	# Helper Function, see below
+	function script:LoadScripts {
+		PROCESS {
+			# Load all the NET-Experts PowerShell functions from *.ps1 files
+			Set-Variable -Name ToolsPath -Value $("$BasePath\functions\*.ps1")
 
-		# Exclude (Pester) Test scripts
-		Set-Variable -Name ExcludeName -Value $('.Tests.')
+			# Exclude (Pester) Test scripts
+			Set-Variable -Name ExcludeName -Value $('.Tests.')
 
-		# Load them all
-		Get-ChildItem -Path $ToolsPath -ErrorAction SilentlyContinue -WarningAction SilentlyContinue |
-		Where-Object -FilterScript { $_.psIsContainer -eq $False } |
-		Where-Object -FilterScript { $_.Name -like '*.ps1' } |
-		Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
-		ForEach-Object -Process { .$_.FullName } > $null 2>&1 3>&1
+			# Load them all
+			Get-ChildItem -Path $ToolsPath -ErrorAction SilentlyContinue -WarningAction SilentlyContinue |
+			Where-Object -FilterScript { $_.psIsContainer -eq $False } |
+			Where-Object -FilterScript { $_.Name -like '*.ps1' } |
+			Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
+			ForEach-Object -Process { .$_.FullName } > $null 2>&1 3>&1
+		}
 	}
-}
 
-# Load the Functions from each file in the "functions" directory
-LoadScripts
+	# Load the Functions from each file in the "functions" directory
+	LoadScripts
+}
 
 # Make em English!
 if ((Get-Command Set-Culture -ErrorAction SilentlyContinue)) {
@@ -460,8 +463,8 @@ if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcam6cfm0OBaGSITtmdPZ2ND5
-# fzKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwqF7Palb+w9N1S/LDi5KALAl
+# C36gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -604,25 +607,25 @@ if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ/5NZoZ7xQwvpsStbxdZX5QWTW/TANBgkqhkiG9w0B
-# AQEFAASCAQAAIOesCLN6bhJN+pmXU5DZ7B2rs6URHf8aLh/EL05D8tYNbTLQXD3V
-# 3lJGh53NWsZxrAEtniSqFlZfAeB1QY1bDwpcs5kw1jU5MUZ7h7BGRwj79JwwB2zP
-# rk3zLKl9KjEj2ZzC/ZcVPz2bGe4ist0odcvnFoOPNWobM8tyMBdsFiaX/JC5ZFh7
-# nX91B71UBagU2EoYWuOXcB11qMkdMzWFX/OJRv+GV5f07VdU5PvQYJqtb+gxs1HP
-# K7a1OT0DWSB8M6Oi/48gOqC/GGs0tSX+d69GvCRtEaI8SDm2jVnKfb+eBB/afVd8
-# /ra9ofCCVYorqI1cqi1HIXEejNUtvRmXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRvnrt33yjRz8OyAGHclFRGVnp+czANBgkqhkiG9w0B
+# AQEFAASCAQB76bhNI0z60Gcjo0XuBdoB2ALbhoBGp+g7B4Zq+CMcWir9HPTU5Eap
+# Qc+vlmKQFBtQujuP4fPSm/y/XcLr20btla2Gn8AP0uhHGQDtTHZkey3gBN11g8P+
+# pBBxrA7/SbODPruSis50pEUJkcElqqUUZEFsGS1Oc7rDgtxal/vETgkVYc4NCkzS
+# UUK2EKOOLd3XUJCXeezbdrkrbKB2YsU5M8AZ9CJqBl2SO0caSHGXyRnPWG12rcsf
+# xB9PMLhmVzucpyupbCGWH/pAYXM3ynkPgq0ckk/+ksj3lDvl23XzH729N6//aRP0
+# 4TsAESuRmoQ/oxj/mY5xejiEJ2qDwqQcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDU0NVowIwYJKoZIhvcN
-# AQkEMRYEFIlMKZjSNN5La0S8wUXJRpyhDQQnMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE4MjI0MVowIwYJKoZIhvcN
+# AQkEMRYEFJiJWmbsaBTSuPv+7ajeNG+jrBiaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBINyzlxWNRXUbP8qSlbC37mYySq7dS3u8Rs/2FzDmLBB14
-# P22atUcHoMwQQmPn8VB4kTGJo+DeZ4VdGsAQ7zsUbXzK5mkV+UfQSg5XYSehsdk0
-# Z1h3Y9mC7FMVZ9oIc2tmD2UmvpUKmEQRF92ChUxFtu8oqBuQtp3kOFcXZJhTz8Pw
-# SXG2fmUQ7GOmUb5k3dmOo0DmQPtfrrvBoUr34xlzTBcBvKhIF9a993r0xq6dCyVa
-# HVXPKNWPJYvzf/e7r3Rvrc0vf1DpQ/Zh6IV4EqGLoTsKTgSqdoAtfbPPZZO9qzXX
-# +8Z6AOLqaZoXxZsgxKUspUof5OrYkOVqmgK9ZTht
+# hkiG9w0BAQEFAASCAQBwvH46cMPMZCrxFlCDrdVqhjN8SdbFkIZi3PGEe2cThUkB
+# bsz9DosydyYLnluD1xlo7FGmmUYfGs3AtDjcxOUQxCcNKN0WDm362BlwOZ0izVdr
+# +QZeiQUqutOP4XSGRcRNVe/6RELBaRPEttQBr1AZ/skwggYBnJ5BUK9b4B/Nh0TD
+# baMTypDnjy2AgNR43vo+Zl+fEB10BcO6+p0O4I3GaNMhR0uVPFOyrVbB44dhi/Eu
+# 8mwXNGFl2kTHKaapeSH3RKfIyBtBPvlWHT1JUkGROppYyNJbPOmhor9OzEH06RDt
+# M2YaYC8OxozH1VN+5CHZfm6LUqE77sK3QH2OHnHp
 # SIG # End signature block
