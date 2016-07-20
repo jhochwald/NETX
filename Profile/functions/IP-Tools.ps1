@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -101,7 +101,7 @@ Function Global:Convert-IPToBinary {
 			try {
 				$SingleIP.split('.') | ForEach-Object -Process { $Binary = $Binary + $([convert]::toString($_, 2).padleft(8, '0')) }
 			} catch [System.Exception] {
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+				Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 				# Capture any failure and display it in the error section
 				# The Exit with Code 1 shows any calling App that there was something wrong
@@ -412,8 +412,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhNTNCmKQul46lRcTgTxWJBhB
-# 0dmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSiGiWJZTJQesFVKhdW/BBKKi
+# ZdWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -556,25 +556,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTSsV84rvTqMtyf7sbWA2QUIAKkajANBgkqhkiG9w0B
-# AQEFAASCAQBMA72s1+YyfhwtA91ZXNcnwtmmlYtChkc6Ylfy9AnDKCKb3Obfxuk9
-# /b6OseadRAlYh7v07Wn0BbN7a0awb0JSWu5XD9WKr5ZO+iNASMojBWFQeIBccAx9
-# QPfsN9GeBv8Sd7n6fmuigGxHOcQAxxEYxa6lrUl3R8cF370lQEdc0uEcRcaSG8MJ
-# fzjX2coY1KDstqfkWtLP/2z69ReiFpD2+RfmBjXvvzM5XnJgX89NGQiTAD0CY4A6
-# /g4yHVAdX1tnEEiU/p+0u4G6xJZiob2vujCpyJqErVCT62K34EJ99jrOPIcUm1oy
-# RtH7UbMQQyF0N0drE6wiO8giUnaii/GSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSzFdXMJfv9cNG3x+YwSvZCbC958zANBgkqhkiG9w0B
+# AQEFAASCAQB1o2oRfwYmLoHL61oRIbjQUxqZ7eptY7uqIM7TzQeHmPegXOIwJRu8
+# HVRpoe1XHJhGf4AlSAvVE6veXpZ0tK/V+VhT/0zVjAFVHnJjXcSDKvpFYoOWjQ+J
+# DzKlyaDmlO+5+0hNqAUG/4pOzEkgwuh5MFoEuwbmd44lj+aGpUPh9Oj0nFfdBpHW
+# +nNEFCTmUDoQP3i6xA9jPKxArXBkFsxo7N/A63I68YWMi+mjfwBcnZ38RErlBPda
+# qHZgy6gI39elfgERH2hxVIwE8lzgT12OKLOSo1ZRw2P2pqBcHXEMyEOMwNjA4Eir
+# Cl3DkwSTfmUgdSe7LRQzrk2i7d9saemooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFEua2V7CF1MeOn0azv3ou/aGEC62MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYxOVowIwYJKoZIhvcN
+# AQkEMRYEFGuaU4zvOdQgXn7U+IPa6+c9cqmyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBO19cCsCDsOYI66GmkBd0I20N8F/WGSpkeOndULan7Lfow
-# S3OvLJNeuc3bJ26pIWqXiFvOkrz95cn88gd2dKZwV79NKiAu+E1mfR9KcJ1KAPq4
-# 8NR5bpKJcHA444e2GYbOqvr2KYvkFxaoLneWJJh9CmioMX7uPBU4SIrrQNKtIYSA
-# iP0DMOBBordZly+VvqRLGjAt1JhfJGRP1FC0V032a9823qrE5+9uhOxS7uBR6P0T
-# 9r5RenxiPiXoX7f8I+nFAcpy20p3NDTAy43DcHJvWWZuIVOkNknHuzS8ETmd+BCM
-# 714aWuUPRBbuXVymOX1AKKjn7fiP8SzlBN5EM4MR
+# hkiG9w0BAQEFAASCAQCPrebzKSvUDm1DLJ6yqI7sUrtjtYk/a9JRFFDX3IYq9z4J
+# mMuNkOpAR3WELDp/ZSDSlUo/rTlHwVouxYnzvbOi2JQEjTbXf2WQUt3IaJWcRRra
+# RTktdC0axL4ZvgJPhIyFwKyc3VNmVedo2MDt30SEzeLJygBeIiElkPjHxN818WPk
+# DyqifB4mBcTK5fjwVqZGJc7TXl/9JHd5N5t7eBCZxbBK+cdJOGDbZ4d33rOi8q4E
+# kjRFFcmC1f/BVl9w1vm6sQGBMCbokz7DMg49pe7TCIExoNGqOzvahrVVpkBlSzcq
+# k66srsvOC57Jj6vidI5IwO6ceG/uvOjlOQCHY1/k
 # SIG # End signature block

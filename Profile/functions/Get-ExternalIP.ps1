@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-28
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -147,7 +147,7 @@ function Global:Get-ExternalIP {
 			if ($_.Exception.HResult -eq '-2146233087') {
 				Write-Error -Message 'Not connected to the Internet!' -ErrorAction Stop
 			} else {
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+				Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 			}
 
 			# Done!!!
@@ -183,8 +183,8 @@ function Global:Get-ExternalIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsf5YhgFXGQSM/P2/aHu4Rwu3
-# rI2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZYviAAODu64hCWiirn86r4d/
+# I+2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function Global:Get-ExternalIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ5jaR6Y+RHYX1pxBiMvrL1suPEgDANBgkqhkiG9w0B
-# AQEFAASCAQAdIbeQIoHUWuZytzdFVCTc5HDOxrkUMVZu+viNBzHloNyQp4hmQxTh
-# K4IentuGxEjGQ9Ct4ool+KfgPgmkzjtUYPuZ0pN2b/zz8irSr+c3tDZaElQgvk0U
-# SrI2CgQxbqeAHlvhtRKIdxyBjNYqVn9HedF/+al2Jjcn+qR0M7T9qktDc5DwVh6p
-# BYXaINSLP22Nz2uzbWO9+MSSbihTut55KBYmlVbhhPG6wVEGG67is7c6HqfxNKMc
-# F9oQXdbUFvtWMJ423UZy2f8Isxe5CYulrIc9jRCEQLt4D+LT9zt+MbcWrscNIyq9
-# hVsoD7eOk5bAmLBmzKVx4EOQkMkorW/woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTov9dkIGiC0QRokn6bkopCrNVMSzANBgkqhkiG9w0B
+# AQEFAASCAQBMFrgTy5oald/AJzT3AmZluz9PHj0M2vyWTTx4fSe0FlF5iifgSU/6
+# zBAyDWJGtheGoAgBsdjYgm23pwLx4eddSRlrBZF/7voKtR4eeEKErA1+7uaReN+p
+# RHCBto6EEBreNEonH9WBwWl311Rnon94bDLyVxbg7dTsNg5JjkZHBmJR3CNBtdO0
+# yw6l1cYsJKF79Q4IlZJh9IXqAuYY/0QdBQoBB1yNXjNkVRJb2u6IJIGg/m+rkfeX
+# VAsNAhMTTuoAiZ0pxm7LlAQOw5onCBnQN8DKYa05q2SF1Nn1Q3eBdDdGYxUAmZKa
+# jn68N9D9eRIWfG1Ec3/voFvGxU2ZmjKboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjQzNVowIwYJKoZIhvcN
-# AQkEMRYEFNLO+2UUdaSVNVDv72ZK4B0NY5urMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDU1OVowIwYJKoZIhvcN
+# AQkEMRYEFCfUUs4W/h7FPb9UTtc9XhR1ZTtXMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCr8bhWU6K55MutmNftLKlVnTSy8wOfirY9YRX6TJ4lDXzO
-# GjlQXNkwkp+OgwFfSG3c8npcahJEPr15iVMWuZfkgqAopTrVQ7otDxcMBeWEErCO
-# QqNx33mNsFTdmSROrmzyxAFR03IQGkk6lePH5QQF8MFs7YbX8/YRjI8kSP7TnDml
-# mcv9Ki080Cv73mH9JaJ58JD4pjOnTCFX3bjdVkt+xHdJ8RFqmdsyoAXHsrzZvN2H
-# dGAq2784jOSuzDz83KL6Bxq4YuXQTVDrGdzs2SrdfgD+T9zVpyMTSn7gjpOTFLGW
-# g9SNc57pyE/XFTQPbEQFTW9dOk/vspBKcioyOnzH
+# hkiG9w0BAQEFAASCAQCqkNK9bLkA9cz1O02ODzaEYR6LCpBeA779dHjg6u5mbW7P
+# SMAxz6MlBdlDy/ejq4wV53SP4gNV1Xc+/mzVn56DL9UuoNrlgQ8GwRUajKqkBD+n
+# Exbo7Uvp/tSJJtitFgbheK3gS10+9+uHA/ktMhRte1Gpj8bE5yUeoxenqPTAIB/O
+# Hyi5T9HuCmg6xgNtA3xxZpJB4DsgngFOg0mbYqYj5nbhMYNJKs5R4h7kN/uY1HoY
+# TsSGLtQoCVdIpIrv4NHhYlTpE4wtSxrYqG1iqZ46428zMa63Eqs9bHDta1pYhxOO
+# M24kPrbMJb3hMNNuM14eImJkmrdxJrp3CVmnM7eO
 # SIG # End signature block

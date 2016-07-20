@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -87,7 +87,7 @@ function Global:Install-PsGet {
 					# I hate Invoke-Expression, by the way! Is there another way to do that???
 					(New-Object -TypeName Net.WebClient).DownloadString('http://psget.net/GetPsGet.ps1') | Invoke-Expression
 				} catch [System.Exception] {
-					Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+					Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 					# Capture any failure and display it in the error section
 					# The Exit with Code 1 shows any calling App that there was something wrong
@@ -143,7 +143,7 @@ function Global:Enable-PSGallery {
 					Write-Output -InputObject 'PSGallery is already enabled'
 				}
 			} catch [System.Exception] {
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+				Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 				# Capture any failure and display it in the error section
 				# The Exit with Code 1 shows any calling App that there was something wrong
@@ -235,8 +235,8 @@ function Global:Update-AllPsGetModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXJw8BM9uaWzjOq2ajjuXeEqt
-# ERSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU66BynQFD/wsn9AAsepOfNv6O
+# HxigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -379,25 +379,25 @@ function Global:Update-AllPsGetModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTquygNte5IslU70sMpbVNGJz8MKTANBgkqhkiG9w0B
-# AQEFAASCAQBTcC4GUipUgEkrtL1pdECnFB6U2wVAt5ymHiwS0Rur8VWYjXJC0Vpe
-# ij/QjTLftkP25EpCGpTeLFQ8vkc0hEKlRVRaLaq8/L4GWPEyNGS25sAnGDKguGiX
-# SmAsQAXwDblPzZfhqEKHRzD18ecYv/UmN8K2HXwWV6HisM5sZLdkHYIRAJ2anXsL
-# JJbzPCupRiC5rAEzMs6Wd1ON2o82X3YW5qQBKm3XusSRHNuA5HiuvMiIwaGZPuSD
-# sEGsC9DRAi/FcPtnXVXOhkwwY//TS48WELjpMXfDTugPBMYifxlSTle9BFQXIbxc
-# la16CGaEA/oI5hmTrV71O70xWsPvLsH9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQhGSSEdwWdK1rSWZ5d+fi7IpK7jDANBgkqhkiG9w0B
+# AQEFAASCAQBm7dRxF8QnPG9R8bYoRstPj+1ERLx+7QECjmTDKy5jnAB+WSRrsYWQ
+# byRqTc2hPcfxZvtneLwrs8V932FT70ZCSwUzhtgekb3shpdgI0xLRBZxxWzA71s0
+# 0CUGIKKlzSFKtydf1KhRxcjly83NQ8YVZlFcOrEj8gvgeH05lSP2YBy6DbXwABAd
+# X94HN0xaVVw0uuP5KBtFrBcT+FZhi8gRncIr1MJ8gUKh3Szv7mBax4r1OQ8M0PK8
+# Xj4rlivPZ9adzFdVaHlcMzfAfi7aR+cZshez/OjFSL2VpAyNL5FCyWZCx97ekIPI
+# LKrQe7dGsmLTQAvRgIwnsOEVUmk4T5MToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjUwM1owIwYJKoZIhvcN
-# AQkEMRYEFPveH3xXZ68ug7L2Ivb4Y7B5IgelMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYyNVowIwYJKoZIhvcN
+# AQkEMRYEFDTo1Vya7mb6G8SCAweD3fT8blqdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBj2U5AMcAA+X/mY3bzNKjU/kCaVi46eL3oD2aTp13tZCVR
-# eWgO1MoHU2UIuUNC8h/f/H1LFfHynCipNYMsO7OjAphZaxAQn1izJsL//iXN1v7V
-# rqaXpHZUaNZ3ouJ7mUeLiTPEByvdYk8swopnaFhpKKhyQju6lvLCNbplLZdNBQQj
-# nKV1Oz6nY4jJvobjbC3rX05kVzOXoxOIfq34zCiKXp4SliZ3CyWxF7q8vxj+auCC
-# WFy/V32xgZjpFWQYv0sWQldEW1YCXV+zkwERhs8nAiw4hDAg04clAx7BX4BCnCE7
-# /+1BuWs4fcpNaIY/w3RmSd7YIg2KUtlfbXg37im1
+# hkiG9w0BAQEFAASCAQCMpqDs9y+XmaB8HHD/wOwwH0HiE1a+jA1/yvzs77YN8BGY
+# oCJ/6SMUWbOSi1aUGu53vVJm8akaNhTzBU4d1dyeAxYdGTINQ2bYyqmurWYPXP3x
+# Sh+n/6qQNtowJfk1oYFQ5oDIDhTdi/WsBFsfuQI3sRr5dN7yeR4HdUVRCOrbI9DV
+# jqXSLZqCXOkylO+3Z6o2nnh+hROj37MGAqS60eAGxSNNl/YztLzhIj4mMqCjbDhp
+# FQ1PYCsWDUa37o33vnzrKFsUanjbZOPImMVSW9k1JPXaluMhZhVXDVMFR1heTGCm
+# G51zIYMCMd8YsoI7sjPXJslRe55pEGYhx1JT4AFf
 # SIG # End signature block

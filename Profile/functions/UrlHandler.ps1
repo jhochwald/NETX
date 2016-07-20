@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -112,7 +112,7 @@ function global:Get-TinyURL {
 			}
 		} catch {
 			# Something bad happed
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
 			Remove-Variable -Name tinyURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
@@ -175,7 +175,7 @@ function global:Get-IsGdURL {
 			# Do we have the short URL?
 			if (($isgdURL)) {
 				# Dump to the Console
-				Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+				Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 			} else {
 				# Aw Snap!
 				throw
@@ -250,7 +250,7 @@ function global:Get-TrImURL {
 			}
 		} catch {
 			# Something bad happed
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
 			Remove-Variable -Name trimURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
@@ -320,7 +320,7 @@ function global:Get-LongURL {
 			}
 		} catch {
 			# Something bad happed
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} finally {
 			# Cleanup
 			Remove-Variable -Name longURL -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
@@ -331,8 +331,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURiz5oRyea4BE2x6JVp7jXxCm
-# h66gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUY3dbXm0JrS+TrqPNAp3YJ61W
+# cdagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -475,25 +475,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQzfDxJ32rteEcJNl9CrKvY4Ni1oTANBgkqhkiG9w0B
-# AQEFAASCAQBMSGoD8457jBZDYuTtG5LsGFeb/Avz4rrSRID/da8WBvE42CSBUq2A
-# nF1il7eRa0MgFUxEtH2ecktxaown7rz+pcBv9pcyGdwnsQ/BIqBaG2k+wulazy4M
-# /sKF3InuTJzi22qbTDz43lNMKmEdFt4OIrcD6NvmTkuKFEDPIoAqSfCdT5xG8slM
-# UncyHnuAqC2fDnXnC/FHG2Hc4VKjOgh6pkqI+ueWFx7GHmDd0Ibb3sDvydDrb1d0
-# 751P4w1OufL2zC2LSXy3W/pu0MCQZd+Ryj7cveLlSB7L/4r0bQMOpR1nH+HwLMxH
-# 9q27i+Ra+KNxVEAOV+wFxSqueaK+iULmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRmbID9onz0tLgw2BgbnXi9StZZeDANBgkqhkiG9w0B
+# AQEFAASCAQBdUFn9OQ6FEy2GqvNSHBpm5AZSwKNXWDpNmjU5JdCiq+xngnadTizx
+# DVVib4aal4kFAZx0r8AtCkc4U3MIzF9Dh8LXcc0HOTLM8esPJozxcclUbZZSw2xG
+# UNTU1xmEzrLRKH5HGPbHtbB7Nq1KkCpVV8zLoGANekTvIzgv5HPzlQBejItIf1Lc
+# P/v5fUJNvzcWIVr7FScckoQep4DAjYczzTQBPDJB4grQaas+y+horRMHnIh9uwXn
+# ErxzWRFq5VTkN3Eu4YEd5AgrMQnXPSvUOgUq7f38VFfsk3QBx9ZaRu78io9HOizc
+# Hj4w3m/EEktkemHJdiBZKn5+PwVT3ZrloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjUxNlowIwYJKoZIhvcN
-# AQkEMRYEFCYfuK3rJEO69jofZyp8j1mJ/SiXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYzOFowIwYJKoZIhvcN
+# AQkEMRYEFD14UEFhX0OMkIvSyOqgTb/h/e8UMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB4i1eyay//lLsgBJeyWypuoB5F+cf/D89v3ZYRmkObSmCW
-# B/duuhQYLWR2uOPnP8o2IyFDejNQVZcndE6EjrA1Vpum0e9Rz2If+gSY61qK1gm5
-# B0WSxnLX4gMkwppSgqOAHARU+xYevL5azDzza/nbziD1wVqj8qnMbBnrdzIv/BTL
-# RB4oon5cw0imm0PGveC2MkPvXjYkZm4z87akMIpUwnSTjjw2A4jUMjqy6AiIYM3i
-# ogzzFRPuw6rd82I0a8bBVL3Bq/X/pRW+IbWHzz9T+3RKPFs/NyKUhF5INQ5MNpdW
-# iieXqD35iT0DIUV6rSCEm0kk/r6qAWj6JwFrD1cC
+# hkiG9w0BAQEFAASCAQBI5PeDdIGbIYSqs1qhaFyidTbDFeJl+f1biO08Il+Ut69S
+# 6ESioCXSjJdAh9H1bkLlqJLVEWxALLaeGOKpV364CxmIwC5XBDnhIqnIALxRx4jZ
+# 76dxHzG2eFebzTk76tpAcA+NQ5C1xlzAJVnjXcbJbCrH4hikIM7TkzXQgVx5XBPt
+# oZWRqLqHRXZXwBMuncAUaRo00ENOGl8aFX6Rva6LBy9gM7ycS+jUjYmMhNl2mRw8
+# hgrww/XXxNJ9LBkRHjxS+qnudNQ94wMXmaEGxIqtmlrr4E4eMSmVQ7TkbNQeQ0s1
+# 0kc6WJFJkLMDaEuKFWt55rbs+dTZrXLOjp1+bb3c
 # SIG # End signature block

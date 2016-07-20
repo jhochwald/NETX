@@ -4,7 +4,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -138,7 +138,7 @@ function ConvertFrom-DateString {
 
 		Try {[System.DateTime]::ParseExact($Value, $FormatString, $Culture)
 		} catch [System.Exception] {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 			# Capture any failure and display it in the error section
 			# The Exit with Code 1 shows any calling App that there was something wrong
@@ -158,8 +158,8 @@ function ConvertFrom-DateString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn5LPk78O/00IHWUclBDX9UTu
-# IV2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuPvBcu2GSUFbEfn94SSsZMZg
+# hM+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -302,25 +302,25 @@ function ConvertFrom-DateString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQOtGKESeiY0zEJUlgl1y8CMzzjUDANBgkqhkiG9w0B
-# AQEFAASCAQCY6wvH3wBxcy2Z7jZpV/+x86KtEp4uPaEVEpGknmOyKyhA7hlrN7Z7
-# PW+6BrFpqstrAd0If14+WXDC3Sx/JGy2EyjfN4X30B3H9uAgQrD/eSL/EGTe7PHP
-# b4E+/RHPjkZg5rbw4OQX46IIONsJQl76DdzTgr3phrHT+vJKO1qtTzkkfPo8Jg4z
-# G4/rTiQ9voq6VcwlCbYhjDdR7DRrFJO1m+BTxyzaQNoK6vjMlQro1P3Fz1fR9k1r
-# qWQMmWOM2Ay25jaw98UU/0IpI7J8Q1TTb3JuaSLqc8r4lpboKl/iWilsmri6PoA4
-# mkeR3soie7ISW6AC0fLfobbCpd8eqdUHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRX9C45QBdXhOCdHM74IqmWEcd4jDANBgkqhkiG9w0B
+# AQEFAASCAQA4f0IbSdrfgYlcs5qosHQ4rWJ1CB3F+9ia1ItIUehIA8xV9YNUIm4e
+# R0BOU5SGcblEpM6t6fnwYtV/bRlDY9qFPoyJs+umrsMiAN9jARe2iQP4ttBL4mU+
+# UCk35fl9hr5CYrGnWrFKcIPRThnRzeC0vJHOyqzWia+9QtziZ/bhwEsHGBlXc+Kp
+# +Yi9VCJkcFgav8NAm/m1nTIV8rcZ7q+4k/vVH+kGTjfZjxi3FGEdY27yfAEF+jsl
+# zIMaz+GcNA5JTyH6r1eskibsdKhEKxScueE9Pfe3SeD7PPp4Mpk4jsT/VaEs91ak
+# ljWUEfXQ0WHl+RLV+GjorV8p8T4dUCQpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjQyN1owIwYJKoZIhvcN
-# AQkEMRYEFCiCzKMSaQavQGDTHlT6vVB5LO0WMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDU1MFowIwYJKoZIhvcN
+# AQkEMRYEFPGN+PvwZa62gG1Y5ciWz8cGqzU4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCuvMvq3VFp+ftnGTO3wOwbCWDwwtS0joyC6mPNcdxISHhj
-# 6yYn+WJYi7otLlBcufmQDDR97mXt+fHACHHU8t2JVX3Q3ws47A8yWnsdxrBZMNlR
-# U0tpFqigR+4tczx1G4ua46E+qPw3RHvvwr4KqM/5Usnt3att/CvYyGewV4jrDiio
-# n8doxk6Edn8Hp2gtmrGl1lCxo6bZkioQE5lOqQWwqbZu5qB7Emtl9MtqE28FCkqX
-# OTa4Vu4aKfyWPEJTLr6q3YDxoeTZ/rAQYe3hUsGkN+xbKTkgy0EwUEpffNRf/S9T
-# 0EkA1OblzVQNYeQi1JS62B7Ej3rtsBw2uhAfxkKU
+# hkiG9w0BAQEFAASCAQCcEvar6u8Foj79RpIQm6znXwMvgRA8gXMXk0/W+nobF5UN
+# 93ciA2Y3kz/60PgLCafAKsOMBRFiYi1BTHd7uX1OC3yWhMoneKiFQyPtKkOyWZit
+# 3NPhZAT3rrtgAVeJARUTToPZQC7+w2xJ+O8w92egux+W9GvN9szs6Zhmc/Sv/82y
+# y2ip0tfu90VTxvw4H/c4AlUVzkKXaw/dVakOiekbAHI11Mkv0W+jqDQwLboVyMo1
+# DH73WgqPq2RHOCF0uQTY2Co6LjuS1wF1gFT577HvIacQCfFq1ZAPvr5e8bwsSkXo
+# rsxxJ3fz0Q6y8LVSC90eVvqvMSRtEzgYHMsO51f2
 # SIG # End signature block

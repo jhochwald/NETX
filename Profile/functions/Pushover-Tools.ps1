@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -280,7 +280,7 @@ function global:Send-Pushover {
 					That was an Exception...
 			#>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
 			# That should not happen...
@@ -388,7 +388,7 @@ function global:Get-PushoverUserDeviceInfo {
 					That was an Exception...
 			#>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
 			# That should not happen...
@@ -410,8 +410,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUobTC0g9Tyv+sjxnmlNvcIyvK
-# tUagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8G4JG5OZcp66nl6rT1msePnR
+# ESCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -554,25 +554,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTJ1pL0esVkTTbloavGV2BA/vPfaDANBgkqhkiG9w0B
-# AQEFAASCAQBUUv9gg4HTAw8ULp9hTjXJWy4AkLsdiqQd3QdztwC9Kv7tL+U4Wbnx
-# voGdNZ9Zkoj8IVRH/fhcLjTfYLW/EurBqxXVLpEK0zKZDk20x5LgezRPrdIlJx4o
-# 3g9lbtRWDGhMbnVAtoHe4v2LRQLdVpljJ5gXGf+dULgF1sxnpuWkxY0OHyx4pbHR
-# k5xxaoCNoxoYRawqMwo2McSaRR4N1dAh8tuPP4X9s7s4T5e7tHOZy9jszXTtBgbc
-# YWPpRMFFtXdpH+kuJgmA9AzX4SEFynMTa/qxUKmjriseeLEw8rGQg5B7HyB/CZIE
-# kLK40V639g1H63+mj2IJx+UdWmUG7ePEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT2m87vmWPJwQRXgieLK+QTotDQNDANBgkqhkiG9w0B
+# AQEFAASCAQBtkipJCW0x9uz7MF3l6pGY+IqgXpPQZpuV6JUQhI2lAYLzYi72DSbf
+# 1hLcyvB8p6ItJttzJm8WT+iDK09tmKxQ51gPq40SXieR1F8rUK7ltmue/+l6KN5n
+# cxj8O1n5Gh3y9zz2w+XtEsxAKEhLHIJLqipaz7jqon0quIcCo7aWlLXI7QzunquK
+# c7+DgSP6a76oTRXNtbSAdD65bqhRD5JEEA6wlqUKiptjU1aGX5i9moc9DXWOUhIH
+# iOl7yxdqz+fCM4iNEOUolVVN3ffpr5XzbpZ/auCn+vBWPJzOafbqK/0RVdAoyhL9
+# NK+QxznqdclZt0EpqOUu37fde1X/vMjsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjUwNFowIwYJKoZIhvcN
-# AQkEMRYEFOTN11YfNmnhvuBRoxW4D7KH9Nj8MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYyNlowIwYJKoZIhvcN
+# AQkEMRYEFJqM3t8WWZNDFUwOz3hP3rpdxClCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCAh7CrQpZpNO6zZJCzDtb5LQZeKPqZgDx4NaqjMpvOiCpg
-# BgvbURAB70xoUFEPidNvUTQMUYBPywEgfBgq8Guwosv+tylrWzqj0QX07VELa9eM
-# EYIKxdcUyqyKMh6xHbv5pqNJuoBK8dZ2axrkoy2PN7lXCxwYIDAKx8uC7PctqjE1
-# xUKhyrIOJEe++dwxcK1/8Nw54oJ23QcHfNyXGNUO7Ryjvc70ypk4dKtKcvWnWQvB
-# C9d6wzKPcESgAkmtcK4Of5fdunfv4amWAlY/vACvSlfP16CA9YFpe7PvCeb85SGK
-# 4nPjOSUDF/IwYbZzxJOeGgM70wOGWNw9pnzow3hU
+# hkiG9w0BAQEFAASCAQAaUu3KWGwiQ9bIAqkWnzyxQ0bVBGblblmjwFyzGJPXjkhn
+# TiJoOVji7B3PC37hxDbxNz26HEpoQMlv04MNmSL8PL/uDUyx8WO+wDZF/4TvmOpY
+# +Kx5jMKcqgr9iQms8BTpLlBGlh/Oqp8ocnxgkthJDiHsyaYfhECLcJTNNQZJDZK1
+# 3s6pnbRJY075w9Sz2OIA+QANYTWU8GtgsVPR5Aa+DuwRCe9rDzIU0JFIeHQtKokF
+# +FiOEBkKL4ogFeqJhB2hOVeW1k8uMyYXsBZntg3+glMTq/UeSHAWsY1et0DoDsgb
+# r+l7EjPFm2CROvDwjlYyMYua7tctUT4Zbe6gEF29
 # SIG # End signature block

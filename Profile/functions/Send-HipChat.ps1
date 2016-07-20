@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -203,7 +203,7 @@ function global:Send-HipChat {
 					Argh! Catched an Exception...
 			#>
 
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
 		} catch {
 			# Whoopsie!
 			# That should not happen...
@@ -232,8 +232,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUd26kpErv1uZe5wd5yWMCzmHb
-# xxqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCSCrfIawEN4v5fjX7RJ5/RG3
+# OnigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -376,25 +376,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQiXoFfonoHPQH3nBn/Po3uxpPCADANBgkqhkiG9w0B
-# AQEFAASCAQBVD3jelds6YKB/VKzpZ5WHzgpWjZ/9lafHTzs8u9UtMsmyE6S6qAj7
-# zhl62Ue8Ihrf1inrGI2dVg0nX/BOwt7Tnv1CppyzIse19YMJ8+xHy3kFwemxPEx7
-# 9HL9FW8n5Retylurni3pnkzqH2hBd1B1FkTgdNQcAyeKcbn7kA7E0QcnLLpA4u+d
-# YpQm2sietLBZbSUHgJv+hkbpJK9umsFjlpotS5hTePhpsfSKI0xopoKcN3EExKjW
-# Qvg9dbJ2sbWQmRW4Y0/c4pJhRADEUoqXYMGmu1Wv7X/iBInSlo5Qvfe2Gkt4HfjI
-# qpVlh0VeCFtWol1gRPEPwR4ePquqfEhsoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRV8QGTDvR0T9Z64lKuPK4nUNtlajANBgkqhkiG9w0B
+# AQEFAASCAQBZxQS8JbFvdVPx8IVD16RZqx20+Oaa75eIjXfYVAupFQmf9hFyexcf
+# pOSB0dfvce59NTDJEUPLBWENXdgoYkptjnKFmbvg7oPhFxt4FSLt62edx6KF0Vqc
+# OkFa7snPPP1sGALvwLCjU/6nIMkfOVxa9aGWIC3zULk+zsmdHS8Wrs/j/h48Y48z
+# wJbsXm45xXNobUHE9GdSeXJgRNVs0OvCd7GnaT8fdTRKEtel7mNfLxARHAM3E1Aw
+# o5KBwSU8BbRGAidAedKgLry0O4F4yStwj4yEXmgVB3PTF1gWDyGoT/kkMNgjdZVX
+# z/HX5g0ycRm8aBiZS40wp9PZP7nh5XR3oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjUwN1owIwYJKoZIhvcN
-# AQkEMRYEFGOMXSm9Rjz9kUqCLtDZHQFMjthWMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYyOVowIwYJKoZIhvcN
+# AQkEMRYEFP+dcNxGCdlcYuI5QUDRAzgVNoWKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQArkmzmtBNJ/7WPqQQhzUatS2U0Y+TAtmTFlghXR1IOatSI
-# Y5kueVTgo1w1CF87Hj5EtU4iT32+jYIMVnZCcHHxYQeMT+0QKvywtsxlvmmBo2f/
-# zFWJnznwM7Y7voiy81ABIa0UXIy2gEGoktPKGNsQ3N/lZPt7MWSz0uYs8l/Laybj
-# hd3xTwYvvxGlpAQvVaTVuRYtntnoggvImM86/RHIMzGKR5f5IiOIWRjWuWJHubJa
-# 0njZJcrzB/X48COXX1IleSOpeyTwwl2QHAB1jmkeWXC6aEB+yKjCHwe5o0alLypZ
-# y+VQUW20LdLeI0+XsqgOyvqb7tnLOA6qFufmgtxe
+# hkiG9w0BAQEFAASCAQBG02KHWOP3o/gV5vs72FfXVNlGtlQF8aQerAXnmErFXH3E
+# 9T1vrP9qh04Da2LN17CsWTNh2Zaa63wfQ5aPAwU9urk2+O7lFge2JxJxnDGNpd/G
+# ZPgRkk/nRhDciQ5MVpznzt1fHek+H5EbqD1uiPd7lJuodBmL/MuFoituqqsosOHn
+# ynm16zDvJr8hU61PrZrKmo9XAyvqNNNpkLfgBrWI0wTieMovo95khuNQHi5uW/+E
+# vwflZUMuG3GdOjMD8lYCxtDRJvH/+qyAXQ30MRy6flap5QiPrpaGVnVBdkHEwb6s
+# +lIV/IePg5s5GgdlEgEQlQ8MlYAZtAQFbLuL5Vuy
 # SIG # End signature block

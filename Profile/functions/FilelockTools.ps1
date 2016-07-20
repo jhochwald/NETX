@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -164,7 +164,7 @@ function Global:Get-FileLock {
 				Write-Error -Message "[$Path] could not be found."
 			}
 		} catch [System.Exception] {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 			# Capture any failure and display it in the error section
 			# The Exit with Code 1 shows any calling App that there was something wrong
@@ -185,8 +185,8 @@ function Global:Get-FileLock {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx1U8DyBIltjJW/x9Tc4p7bCv
-# kKGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUKX5sv+DT1UlXSdui4f9OidWz
+# SoGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -329,25 +329,25 @@ function Global:Get-FileLock {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQhc2u7Z+QKSIjTgOXLdFjInaMPljANBgkqhkiG9w0B
-# AQEFAASCAQAGWx2QTfHnCM36XM+fRfYc3xpJeKIf2tHBvIHYA69p1CABy/4L2Z+1
-# GrgDaCYaGU3qxcMCp022XU7J/YjW7RubH03eGyEoV+Z9TBYgvNef2e/aksWSx2De
-# 65z9Q+GilABpLaiootjehY1FP+SLVQVk2liaGS8hEPxfm2IuTMMrYSuul3VmPdZn
-# PUaSGN/dUyKjc2XeR+2V3ihss1NbkMzSYujt/zG2u/kOjxC28Mh2DKTZHR0MBbV/
-# cBh78eFOymGv2MIMgxdocS3iVMTE4v1ppwNsaveVkiI5xqHkKDNuU5S/Nhj5mwra
-# +2itRmO2aDZ+QZuPPAw61h2mEBO3syxUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQyH2Sdr4AEWM4MWgJ3WCKRSC3zYDANBgkqhkiG9w0B
+# AQEFAASCAQAMj3g7jeSK6x2+YGBnodewMEY//VVq4odmKvLEoGoVs6Yyud4CdATH
+# 5AyJRQ5VGQxU7gHxVeOEFIZDX3JrwRS/IDyveXdQ1qDs4mvsFv+cVTWrRNCQVb6P
+# R7ZFCmcCt78xrzoNsSc7AEL6Ha2augdJFrWdZ5Lq+spXFIgpsQFFKBdoz3pPxXxN
+# Z+E3QYAmj0macP2rOjWm04IGzgnEgfR0o4GhxI419FBD2s9D8Fy4yxy2izvKbjiR
+# +LuyrFJvVkzMT5Y2hVkGyDf3JZaGA+lz9l0eFblQFL3XcGiWvd/xeyrSfcFfw5hZ
+# Tqo0WwUuBSoMNSIUVs+6ZwLSvjDIxtZKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjQzMlowIwYJKoZIhvcN
-# AQkEMRYEFFTnIvHrM7Hx8Lqz/sYiBJuLSxGQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDU1NVowIwYJKoZIhvcN
+# AQkEMRYEFPARwpsgdd4f5yARnfYb9MZK/QP2MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBxX+P5LNtWJXwvtpVizQcOEB0zoNXjuQ3+GjE3K+1qK7yM
-# 2TUQRwjUMKAAVm2MMramgOFf2lCsUKI3TD83V5Yh3P18J3SlTnbyNRd2A+bX0OW7
-# rCqanwnPJQodhnXKib5QbD1mveZkRT0EhJ2vBgBCWRnDWCLaKOuQnO4BvYXuPQD4
-# v/7dyzcxdT8sFp9S+0cILuLG/g0Vd4JKU8Bpldbs8ohrqsI/hk4P3z+9SzLYMCsR
-# SHREAtE4BrhaTNoCegFOfclYIQfkjDV5dNlG4ANg4q7ydJbezluv6koQgwcyq5gc
-# oRBMCpdxut/MDac82bXATImuo7Kq0NLj0QdMvgMz
+# hkiG9w0BAQEFAASCAQCYA2DhoCDeMSpBOV9H16SqUZfrY2K1Y0DoqkjjzpLPaOYu
+# C/caunCRLWah0WzagGFdTxRQeBoqTfH6GZToGrhgoRKFiaslvp1SKpU4Hi8XkPPS
+# S5agiJ0pTVehrLS20JJlGvgY+N7XCRKUzATQ7wxpOZ9K4ZinmDSvijCAXKUpyJ7l
+# fb69y2bwJYo/77/jY4yf2Wc8Onky2ZfDTw7jXbSAhbQ0W4Rz8dlhzNt+GkrYa27I
+# eXXi8vhJ6rP0pQCtKgLKXYyagSnQjFcJ5YPR370nG7en1rykuYj6GRCg9HjSV4Q/
+# 1DG77EUH7KMHCqYtLDYnzHv51Uf7mNIP9tPzlfk5
 # SIG # End signature block

@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-09
+		# last modified   : 2016-07-19
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -122,7 +122,7 @@ function Global:Invoke-RDPSession {
 		try {
 			$TestRemoteDesktop = New-Object -TypeName System.Net.Sockets.TCPClient -ArgumentList $Server, $Port
 		} catch [System.Exception] {
-			Write-Error -Message "Error: $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
+			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
 			# Capture any failure and display it in the error section
 			# The Exit with Code 1 shows any calling App that there was something wrong
@@ -164,8 +164,8 @@ function Global:Invoke-RDPSession {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU8XfYdZKQ2rbKn0Ce10duZBjg
-# 5VWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI6zOvP/42OiGL5dFP+0CAFBH
+# koWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function Global:Invoke-RDPSession {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQUgHViTccKZ/eNNXkod9A7aH1ymTANBgkqhkiG9w0B
-# AQEFAASCAQBtqx1XWT1twsz8S5w9Pc4tzK2+u8Xck0RJnLZjp96xA/AaNKN8ctec
-# hoUPROXQGLeEyYr6RILNunR1kb30HMiwiT3u0vV22cYCUqtRv0/f5P2qv4uVz8hi
-# Jjub7XkZYLzoVQk0XiyGaGUsiR3LhxjhKV7R9GlVhLOxGW5MuwRBTrN38m7EY/cP
-# DAKgEfSKvi+XagkFYoO0qioeQ11hXQ8dVvbLCi/NT3tyJJNR8uLTJg4kOM44XWzC
-# WKaltLWHcugcXTWuDvqVfDDSMZ3QmpRm1lEB8tIyoDBNnHDD8XdXeNTgyDf5cV27
-# wYrHdK5rVonw7yyJFGIzAWXwONna74XQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQo/Mq0m6QBSaX3ExrooiN6Lu9UajANBgkqhkiG9w0B
+# AQEFAASCAQBYDUgJfU1GZvWXaL+RoiNDfkLkhASdXeiSx0d7OSzJM8F3FtBR8PfV
+# o01l3DBry//9MK1aQjhYvl0bAS7hzrGx07PpJGEnye+l+qtCURYHRJTO6YZYVzAB
+# VO7kW7roCPuBgto+4CAa0kE+zTsLI4i059uu8WMUWq+UScwnjFtnR54hpH0HuRy3
+# y9YNnwcBh9IdmaLvHRThIZdLkK38g9YovK8NegzshwoUs7FY7Io1KKFK9GYv5niY
+# iNDXTF8ldAaIDW/0jKVCFaaClJanggBk94/IsX10YuThHvPgSAhQL4OKiWyyzktd
+# zssTeyqxXyY1zpmmcZILGv+scDitN3iSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcxNjE2MjUwNFowIwYJKoZIhvcN
-# AQkEMRYEFJmY3JkRS4xVfGNvIFFuqio86cxIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMDE1NDYyNlowIwYJKoZIhvcN
+# AQkEMRYEFE4Z3O7TlBcCaiBgZPCv9PezPDutMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBuPC7//m0WUSAnZHZfEidR2fngCP3yiDNXSsXoh2n6md5m
-# meY2q154wwbByVcwE5hJDwsd/3yjTG+LUNWfxLNEs7aoujD/cuorLBDNNL29B/gi
-# hYZrqwGSuy5HFSJQb9V8hfAPha8i6Xb94THVY6j8S3vIo4ZTH8jq/8FrRbMFojRh
-# s8AKiGArEPbMAutBXjT2WBI/56FLiX/U06OXKZRLz33/p0sK8kzaz/oJFSe5xgS3
-# ZMlECuLwWAO14oprYJd0ZQJC7YySZanySXtU2TzCz7SrGkcGz5raEvpaEcJg7bb9
-# rxvG2kBB5xJE325B13fyO1xfamB2PAHzqs8e5f//
+# hkiG9w0BAQEFAASCAQCNI10eZ2iBFKfV4Mw500q5qEtxfaq4pra00NCrAamMQV4r
+# J0vwlSh75rsMTRBYUs/91coip1J/k1b56tm4rxe0QmPbUvqwlIIlP7fhwdZqKxyT
+# pUV8ONskH92IcsJ1vEzQFzt4yWPVVfe+1ypsfggoOWFfLadfqC+oAMUDeUmI+glR
+# z0t+hstBoLiKRRQBUxtrUwjtJ2OE8HfK4c1Dl2x758QabiimCSnzylCzvDjZm/qb
+# DqOWMRIVPTszRhImoIpDvxZ64+9LpJOQ333Xag/mFi/r3xal7N6/ST2AQyxjcn9C
+# n64W/R71UndlXvl4v8dKNj/nDK9Fhwz2oAGmZaRl
 # SIG # End signature block
