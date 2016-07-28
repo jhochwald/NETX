@@ -198,13 +198,13 @@
 #region License
 
 <#
-		NET-Experts BINARY CODE LICENSE (NXBCL)
+		Quality Software Ltd. BINARY CODE LICENSE (QSBCL)
 
 		International License Agreement for Non Warranted Programs
 
-		General Terms The Program is owned by NET-Experts or one of its
-		(NET-Experts) subsidiaries or an NET-Experts supplier, and is copyrighted
-		and licensed, not sold.
+		General Terms The Program is owned by Quality Software Ltd. or one of its
+		(Quality Software) subsidiaries or an Quality Software supplier, and is
+		copyrighted and licensed, not sold.
 
 		The term "Program" means the original program and all whole or partial
 		copies of it.
@@ -215,10 +215,10 @@
 
 		This Agreement is the complete agreement regarding the use of this Program,
 		and replaces any prior oral or written communications between you and
-		NET-Experts.
+		Quality Software.
 
-		License Use of the Program NET-Experts grants you a nonexclusive license
-		to use the Program.
+		License Use of the Program Quality Software grants you a nonexclusive
+		license to use the Program.
 
 		You may
 		1) use the Program to the extent of authorizations you have acquired and
@@ -241,53 +241,53 @@
 		3) sublicense, rent, or lease the Program.
 
 		No Warranty
-		SUBJECT TO ANY STATUTORY WARRANTIES WHICH CAN NOT BE EXCLUDED, NET-Experts
+		SUBJECT TO ANY STATUTORY WARRANTIES WHICH CAN NOT BE EXCLUDED, Quality Software
 		MAKES NO WARRANTIES OR CONDITIONS EITHER EXPRESS OR IMPLIED, INCLUDING
 		WITHOUT LIMITATION, THE WARRANTY OF NON INFRINGEMENT AND THE IMPLIED
 		WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE,
-		REGARDING THE PROGRAM OR TECHNICAL SUPPORT, IF ANY. NET-Experts MAKES
+		REGARDING THE PROGRAM OR TECHNICAL SUPPORT, IF ANY. Quality Software MAKES
 		NO WARRANTY REGARDING THE CAPABILITY OF THE PROGRAM TO CORRECTLY PROCESS,
 		PROVIDE AND/OR RECEIVE DATE DATA WITHIN AND BETWEEN THE 20TH AND
 		21ST CENTURIES.
 
-		The exclusion also applies to any of NET-Experts's subcontractors,
+		The exclusion also applies to any of Quality Software's subcontractors,
 		suppliers, or program developers (collectively called "Suppliers").
 
-		Manufacturers, suppliers, or publishers of non NET-Experts Programs may
+		Manufacturers, suppliers, or publishers of non Quality Software Programs may
 		provide their own warranties.
 
 		Limitation of Liability
-		NEITHER NET-Experts NOR ITS SUPPLIERS WILL BE LIABLE FOR ANY DIRECT OR
+		NEITHER Quality Software NOR ITS SUPPLIERS WILL BE LIABLE FOR ANY DIRECT OR
 		INDIRECT DAMAGES, INCLUDING WITHOUT LIMITATION, LOST PROFITS, LOST SAVINGS,
 		OR ANY INCIDENTAL, SPECIAL, OR OTHER ECONOMIC CONSEQUENTIAL DAMAGES, EVEN
-		IF NET-Experts IS INFORMED OF THEIR POSSIBILITY. SOME JURISDICTIONS DO NOT
+		IF Quality Software IS INFORMED OF THEIR POSSIBILITY. SOME JURISDICTIONS DO NOT
 		ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES,
 		SO THE ABOVE EXCLUSION OR LIMITATION MAY NOT APPLY TO YOU.
 
 		General Nothing in this Agreement affects any statutory rights of consumers
 		that cannot be waived or limited by contract.
 
-		NET-Experts may terminate your license if you fail to comply with the
+		Quality Software may terminate your license if you fail to comply with the
 		terms of this Agreement.
 
-		If NET-Experts does so, you must immediately destroy the Program and all
+		If Quality Software does so, you must immediately destroy the Program and all
 		copies you made of it.
 		You agree to comply with applicable export laws and regulations.
 
-		Neither you nor NET-Experts will bring a legal action under this Agreement
+		Neither you nor Quality Software will bring a legal action under this Agreement
 		more than two years after the cause of action arose unless otherwise
 		provided by local law without the possibility of contractual waiver or
 		limitation.
 
-		Neither you nor NET-Experts is responsible for failure to fulfill any
+		Neither you nor Quality Software is responsible for failure to fulfill any
 		obligations due to causes beyond its control.
 
-		NET-Experts does not provide program services or technical support,
-		unless NET-Experts specifies otherwise.
+		Quality Software does not provide program services or technical support,
+		unless Quality Software specifies otherwise.
 
 		By using the Software, you agree to the License, Terms and Conditions above!
 
-		Copyright (c) 2015 by NET-Experts - All rights reserved.
+		Copyright (c) 2016 by Quality Software Ltd. - All rights reserved.
 #>
 
 #endregion License

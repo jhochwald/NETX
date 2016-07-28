@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-06-09
+		# last modified   : 2016-07-28
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -16,7 +16,7 @@
 #region License
 
 <#
-		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
 
 		Redistribution and use in source and binary forms, with or without
@@ -74,7 +74,7 @@ function global:Invoke-CreateMissingRegistryDrives {
 
 	[CmdletBinding()]
 	param ()
-	
+
 	#Requires -RunAsAdministrator
 
 	PROCESS {

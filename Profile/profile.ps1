@@ -5,7 +5,7 @@
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-20
+		# last modified   : 2016-07-28
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -16,7 +16,7 @@
 #region License
 
 <#
-		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
 
 		Redistribution and use in source and binary forms, with or without
@@ -116,8 +116,12 @@ Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
 # This is our Base location
 Set-Variable -Name BasePath -Scope Global -Value $('C:\scripts\PowerShell')
 
-$IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource')
+$IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource' -ListAvailable)
 if ($IsNewModuleAvailable) {
+	if ((Get-Module -Name 'enatec.OpenSource')) {
+		$null = (Remove-Module -Name 'enatec.OpenSource' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+	}
+
 	$null = (Import-Module -Name 'enatec.OpenSource' -Force -DisableNameChecking -NoClobber -Global)
 } else {
 	# Helper Function, see below
@@ -463,8 +467,8 @@ if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwqF7Palb+w9N1S/LDi5KALAl
-# C36gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUcRvvxzeX6hRnGiPaXYj3jsN
+# iDigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -607,25 +611,25 @@ if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRvnrt33yjRz8OyAGHclFRGVnp+czANBgkqhkiG9w0B
-# AQEFAASCAQB76bhNI0z60Gcjo0XuBdoB2ALbhoBGp+g7B4Zq+CMcWir9HPTU5Eap
-# Qc+vlmKQFBtQujuP4fPSm/y/XcLr20btla2Gn8AP0uhHGQDtTHZkey3gBN11g8P+
-# pBBxrA7/SbODPruSis50pEUJkcElqqUUZEFsGS1Oc7rDgtxal/vETgkVYc4NCkzS
-# UUK2EKOOLd3XUJCXeezbdrkrbKB2YsU5M8AZ9CJqBl2SO0caSHGXyRnPWG12rcsf
-# xB9PMLhmVzucpyupbCGWH/pAYXM3ynkPgq0ckk/+ksj3lDvl23XzH729N6//aRP0
-# 4TsAESuRmoQ/oxj/mY5xejiEJ2qDwqQcoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSW6xshl86MzuMe9NKk0caQQuQz7TANBgkqhkiG9w0B
+# AQEFAASCAQA1E8rfHqO0sy4t/Z5BRwwuw4T9TJVOnspk5oqPRUeEaImtRppTNysG
+# nHx2H5Y5fJn456YiXHi6dZ1CGr2IzRSXEla5/629MdAVFDpByv+b27aDWiknbGVF
+# dfYjtlGAO0a41w6tshBgJyHQPun2vEm93JAwuZTF7IqsmD/2AsIsyYclTozpoSR9
+# cwzZGbCrtnD6LI8ax+AZLe/hXMZpVS7UZd0G7vY2RDtqCUZfDv3Qe2ti74VUbRXY
+# cWSvPS7fqzhY+d0kuWR3OhbgAQ3rAWAqfVF4xEzv3zcsACiXaCL2DrdubmjzcB8Z
+# XIaOdeyDHfdCZHuXeWs/T6N6Llejp3qToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyMTIyMTYxMlowIwYJKoZIhvcN
-# AQkEMRYEFJiJWmbsaBTSuPv+7ajeNG+jrBiaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyODE3NTYzOVowIwYJKoZIhvcN
+# AQkEMRYEFP8Zgnhe9772BposKvE1YmWqcqpxMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCeXJSBoa32e6K7abdcoVa6gMQTdOecc5rdE77AISZnviC0
-# IfjGIYqybGVHjBfLh8mB6R4verFQgYCqqqOAavB0InZNj/BpFrOuboMdle80GzbP
-# DSfD3UcE/JQwqb7YhSHktOBWfTM92us7h3JPPt5dSukBwbroMx6PB2Jn4yOAUKKb
-# 3bv+7qO+7dW78T+sB5pVoRWy75q+hIAALOKHkcTtJWOGO8XLNLoaZybL1HrWsAOF
-# Wpo3hWmwVr2pIBCDLWTk4MCEm0IXmG/KKxtLQ0sloyzxqqQXYMV3Dd0Bwc2lN/Ln
-# 9OvQ9Yq7z6f38JmH/oSrU+c/owTYcyjhridWlyHX
+# hkiG9w0BAQEFAASCAQAhs7dKWL3bOUyBFasXCr0Lj+Eq3EimaNYyoraAQeMwWbkQ
+# uvnc/WLWV3o3crQcw5YpAb9iebDEl+KoLDhb7WnEnfHxLSuw8TKus8rosNH7DlEy
+# qZJ+yshfXji7G66d5lxPCpn30pn+WSvfwr99grVe4vltjDKMyVOE3Hs+lpDqapwW
+# T63us77vZxh77nD8uBZcsw8uWl9aYxs7WiVnzyuf84BHQfUC/AMry7Zyg7al+UrX
+# +A3fM/wOxK9zWgjWvL5irhSMVsukcX/Ba1Od7mTTISYpV8iABuoUDdevxMDIWbYb
+# mk33RKOQCKKCvkc54uJgz+Vv2TknfskK7kfiyQMO
 # SIG # End signature block
