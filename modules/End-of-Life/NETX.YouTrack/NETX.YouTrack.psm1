@@ -1,4 +1,14 @@
 ﻿<#
+
+	END OF LIFE
+
+	This Module is no longer under active Development!
+	Feel free to take it, use it as is, or modify it ;-)
+
+#>
+
+
+<#
 		.SYNOPSIS
 		NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
