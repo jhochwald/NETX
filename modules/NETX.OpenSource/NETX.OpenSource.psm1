@@ -195,102 +195,38 @@
 		Write-ToLog
 #>
 
-#region License
-
 <#
-		Quality Software Ltd. BINARY CODE LICENSE (QSBCL)
+		Copyright (c) 2016, Quality Software Ltd.
+		All rights reserved.
 
-		International License Agreement for Non Warranted Programs
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-		General Terms The Program is owned by Quality Software Ltd. or one of its
-		(Quality Software) subsidiaries or an Quality Software supplier, and is
-		copyrighted and licensed, not sold.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
-		The term "Program" means the original program and all whole or partial
-		copies of it.
+		2. Redistributions in binary form must reproduce the above copyright notice,
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-		A Program consists of machine readable instructions, its components, data,
-		audio/visual content (such as images, text, recordings, or pictures),
-		and related licensed materials.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-		This Agreement is the complete agreement regarding the use of this Program,
-		and replaces any prior oral or written communications between you and
-		Quality Software.
-
-		License Use of the Program Quality Software grants you a nonexclusive
-		license to use the Program.
-
-		You may
-		1) use the Program to the extent of authorizations you have acquired and
-		2) make, install and distribute copies to support the level of use
-		authorized, providing you reproduce the copyright notice and any other
-		legends of ownership on each copy, or partial copy, of the Program and that
-		you provide a copy of this International License Agreement for Non
-		Warranted Programs along with the distribution of each copy or partial
-		copy of the Program.
-
-		You will ensure that anyone who uses the Program does so only in compliance
-		with the terms of this Agreement.
-
-		You may not
-		1) use, copy, modify, or distribute the Program except as provided in
-		this Agreement;
-		2) reverse assemble, reverse compile, or otherwise translate the Program
-		except as specifically permitted by law without the possibility of
-		contractual waiver; or
-		3) sublicense, rent, or lease the Program.
-
-		No Warranty
-		SUBJECT TO ANY STATUTORY WARRANTIES WHICH CAN NOT BE EXCLUDED, Quality Software
-		MAKES NO WARRANTIES OR CONDITIONS EITHER EXPRESS OR IMPLIED, INCLUDING
-		WITHOUT LIMITATION, THE WARRANTY OF NON INFRINGEMENT AND THE IMPLIED
-		WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE,
-		REGARDING THE PROGRAM OR TECHNICAL SUPPORT, IF ANY. Quality Software MAKES
-		NO WARRANTY REGARDING THE CAPABILITY OF THE PROGRAM TO CORRECTLY PROCESS,
-		PROVIDE AND/OR RECEIVE DATE DATA WITHIN AND BETWEEN THE 20TH AND
-		21ST CENTURIES.
-
-		The exclusion also applies to any of Quality Software's subcontractors,
-		suppliers, or program developers (collectively called "Suppliers").
-
-		Manufacturers, suppliers, or publishers of non Quality Software Programs may
-		provide their own warranties.
-
-		Limitation of Liability
-		NEITHER Quality Software NOR ITS SUPPLIERS WILL BE LIABLE FOR ANY DIRECT OR
-		INDIRECT DAMAGES, INCLUDING WITHOUT LIMITATION, LOST PROFITS, LOST SAVINGS,
-		OR ANY INCIDENTAL, SPECIAL, OR OTHER ECONOMIC CONSEQUENTIAL DAMAGES, EVEN
-		IF Quality Software IS INFORMED OF THEIR POSSIBILITY. SOME JURISDICTIONS DO NOT
-		ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES,
-		SO THE ABOVE EXCLUSION OR LIMITATION MAY NOT APPLY TO YOU.
-
-		General Nothing in this Agreement affects any statutory rights of consumers
-		that cannot be waived or limited by contract.
-
-		Quality Software may terminate your license if you fail to comply with the
-		terms of this Agreement.
-
-		If Quality Software does so, you must immediately destroy the Program and all
-		copies you made of it.
-		You agree to comply with applicable export laws and regulations.
-
-		Neither you nor Quality Software will bring a legal action under this Agreement
-		more than two years after the cause of action arose unless otherwise
-		provided by local law without the possibility of contractual waiver or
-		limitation.
-
-		Neither you nor Quality Software is responsible for failure to fulfill any
-		obligations due to causes beyond its control.
-
-		Quality Software does not provide program services or technical support,
-		unless Quality Software specifies otherwise.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
 		By using the Software, you agree to the License, Terms and Conditions above!
-
-		Copyright (c) 2016 by Quality Software Ltd. - All rights reserved.
 #>
-
-#endregion License
 
 #region ModuleDefaults
 

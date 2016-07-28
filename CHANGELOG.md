@@ -1,7 +1,10 @@
-### Development Snapshot (automated) (HEAD -> master)
->*Thu, 28 Jul 2016 20:16:42 +0200*
+### License fixed (HEAD -> master)
+>*Thu, 28 Jul 2016 20:52:42 +0200*
 
 ### Development Snapshot (automated) (origin/master, origin/HEAD)
+>*Thu, 28 Jul 2016 20:16:42 +0200*
+
+### Development Snapshot (automated)
 >*Fri, 22 Jul 2016 00:41:31 +0200*
 
 ### Development Snapshot (automated)
