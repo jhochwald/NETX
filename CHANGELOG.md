@@ -1,4 +1,7 @@
-### Add EOL Message. This module is no longer under active development! (HEAD -> master)
+### Region added (HEAD -> master)
+>*Thu, 28 Jul 2016 20:58:51 +0200*
+
+### Add EOL Message. This module is no longer under active development!
 >*Thu, 28 Jul 2016 20:58:38 +0200*
 
 ### License fixed (origin/master, origin/HEAD)

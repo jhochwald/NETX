@@ -195,6 +195,8 @@
 		Write-ToLog
 #>
 
+#region License
+
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -227,6 +229,8 @@
 
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
+
+#endregion License
 
 #region ModuleDefaults
 
