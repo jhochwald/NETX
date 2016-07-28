@@ -1,7 +1,10 @@
-### License fixed (HEAD -> master)
+### Add EOL Message. This module is no longer under active development! (HEAD -> master)
+>*Thu, 28 Jul 2016 20:58:38 +0200*
+
+### License fixed (origin/master, origin/HEAD)
 >*Thu, 28 Jul 2016 20:52:42 +0200*
 
-### Development Snapshot (automated) (origin/master, origin/HEAD)
+### Development Snapshot (automated)
 >*Thu, 28 Jul 2016 20:16:42 +0200*
 
 ### Development Snapshot (automated)

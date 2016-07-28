@@ -3,6 +3,9 @@
 		NET-Experts PowerShell Support for JetBrains YouTrack Rest API
 
 		.DESCRIPTION
+		This Module will not be updated.
+		We dropped YouTrack, so it makes no sense for use anymore.
+
 		Easy way to access the JetBrains YouTrack API from PowerShell
 
 		This is just the initial version that we published!
@@ -13,6 +16,9 @@
 		Due to the fact that we run everything from a central Portal, we need to automate everything.
 
 		.NOTES
+		This Module will not be updated.
+		We dropped YouTrack, so it makes no sense for use anymore.
+
 		This is the first Module that we release as Open Source and under the terms of the BSD license terms.
 		Our other Modules will not be published under this terms (at least not yet!)
 
@@ -26,7 +32,7 @@
 		BuildNumber = "1.2.3.0"
 
 		modified by     : Joerg Hochwald
-		last modified   : 2016-06-09
+		last modified   : 2016-07-28
 
 		.LINK
 		NET-Experts http:/www.net-experts.net
@@ -36,39 +42,39 @@
 
 		.LINK
 		API https://confluence.jetbrains.com/display/YTD65/YouTrack+REST+API+Reference
-
-		.EXTERNALHELP NETX.YouTrack.psm1-Help.xml
 #>
 
 #region License
 
 <#
-		Copyright (c) 2012-2016, NET-Experts <http:/www.net-experts.net>.
+		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
 
-		Redistribution and use in source and binary forms, with or without modification,
-		are permitted provided that the following conditions are met:
+		Redistribution and use in source and binary forms, with or without
+		modification, are permitted provided that the following conditions are met:
 
-		1. Redistributions of source code must retain the above copyright notice, this list of
-		conditions and the following disclaimer.
+		1. Redistributions of source code must retain the above copyright notice,
+		this list of conditions and the following disclaimer.
 
 		2. Redistributions in binary form must reproduce the above copyright notice,
-		this list of conditions and the following disclaimer in the documentation and/or
-		other materials provided with the distribution.
+		this list of conditions and the following disclaimer in the documentation
+		and/or other materials provided with the distribution.
 
-		3. Neither the name of the copyright holder nor the names of its contributors may
-		be used to endorse or promote products derived from this software without
-		specific prior written permission.
+		3. Neither the name of the copyright holder nor the names of its
+		contributors may be used to endorse or promote products derived from
+		this software without specific prior written permission.
 
-		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-		IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-		AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-		CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-		SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-		THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-		OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-		POSSIBILITY OF SUCH DAMAGE.
+		THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+		AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+		IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+		ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+		LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+		SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+		INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+		ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+		THE POSSIBILITY OF SUCH DAMAGE.
 
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
