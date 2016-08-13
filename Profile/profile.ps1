@@ -1,11 +1,11 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
 
 <#
 		#################################################
 		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
+		# last modified   : 2016-08-10
 		#################################################
 
 		Support: https://github.com/jhochwald/NETX/issues
@@ -78,7 +78,7 @@ param ()
 
 function global:Get-IsWin10 {
 	# For some Workarounds!
-	if ([System.Environment]::OSVersion.Version -ge (New-Object -TypeName 'Version' -ArgumentList 10, 0)) {
+	if ([Environment]::OSVersion.Version -ge (New-Object -TypeName 'Version' -ArgumentList 10, 0)) {
 		Return $True
 	} else {
 		Return $False
@@ -88,14 +88,14 @@ function global:Get-IsWin10 {
 # Make this Shell clean!
 function Clear-AllVariables {
 	# Delete all variables that exists
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	$null = (Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+	$null = (Remove-Variable -Name * -Scope Local -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	$null = (Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+	$null = (Remove-Variable -Name * -Scope Script -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
-	(Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	$null = (Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+	$null = (Remove-Variable -Name * -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 }
 
 Clear-AllVariables
@@ -108,13 +108,13 @@ Clear-AllVariables
 $env:ADPS_LoadDefaultDrive = 1
 
 # Resetting Console Colors
-[System.Console]::ResetColor()
+[Console]::ResetColor()
 
 # Interactive mode
 Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
 
 # This is our Base location
-Set-Variable -Name BasePath -Scope Global -Value $('C:\scripts\PowerShell')
+Set-Variable -Name BasePath -Scope Global -Value $('c:\scripts\PowerShell')
 
 $IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource' -ListAvailable)
 if ($IsNewModuleAvailable) {
@@ -134,11 +134,11 @@ if ($IsNewModuleAvailable) {
 			Set-Variable -Name ExcludeName -Value $('.Tests.')
 
 			# Load them all
-			Get-ChildItem -Path $ToolsPath -ErrorAction SilentlyContinue -WarningAction SilentlyContinue |
-			Where-Object -FilterScript { $_.psIsContainer -eq $False } |
-			Where-Object -FilterScript { $_.Name -like '*.ps1' } |
-			Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
-			ForEach-Object -Process { .$_.FullName } > $null 2>&1 3>&1
+			$null = (Get-ChildItem -Path $ToolsPath -ErrorAction SilentlyContinue -WarningAction SilentlyContinue |
+				Where-Object -FilterScript { $_.psIsContainer -eq $False } |
+				Where-Object -FilterScript { $_.Name -like '*.ps1' } |
+				Where-Object -FilterScript { $_.Name -ne $ExcludeName } |
+			ForEach-Object -Process { .$_.FullName })
 		}
 	}
 
@@ -147,9 +147,9 @@ if ($IsNewModuleAvailable) {
 }
 
 # Make em English!
-if ((Get-Command Set-Culture -ErrorAction SilentlyContinue)) {
+if ((Get-Command -Name Set-Culture -ErrorAction SilentlyContinue)) {
 	try {
-		Set-Culture -culture 'en-US'
+		Set-Culture -Culture 'en-US'
 	} catch {
 		# Do nothing!
 		Write-Debug -Message 'We had an Error'
@@ -164,13 +164,13 @@ $MyModules = @((Get-Module -Name NETX.* -ListAvailable).Name)
 # Loop over the List of modules
 foreach ($MyModule in $MyModules) {
 	# Search for Modules not exported correct
-	if ((((Get-Module $MyModule -ListAvailable).ModuleType) -eq 'Manifest') -and ((((Get-Module $MyModule -ListAvailable).Version).ToString()) -eq '0.0')) {
-		(Import-Module $MyModule -DisableNameChecking -Force -Scope Global -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
-		(Remove-Module $MyModule -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+	if ((((Get-Module -Name $MyModule -ListAvailable).ModuleType) -eq 'Manifest') -and ((((Get-Module -Name $MyModule -ListAvailable).Version).ToString()) -eq '0.0')) {
+		$null = (Import-Module -Name $MyModule -DisableNameChecking -Force -Scope Global -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+		$null = (Remove-Module -Name $MyModule -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 	}
 }
 
-(Remove-Module -Name 'NETX.Core' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+$null = (Remove-Module -Name 'NETX.Core' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 
 #endregion WorkAround
 
@@ -199,9 +199,9 @@ function global:Set-WinStyle {
 function global:Set-RegularMode {
 	BEGIN {
 		# Reformat the Windows
-		if ((Get-Command Set-WinStyle -ErrorAction SilentlyContinue)) {
-			(Set-WinStyle) > $null 2>&1 3>&1
-			(Set-WinStyle) > $null 2>&1 3>&1
+		if ((Get-Command -Name Set-WinStyle -ErrorAction SilentlyContinue)) {
+			$null = (Set-WinStyle)
+			$null = (Set-WinStyle)
 		}
 	}
 
@@ -224,8 +224,8 @@ function global:Set-RegularMode {
 
 	END {
 		# Clean screen
-		[System.Console]::Clear()
-		[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
+		[Console]::Clear()
+		[Console]::SetWindowPosition(0, [Console]::CursorTop)
 	}
 }
 
@@ -233,9 +233,9 @@ function global:Set-RegularMode {
 function global:Set-LightMode {
 	BEGIN {
 		# Reformat the Windows
-		if ((Get-Command Set-WinStyle -ErrorAction SilentlyContinue)) {
-			Set-WinStyle > $null 2>&1 3>&1
-			Set-WinStyle > $null 2>&1 3>&1
+		if ((Get-Command -Name Set-WinStyle -ErrorAction SilentlyContinue)) {
+			$null = (Set-WinStyle)
+			$null = (Set-WinStyle)
 		}
 	}
 
@@ -258,15 +258,15 @@ function global:Set-LightMode {
 
 	END {
 		# Clean screen
-		[System.Console]::Clear()
-		[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
+		[Console]::Clear()
+		[Console]::SetWindowPosition(0, [Console]::CursorTop)
 	}
 }
 
 # Include this to the PATH
-if ((Get-Command Add-AppendPath -ErrorAction SilentlyContinue)) {
+if ((Get-Command -Name Add-AppendPath -ErrorAction SilentlyContinue)) {
 	try {
-		Add-AppendPath -Path $BasePath
+		Add-AppendPath -Pathlist $BasePath
 	} catch {
 		# Do nothing!
 		Write-Warning -Message "Could not append $BasePath to the Path!"
@@ -281,9 +281,9 @@ if ($host.Name -eq 'ConsoleHost') {
 	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope Global -Value $('Terminal') }
 
 	# Style the Window
-	if ((Get-Command Set-RegularMode -ErrorAction SilentlyContinue)) {
+	if ((Get-Command -Name Set-RegularMode -ErrorAction SilentlyContinue)) {
 		# Set the Default Mode!
-		(Set-RegularMode) > $null 2>&1 3>&1
+		$null = (Set-RegularMode)
 	}
 } elseif (($host.Name -eq 'Windows PowerShell ISE Host') -and ($psISE)) {
 	# Yeah, we run within the ISE
@@ -295,9 +295,9 @@ if ($host.Name -eq 'ConsoleHost') {
 	}
 
 	# Style the Window
-	if ((Get-Command Set-LightMode -ErrorAction SilentlyContinue)) {
+	if ((Get-Command -Name Set-LightMode -ErrorAction SilentlyContinue)) {
 		# Set the Default Mode!
-		(Set-RegularMode) > $null 2>&1 3>&1
+		$null = (Set-RegularMode)
 	}
 } elseif ($host.Name -eq 'PrimalScriptHostImplementation') {
 	# Oh, we running in a GUI - Ask yourself why you run the profile!
@@ -307,13 +307,14 @@ if ($host.Name -eq 'ConsoleHost') {
 	if (-not ($RunEnv)) { Set-Variable -Name RunEnv -Scope Global -Value $('GUI') }
 } else {
 	# Not in the Console, not ISE... Where to hell are we?
+	Write-Debug -Message 'Unknown!'
 }
 
 # Set the Defaults
 Set-DefaultPrompt
 
 # Where the windows Starts
-Set-Location $BasePath
+Set-Location -Path $BasePath
 
 # Display some infos
 function info {
@@ -321,7 +322,7 @@ function info {
 		''
 		('Today is: ' + $(Get-Date -Format 'G'))
 		''
-		if ((Get-Command Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
 			#Dump the Version info
 			Get-NETXPoshVer
 		}
@@ -336,8 +337,8 @@ function motd {
 		# We try to display regular Disk only, no fancy disk drives
 		foreach ($HD in (Get-WmiObject -Query 'SELECT * from win32_logicaldisk where DriveType = 3')) {
 			# Free Disk Space function
-			Set-Variable -Name Free -Value $($HD.FreeSpace / 1GB -as [System.Int32])
-			Set-Variable -Name Total -Value $($HD.Size / 1GB -as [System.Int32])
+			Set-Variable -Name Free -Value $($HD.FreeSpace / 1GB -as [int])
+			Set-Variable -Name Total -Value $($HD.Size / 1GB -as [int])
 
 			# How much Disk Space do we have here?
 			if ($Free -le 5) {
@@ -355,7 +356,7 @@ function motd {
 
 		Write-Host -Object ''
 
-		if ((Get-Command Get-Uptime -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Get-Uptime -ErrorAction SilentlyContinue)) {
 			# Get the Uptime...
 			Get-Uptime
 		}
@@ -372,10 +373,10 @@ Unregister-Event -SourceIdentifier FileChanged -ErrorAction SilentlyContinue
 Unregister-Event -SourceIdentifier TimerTick -ErrorAction SilentlyContinue
 
 # Try the new auto connect feature or authenticate manual via Invoke-AuthO365
-if (Get-Command tryAutoLogin -ErrorAction SilentlyContinue) {
+if (Get-Command -Name tryAutoLogin -ErrorAction SilentlyContinue) {
 	# Lets try the new command
 	(Get-tryAutoLogin)
-} elseif (Get-Command Invoke-AuthO365 -ErrorAction SilentlyContinue) {
+} elseif (Get-Command -Name Invoke-AuthO365 -ErrorAction SilentlyContinue) {
 	# Fall-back to the old and manual way
 	(Invoke-AuthO365)
 }
@@ -388,13 +389,13 @@ if (Get-Command tryAutoLogin -ErrorAction SilentlyContinue) {
 # Where are we?
 if ($host.Name -eq 'ConsoleHost') {
 	# Console Mode - Make a clean screen
-	[System.Console]::Clear()
-	[System.Console]::SetWindowPosition(0, [System.Console]::CursorTop)
+	[Console]::Clear()
+	[Console]::SetWindowPosition(0, [Console]::CursorTop)
 
 	# Is this a user or an Admin account?
 	# This has nothing to do with the user / User rights!
 	# We look for the Session: Is it started as Admin, or not!
-	if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+	if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
 		# Make the Name ALL Lower case
 		$MyUserInfo = ($env:Username.ToUpper())
 
@@ -409,10 +410,10 @@ if ($host.Name -eq 'ConsoleHost') {
 	}
 
 	# Show infos
-	if (Get-Command info -ErrorAction SilentlyContinue) { info }
+	if (Get-Command -Name info -ErrorAction SilentlyContinue) { info }
 
 	# Show message of the day
-	if (Get-Command motd -ErrorAction SilentlyContinue) {
+	if (Get-Command -Name motd -ErrorAction SilentlyContinue) {
 		# This is the function from above.
 		# If you want, you might use Get-MOTD here.
 		motd
@@ -420,23 +421,27 @@ if ($host.Name -eq 'ConsoleHost') {
 } elseif (($host.Name -eq 'Windows PowerShell ISE Host') -and ($psISE)) {
 	# Yeah, we run within the ISE
 	# We do not support this Environment :)
+	Write-Debug -Message 'ISE Found!'
 } elseif ($host.Name -eq 'PrimalScriptHostImplementation') {
 	# Oh, we running in a GUI
 	# We do not support this Environment :)
+	Write-Debug -Message 'GUI App'
 } elseif ($host.Name -eq 'DefaultHost') {
 	# Look who is using our PowerShell Web Proxy Server...
 	# We do not support this Environment :)
+	Write-Debug -Message 'Default Host!'
 } else {
 	# Not in the Console, not ISE... Where to hell are we right now?
+	Write-Debug -Message 'Unknown!'
 }
 
-if (Get-Command Get-Quote -ErrorAction SilentlyContinue) {
+if (Get-Command -Name Get-Quote -ErrorAction SilentlyContinue) {
 	# Print a Quote
 	(Get-Quote)
 }
 
 # Try to check the Credentials
-if ((Get-Command Test-Credential -ErrorAction SilentlyContinue)) {
+if ((Get-Command -Name Test-Credential -ErrorAction SilentlyContinue)) {
 	try {
 		$IsCredValid = (Test-Credential)
 	} catch {
@@ -449,26 +454,26 @@ if ((Get-Command Test-Credential -ErrorAction SilentlyContinue)) {
 
 		try {
 			# Remove saved credentials!
-			if (Get-Command Remove-PSCredential -ErrorAction SilentlyContinue) { $null = (Remove-PSCredential) > $null 2>&1 3>&1 }
+			if (Get-Command -Name Remove-PSCredential -ErrorAction SilentlyContinue) { $null = (Remove-PSCredential) }
 
 			# Ask for Credentials...
 			(Invoke-AuthO365)
 
 			try {
-				if (Get-Command Export-PSCredential -ErrorAction SilentlyContinue) { $null = (Export-PSCredential) > $null 2>&1 3>&1 }
+				if (Get-Command -Name Export-PSCredential -ErrorAction SilentlyContinue) { $null = (Export-PSCredential) }
 			} catch { Write-Debug -Message 'Could not export Credentials!' }
 		} catch { Write-Debug -Message 'Houston we have a problem!' }
 	}
 }
 
 # Do a garbage collection
-if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
+if (Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUcRvvxzeX6hRnGiPaXYj3jsN
-# iDigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIMR8i0pktmQztdZV+fjGSczM
+# wFygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -611,25 +616,25 @@ if (Get-Command Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSW6xshl86MzuMe9NKk0caQQuQz7TANBgkqhkiG9w0B
-# AQEFAASCAQA1E8rfHqO0sy4t/Z5BRwwuw4T9TJVOnspk5oqPRUeEaImtRppTNysG
-# nHx2H5Y5fJn456YiXHi6dZ1CGr2IzRSXEla5/629MdAVFDpByv+b27aDWiknbGVF
-# dfYjtlGAO0a41w6tshBgJyHQPun2vEm93JAwuZTF7IqsmD/2AsIsyYclTozpoSR9
-# cwzZGbCrtnD6LI8ax+AZLe/hXMZpVS7UZd0G7vY2RDtqCUZfDv3Qe2ti74VUbRXY
-# cWSvPS7fqzhY+d0kuWR3OhbgAQ3rAWAqfVF4xEzv3zcsACiXaCL2DrdubmjzcB8Z
-# XIaOdeyDHfdCZHuXeWs/T6N6Llejp3qToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQBffzatsMLa4/dVV2fX+JfS3ELczANBgkqhkiG9w0B
+# AQEFAASCAQCAeqTHJlk3UYp7Q/qUxZrHWBH6BaWF/0gPwRQO7hzcUmN8LaiRd9xy
+# 93GUjXHOpzcZ1UuThrsNQZyrn/FpyyFFBGWD+JJ3kSydMDz8GjIzpi7SsNe3fk6G
+# bCcmk4akbhWLsi5rMonPaMBYAAnyyBrrAlSQSvIyMg1JUsXY22K0Tet5Mq+W90ut
+# 97ZjFG12Ie6YRwjDVMKlWKPa+BjoEPspWCX1KIsTwzdxFy85xDvmdAa56H7Tv9aW
+# PJute+cwYQCom/nEXqjtnjjrq7jJCuyjngZmgZaEzVuV1n5o5HVjdpuZTY3fDdIn
+# rjhABvuHBH3o6PT/RpKJLxdRctxf3/5LoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyOTE5NTgyMlowIwYJKoZIhvcN
-# AQkEMRYEFP8Zgnhe9772BposKvE1YmWqcqpxMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyMVowIwYJKoZIhvcN
+# AQkEMRYEFOZ4HJSPS0RjBaB1rW7ctnEizW39MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAGymfk3MEgYRSVt9M4Jk6dgdgZZyhDV2Gj+3TFnItK658p
-# ULTkH26/0+B/iu8A+2etankPqP/6/0Dg10+F4bDA1q++7bLV9t/jijj3PDjGI6YD
-# f67j999ML/Rr+L1LrH8aCYJRQF5DBBOMgm2fpnbW6Sjgmry2jMyrSnVeYsplpwpg
-# R4TDox+UZmdo5+9lamJI9vqG5PeEkqt9oagF7lChv4ahfJAfW97JOZvUKx8AM74M
-# BxNW5OppxoNBc8tVoqtIr6kyZcOUc89WHu2cyOIgDGI+3mMImVeUD3PALVwEPcUc
-# kdxv0PpBYuR/FblSWV5y2mwW8hJcceKPtBB7R1Wa
+# hkiG9w0BAQEFAASCAQAjWuwlXQ5v3Hhj1nJLLrqa2o+X4EUlSUy5Sc7G5kIY3WXh
+# i1oKnXwX07JjRioUi/RHeqvqVCg0QWeyYn6u1nRdNDZyi5Il5mMT96qk0M89Egoe
+# a5NQpENEM6bBJyGk9CZxTX783vdaaZeUgKrQjqaVnLtZ7ndb3cff4zmFS2F2MyuR
+# PUUhP1QZzcrkpsg6gpRF7VyhKuoAJFQqBwEgzWfCFsDuvVMABxFubQXCXsKHZF4n
+# 0A/9uqrn6uxZG5bxpzDnNIvRRtSfsxNDlvk2yvtYsB6/dF5/blFw0F2qxu8GolkL
+# fWAarlJ8MLdR9xZd51YCMSmooNFoCGrxNgINWEYb
 # SIG # End signature block
