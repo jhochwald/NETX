@@ -114,12 +114,14 @@ param ()
 (Set-Alias -Name Load-CommandHistory -Value Import-CommandHistory -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 (Set-Alias -Name Reload-Module -Value Invoke-ReloadModule -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 (Set-Alias -Name Reload-PesterModule -Value Invoke-ReloadPesterModule -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Test-TCPPort -Value Test-Port -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
+(Set-Alias -Name Get-TcpPortStatus -Value Test-Port -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUChkRhs+GZE7Yzn0TWmPJVjiE
-# 0nigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC6PeD5dXKzY0T1S67yd+Yb9r
+# WWSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -262,25 +264,25 @@ param ()
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSEWVCy2sFlhEzuMLGuoslj7OiixzANBgkqhkiG9w0B
-# AQEFAASCAQBa0+td+J6+GT6LvzrAXj0iEKgykipPjn8qxnNbY4IFTNxRRzC2wBwT
-# BHpErHUZb/TklIpwj2g75Ag9SgEJSqjKcbmaCEPK+lAAy/EvjEp+nWja7+yRofAK
-# pYi3VgRGWhVi4yLSL9hXCrN4hbZzJswBqpSjtb4Kgu3R6sdW9eVLYalwfgf5hLOM
-# M1J2BFGaQpGK9LToOhtJ/Pim/JPJlEK3S2RVv8RVHIUJFuhS5tFUoD++Vm70I2/t
-# 39Q2uNm5QlaS9Xe+/kS4qrhZkF0cenYJAfDFU0LKvl7W4tgxX0Gaecoh1ylgN7HJ
-# ZhFltucGMmVQhVV2TKIRt8s6XawwdHnYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR5jFQ42cpuVmqgKQd+ipwJEeyCUDANBgkqhkiG9w0B
+# AQEFAASCAQBSqR8kOnIGFy6ehWlMyOD6E0oY8T0fWUiMvM6986LSIptExB/JDjDf
+# DNGp268bso8KsAZtRUvExuSPAOsh8LWqRZ/4u3toIY2A35DLhtk34PdjDNdP9791
+# 2v7BR97O3HbdwsRgpuXRj5U7F3i7BhvnnHkUBTvvuhmi4sRkobMirHb/XYMzD+Y9
+# Jcrrh5Xkd+bBPbyOxdU7koinMX2aQ5OTYGfoLPjX1BgWLbmf8j3MV9rjyWAfRckA
+# JzA9SBwNGbmlpo45+L+82PT2HJPl94Wshhqh9B9jQp/MhINW4x9ZehF4SsZeAfP5
+# cM7xZdG9CdYbNX077BDDH8rGaizfCDpZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDcyODE3MjQxNFowIwYJKoZIhvcN
-# AQkEMRYEFB/mDPrJHCHOjMgcJDGnQUJ1YhciMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzIyMDAwMFowIwYJKoZIhvcN
+# AQkEMRYEFImZBp53NyJKhRbNe88l6xg+GVJ1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAmDYVmxB+mLSlc2f4204p/nDni5xpxmnaYwhn9uuPUZzbr
-# Ma+5ZElh/z8VeMN99EBKJxFA9f4pEsJt3CEEJaARpXcPZPu/H6j+MCJLnMOlJ/eI
-# QtZTiLVBtz4sag5KKCGvpOa5HnvMaBuOM2mX/V03fF1ULUMgS72BMkL/okilI8lw
-# w+czjl0hzGiFEO3vAwxVzR37TEzl6f3RFALWDKGjXsC3qekxzfTYF1SNEGbnvIR8
-# l6J92PH5qKF2YkqFdpeyOpbYl99zWGJt9mnZjFsy4KrcYx1JN3TK9ykkH82vIvS6
-# /LQonr3kW3hUN1wYnqedbs0pu5Taz72uDJU31x6j
+# hkiG9w0BAQEFAASCAQACGfld01xymrLgu8fv1NppMf9r4JNC/96jI1daZXyllbuq
+# a0UzAMHFea3IXahXTAXRb77ofvFLXjnuNA/f7PNFNzhXNQKmxHYbk3jPLBZ0EE01
+# uq4M7FMJpgwEFPx4DwilE2hLrI6hYJmTnxKXKPfllG6yw37tv5wOgGd7Rl1bdKqr
+# h1qGA1VApowQUnhWTwiiSzvcaHvOzg1dMj7wxElTRn4JNv47BPv99s1+hf1ngs+y
+# QC699WkIJvnv/Kaf+eOVRZBdvoWVk+O/Nx/bfEvG8bTk8kmo3o6dsibLBLdXBTWg
+# ypV5t5MkzWMhSfpBBUVZfAAOJCLfd11NHenfw/DM
 # SIG # End signature block
