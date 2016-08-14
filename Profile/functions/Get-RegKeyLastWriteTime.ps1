@@ -1,13 +1,12 @@
-﻿#requires -Version 2
-#region License
+﻿#requires -Version 3.0
 
+#region License
 <#
 		LICENSE: Creative Commons Attribution 3.0 Unported License
 		(http://creativecommons.org/licenses/by/3.0/)
 
 		http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
 #>
-
 #endregion License
 
 Function Global:Get-RegKeyLastWriteTime {
@@ -75,24 +74,21 @@ Function Global:Get-RegKeyLastWriteTime {
 			http://www.shaunhess.com/journal/2011/7/4/reading-the-lastwritetime-of-a-registry-key-using-powershell.html
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('CN', '__SERVER', 'Computer', 'CNAME', 'IP')]
-		[System.String]$ComputerName = ($env:ComputerName),
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Root Key to query, The default is HKLM')]
-		[System.String]$Key = 'HKLM',
-		[Parameter(ValueFromPipeline = $True,
-				Position = 2,
-		HelpMessage = 'Registry Key to query')]
-		[System.String]$SubKey,
-		[Parameter(ValueFromPipeline = $True,
+		[string]$ComputerName = ($env:ComputerName),
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
+		[string]$Key = 'HKLM',
+		[Parameter(ValueFromPipeline,
+		Position = 2)]
+		[string]$SubKey,
+		[Parameter(ValueFromPipeline,
 		Position = 3)]
 		[switch]$NoEnumKey
 	)
@@ -226,8 +222,8 @@ public static extern int RegCloseKey(
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUIXtLpIhiGoZt6NceOKEJrBPM
-# 4rmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0Qyuz0Zs0gJIirlECTjP4pnK
+# 0GOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -370,25 +366,25 @@ public static extern int RegCloseKey(
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTK9zAsqi94t/LPPreThiBFCFPQAzANBgkqhkiG9w0B
-# AQEFAASCAQBgdG/zjyHFV86xauiU+Aruny/LWD/tukSixWkzwrTaCAVYPzDGB2Lo
-# hyhOVdjz6+h6OqniiMTYv2f9hd9iHVOnNHDuF+GyY8te1qGKnfGI7oDHz7Dynj07
-# XmFkYqzHyokxkfxpSKc1hCMjA7dAjfvqoKHYo8rktYCft07UV2vXYV1R2wCgqRpZ
-# uwgSJZNOzA0wTJR1SfSTHcPsAh1iB94J6qgEM3BllCDJuSdxGBIX7t8NXsWHNqra
-# RE73oHFP3uFW8D50Xova9LgWUpJ3AbbGQ5bcykfO9jMg0M6vcIcIRIhR3eBzT7Kp
-# EBWk4Cp/42My5cHWEEd/Xz+gClUpIHKuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSMgvMyZUHkrhhYL+Ujf1GqPheYITANBgkqhkiG9w0B
+# AQEFAASCAQBW+tT0AU93h26WXH/DKTYRjhgjOfnwptCTO1oPMsiC9O/aDeBGrgrs
+# 4M47ybD/Wv6eX/Ugg0AfM/F3TG1XBHXbS00nGQ/PCkXMPPl3RxK26vcxM0mWEXbb
+# jCEyqCv/UY22f2k3n+ZEETo6/Up4cTlStU2cBgtmst0bmfQWc53296eUHm3WExKS
+# G2CIaS8JdNJCkDlmF/XDBTGqZjDedECZ6V/OdiXtfA2OxmQXMw/MyJooMWl4/EFr
+# 2WFB1T2ugq3fkJOXxVyxDgg0XnkGJO8mWsCTgGx1h6yndcqYTHfkODx3FlNGC+Np
+# ijNZdXPRlluqSbO3yCEExjkpJrpqCYgeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0OVowIwYJKoZIhvcN
-# AQkEMRYEFHq/DrgsasdKKvb2xrb+3p9Fevz3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzOFowIwYJKoZIhvcN
+# AQkEMRYEFKq5K4rtNfvIUY1hAP1Zhxh2Up8dMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBPH9IpkwKFkh9vhpdGThMYJSsVsVOGPmjyJxHxQ3iv2blQ
-# bJgrS8v2fE4Bl+poMbaWsCUnAwGvHOJea6kZ3TUhKxt6/3JijZWWkGefHwuU70Ca
-# CrfmY6hBVI3BrLfUGqvktKOkv51ojES4iisSfM0wXMIzqKPYjbWXrPZB+bvnQOX6
-# 9Ve+xb1X6a9AMiwp3tY4dBXSzwIDiAvOqOapAr7nDyWoJ8U2N9oU2V15UTaJ6pLA
-# RFxkTjA38yV/aLyh6SoRtwh6Ov30rKEzc7XM5gn//3UmJC2tbxw3lHjYlQ2leqew
-# FRqXkII/l6kOGdfaxdgvuhUGixAtUkEAkScL/uz5
+# hkiG9w0BAQEFAASCAQCRp+nsNaasrTY+QCJZQIbt8CmX81/bxkfOr6tgF9Fuc0Rg
+# vg+lkqS/pKS3iEtk0bBXvfeenuPJI/XeOl7BlvEG4VI3wutHCvWn/Amm3ZxeVQk6
+# JoPQscgqQjcqrL2tP9FcBOz4OPsMquaIjFDzTXSkJWAtTSDPw+bBnxj9E1yUz4jU
+# gIVbEG4U4xWXowJx38oqCR3EesQspY7SlGVRKoKBasSUW2t1ZpxcOCV+T3XUUn5f
+# zXLBpbGd0pgUGdWWMmCIDaOZplm3vfSsSybwJjS/EKsD8YbBdkg2E9FxF1n9txzO
+# OTsLwji9M7kD0TX6nG820bCpcZHyDSIJR4AuC3TS
 # SIG # End signature block

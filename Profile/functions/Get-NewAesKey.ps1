@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-NewAesKey {
@@ -69,9 +71,8 @@ function global:Get-NewAesKey {
 			.NOTES
 			Initial Version
 	#>
-	[CmdletBinding(ConfirmImpact = 'None',
-	SupportsShouldProcess = $False)]
-	[OutputType([System.String])]
+	[CmdletBinding(ConfirmImpact = 'None')]
+	[OutputType([string])]
 	param ()
 
 	BEGIN {
@@ -81,9 +82,9 @@ function global:Get-NewAesKey {
 
 	PROCESS {
 		# Generate the Key
-		$NewAlgorithm = [System.Security.Cryptography.SymmetricAlgorithm]::Create('Rijndael')
+		$NewAlgorithm = [Security.Cryptography.SymmetricAlgorithm]::Create('Rijndael')
 		$KeyBytes = $NewAlgorithm.get_Key()
-		$NewAesKey = [System.Convert]::ToBase64String($KeyBytes)
+		$NewAesKey = [Convert]::ToBase64String($KeyBytes)
 
 	}
 
@@ -99,8 +100,8 @@ function global:Get-NewAesKey {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5vrFtlpOGvOYeDzlArGlrZPO
-# fxGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0VISsDR9Zq0In35ViwpWGy26
+# hv6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +244,25 @@ function global:Get-NewAesKey {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRJOe2q2otWmFYaiYHkZY9UYVFplTANBgkqhkiG9w0B
-# AQEFAASCAQAs7pN7KCylKqbQtbrIvoWdouyCxMx7f+sZuUR2QzL8inGT+XsQgWcD
-# Q7J+LKGWthvbIwi6uwzs+RgIiQppBhkMfsBsWbA6YCC5hY1Laim9Q5eJCKsrjRGM
-# NRgueqTgjY9KZ98fQlsuIYOhqBz1XD89/xdWWRBz7RQ0s0mSN3OqwfR4KuSbLZBs
-# btyWk7oapxl3KvGiKs/1Lr/3sTYolvUfXUm+PzF0MOyA2+F5hKNWrItR7vWME0If
-# 2Wo+yLPU3UnBXv4rW6kl5vC6Q2gDslGuMkS/Mwwmjyo5uED3oOf+62C/9Toz1Qj6
-# boEZE/gtoAK2PeUOqDDZjnkaVIJtlBuPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSKFrZa0ngz9YgqvhbBEM+0JE53fzANBgkqhkiG9w0B
+# AQEFAASCAQB97iNklItB7xz7MmKvMpSdsjeB5k1ylZic7iNBevyyxddhszLeeSRJ
+# 1LUbS41QuS3BwflT/O5CxBxNz3rDsBTf6u0/OZm2EpUE/vzPmJMQAQzbhIbti41Z
+# o3GvdgAVpum805Xh7QqTQET2qxgleioO6qGPhc0Qjwb+WRlO9+06zuhEP0070uzM
+# hl7ztcdQ++CLqDto4z609gk6151Sk20p9C5qdkbiKU6MVzw7AUR1YLZmwhNhpc+U
+# 2m065uzIo30bE6//VYnUPweGliQhFzjOp+3y83qYhF4msEGjfhKhlwHhRVbUd8mh
+# 3oeLHlsc0/wSOPzjc8QTuJu/DL70ZgUjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0NVowIwYJKoZIhvcN
-# AQkEMRYEFKFpd8z7J+WRNpORKrCX8ZoVppyIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzNlowIwYJKoZIhvcN
+# AQkEMRYEFITHJgNGoNBTZKW2mC2Per0dhkDkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAu6oohUdPMc0Ls67kuu1NaC1VhB1Pkx31pZ8zLu14mROMi
-# iSLruAuvsoGulSIz/qIQ0U2L1bHDnkOVZcmY9006adoievlpeWjSHXDB/HztvuHC
-# K0abyuGM3CfPzjarZbQyFJOIQ6x18AcpvpTIwhDaMmkoHH/W6I6m5eKvw/ThuWey
-# cqKNIDp+Nl9/Y8/bySL8Afse9zbBHii7vaxlyMNTGXM+9CUhEpIqJNxujzDQpCsx
-# 0gQDH87hKAz/fl3GNBxzP5dFmP709FILdkH/A5Xsdq1OnV2xsZ6kx4n4SrJ9M9H3
-# npKvT3mybCwvahjuZyIG7r3u5e4lqYY8n4W25BBF
+# hkiG9w0BAQEFAASCAQBpYmF+gUuNdwMwpCxsTtRDhXO3AvrbNMhHTERBgpM/ZYfK
+# 1IfgqcO1Qk+wfX8KGppcb27sJTeuizMPV+Gms4003e1uctcnzZGZ6stQwLIHHJWj
+# Kw00+d6y1XQYLmnbpT3yUfotGclhCADis4eFBSv5k+90MAl9kEI5aDUGoQn+VcgO
+# 6q3lBZc3F8d02jNtzl00yR9RDABIXDHe6FdvroT1VYQgyOrUKmw62b71mnh+2BNs
+# uCBV1yQe8xmhOl+GMcA1zQkzrSqc7XCgfpubASR9YERym+8KtP+90mTAiqE3mZ2x
+# Zl0nWyOu3FzJeg6B+ezkBBB83Do3fEuu4q1Mg4MT
 # SIG # End signature block

@@ -1,20 +1,13 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +41,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Send-SlackChat {
@@ -109,27 +112,24 @@ function global:Send-SlackChat {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Slack Channel to post to')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Channel,
-		[Parameter(Mandatory = $True,
+		[string]$Channel,
+		[Parameter(Mandatory,
 				Position = 1,
 		HelpMessage = 'Chat message to post')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Message,
-		[Parameter(Position = 2,
-		HelpMessage = 'Slack API token')]
+		[string]$Message,
+		[Parameter(Position = 2)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$token,
-		[Parameter(Position = 3,
-		HelpMessage = 'Optional name for the bot')]
+		[string]$token,
+		[Parameter(Position = 3)]
 		[Alias('Name')]
-		[System.String]$BotName = 'Build Bot'
+		[string]$BotName = 'Build Bot'
 	)
 
 	BEGIN {
@@ -157,7 +157,7 @@ function global:Send-SlackChat {
 		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([string] -as [type]))
 
 		# Use the API via RESTful call
 		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
@@ -183,8 +183,8 @@ function global:Send-SlackChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjNGdAN6fB+hTQL0pvclsNNIu
-# v8CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSEMD7C0UFZcvv371TpaVhi1l
+# +XqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function global:Send-SlackChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5yRsD7Qr0wCI3Go1w3sgRg1Yb0jANBgkqhkiG9w0B
-# AQEFAASCAQBnwoFskg4AnDROPevTK4xvjLD5clrjjB7k7n6x2Su4Q6EmzGNffgmo
-# ambGTsHb+kI+wbRx5iHTpp1xU3lQQZq3VR52kF1WMBbDsLT1J8J+LeLffyauRSU9
-# 2zaFufTgUQq5Hl24jbvv7UdD/WQ/TuzLrYjFYzWGrqoOxHSbWNogDpYQqyxALXJX
-# JoHXwvmu9E0VQOh0rm9WjsavysbZ6bOHMoRlQIJZLavydhET8+H4osCM/2CcHXGT
-# 1kbOw/dP2OiJ90FAjywGFVYkg5FbOWHyDtHgNgIaUn05uXj4OeUgYg4DU4S4kQwh
-# yUgjGqDSl3nRX7jz+0tpmrU67BFHH4X0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS7N4QzwhzptSTU0+CwneCqkDdj4jANBgkqhkiG9w0B
+# AQEFAASCAQAFoAZbefah79WvBjUW0SR5HSwCJavjscnCzmt2tEDnWVGkWBAoR5KC
+# h5o2FKwlnMNZBbS1yh4y7aYqPQxoGceXbyTfrYwmkOeaV3A+dR7Eu6gVdjZG42Oi
+# d6pMSJSLCpH1CXtPXa1HLFY1Jy0j6bS59OyRTJS004+QS2aqSubGub47+MoWMhwQ
+# Pkpg+MED/XQJc+NDxfhJ3WqOfOs+UsOzUNvo6nSNePX5WblyZp/vXOOX8aD+QKde
+# n281k6gymAULFf44JfEcbrsyTcZkUPzs/EppFDfEvx7P/5avJZCY3hiZdV9IfCez
+# eZE5BvPmrqDhpGQHgVqFO+VZivnUZ70NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxN1owIwYJKoZIhvcN
-# AQkEMRYEFKRSFPiJoMwbKdq8uuhk4VfbXh8lMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNFowIwYJKoZIhvcN
+# AQkEMRYEFC+28YBg9q3/iPtE42TGYmyfNw1XMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCm8TqJ5XTJ1B/1ELbjktIsxWPpQRXH/zcZB1keAcFQaJ7z
-# QxB+qhU/VyEfTumPQPbCLDmorm0jMBHhCSFZ5WKLHkkXoEVIckxMYRdE1dLspg+U
-# mulTi8pYA1FtICfVHHbVUzvR1vcNqB8FW9h9akLUjbV766po3mcJf5ZZfhvlL/Vx
-# GIDDdDZsGFWhEOnMMCLcS6KrhLK3LsqCnN+m1trrrrd0y5Z3nRnX6woq+slwXSMk
-# 0QWwNF+45GnOpJxGK0mQxpIVH480+x1LIejmV0thuSosN5GHScTrjZ5rShCoyEth
-# Xeya6MzmmZiIIMBhtZLnJBHQ7Cvgq9tdn3rRuU8a
+# hkiG9w0BAQEFAASCAQAfEpqQVEiCRzDDB6pz4zeCQ5Ir5i70ETtInjS5a7xvBsZ6
+# 2SC2yhxhukmyfs2YL/dMkGWkOuH8BreHGKV/Au3e4hba4lNBa1ZBopAEPMqj46KL
+# 6nhYdHvC7vUXmeN2O4iKIdDpYvu8mPyKfbSYyBr95LKGigKrmzjBne8n7Fa/GRha
+# y6+R1o6DNZFL9cR57IxqjLxHJEcENGoIHxYMYVnCeT2otR1L22wdxmEZ1oJB5bul
+# gQZqIXBx+vQ5KTNJMhNlxl0L2zApKgr4kICq545mhbz6d8E5WmGl3Iu2MGhOjd+3
+# gVNq/whbwd4pUQcS9Xlfp3v8MvXM6qUuExma2VMl
 # SIG # End signature block

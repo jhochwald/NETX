@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Time {
@@ -107,21 +109,20 @@ function global:Get-Time {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'Script or command to execute')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Command')]
-		$file
+		[String]$file
 	)
 
 	PROCESS {
 		# Does the file exist?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:'Error: Input is missing but mandatory...' -ErrorAction Stop
+			Write-Error -Message 'Error: Input is missing but mandatory...' -ErrorAction Stop
 		} else {
 			# Measure the execution for you, Sir! ;-)
 			Measure-Command -Expression { $file }
@@ -140,8 +141,8 @@ function global:Get-Time {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMvfw2Jw7Ft+7kOIPTb2EVqoq
-# SRCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPgn6L0YQY+ooCQT+P1MBvC7X
+# Ui6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +285,25 @@ function global:Get-Time {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSCHkf9ocRBoSVXqWoqEcdHqwCEfzANBgkqhkiG9w0B
-# AQEFAASCAQCFXw69a08vtvD1uacq7eisVCQCf4acd5UvCuDnIimebQpL0jzTJy5I
-# UQ0vpKpB+ynDvDhC6sxgnDy0dnLsTc+Rk0wqoMIgTTCCndgY62GaKF4CZTqwIev7
-# 9OHZkhgpCOoKvtqjcbQD3tPHm/7bxSHgEvHOvLcrkBONDz8hsYVM1I58F34DOoSt
-# KJgeg9Db3aD7Jm+IdWIgm0CCQkaqYNTLhpacYpb1EzLSJz/RarS5y9wcC6qBsvH1
-# dpFpH7GNh1VuFIPnDppdNcNVhv4bsUn2kY96fD6PexsfP9OuL92mzY5RoV7/Avbv
-# b7l/vIQiguECTUgHf15XvnK2ntBW588eoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTPb7CsFK5n60S78Y79GeYyBDTruzANBgkqhkiG9w0B
+# AQEFAASCAQBJ97pqmd3M6JMoofmMf+j3hD/izFE/l/N0JfcSaZs3aJIgTsH2nzeX
+# ktIIndSoSqBFSwygJ2MTJilaUAFlO/TMYLVXMvgEQz0nJ9vFEoug8U44nRjC8VCk
+# L3apbDLFiTdfcXWAj54HANVk+4rxbccDMoGJygEyVhg91z0xktoYnAgcv8e7eE8M
+# 2Fq5Yuh5NnrKHn+bpzQzaOxwtiSBUofwe7gC+ncGuQp6HvJ0Rdb1Zahf6qOmTd4X
+# ksKIrU6+FKGaRaKkRLPB+yWYutegGo5Rw1xu7G5tPhaaiEy3ImPHgPn0zPY603Zp
+# fS9fg7ctVNLEbzJU+WF2/iqb3EN0STvRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNFowIwYJKoZIhvcN
-# AQkEMRYEFKaSXLVJh06wEw//op65wQHhdiCTMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxMFowIwYJKoZIhvcN
+# AQkEMRYEFHgbdtjS+kVVXvOyMFrwGszyJTamMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAIzMxkA+W3og7pbZ0V50m8ZIKzajcogAEJgo3gR+bEwsJq
-# fi+WiaiU2ztrzOWnM0EztoeN6uXUVl+xcj+ybLRF8rooCurSpBnoHiOKYQUAn8bk
-# ul60ArT/dazK00VVhan9x8CjistaiQswFGf/OB6LbQZ2Zhe4zaPJC78nZ6MuD+NJ
-# EoiwxU0PlcuyfmH+Ly4J74E7v4p/E1h3jXRZ3EnVLHUiwFIzEsnWq5fpBPlPz2AY
-# 2fowAPOcA9xo+0TYo0ULkU2CwcQJoNTusU8A38rVE8LZ0uyxEKUAnDhL6f5+Cv4L
-# lUKVPzChwl5QyjgeUzo847Z4LArRzaWdsV4tKTei
+# hkiG9w0BAQEFAASCAQATyHpTH6GgJgKhKtPmpWJqwy/SW86jW3zj74FKg2sndZ6q
+# lzFxRKVyrphsZE/8JqKp/8uu0vOlccKyiH6rkdzk7WytuytkputIz1xXmcjw64bX
+# gTIHYVSDQBq7grd/2Y2oz26a2l75n7JQhqH7fhDvSZb3Y7z8pBBhAWAtVOdcTaCi
+# rplkT3iT4VclL8jNQRtYixvG46Cu6PLxpubObEDqNrVFTBSV9wJlRsu1H3DKAsro
+# MBLubPmjwhly0ttNkAU+32SfvuRAkCiNuifeHPHp0mGA7bNd37zjm0yGDEsIyIig
+# B/iUN7XCDGR0QfHkSrCCS8vGNtmGijdQuakLS60V
 # SIG # End signature block

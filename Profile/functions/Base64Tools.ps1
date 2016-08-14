@@ -1,20 +1,13 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +41,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:ConvertTo-Base64 {
@@ -84,16 +87,14 @@ function Global:ConvertTo-Base64 {
 			ConvertFrom-Base64
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Unencodes Input String')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('unencoded')]
-		[System.String]$plain
+		[string]$plain
 	)
 
 	BEGIN {
@@ -104,7 +105,7 @@ function Global:ConvertTo-Base64 {
 
 	PROCESS {
 		# GetBytes .NET
-		Set-Variable -Name 'GetBytes' -Value $([System.Text.Encoding]::Unicode.GetBytes($plain))
+		Set-Variable -Name 'GetBytes' -Value $([Text.Encoding]::Unicode.GetBytes($plain))
 
 		#  Cobert to Base64 via .NET
 		Set-Variable -Name 'EncodedString' -Value $([Convert]::ToBase64String($GetBytes))
@@ -151,15 +152,13 @@ function Global:ConvertFrom-Base64 {
 			ConvertTo-Base64
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Base64 encoded String')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$encoded
+		[string]$encoded
 	)
 
 	BEGIN {
@@ -169,7 +168,7 @@ function Global:ConvertFrom-Base64 {
 
 	PROCESS {
 		# Decode the Base64 encoded string back
-		Set-Variable -Name 'DecodedString' -Value $(([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($encoded))) -as ([System.String] -as [type]))
+		Set-Variable -Name 'DecodedString' -Value $(([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($encoded))) -as ([string] -as [type]))
 	}
 
 	END {
@@ -184,8 +183,8 @@ function Global:ConvertFrom-Base64 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/wlgAOJSnfUys0K03x/d1A5o
-# ztigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlSpn0tKQfiz38AOXZM5ViO7j
+# CcagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -328,25 +327,25 @@ function Global:ConvertFrom-Base64 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTzhXAqi2TMwstYyuQpYms962AFazANBgkqhkiG9w0B
-# AQEFAASCAQBk1FICDoeRhLBKrOQ1aG945jf/uolag3hcLmtlc05Gp3ZcREiBSjBV
-# wUkERfcIeZ2MAY4MDpBwPr0u6XNEWcv65/jVZpEejVK8s7uoA0Um3kaUg3moHP8F
-# ShybBgfmbqIkttfQyb37ZXK6JxwBwhRVWFn81hwJIfZQwaiMIHyKNgNPLLA3GDHE
-# pJUavgGqDaxPa24Nns7ZEm/QwR7+hRbfhrgJC2wqRusDwtLI+CHHc54eJG3ia8fw
-# sa9a7clsR2xkY8cS/wjc6n/GIwEJa8ZH7i+mGp4fSvn4IzVJDWm6iL/RI1M/D+DX
-# wcsd9JDLTcxnLt/5A8VSXJbLjiQ6T3DMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQO0Bb5t+26EvmSVuoxWe24Cw4i8TANBgkqhkiG9w0B
+# AQEFAASCAQBg/B/kJZotSmT+7u8c8yhUEUPnNpO+Kf6znGi3vRJER6ywJWy66y+Q
+# IczuQiBPPT8sRWs+uaOeIp+aWPxjcTd1MMOODM6Tigp7CHatSlkxwnCB2eYWKG0C
+# TKC/UrD7bbeMit0CLphnVI9UM0TvG9KYwjtsnlkrzorBMR1AS/WNQgBYV5e3rDLx
+# C9SV/gOsXWYdORxofpq+70byuJGrkxYA8iOj+xjyOlRtZCgxP0FZ6AxLsAczUsUq
+# cp8r6aPfjB1Ya8eY78zVgUUIbeb4MQHsK9+GqtAmKMiwMIXptdt1leLzQLdq99Kn
+# OBz4COWYWEud+UQCMhM4SOlJOOWmoAbnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyMVowIwYJKoZIhvcN
-# AQkEMRYEFCwxGTdQZ1EdAVT7xlcuhteBxZ20MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExN1owIwYJKoZIhvcN
+# AQkEMRYEFEbBwVXQ5EiRq93AK8AZIAr9+Th8MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBe4ocFRI3g7w9cx7yW4CQKnIWYyaywzGy2Z+qZzUOD7EFm
-# rkQj+GrFxqbn+4ZDAPDiAprAfmbd33ZCEUbG2n2PAWjlMcQi3dNX6rypkrGlJVCx
-# 4Nt7GsVL0wThqCWjvhPs1QglcWJCCvu9UquEnkmQrEN7XX0zEsL4dmUaG/ANIDFT
-# 2Qs7eID1ugrO33/5yzcZ4Xq6pBIwEDpMmQlOekMazuDnt0hBt59zL3h4BxJorJv/
-# 2ZsXNuAtIJ8rdrYM4FssENgDyqLyVee+0B5vgS+AO+JMp0t6fd+gTiuv0eE0xKmt
-# pQecpGcLhaTlLTIaQS8653xOf5/kf/CIyzUp+d1T
+# hkiG9w0BAQEFAASCAQCNemynH4J3FQIYmBv+9XQCBxmhuB0W8MNPXNFfXB7Na5QN
+# t/2If1tJD45LGOQgUEurm5MulfwUPERTs9V/03EdZZrvX1aSsI6xLBeINiMpxp3W
+# i1s0eIhj20kC8BWPCp6V9PXzkXVfUuy0/Zz0HmZrt/wOu+/Uxpp6JZtr8dWJEPxW
+# rpu1Eh1FUHXKzrM7E0Ftbm/7H1A9KT51k1a2Eo7myufvKdm04WCkyad0/pCiZXmB
+# XszbYCovBWAnDtjtCDZ41vL2q+rGMxgBNR3R8ZIWoqVfGSx1H5GTK2UvOufY8FgB
+# bKfiq8bVTzetSjMrei8o+5WHxvfb+IsX5ms1m6Tr
 # SIG # End signature block

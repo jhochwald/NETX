@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-ValidatePath {
@@ -87,19 +89,17 @@ function Global:Get-ValidatePath {
 			System.String
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'A string containing a directory or file path')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Path
+		[string]$Path
 	)
 
 	PROCESS {
-		$invalidChars = [System.IO.Path]::GetInvalidPathChars()
+		$invalidChars = [IO.Path]::GetInvalidPathChars()
 
 		foreach ($pathChar in $Path) {
 			foreach ($invalid in $invalidChars) {
@@ -114,8 +114,8 @@ function Global:Get-ValidatePath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMvBieY8dGIKQvX2AydGs68/W
-# oN2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU35BVlRqV+3SRzWuAihWX6MQf
+# 73OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -258,25 +258,25 @@ function Global:Get-ValidatePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSICxPaFWb8hEUqoCjIv+Y5PCyAwTANBgkqhkiG9w0B
-# AQEFAASCAQCGmYSOtGHZabFQ/1h3Zlb4braKlTv8k4A+wkY+rzYci3pA+XEgYZjE
-# GTgGGsEHw5h+KZd2iZxqcwK8NIKz5eFRSNxaOkIjNmgsbl0O40yteRvINOog6/2P
-# KTvvxYW3T4+cD21rnDeK5GvVWoj75a/GscUdUvLXoz5yfYm14ZzoWs/KYMi4cg6l
-# AcIJZAvQLGLSnUdMOWbI2Pdi49Al6mgO8Msb5J4bTOa/E1rzXHkad51QKP6gRUCL
-# FfXwxw19JxFytb4MIc5G3TrqvCH7nnIq+V39ceklAy77utQ+ZD5nHIC2fM9rIp6r
-# GiHLQ7nDdjF8Ds3WaZid8PKOKlRgbFCZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSMTwNgWdGtoUvBJTKTfB7FTxVJhDANBgkqhkiG9w0B
+# AQEFAASCAQAwDEI/W4jsFbbm8lUxakpGBOCjVdMGBcxTpqXEX3mn2wID28FgbJZ+
+# OJufkPQMsdkKOKkdrtROvIfqkCNmpm65cUe3evqkd4Ondmh0he2zJUMD40yRPYEj
+# 1wh5R0yeDQ80pzjtrLP8yCQFSw/YrlD/J8acBaaQIFNd3CqsnNPsiBa3oM3YMYuj
+# sR2DMMnGK1maGBZEMDfbfpH3+VFsq2682ceRyIIOcO8WmDcFVXqR2S84k4rN+kch
+# YsgkJWDYvAH6gh8pxH3xG/xekgtPrZk7RoTIAUqT7OPBlq2y68x1F/erJXFaUdGG
+# Ya9+rbb85w2EEcn7sR/bmLtNH9q6v8QmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFHf2nbBPHjXYmb/nkDstgWGiHvZfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NVowIwYJKoZIhvcN
+# AQkEMRYEFKVjdHtvyFjxbZ7aD/yoWe+LHQVHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCeRtkRcRiwnwSEvG5JZTICfJG89yayB6lUAbagptd9ImOm
-# 9GNQayBT9zfBuklRbjDpoT48kBwCdZUBvzB4FgWL4/79eBB51CJel9ouYNIQSUzF
-# eUcFmW7APXIy4MTW+0ddVZIETUhZhGPLmJLPpW99CpjUiNHrv+Hvgz3S9qk3j0a6
-# x+6WhK1k+Lth0xmV8WVyhJm5gnvNQVTzxcE2gIL+QlnkW5OE38ug+Jmy+ids8a8K
-# sOKEfEjy45atNGxd4aRr8gKZNCLjFVkzI19b+h+vdrmVB57/Y2NSsnUkaxXtWo20
-# CYevbBVnNUm0ifcv4KC969VV1RumEdB+4BasoDkR
+# hkiG9w0BAQEFAASCAQAEeTaj0aoYNj9TWKpIgUBHlR0z8RIEdAJHUnVANViL2iXw
+# 3Cfj06pUro6mR4kLnuPrelPdxh7pE5F7yNk5WhRBXPKwzZyIqco4YhyBAw0AylRM
+# ldEJGhBWu320v14aWwuq2k/w6nJF3jgDKPrQtMLcANSJ30dD2+oH+76pM5baiPpG
+# zlXWDbvxJYlDMmQiAeJyq1/gWkOXMZ4U9D+EoFAM2Ckh3drF276HZx0VaMke6XR6
+# s2THipa1AjWB6hHvCfOa5T5msjdN1T5D/KJHPrN9N6NDGrO4GVWwNdIbwJe6jKsp
+# tRwE6H+dGoPrs2aWK46hx+FkfazNorzyBSS2ntI6
 # SIG # End signature block

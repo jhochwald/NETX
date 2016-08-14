@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-ValidateIsIP {
@@ -95,18 +97,17 @@ function global:Get-ValidateIsIP {
 			System.String
 	#>
 
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'A string containing an IP address')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$IP
+		[string]$IP
 	)
 
 	PROCESS {
-		try {return ([System.Net.IPAddress]::Parse($IP))} catch {Write-Debug -Message 'Something is wrong!!!'}
+		try {return ([ipaddress]::Parse($IP))} catch {Write-Debug -Message 'Something is wrong!!!'}
 
 		return $False
 	}
@@ -115,8 +116,8 @@ function global:Get-ValidateIsIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOLwas7uz2STDhuKi8mcCrfTq
-# FX2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMW/Z+mNehfTh7Dqk5eylsQdg
+# RAegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +260,25 @@ function global:Get-ValidateIsIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR4crVfPdzgm+DNOxmYDAZhfrB5PzANBgkqhkiG9w0B
-# AQEFAASCAQACMftX735j17Ra0skfzpSeugpMNQhvtXuRWdWVZx8lz3B2DC9UZqLe
-# TJTyyhEbOOZfDj4eodpRcoGCqd6wid+mO6dAmAazdufdyT0kP4uEWQjSyF4E8zHt
-# 1ZRCrLe5/FJ1/ZPhYeNRRJS4+3KQb8vDfkUjXV+fp7kr6tT9dGRZO2XZOUkpBKmW
-# 4cWEqCA5v+PDEX/blNGeJlreD803gPe3i1BvWVhFlZtNjQVA11eNX1qvJgZ58HKT
-# G6usdfI1dEH4jPg2Cx/DerD2Vxw25mv+NQhvnl2G4zPkHLZKGXxXDxnwo/+/0i0X
-# 6mJb3LseiHZonIvXKs9Oxs61NkmeKkN2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSF0afCheFydDn0sQ0puQJaC85pFTANBgkqhkiG9w0B
+# AQEFAASCAQADWGgz715o32/98XN33kx58wzwM+hg5MoOKivhbG7ED8OvyzR4z+l8
+# kna3mxuEz+dMIPrJDBCdTuygXu23cCJpdh+Dp6QtLpuPfGG0AoE695dyoEGJBwQ/
+# 22Uh5G5clB3uR6rGRFhrsI1OhwzYEVN3L4SAKOn5GZGy+Kqh1EL4RJe3h4EnDOV7
+# 0xfkA7dtvDe/tz9AEMT3Bu66wvQbvEjLNmTYT8n2wlT+JHFD5ZHy15bJTl342WhG
+# gXMd+AxAKQWOH87M/o70LmsPc0AGCLCpNi2FX7pXkc2dpbMDbSTjx1FNUcez6YV1
+# L9nsijDsZ2BZIBevXey+UnAg/CEkguQFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1NlowIwYJKoZIhvcN
-# AQkEMRYEFLEuSk3ho+R0PRvsfh0RfecwZMzrMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NFowIwYJKoZIhvcN
+# AQkEMRYEFIpXgD8SoExarb2LNXubloyZ/9gaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBrYDO6cE7KZc2PutAFYjGRaSwrCVeFLpNT20ThgUZZMMXU
-# njZmCjLwEahuuZXa4+HKICxEuL/oQaQ/QW+FtHkWiXSJSSMMV95sZphoiGV4dJ5T
-# hbHNir02oMjKdv67QJzp1j06rY5igw0MVc1OGu8UbsPf9jG264H0jmHY7J4sT+05
-# 8OUNPmkW5mPAjZXgBwepdepFCEuOMsNNTsoDtRg+soGpjrUHBe5nORk1HQlC4mQc
-# Tc5o3c/CJQCMPvy8UPv4LgaSrr2rvs4ysueZEd/6UmNmjYU/+T+hxrQAcVJ/n2Db
-# JXBJK6NozPKfVRV6f/xw1z1vQzvbhL+jwP7Qow4/
+# hkiG9w0BAQEFAASCAQCRi7VGB2L/3yj7cOA/ATNIhSWmMpT/niHDH3NAZT3+D7kk
+# dRQJkxHORyrepMHYF2ySAoM+oNjv6ofALk0y6FQK0g0dXyy6AyFQraXJlBTSuH/A
+# 4hlQuty4qOntB3Hkt9Hw60tAacPoqENklfQqrqitQl8P1ZgKvVeXjQXZzlBuRwUo
+# VsFl0Wnj+xaDnO0LVFePcY3KhPZQr28RXOYSHdhvvLJesPvbN2BWxQ+F+t+L73Jc
+# lO0JxB4oiaaCwD4cYxhg7kU8H40iziSS3K6C8iuZnHCqsC4u46TQl0+h/GdGdi9C
+# BpDYCDiW7G6rh+eS47XNQetCpuJATtjLkiIU2JmE
 # SIG # End signature block

@@ -1,19 +1,13 @@
-﻿#requires -Version 2 -Modules CimCmdlets
+﻿#requires -Modules CimCmdlets
+#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +41,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-DefaultMessage {
@@ -92,8 +96,7 @@ function Global:Get-DefaultMessage {
 
 	param
 	(
-		[Parameter(HelpMessage = 'Specifies the message to show')]
-		[System.String]$Message
+		[string]$Message
 	)
 
 	PROCESS {
@@ -161,22 +164,19 @@ function Global:Disable-RemoteDesktop {
 
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 			ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
 		[Parameter(ParameterSetName = 'Main',
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-		HelpMessage = 'Specifies the computername')]
+				ValueFromPipeline,
+		ValueFromPipelineByPropertyName)]
 		[Alias('CN', '__SERVER', 'PSComputerName')]
-		[String[]]$ComputerName = "$env:COMPUTERNAME",
-		[Parameter(ParameterSetName = 'Main',
-		HelpMessage = 'Specifies the credential to use')]
+		[string]$ComputerName = "$env:COMPUTERNAME",
+		[Parameter(ParameterSetName = 'Main')]
 		[System.Management.Automation.Credential()]
 		[Alias('RunAs')]
 		[PSCredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
-		[Parameter(ParameterSetName = 'CimSession',
-		HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
+		[Parameter(ParameterSetName = 'CimSession')]
 		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
 	)
 
@@ -247,7 +247,7 @@ function Global:Disable-RemoteDesktop {
 					Write-Verbose -Message (Get-DefaultMessage -Message "$Computer - Get-WmiObject - disable Remote Desktop")
 
 					# disable Remote Desktop
-					[void](Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
+					$null = (Get-WmiObject @Splatting).SetAllowTsConnections(0, 0)
 
 					# Disable requirement that user must be authenticated
 					#(Get-WmiObject -Class Win32_TSGeneralSetting @Splatting -Filter TerminalName='RDP-tcp').SetUserAuthenticationRequired(0)  Out-Null
@@ -318,22 +318,19 @@ function Global:Enable-RemoteDesktop {
 
 	[CmdletBinding(DefaultParameterSetName = 'CimSession',
 			ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
 		[Parameter(ParameterSetName = 'Main',
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-		HelpMessage = 'Specifies the computername')]
+				ValueFromPipeline,
+		ValueFromPipelineByPropertyName)]
 		[Alias('CN', '__SERVER', 'PSComputerName')]
-		[String[]]$ComputerName = "$env:COMPUTERNAME",
-		[Parameter(ParameterSetName = 'Main',
-		HelpMessage = 'Specifies the credential to use')]
+		[string]$ComputerName = "$env:COMPUTERNAME",
+		[Parameter(ParameterSetName = 'Main')]
 		[System.Management.Automation.Credential()]
 		[Alias('RunAs')]
 		[pscredential]$Credentials = '[System.Management.Automation.PSCredential]::Empty',
-		[Parameter(ParameterSetName = 'CimSession',
-		HelpMessage = 'Specifies one or more existing CIM Session(s) to use')]
+		[Parameter(ParameterSetName = 'CimSession')]
 		[Microsoft.Management.Infrastructure.CimSession[]]$CimSession
 	)
 
@@ -430,8 +427,8 @@ function Global:Enable-RemoteDesktop {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQULVW9blXAYwl5CGlWMBSZ4zhx
-# ewOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDrzFtRJONVCucExbv5SKulEw
+# YJOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -574,25 +571,25 @@ function Global:Enable-RemoteDesktop {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRxibkAmCnvsbrA0QGErHwPBMqnRjANBgkqhkiG9w0B
-# AQEFAASCAQAN/mg7qqEicPghKMfB1WWZt1tOsoI+csOWqdd0LLidw6cDKplGN20e
-# SheLf7hRwoNVz/483bsdUNTlJYDtcn40Vf2ft+q0JpxhLB7SiWBbY6gZe+jMCOX5
-# MIByrA5G6hWm0yKJZgZzJdcdP9hQDdSRvTFn30iVJF1DgOvIJrt51OZeEcKsHR21
-# phQnxfgVLEYf/O7hvFfH/mNclU9XZFkkkmI+QR0Sttu1qnXS6/m+CjsaBiQIO928
-# OPyeqirf3NJGrgOg/p79Vo7+5QBm1b6PdvnqxYVnkmIrvGr+aYYPhZfi5hZiZPXW
-# KXylL+YX56LCM2I7/JbtFOApvbmcvCBkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRl1a+BFXf6aUeJ5TI6mABQ/JGkMzANBgkqhkiG9w0B
+# AQEFAASCAQAOgRw/8t/2Bz3o551eEWml2NnY1WLnvja6vaDht8Kouaj2gg+nzqSC
+# Vt3ZppgNN6oxLFvybd/ucrOAxNWXMQoYQJf01Ck4xYEax+Zbtpe2KwwJ7dhORl9l
+# /HG57MMTgbyCUv4b/B7kQLF7BYQj+uKuHxdf3PeGlUfIBw29hl4xkC1aX44EOK9z
+# dMl6HemBY9fB+8x36BkYN01gPGo0+wxgTpBcajeMa/JXk5e3gHUR07z6V291Y8t+
+# CfHXEA1KkkfJJc8g6qSoZuXSpnMsWJqjjepUSG29SPfcYcIXAdc61+7+KKKNGPaf
+# Fy+HBjrjM8C25FLJXilEsOHaHXCt51iYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxM1owIwYJKoZIhvcN
-# AQkEMRYEFBVOikqy6qmyp5PJl/810IOYE/YFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMFowIwYJKoZIhvcN
+# AQkEMRYEFP/X7qpELKCkIk1FpyJe4Y90ix0qMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA0cSzfuO60VU4WW+jBsd8trcmyVPt12W0QwyI3vW/ySSy2
-# FKrH4nw8GsvTZ/lcFVj0eHDMGmv0I7O0K6ImI0+1i63fdLJbSSklKq1qaNRyKrfl
-# gWXamq++lbIlREebkowfPryYvju0+xVx4bI37Cvqlx8D1YpQT6vAOcE880iopJst
-# 4PRcpYOZR6KyAcgkRIxq1yyMexcyjntQosRq9o5iwl02BRfu84xA6VQamvt1HZo3
-# 5/roHh9LFanCYfVHa7nF3SNRAuQZPS7QzVMJNMkP4yBRvvAWYPTzzduS+GmsrEWZ
-# XDMbihAleYBsKCXBhlwnbJ2BFu2I0ArS5b56fAzY
+# hkiG9w0BAQEFAASCAQCNK2u3AJgdg69WfTSJWwRh7PwijeYCFSnQUDhL1pgRKtzX
+# LVNC+YDEcraIvCwbgLQPtdPP4mwXWHWkPZpw88v0yaC5Nxfm5gwzUpM2txnkPeSM
+# 7bHjrm23luTkfucjOvSEXJvQ3QPsIEilzQamdUgwDQBxHgtj60nTRRmb14ZcoAi5
+# dnR3D+ydYr3gm4PnXI5BZbz5kyu+gKKQ2LsiHy916wUTZfPPVkMfTD+tVzM5vw0n
+# jX5KqvJcPhaRoMxksCblA5d14oUawfa3x/7pBbc2zxhGZ35z0r0Jwgd58o8z8p2V
+# 8qMQ8hiLZVeCc50bFR0A32i6gionOHbr47iVW5mF
 # SIG # End signature block

@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Install-PsGet {
@@ -76,7 +78,7 @@ function Global:Install-PsGet {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	PROCESS {
@@ -97,9 +99,6 @@ function Global:Install-PsGet {
 
 					# Still here? Make sure we are done!
 					break
-
-					# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
-					exit 1
 				}
 			} else {
 				Write-Output -InputObject 'PsGet Package Management is already installed!'
@@ -128,10 +127,10 @@ function Global:Enable-PSGallery {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'None',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
-	#Requires -Module PowerShellGet
+	#Requires -Module PowerShellGet, PowerShellGet, PowerShellGet, PowerShellGet, PowerShellGet
 
 
 	PROCESS {
@@ -153,9 +152,6 @@ function Global:Enable-PSGallery {
 
 				# Still here? Make sure we are done!
 				break
-
-				# Aw Snap! We are still here? Fix that the Bruce Willis way: DIE HARD!
-				exit 1
 			}
 		}
 	}
@@ -190,11 +186,10 @@ function Global:Update-AllPsGetModules {
 			Inspired by Homebrew (OS X) command: brew update && brew upgrade
 	#>
 
-	[CmdletBinding(SupportsShouldProcess = $True)]
+	[CmdletBinding(SupportsShouldProcess)]
 	param
 	(
-		[Parameter(Position = 1,
-		HelpMessage = 'No confirm for the update needed')]
+		[Parameter(Position = 1)]
 		[switch]$force
 	)
 
@@ -235,8 +230,8 @@ function Global:Update-AllPsGetModules {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO0k4nf70q3Q2DLtUCdMv+oYw
-# qqqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWMILl5loJovyS6HiqPjkaP2k
+# URSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -379,25 +374,25 @@ function Global:Update-AllPsGetModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTw0YLQdRbQnUEEWkhOKRQUF9cPsDANBgkqhkiG9w0B
-# AQEFAASCAQATARZLuaHv0V2T0j+tvW3mdLvQTD9ckUBba/H3wKZI2PqYfgw8Y+LM
-# 6raZw7Im2S5wXU5rcz29nnhxBnQsJgUPp7cT7yuf0BqlMH2myvK7go06NmXV/N3s
-# cxyJUVg9jkqX+jzwZJgBTNkjl0HeQrj+/bGOcHANeCEaU4PkYyeEC9i4OUW7WDy1
-# 6qDsOI+YMBlYtCT6g5PS3oqf7qf8tAVoisk0MPZ4Jn64CeZXHeck+bdsSB/Vu0xy
-# A/JVPiAAhNUCig+9erH5ZiVw1tVn/AQQ+dL5se+zoZhFBpI2DfcEQnoeywK0Eh4W
-# OXpYH15M8mmRH54R+E0m2xSv6eRLwf//oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR8HyA+hEh1alsvW7YrXBCekfd0mjANBgkqhkiG9w0B
+# AQEFAASCAQCaHX8AimZNraRZ/iV3piFY9PNvTithmy7u/8NwNRMfOE80AdYIgnnN
+# 2s6AtqbBUYkNvNNOjdkRTRAA3RyZJkNDMrqaFZws0IETCifv7TqnHq3/kZsZuf5e
+# ip/PLNlDES2Q38GrhaUUX2zLR0AHAyxfZ1m/6GZ/CQex1kB9l4VHum9wL+GKDAc+
+# w9X6qtAs/fiBt1GQIivof63U5HEftOgQMfUfB0EnQLFONDrSyJHHwsg2Rqk/1lk6
+# q0LTkZ+we1MOrA2LoJeh/wfsBB+02TvCrgeMS0nLXw3NYZqNmbPY3Fr8nI4fU7zU
+# TXrGYT0zt0JsugM/JbXMvOBnw+q+IMDYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMlowIwYJKoZIhvcN
-# AQkEMRYEFCST1ASTOlQSkq7TDwYhsZBFOsKMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1OVowIwYJKoZIhvcN
+# AQkEMRYEFHgc/KDMPOyVaIOy38G8zGOJfa+AMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA8ua6o9Vm2aitsUwYCHhH+w8zy6/MiTIyQN3aANiLLjLUq
-# ep6ms4bl6E/HWqzZJk7U5z1i+tJHfdZG3Rg62PC+FtGE00FUaSBaa9KKs7hYgIyw
-# a6A8tKcqq5qexoLMf4ewj37QhzrEXleloRXD+d6Dh31rIaJZUCp5yBZnfCBLANLM
-# XM5HuCq3SFOYf3w1t2KV8u/cw7acyxEqatPuCabf9O7dtj9mHcuL2NBtCSKWLkE/
-# nUvYX0/Eq8jKPThe+Zk9HZ/jwD8tyWj2aCT7rSP1JG2UyOrESKozcVMpyCEhK01X
-# pZNqirLJDk2Hr1j5S/t0wNth/U2PrPqtgHbCkaq0
+# hkiG9w0BAQEFAASCAQAIIIrC9G9N4d7VufwCXaLVli597AdIhC/2e2MAVYI6ZCcY
+# Noci8HUTQuaS1OJywNiKDgZYcDpcxuOaeKBviIuVCzdP0SwaGao29xbGsGLcqhi+
+# N1T8pVO6DJ5DigCd+5z8ARl3VN4R5pOsEJlloPFat4oq6cQc2P7Y0Pk+2D+Szp2Y
+# wpnpWYS2SPccjX9qbpvO+B3X8TyVjaMffO4qEmMMdbBjl7pFd6hE8eGr9eRvfxBs
+# ePz7yD+SAr0n6YCcg7JD/yXmwHAvNN58kK4p0yamkNYtN6Z0gLT1ahyOZoALtb9p
+# af53mk4TSKfn2m7CPBCfZNN28sOoGQIcqlP3+/LK
 # SIG # End signature block

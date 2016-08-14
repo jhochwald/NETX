@@ -1,20 +1,13 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 #Requires -RunAsAdministrator
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +41,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Invoke-NTFSFilesCompression {
@@ -98,20 +101,17 @@ function Global:Invoke-NTFSFilesCompression {
 			Based on an idea of  Wojciech Sciesinski
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 		HelpMessage = 'The folder path that contain files. Folder path can be pipelined.')]
 		[string[]]$Path,
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'The count of units that are base to comparison file age.')]
 		[int]$OlderThan,
-		[Parameter(HelpMessage = 'The unit of time that are used to count. The default time unit are minutes.')]
 		[ValidateSet('minutes', 'hours', 'days', 'weeks')]
 		[string[]]$TimeUnit = 'minutes',
-		[Parameter(HelpMessage = 'The extention of files that will be processed. The default file extenstion is log.')]
 		[string[]]$Extension = 'log'
 	)
 
@@ -154,7 +154,7 @@ function Global:Invoke-NTFSFilesCompression {
 					Write-Verbose -Message "Start compressing file $i.name"
 
 					#Invoke compression
-					[void]$file.Compress()
+					$null = $file.Compress()
 				} #End if
 			} #End if
 		}
@@ -164,8 +164,8 @@ function Global:Invoke-NTFSFilesCompression {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9a09QqeULcK23WZM8ZTvYnKq
-# fqWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5FPIdK6bPIvRpQDtbLn1qXrt
+# tEugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +308,25 @@ function Global:Invoke-NTFSFilesCompression {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTxWrA9AJ+Zn0B8r6xawYYQcBg1IjANBgkqhkiG9w0B
-# AQEFAASCAQBKxd14Cox3RMtnNMgr18kzzy16VaxFMcoG8wLOpLhNiTcVTtAf7JlA
-# akFsE4cfS7S1+yiNfeDXSp1gSOTigA+dZCg3ktbOFaJMZPd5GqonifwUHMxRn6Mm
-# 0iQE50VkRm3ferTh+osg4qNGUxfaleiLDwh9UfjBOx2KmDG3B43PprOsKCduJkOP
-# 0DNHqcnRKkzLd3a5FuJGED077DsFzGPa+PiSU8KaIZGLxfUu0reTCjuktvqZEv4i
-# kF0NZrRC2O/A34Mnw3L/KNZ5VVBk7EX3jvQvszCZ8UbogMLDwGm3K6Rd2wN99zt6
-# wV4yLX3/26Tc2U/EsGWal9nKuKZbcN/uoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSkWqdSpwloP6C0JenwHjN9LuGa4DANBgkqhkiG9w0B
+# AQEFAASCAQB/g01UWtsf6gTCvYZNi8SZDNja8/rPJFp00AbHUWJGjSfIc8LQeWxh
+# K8hUYtm1T3HSB0alXXLFZeSrng38EWSJlqmvfKH4hwj6gwrHq+WeW9gToXv9BC2k
+# KoRAE5BEIxEjJ7xnNYE5BDnTSAYVSaHJZS0asHkYUmIVjlD7xnJmtfgHHnhQZYSI
+# C7wdtvEv/E6igxKBrrChEPCnJvDguWiqnbHqkhpSNZLsPm2So9tb/ivQbuPPDOQ0
+# aLSHV3hSEzx9sqxOv/s4szYlNNFDNJ7C5bItcPNaK4MnuhmhskVwtOt78JjdBwmg
+# Z88N/9Xn3rZ/fVRyOs18kH28mrcZvxJboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwM1owIwYJKoZIhvcN
-# AQkEMRYEFHMEDhWG4jZ2GR3I9k7LCYDfg9kwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MVowIwYJKoZIhvcN
+# AQkEMRYEFAMXSIC49YCIKATzMect4eSbV62WMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAKcr3xACK3TMlK/IuSGQ1xvobKyk+QnWo2QXYlIZKwTesP
-# uEwbN5WSUi8/cu/yoW6ATzdY34W8JxVDFGOZi8BJTZbrN3XSXt4PqepYOx0TkYGo
-# eEDWzKLuc+GF5fchqBYohYEzKtSdmcz9jmDlEt/bW39ojgSSLNtC3b8GjFssLMwJ
-# bWbFmHGUAdwJGetAyE5eUiUSUIrmQdxncmXeDesYdKI7jAOFAXQUbsrOiUHnXLSp
-# lkhre1QbcvUGosjwQZGxoh1IWJWOTES6N6u8sv4bHFZmyduVEbPNaQJNFyEFqotP
-# /jhSjLrQJDefM/49ZFNUxTf6nymUW6tmVxijUiWz
+# hkiG9w0BAQEFAASCAQCTG4BYwQms0IpL2KHCjWbsQCpev0wThHPtG3KZNssg5WdV
+# +DA74eRYp1oJQWHcspg9PjwiXKg6FKLgv5nVjX43eATzjqtFQmZXFduMTT6TOeiR
+# /axT43CvrZBWpc0Gkq8+PhbEjvghqXle0XPsLhmIZsgoAEgJXd/MJ5arQYG+F+Ye
+# yzM7Zys15mX+Ibf+slAbw11BprhOlhSUJ01YwBL5//GvoJZxYQvC/gRSWlGFi1me
+# XiEJO8ppoacbo7PbY/52RMSiB7EUl6S0b9wGpWyNx1xGgYpnBybEH4q7ZDr5rB6/
+# vgDIOWiCHKhmVh9LoJfSK2JOdKzfSPcF3zwAwyxR
 # SIG # End signature block

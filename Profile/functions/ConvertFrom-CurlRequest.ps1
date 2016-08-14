@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:ConvertFrom-CurlRequest {
@@ -103,16 +105,14 @@ function global:ConvertFrom-CurlRequest {
 			https://github.com/ngetchell/Parse-Curl
 	#>
 
-	[CmdletBinding()]
-	[Alias()]
 	[OutputType([Hashtable])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Curl Command to convert')]
-		[System.String]$InputObject
+		[String]$InputObject
 	)
 
 	BEGIN {
@@ -135,11 +135,11 @@ function global:ConvertFrom-CurlRequest {
 					Internal Helper
 			#>
 
-			[CmdletBinding(SupportsShouldProcess = $True)]
+			[CmdletBinding(SupportsShouldProcess)]
 			param
 			(
 				$body,
-				[System.String]$data
+				[String]$data
 			)
 
 			BEGIN {
@@ -155,7 +155,7 @@ function global:ConvertFrom-CurlRequest {
 
 			PROCESS {
 				# Convert
-				$body = @($body) + [System.Web.HttpUtility]::UrlEncode($data)
+				$body = @($body) + [Web.HttpUtility]::UrlEncode($data)
 			}
 
 			END {
@@ -182,11 +182,11 @@ function global:ConvertFrom-CurlRequest {
 					Internal Helper
 			#>
 
-			[CmdletBinding(SupportsShouldProcess = $True)]
+			[CmdletBinding(SupportsShouldProcess)]
 			param
 			(
 				$headers,
-				[System.String]$data
+				[String]$data
 			)
 
 			BEGIN {
@@ -215,7 +215,7 @@ function global:ConvertFrom-CurlRequest {
 	}
 
 	PROCESS {
-		$tokens = ([System.Management.Automation.PSParser]::Tokenize($InputObject, [ref]$null) | Select-Object -ExpandProperty Content)
+		$tokens = ([Management.Automation.PSParser]::Tokenize($InputObject, [ref]$null) | Select-Object -ExpandProperty Content)
 		$index = 0
 
 		while ($index -lt ($tokens.Count)) {
@@ -279,8 +279,8 @@ function global:ConvertFrom-CurlRequest {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlVB5CgGcBnB3S+y3jJZwu9Cs
-# ZmCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1hklZ7XRQ2iXJbBD9jUlFRHY
+# HAKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -423,25 +423,25 @@ function global:ConvertFrom-CurlRequest {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSxx3m2BMX3CyEzjS4sT+PufBj6AzANBgkqhkiG9w0B
-# AQEFAASCAQA37ZPIa826DJ7lpPEc6uHkIHjCq7PiqO3jG8HihWHYsQJeQ2nEuk3K
-# 2I1/u4vgnshezbjayJGLUt9A3Le0MXJOMqDVny0bKf8DR9VeuC3Zmh0MTBNs0Zt3
-# tX4g28i52vWtAfTg0VKy02TEghCr7fweTNp7ikj5bED2TpaDqppZH7+F+6kBKNK4
-# w5gvO0yqgck7VE6PX3sXFT8F2YSG2EwlWZ26lHihidlegCPZfixrrbNe+aSjCqx+
-# AP0UUXBZYB8cdbQwmWeMDoQ9SURRVRbT+x1bxb4T3SMVYmyuqIVHy9N/nxxRHExb
-# +cp09MYfmrYfVJ2NkzI8Mlvi2tu0ZKqVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRZOxVFj1XEkDrqmHTqkqqkTL3HzzANBgkqhkiG9w0B
+# AQEFAASCAQB2VUVHr4ckRcTJ4IEK0rf8KAxHVEKJC+hQ27RXuXlK7FpxyxPMPm5d
+# rP5F0ghWZoCmGlsQgiHtfLaFGXTbXNmKyU6ifqCXP+r2GTcqD8pCzeRXPe8TPcXp
+# 0cIErH298by51AkgcTaBVNOHMPLRGted0uTKHnnN9TjqpJfd4mbVdKtTkiSIhvLC
+# BncOPA2ouNqi+W+EjREwKp0+1fzkWIwMEy/XLfVCm4XxQR0aoZL9T+UPfC5U3OjR
+# PyQ24S+/36KsUatPEgBoXlpia32xWI1l2qzLtrIusllPcLE7jb1t/DIcOvUpINXf
+# joNIZX4rJesSwauwnDjJXLpZbxBA2+sQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyN1owIwYJKoZIhvcN
-# AQkEMRYEFArjifAtIJXf+MHkYGmDMnSPcWmAMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyMVowIwYJKoZIhvcN
+# AQkEMRYEFGNywacGNncO/9oo5+yG446RNx8hMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBzDwWJX5oCF1jncQQH0zrN/UgLkxKdruLBbOzMF7445WUx
-# FDFX2ZKpM/CDSIb+peUsYkvEbzcCZ0rXvtZGHU6ATn+HXtaMRLkpu4GvHFqe8oV4
-# hlqISqKe1XIQILC3PmHNxwmbvpNx5PBhm+5gMW1obXTAyLNuLJojGSpfmifF9hbi
-# TKYcqYaqgmkCfmygsFsGpRtFTRA7YjQYv5w+TlTzCLpcE36Ry9t6nVRTtFz7Alop
-# yVSByFXoEF+PrBxk5lANhty6woHZOeYm9ttWsAt/2MsmBzOixbnaQ9rl1jy9zkpe
-# olNMqEfNoXjdTFtvFtDb63ZLoIPgyP479OCh/6Xa
+# hkiG9w0BAQEFAASCAQAGAufxwzRnyxX3QPnpNlcxzhrXOI0nfbVZ7/oWw6001fZA
+# oe3I8nJykn08T0ITwuuDHCeQXu54lxQLHu0wzJZ1vYiGnE73KSiO9T644w2y8ZCw
+# FGqggsG6ab22guURbZ0qB0evCjbDorl8SPp6R9qThDgLxOHvUozDZQdkj7VEKQjs
+# jjX0Az+PQa/a1SDeH6kVls5h/sbSLZRLD2pLIhAAI9ngvBFGgEzHEayJQ/3ONlt2
+# GieEalVD8ISmgqhcpIxp+w+0DDsqHPcKmTvfOuS2j46WQUa/Ai9DwNfDzhzHQoX7
+# OHJnhBMVmyoVXjvsRen/bEjX8kGXTxL1394NDit4
 # SIG # End signature block

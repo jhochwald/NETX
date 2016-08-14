@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Create-ZIP {
@@ -142,17 +144,16 @@ function global:Create-ZIP {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'The parameter InputFile is the file that should be compressed (Mandatory)')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Input')]
-		[System.String]$InputFile,
+		[string]$InputFile,
 		[Alias('Output')]
-		[System.String]$OutputFile,
-		[System.String]$OutputPath
+		[string]$OutputFile,
+		[string]$OutputPath
 	)
 
 	BEGIN {
@@ -165,12 +166,12 @@ function global:Create-ZIP {
 
 	PROCESS {
 		# Extract the Filename, without PATH and EXTENSION
-		Set-Variable -Name MyFileName -Value $((Get-Item $InputFile).Name)
+		Set-Variable -Name MyFileName -Value $((Get-Item -Path $InputFile).Name)
 
 		# Check if the parameter "OutputFile" is given
 		if (-not ($OutputFile)) {
 			# Extract the Filename, without PATH
-			Set-Variable -Name OutputFile -Value $((Get-Item $InputFile).BaseName)
+			Set-Variable -Name OutputFile -Value $((Get-Item -Path $InputFile).BaseName)
 		}
 
 		# Append the ZIP extension
@@ -192,7 +193,7 @@ function global:Create-ZIP {
 		Set-Variable -Name OutArchiv -Value $(($MyFilePath) + ($OutputFile))
 
 		# Check if the Archive exists and delete it if so
-		if (Test-Path $OutArchiv) {
+		if (Test-Path -Path $OutArchiv) {
 			# If the File is locked, Unblock it!
 			Unblock-File -Path:$OutArchiv -Confirm:$False -ErrorAction Ignore -WarningAction Ignore
 
@@ -206,11 +207,11 @@ function global:Create-ZIP {
 
 		# Create a new Archive
 		# We use the native .NET Call to do so!
-		Set-Variable -Name zip -Value $([System.IO.Compression.ZipFile]::Open($OutArchiv, 'Create'))
+		Set-Variable -Name zip -Value $([IO.Compression.ZipFile]::Open($OutArchiv, 'Create'))
 
 		# Add input to the Archive
 		# We use the native .NET Call to do so!
-		$null = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, 'optimal')
+		$null = [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $InputFile, $MyFileName, 'optimal')
 
 		# Close the archive file
 		$zip.Dispose()
@@ -250,8 +251,8 @@ function global:Create-ZIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUt4Ib0QNBtoT7Vk5BoM3peFIL
-# sOegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUslZ+0NQBXgelp+o88IfQ+T/c
+# 6zmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -394,25 +395,25 @@ function global:Create-ZIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTqiijKoYMIb9rUXeprfi2ZhlrtrTANBgkqhkiG9w0B
-# AQEFAASCAQAhB4e7TsPMWB5VfllrP85iatqc9Se2tEd/RD0dkNNWF1e8jvdapHuE
-# DiPYU6MxIKsJidLgT+FdVgdJWIMlNS2r62WZ4Qdx65gN/Ghz1gjofWYKsQMBy78e
-# yOdm5TiqV+rfyJifWIqmoOpS1G/f0P4+hxJei/H8t5Lc4dmuF9aPogBIkwbFxhXP
-# 00/62iOc54vxsZd8P4WYHslRcz+zypjto32k04VYl9QmWlHI9SiqlBVxUL1u0bA5
-# LuKaC6/7e89jcJh+HPeh3ABawqyujj7TJ0dPocBrEEQJjyZ0xyYbxAUw0+5BvMxg
-# Jl5mPR0c3NzFnxfZRjukONoWt6Lgw+tmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSlzW3CmTTQlnfPQy97REWNsX5rcDANBgkqhkiG9w0B
+# AQEFAASCAQBzbbno8/n3/8RpqzOdQ/dAVjpFsXs+fgCd5NX2rrqauerpzOAbr4de
+# jSBYbZiu32X2NZW0fF9gZwB6Q/IYSTHTxu6I7GiLxsYOgfdouzTgQQcSCcpjArmN
+# RaduazOVZOc/ZDVxHU8jFFEaJagUfTmzohHIjUk2INEav7kjZgT3E6LSU7WQwuDg
+# w0F0+YEn4jEB/ZhdlQxBxeXAGldI6FOfje9Wi+QldKKGjo6uZ0VDksfrqCenk3el
+# EFDh3Dx//eBScSVU0MJgpt16X1dkiAr9+sZnCrhsBcT/ZyMOTINR6DwyVA9bXPmv
+# 4zlypKW8NWGD4HAokadxspr/WnnsxhSvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMFowIwYJKoZIhvcN
-# AQkEMRYEFHI4hpOTUye1pWQMBu8QnrObfqADMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyNFowIwYJKoZIhvcN
+# AQkEMRYEFC53v2MT1ZkktddoMqFNosr+rkbsMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAuh86NySEszBx6QF9nhhJi8vbR+mD6Cqlte8n6Ur6Mjw37
-# ukCURJXy/n+Ks2NrXbCppqiMREMss5Eb5RzUFuNM87MZkAQKSoO0IzO1yZhWhX05
-# beCzdoeNj68lp0AWznmu8/jcAsZHWeHqWCMKnOl8XkzMbhFR4UZAL5P4uZuCkBaZ
-# qillCjDlnj5GaGW2LJUsGJnPqLJlI2781Z7z01h/O2tCLI8BHmtfTU2VHhVxLMTL
-# 35dDZS+YFe70lfnxZk1dRaLJeBcCVGF/7Nnyhgx5po/fYYH34XeX6WS5xAlr/xo3
-# DITSWSXuOvdtcVyrglJhxsCt5dFCECcnp9v6wjVB
+# hkiG9w0BAQEFAASCAQAQam2MScFPa8Ei809mQ3W+UGFtcdlDUzNBguK+NsD6WaPX
+# yi5f5HRRdh9PErxEoqqFh60/a6Ny+NBZF59RHG2vTj9TvYGnIkJEF31FR1cq8j9g
+# eef8m/PgjBaU+m1bd0c0snyqSfrm5YqWf/rB1hdcXk8Wz9aPklPn2P73ltF2gtAY
+# MvgI5gFXNtmipRl6/GatbSgzXnf+1kkGTzl96U5kPX5XOFjMdv3clfoSZlTNUYQM
+# oZFj6OBHVYjIZdJL8OYyHEvxB1frI7JwnjhUaUltbVx8vDMnQgvuGl4fQwIZasp0
+# HfCBbnyDGUd3aZHCaJ7wV1zH0c9DcMs6zbibdT3u
 # SIG # End signature block

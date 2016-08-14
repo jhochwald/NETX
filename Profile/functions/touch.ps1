@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-FileTime {
@@ -133,28 +135,24 @@ function global:Set-FileTime {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 		HelpMessage = 'Path to the File')]
-		[System.String[]]$Path,
-		[Parameter(HelpMessage = 'Change the Access Time Only')]
+		[String[]]$Path,
 		[switch]$AccessTime,
-		[Parameter(HelpMessage = 'Change the Write Time Only')]
 		[switch]$WriteTime,
-		[Parameter(HelpMessage = 'Change the Creation Time Only')]
 		[switch]$CreationTime,
 		[switch]$NoCreate,
-		[Parameter(HelpMessage = 'Date to set')]
 		[datetime]$Date
 	)
 
 	PROCESS {
 		# Let us test if the given file exists
-		if (Test-Path $Path) {
-			if ($Path -is [System.IO.FileSystemInfo]) {
+		if (Test-Path -Path $Path) {
+			if ($Path -is [IO.FileSystemInfo]) {
 				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path)
 			} else {
 				Set-Variable -Name 'FileSystemInfoObjects' -Value $($Path |
@@ -217,8 +215,8 @@ function global:Set-FileTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzWN28iCX5FqvF4eBVCrpxOBb
-# 0xagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlIzGkv6uswn+jd8oxTt/Iqx6
+# SB+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -361,25 +359,25 @@ function global:Set-FileTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSyMY6PqNdber4mdbdTlh5HVlHYWTANBgkqhkiG9w0B
-# AQEFAASCAQCMk6xxMK0kALd/piRSeYK0U9CuZjIAcU+GxZFqLHZhZR+j64YxOus4
-# mn8KYNfW+6SunfREnmGsW35wgdg8YnKOQ6uvnkK/1zBDjHUfsANlOx7ckTepxBYl
-# WkqoIfyuzKWwTYmbVbKGzaGoIBww2xln2lxc8PDEJumf7+D30DgqE+wSUtbodhAK
-# ubM+B4SVnyy4cSZsrjIfFAZzy8QFGrp7YZ8x2uZY4RQVvDovSdbo8Jptn2eb0GCj
-# b6S9mVMpufG2hM4GGQC4qsUljH9W71DqtotpQihOz1Vm+WeiGnOYEDcE3MIq8V1g
-# O1isX9CCMV/KJY3BUyF8Ks6Nkj46vPnIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQx2wYNv0jZjRHoaxkbbziTye6ENTANBgkqhkiG9w0B
+# AQEFAASCAQBjAwx3+syG8MTf886in24ZHC+ancvMDWWuOsbn1UGLsFWpEBQ0QoaB
+# N28nsbqQB9m31rn6FnM8/+O+P3kpLsJK8GcFupr74Zak9britmnG7ovtCOSecAAv
+# xYyiikrHSgfJ6Ozzmr5POJKbJKhOHTHstDos40/73ztye6PF3NyBMb2AC7U3qvmg
+# OET8bskowpGhl6p6II8wEyis7HxCdmXoCS26zZHpn3xj8C4eNKF2/5NQDJXhEbwz
+# K6xRD4HWVD6lfXsrIqtZDTqh/Adw8YWTdlxxB9VhCK7+LXasFt1kJ8wrh4/c729D
+# 5aTpLoTdZs07nE2YPWJvi/4G0bnJmYfAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNVowIwYJKoZIhvcN
-# AQkEMRYEFF2eV5RYU5tYzGklYw+2F0KNWkMLMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxMFowIwYJKoZIhvcN
+# AQkEMRYEFDZ0tCTHwA9Y/V8ckUejy+sMoEj+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBsUpWYQzC7X2GtVH3uZkf00+bWFnIM9zwXNAZcMHHJdU3o
-# pvfusWLVwMrP09KwAcfDzFfSlsHzi8+pgleIo3H8xcdx741fy8K98BfJDiSS+B4m
-# 97tAg4Lxd7jjC94P0dFfyuUT7yDa3xY0kAxuP8EJZRX6ctywFw2xWFGHX/FWoTa+
-# xHbUWk7lSvuPuK7bVsgX0trIO7wlDa080rfqcFEEjQNydj+6P6j92MK1FF00ppGX
-# XCb5+BT4Y4ixds2ae19gNzXr6TEsiHy3A9O8e2lSifAYeuo3A39ma9BiHeaPaVwE
-# RGAiwYUEF3oJOvHdiSzPvb1qNM062f0kQJJy9fkT
+# hkiG9w0BAQEFAASCAQCFf13+X4HqO6fpBC+u5rai7cmaItH42YNwqZGOB9rX0JmO
+# wBXm6lT29KFtOg6wWLVlTIFT93CTFaLesDiopLS2if45oSkstBeLHXvbhh54EIYo
+# ihgCBjCFYLmXMkurSbvuqw+RWy5bHjOuPaAGi1/jDIned/IZH8TSGalOI9UhrwMB
+# lCza4IO9CydwFdFmKHuiNFSMCSnB/9xwa/dVfWonp4AVUngU39u2gelXazPo7P2P
+# cL6QdWM02QsTfmP6jX97OgHq5r6FAkvhJdn4/wU2ETEd5NsDYdnGvsoFFpWSSgZK
+# /ScTVqwCp7LQXATW6LkzDfgWHtCHgq8tRhCA7GPo
 # SIG # End signature block

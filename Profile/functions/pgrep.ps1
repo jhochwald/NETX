@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Out-ColorMatchInfo
@@ -70,12 +72,11 @@ function Global:Out-ColorMatchInfo
 			Source http://poshcode.org/1095
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 		HelpMessage = 'Matching word')]
 		[Microsoft.PowerShell.Commands.MatchInfo]
 		$match
@@ -105,7 +106,7 @@ function Global:Out-ColorMatchInfo
 				$match
 			)
 
-			Write-Host -Object (Get-RelativePath $match.Path) -ForegroundColor White -NoNewline
+			Write-Host -Object (Get-RelativePath -path $match.Path) -ForegroundColor White -NoNewline
 			Write-Host -Object ':' -ForegroundColor Cyan -NoNewline
 			Write-Host -Object $match.LineNumber -ForegroundColor DarkYellow
 		}
@@ -133,11 +134,11 @@ function Global:Out-ColorMatchInfo
 	}
 
 	PROCESS {
-		Write-PathAndLine $match
+		Write-PathAndLine -match $match
 
 		$match.Context.DisplayPreContext
 
-		Write-HighlightedMatch $match
+		Write-HighlightedMatch -match $match
 
 		$match.Context.DisplayPostContext
 		''
@@ -182,16 +183,15 @@ function Global:Find-String
 			http://poshcode.org/426
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True)]
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
 		[regex]$pattern,
 		[string[]]$include = '*',
 		[switch]$recurse = $True,
 		[switch]$caseSensitive = $False,
 		[string[]]$directoryExclude = 'x{999}',
-		[int[]]$context = 0
+		[int]$context = 0
 	)
 
 	BEGIN {
@@ -212,8 +212,8 @@ function Global:Find-String
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZYR6w9OKPZruL1MTSOFLBhF0
-# giigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7/f0sPrPS9b9JVAuQoEorHPA
+# toygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -356,25 +356,25 @@ function Global:Find-String
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ9dq99HvG5okE7VS4c1X/YCgduDzANBgkqhkiG9w0B
-# AQEFAASCAQBYwvjWf1ob5G5ihkDdSG64DVk7Zxt/KZrufQMYDarn6DbUGA0tzOBw
-# D8dysmTPe03Z/MkMRc8PZGgcLnjySJOF+1vFivOwuv2WjTuLx2mpPadPhkt37GaK
-# 5FtJgGcXvXocExv2ES6qpdSGhgxvrmMysdxKw7MV77VTyp1cJU+xFmlgIkFxNjG1
-# szLtX4ZQd6LF46HZXbd5trLWgoCsCd39qDjI1/JklRLUsn0zr8Ylj0Vd8r55iAJz
-# g7GU7OiCo4Qh7MwfxfOTMt7mSqrqQ0szHb0ZhYrqJDFRxS+gf8PkPd7ggz5rL0rH
-# CM2t2wylz2Fkc9YizYxf7etGZxV3prCQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTXabqXIosnoLTdFXOHoVxZXuHpmTANBgkqhkiG9w0B
+# AQEFAASCAQBiVcn6te13rRfP2NCaO2Spg5sM8qRcVlx6Ifel5HekAIizG3jssEnD
+# 59de+YDjY1IL7j2uK7QWJP1PedvwMPw5y7jpUUDeO5SJSk65dZ7WvOgjL22SVvOa
+# XX7bv7hRr7sWMlr0ldLOYYNkTK/nGs9Ic6KW66B3R6WJstRXIHLUy6I5BwbBST6S
+# MJ8UCc+TsbGs+qbK2abaXoPnX4udMmBttTr/2MqMtrhaEDhhBqGn1ZWod1KKqlHk
+# a/cgI8yMeXYbkOGzxXhqMMo5EnpFq04pXPEEl8A8Hnext8No7hpe3XsNWM60bvWV
+# DgsMKtpaCwMDUC2mvKPHZYQI2b+1966PoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMFowIwYJKoZIhvcN
-# AQkEMRYEFGVm5SiIxsIJN//kBZUFdJ5zhcGDMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1N1owIwYJKoZIhvcN
+# AQkEMRYEFBW2oSldHSAS1rDMkpcB+c5pR/abMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB+r4fqo75+oFVZwfAkxHzaP5b/K+7/qTFaU3itaJ1d9GQK
-# TLcA8RWu822f/QyuHE4+HS1kGTO/FkDSRfDZLcpYJu/ItpuO6+gUsEy/KQ2M4szK
-# JQGx+JE1oBoanCHOxDmXhnxPLNo2ivmkvJaS0HdD7XkjFfpbryiMEzMTopAsodhS
-# K8jQLokddISgWlYBkvmb9vN9yzs/j3K8HFasl9u8x8X67Xv4uJ4fJSMWWCJzazK6
-# wPly7Bwn3IeRr/VnF6WhFSmHtf1eBHatAlH/1zEhysT4xvGJO5rNaJwCgyX7iRcX
-# vui8K9nKE0zYs7sdKsS9Q0n0S00vVUpgJkt889S4
+# hkiG9w0BAQEFAASCAQB31AGDp5fF/6lFf/pI78aLJnSVoIEFzBb6ApcbKfMKmCIW
+# mE0NQdoGcVqUJnL2j20stDN7WBHHwAFLK5WQVbXa+V7Z2YyNM9gNkyXADOf/ITxW
+# a9SQtgUJmgFZkqXoZ6CnY+tO8/uqNcInKFvp0uAG8LssNcOX830GWD20VJrI5VuU
+# MCDIyDnIsXQHnJDc7WuJ8kb5ktXZJTw5fLDbFkacFef4mbAJp/qCkIcrKpyRi3S3
+# mDTfpvIqmtUDfJZljhCD9EUE1oplcHN9+qXX3NMKvhuHDxXzMBWrYRfLAXORbJUh
+# Uivt3ronhw4+9k0cawWW0AJhVCRM3KbLC4XGmsQE
 # SIG # End signature block

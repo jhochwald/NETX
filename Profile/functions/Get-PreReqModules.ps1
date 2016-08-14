@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-PreReqModules {
@@ -106,18 +108,16 @@ function global:Get-PreReqModules {
 			https://download.microsoft.com/download/2/0/5/2050B39B-4DA5-48E0-B768-583533B42C3B/SkypeOnlinePowershell.exe
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Where to Download')]
-		[System.String]$Path = 'c:\scripts\powershell\prereq'
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
+		[string]$Path = 'c:\scripts\powershell\prereq'
 	)
 
 	BEGIN {
 		# Is the download path already here?
-		if (-not (Test-Path $Path)) {
+		if (-not (Test-Path -Path $Path)) {
 			(New-Item -ItemType Directory $Path -Force -Confirm:$False) > $null 2>&1 3>&1
 		} else {
 			Write-Output -InputObject 'Download path already exists'
@@ -134,7 +134,7 @@ function global:Get-PreReqModules {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe')
 
 			# Is this file already downloaded?
-			if (Test-Path $dlPath) {
+			if (Test-Path -Path $dlPath) {
 				# It exists
 				Write-Output -InputObject "$dlPath exists..."
 			} else {
@@ -150,7 +150,7 @@ function global:Get-PreReqModules {
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'msoidcli_64.msi')
 
-			if (Test-Path $dlPath) {
+			if (Test-Path -Path $dlPath) {
 				Write-Output -InputObject "$dlPath exists..."
 			} else {
 				Write-Output -InputObject 'Processing: Microsoft Online Services Sign-In Assistant for IT Professionals'
@@ -163,7 +163,7 @@ function global:Get-PreReqModules {
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'AdministrationConfig-en.msi')
 
-			if (Test-Path $dlPath) {
+			if (Test-Path -Path $dlPath) {
 				Write-Output -InputObject "$dlPath exists..."
 			} else {
 				Write-Output -InputObject 'Processing: Microsoft Azure Active Directory PowerShell Module'
@@ -176,7 +176,7 @@ function global:Get-PreReqModules {
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'sharepointonlinemanagementshell_5326-1200_x64_en-us.msi')
 
-			if (Test-Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
+			if (Test-Path -Path $dlPath) {Write-Output -InputObject "$dlPath exists..."} else {
 				Write-Output -InputObject 'Processing: SharePoint Online Management Shell'
 				Invoke-WebRequest -Uri 'https://download.microsoft.com/download/0/2/E/02E7E5BA-2190-44A8-B407-BC73CA0D6B87/sharepointonlinemanagementshell_5326-1200_x64_en-us.msi' -OutFile $dlPath
 			}
@@ -185,7 +185,7 @@ function global:Get-PreReqModules {
 		try {
 			$dlPath = (Join-Path -Path $Path -ChildPath 'SkypeOnlinePowershell.exe')
 
-			if (Test-Path $dlPath) {
+			if (Test-Path -Path $dlPath) {
 				Write-Output -InputObject "$dlPath exists..."
 			} else {
 				Write-Output -InputObject 'Processing: Skype for Business Online Windows PowerShell Module'
@@ -200,15 +200,15 @@ function global:Get-PreReqModules {
 		Write-Output -InputObject "Prerequisites downloaded to $($Path)"
 
 		# Open the download directory!
-		Invoke-Item $Path
+		Invoke-Item -Path $Path
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUO+QSOiE/Frn6XmZgv5OtdeXh
-# PkygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMIGxsaFyt3Qm6+EThxqLTHUW
+# ppegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -351,25 +351,25 @@ function global:Get-PreReqModules {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSpXHASVydZRY6Jcmr7LIdVSaQt6DANBgkqhkiG9w0B
-# AQEFAASCAQAl0YBclNi3HIfGERIde5/9FqICsl0koP//uSZuUW/9mJzYgcBhvfwJ
-# nN+Z6Hn6/Tn8cY2ILx9+wCIs9Lkwepv86jh7439X0Vo39ID88HhyQdBYOrrd/sjI
-# 65/0kQbV1lk/GGjZYQQchQ5e6GpJFR8gYPBot+f67ZfRF9I5G4jz7Hbh7QLenlQo
-# xUsfPZezRZ4O6JesQPNWWFeGgOKPqTpS7KZYUFh29tH5rDwGpJYg4V1NyqC/phv+
-# 9o/2jj+BUMLcQKE/nBceunNQMyU3o1K5QPltNya6nne7JAu9a10UaPd/oBPy8vmI
-# Ss2S0fxyz9i4/5v/d6C7rIzYI9f8gmRFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRmg90eL6flsKw/Z6tKMMKXcTTIOTANBgkqhkiG9w0B
+# AQEFAASCAQAA8ZgPOtVR0GGH39rjVu8bGJZaXm2LWXYzlhBprm+D8mz3iD+qIkJ8
+# WqbExsDpXZcIlVbygj/yBdqLK4KNqWiz8AQf6MM3c9WT7MrRyCJSz4MyYwB5jdPE
+# 1NLn/QdnX1ojY7OZxNM1vxZ8XlsZr+tMMDc/SaHTra46k3kbsqoKkvG8j4l7ubac
+# vpymljfJZ3FgcAYygfo8hg65p5fI1KdfXhnmN+ZGKsqEKpx832aXGKPRPt3XfKcH
+# DOQnnM7HCTyO+7OSpch7bQNvhdLk0rBbUFTOXG+7t7I2tXrd2KAfV5fHvVL2aMZK
+# +sppa0L3QthUwXeLLwnIXrQTVuG9GM1ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0OFowIwYJKoZIhvcN
-# AQkEMRYEFLHuLY+lAvkntUW+nuC22kxfpPwbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzN1owIwYJKoZIhvcN
+# AQkEMRYEFH+sfhq4UnOpWxJwNDdVRnV3PDXDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCaXqgIX/BKUGmJyLrBIVlS37+O5b4ielxhbf1iuJ2+bmA4
-# XMoxfPGSF+JLjQnDEAZbSJIb8WcGjxxvBgUV6XMUcjSRqlqPcXksqHSgE2mUjP+a
-# PsW6VUaeooCLRijejvZ8dlvPU+ez5IaEAgmk6yudEP5pcdfX78rbWmNd156kSM2o
-# Qi1mehaGPg8C5GWZ8PLZPSxQIz3TKCytkRI6mQKQSC1laM2nBlDb8k7BnLOzTehA
-# hjPYbc1+WEamMt0wryo8ok8x+XoIjHq3/+2CSL9D643FCv9ibRRsCJAGqsx6aAm+
-# 3w1PEDtzzfGC5st6x8rRKQaux4H7NTP+mtNbwdLv
+# hkiG9w0BAQEFAASCAQAYvluVDJvPXFPCUvQWw0DieeGCaCUzL0PDzvnowwQPVlil
+# FJhouZtjY1CHV8X4l/yZH+GYtNZkUVM2DyIVbWNgMIgBfxw1oxUaDVX1BJFEtb7C
+# U+YiOUBbqc9Wy23dY5Vjk9UWj3M67dWoPWZyVJXJJpRrCcF5A+szoc87fbfWzIWz
+# 22j9/4hFBn8MjeLaCm94wnHa3jDGQURJq7lK9hx4IbuG6llPDfAFjzlyvOF0ixuy
+# Hop9W7N5hYbqu9fIubvaxwCxPwta8aFQveQthJk1rb7dKFwcvpaCgxD1UXO9NUkY
+# nxsxs6Ljb1QQpepYxjIKIweSpxg5FRm3HEvT+JB4
 # SIG # End signature block

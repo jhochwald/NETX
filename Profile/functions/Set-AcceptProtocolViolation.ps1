@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-AcceptProtocolViolation {
@@ -81,17 +83,17 @@ function global:Set-AcceptProtocolViolation {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	PROCESS {
 		# Set the SSL Header unsafe parser based on the value from the configuration
 		if ($AcceptProtocolViolation) {
 			# Be Verbose
-			Write-Verbose -Message:'Set the SSL Header unsafe parser based on the value from the configuration'
+			Write-Verbose -Message 'Set the SSL Header unsafe parser based on the value from the configuration'
 
 			# Read the existing settings to a variable
-			Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([System.Net.Configuration.SettingsSection]))
+			Set-Variable -Name 'netAssembly' -Value $([Reflection.Assembly]::GetAssembly([Net.Configuration.SettingsSection]))
 
 			# Check if we have something within the Variable
 			if ($netAssembly) {
@@ -122,8 +124,8 @@ function global:Set-AcceptProtocolViolation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2Ldcu1VgCkPpKcHVjVvvrXnA
-# ivSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxb9YnGDYdEwy93hnxmUSWyVS
+# u+agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +268,25 @@ function global:Set-AcceptProtocolViolation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ51j6n0XP5sz8lIWl67eqfiAzrMjANBgkqhkiG9w0B
-# AQEFAASCAQAo/QGAJzzMe5dMAqzuIZywnAGujXojy4r9XyIdLuuFLWCMJxdK/h92
-# KDNXjCP4ROBldruLqt1lu4NWbswBuivD5cHqdwiV9QGAX1S/+nncNXN02+80fq3E
-# oAXy8KyxsUcaYwuWHc6AZW9U7Cauh/rorVPEeWlejHehPJZAs8MfCkfvoM+EdwV7
-# sJToFzj8gI6dwiyQvPGlYjT/Hjz2s5J/hRTrHCUuM5DkEGNDnxZECsGV9yumnr9t
-# FFkTTSOkM1UgIF8lZ49knnWqVAgk/2PmzRYBaYdeuxGULTO4E8WgA40yfxOsc+wJ
-# 6fQq1gBde5TbaCLOUQyN6yP9SCNDRliYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRRWDxluBjTSkec/E/54vxENPkP7jANBgkqhkiG9w0B
+# AQEFAASCAQBrCoKDpcXm9L1I9PHI96ERKOqDKUuSxTjmivVjQFtycBeee3xMUoGV
+# 7/6eWxLAUePDp+Yj8frhDhO2jwXlE8EOTmc1Sl9f0t6gMPUX0Snbw36pD0QvQyx6
+# q/5aB28IDodSZhzt3An76UKxX+KfjH8s27Eml9bkYuR6es30z1ewsF/XXYiOc930
+# zrQx5QOvztir/XTkIBdTMMHsW4mu4Lj7rYckofcTazn93Rk1m2mmVHa6IIUbk/lI
+# 3kTln67Z3lQT8A5bhNfn9lL4FbhGOms3aW8utfVL3eaWQblGEnkyo9i8ceGhvqeM
+# 9Fruy6hU7VnPnCIQaTqC6dQAVcK4SQCqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxN1owIwYJKoZIhvcN
-# AQkEMRYEFJ5kGjxNKMuYy0DE48WHKMCbeXWrMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNFowIwYJKoZIhvcN
+# AQkEMRYEFE6Zg+SSxuSTJtuFrLY+Jq+HfVpwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAk7n/CG/FzoMm6ihhpX/22BtcBANcwkEcOaTb6qkuRCTU/
-# eODw9K/usvsPRLd4s5YkRd9dWHoIHblXpRK8+dFGiew6hUZUOUmd+ezzFNSKH1ge
-# 815zYTEVLfy/Bet3cq2a6tgC5k/BBGLjEo3EgmmhYMGODAxEK7JGP6ZjCZziJMoF
-# ZbX3jQVNK4jy9i0v94vuD0NrePEuYGEZHPI5I58KOqsbWVMwpu2vbxfqU2lK3/Pb
-# NL6vKPlxvl2KsCB6kjDHhIdlIicoJ06vPzf5dBmn+cAvz3F6LbY1kz+jrj/VttF0
-# CpMMj24dWG290w3gVbWa8dQzRa9l+7kLlK5gsDNT
+# hkiG9w0BAQEFAASCAQBdcngT1cjjLjMxX6ZMh9RdCAnhuX/BdoFFbApfQZEDV8aG
+# 58oETkQ1hOp/yobj0qbmuHH1m8DiKM+NQ2i829VYPUaTM51ZLiq2QWSUXk46Avk8
+# rBPqTnkRT7JvyQxRAvZkz4j0kNdEF9+SjGw02dOUVvtcaVbBPiTirhgQ2VeQJZX0
+# Zz6XsqWq5gz6zQdhKuVnm2MedYGnths/H6PKYMO5eTFCR01yCGOF3cYfDo5RfO6y
+# sAn9hO8EMjXbAAZC/rtgSpCProgtAoh1twWvvYMrT8L9iz6ZaGnqK16VPcA9HzGS
+# OD5cjlw1xVdCfQQcgMBCqw/+O3UMpEfGRkoIwpeT
 # SIG # End signature block

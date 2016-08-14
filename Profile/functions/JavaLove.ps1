@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Invoke-JavaLove {
@@ -86,7 +88,7 @@ function global:Invoke-JavaLove {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	BEGIN {
@@ -97,12 +99,12 @@ function global:Invoke-JavaLove {
 	PROCESS {
 		# Show Java a little love...
 		# And I have no idea why I must do that!
-		if ((Test-Path $baseloc)) {
+		if ((Test-Path -Path $baseloc)) {
 			# Include JDK if found
 			Set-Variable -Name sdkdir -Value $(Resolve-Path -Path "$baseloc\jdk*")
 
 			# Do we have a SDK?
-			if (($sdkdir) -and (Test-Path $sdkdir)) {
+			if (($sdkdir) -and (Test-Path -Path $sdkdir)) {
 				# Set the enviroment
 				$env:JDK_HOME = $sdkdir
 
@@ -114,7 +116,7 @@ function global:Invoke-JavaLove {
 			$jredir = (Resolve-Path -Path "$baseloc\jre*")
 
 			# Do we have a JRE?
-			if (($jredir) -and (Test-Path $jredir)) {
+			if (($jredir) -and (Test-Path -Path $jredir)) {
 				# Set the enviroment
 				$env:JAVA_HOME = $jredir
 
@@ -132,8 +134,8 @@ function global:Invoke-JavaLove {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUq9Ns9JtNBclWdtJl0ZoIDeJn
-# TO+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUy0P1Dce68l0Yawv5fb7vAh9v
+# hRagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -276,25 +278,25 @@ function global:Invoke-JavaLove {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRFJGpuh/vOqCm5JGtQcEnvH+MM+jANBgkqhkiG9w0B
-# AQEFAASCAQBexb4x4b0CMbP2+7GnVwM9aRw9qgW/IyodZ+Sah/yeuT6JKwpjaI08
-# FZQ+4iOwclU9nnds2r0xhTaDNKSA3MHyM8vz2chgljcyew/bvYig5ockrmQuQuL4
-# K4kcxb7Gzw6D0JdwU1USHe25L7makz+SYKneZRfLrVFN0lrNvg46qw4JTMfMX2nE
-# nd8d+b8Wd+arkF+fIjly38QvzxRavu0dP2lONzPPY7Wxu4VrdIrNSAXIJ4/BKsGc
-# QEIsJ0j/NjRYWNQ/kVme2MGZXMzI/6EXegopAeHEFWKvSOzyM3T5Z2+edC1MyaMf
-# jEx7C7I3BaOIMlqq2Chw8nCqSCba25ckoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRsf4dlLgrF1ZRJSZCXWb4HTqev7DANBgkqhkiG9w0B
+# AQEFAASCAQAhx3QE5LG0sNqySFrVEonVvfx1yltB+yGqSVw6BuYBNnoxPKrM7c/w
+# rn4pV5V/M5ZuPWzlL1lSy3Td9yVmd7qpbwQmdocfbkq6ug/Hm2gJZnzUL3QcukmX
+# vb8FNkaXZ4BUDoo3BKEUPYt0zmB0aa34/op9fud5Ht4Qqmh6Di2zjQKRNzNPn4V0
+# C5u7+5kI364KFCYdSHSyYC1JzX98CowZ4tTffaOhYfIw5k1nzQHW1hNHZcId4/5h
+# O2Q6EUUUYniEKFn/TjY1YOMaYRTXShQoJ+0qjjs3nhXyU/S/m//euBFzdv2oEJhn
+# ZTafCsEXw4jM7DeeQDHgK4VqnRuv3CXZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNFowIwYJKoZIhvcN
-# AQkEMRYEFCPQXpOrS8reh3ZyGzriMsJpKKqfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MlowIwYJKoZIhvcN
+# AQkEMRYEFOJKgCOPtNOb1a6WK6z5wWCGM1EGMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB+y9nz12fmTahjVrZLyFKYyj8UW+DBV7eKFojhhicKYvzw
-# brPZe2RWNPNpJibvwy0TMqlMCt5p3DkqfLYIfEJ5bn/12cnbuwtdKoJM/7DAput2
-# rK14iCDOmglNBk4y++MT6Take3TjckVtkP995R0KiQry0z/CgqYOFWSMMUMY2BLF
-# jozWOFvr1FNp7ANvAasXTiFWfXRzCThnbjNg8kmkDSNMGJmKGlkwDaoID/HUyDGg
-# 1COXEDmbXmCtazAs2ojMOnrP/2yj21hzrFlPuc4PD5xlPH6WWBgIeoxjRHrAIJrZ
-# xc5cqAfb1oyER0b+nqkcxt87EA7d0dGtshRLmCW5
+# hkiG9w0BAQEFAASCAQCm5RX5hKizn+1wY5+efhgBix7hQA+OjTSEn7Ey2D+oI2ii
+# NynoRGHtj1vktDLjpozjToMuRqOgfAwVGuvHOfLeucJZuaEDSguyV/hlUjd4gcsn
+# 0yC2h0fvCywbyv3OW/VCm04Hy8EvUCTFcsqquJUoq0oVWcJASKMRasSzSGgXAcdg
+# n+gAN8PDS55PRNGZXTyV9gGwNfgY4s2Snt7cPVqy5VQrIAbkn0TI7w568wbf6JN8
+# ZG6kk0HNWhSleat/1f71ZglOR6E3ygsUWMnIzjS1LoAbCaGiKo3T0d9F7Y/fATVk
+# SDk4GM1TGfQj8bknWcfI12amzsYtqHfJiRvb5Gi1
 # SIG # End signature block

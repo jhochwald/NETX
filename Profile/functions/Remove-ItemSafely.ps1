@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Remove-ItemSafely {
@@ -77,15 +79,13 @@ function global:Remove-ItemSafely {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'The path to the file or folder')]
-		[System.String[]]$Path,
-		[Parameter(HelpMessage = 'Bypasses the recycle bin, deleting the file or folder permanently')]
+		[String[]]$Path,
 		[switch]$DeletePermanently
 	)
 
@@ -97,7 +97,7 @@ function global:Remove-ItemSafely {
 				if ($DeletePermanently) {
 					try {
 						# Bypasses the recycle bin, deleting the file or folder permanently
-						(Remove-Item -Path:$SingleItem -Force)
+						(Remove-Item -Path $SingleItem -Force)
 					} catch {Write-Warning -Message "Unable to Delete $SingleItem, please check!"}
 
 					# Done!
@@ -105,7 +105,7 @@ function global:Remove-ItemSafely {
 				}
 
 				# Soft Delete
-				$item = (Get-Item $SingleItem)
+				$item = (Get-Item -Path $SingleItem)
 				$directoryPath = (Split-Path -Path $item -Parent)
 				$shell = (New-Object -ComObject 'Shell.Application')
 				$shellFolder = ($shell.Namespace($directoryPath))
@@ -119,8 +119,8 @@ function global:Remove-ItemSafely {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0ychG1A6UJJUyIdXe4mG63k3
-# bzagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2IPSIpIPcTTabPIoyyAZJXu7
+# JiSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +263,25 @@ function global:Remove-ItemSafely {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQtIfDzZcxVi2Bl8z9+ZoZDNOrYgDANBgkqhkiG9w0B
-# AQEFAASCAQAbvLhUTP47sTkY0oPdCyv4qxZ/x9LXb4ow8F1mTQRE0DPZyest2C5x
-# iKR8JVLhvpyibTPs3irfXmlP0fsPf2NNMC5ZNgpG/ktHZ6feNT2fReNxbnFGBk2v
-# OCRJTomk/PShi+1h1PXAg3jeZu8go0o+Oz7KZPK44BKodip2mYvPQdk7nUwIZdOa
-# /fU0caDKX1bY+zpTzKd/ddO7hnXwx+GUT6jVE4En34qTa0DB4PFkaO1/yusi7sMs
-# FB5sQwbFLKWaCIIMa37CfYbYgATLDDZSmJwk1vGtjcaOzRgFsIgiPqxXrkWgposL
-# xWnOFb14cKXAm3iswrosnEiIxZxyPIhJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRHS5KO3ZIgOFetg03c+B+B+IKDUDANBgkqhkiG9w0B
+# AQEFAASCAQATIS2QRSXlcMCLfZo/HF+f50itx7vX8940h2IlgKAH3W6wRrPUvitb
+# 6/9SVux/Te6Nn58RT8qe89ufXVT8NPYtvvVF6O490DL4tlBmmupeQKFXTVODfSqp
+# WenOCbGntuwVRhzBpuzU/qc8Pc5QzqaTETDfp73YBXSCm+QgJt0ANhwnDcVulj9b
+# iNTmZeFWiH7DF0aU9/8W0Q6mxbsC/VIkH8GDIYeDDBTAiZEfk6F0VDN7p9BrwuoO
+# GyYgiNRKPMQyASzOVotIy+mkq6cngRS49+sVbNkOiaTK0A9DXj7RSU54iK9J/Uiy
+# cJpQFj51HKBBvEziFXvjyzRzFiQQInYFoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxM1owIwYJKoZIhvcN
-# AQkEMRYEFEYZHMTZFNks0h4p1aA4xVLqApqoMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMVowIwYJKoZIhvcN
+# AQkEMRYEFJ9NFi/6Ynon+wwBF1n9oJ4AWu3hMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQASqG4+wYoRoM8ZT9pufdYLb9Zmq2bwgAVpC+RBYvGjXWH0
-# ils25l45w3FjzDeQlAig/MvDjSpTpTLs0vO7jpHs6inzJOvD0jQG5JifEpHdBS6B
-# LPHdjwO/Sq9KfF4SiDn5f+PcGoA1y1kvTUouFWAZYE9itgYvcHxo6eow5GpUrYZn
-# s5RL0U5PjQjFkd591LEao1wvvajSQc8y64lDwEsPsfB2hKKX0t4vX7MXQs0XK9ch
-# h5vZdGt35K+HyqnA3qOCedVyNDt/WGHEawakG5l3Qtv/vWuSY50Pcrff+a225MuH
-# qVkloIzKp84qxzX9FJhk/Kug8E785CmfQIRjtm0h
+# hkiG9w0BAQEFAASCAQBpLP1l3A2dshwSJlqxNyhhKN8eYkfGOYrosD3U2DMIcMh6
+# iQHn/OrJoLmu/IMKEjli4+YelWlv8eMw5xBh0l30FbCTHBVQdDuBHkd2//1Kjb4z
+# wfxFxeHnndhaVZTtN/Ty21PczGB0ecL30ew/Ro3YUmCdwC0XwrYjlMYo2Po+Tx2D
+# NN0UayFoNg4TR3e9a6L+uWNX+rXkFGxvvCltjwGTxExlCWoY3h7g9CNyt/p+pBXg
+# NITCQKTAbO8XUuEU88nz7WjyuwGVNGywAYKeduQvQ/oCHdsPC7OjUWkOi6QCQp+T
+# ejqTF4cgcftTrONDSsxroJ3Jtyh1wbFK9KuLCH4T
 # SIG # End signature block

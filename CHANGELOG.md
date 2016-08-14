@@ -1,7 +1,10 @@
-### Update to Beta 1.0.0.47 Build (HEAD -> master)
+### Development Snapshot (automated) (HEAD -> master)
+>*Sun, 14 Aug 2016 03:11:40 +0200*
+
+### Update to Beta 1.0.0.47 Build (origin/master, origin/HEAD)
 >*Sun, 14 Aug 2016 00:27:16 +0200*
 
-### Development Snapshot (automated) (origin/master, origin/HEAD)
+### Development Snapshot (automated)
 >*Sun, 14 Aug 2016 00:18:52 +0200*
 
 ### Development Snapshot (automated)

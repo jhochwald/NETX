@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Make Powershell more Uni* like
@@ -78,7 +80,6 @@ function global:Invoke-PowerLL {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
 		[Alias('Directory')]
@@ -95,9 +96,9 @@ function global:Invoke-PowerLL {
 	PROCESS {
 		# What to do?
 		if ($all) {
-			Set-Variable -Name toList -Value $(Get-ChildItem -Force $dir)
+			Set-Variable -Name toList -Value $(Get-ChildItem -Force -Path $dir)
 		} else {
-			Set-Variable -Name toList -Value $(Get-ChildItem $dir)
+			Set-Variable -Name toList -Value $(Get-ChildItem -Path $dir)
 		}
 
 		# Define the display colors for given extensions
@@ -135,8 +136,8 @@ function global:Invoke-PowerLL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmn9AtynTg0xFXg9MmIuiFI62
-# 2SSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkK86DrH92HKr+AgLFwFyfQh6
+# iOqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -279,25 +280,25 @@ function global:Invoke-PowerLL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQDXyP7b3As5uNIyxdrJjxi3u4CsDANBgkqhkiG9w0B
-# AQEFAASCAQAX8uYGscfSsD7NuJDFGQau2D6ZQrgWtQnU0z1YKJuWwuPU4ja+k+X3
-# gE+Ww4hIZvAgQfIRGMvdUtIQpqBP/5NOw+1Sxux6MXJYbxZXohrht562kdm1ZneJ
-# Kz9ftZ6akq+9CpEm+BCrtJtFFlgbxk4U02S8xVRZcjLF9Z9p22w0h3f66w3sLllC
-# bAd/ouknAQq6Jrl/ZYbUl+bkWOGbE+5dHBIflSavYDqtuuJcnUViO/SRUxB8Wjpi
-# iBI7/GqcfwitefzQRbuImGfAbgck7b5Uf6BduMq+DK1Bve1So8FVzKVoC26HTb/J
-# MW177CARS2jzaMhBUErtWn3GHOyjZpGioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRrozq4a/ggRzdM9mPw87MhxV2jwDANBgkqhkiG9w0B
+# AQEFAASCAQCQf83aBuSqlTuyDHAZPyWNGA6KWlVcjzOsSxpNXwY7HR5vZdVPRxa8
+# L91S7t1wGAcKg8kn50bbncypR45UElEk4fuRgk9KOvvjRfDNSMmM4KAAZjSNU09h
+# 7EivuhMDKoJbr3v5gkPRSBcuH+Vk8agHFM52Z5Q+mPHZQzUa8Ya0i1nUSShCWnoZ
+# Npx4FLa+eAtp1ZR+b1bo0u4lTmdoQe84y8ceDJltkq88wlR26vbWwTIQ5ggFYUcx
+# FT+S9oL4vxJxR1SBOtoOX+O/Ol6D0APgtd6RMJKiQGCzVwg5+S1pq8pyShkVo5QL
+# fTD5amRUHKF8iHwmpea3+QT1FnPhIonpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNVowIwYJKoZIhvcN
-# AQkEMRYEFImbApha8WuCmEHFAH9YenQ6C4aaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1M1owIwYJKoZIhvcN
+# AQkEMRYEFFP3hZ0WF549OBsThEMaIthB/2QDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQB9+kIjEd2+Cwv+860M3wIpXzylfvJ+sQzafZcRhbuXb+hw
-# A2S4ojTaEiwaDj2JNbiQFl4YiXEyD+wCNYjUUL96Wj0GszksXrLzxA7ZiZV6kgC7
-# 4qGC5bhqoZpoQrY3K0vkpAaaU8evoNl4BRh+QsnnpPK7iE11Hv9h++WTOzVBWYas
-# H7y26mynO3f5LfIp6k6wBAvpLhT+iWngfkuyr5m+yImnNlSbtMaFu2CCixZm1u16
-# LbbRoxyOKuS5AN8SURbouihfzGRwG3JIU5++6qk2b2UneYMDciGkkyvfP0Xw0MMp
-# dn+AxaSeuoPSMahkkwOdVX/0hA7pgMFvrtGUE6+K
+# hkiG9w0BAQEFAASCAQAg0/XU3S07FI4pmMSVl/F4VQMMZ5BBOT3Gw23in+R6jc6N
+# OJhfy4VdRi1aUsCNrjfSHj7Dw5nmBEGD9LW8WUmBZBPC8GZ2W8Slfqfn2M2kPKNG
+# yVbcVsbA+y6NgYgSeeCbXmlTDraLzE6cuj4enOr6uybvkOyJN/1VBmjgvXJQgY0f
+# l/aeKzm1Blz52DxHcwxvbNztOsN+V4S24vfQ1mShOkP2NJSWpeL+vP/4w61fs0mA
+# Vq5JFzP9kvTgsNEX6+6zMhGm6LjVLlZ4klz09Diz0yj3bAQQXXjf+2W5RS9OFFcx
+# C1hWrrMJdEyZxQGuhszDjpi0w1Lfpg/AKx6Y/kBM
 # SIG # End signature block

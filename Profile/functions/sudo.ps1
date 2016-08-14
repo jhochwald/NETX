@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Uni* like SuDo
@@ -98,14 +100,13 @@ function global:Invoke-WithElevation {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = ' Script/Program to run')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[Alias('FileName')]
-		[System.String]$file
+		[string]$file
 	)
 
 	#Requires -RunAsAdministrator
@@ -120,10 +121,10 @@ function global:Invoke-WithElevation {
 
 		# What to execute?
 		if ($file) {
-			if (Test-Path $file) {
+			if (Test-Path -Path $file) {
 				$sudo.Arguments = "-executionpolicy unrestricted -NoExit -noprofile -Command $file"
 			} else {
-				Write-Error -Message:"Error: File does not exist - $file" -ErrorAction Stop
+				Write-Error -Message "Error: File does not exist - $file" -ErrorAction Stop
 			}
 		} else {
 			# No file given, so we open a plain Shell (Console window)
@@ -134,7 +135,7 @@ function global:Invoke-WithElevation {
 	END {
 		# NET call to execute SuDo
 		if ($pscmdlet.ShouldProcess("$sudo", 'Execute elevated')) {
-			$null = [System.Diagnostics.Process]::Start($sudo)
+			$null = [Diagnostics.Process]::Start($sudo)
 		}
 	}
 }
@@ -144,8 +145,8 @@ function global:Invoke-WithElevation {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUV5cyFps+T9cQk0LJyeggG3Zm
-# AZGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUStj69pFoUvqVVwvNXv682hxV
+# g0+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -288,25 +289,25 @@ function global:Invoke-WithElevation {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS1qmr4JVbMxoQf+NUrrTO8uGZKYTANBgkqhkiG9w0B
-# AQEFAASCAQAE6JsJdhIweAJcroE/yP+sxaXgBvZ5wYsMuZFVum4o8wlEJm+SsD1X
-# Rpyt2f/fNBoNbiCcJdGzCMKEwGTsFg4KbNv1DhRdZ5Xd5h/koV7TmnLDT3fyhXTQ
-# ZQ7nAGU5wl7lBQrC+IJ2tBtCfhFjjb3FwBd8MIgeXY4aurkAUSV/klH56eTAefc3
-# uFwKQettROawnJI6+rTWGGZQPwFvEMO5TRLjMjIxeIia6+/G8WpgKfLLluT5BZCi
-# RdBTuwCtxTC9Mx3qLEUEnBC7kmLFASOx87f5aThwHJZxQosXKv0q7fwQxBpddiCz
-# YHGVAl3KIcSSrt30ZDySjkAZx1M4LjaCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBScXf1dIDxsGbEMohuVyXjmj6BBMzANBgkqhkiG9w0B
+# AQEFAASCAQCcIf74HnxGoC4I63fL4wgPRrgUgqRmUbUyw86bAdq+b2HDA7GTriFA
+# 1D5KQUVzkZUXKnxOybY9kYLj/6AXCYSFMJ/Dua8sWm6s4RXrqVjk+pTENjKLekGu
+# IuPWWIJpm4d0z30ZxBblOjNq/qxRDE5A4W4cXBDIf/C0Rh09MHGp93Ox2x0cc9Fy
+# c/lmFAIHzvl16ybhon48oSjKLZfy6cKXwalCaeI1h3PykakK96l+/uDoJ0rFDzS+
+# o70YU/qKFEld7ywWB/WjMaEeLg/v1QNC4x1B6xZE3y9mNTHWr9XPto6Mfu1ddtu0
+# 4m+03sL+j2kxp2x9UlmMctji3H0mng7PoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyMVowIwYJKoZIhvcN
-# AQkEMRYEFMnIb+OD5I7yGTcZITkzIRE5OYSVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwN1owIwYJKoZIhvcN
+# AQkEMRYEFHhnBub6NPynZlBzrqqUaHwdGIQpMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJ0/ReHwA18krg3XhgpLc/j38LJCJUuVv2n/ojHlQupOjn
-# 8CaZe66DG7/47xrurxWPSVTp1t8eGjZq5C3Vx86um9Yf4g9nGaxxniXOO1M8Cy4z
-# XCiLAdVTrNTmzW6Rb+VJlZ0kt5jpGNh4lhmF+bdOGpd6WVwJ/+vNggm5pJvht/El
-# WAnHS+7S1xAx9cczpUXwjiH1POpAArsGcxZzZimmRobds6ri7iB7eRc5hJTJYuMJ
-# a/14XRiWDAGPnypy3NfxLdx3UQmaYxl8qHTO+YIgN4JSkB2hNDG/LPl6Mmcg8W/D
-# jeXxYdf1wzQWG7iitFGOYciahZMKNwY4+1tHwYUF
+# hkiG9w0BAQEFAASCAQCt2ifcZttGJJzCETWd5SUbbIk7gbnVKeaggBwudCmD4H3B
+# FrSrAhwICVZPNhI19MbAMB1GYqLjOoNE7NVPYPd0qkkmNhxcUo+QBXflmuqE0MUS
+# 1w2VGxT/T+pJbw+vQtqm3O3+QAopFlookIKjdOemB8h7arB8KbP2ot7H/HsNssNm
+# ipafM+aCeFGeU7+rhFUjMeAx3aCs47cxBVevgyHqKmNQu5b8X6rVEqEp/5K/V/Cv
+# W20LMk0/t3iSRLVNXLSGONA5NYxompkGzfjM+ZuAX7Xuz4StMGhAcwXIPTNdYuHc
+# SUmjesxFcx/26AehuAKOCWltHBb+7yX12Qk+9oYS
 # SIG # End signature block

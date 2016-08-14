@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-ExternalIP {
@@ -122,15 +124,13 @@ function Global:Get-ExternalIP {
 			http://tools.bewoelkt.net/ip.php
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
 		[switch]$Speed,
 		[switch]$Ping,
 		[switch]$Short,
-		[Parameter(HelpMessage = 'Host to ping')]
-		[System.String]$PingHost = '8.8.8.8'
+		[string]$PingHost = '8.8.8.8'
 	)
 
 	BEGIN {
@@ -159,7 +159,7 @@ function Global:Get-ExternalIP {
 		}
 
 		if ($Ping) {
-			$PingData = (PING.EXE $PingHost)
+			$PingData = (& "$env:windir\system32\ping.exe" $PingHost)
 			$PingInfo = "Ping Info for $($PingHost): $($PingData[10].Trim())"
 		}
 	}
@@ -183,8 +183,8 @@ function Global:Get-ExternalIP {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWghPo0/5owndLQgGidn4moEK
-# BqegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGA1cNmp8xdARyZXUjWH72yxi
+# a9KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -327,25 +327,25 @@ function Global:Get-ExternalIP {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTwrEQxuce96L80uxl60s9lZnQhJzANBgkqhkiG9w0B
-# AQEFAASCAQCqdtNt+j2BprLLboS1sI4pycdjT+2D8yFN1AldxCpIFkNWifm5rHb+
-# uznKLdysp80FUumDU0GrMD8hMaNWhaUqSEmw8ojLix8IB+0799bjbTpCHJv9LYau
-# EdnuHBBQ4HpZ+kir4gAVnZd/5wqkJ/cbJmgU46YGlOnX388d835i5t6hBB3s0PAn
-# Yw9flS+E7PgIQ0Iq/vy61VtpYqBkQ+5pEs25ea4wd3I7Nh0iuWjcl3bciFFP3ywS
-# wXmog2OTgonP0Ob91uUyIr6CfOy4p6KLYPONfu4G8v535bPLUBcWQGeYI+zjcvKq
-# DuvFPAHtkH/aQVC6xnI+rd47oO3qKpqGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRM0QM0UXHpSLeR34qhk6l7bmRm5DANBgkqhkiG9w0B
+# AQEFAASCAQAPY62lw3bBHEa8OsxLaEWrY4dvt26B9PhSnqrC+pxOL7psPxjZXeRi
+# GKfPw8myXTv1CO2ynQ9f/giiTE2ne3psMrQMEaH12IjiSmPhBrhdNSWMnrXPFWtk
+# MZI8FwomoGce5MtfMGAOKwwz0lJ8JQVf7rqrQWDjwFGhe1AV3ae/v+9V47HrG2en
+# JPx/B8+kimRP7IQy0YlZyQsybY/uooOODRnfQsC7oCxGQ2CldNAPicCAJhgPRkRO
+# Mn0YFV8fHPfOssSCp3SS7Tdhh8LL+FPFbHDjlMOKCZqhus6lpgnhhfgjkdNJ4nfo
+# qwvDtq+pF1ub3ZlA7VyU4Mn1YLdYNp0EoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzOFowIwYJKoZIhvcN
-# AQkEMRYEFEuHp7Zd/WF0WGdyVf4zPq7JZNv/MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMFowIwYJKoZIhvcN
+# AQkEMRYEFNEzXSWV5wOBiVo0LSTY7FNSZ2ooMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCqMkDobcfShS8vz96cxKUei4HbIIBjGSDMURxZWtJkEzV0
-# vtbWwLfMlxYxp95ths6BdygG5vQQ11MRhQjKB5R1vFcL4K+1kOrro/VtHiubWje6
-# mJR8+ODJjT+Cvw4GAPoMx3VBraj91tpsFj7ca3KdMzGC9KHh83EIfH4l1ng9tTP4
-# 421IHMx/ZGoux/FnJ34tL7r9qsLpQLAfzeUKRI/zoqfZwqRedVzYHoqqJ5WXwqbx
-# QBhpBCSIvTz2BtrTKWg5CdRQJ74Qrc705YWrw9i9+zKZyZ2xhffyTGvrY20rGzzw
-# zhGevT/xDxEQ0JUAAy5gByuLlIRZ0gkFZgywUN4+
+# hkiG9w0BAQEFAASCAQCgteBQQ+vKPbzf6TVqRCLUa6I8zK9oEcCn9gEi5TzQ6kdD
+# eULLbGVKXC7pBKzeYAVmrnLpEOjKXcZ5wLm0yC4O1pwaRF6HJOI4gU/vadSYxeFi
+# o5BTreBU6w6v/PjadsJjhnyxxOlhQVoxj4rT+RHKLDtdFEwTujr8Sx2pLopGVJx7
+# X00USzRmVjK5wc1Jvik0PmUc7J5h6B++sS0l5ww8JFERy5Zeq6K+wly6HLYynKg8
+# zmt/j79otdyx881vz8AKD8Qbv9ap33ob/L1mqT30AMt63De8MI98IeGCwT67Ce2T
+# 9U+2Hg2GwL1Fr8j4vdC+yxmU+EBtDeReKs/9LVbR
 # SIG # End signature block

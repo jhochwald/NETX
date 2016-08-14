@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 2.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-AvailibleDriveLetter {
@@ -83,26 +86,24 @@ function global:Get-AvailibleDriveLetter {
 			http://www.powershellmagazine.com/2012/01/12/find-an-unused-drive-letter/
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(HelpMessage = 'Get a random available Drive letter instead of the next available')]
 		[switch]$Random
 	)
 
 	PROCESS {
 		if ($Random) {Get-ChildItem -Path function:[d-z]: -Name |
-			Where-Object -FilterScript { !(Test-Path $_) } |
-		Get-Random} else {for ($j = 67; Get-PSDrive ($d = [char]++$j)2>0) { }$d + ':'}
+			Where-Object -FilterScript { !(Test-Path -Path $_) } |
+		Get-Random} else {for ($j = 67; Get-PSDrive -Name ($d = [char]++$j)2>0) { }$d + ':'}
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSptPEjfAfvewkr0XDFfM5FPU
-# Wo2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUkLyP8FsHlg6llOJkWLOwqOAn
+# OGygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -245,25 +246,25 @@ function global:Get-AvailibleDriveLetter {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQChc2fHqPvHACSYcxwhDU+b8agUjANBgkqhkiG9w0B
-# AQEFAASCAQCYC5p33mv1nK45HeCfXlXvZHPUvl1Jhxhgq38ft0owmcFWsQGBKg5Z
-# gBmi62yiSYksXJCVQBkQKOhyebnRoqZzhrIDxpgYZZqaojADCTtaGsQniv9Jjblx
-# nM6SCx5AJ421A9ROv/OG3aPkgSxq1gMffjCd/30Caj9RlOx2Fex3ClwiAwwYLFUE
-# 63/wQd+REJSPoQTGFLAgsgSnYbiWa1MktT46SdUFcbmT3i+RRG1r3I76CPUdFwh3
-# GplGZ9rbs0CAl98tB3UaIbtGtWH2vR0UA8SDejirGDXdmUOP/SlD4Z1w7yq/SVCh
-# J1Hq3ETRg2VAl8xk67os5t7DGJDzXS1toYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSJKtNIqDE7+utBVAd0uUQrnNffCzANBgkqhkiG9w0B
+# AQEFAASCAQBNGvH//b09AWfvDRViUodboghVBmnUQyYHvEELCRY4k5DqqCcWwQS7
+# OBL5yi3b0f97QJmHuUKx304RZWz0vzbOFHi7aIYuVgpl6ttakgxKIXRKge6eMZ4U
+# R0XxJI2b6FyZr5yuI3pUX+jBgiaDVTx9Yp44KdooYi7gxjmdAelsKKFopgl0FwYj
+# 5oZXuTLYh2GKqCQ7sFd/pyYbO5s8+MZ2Xk6TFPEKm2mEThxYRxWR+dA4i1VogOYS
+# CMedVr7bkH3MCI0rD+if9AP/WOSUVrvf5IXMFk1/BRaLCBXv6Ez7XMNVXiSwg7GS
+# PTTNR3wzBricofT/vwN45D4a9gnREtPDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzNlowIwYJKoZIhvcN
-# AQkEMRYEFDPVNFCE5eTud8E0xgBrCRrIlv2kMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyOVowIwYJKoZIhvcN
+# AQkEMRYEFEK4y9+Do7IRLOR+8vfvK1/69ApbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAECHWTnecYds4EgGTbeh0JKwYhME6O6uc44zxbZqf8vcAa
-# TZ2HTgNT9nwYSIVnpnHzj7OJ0FE5BYzQkvyFWUd3bFLaeVm/b5p3Qhto/JHTx9mT
-# VDqgvuEzt13li6/sip2qnvpCdlC4JZxWeHw+f2FiCF0gNyxI4jOxnYA6zI+I92hk
-# eJKhgzWiGF5fSyZwlclKUjzYz/ff/edCE2b3/GHw93VVcROEAvRNuYekTW2QYNE/
-# 3j30Lz+5TWMl11wNsZBpqlGy9gAoPiJZxN2pGQGfRRzxDdWyq6ulT2OGy18gko5p
-# Z4pfEXiNNr5D+9+n0Lo0y8tnf7sju8Y7YDfoX3X/
+# hkiG9w0BAQEFAASCAQAED+wuxqiiNvdUN/KW8hKSmh8KDpAJ+D6PPLmIUunjIv3R
+# Sb/r7WYMq3Q+/gIpEfyEHqp/tghXIrp9fckiqTVemYt4Nts4Bc5w9CDK99mz7uE4
+# RqSjIhU60nny9/za7CnwtdehQIyCvOQlo/TXnH1trtRn5xLyhSX7pmaaRL4W0QEB
+# nL6AjcTNHfxDwp74/GDc083sqva924xbC0hKbsD2k/az91jZGW6xBl4iP0d+cLHA
+# l9+Z9YnMrhkaUfpdMbmKXqazz8SN4gS7E/bQ7qH+IsO3YyMR+GNjEXXelv6OU7Qe
+# E8aBDcdO/NDewV65iWZXaKNHtYq5XNm4LwpxdmbK
 # SIG # End signature block

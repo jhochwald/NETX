@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Expand-ArrayObject {
@@ -80,23 +83,21 @@ function Global:Expand-ArrayObject {
 			Additional information about the function.
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Object[]])]
+	[OutputType([Object[]])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Input Array')]
 		[ValidateNotNullOrEmpty()]
-		[System.Array]$array,
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[array]$array,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'Field to extract from the Array')]
-		[System.String]$field,
-		[Parameter(HelpMessage = 'Delimiter within the Array')]
-		[System.Char]$delimiter = ';'
+		[string]$field,
+		[string]$delimiter = ';'
 	)
 
 	BEGIN {
@@ -121,8 +122,8 @@ function Global:Expand-ArrayObject {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU806nGnuLuET/NEmT+xNW2I5d
-# Z7WgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdSUs90uyItfWJpyQm9nQU9yJ
+# 8hWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -265,25 +266,25 @@ function Global:Expand-ArrayObject {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT1gCexmihQBTcKn6DvG8PiriNiCjANBgkqhkiG9w0B
-# AQEFAASCAQBZe9bpuLyffKLz2zz0ZSxZN/phOKhagWBwr1ar7KrEw1mKPYPWXgoD
-# fYgeZuucwDIOAbeo1O6YQ3DK8g+lfBpZw9p896Z6Vx/QujAh+tEOgndHZutFzCbj
-# oOSlMCVRWpVcahLpkF1Ltme9B+I1i7u0rliBw8b5NEoMvvQLu+OcJTljDmOmqjlX
-# 8DZSclnQMi5howh5Fenv3OlrY/szrGgC5JWl5sgjVJ5EWRl6FCEjWEWLPjrj8ADR
-# 7lPBEft5Z/70Dpj8+BC38MvwAJ2Gy6S9siyi/F+IawZcpJtQbDL6/lgRrAqYGl5z
-# I1M7WUWPZ1DdlJ1c709Y6/QXI2Szrl4roYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTCGyA05m8b7ZoMJi9ICxSj+crC6TANBgkqhkiG9w0B
+# AQEFAASCAQClZe3snqmUpoO8GCCoBLyMZAvbkHYBbydJiW9WcUQcy3l4NYVIwxb1
+# TPizx8jYljMAeeXsnEem8DONW9zJg0Q6ChFO89J5xcyr5LijQ+YtQ2XAE6KAG27x
+# l+50Px1lYlV6ikxYRLeS693B5DnKjEe4R5PPl3uSXVxRrd7o5zqaVndSAQImM7NP
+# SqPR9GOFCWPaD0m2q7lS+hBK8VJz+2IeJ1KucxlqUhBd9a0FMgkQ8XDe5Eodzwi3
+# nOcvqtaSTKMZVBvJKw2z2CRi0wWgGZIX6B9CBK0P38QSQaKzwZ8VhaJbsBEqvgFs
+# 2s0B6WHJxYgMn5AHxFUmoG5ajOVoWTKQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMlowIwYJKoZIhvcN
-# AQkEMRYEFNHaj5cjRX0wdTk2VUvHWn04Umv3MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyNlowIwYJKoZIhvcN
+# AQkEMRYEFNfIuIfrxB4olO4RW2IXBoPBYhKPMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBOzRVrODVq9egoacI3dk090hnKDzsHlqLGgMCk8y8S6d6X
-# nGYLjbnYhcnxSm3IzVow9o5KKh3WhNCkjl4GMm83D+Rlu45nVczFP+KBDxuQf/G4
-# MLXOJjVw3SFdQ2q+Axoy3qPJOET530Sukzc9BCmnNLVd1MaJ6JZJS2WmN7c8Aix3
-# SCIOriNO0dg52FW4GE85qU9MC2A1ZqRCI9dHGgN5sU8TAi1SgfdqY+8UMawr/25+
-# gERrBo1600r/l1fPS3OA1m7wtmukuRyCAHQthudSj3AGkyDFS4aHgvd+Ykn4b1A6
-# VbKybI5IlbuicUpXIeQMZAnkPkuVwE+eA2UTAFgd
+# hkiG9w0BAQEFAASCAQAs2oz6HqcqjvARH0OUSm8DRvKu/E4dlake+iKd1MHY0/XL
+# 9jjUMX831tESit1x62FQq2t49a+IY8IBncy4n5IlO4f1pMt/1lZ/5Q0DCQ5cBxUb
+# HSrLfK5WxtcU3m5baIdW83wkAqi3HKr65+Ae5KTI5K8pCQpWj3bN69FDRsGDRSqa
+# XFEoorUDVRT1rGb+HuPMAlcOhPY50M3EFJ/4cAY1T4ovYitzx5U9XuQ9VOrhXXrI
+# slQBBMPVZ3CkK8aToVJAE28WlhjIWdTQY7jdo8ZCvGv4E25aSzc9IJ4HH9Bs2t7a
+# RPE9Ln7stiV3kaSHG6Ie4I+Kke8+rQqwCARE96U7
 # SIG # End signature block

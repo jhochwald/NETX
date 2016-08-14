@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-PhoneticSpelling {
@@ -86,12 +89,11 @@ function global:Get-PhoneticSpelling {
 			Simple function to convert a string to Phonetic Spelling
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Object])]
+	[OutputType([Object])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'Input that should be Phonetic Spelled')]
 		[ValidateNotNullOrEmpty()]
@@ -234,8 +236,8 @@ function global:Get-PhoneticSpelling {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUizGQs0Kvwn4SQVK39E/xH+C+
-# P4SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEvG1voSzyT7lRuiRhlgGOJ3d
+# oYKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -378,25 +380,25 @@ function global:Get-PhoneticSpelling {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSyBR9Y4j2E+4nXcaFfLszaSWMHLzANBgkqhkiG9w0B
-# AQEFAASCAQCAZiQzUZFs9j31N3514zlZYIP627VD8FPgFuad2em0VKsnL213hXC2
-# qmM19dIg/UNunRnRx5ZK9cHcuquWiSz8EGFxYNXKamiMWB9AG9npp4yEBNZ0yyZY
-# w1Vi02E73U0fnPbPqX7c/U1BwqCmlx7c+iH1QztZwmRIHD9UZb8cwCzIUQoHmwPF
-# yHGPurTt+rvsr0xZruH8m7k9b8QWSL+GJH2+X8vkfUb2kqHqXzq7sJc9IZ0+AH+A
-# dKPV9Ix1Cw0+bH72YjwpVvgc6aDajUrAjG+QS6kFZBRPAdObZ+0DSPABSqeiKYSQ
-# FDNDvyag7lY4H0/bwf+Kytabd3o3uVp1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSp46zXazAs8yQxQfE9x2zyk1TLnzANBgkqhkiG9w0B
+# AQEFAASCAQBFpOjRSavoifuzjSnuPdRf8M7gPFnRWcIvbdMnALilIZuVJV4WuVHX
+# GHBmujdHV3NQ31omy8TCtUaJAMuXvoR2jrjK3GIu+cfRK7c2ybOYPQ880ejHkwOh
+# R/UdxZgre1F1Eph8V+/zn3hQAIUOxxuKiZPPYDyZ87jewkRgtB2UANGGpSU98hE1
+# 6dN+fb/UpEgC/JH8gtt4v+VAu2LzwfV7c6Zk5/ae6Rv+mKv527iM1zCAQMV+TWsb
+# K9kaaqIzLA5hj6BrCrz/+ZskM3jwNbvHO9Dj4hduLhmkAVm0uVTC5oEOBDuYI54x
+# RrWuvxMXzlD3W9xai2s75gvlcBWfTfG8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0OFowIwYJKoZIhvcN
-# AQkEMRYEFMHxCllbiF46H5MKHIkLtA3mlUOyMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzN1owIwYJKoZIhvcN
+# AQkEMRYEFLHTXiVtDHBSUh48FSrsoIQBBF+KMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCnzwl1gEHYIGKX+7UXflj0fWpya4cG2kANZ+7YXlUsyrZc
-# GutNB61Sfnp2AiBhemOm2fv/3qtRUzyco8wCqgeRozIRecTRMsrjmVT7DmY2Oa5z
-# JSkyGZCaFUBWg2HJTKJPc4RBmmPTQxoaYbgzyGpfWc8WZpqUpJKUfgtaO3UQSivA
-# Ojjjj82WZBWqIPYh9FrxkWF/Phetm5G35qwb5h2oPeP/dFXuPuUWIdTADQ5mYEsL
-# XhccnKaTCZLhslU8NG3Du5cDnrwU5CLC6OwJssLQndGmUgVaFqrQaAIEl9pi7KU7
-# Ij1/lUf32oZ31dVw1IDvPuptu+RyvwWw+BqOfowI
+# hkiG9w0BAQEFAASCAQAHKEP1Iny1Nx1U9jHry+nkcjeu9jQ7813ixvj8NPvue8MM
+# t6EP8IVd1v2LohAlwKQ7Xig2hbRn937fb+PVDBCMO7BYtPfDZ4WZnKSn2to7lESz
+# dwV7KJut1nXkIHxlcWaMqO0hzhk07f65cG/i8gMjhMcdGdt20a4RuEvyQUpHyOCW
+# xkv66WVQp74tiajwkl9DKnYlApZ5SpX8+GjJvmxDFkK1WYJeyO2OVykZqe5Ox+CI
+# haxbh+4r9qAcZLODktA7msgFnUfOJPeLNFiBLpnveshoba98UpRTGbVdSVMZYZeS
+# JQJMCWatnCECJ9gYO515zY3zAhVzp+pK4vLPiYE4
 # SIG # End signature block

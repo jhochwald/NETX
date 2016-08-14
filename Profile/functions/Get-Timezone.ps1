@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Timezone {
@@ -105,12 +107,11 @@ function global:Get-Timezone {
 	param
 	(
 		[Parameter(ParameterSetName = 'Specific',
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-				Position = 1,
-		HelpMessage = 'Specify the timezone that you wish to retrieve data for.')]
+				ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
+		Position = 1)]
 		[ValidateScript({
-					$tz = (tzutil.exe /l)
+					$tz = (& "$env:windir\system32\tzutil.exe" /l)
 					$validoptions = foreach ($t in $tz) {
 						if (($tz.IndexOf($t) - 1) % 3 -eq 0) {
 							$t.Trim()
@@ -119,22 +120,20 @@ function global:Get-Timezone {
 
 					$validoptions -contains $_
 		})]
-		[System.String[]]$Timezone = (tzutil.exe /g),
+		[String[]]$Timezone = (& "$env:windir\system32\tzutil.exe" /g),
 		[Parameter(ParameterSetName = 'ByOffset',
-				Position = 2,
-		HelpMessage = 'Specify the timezone offset.')]
+		Position = 2)]
 		[ValidateScript({
 					$_ -match '^[+-]?[0-9]{2}:[0-9]{2}$'
 		})]
-		[System.String[]]$UTCOffset,
+		[String[]]$UTCOffset,
 		[Parameter(ParameterSetName = 'All',
-				Position = 3,
-		HelpMessage = 'Show all timezones.')]
+		Position = 3)]
 		[switch]$All
 	)
 
 	Begin {
-		$tz = (tzutil.exe /l)
+		$tz = (& "$env:windir\system32\tzutil.exe" /l)
 
 		$Timezones = foreach ($t in $tz) {
 			if (($tz.IndexOf($t) - 1) % 3 -eq 0) {
@@ -196,8 +195,8 @@ function global:Get-Timezone {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsz+tq9a/Ue3TarP8+cgFl1ms
-# OtGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHHBzvS6rhWi/p8VQgJPH6yrm
+# IgCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -340,25 +339,25 @@ function global:Get-Timezone {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTSICj9iSa2xNho3YI+2buKODQBGDANBgkqhkiG9w0B
-# AQEFAASCAQCaenBy68n/yGRwSmvXJctQzq33wLEd2rjed45oBzjMIvuZEd6GD+h6
-# rrNKDdBpsI4SwrrkGrPd7jJifnhjZvyWNktaA4p6A0uvkFVDTOl5HJ7PyYdYsviE
-# 3yK/pN6GofG9KmZAJJj1yc9clhjLnMvRlksGTtysCLB2cFyO2Ws9EO4uBNlMzLaW
-# 4AFI/5RWf3blXtLTISdhj9d6oXFuyZPxpSts/8Q8tV2YcQWHHzwdNBUg8zIgDnk1
-# PYPGcbjVxTm4leMxQczE7PDnRVfDivE45xg3qmRrl93mvngx3MDQhwBnimMu8jdx
-# MSxuxV2Slsosx51qE/aTtpBiSgIyvQ69oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR9IUXsWzZ0csYHi5trwuG3rSNzjDANBgkqhkiG9w0B
+# AQEFAASCAQBueDVGHkCaPRhhYFn4QBwJGSI8yeLHo3OMnTJ0wDLhTCfgz20w6JkC
+# eANp0aLBbDL0D1ya2iCSy0YBVs21qZKNA5Lpm00w1n+D0zYwvikmHFYTR1id+/pB
+# mQbHGJYY7O5VT6zsPkl++4XoNkSV9tGnUKzxL3TMx39pmCULhc7FJuz35kQvwTd5
+# Rs0bEoIAd2etpKpkjQT6VQPZiMcwWqEPAB+iGHik4u48PO57qXnHNlWDgFszyS48
+# g2ri5R++gyRUXaPFfPQ1vbllhxcyV2Pp152jko7FYw3ZYbPGtPdP/h5dyIy4S8vn
+# qetKgLAxPeRAh+6TkwnYRCDMUkV/0UX2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1M1owIwYJKoZIhvcN
-# AQkEMRYEFGAUHoI1rAcC7JLEYoWBGa1Xd4XiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0MlowIwYJKoZIhvcN
+# AQkEMRYEFBOZx56MrE3mTVLeOQeYemMPSttnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAqpB6RtYEWjbOnrvx8s6l6HapGdHpBSwnYRwBxLQGhQ6Z7
-# O3VP0k8j0fCK/6bhHcbYO/wrahNNw30bhdYQlVxFSoXz/aftOmqnBhh2ffB4Kvb1
-# J31tyglzD38p3m89z5xSrkgx6RWcZ6+Hke6qMT5UDsqVS98Ia2w01qGxcvtf7WF3
-# 0k99IYBsGIykop2qOmXi7oQLomjbUzi9xF8keumDQrhk/a+4HwBQcp9D7elTvBD7
-# RdXTpIrMdz6N0bPmeu1UKLNXKMgs7tIVc7z9T37EKn65cOsaIlAhDUshxVtdsKmS
-# G9E8YH+P7tYYXRmrh/P55FFYHTq4tCTykdVh4saq
+# hkiG9w0BAQEFAASCAQCZJADxIMNYWwItw34SE083FE+T9MVG+2pFWWV3KvyLngyh
+# 4HI1NFvLfLKhLzrxKYEpR5ZeGV/Lw/eL4tI78jxvh3McW4xRmk0J80yGu0k7xcyq
+# vwdoymDcbgShTT9D7uF5RZF4Dc8MfVyptKmaSFkIhw6QsCjYrmvhKb38ZNQQd5VA
+# y/lTO3xiweSIn+iwdvy6xpxCCjuYiBxjY0D3AZ1AzKWXsz4gTCMphIr5M8NJOy4q
+# qserOmPsd+bs6X+1tfmRUpWmJlDJLr2MfqlIj62Gk5g6w++EGxhpEu2k2SAw09qB
+# CkxGenifLg+e/xde45jBBwGdxq1EuFHX2Q0g87Nd
 # SIG # End signature block

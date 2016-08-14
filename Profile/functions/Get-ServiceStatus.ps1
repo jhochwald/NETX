@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-ServiceStatus {
@@ -87,12 +89,10 @@ function Global:Get-ServiceStatus {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Position = 0,
-		HelpMessage = 'Computer Name to execute the function')]
-		[System.String]$ComputerName = "$env:COMPUTERNAME"
+		[Parameter(Position = 0)]
+		[string]$ComputerName = "$env:COMPUTERNAME"
 	)
 
 	PROCESS {
@@ -104,8 +104,7 @@ function Global:Get-ServiceStatus {
 			# Get the Infos
 			Set-Variable -Name 'ServiceStatus' -Value $(Get-WmiObject -Class Win32_Service -ComputerName $ComputerName |
 				Where-Object -FilterScript { ($_.startmode -like '*auto*') -and ($_.state -notlike '*running*') } |
-				Select-Object -Property DisplayName, Name, StartMode, State |
-			Format-Table -AutoSize)
+			Select-Object -Property DisplayName, Name, StartMode, State)
 
 			# Dump it to the Console
 			Write-Output -InputObject $ServiceStatus
@@ -122,8 +121,8 @@ function Global:Get-ServiceStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGI2s/eDVywhDecGWXWyaUYI4
-# TF2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUu3xYsGJe9h8hMZ29BmSBiAMq
+# huWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -266,25 +265,25 @@ function Global:Get-ServiceStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQbskqivA4tb5URugfSBU+FLo6SHzANBgkqhkiG9w0B
-# AQEFAASCAQCWo9MYHZXF6j1GgKnLhG9+st7x5WlifwvuFUXygQ5LmMdsi7w5g/pj
-# K3ASMYHvad8PtguXiYMaRSfoch4cCuUFYuyVeta2pf0Ntr9kHBThtiY+Cwit+Hvg
-# fImKA4ph3WG8RJalPvah0rs62eyHj9c1bEdLgd3Was2tDqgQTyBtnASBUGh6omrx
-# hVkDI+X0ZGfcDevlffe0ctiIBpuVqGWnjEv8SbfKCkLeHUxQE/4FHFhpI1Xghnth
-# SNluAKGI5HdXqTUVE/ml0TduUCdH4mz6eGDOC/yAw4IWQIrah0qwx9nO2cZzotWq
-# 0Wg21F9ITviF2S40DGP4ietYvFXbbzReoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSXL0dgUS6897R2hE8iZ5UXMGc6dzANBgkqhkiG9w0B
+# AQEFAASCAQChkENRTmDUUbIP377YUTCTYxsoOD49QvotxoMfgaVNY0BLBBpvn7kF
+# fBXayrZMfrhT9ufGH8Mgxe53IrWYSacRUOiSAnGBfqZqsoC7gjJr9mZItpdWhaEb
+# 3eIm1HlILEyUF5ZEhgWCnTr3Q1OcD4aUHPT0mdJkgn7YEJ9h1yAYCNkOiILniXpK
+# xv9pP7pXyP5gp/7OIi20F355nbph/7NxmHcRIq3liJKhwNx8SJb//rGs6eSZJ3cI
+# k14jjEXdl8WbGaKTSMa1y0zALm+UAGkewSE96llA8cNZTgQcY9MLJyu88K2s8GDG
+# O40FpUgmdMtq9FH727hytT944/zGENgloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1MVowIwYJKoZIhvcN
-# AQkEMRYEFNxrasXdLFXDbOOONGVgRywJ/c7CMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0MFowIwYJKoZIhvcN
+# AQkEMRYEFCixlOD/DoGTGhgstg/66ZgZ5OObMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCuJrHrC9bADm2MuqS4RofVi34kBKbHvCgm1HIccOWgj/+U
-# vrNMEp0xPtNfWTABIIVq0V3DIVzDrX83b0e+QmBhC5JGYjIEGWoOjZl7YhwAKuYg
-# CB7X8IS/o7zp+TWz8ZWB6HpJrlAWZxIxoLcgNj0gtRzGfEyYX6w5IKqb6h1ckkkN
-# dHdO822sKvmqB8Y7i6Tm/yJPXePtIviJ1yzeaK5eijiiesOOv5bWcLJhXEpvR1rm
-# f/GgqTXFgEaf1/cUrD4Iv6/R2Eu7b5fxeMy/FZpVMf9IqqnpFRjHe7ifZyEFDw7q
-# FiX+5gisdUmvVyLo0o57WystoDv8ZSt4+jylGL/t
+# hkiG9w0BAQEFAASCAQAsNRTtDSx8e/hQB3P5SyJzul5hsF8xxI0dhvBB2MX9jpwQ
+# 1l/e2CjKCwBpkVFYQgDclelBsfjrqeNFsv9Ge41a8L1jhn/Juy7vNWcoBq4txmc3
+# u04mAbQ/mNjBk/x2WPKf1Stjsi+3/4XwIQuZcHtRAOEvLWdPjiVqVEX35LgaeNX7
+# GWsOcdTe5MFA40GPtCo4IUIxtDBe/mbI05Pbsp/Lkf8pFFYmwZxk9jXcuYsWy+qo
+# YdDJdstjgcooka+NAboPpdKyp3W4qoO/tVugF3eg3dsNhjFwQdiTpk/+B4kpTEpH
+# IjaMJVWOFf5Z/STllCfsgm6/+SInlWebfL4k3Mt6
 # SIG # End signature block

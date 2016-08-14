@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Grant-PathFullPermission {
@@ -77,20 +79,20 @@ function global:Grant-PathFullPermission {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Path you want to grant the access to')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$path,
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[string]$path,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'User you want to grant the access to')]
-		[System.String]$user
+		[string]$user
 	)
 
 	#Requires -RunAsAdministrator
@@ -101,9 +103,6 @@ function global:Grant-PathFullPermission {
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		} else {
 			Write-Output -InputObject "Set full permission on $path for $user."
 		}
@@ -119,9 +118,6 @@ function global:Grant-PathFullPermission {
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		}
 
 		# Do we have inheritance?
@@ -147,9 +143,6 @@ function global:Grant-PathFullPermission {
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		}
 	}
 }
@@ -157,8 +150,8 @@ function global:Grant-PathFullPermission {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtT9PrNjU8J6ovkAvuxFSeKSa
-# BAGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVpstP9rklcNjSdnHCEJXbiaY
+# RjigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -301,25 +294,25 @@ function global:Grant-PathFullPermission {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRr50l841pNQAwSPegRyIvRbGdrjjANBgkqhkiG9w0B
-# AQEFAASCAQBI/pzzxc56bUvr6sjJsqbGeJ2B2c2g3vb/okXqMNyEU6J4AHfF5BXp
-# wWhbc7V/ckOKxcbgyHt1hKKdj+J83YsMM/CiPbhAAxm0KfJWrafc14/Q90O+U1mp
-# IFjYIpExnUBCqhpQt4IJGGIBEapuE5pneLjEReWosX8cyNgaiqbGdWW0nV4sdC81
-# 0XjmEHZHV+r59Cbc471EnfYwZt71OA1bSPALoOaJ4iT2U6x3y6nD5lAc8YyaEK++
-# ngr5D65QnfsZ5s/5KhDSY2pV/Qf8jwFlbyZP3nFt9AkRgwpoxgj0y0byZuYeFA4A
-# iQCFyOhNmJeMsNsGAlnjbH5IvJnEZBcIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTV+pGrfErUCYlRfg1b1+uhxsrGfDANBgkqhkiG9w0B
+# AQEFAASCAQB4lqRLhgNTwp+T6GTlT/K7PZppw6/R7Zf2ORP7vAkwStqyMrssx4u3
+# 0TLtxjp4x0ezd0mX3MzLdpou5gkhnsRmM11cOp0KjiZjJSJMXTPR7caYKR+8mJWn
+# QtQUopnJ4pK9CmlQ60Q8yiGp89pj617S3DAotJHJGk9AhKX3FmY1b4XpBZ+tN/dt
+# IsXmcjl3xGD4DBKQSHQMZ6m9vKLuX+Rj6PrKkJ+KcFS9J6rwjcytUosta9eVH/2e
+# Aa74DGZ6rMAsNugLPlpglprT8/KU9SoUcnbtdJwUph4Rp0CjRS9DyO3Qe8FNr/RQ
+# F8e+VnFKY/MY6sPrOekIFwgcfyCYIk7NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1N1owIwYJKoZIhvcN
-# AQkEMRYEFJ9bn8wVe754XhTSQTz3/MG5VwNiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NlowIwYJKoZIhvcN
+# AQkEMRYEFIsw5CvQlnYbQdLfYFb+zvkv/zd0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAYfpIsSKI0Lq1atEpIX0aanW/KeFB73PGEb0K9mh2UnPfL
-# MDg+gAWQFdVatvY0etYIZk/rHqShBoGs86/hh8fpovkUAyUnWozj3UTbx9zdgy+J
-# g8Kvg3IP9qMlz4SnFZKUmpalIIZW8/beW3bMJY9tydVz4/BHwF1PawOsV6ooSCuK
-# mXkCyeXh3/ThQ56O8kBdRj8eByVJw6ixcmz3oG+IyhH6kOz8JRu1fdSC33wDZKvq
-# MHUKbL4x2H+S7HWt0Nd9AgAlSE0y00LqIoCouCi8iHQukANER0WfmanEfMMTCylE
-# jPgnNyBaVapG7AyZddJS0Ery3bZP13WCpK3NUmQP
+# hkiG9w0BAQEFAASCAQCoG2HOmJ59u3lg2f/5P/KGTb9ffh57ysR/owxKpPLR+HjV
+# 9V9NXNktp2W81qy6x+zM8zFbfYRiHGBm7vqg2ZelHOhQ5PdyiruPqpzxOKO/aG/V
+# eaWQRuC3r6piE6m6tCTvOpcBFS91Qsyaj54ANxX8U3060Ub1ll8OwiZ3CRN2PS8A
+# NCLqVKOR0gX2Lr3ea0ooW7xnsjAHCyYLrix14oDe84bewTEXSGFuap7Gho5enMLH
+# bAkV8IHj0h2TmYKSr1FgzFgf6fFEYttWkzddlwp8vUMjKbVc0toqXW3ibbK9pQ54
+# 4jmTrh+SceJDRvmJ+6rfd5oKhIB5byUW2hXg+pio
 # SIG # End signature block

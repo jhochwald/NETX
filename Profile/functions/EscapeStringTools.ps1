@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:ConvertTo-EscapeString {
@@ -89,24 +92,23 @@ function global:ConvertTo-EscapeString {
 			ConvertFrom-EscapedString
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'String to escape')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Message')]
-		[System.String]$String
+		[string]$String
 	)
 
 	PROCESS {
 		# Try to Escape
 		try {
 			# We use the .NET EscapeDataString provided by the System.URI type
-			[System.Uri]::EscapeDataString($String)
+			[uri]::EscapeDataString($String)
 		} catch {
 			# Whoooops!
 			Write-Warning -Message "Sorry, but we Where-Object unable to escape $String"
@@ -153,24 +155,23 @@ function global:ConvertFrom-EscapedString {
 			ConvertTo-EscapeString
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'String to un-escape')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Message')]
-		[System.String]$String
+		[string]$String
 	)
 
 	PROCESS {
 		# Try to Un-escape
 		try {
 			# We use the .NET UnescapeDataString provided by the System.URI type
-			[System.Uri]::UnescapeDataString($String)
+			[uri]::UnescapeDataString($String)
 		} catch {
 			# Whoooops!
 			Write-Warning -Message "Sorry, but we Where-Object unable to unescape $String"
@@ -181,8 +182,8 @@ function global:ConvertFrom-EscapedString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPqLS33JtzkAU8rC0a6kXdSmF
-# 9+6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUr8gPHzNV2Sjvxuj1HbxaQ6FN
+# hP6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -325,25 +326,25 @@ function global:ConvertFrom-EscapedString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRSF7LPNZrtTYM9S7ajeB5eOyGe3zANBgkqhkiG9w0B
-# AQEFAASCAQA2CI4HFn+BBBOMt24umpqG9P/1s657ReShxE+CtjUml6SIl85QA0wl
-# rG+LW0h+ULONCOxHtNSlqUKEmwAGyKYZCiGwak1nFVaooCCOory1EjORdCRNDBXL
-# +sZde4NtXk3Iqy40hQaFv7LI1pWqz9RPRl3COO3xQhqjoO6ONnDR1d2oe0YESHq/
-# J6w6IDOqgYHBOpj6K2Wi94/Q2sf9b81AGhxaI59HRYhXFGnx6JM2jFihSlrEJ8KP
-# cOWOHX5C5Vcio/a5MEHvDjMuIFWxjVsXb6D9RKHpZGa+PpzqMyZRMKGwaHIZxM1J
-# i7JJdR1yyktWdP87PSAkq97fAcKuinproYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS98ncQWo9diM8M6cqftoihM1h03DANBgkqhkiG9w0B
+# AQEFAASCAQAKQw91zVtkfFGxn/B4ZFzPZUUzY9qg3NMO4ESfrk5rxDh/5XBCGg4e
+# YikGFt/hnnt+2kbAFDrm9AuLEgmyBC9bSSb5ZNZzzKxxF0LN5ENiWNhmN6YPbpXB
+# XFWIVFlQ/SyvhdfajYRozoObKC9BZEbY9sAh732xo4bJ3Qhh+gOqNNoXkl67jPMZ
+# bIdUD85Wb0NZwhiyRt7+SKQ2aG9bFa4dE3CUP9AWEsPqo7wLSABTGV3/hmrg2st4
+# nepWU6hEzVd/zQ/YpPL8S7qVUarHn8Y9Y0voHqSniES/H8JvQubs61yoO3pFTAna
+# Cb9C6BholdLZC19dsLvGfJ1qxNV6nX1goYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMlowIwYJKoZIhvcN
-# AQkEMRYEFLLzcNeMnl5xMRtSmDyaxQPTFxS0MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyNVowIwYJKoZIhvcN
+# AQkEMRYEFH5Vru8H+UKPM+o8kOGG9Qyj2rCuMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCeyVuHTuOK/2vfHLPaXXTy8ZRtSyUpEbzls4WAuvXGVJ6O
-# SKxUEHJSyhA+ozZn14G4PGmm5IR9kYYPoTDwmI9Zz3SzhcV6clhkQHaDFrU42M/G
-# CJvaCfNAD7XmBov4IB+FCyLQOD8FFUyw8Bf2KnitaeCRwZp43GqwdWijbPHQO0dn
-# 7YbfjiPRYUcRlTHc66c8Mu6hvTOBn9D/68vdZ9U+ftBvnQpda2tXg+I5jmxQof4c
-# Ojf9zwvGwvEjDJYHaM/wBvpKNjPobvWs+Nkfw/3ZCtYqG5Bxylqewi8Uo0Zx+g5J
-# LjNBx/RnYwftag9mLeGh9W0k57KQV2/gAMAnf3xD
+# hkiG9w0BAQEFAASCAQAIUAOGKjtIYARJWFetUyc83Dn9pdAUVP4S1VPkDY47EzEB
+# O1XdLReI5far7IxpCmiXd2tt/Ib+EE+8wPs/kFaFHGN4ObEwy3cjj450xeHiVNAF
+# 3LAe0yZkNtXMBxdgsZpW8NGN0hOZGSmEYVvKezD8hoA1SJmYW/fUkR7XAVyfoN8X
+# vmAXLluCZJ3MrPNiuGZARw8dB77M4DG29JTFvS6d3+0g+XTixEcOYQfOPOlDyH9u
+# Yzrr6+ZQGaZFn+RhkcOHk1407Tkjmsr0+xRmTk8EHoZw2VwTJlw23e9lHf+HopCf
+# XzqrTXnjpuu7BZ3k20/Y32Ktv0EgfATS5tqVlVnh
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Test-ProxyBypass {
@@ -92,16 +95,14 @@ function global:Test-ProxyBypass {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'URL to check for Proxy Bypass')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('uri')]
-		[System.String]$url = 'http://support.net-experts.net'
+		[string]$url = 'http://support.net-experts.net'
 	)
 
 	BEGIN {
@@ -126,8 +127,8 @@ function global:Test-ProxyBypass {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0VImhKHNjifdEOZc0bfnZsG0
-# WkugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJBk8PMPhWvm+obr0pETZTyVN
+# /GegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -270,25 +271,25 @@ function global:Test-ProxyBypass {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS5zHsd9qsXLLiTJhFScHChlR9sTDANBgkqhkiG9w0B
-# AQEFAASCAQAbqrGCFylXxH/FF1lNqB2NPIU3S60iWKtC3u+RogQpo4yt5+v1zpXR
-# Ad7RHA3gjMGD4GliTA6jAPQ4sv0xwYgHO/1gVBTf6Od/rshmDVmuXqH33SVF2SQz
-# b+jEQ3OrGvae/cQIKM88qLIwflk0m4i5gND1jleCxKiLP/jHiLEaZGvqKNNOJwGn
-# jeOI7sDnfhkH1w61JPZ2//bNyVrRE/1mnsaPzvsjXuMo2IHk7BMvLjagBx6++MQb
-# oQQQEUx042BszbQ5JGr1zTY9PqxgTWNrhV9E7pAlSP8mVdEQx3QXMLPat5C8CfZY
-# 3EsEbVm0LE4u7kuhA0im2syeCsHWotEloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTIn2V3cRugWbfvcUZcszhsRYO2mjANBgkqhkiG9w0B
+# AQEFAASCAQBAU5DfV36ehCO3pJWw2Buja25v8yGn/5OiBqd2qHveKfpIP3wl20wQ
+# Ev8ywH/3i9VDPVn8PaOPmrPe63e/LOI2XWgmtapYRHDM1VnPPFlxCt7313rvWGMX
+# esxVI6bsyAoB8Iu3DSbBqPeOqulBvj2GdzAzJ/lnX7wCbzenq6w4O4pHSAXSqsGC
+# LdsxqCPQwveLwPTq5ulch7eQUPUoy0Rb3Fu/X5ea56b3Urqt3eWRj2iufX7YsTc0
+# jE51PUqTS0Nlw6hMXm4tRfxt/2SIXwrhKThHBJO1s9wjz/l0uDcVqVqFcyQ5uHD6
+# eigaGnn/J65/JNCAsZyQvJ6rv/Nwl3MdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyM1owIwYJKoZIhvcN
-# AQkEMRYEFHhmjyUptjz5CquYsyayL2UlRlFvMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwOVowIwYJKoZIhvcN
+# AQkEMRYEFEjbesRdceobimwBRsrfZdeV/gRkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCFyaO1QtMmLKiqxZjsodd6x4sA495LZy7SpQpRMQ3WT2H3
-# gNWLSrOf09/PGoKOaV3ihIlGfzUmqdhAgdwaOmjdmemnBo7/tkts2UZllVPCJLla
-# eIbpnhFrSQSIPw79ihuxFRG33VKb5qIKPzIiKU7pTdjuVkYIjQqd5pnsGJ0/rlew
-# 699TVOK6Xp9A1KPVPnNN+2Pt2HrozePJu6M3NP+948kQGU6uj2Gpsn1UEUKBwgnH
-# Bxragoys/yBcKvc0mJ2ZyaT1So+ICrrhh6baId9QjnGq91HKUkRKjt9KE/JrexN2
-# BCVa7TzJp+lpYSbSXF9VrXZ/JbWRGmE4AEL4cso2
+# hkiG9w0BAQEFAASCAQCNj1D9drvVYgbMSi/Ky7SwQaU1RD3J6kcjU79uXHPSElCN
+# /YktT0rtBmDA8J5j3fkeyfit65tZBVPP3lMUSbvbyqVgqF19B18HE5x2Noj6Yqju
+# 0VbtBWwZhYiUP5nMjOZV4WQZT+xew38my0jcJqNX0G6lpTD571VWFvbfED3U3A1n
+# h5hgHEYfFRJTzSsReuhpCYPPK7vAGuR0imeDMdmkDbNWc+NZJDKxJ+XGRCQS/Ili
+# Bq0h13oU1kPjBOKKZipvLRKNYyrLgo2UjGr7IeZvcyqyb6C9FwTzL9lMFBORx6UZ
+# y4mZO/THhrIAWCdJfJZ86NsxgU52HMyhHh4cOOVK
 # SIG # End signature block

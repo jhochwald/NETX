@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Make Powershell more Uni* like
@@ -82,15 +84,14 @@ function global:Invoke-MakeDirectory {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Directory name to create')]
 		[Alias('dir')]
-		[System.String]$Directory
+		[string]$Directory
 	)
 
 	PROCESS {
@@ -109,8 +110,8 @@ function global:Invoke-MakeDirectory {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUF8nuHZaELvYaIy7wSQ9/FOIh
-# /7SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUgbjnkiGGcx/RnyQi/3v6B1JT
+# YJCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -253,25 +254,25 @@ function global:Invoke-MakeDirectory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRWuXrLGLmuuinHhA8XRjN4aGPFXTANBgkqhkiG9w0B
-# AQEFAASCAQAqOFb7NHJPW1gyui54t/3fFnW+qfjyUit4aK4CmJFJok+pQyn1J/SY
-# uQbngy7qASKAQYXwSsMOJDgRw5MHQ7dLkOIYvLlOFjQQE0GhRxY+5s/42TbpUWPl
-# EpdSMX8Lpw+OVk1IUL1VA0WSgkMpV27Sv2zPyZFTq5zqq5RKuysnsyrUGbrQx9KD
-# YBSGkqrNYBI5fmBxR1S3cUCgRUv4nUYHM7oEy0rR6JHJEiOFfftXeMY0xYS+QDDX
-# kYLu4/H0qv7y5qS99e06x24xi8Pj6EK24q+Dn25nA+zv9qs9r2sok3/oVw5TcnAc
-# ic7nEQ2QC/mCoT9INkJztaKETk7ELa83oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ6BK4IxO8/v0C4kSesLtDq0oyggDANBgkqhkiG9w0B
+# AQEFAASCAQBamZ81aiXz1/EuEVxFro+/1Kte1CABnrSDf+eI1KzcETRcNRrVTT8i
+# zWVAXSkuKmgJDsuNUTWu4Wnl2EFs7cQVVeRgnSFQHnZlsxJ0FXmyGpAGG7xJuFdS
+# PyH+xBSxB3fr1u10X37ZU2OR/57Xs+zPA2dlepOfzf8IwE7drNZZnAJ90mvANQeZ
+# IIuCFnEuNN7mSW55kDGmiG0WyVkTzPyDXUUOnMVIozQF5+91JNkxK9DL+dZphlkN
+# 9PQtNeZ9Exx39hbWKSsqjZBA5cbqyvt9EucbH3oRojoLQaQ7lBjSjTc0MyzkI25T
+# Rgeq0DAif7MuL7BxvLcpRp+meNRkKNYToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNlowIwYJKoZIhvcN
-# AQkEMRYEFIG/uiOnXQLZMzvLvqLtUmNXRfipMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1NFowIwYJKoZIhvcN
+# AQkEMRYEFC+kIEmiMFtmROnvZtsI6H8nh7/VMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCGtqnFAnifldbISxIW+3QiP+OcguWWNGkKEESQbUMjeCSp
-# GUecCEASRyqj/cheSnN0DE4NyBns3WuaocqNzO7rpH3ppPXhdVNoy4fM39mOICbH
-# Gd24vAoFTkFQHFEndLgqAFtVUnjtUP0osQW9aBXVQmrU0Dh8wIbvrNyuZ3wFAEcf
-# 9kBZQmlk2C+IkO7CuLP+Bfdn/gDajPQAAe0qNeVocx2mjgkBwpgdWoLNwYPTMtD8
-# O2FPsgrTlpcL3FJoy1o1/pVp+CRSl2W0Tt8LZXQ8meKJeamJqOB6BsRZnBNG7NeS
-# yUmDRF/fhQ4OM+IceQ3EUD80EGVJarVLVUiouExZ
+# hkiG9w0BAQEFAASCAQABS9U5SMlEXtZZqM7hTHbif+XU+FqYCd50HVEfOnJE3lHJ
+# kXGGQN2RPCpagJ2Xzh+jA0f7IZp94K+ZE2KsgsLvA5D+8mkvdkgUPa7VGS+gKAk2
+# 0FlhC1p7vOWM67tDGV69T5Q60OnUerPZesDsjaE1SnbUzR0SKGzAJkoVgVV3wFsg
+# J97lFk/Ewhj3qA7Qqc1tbfmaC2eOn4mqEKKZq5uF1QrcFEJACdvdJxslp2wo2DxR
+# XA4dPBxhVGtFkKF3r+krcTI4kktGP/KByskBjZvxyxvjmZZQlkIu2FkTtWCds2kY
+# 0+9c+sRaB+SUhrIfcPBh5X8eErIs7IGe8KiDMavb
 # SIG # End signature block

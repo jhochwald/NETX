@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-VisualEditor {
@@ -103,19 +106,19 @@ function global:Set-VisualEditor {
 
 	PROCESS {
 		# Do we have the Sublime Editor installed?
-		Set-Variable -Name SublimeText -Value $(Resolve-Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'Sublime*') -ChildPath 'Sublime_text*'))
+		Set-Variable -Name SublimeText -Value $(Resolve-Path -Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'Sublime*') -ChildPath 'Sublime_text*'))
 
 		# Check if the GNU licensed Note++ is installed
-		Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'notepad*') -ChildPath 'notepad*'))
+		Set-Variable -Name NotepadPlusPlus -Value $(Resolve-Path -Path (Join-Path -Path (Join-Path -Path "$env:PROGRAMW6432*" -ChildPath 'notepad*') -ChildPath 'notepad*'))
 
 		# Do we have it?
 		(Resolve-Path -Path "${env:ProgramFiles(x86)}\Notepad++\notepad++.exe" -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 
 		# What Editor to use?
-		if (($SublimeText) -and (Test-Path $SublimeText)) {
+		if (($SublimeText) -and (Test-Path -Path $SublimeText)) {
 			# We have Sublime Editor installed, so we use it
 			Set-Variable -Name VisualEditor -Scope Global -Value $($SublimeText.Path)
-		} elseif (($NotepadPlusPlus) -and (Test-Path $NotepadPlusPlus)) {
+		} elseif (($NotepadPlusPlus) -and (Test-Path -Path $NotepadPlusPlus)) {
 			# We have Notepad++ installed, Sublime Editor is not here... use Notepad++
 			Set-Variable -Name VisualEditor -Scope Global -Value $($NotepadPlusPlus.Path)
 		} else {
@@ -136,8 +139,8 @@ Set-VisualEditor
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOvUIEpNaiNyDFehJIkhSd86n
-# hZ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNFWuD/ykZ2s2RHxkWxpaS1ka
+# RPigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +283,25 @@ Set-VisualEditor
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSykPDP5cLd3KMjkWCxhK8npCdjyTANBgkqhkiG9w0B
-# AQEFAASCAQCJsrHPBLMwUMnyPTgT62/RokNTckm6Xp0uEZ/xJ/F1E+jfeSzZ77dN
-# DKk3aSX7/wmKJLzg8yxVEHWLheG9IiStw9CpmcANyt4I8xniiiDQTEhm++OmuNWY
-# VwlqFN6Oz8jZ/2S2LqvLBglnM1njtfUEKKbnMbRXoWEAHaXEylUeE7ntUGgOBUct
-# SOhEyZY4pqPcucTgRfu+PNNqB/8Tq1ZWvt4onN5NCZPZmb3454ysAwzpDXhSR2jJ
-# WRRcTHvZFMIvSXdp5kM9ks36uorCjEHa0kJ1ImAgk3Ri+GFlmopBTPTZ8urT00/7
-# PpMK5b5hfs3P74woeXEGDWEuUKFhnjljoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR+xNC6BwjCaqw9J/N3g7axXVoWnjANBgkqhkiG9w0B
+# AQEFAASCAQCoLxUma/PYqEKylwqoE+6mlgOf8aigo8eNSwMbztedAjlWFlKzvMFc
+# eGyb3qE/geFOPxCzPkhAZhrs0yTdIzIBByyMMsk7SsYIQNWaLVvdE1CwfEyW+Wl9
+# WhDCuQ/nzPSFw+jDb7ueibS2Z1nAP86Zfb7+xeLohd6+rjVcrA5GVRWCMMCVgqyA
+# yZQ7G4VEBMNxqC/JucliI5WCOBhpUwOTF88LAXRTa1kg0bGjmbjUGqlxmA9vXkYT
+# FoB1HMh0inow/Rqg9a6gEKvZJ0oCniwDb7+ajOntuxTrn2C1Gxoa2kbJseg3M0sX
+# k1Q6AYAC/ctDutKFsCrcLxHlJV83gSTloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyMFowIwYJKoZIhvcN
-# AQkEMRYEFPqMtQesrbI8xCIaA/kL2nsG/NgSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNlowIwYJKoZIhvcN
+# AQkEMRYEFOeEbouss0RSOGd+7ABDmQaXi/ZlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBFEjqTx1jL5a0k/waqkELvNk2LzVt6+BPz+PZ03FoZen6n
-# hGj0MUi5tFDvHwB6rJDq/8SHjJvJdvUYbAxjParukiuoGWkt5D7hUCUWA552mPqX
-# tOO2g8tgmzDk3Czy7reNUHq/xIawOX9liBzibdZroF/YtikKWDdKI+mPQGxTDcxM
-# 50J+o9Pz+wGnNeRMGNN7cCc3xf7aGKSyiigXWewVOILTKkucUfm2Dis2CRUEmYqR
-# VZuidQBnVXEdAuC8sF4khd9FYZRdJjnLuZuyLodsqzdzbBFAIJebyX3ftKXMV1Yl
-# nOHjDJz3R9OAi/DjjOQOoxNYkVHUolAiRktZ2PCS
+# hkiG9w0BAQEFAASCAQA+6RsTYUcmX79M2yegQskHu6ahL90nNsOQo0MPR1+vE/If
+# qqO+vpEpKyNsMlKgk0DksR8LGrO5LfTTXa3b/BQ/2mU2dq3S4roFTA/Yhoy9z2Q8
+# AzmMKwYXtGl89xkNsbkPwQd7Lw+qCMvTu0kSkVLdgKgQ6O4C7Vame8LqFJpw/jM1
+# Q4GfoskGnYn5E7hcLwuJUbGk5CIEJjLqdtlCqYhFJtTnSjbvtxgkJCsjKG3yJnRF
+# UpdxKMa20D04cIru2BNKTd0Be47BACx1ICsIgTICaDG7T/UyQinsJo6fMKlqjd93
+# +h2FNBcZ+SGtus/2ECatOPopWAS2cZJK6ZfytI5M
 # SIG # End signature block

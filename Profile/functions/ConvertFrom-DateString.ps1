@@ -1,15 +1,9 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-19
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
@@ -111,32 +105,31 @@ function ConvertFrom-DateString {
 	#>
 
 	[CmdletBinding(DefaultParameterSetName = 'Culture')]
-	[OutputType([System.DateTime])]
+	[OutputType([DateTime])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'A string containing a date and time to convert.')]
-		[System.String]$Value,
-		[Parameter(Mandatory = $True,
+		[String]$Value,
+		[Parameter(Mandatory,
 				Position = 1,
 		HelpMessage = 'The required format of the date string value')]
 		[Alias('format')]
-		[System.String]$FormatString,
-		[Parameter(ParameterSetName = 'Culture',
-		HelpMessage = 'An object that supplies culture-specific formatting information about')]
-		[System.Globalization.CultureInfo]$Culture = $null,
+		[String]$FormatString,
+		[Parameter(ParameterSetName = 'Culture')]
+		[cultureinfo]$Culture = $null,
 		[Parameter(ParameterSetName = 'InvariantCulture',
-				Mandatory = $True,
+				Mandatory,
 		HelpMessage = 'Gets the CultureInfo that is culture-independent (invariant).')]
 		[switch]$InvariantCulture
 	)
 
 	PROCESS {
-		if ($PSCmdlet.ParameterSetName -eq 'InvariantCulture') {$Culture = [System.Globalization.CultureInfo]::InvariantCulture}
+		if ($PSCmdlet.ParameterSetName -eq 'InvariantCulture') {$Culture = [cultureinfo]::InvariantCulture}
 
-		Try {[System.DateTime]::ParseExact($Value, $FormatString, $Culture)
+		Try {[DateTime]::ParseExact($Value, $FormatString, $Culture)
 		} catch [System.Exception] {
 			Write-Error -Message "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)" -ErrorAction Stop
 
@@ -144,13 +137,10 @@ function ConvertFrom-DateString {
 			# The Exit with Code 1 shows any calling App that there was something wrong
 			exit 1
 		} catch {
-			Write-Error -Message "$($Value) is not in the correct format."
+			Write-Error -Message "$($Value) is not in the correct format." -ErrorAction Stop
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		}
 	}
 }
@@ -158,8 +148,8 @@ function ConvertFrom-DateString {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuPvBcu2GSUFbEfn94SSsZMZg
-# hM+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU2CA4Ztbx88rUD2j+7edhsUap
+# ToGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -302,25 +292,25 @@ function ConvertFrom-DateString {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRX9C45QBdXhOCdHM74IqmWEcd4jDANBgkqhkiG9w0B
-# AQEFAASCAQA4f0IbSdrfgYlcs5qosHQ4rWJ1CB3F+9ia1ItIUehIA8xV9YNUIm4e
-# R0BOU5SGcblEpM6t6fnwYtV/bRlDY9qFPoyJs+umrsMiAN9jARe2iQP4ttBL4mU+
-# UCk35fl9hr5CYrGnWrFKcIPRThnRzeC0vJHOyqzWia+9QtziZ/bhwEsHGBlXc+Kp
-# +Yi9VCJkcFgav8NAm/m1nTIV8rcZ7q+4k/vVH+kGTjfZjxi3FGEdY27yfAEF+jsl
-# zIMaz+GcNA5JTyH6r1eskibsdKhEKxScueE9Pfe3SeD7PPp4Mpk4jsT/VaEs91ak
-# ljWUEfXQ0WHl+RLV+GjorV8p8T4dUCQpoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSK8tcqzQ5Rm0BrsqV1nPoEtDWPNDANBgkqhkiG9w0B
+# AQEFAASCAQCDKnWMeFqzP+3vnhbYkD5OGCBFRmDzw05+04fOkIjYF89i0Jd/l/hk
+# oaOwUJ/WNctXJFXkjuj5jbFdygJDrAfNXVdb3IOmZaI7f+Ch/1svbg6rqC/N698R
+# EiVy4vuPjvaVsuM+/c6EYdiMV22lYPG53/xL58dddUGN6UrvatbivBMYUQjzGy/N
+# 2teYmJ+CfZoIbzmAVybPOJOBB+2WR5jkmwvbRr8XjfW9nSeN58g35Mc+OLZx+Sw4
+# BlzNL/Zw6NHat0g2Ppajip/MqU6EAi8TBGYtuV1LcioyLKTt1RvJx0sawau5CNyy
+# MzwdQdeAaQda/ezK6I5NkcwGVV7n1gBeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyN1owIwYJKoZIhvcN
-# AQkEMRYEFPGN+PvwZa62gG1Y5ciWz8cGqzU4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyMlowIwYJKoZIhvcN
+# AQkEMRYEFAeht4Qf/qG+d2LbDxRFmhfpDd64MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAQ6dhjfPqI0m6MYl03BrahpT1dEx3doeSf0UwU/3Qi+7WL
-# eiouGxmdslfdCVHp4spcozDho4Q+2+yed6wK8IR29A70fmGLV1XkActQLyGAmh8N
-# UVy4km/OWgIKB4Ei+z2nfEhLCkfVGMn2u6YMOby0JP+3q9sviE/wx+cJuwWOWo6R
-# xwCWTClx3IQNs4Xq4A2VlbIFd4Abi6KkxMs08TCsNmihv25HSN2uQ8hRNu81AcJm
-# 8Yz1sxhp/GFBcPjSGYafNqj6yKTzZpFasnAXb5XGe7xJQaXwz+HHXsNzmDPRt79D
-# hl7yvuySMrbvrgBU5tdfFDitisz+kmSA4fhUU5do
+# hkiG9w0BAQEFAASCAQBHgBuSNcKpcEfNMDElMC2jxtIWounFLOMWXTypYR80l3Ro
+# TJXXy/j0oyh1XAqkO0lnzsxqpx8EKpZYYc4NBACDE/dSgRFRGz3LtRVMt26Ge6FP
+# jh4oJl5toM9jU2CDeTQFtx3oohwL06WNUzKneB+TGPAkLX+Nh/NJa0ZPbiJmL6pz
+# 2hFJpN/sII+skEBl7xK+2Dg7SKXSeqPk9Bz6M84Q1JvsiTYafHbpn2/L2O1C0p+F
+# 85gpz32h6m6BoMQoDNaD2m3T772JRtm80jKdRZn11j2EKZGgNJBI7/YYWZRlJiEb
+# 0bok6hFxfgDvJ7DJMd9lR2zjBjc8h2AgHEoFCfEE
 # SIG # End signature block

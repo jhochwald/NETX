@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Make Powershell more Uni* like
@@ -87,7 +89,7 @@ function global:Reload-PesterModule {
 				Import-Module -Name [P]ester -DisableNameChecking -Force -Scope Global -ErrorAction Stop -WarningAction SilentlyContinue
 			} catch {
 				# Sorry, Pester PowerShell Module is not here!!!
-				Write-Error -Message:'Error: Pester Module was not imported...' -ErrorAction Stop
+				Write-Error -Message 'Error: Pester Module was not imported...' -ErrorAction Stop
 
 				# Still here? Make sure we are done!
 				break
@@ -108,8 +110,8 @@ function global:Reload-PesterModule {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUc+Po5YsES/T47nkaC0E8Ey+G
-# yqWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZMuOCxuzAUkCGmjEr4lPEAha
+# nc6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -252,25 +254,25 @@ function global:Reload-PesterModule {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSh0C0mi7tvm1LvLB/gZLXNcPQAqTANBgkqhkiG9w0B
-# AQEFAASCAQAPbIgHfaJzzYg+SEnQ1qu3kZt0LQZHWMbyvwpDzlu+o6CbvAeMo+5U
-# zCaYfXtCunoIreHWnwXnr2OTg10ET8ywxFRKapnbPRfgb2YTwtcuK9m+nim7q1lt
-# MDB4PxraTrHQpZrWGkvvOrM4hs5d2TrEbJVEOQeT4utUh+gndQkVGJYbfv5muQ7i
-# s68Vb2A1F8BMfdCvjS2Vk40B2gMFSExCX+X9f1/0Ao4dttb+BTqvVhDIqSL3p8Xv
-# OUQsLvyUsVA4kyvHNOHs0RzogErarR8hjdDh/a60LT8up5/w06C6gJlgoIp54bqp
-# 8J82LaU/A9JS+GkpCDNMcKeasLlYGKlNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT9su1wUQ6+GvMv2UlC7sjL4liDqTANBgkqhkiG9w0B
+# AQEFAASCAQAGNeRQG2+tlMogACkq5H+oDuCANoaI5bTRB2d7u7PByFi5Vq9RAFOv
+# vwbX1mt0LpiF8NOGFH4c4XaSMJvsIDDh20H0Mrc1m4SGzae4MeVhjieaptMoUsgJ
+# ZwmRnn90zgTzyTOqgGPN5ng7LwR0uVvs87FMZETjrBYeCX2k13cTp3Kq4xM8wUWj
+# cLcTIcXtCcg96btJ4YWmm0OC8eeRrZN1f0wJFYVCgVefjuls+sUg2MR1c0FDgJWh
+# BXkPnXOAOWWbSJcHpOnOF/26AXAt2CWcnjo09baYDP1WZF8dq/AtPmRwO46CpZGj
+# fvPGvaOFahUN6Bv2XrBrLYdKnATdxRu4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNlowIwYJKoZIhvcN
-# AQkEMRYEFN3MclvrUnxW/J75x+GW33Vdwhr2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1NFowIwYJKoZIhvcN
+# AQkEMRYEFKTnYbA5zBDnHcqSTI3d/IPfFw35MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBY+bEAttXC+XjBGP1AUeckg/JGhxlxCjWXiqB+kITF+kr7
-# za9dgIYRd6bNw5QgrHxRMTJMCpryZUIdRSqecDZTKuUmRG4WKh0YNgcMpos32WcM
-# z5D+tzuCx/FFXeDzifcKlpLjGDm3uIQL8W2tkOKVevqjdUqg4shJalXJPi6+eCIu
-# eEBKaSp6vrjG2FtBMIMW2NJ0uvl1SF918qxUC/V29HFi7gvWOyYzqZSyxML0x4Jh
-# yXxr6f5tvQ7EVHJgwedjz9AjZ399czdL2sFcR8cple+9XiUFiB1Okg9BqaBlFGBh
-# tsBfK9objlwbl9/wmV+0iy/PTYXzLB9rDmPELhIh
+# hkiG9w0BAQEFAASCAQBNGX2XLdrW0L12WTsHO8D++3m6C05T7KB/TaOrEQXmRFBZ
+# 5fnqzuaClj/PUl1D+kmFs8VggMiW17aWI0Gucw6UtzdZmjbKwe4AYXEAZsAb3Dzk
+# LCgAaS4xwmJH3qU0RZxey2xi/wzMkg9Sa+Y3ouoNLMoAlg2WdyeZOPQ1J3Nm9r26
+# SctyuLiPkcoaiCwbIRVirye5Fv+oBTMlbml97kzqKv7dgkrcvyquODZsTnZmyrLq
+# zKLnkMNb3KLITEDTU0u4PHXx+slygb29F7pCrrfMh/nf2kS9Fi1qGO2NGD+7D68q
+# nUaSWtEUvOnCa+dYRDhSeLLEwUHcSdGEsUj0I8yJ
 # SIG # End signature block

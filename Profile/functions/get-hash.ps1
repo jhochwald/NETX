@@ -1,20 +1,12 @@
-﻿#requires -Version 4
+﻿#requires -Version 4.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Hash {
@@ -93,33 +95,31 @@ function global:Get-Hash {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'File or path to dum MD5 Hash for')]
-		[System.String]$File,
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Specifies the cryptographic hash function to use for computing the hash value of the contents of the specified file.')]
+		[string]$File,
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateSet('SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Hash = 'MD5'
+		[string]$Hash = 'MD5'
 	)
 
 	PROCESS {
-		if (Get-Command Get-FileHash -ErrorAction SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $False}
+		if (Get-Command -Name Get-FileHash -ErrorAction SilentlyContinue) {Return (Get-FileHash -Algorithm $Hash -Path $File).Hash} else {Return $False}
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQ9OiGukKzvPK7OBbWakLlqsB
-# 2xegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUq+E55PQ62E+ahxu1w4Vui5im
+# bgCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -262,25 +262,25 @@ function global:Get-Hash {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS6OAVzPq5zEAUN+EMnPT3YM7IZwTANBgkqhkiG9w0B
-# AQEFAASCAQAGgDNc+GBpZGlbNk5d9ipYUSD5V3zflqwLlBm+oq+xxe9HSddpHYrk
-# KrtAVpBD/CFhKjDHXAlW0GlInYenYhJahIf6ooK8JIE4RGCfMFHZ/HoKrbKmCMnt
-# k/WXEfnq/3eFRlxCJO9EHWG6ojJi0FatKQrakzeu01J+zkWIHvBwWoXUheDVo8af
-# t9fm4SRnz8NAqfnv1NeSBFSA3Gau5pbyrm2zQPnFKocu8d5OohEC5NJVQ6hcCgLx
-# moR5Ukxek9+OORAQg/+6j2HNvb0clxLp5irruGZdXmaidFsHXcgg0Tp6cE0XxZi+
-# 0+aI3YTdaDDn/vqynSRdOZ5DVEBYus6coYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRoUxIiVQp1yXjri+BR1HAFsghhyTANBgkqhkiG9w0B
+# AQEFAASCAQAJa48eYjrhGgEh7u4SFO0+ugfpmGmDRwy1EEQ2v5Tq86VcvbJ9uygz
+# 93WlYsT3erWuvS/HIMWWWKr6rqvnePgyKdwYQ744tXB938BapTgX1fYxK8a/n9Jh
+# p0uMCQ42fYbnWGCh3GSlL9Zq8v17yrn9rgovxf7CFeLlvFVebfyKR+lNPunZu4T/
+# c7XHyc1S0bhJUEAqyjVxN/TUNW4AnaV2KxyF9safifgyJyhuG1woTuFkK68d9cxy
+# Os5xJiaUzaMU25mufjDTspu6VZoPrCmpwp/R2GTW+ga+x9lDTDjyML1yW4o8kzX/
+# +bx9llhtxxfpkzUZWOuDThEyqOqbQfJBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzOVowIwYJKoZIhvcN
-# AQkEMRYEFDyJYd0KPPhXm2laQkQjARtWk4PVMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMVowIwYJKoZIhvcN
+# AQkEMRYEFB+ofCjN65iFFP3WDqwL4xh4fsAkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBu54k0frqHGEXP1tZaiMNb2Fxc7SSlktzq4c2z1NtMQXIR
-# NueHuGKtWOiGG0rXgesx8FB876TkUsAKtASpHL0Z7rB3W8G8OaoU8mfAeACAT53Z
-# W3OmI9LRF5kWplHM10JC/ntE0Da7M5psN0ik7nOd3d1eGxisNehEnhGQjTCA8MBB
-# HLrPfRqgL96oSrUfODNJx08F7xHAOBAv7Ecm4D+qw6eyoKEVmSHt94BCoc5l1AHA
-# v0PHBsj93kCNt2WC8Ny4J7galzE3QXFxxzGdZ09ZBaWKi2vgYixsJ928VFvDtMTK
-# cHogBhFRrkjJaW6lITrrvhfi28VqYCopp8npPD9j
+# hkiG9w0BAQEFAASCAQAesiXMMQeqemNh8H4Xu5u/syJRjH+wZws4KZWzy3uuAFHf
+# bAxwM19EPaerziUKW4VDFPHfAdn5Uzgumms9Iur78SV2GkoY80LrJ3otLoXhq9ky
+# yhqOYQUbCJEUjDC0tRcAouIR7eXAvag2TeSZlPWylPcbga0Pu8+tYOlddOtPZ02j
+# qmbWeKje1sIOWAUX8cWZ/oFCcjSnL9+Ff1oTJHIBzxo2UpKcPinVKWR6lD7hR2XJ
+# iTCp/YstB7egMS5Sb9lB3ygCH8NacBQ4Dx/yemmwgOvbuQLGnaDFlm3TIljoFSYq
+# lB1Z1ttvlUomSQ3a0rDV7M60cIF1nu1UEcAiewPv
 # SIG # End signature block

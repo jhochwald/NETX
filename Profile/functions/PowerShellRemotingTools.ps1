@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Enable-WinRM
@@ -77,7 +79,7 @@ function Global:Enable-WinRM
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	PROCESS {
@@ -139,16 +141,13 @@ function Global:Get-NewPsSession
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Name of the System')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Computer')]
 		$ComputerName = ($Env:computername),
-		[Parameter(HelpMessage = 'Credentials to use')]
 		[ValidateNotNullOrEmpty()]
 		$PsCredentials = ($credentials)
 	)
@@ -186,11 +185,9 @@ function Global:Set-CurrentSession
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-		HelpMessage = 'Session to use')]
+		[Parameter(ValueFromPipeline)]
 		$session
 	)
 
@@ -232,8 +229,8 @@ function Global:Register-Script
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsHDjzYey6iHK56cuSOq3gOXR
-# tFSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSpE5WdI+ytA2XON1HAlyEPfH
+# 4hugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -376,25 +373,25 @@ function Global:Register-Script
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRZcjAXKVdUktNkUVmtUc9z7EmGQTANBgkqhkiG9w0B
-# AQEFAASCAQBk4qOSzfQlubx+Sxf/qPUdlqRRSNWtibBarcwXf43JKPw4BEMgb+UK
-# nMESao7up9ZMNsIxBrKCFWrLuA9ZmxGeY73fmOzXec3ysVkUO5I42I+f1gxczDTO
-# ch+Bvu4DxgCg0HXTlstCga5x2qJHU1UdAw/OIy1oDPAuOTehsuUj0wLIjEa/z2RN
-# /CrePdz5kMRWDPSSDxybL0BsIotY75NA3jO37CCC/+d1iYnysl/5gNLb2JBJ3pVv
-# 0DUtzUe96MDEI2P2uhdqTVN0LEyiOu0ntu/pTydgnSUIgdGr6xp0fZmysiWu+pKg
-# AFFGll0EpkxXwiaeuDle7vtJqTIC8axdoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRoYDqikeVtuW1I9TwqRB8VKsK06TANBgkqhkiG9w0B
+# AQEFAASCAQCPXMQZIMn6eSCkR8LD34u0WsOFgAZcLmP+e+gnnzguW8uhrUu/glvb
+# 4j0yr0EMUSGrZYC427FbxuSezPFik96jlprffAT0ypm+v71bBLSJgGuaDfOpJq2C
+# Xvw7oxdX5a7XhSTjBD3CUZHm0k21WyXAK2Q4taUTYg5UNmqSifWG42j13D+G9SEK
+# vRA/2ULw8dVBOltC540/XNjfb77BtpfhKVS8DjeKQzq5R9MowF2gSuEGJTO2ifvV
+# GG906uy4hpaA2FpXlvo6C45UTP5CR5MUMf/lA4d9PWOE0ZC/rR0Vn54urVfN0pe4
+# SF0EQXSEqf479MneBxcqJSMeE0vygtFuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMVowIwYJKoZIhvcN
-# AQkEMRYEFJtaaq3amQ1NJVoklMzoFAvYOU4XMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1OFowIwYJKoZIhvcN
+# AQkEMRYEFChKgJ1gXbD7XWWsS0g77Izw8gQ4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCtP0rOX/GMDfVHVKWGSpopYk3uvAL5ExW/U9TPwO5n8Jzi
-# KF1Nig2MsVwie3pHOknG2fKHxYO3iInNNAcoIO59nDSy8+0YN1U2cRbHRgf6GMIL
-# YGfGGMDxWXlXQmhaLkZEEwZuvwR+JRAwkY6SU1WOcPni+86o5tA1LZb56FKeiedp
-# FuB4uaPj6chvVIcvC8xQgzuQMjW+hKxZfDkTugd1Fqp10iGUP3hCSSwzewaTFitF
-# 4vx9oB6KN9R58j1wQGyV09WRcK6Age5hTYOoW4xxAYr87OOn6FVuL7qWWJAAGh1B
-# Ae/ddVmrk3pDldVlYtWBb+T/csdjnKVslnfrvMtF
+# hkiG9w0BAQEFAASCAQAhRVB89Cdac4Oa3L6U13TNXOeP83ma/QjEC1gLRnRJhQHK
+# q61rBj6FRTJSqQckIDEH+yNXaPeJYQ8oCyEIuJOyOf+qKpU1K4Kg10whVmavETJ2
+# nSnSMDOvqRuipXfM7GCds4zQyRRdcPtcQBhbxSwLHGEinJdK5npLeifFGUs7+FZx
+# w56EImqGHhgNUi63659QcmmdEvOH0myC2riBgsqBGZfc96dTCNx/1nbm8LHPU3A5
+# v2Ngo7zhi1nXjplYVB6C7c8NMRY9y1jWGyBSAQ51rDaUs+KsK7xrwmqKc11xj3Uw
+# li31+FK4vqt1skySY9j7xKfdUzAlQnv1R1fTIwnR
 # SIG # End signature block

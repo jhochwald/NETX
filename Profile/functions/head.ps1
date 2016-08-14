@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Invoke-PowerHead {
@@ -98,23 +100,22 @@ function global:Invoke-PowerHead {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'Filename')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('FileName')]
-		[System.String]$File,
+		[string]$File,
 		[Alias('Counter')]
-		[System.Int32]$count = 10
+		[int]$count = 10
 	)
 
 	BEGIN {
 		# Does this exist?
-		if (-not (Test-Path $File)) {
+		if (-not (Test-Path -Path $File)) {
 			# Aw Snap!
-			Write-Error -Message:"Unable to locate file $File" -ErrorAction Stop
+			Write-Error -Message "Unable to locate file $File" -ErrorAction Stop
 
 			Return
 		}
@@ -122,7 +123,7 @@ function global:Invoke-PowerHead {
 
 	PROCESS {
 		# Show the fist X entries
-		Return (Get-Content $File | Select-Object -First $count)
+		Return (Get-Content -Path $File | Select-Object -First $count)
 	}
 }
 (Set-Alias -Name head -Value Invoke-PowerHead -Option AllScope -Scope Global -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue) > $null 2>&1 3>&1
@@ -130,8 +131,8 @@ function global:Invoke-PowerHead {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWyl4/K1XUUbARiXuVo3rXFKm
-# BdygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpqRArpFai3vk1C5TYE83+zL4
+# UQqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -274,25 +275,25 @@ function global:Invoke-PowerHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQgiHnD084mTtdwuUCHN+4zBEJTlDANBgkqhkiG9w0B
-# AQEFAASCAQAcV64WkG1C2ToX2mNI09AXaQZksfZq+SLJyh4iONRcV7JnwesdE+rm
-# 7oKH6KJgEoKZNS2ZpviLXEZV8ciWf+C1GftsE2wD+XUBsjxqBzuPUVdB/POs6Vwm
-# AK6pp/lum49vZEaMifsneaAtxYGo61dvahnEoku3JZLsleCXxEd8qB0C19D9Ps0x
-# gQsZJccULB/zEBYmV7x3pYzM/UbPpmQg1wuuHsTsiATiOh5Px5m+zHtrjidst3NF
-# ZwoZX6ytTs5v0S4k+G8CfBnPrrdRb067OF2E1fep89LO7rsNyveqQWKwVmSjphcY
-# dB3NCfwoPE40Ry4iJGIj/PLN7R0bhDJNoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQaMT76xqhUY0vLT62KWDogUtKwijANBgkqhkiG9w0B
+# AQEFAASCAQBa4b6T6t6Yj6BrcmhjjluCl85Ztt78Rl33LLdWnEjEapbPPnX+nvgp
+# FO9MzHyMqJnzBnqOOFSh9AkuRZy95upyFp4zMXLC+BCq4Ng3EHFNrzLVz2XTk6cH
+# U911INmzuGQsvnm2h1Q7oj+KLK7scwnpEd71+js9gjiVKdftb0PNqmB82oxqnLg9
+# Sd2yxGkHVATY25Kw6FKm02cRzamy0Bt83rE9TUBy6wFP1m0Ya2Fz1Nha5odxeWS0
+# 83FnAXgYaZpr0p6TRqORSUhTkN7pR9erYz0A4iC00wzZE3EwHkkodcLb9J3lG+st
+# 6D9npg9zGKV7CBnfxy6qbfqNz4VNnYyZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1OVowIwYJKoZIhvcN
-# AQkEMRYEFFLs6CUlGZOBMV63X5DyQh7a9wF1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0N1owIwYJKoZIhvcN
+# AQkEMRYEFNYz0PhGFbO4tHMN6Tvs/c11kYTGMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA02Qu+uU71kPlXYw384lGJnrUbMft96GDU+25VRhua3KOy
-# 7S29BzqK9S3HcixF6DyW7WTXegAWzfK6Oio7xYKq/X4qYIi+4f60MVy83GLK9/CG
-# bZgJC0PfwLP52L6jKIcfxZld9lqN5ZhWqQJDHqsC9Y6vgDTU0p8yauHaOcFMNyvo
-# fQBWVXB5uguah/wTV3HpUiC6htQ34W8fXlUZJ1OqhvSlYPVYxyvdw3XVlM+zkMXZ
-# qVmt5HZflgGMph66l+5OObbkoFoDkG1KLqk+izLxMdyyLUCfn9ZHQ6aJ02MlD2Ck
-# jJJy0+EHqLWAMOtjTMr1C/bFGsOZe89V7AKKNnh2
+# hkiG9w0BAQEFAASCAQCoegOHZLcYJforTE0FaRvYgUZa+bTdyVfJvA5+f/uL5k4F
+# lkaf2F48qJ4HawWUvgZwxSybOyLGEsjMNjLJvoXT9CjBwZ2sQJa2hd6NJMjpH0uy
+# AaTIkFkgCcUEv2WCX+FZGqFg8TaE0S4zcZGp1x2ceSU2qEc2McAUD2HLOnItkK/v
+# 8kGw4NMul7VSMSASW9JjmpfDYphZ2EyKVPEKQoAKJkA9gxk4HuFWN0f/C086+mo1
+# 1jfdbUReZk7xhpoGPTDde+04O4/h+3ro4KqYGE3p3FKf8TY++YaT8pzTj8ifS9rO
+# P8RXg51UwYwqhBBj0omVsxjt9oiP5btMFcbF/bTD
 # SIG # End signature block

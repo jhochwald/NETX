@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 2.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-myPROCESS {
@@ -79,13 +82,12 @@ function Global:Get-myPROCESS {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Diagnostics.Process])]
+	[OutputType([Diagnostics.Process])]
 	param ()
 
 	BEGIN {
 		# Do a garbage collection
-		if ((Get-Command Invoke-GC -ErrorAction SilentlyContinue)) {Invoke-GC}
+		if ((Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue)) {Invoke-GC}
 	}
 
 	PROCESS {
@@ -97,8 +99,8 @@ function Global:Get-myPROCESS {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjjzOSj1Emm/ysz+Wu2xuUYmN
-# eK+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6R9ha51HeqbpZDSRA5veIvxq
+# v/egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -241,25 +243,25 @@ function Global:Get-myPROCESS {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRR5mbsApeqX3N/hOfn6mlKKL/OzjANBgkqhkiG9w0B
-# AQEFAASCAQAEAZv8ujRk1YOnAqttwMMyp9vtkVvOulZxMKRc29NFIZ6iGGLPXw4p
-# BfM1MXKSpDLc97qrImOQx+HUnQTe4RxrXOrDUsA0UC8pw8FrTFoEy3dP5lyvXRfC
-# DAA5wkiH+iwwFjKnGkLGPehAEYauKsmvkixEd1QaxTafNd6+aAabyRXBgvQfmQCO
-# g/k1DD7c57BCZYugWosRsLusMERPaXtvlTrXhTXV5GUx8K7m/wHykJ4H2zSr6OPb
-# jhtMC14zEFlbCwM0lQM3/p/gd/Vk9ytgo5QmVtPWAGIEETC+USqu4eOc+kJWGgyO
-# Udv2zaZ6PJIckoflUbPQMQljJCEzeKDloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSCYEeMy1stgZ3iKvMOfnynuResZTANBgkqhkiG9w0B
+# AQEFAASCAQBtA9ExZd9IonEnkxsqgbVtK+fuhMyrAV1ZT/8AolCJ9GO2Yu46HL7l
+# 6U6y8kCSnqlxBoguMfvAqXKxEc/bqc1BNpyzxT4ZqxuQzNfOp9YPcKtW0nVXkc5D
+# TRICUiUZMKwMyMKBe2onIT/W+KBN7+8apsnv7KtmIPu9oLndJDFRE/LFPbHUJpeo
+# k4Kj1Er5SGmwuL3uBkUnUPf/G5eJA22K71ssFeZ15YuyDQWza2TABEpcXYuRRRtO
+# jcqSjSgy8J91J/X40coCbV04hKyDxf+lRsM4SApq37tTX0isxavaQ5TO/1SasYsd
+# hdk+7LQ53drV8JwQD1a/VaJ54IdFd5KEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0M1owIwYJKoZIhvcN
-# AQkEMRYEFOEVB6oQZVik7SouGV5AIMRYrtMfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzNFowIwYJKoZIhvcN
+# AQkEMRYEFHE2NrNPmDgiHSZX13RHzPEEdW6+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCbwPI2nTeDh874c+Hd5aOtKscsSCO6bRAW2aYWzTsoiPeZ
-# n/SGCgI/7/wloPXryWrzvXQJKFQhDa0rf1czBiTlh+Lj839Xzor7mMzDekezE9MZ
-# 2ki3C3QfG+bJszbd6ubr27Gu9QoH6D1lMfM4FqwoHX6QQNszbbGRTSmc1jfsjndg
-# LxL4dSDcdBXTVHk73JsBIhcguY68JhncSqsPNbeStJajugYkp03bOAdvKzdheERZ
-# RkNDdduUY0dfIpHOd5ek7SA1z8R0pcybJB2rKWw3N2roTbO+3aiL5qaJQx6OfuvG
-# xhfhC+lVA+M61ydTPWz9B5zxRJG5dwIGkzkU4cgX
+# hkiG9w0BAQEFAASCAQAKIEhbaxzf8EDZ9qyc0RDjPDrrASzPjyt94otUyT+ovvI5
+# nDmsVCZGpRkk+VST90oqyv0IF8VG+vT4fM1TrF8F8bgAf3OUPCrxgrDmrR2WKIy3
+# Ml2lFG1ErekGxfxkeo0BkkMfVNjs8DaMaop0hPSKvloG41eHfQAkhj+ZtPI0OG9m
+# y+1m05PgzhR0txvEBzgqhLonfGTScORo3Z+STu38G8F8t9UIbstxtSRAmSlwzvYY
+# NHFFUkAnB0JOZb/P3YdaDUEFn4H5F295rajejzBGJ+NHBhDPnr4HAyUkOonwQfnD
+# B+pjC7Yui7v4hOjBsGTqV2bZ/EdIXwNIFzRMdMpp
 # SIG # End signature block

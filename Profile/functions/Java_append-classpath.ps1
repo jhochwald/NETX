@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Invoke-AppendClassPath {
@@ -82,12 +84,12 @@ function global:Invoke-AppendClassPath {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	PROCESS {
 		# Do we have a class path?
-		if ([System.String]::IsNullOrEmpty($env:CLASSPATH)) {
+		if ([string]::IsNullOrEmpty($env:CLASSPATH)) {
 			$env:CLASSPATH = ($args)
 		} else {
 			$env:CLASSPATH += ';' + $args
@@ -99,8 +101,8 @@ function global:Invoke-AppendClassPath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6vxIc52EkeKzvCyol1P2QGbh
-# PuOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUZL7FfuOX4DVVZNqJNIpvkIoH
+# uPSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +245,25 @@ function global:Invoke-AppendClassPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTj3vg+wy9vmbTQllIttpeT0JUd7TANBgkqhkiG9w0B
-# AQEFAASCAQAld1CG87ptzPrzJnHLb2DLecmiiTBK2XdDeRaxCwsSyO6BEcZI+v57
-# vorTb487fR0zuvEo1fUPpgL9oSOjSBRlYnJAHpf6ybpVOk3s2zFQjv8KdNkyd0vJ
-# O5vUSyRuStKEtffHT6svzoxqoTQucv0sAUnvmPtLftGbnkVNwQqaSKrU3cZ8XylM
-# YhA6r426FoVveFYzDumx67M9zTk+lwgf3VUqSiPd8DXH8SfdAIpzlJdS9PEGbv2j
-# Hfhy8TXwDQeyA07C7hoVfrTvj93X6B2nIJ0JQ6ZGkcHnigvaQF+UXQULaliNMkLg
-# ak6wm9Prre5871YBVaUuXDMv5z9hJurhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTQRPXebvcRC2U0MAKi4YbcEb/4gjANBgkqhkiG9w0B
+# AQEFAASCAQAhppn3GrROXyVmBA5N1FwfSilEM5j43zU/mdPKVFIMtVe3WTfnlrAG
+# rm8I0tCnMtPayKNE2vPPNxY/wF8N4cznENBst2qeSs6dwourzWJpZVFkCsZ4k0TZ
+# jLDQKvF+uu7SFf2pL3OAwXHEDxv7gWlgV3jgVyF6Y0LcGu+FlxLytiXg2jpcJpGd
+# Uw81TarVOS7yp8c+6P1puN6H1fToKDY/RAGcxXp68O25FrDFOXeypxrNVozZ++2B
+# 8W+BiziVQkPKQOdo4kuCu1zhHxWbAg798jB1xxY6lr3EpC5wSSpSPQiPjNZJ2VHa
+# R8z+Cz6rOicmqq/J2x6Aeeb5181yohVtoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNVowIwYJKoZIhvcN
-# AQkEMRYEFCldvRzACNoWFF7vi6IM0S3GR8MAMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1M1owIwYJKoZIhvcN
+# AQkEMRYEFF8mZenSo1yNIxBnndJskoE1lYaaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAZ7u9hMWRX3Jzbv53sDW/O7uA9vh9VxSyeS9yDw8O+CjMG
-# p6MbvxihiRv95JTZtdDvuAtj2Op5eSB50jEa9fEYn7hmyMMWx1SoWZhQ/WhZyrVy
-# pNz2qERrsNBacCyIPPQKkHB8kqXp85B9q/WC5j6L2ol56Yks2DoveQU0UCqb1q3Q
-# ayZHPxqhfcQT88G0M7mtq4ugpK3XkWQU6VFwts2vr7dPZoWSXiPnFwlwGxEfnZrr
-# 5mgxcpcG8aOT3lDuPgBNxD6kghUK/WmVfKB8UUjB/PUR5YzidBr5CcyGG4SLa8EG
-# OvLqzsVm0OMGthVK6TgnF8de20g15KF64Hlt2jNh
+# hkiG9w0BAQEFAASCAQCCOKGC+Xsr/ERrJ4bsKqZw+EhxUuAI0RtKbykkd8YudHel
+# n3DKKoTcDsBkoEbsX8XhQs49vWlJpbI4gx3xNATAxnK6DY5eHfq9ZXRK2KhsaPsO
+# 9yAGwA4gq4HLzA/bjAIoR7s9rTlFzzFyoW3mo4QFJToZV9QGQprabIgrFYvujdK0
+# ZTWe84qWoaTfhaCn+5OpKugMZQ2TWMD1QpbU0ZO+yIZI6OAhAUFeQ/WTCWaGggYD
+# zhvBYk/o3MAiKRb/UtFkf4ar8wpyv4/eoPSCnocLvBMdLhX8SoiEZ7krmh0dRuzV
+# hJmCtfXU+LDzi4NfEPMj+laSvHCJo5ymoe5yLGxe
 # SIG # End signature block

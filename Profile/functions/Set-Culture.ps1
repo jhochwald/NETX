@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-Culture {
@@ -76,23 +79,21 @@ function global:Set-Culture {
 			Use-Culture http://poshcode.org/2226
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Culture to use')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
-		[System.Globalization.CultureInfo]$culture = 'en-US'
+		[cultureinfo]$culture = 'en-US'
 	)
 
 	PROCESS {
-		$OldCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
+		$OldCulture = [Threading.Thread]::CurrentThread.CurrentUICulture
 
-		[System.Threading.Thread]::CurrentThread.CurrentUICulture = $culture
-		[System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
+		[Threading.Thread]::CurrentThread.CurrentUICulture = $culture
+		[Threading.Thread]::CurrentThread.CurrentCulture = $culture
 
-		$TheCulture = [System.Threading.Thread]::CurrentThread.CurrentUICulture
+		$TheCulture = [Threading.Thread]::CurrentThread.CurrentUICulture
 	}
 
 	END {
@@ -105,8 +106,8 @@ function global:Set-Culture {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1Zx4NnZuXOIC02Fcf20Et0eN
-# RIWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVOL6vS4zBvpB7XuuGjU5qvV3
+# OCqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,25 +250,25 @@ function global:Set-Culture {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQPIVP5f2OcQaXZru0XYOuOdM62bTANBgkqhkiG9w0B
-# AQEFAASCAQBq0SVnPS/fXIKXuh90NdaH2fYCSZIFiBI1t+KjASF1PKBL1Q12c5YR
-# kyNAmR8fFQwBO58/dgvoBg/r8ktLaRSQLcxp4rMrtsvPLM6O8Ps0xPoV0v60ppSL
-# grfrRhnSSKEmCOKk/IPkMDwP+8ahZxcPitom3ncabmz9zIa2Y78KEwcCZkV64PG5
-# 68m4GYFrglwRAamCNr0pedGcxKgQFJNF9sFx2lVC3sTUTKMg5XMkbSGS0at2ICBp
-# Z3h+27nWM+UcQla6LogFxMEQ2kXkXX5Kt7GpGvA1ajFnapv/uiD3n9NABL6+baZu
-# 6laDrHZJrmORAd//UxNcfffEXmpb7EMJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT29BXF2wRcC146X+UwzsOytUSJPDANBgkqhkiG9w0B
+# AQEFAASCAQBpHN94J1cjMmD6v5b9qWF6800iVxvLDxocMNzJrwJ9kXUmFzYsLqL2
+# K3doWzJpt5uBXqvyA/UdxXROg7HyJf26Z3GpKUzv5WIciqlPu0o/sUkAQI+vizfV
+# wT0nGsibpJmYXWWKnaI+HE8W4g+JLWqsVM8TWR0EjdWvEtzj+wy/y1kE6CmsOmbv
+# 27ll5zWPeFPCwTqEEBAP22GsyQ/bdQ0FWhyQdbfhsD9b7mdwC+k1XNmXTfDkN6nR
+# V0JhzLmcOs9zc25Us/u4br3mmAriOMOUm/TLNMXwDgxt8glwDz5sVxT3teLncJu6
+# 0iOiJ9txu1GuGdMni8FYuN0YXpynI31soYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxOFowIwYJKoZIhvcN
-# AQkEMRYEFJOpv+9w4CDFvBjSIeQkil0I9kUpMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNFowIwYJKoZIhvcN
+# AQkEMRYEFNL7MA+UVw7GiXrQ1tFy6HH9Y7MgMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQALY3l/Te7hq9SXfoAkxU891T8Qf8aUskEXJ7VWLrn9nnIg
-# ocGYDXRU6VIdMsjWn4I9hSj5mu5rBzLNUepCCIylvIAE9y7ToECAd4ArJvnjAPSF
-# JibTazoqN2XaBI5LWlZHSOv2kty+1jx3QyLuO2zLVqikTScPtaXAVqu2iGH8GANc
-# U4YCPSXXwBaxyvcUyWz9CmZCqpL9TOm5rPND712Je+8q0EHZJUhHuGNN+MwDPGy8
-# GMf2bNLL5hV9G2ZjKxcXWhWYWnxrRIuo9rxd6DvhAZSShlx674bzR+A+YOPC6a/B
-# yxrNlXhy1+Ze0zPs06D2qXF/aPJgdHSV8e3jxd1J
+# hkiG9w0BAQEFAASCAQB38ATbczeI6quT5qhXGvPdbmNhAXhlXhdYk8OYAkrarwKk
+# 8UXy0PmfWykWki/pGAl9J1flO8UWMOlQMGKS2Rtx+Rd5NtQfxHTS6KO91OA3ZQUP
+# Qx0kIMKv4gFE6W50HfhmfFiZEKgj+PPFeu2poK2UV1MMu825P27PNTvb7iiNGlqR
+# EZR4+AnO+90ZVYmY9wuOVy6SXEGCLvF5sh+RgmHRWOk5pDkrD6vsCjlXd7uIC1zp
+# VgVXBnV3mwFIR8tF+ciZkh/TwQnqDebW8sIJYVV6pOQlgXSif57/CZAU7JAfm+zc
+# KyNqWmbUjj1Nr3S/oOXudAFVnsL4zORhPSnLh7xa
 # SIG # End signature block

@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-FirewallExceptionRDP {
@@ -67,13 +69,13 @@ function global:Set-FirewallExceptionRDP {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	#Requires -RunAsAdministrator
 
 	PROCESS {
-		netsh.exe advfirewall firewall set rule group="remote desktop" new enable=Yes
+		& "$env:windir\system32\netsh.exe" advfirewall firewall set rule group="remote desktop" new enable=Yes
 	}
 }
 
@@ -94,21 +96,21 @@ function global:Set-FirewallExceptionFileSharing {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	#Requires -RunAsAdministrator
 
 	PROCESS {
-		netsh.exe advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
+		& "$env:windir\system32\netsh.exe" advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfVU9H52OhyAkQr5xanR5ex5y
-# f9SgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtVV5W2hIHSgdrJR+FeKXTyVx
+# hVagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -251,25 +253,25 @@ function global:Set-FirewallExceptionFileSharing {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQa9fkVmAZT9pjBb3FHoM80L9uGgzANBgkqhkiG9w0B
-# AQEFAASCAQB6Dui/5aCtH7oqm7Hf46Ud3jJHi/lYG+rmpEnP8Ka3CWRQqDvmD0LD
-# MfVVmWH+rjoQmJR1Bc0Sv3+QabSFumC05ASiSEcJYT/bZBBFxKB3efKYlE4Wqcsj
-# OI2I8+CAmcZWqRR10FxE2mPW6B8uCmuGnnmNLlwwXVah4JciZDrUnDyRaqBiUfQO
-# 4gEv+A0FeqY1MqHbp2qc+P+PF6nu4xGJQ7wf4cf86BlcZAVmgysMARVugtrCY4t8
-# sYRje5aWbzzMp3mW8G752llaZG0cU48BllEyK5NNl9aFRnRoIctN5izdYGy2r0o5
-# /4rVn1UAxH07xThA6T0CeNAe7WZ7gRNZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTYK5dSbijBRsb2UY8vVhWj43AjNDANBgkqhkiG9w0B
+# AQEFAASCAQAH0NTo0AWiywuxiWW5E2Ujhdo0xj5/l11uySPqfJFaOdZMAhN9jQfx
+# F+wCYYwUkemG2T5VpXFarmriYMO4wrw7eC3hczTyF0xFoc/l/pnIk/zrhPAXigLM
+# aqLWUFwm+02zN4PoUKpufoE2IMvDdgFAq7YzZsPNZHkMR9AdFXF8rxYsJ2gLLmq0
+# xCHVgWaa+6rK5j/pD9h6dc18USDfk9Ytf3y5QjyOGRdSBwGp6Bvbb1de0pHLCCNc
+# YkgpYCPc6I6omDjQFTSw5eWu73bY+G2WqQHHXtJOeH/V0t7TmLk4jkMIsuiL6zQh
+# 8bbzRdCymjW5JGa5HK0XG8Ewcn44/0qQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzNFowIwYJKoZIhvcN
-# AQkEMRYEFBv4n6KyvSh82HyPNABcX0am0rpdMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyN1owIwYJKoZIhvcN
+# AQkEMRYEFDvQagwfcfhZ6gDlIi6hizZEpVdrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCZtHjUqwO97S19c6aTAw6kYSm+D9/x4SI6kAbnK5Ug6NA4
-# SDutPokklX8U3eg5hOnZxK3kPmgyCqYc+BkgPPxCAwNENoewIs1VXN70dOeaRJxh
-# kwUGg9RzxHScIMNcl9LMl2k8SBo2A15/oUyrI4chnEn1b6eDCs/a0EViAvMkd0gZ
-# ImITA6oyHIpbg5bjv9g3AOObYKA8hTAGjfOpv/rB9MQiwjuRVRxEoL/lqWcGVNFK
-# gEBSMjyfSQ2BhdbnAfq20tL3cZ+0e9BHEVMRGqvK24eVcgA9gIFjFdt7ysY39UGS
-# Au6P0YuUXIiZDU0bs/f0vAVJ2k2pbWxx2ysl1Zu7
+# hkiG9w0BAQEFAASCAQAd+OgHwuXxnLkpOGs/N2nylZ1beuiLxmvP82O/MKoepiyO
+# /hWb0zTTj+l32vJg9O+7gpylm6ZFfYSM53t3sV64ixcIGKvGOqnlvITnR+C+V6aE
+# IjwEiCWR1mURm0H3bsy0nv70TQ61XGFz68lW+visriJo8f3xQZq78bxvZM9gBEzj
+# eq8ZKBwy4ZtxzBqKPtTQ6onRBL9kiBHNcSAdGT6FRwB6GVfGcthUbEiGRimZJMWz
+# xJ/j0qERWOOeMUb+oCnnUR6nu+hjo/uXv6mW68zAN7Ox7Sfn7dy/lop74QMoX6bG
+# UznEV+YA7eqOG6NZC9HCXomLGHEdncqM+ryZ2Cnh
 # SIG # End signature block

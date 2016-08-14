@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:ConvertTo-StringList {
@@ -98,17 +100,15 @@ function Global:ConvertTo-StringList {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 		HelpMessage = 'Specifies the array to process.')]
 		[ValidateNotNullOrEmpty()]
-		[System.Array]$Array,
-		[Parameter(HelpMessage = 'Separator between value')]
-		[system.string]$Delimiter = ','
+		[array]$Array,
+		[string]$Delimiter = ','
 	)
 
 	BEGIN {
@@ -150,8 +150,8 @@ function Global:ConvertTo-StringList {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBObiVdLgWAc/ndlrwFZImCuy
-# yZugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUD2oeJwpZimrI7tnN59PhvYy6
+# vSegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function Global:ConvertTo-StringList {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQnuTopIvA3+ZlCpT7BU3zQ3C8dMzANBgkqhkiG9w0B
-# AQEFAASCAQCQlOdpUhyx3mmMwdoMJKSEajmu20LBrbbswuB5N4TbK4jvQTsAIGje
-# upSGfxRMI6/M8xAbWtit4tIDkbOQU2Wui4/0kpjRoGRt7pQqPgFHd+WEpRKlARVI
-# PkxhESdedVI2/JHfm4PDvNJq6sSpbWM0eLL9Z1oT5h08xKAO0MDMbq+JBMvHaoDr
-# Pd3tlSJLWNw2TpPOPJXw/5t58FBR9zlCE6AAjp9x32HJXr2IecI5/LGKfPe3xmd/
-# 9Hp3nJHAJlerEow75j1zarU/NasdS1Kaf3pL98p4CPcC5wiCvZoe9QFjwk/KtsOq
-# wMTJiVNbAOlnS4aXLDYxabiwhe1n/bxBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT5OxG3wkKpvJKVb0WyZLDy/adacjANBgkqhkiG9w0B
+# AQEFAASCAQAnZbVLVR0dDj2Ush0p4D1LlU1u+fL+v1eYET0pBaD/ScMhv2RakQ48
+# 80qYle0kYjbuBq5HJa9gMa0s8fTE8DDGx69b/wAD34WfSapMdxGKAoiNyUyqHe5l
+# 8yroyLISlCSTSqTgsTMmJC63WTO4mH2R8umBLogF4o9hGiLz6UCtu1mTrhqNgxsq
+# +ZQzz+UIoQggcLdw9FbfL/he3RBDCV1NrhL9svk//vD7WRsfHUTQUVNA19+DSDkn
+# 9bsYLn5aCMB79SmZz1luAByt3GZdZc2eEbCPef4b+qfh8VP+ZlH3A2XziRv1TeL4
+# NViBlwIPQh9d2kQox6C/HssvJX4eUcvWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMFowIwYJKoZIhvcN
-# AQkEMRYEFBdG+fmIBeTWS5HgfCs1CetDgqqFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyNFowIwYJKoZIhvcN
+# AQkEMRYEFBHxhIvdlAier2XXByztZTZ5BHYCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCgCs2YnNQM8LoFHBDrGBmweMRlbdRa//evrFl7wWHs6H80
-# vv+2ZXNe6koz94sluLlmRpKmXqsOVnmBiS/yFuZjGAJmnGDn82Cn6cIvvfMVAvbw
-# 3AiGzojl56VJ2caafCtBKT3jxAXqaRf2YdQcKmyiGVFOvORFa4gm0hW8hLOPnQHM
-# ClToblhzOpeyD2tcCS+NxTNerm4IICOV9vz3PjrhXi5QDepHFa20i40blsj9UmSI
-# UjV2oioyfevH+SorcH8ryMLdYrasVJYl9rKPeOklFQIMHBfhLlEKMpYXkE2+tLOc
-# PggCPQHLFyAAPJ32CGRgJA34jkuDw9tzh/4gKnMd
+# hkiG9w0BAQEFAASCAQBrFrva3VzyClJKKJjly9pvagA8WTa28kzJfblo/BRZpYB5
+# 9m8/oN/SLoPttBhqwBYHasNaFElA06Ll+OBLm03Yw5Tpez5CJB6/nyserOc+WPy7
+# 4Y981VnPp8zZ6OROI2nJoT/eVetMDgqF2L5fR7DZ4Ja81AcS5rp3xDbgPHibJbbU
+# wFBRHf1li+WNusUUWKPWA8Zloo4AGVzomBnb7nU5ng7rGGCRPZvkEGkfvrjI+4Mb
+# huYYBB6DCZKLrtnpBSU62V5D3Ivkm9O6mVPKZimBIrclx79rEvoPkG20nAagrndh
+# 355OHgaawwOqlwgc8CrOQDHyzyTCeaRryFVJtDD0
 # SIG # End signature block

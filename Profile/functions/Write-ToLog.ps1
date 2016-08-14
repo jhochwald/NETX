@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Write-ToLog {
@@ -73,12 +75,10 @@ function global:Write-ToLog {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(HelpMessage = 'Name of the Logfile')]
 		[Alias('Log')]
-		[System.String]$LogFile
+		[string]$LogFile
 	)
 
 	BEGIN {
@@ -88,7 +88,7 @@ function global:Write-ToLog {
 			Set-Variable -Name 'UtcTime' -Value $((Get-Date).ToUniversalTime() | Get-Date -UFormat '%Y-%m-%d %H:%M (UTC)')
 
 			# Check for the LogFile
-			if (Test-Path $LogFile) {
+			if (Test-Path -Path $LogFile) {
 				# OK, we have a LogFile
 				Write-Warning -Message "$LogFile already exists"
 				Write-Output -InputObject "Logging will append to $LogFile"
@@ -102,7 +102,7 @@ function global:Write-ToLog {
 			Set-Variable -Name 'MyLogFileName' -Scope Script -Value $($LogFile)
 
 			# Create a start Header
-			Add-Content $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
+			Add-Content -Path $Script:MyLogFileName -Value "Logging start at $UtcTime `n"
 		}
 
 		# Have a buffer?
@@ -136,7 +136,7 @@ function global:Write-ToLog {
 	END {
 		try {
 			# Dump the buffers
-			$Script:MyLogBuffer | Add-Content $Script:MyLogFileName
+			$Script:MyLogBuffer | Add-Content -Path $Script:MyLogFileName
 		} catch {
 			# Whoopsie!
 			Write-Error -Message "Cannot write log into $MyLogFileName" -ErrorAction Stop
@@ -150,8 +150,8 @@ function global:Write-ToLog {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUyAn5nm/PoumHCPyWSkpWEt//
-# elSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuD3VJtkiJPbcjyBR6tP5Hh6r
+# t5mgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +294,25 @@ function global:Write-ToLog {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQIWFI1b990EKxiT7QRVfAH1YOE7zANBgkqhkiG9w0B
-# AQEFAASCAQA75s50KKtc0knw/h4NOBjKlC23eiGhUNziv73RDRJ4uhkbZ3outsmk
-# 5gUOmvH9gRF4KlahorEz7j5Z9Og45KJyIdB3S8S/GKVz+ArCSbvsFaPcRzOm6rTC
-# H7R9ot57duKC5t73UwK1y/eIdpvK8wKyms7HHO+d3a4ws3GK318baj+Dmb5cl+QF
-# 4gTOOPy09FlmZmIL2fEiJ3kvIJnCuUmgnUmEEqwVS6qDYnj/is5GriRUaCAwlCsr
-# cnt4NDU9vZ5w5BKacJuLeijHp1IYzSgHobC+mOGeV8e8VOZnFokPRco30h3w5Dyv
-# D4vFdxOVe96xfn6EvAP406v/GZDpFxxeoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRLikgCSG1+wyYdXDsl1CkmguXoDDANBgkqhkiG9w0B
+# AQEFAASCAQCYx6m2X9Mc0NFBDcX99ta3q/EEAm+Q5KMitluKn7Ak07ti6gAQ70zm
+# PjgVMfrBMkK5mjJlFU/xPf0jwbb8PZmzSnGy8rGBnv2p68ZQlZJRDZi6GRl5QoZa
+# pYz06fAIP7LsEb6GqZgB4Kx3Rt8J+EOaC3kJjMDH6ZtwmE24GhUkxCaqG3HLagfH
+# JyabfUzv7GpTwEPYT+HrLYnwQkZDvEMObvMJprJ0AMHmY/2Mr9HCR1hUjCWHnB5+
+# /DTBaGZ/eqNIZJUEJdzZ8sBLYNtMR+hw0PJ+T7Xdu1MZejsotMUZ7zdERDG7hBeK
+# IVBpsQ3TDRp32znne6EhotQChA5lFvyloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyOFowIwYJKoZIhvcN
-# AQkEMRYEFJ4he7azxkGZTQLOKE4rL8JRAJ1BMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxM1owIwYJKoZIhvcN
+# AQkEMRYEFMGxFUBaHxlTK/FBHSh1KVKvpjzUMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBCTj5jXAKWwOE27wnC5Br7Igf5bgNvbcnxEYS40UUgbrcI
-# FdqHLFNcJtzETNffElhCWBmcVY3D+DRd3RLAS8067iE95zC59IypjXUDbIG3FGUW
-# pXfpSZ9KirJlRNalSWAWwRtHWilH5n9VbjrjTO/Y3p8hYQKYbb/Je3PpopYIIaPx
-# JcfolP0y0mkHEHhKy3hwfxb9pf9qdJFjKoV2Mb0bfaAUfgKbgbA0W2Fw+GmBUwIr
-# tJBawhKsldtCU4RanbV15iyrpczJWQggt25/fsKAMi0a56SYuJJvNnXk5tpoDXT2
-# qnu0oDDVkm5LCaUGH5RC8h9D6Zv7nYvfU4Ik8/Qb
+# hkiG9w0BAQEFAASCAQCmkE7cWh3ngXrEPefeRRilSIn/MieI+7e+1Urn6v8VMOAk
+# F4LSCfOPD1syvO4qOZwBr8fQKhQfNWLHPginy5bLgyQioCOBv58zAWXKzCwLtSdS
+# ogHsCdwxtQut4V121EB7ane+HFCwFXiSVp7OKgivGACwDG+ON+VYxScL8mlYbX5Q
+# KwzD0J/NY1r6gIvmj65e6xsBy9ZEgzU05MFdbRXPW3rjoIFxXhFVQlDLkLCxt+Tx
+# TewCstSTOAz7JaqJkvALouKD7mOahO8wTbtfwfxj8ZIQzpYvLmX+LUpS0f2gMDEW
+# 7VoY8LUdarnO+y1jdaxHBQmNTDTk3DEJUCSXJT9E
 # SIG # End signature block

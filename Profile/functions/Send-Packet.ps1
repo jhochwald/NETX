@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Send-Packet {
@@ -107,40 +110,35 @@ function global:Send-Packet {
 			Source: https://github.com/JohnLaska/PowerShell/blob/master/Send-Packet.ps1
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Target name or IP')]
-		[System.String]$Target,
-		[Parameter(Position = 1,
-		HelpMessage = 'protocol to use, default is IP')]
+		[string]$Target,
+		[Parameter(Position = 1)]
 		[ValidateSet('IP', 'TCP', 'UDP')]
-		[System.String]$Protocol = 'IP',
-		[Parameter(Mandatory = $True,
+		[string]$Protocol = 'IP',
+		[Parameter(Mandatory,
 				Position = 2,
 		HelpMessage = 'Target Port (against the target)')]
 		[ValidateRange(0, 65535)]
-		[System.Int32]$TargetPort,
-		[Parameter(Position = 3,
-		HelpMessage = 'Fake Source port (Default is random)')]
+		[int]$TargetPort,
+		[Parameter(Position = 3)]
 		[ValidateRange(0, 65535)]
-		[System.Int32]$SourcePort = (Get-Random -Minimum 0 -Maximum 65535),
-		[Parameter(Position = 4,
-		HelpMessage = 'The Time To Life (Default is 128)')]
-		[System.Int32]$TTL = 128,
-		[Parameter(Position = 5,
-		HelpMessage = 'The count, how many packets? (Default is one)')]
-		[System.Int32]$Count = 1
+		[int]$SourcePort = (Get-Random -Minimum 0 -Maximum 65535),
+		[Parameter(Position = 4)]
+		[int]$TTL = 128,
+		[Parameter(Position = 5)]
+		[int]$Count = 1
 	)
 
 	PROCESS {
 		$packet = New-Object -TypeName System.Net.Sockets.Socket -ArgumentList (
-			[System.Net.Sockets.AddressFamily]::InterNetwork,
-			[System.Net.Sockets.SocketType]::Raw,
-			[System.Net.Sockets.ProtocolType]::$Protocol
+			[Net.Sockets.AddressFamily]::InterNetwork, 
+			[Net.Sockets.SocketType]::Raw, 
+			[Net.Sockets.ProtocolType]::$Protocol
 		)
 
 		$packet.Ttl = ($TTL)
@@ -150,8 +148,8 @@ function global:Send-Packet {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUl0B3h/bFFNs7Cy5mUW60RxMV
-# R9ygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMsr8Ogdkc1Y/QSI8KiWIz20g
+# lnKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -294,25 +292,25 @@ function global:Send-Packet {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSuDZfrxkzXz/GE9VHGFasQ46DA8zANBgkqhkiG9w0B
-# AQEFAASCAQCHziju2yuk/JYEIIEmK3YtSNj2IvfIN1rKMFkniPd0MUBJcUxudEwv
-# 8/Uy/pwDTdIQQ5+NG/GNOH0KA8WVN9kGNJQVQ6lWMgYrfLe3fFKc7plcCOnbuNpO
-# XhDTh+5CH58glJNHtkbO25mTbUO/djQFiA8+s4mee8vY6PLaABjVCDzP8xxSoOt4
-# AEJhaALSg0M4M4FuK91TaODpq9Eq1mVLEmIl3WSIgF5cC+/F2U6hZ9R9SxyDDrfA
-# PEeVqGmVIQIfOyoylUsquGf8Htr/WnRGgH9GEWPUweOXjQRw8ON8zNtfu9bu+wwf
-# d9lqanrcYAU4TSfoQfNUsHz1g/jpKBCmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT9ue54jSt1KFZNM2T3F5uuF0KBbzANBgkqhkiG9w0B
+# AQEFAASCAQAlCwwFTBSAr34IrHilozHoB28KRVsPLccxnoV/hR5ty/uh1GVwwNh1
+# Bi1ULSjtp0I8qPtis5U95przVjYrO41+L0h43ymLQ+m6yekBktw+lDQfFCBhAmy4
+# wo62INrUdBCuMu/6T4q1WGxELtmWbvVyF0vOeZj21R6cO06pGpEB4WsfY7ih1svc
+# T2KzL/AQ7dHe8wMbF95Km4dybCjHQTQ4/b6lRRwJr41GCoLvfHx3Ybp6Ty5QOIqi
+# 11NAn8SxoVxELEcKUeQdhWGvFdDTOUk4Pz0v7Tssz3e9MV1ufqr9M1CFMJP/HHHK
+# gjVHkUmFVE5LVQ7nxJ1qMjoajZmesHh7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxNlowIwYJKoZIhvcN
-# AQkEMRYEFMVwnb5Fyh+RU4lvCILso0jC/XhCMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwM1owIwYJKoZIhvcN
+# AQkEMRYEFOE9y0IPWujfgPjhlYTjQIeDEgIfMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCElSo6gLLhxWbzeN/YL2rEp1wT2Lt0+5uL2lCF/vAjSh6i
-# te43hsjdLvqcaM5aFuM3Eu88NtylwS5l64gX7ym8eEKHi53tbV2+n6UknwC2Phou
-# DrAJgh9VQ5ZE5OdfLhCK6B3RK+NFRstxwqBlFH+VcuEVVDatAORLUnbapfxIPW4U
-# Jn9Qj+dzdNmyrdNTKTHtth1TOKOn+utQZDk4LlFScqnZh50El34xtu/oX8IJIf2w
-# 6bpGvHNj3esT54c5PjraoNyC6u8YJht4Z7Wt1tv80sstl3XnGrDCjOmJ1UjzK3q/
-# n2YWCpf/De/fEEEjHaI2QhjH7f9OCE0vSV+Jrpbo
+# hkiG9w0BAQEFAASCAQAB7upVbpn09L79NrFyRX6TE18IKY7rDnoQ1gHhBVvUYHQc
+# af6AmgWg6rnMjpedvQQUR8v+DNqEQ8F859P4bjZ+fjBUlDe8DhP9xc2Mlzjp2jKS
+# rfXuL6DRaoi7cs6U4nxAkNSaFcPl4i5o7zKWxjBA0iPQXU6UR4C+LvXfVQzSdmSl
+# eDeQoofs821T/LGZJp2sT86o0AtKnsM8fT3sc0DBRMwg+Nhx9+ysAScm8KS1ANFj
+# 16KCeK1bDAqk18sdcUBMxcgKq8QlnuyrhmkemHAEU0Nsufy4PgScWxEmVsRnzdpB
+# hAaFX1uwQyCALtYxbW3WXOK2dlgj5ajB2jTIQWy2
 # SIG # End signature block

@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Test-ModuleAvailableToLoad {
@@ -90,19 +92,18 @@ function global:Test-ModuleAvailableToLoad {
 			Quick helper function
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user',
+				ValueFromPipeline,
 		Position = 0)]
 		[string[]]$modname
 	)
 
 	BEGIN {
 		# Easy, gust check if it exists
-		$modtest = (Get-Module -ListAvailable $modname -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
+		$modtest = (Get-Module -ListAvailable -Name $modname -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
 	}
 
 	PROCESS {
@@ -117,8 +118,8 @@ function global:Test-ModuleAvailableToLoad {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0wbZv2KPd7dWCHcreSdOdbvK
-# 5tGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUF+oZybUImiwtPAZr1QyYhI5X
+# 4KOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -261,25 +262,25 @@ function global:Test-ModuleAvailableToLoad {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQArvsVw6s7QX5iaYBrf1OIcDIXxjANBgkqhkiG9w0B
-# AQEFAASCAQBtdBpUUqhFhhzpW9ykdNbttENGgUBmHXYbT/RRTr6NsJWe52sOB/wy
-# OiWKG2h8fByOuaDJjWeSfL8Qp6IOKQCv+yJKcgKIb8hLljFfh+ugp6Gx+g84cpYp
-# fertyXT9ia7167ikZXYVJDEHAYXvLcdxqSCEGBqm9xFh397ASEqdd1BcOBsGtf3L
-# ughCGhuj8L0uj7ZwjMbynzIH09/qPDPzmDJUqL3BKJ2JVmZJf2k2IIHwVvnewmKd
-# ho6CddkoQEU8JSqszKbZ+/k2jaRF4WasDEdrWhjibeohwL+PVxEH+a61kKJeOia3
-# 2lzanFnicnsN4cg1FoviF9uuaXP/D4HYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTMafl2a/v3u2Jj+chqkV7gF7JAKzANBgkqhkiG9w0B
+# AQEFAASCAQBJpFZJyXZ2qFO1PNJVaJZ0+xTjgriPs4ey6RgNl4fmwvwSGK7MbF84
+# JMXlcdXOYhz4DsocsTfMgOammQr68zwbq6sjalImZSr865uXCItvQBPfg1EhWHug
+# HszXIOfGi+l7PyQAtTuk1G4z+s69wCiB+Jb1cyCz0kNRdlwBZP9o+zPYbzLHsbvw
+# 7rzq5nmsJJzdHxiGi5ycOxFGFpwzKWF3oCCukXyQ7XtqOHOsQCJoI2j59mTsDcWZ
+# /CdOedc74aS5/d1YQKECiKQgVcLB8VitPCzYjpIFaSv3IAI00PGr/NebXFlIuK0c
+# 0B1Ybly8pWMHQktZiJBTAqPVPMh8ceTWoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyM1owIwYJKoZIhvcN
-# AQkEMRYEFOZTd55oeFSnHvGdAYBzpem6+S4RMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwOFowIwYJKoZIhvcN
+# AQkEMRYEFAj05rkvNFKRL1sHHvxLmipPAaSZMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCS3gWL6JYY8/1aSNehxp5DVoqX+vqDOCZcYD1AIdUxqHwr
-# JeGiFppY/emLUiX0HkOdtWsPxnjk1jVVhA69W1wsj1X0ST7V3g3n1kmqNKWpr0T3
-# dtscLuKPchoynmNTDsGZObFr0coiBy+BEoS8kW9YRH5AaQPFc5JJ+jAaeWK9+GKU
-# sRmu85/9Hv2PQ1caw2FA1saw/R0fJYO5r7vrZVfKL/oKRFuyp4HpCALwg3t4NHl8
-# 0bOtWNI8yozxZVs7GIsjLdurqjOSzUbKPHGDWGXx491GciOyGhC01vxELnp5eCvw
-# F2G2ZxzvSQ7RWnJgeTAILfbW3f+/JOUWdDy6mQl4
+# hkiG9w0BAQEFAASCAQAGNbGfUaSkTElw2s3tE2m2HVZ6Izr/TbhgPk7wQ1rjzdAz
+# ef8Fop+F4f+uKVokNwkZhgpABDbDZKCXrE+8FT/JfoELTFfkgldIglq85hh4JgsZ
+# CnDvefczn9jwtTK/E7zKvfzLpaDWOhhGJODK053E+T1j358Lewqz+j/Tt7rHOO6Q
+# z5s57YiuaJt6b74xfc08ZsqGTDjqft8S/d9dEJEuMfX4a3kh7tOL7+stVf3mYkvR
+# yTrmbmsUcxblAfAYCU2RQk5Hm149XrbCRnS3voTGxTGLtwrfklSSYnYENmOQopWD
+# kqZl2Xi4Wffi7yPyHxBRABChM1TeVZsUlAmQsHYR
 # SIG # End signature block

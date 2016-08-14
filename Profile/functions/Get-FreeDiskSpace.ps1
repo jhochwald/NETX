@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Get-FreeDiskSpace {
@@ -77,8 +79,7 @@ function Get-FreeDiskSpace {
 			Idea http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Array])]
+	[OutputType([array])]
 	param ()
 
 	PROCESS {
@@ -90,7 +91,7 @@ function Get-FreeDiskSpace {
 
 		# Not sexy, but it works!
 		# Base Idea is from here: http://www.computerperformance.co.uk/powershell/powershell_get_psdrive.htm
-		(Get-PSDrive $Disks | Format-Table -Property Name, @{
+		(Get-PSDrive -Name $Disks | Format-Table -Property Name, @{
 				Name       = 'Disk Size(GB)'
 				Expression = { '{0,8:N0}' -f ($_.free/1gb + $_.used/1gb) }
 			}, @{
@@ -105,8 +106,8 @@ function Get-FreeDiskSpace {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUP6cDjzpXPkP0afw6mgUEtzeS
-# oAGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9dTyI0RR+WjYdL646mVZ5z7o
+# 9u+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -249,25 +250,25 @@ function Get-FreeDiskSpace {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRC1Fiz8X0lILlyTJ9inwo/J3HYHDANBgkqhkiG9w0B
-# AQEFAASCAQBdOvOm7uVv2dYTOY+2PhzTUHgIBqn0YX0dhOza3ZEAvy9Gj29+sqhW
-# 1GBIjS6OVvHioqEdQ3E5+Hb8lVt12ZiZnBmeprkcCUis7ZDt0S/X1i1OUykg5ZqK
-# 5etvl6ILNrZhllvyHHudFElJpR5C/EpTV+xb4q78AQ/kadQUZlHT/O9O2eFV+uhf
-# aS+imqE3Qv5uW/o3MVMxdVHtPVkw2cHlZLsmW031opITMrxbVPM+8Vv1c8yVoxc7
-# ILhO1Tj0D01AwuLT+9s3GplHAMNilfj4vnRw21kx7U+u3YJjgitxlp1jH4df7bFd
-# GUimWxuS4vZqMvPYgVaVLnFBG5r+6oLaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTfOnjWWG+5Tn3DMvvi2hjPW8beHjANBgkqhkiG9w0B
+# AQEFAASCAQCbHP6V8KJBP2eedkDTjMUNLQ/WKpaVavBzOKweK05mIdG7RxxPgISh
+# 3mh0LMXIUX5QKdCb6HQvtXYWLQdS1dBiUlkPlmKXbLRTKDpryiDNACyeFkgOXPad
+# DS4393b/r4uos6y+NK/NvATEscSnLpYUT7H8Q/jNB4hS7lrfVvGbwuDmYPZMf2dL
+# 8HLm6Je6AMwoedGzNOaJm474shqc9Hid/RiUus8C1WZX4CGL4uDsdfBoJnMHymxS
+# rv93k+jZuS9zKm+flDYzJAtcAwMvomu7bt0hjY2WKVfE6+7YTHHJfHeks7ReV4iM
+# t7gBaxgXzeg4qwDSJDR70J1MXv1hwVjboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzOVowIwYJKoZIhvcN
-# AQkEMRYEFDNGwpCzFu4KGgcEJcT8ihFsQ9yoMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMVowIwYJKoZIhvcN
+# AQkEMRYEFLSMS9U/DmVfuFBTOp6BOO9jspZKMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBT40wRd6THAXKGCtKup0G+qiBWrwA4YpEcbveoasjcPMxb
-# 02Vw4qiwMNQXbkUUYAZThbulVknKPG3jiNsH/FBhrUJwyf4CGr1Rlm2sGi8ocLte
-# YbMvCAF+Eqq1OUdidOPBdfB+vexFAz2+nqyf6oGlVipDz/StJKKYX+2JUNb5X9Kl
-# npSzN5A6frmtbiw9hcJlT+i/snLT5W57DyCnjdmIo2AxUDjqjIvAGJR2LXqlYx6k
-# BNJ5gy4z3lhm9T3hrXL+f0R5WJDq0i59B9h5Mgieb9kf2un4INvVuzoNt/ryC+iv
-# E2FTSyLbTL2RZKCnZlPeO2dagzXYefZJSK1WdrSI
+# hkiG9w0BAQEFAASCAQAGNKZ6a+Snt5dC3WTcTiNgq6vAjTA/jNuvpsCSmrJRprh1
+# oDgrf6dDwASujhGdoWkJUPZRC/FWxKEYSWOLJpnQrEzPY4y0FUYa6UmabXVSJezd
+# ybZu/Gkcf7XsZseiWJiaIom3JBsq+PqD3SlN0pU2z6SlvowZ4FCbW+OWOY7saYQ+
+# 8eTyu12sRRo/c77ncPts5S59u2wYyaRn3QXcyFxd4iMElllJcnCUFHwH9eG87luO
+# rg51pJkPpWqpj+vA07Ek9OfCoTYv9bf5wrEyqHr0pkHCe0E7X2yfGQrldvSpASSJ
+# ube+xgIa+WA+jU5yZl6nh/Fz/i47yi96ZWAHXStK
 # SIG # End signature block

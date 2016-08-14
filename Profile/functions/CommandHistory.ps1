@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 2.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Save-CommandHistory {
@@ -80,7 +82,7 @@ function Global:Save-CommandHistory {
 
 	PROCESS {
 		# Where-Object to store the XML History Dump
-		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([System.String] -as [type]))
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([String] -as [type]))
 
 		# Be verbose
 		Write-Verbose -Message "Save History to $($CommandHistoryDump)"
@@ -119,7 +121,7 @@ function Global:Load-CommandHistory {
 
 	PROCESS {
 		# Where-Object to Find the XML History Dump
-		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([System.String] -as [type]))
+		Set-Variable -Name 'CommandHistoryDump' -Value $((Join-Path -Path (Split-Path -Path $profile.CurrentUserAllHosts) -ChildPath 'commandHistory.xml') -as ([String] -as [type]))
 
 		# Be verbose
 		Write-Verbose -Message 'Clear History to keep things clean'
@@ -139,8 +141,8 @@ function Global:Load-CommandHistory {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUATr9NqJgf6R0Og15AlaG/QVQ
-# GmSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsAR86Y2SZg/autAAmc8hrVEk
+# jzygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -283,25 +285,25 @@ function Global:Load-CommandHistory {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT0ruMiu3wgciUfv0v/maMPvecVxjANBgkqhkiG9w0B
-# AQEFAASCAQBU2ougDD+5LjdOU4tX5N6+WNXL8OSBJGgrIPRz7K91qsKMndEAH/FL
-# tS5p0s6MagxOP180LsbA4H9XR0crGvkaeP7L0+BltrSzoPSSXkOD5/gO6DbIVLyE
-# 7FokHzlWqd9AQLNvYzx9aRxdFf4LRuKMYPO84Mo4GO2UOMXSJYKw2fAbn0mtk1YQ
-# P6l699lBgyYFOa8LM++92Y0I+FkreDvMw+8cs6PoneA24oO7Qw6hDv7oCrqZdPiw
-# bzZAporK+UxoZj4JWMHpUs9Z7961e96biK2Pqc/Y0JGXOuJIJSLeNPpp0Qellq4+
-# LN5ID5qQ0DwO2hj+jr4VU44czbrdg22/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQlgaQQMJyW0ZPm2+a9HTIZSgxt5jANBgkqhkiG9w0B
+# AQEFAASCAQCJrNahMvooOvOnnP89yWWZBekMFtxHlBSnHly0ccrgWm8m2WeVRRSK
+# CmBgTWeNsyP17NExi5HogSuU232rQYM/ojQL37BdZ1T172Q/tT9QMcPg49apy28g
+# xJpm/Y1zsTe+0IPh1VgLfDAq2mCUklPg7mg3U/rs1lsq3oEeOfbge2Zhy592tqf5
+# 2nkqBPfF+dBv8DT/AIXQeBKhPNLyaghvKgcq2AAvhjuCaj2O+af2RAom6WrJxoZ8
+# xNVo6AbVgi/xiDf7vNsnOOHRudKfV2tRtKnld+iLnf4GznhunYl3SsGqKwf7w2c7
+# w7/GZ3AC6P2Fcx56jn1r8HUZfnTtxo06oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyNFowIwYJKoZIhvcN
-# AQkEMRYEFLlemSaDcZn5AUq/qBWJQxJLTSY1MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyMFowIwYJKoZIhvcN
+# AQkEMRYEFGEc8U1embpPUymKe+lsrfKBpcUTMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCh74JInG7HdBdQ8ZAuYt07OEBCmov4LPQS3QVZfnL6bhH8
-# hnOLxB2Dan152HQgCDl+bKnhL+PmFqvAV3sOMsq0ik+6kS8NriVFWBphG/LTtFMe
-# 5rFU3ntgvy5Umyx5vZozzioMgzThZzSHeM1myJdVtQVPG7uI99fgU7E3HWLL9QB+
-# fUby3os6rfJ7eRfxi2A1iRMCh21dS1TOE0r9J/TZ8hmYGLdeXt6e/rcxcfx+nUaM
-# k0C18ichqUUd3HxzOODPu5C1KfufAgyPri36KLVvSESEDIZPUH1L1J1cHG/GTQAz
-# RyrQnUJEdCWuVJlnFe+0welqJklU6VuetFe//KaC
+# hkiG9w0BAQEFAASCAQCoE2xj5gCOqinMxNDC363QsItifakK3IHKSdYfkE6JEQC9
+# G2C4phA+D3tPcCL4stQI7NISiDcC8Wfv8RPpSKZ3Ha+E0hskr/N9T9SC1kTQ/qiO
+# O6dkDoraBR7VhyGQ2jZLZwUeWh4clmmht/wphvGCq7rfxHi7xEMHmcu6tmyDK8Du
+# n1GIltomytq6qfGK+Un89wh2ThFV4OzbqF4/qa+QpTCcXIj1CkYkPtZ1sdQyFLVE
+# aHNBMyJ/ESAP/1gP85HwpLFB96jR6jSW7+UESQbMGHLlvzjb0XMk+lLF4uD/k7x5
+# 3WRRLwsgjhrMSyu7T0uJplFC8nYhFC0HM+eMbGn1
 # SIG # End signature block

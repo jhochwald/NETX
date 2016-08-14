@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-IsSessionElevated {
@@ -87,16 +89,15 @@ function global:Get-IsSessionElevated {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	[OutputType([bool])]
 	param ()
 
 	BEGIN {
 		# Build the current Principal variable
-		[System.Security.Principal.WindowsPrincipal]$currentPrincipal = (New-Object -TypeName System.Security.Principal.WindowsPrincipal -ArgumentList ([System.Security.Principal.WindowsIdentity]::GetCurrent()))
+		[Security.Principal.WindowsPrincipal]$currentPrincipal = (New-Object -TypeName System.Security.Principal.WindowsPrincipal -ArgumentList ([Security.Principal.WindowsIdentity]::GetCurrent()))
 
 		# Do we have admin permission?
-		[System.Security.Principal.WindowsBuiltInRole]$administratorsRole = ([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+		[Security.Principal.WindowsBuiltInRole]$administratorsRole = ([Security.Principal.WindowsBuiltInRole]::Administrator)
 	}
 
 	PROCESS {
@@ -119,8 +120,8 @@ function global:Get-IsSessionElevated {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUy3dYCevYDamWYpsUIh3fa43K
-# OXKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdBmHDKfAhveg3Ph5vJoLulD3
+# V1+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -263,25 +264,25 @@ function global:Get-IsSessionElevated {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSPrchTMN9y6f3iYBkHrrY0Bi/0yjANBgkqhkiG9w0B
-# AQEFAASCAQB7e+5BzWflryBTjK0pY7gpTet98z0ML6C/MHUTN+cgSN7xKTq0fcxG
-# 1VTC3OBGq53hZ3++UVeLz9AOxOAtJq4Gf+MUxcf2rmd1d3pa4QcMwtcjy7bPYVY1
-# W9spmL80kwp5O7ZR2LlPQ3puwEb4V7qRbMqL1G+pmbKHYH5Jij3s18Z4eOUi3FRI
-# wUxVG/yYVTzfFe0vIT6fJYqrimzFiCI8Aem1plXfrFAJ+zKPD/+Av3hJQ6SlgvtO
-# wel8DnR/MYFmv7SVVp4PpI401GoaTujYdqM/xKMier0GkYt3W3Rhia0Q27qlhb3z
-# /FLWcClrwNWrbJAWnP9jxxZxe0SEwHRXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQDqZJphuMavKpOGsCikLefvW1fPzANBgkqhkiG9w0B
+# AQEFAASCAQBS/j2aWgue4IN1B+ZXv/hwU6Q5KxlFF2xNG4+/D+/dTjUo9CPqBJIx
+# YZrdgm+5G6m+DmPBUHnMGXhWRE1mFafuQuTgkiQ8F0+Nptg2eDnIGEJp7cR8gCAw
+# H3/dcX75Uf/PJ53O6WLaVkl8fVebc5tmknPbRsKYZvCd6ExwQ/UI9yzpQCCZrkSI
+# E2eGzUTOy1N2j3w30P6sssaCFNkP4F3vKix3zr56Pho399f2u6UhIT8nSU8L4V1m
+# dRhoLMJ2JcwagOy+xC2K7YrrRWdmaDH4/1IS1EdYCTXTjKk6Px6VSWrw6SeqaenN
+# jZOoZzyEiStuXeJdahOKmuQ1Qrgc6U1woYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0MFowIwYJKoZIhvcN
-# AQkEMRYEFKa+y/6hJPx5fN2v5hwAncYJhu+oMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzM1owIwYJKoZIhvcN
+# AQkEMRYEFHN/OBJ4RaDL/qOX6e9LN5nlmeV7MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCjGSa+t5hVMzFlvd3CGVOgTDtFmzy3iMRJLN84l6Eltn+W
-# tbpTESE4zbaVvKKhfVQjtuaET7iNj2yW+J+XZ2xuiGzjN076vfZlS6D6Wa1FaAZy
-# nHgd3zmPHwKQTWZvMRxZ37A6kvRSe1yRCsaVOe36vb9NJHYd0MeSvOLcGbpulHTd
-# WbUiDq2NKbCkaAVL08OlIim0itrNi6aKa2GL81wyVADOK0LlOLjjJnAgPGCAUQKd
-# QCGF0wq8tz0eJcmI2Fcekrf1BOGJ2gEbbAjqoKrnvtVq/rLn7wR9AhLuyQC+tq5L
-# WPp1A3Qfk65IDU+SV5mfL0tDnHS7HZ35Xj1XqCNA
+# hkiG9w0BAQEFAASCAQA0OXCfVVtqAj0JU8m4zyd47do12nv0JYKalLN+bEWqOI1V
+# cpjvz877BmbqmcRivmqyNS/g1rMsiWt8bMjk9mvfsBy/75qR0voGAsyUlvCJ0Ve0
+# yQH8fyWV+grKLW/izUgJeSdFGM3yX0rtQ97ISR8Hs22Cv9o+fj51PQNpSknRqMch
+# +EP/Crw0xUn/oDlyljxPlM8fhsYRBt9XRPkyGkmVHgDivXj5qvWW2vUy56dQO3k0
+# aovCiSnSigHclb+wJr93W//n9q961BugiEnTVfZ0D584zPtlQcSWtCdLzjubCxrT
+# mvDKpkH4AE16ek/hhDTFFSefESvKThzf3x0SioO4
 # SIG # End signature block

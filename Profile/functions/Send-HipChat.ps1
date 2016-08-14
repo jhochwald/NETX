@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Send-HipChat {
@@ -132,27 +134,20 @@ function global:Send-HipChat {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(HelpMessage = 'HipChat Auth Token')]
 		[Alias('AUTH_TOKEN')]
-		[System.String]$Token = '8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv',
-		[Parameter(HelpMessage = 'HipChat Room Name that get the notification')]
+		[string]$Token = '8EWA77eidxEJG5IFluWjD9794ft8WSzfKhjBCKpv',
 		[Alias('ROOM_ID')]
-		[System.String]$Room = 'Testing',
-		[Parameter(HelpMessage = 'Whether this message should trigger a user notification.')]
-		[boolean]$notify = $False,
-		[Parameter(HelpMessage = 'Background color for message.')]
+		[string]$Room = 'Testing',
+		[bool]$notify = $False,
 		[ValidateSet('yellow', 'green', 'red', 'purple', 'gray', 'random', IgnoreCase = $True)]
-		[System.String]$color = 'gray',
-		[Parameter(HelpMessage = 'The message body')]
+		[string]$color = 'gray',
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Message,
-		[Parameter(HelpMessage = 'Determines how the message is treated by our server and rendered inside HipChat applications')]
+		[string]$Message,
 		[ValidateSet('html', 'text', IgnoreCase = $True)]
 		[Alias('message_format')]
-		[System.String]$Format = 'text'
+		[string]$Format = 'text'
 	)
 
 	BEGIN {
@@ -192,7 +187,7 @@ function global:Send-HipChat {
 		Set-Variable -Name 'uri' -Value $('https://api.hipchat.com/v2/room/' + $Room + '/notification')
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([string] -as [type]))
 
 		# Use the API via RESTful call
 		try {
@@ -232,8 +227,8 @@ function global:Send-HipChat {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpi/RA6HbVI+UJQLKQmqW4ie4
-# xWCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFtVp19W96jgvdfwkjhyDiG3x
+# hM+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -376,25 +371,25 @@ function global:Send-HipChat {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS2DbPUsIOcMzpAVp/Lx+T1OEdTDzANBgkqhkiG9w0B
-# AQEFAASCAQAFIIZf0C202Ziiku6GEJKWBHAyotwwJG1F+fgS5KhXBJlG570k+ish
-# F/k6t8kb1n6JOcI9UExanqKfFVBKGT/vEPexzoH2sPYKiDVo1h52W6814fpERJfT
-# 9nM5S770pDJa/F30ZSMb/35FbI7w33dzhJtbghQebrFekhIyO9IS4Lx/61WkBd53
-# O9f8JgpYtrH07w7XgJW17zVM810INLh0WVoogZIpu54Hh8uX3AIc06OJtzFm+QNN
-# ILOO7YCe5mY36umDGNGSXh3Wxg5Od2XJmZ7qyCKLVlE2j5GmYpNR/U7AS0zns5AD
-# lNJxf6R2pUfSlOEI3P5ZhcdkYFEgk4C7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT6xbuZdl+KQcCW/z0i8AMaaSE+UzANBgkqhkiG9w0B
+# AQEFAASCAQBiMRtGV8g67otRUGwqIjJAyTWE3dT9B0hc2bjwl3pga2YpclXNaN50
+# fIZAU9lkSnNJUYK67WwgTbXbxxviPgv8Ro19TFVjml9FW0WJj/Nk0kHvz3Hk78Ba
+# nG04Ok6emANlJBZP9+h90frXiYFj2xybSiQlgEJbORL+vWj8QKt3xmFD5zFn8Kcu
+# dxkEx2yyyqUC2iPuekslOt2tE22xX4C7WhRG7fXbBoYwM9P9OD2wwpW5epW1NJ/7
+# VDHR+x+XWUTzy9ndIIobxc4Ecn8Cz9L6dVR0U2RTKL4SV781F0WTCPaEMuosqzgz
+# xU0T3GS3D3P/qR8skaouR5hsGvl4D6E6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxNlowIwYJKoZIhvcN
-# AQkEMRYEFKeWLN4+h5KGK4SMdxHC3+BtKDDUMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMlowIwYJKoZIhvcN
+# AQkEMRYEFHhNFDPX2lmyHXgWnk857Bj0SmPFMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCey7j+XcxCtBHaz2yLkusSKUxv8vQa1K7KzKC1BShsH0+3
-# c4HbzZq/Wx+zzWEvs/047gIJ0QxlWMMU53E7wlQNoOwpIJmoqL2EihMu5InrJIHW
-# ZUw14Catl5Jj7E4bNuCAoogmEfEcNzpw4dGaev9vbIBVEIm3br/oORmAsoHlMuRh
-# tpAMmA2xOexG6e7ByWm4OBiwxGLqDrJpJAGBRWGf3TybMJ6BCNuN0VTOqYxC7Ga/
-# 0MiOJ2iy0l0DT32072SOOmldB8JNFPFRXq6Tg+jYdc9h+WGWANLoFNtb681GaNme
-# qmP2MhYM/XTkpPWjGciNNPRho8wpvdU29Jtxlyrh
+# hkiG9w0BAQEFAASCAQCrbRlbDuIrX9uC1rS+F6ZuSCXH1WwhzS82DYyUC6LuFnk/
+# ZYkv/ehuz3Y0bgBmAcrjokV0LT90Efl89h0n3dYmwmeqnJKyxy/I8Di4NmxEq0cB
+# wRw67J2eCR9LCIurxGsP/88HwkG/k0+VT76GECj+G1fQg1kVm2uWKOdxwg9WIVJY
+# okVSkEUG86u7PU4rfaBT3GRHVdEMja2q04P+6Uv0Q/0b08nfhcOlWH7xvZfUi487
+# VKYxpnu/YOyxiFC2FGawUUV9OFDjCKuOjp8Z/log3HHs93ef+m4PtHkMpdX1+nj/
+# vXhthEazdknr58ARoV15mQHbHtKsC/eFoNLBN/h/
 # SIG # End signature block

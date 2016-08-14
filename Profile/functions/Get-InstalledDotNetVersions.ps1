@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-InstalledDotNetVersions {
@@ -81,8 +83,7 @@ function global:Get-InstalledDotNetVersions {
 			http://poshcode.org/6403
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Object])]
+	[OutputType([Object])]
 	param ()
 
 	BEGIN {
@@ -96,27 +97,27 @@ function global:Get-InstalledDotNetVersions {
 
 	PROCESS {
 		# .Net 2.0
-		if (Test-Path $RegistryDotNet20) {
+		if (Test-Path -Path $RegistryDotNet20) {
 			$DotNet20 = ((Get-ItemProperty -Path $RegistryDotNet20 -Name Version).Version)
 		}
 
 		# .Net 3.0
-		if (Test-Path $RegistryDotNet30) {
+		if (Test-Path -Path $RegistryDotNet30) {
 			$DotNet30 = ((Get-ItemProperty -Path $RegistryDotNet30 -Name Version).Version)
 		}
 
 		# .Net 3.5
-		if (Test-Path $RegistryDotNet35) {
+		if (Test-Path -Path $RegistryDotNet35) {
 			$DotNet35 = ((Get-ItemProperty -Path $RegistryDotNet35 -Name Version).Version)
 		}
 
 		# .Net 4.0
-		if (Test-Path $RegistryDotNet40) {
+		if (Test-Path -Path $RegistryDotNet40) {
 			$DotNet40 = ((Get-ItemProperty -Path $RegistryDotNet40 -Name Version).Version)
 		}
 
 		# .Net 4.5 and later
-		if (Test-Path $RegistryDotNet45) {
+		if (Test-Path -Path $RegistryDotNet45) {
 			$verDWord = ((Get-ItemProperty -Path $RegistryDotNet45 -Name Release).Release)
 
 			switch ($verDWord) {
@@ -182,8 +183,8 @@ function global:Get-InstalledDotNetVersions {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU97QiPG3hEXbSl46BaanCz8TN
-# GIegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+AdtEWYxG5TjcBlcHXbmMp3r
+# HAigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -326,25 +327,25 @@ function global:Get-InstalledDotNetVersions {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQiEJoDg3NZvpksgIgzZ4KJpui4aDANBgkqhkiG9w0B
-# AQEFAASCAQAG6Ema0OlvxNJ3rOqAjY9y1g9R0fv2pALEbo60YngKjtOhBKZXbWnS
-# WfjBKadtax2LMY4+FQ1kf3kaSFXpMsHoiIGMRtw0s7Jvl+PQXXlXBFBB2Y8SOVAa
-# f63TacDo0ChZO8c0MIs0fra+3IaCGRCqJqUA+mQqFff5ElxvkWaxWX2aKa5RNTWo
-# kt+uJKc7ys7uS+pjn3vjo70H9xPTi7ZVygH8dOKl+0R6pou+tD1oHv7hcHD8WXmg
-# 5kA6Wq1QSN4KNFJAj4z7H02w+ubA3yqQHcD0mMjqRGDrK/IRRBRVu74Wt8hG2Iux
-# VklxeIPw2q945fZIW9pVrLXGBCkQnQWKoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQN01r+YHrroToC+gelbTs5VEHaATANBgkqhkiG9w0B
+# AQEFAASCAQBQRMt3Ixyr4hW/mHPwPDHfCwp0ANjI+PwUNu6Lbk1/zpelD55ZSAuR
+# 7fc7HWG1RtLxLukmqoJ7VNNvTtvlHyfRCJP3GOIz5lY/y+xPwsL1UqX8cS8Sb7Vw
+# MBmq2RzBzLMDT87ze0UPUEEQGETrUNH2s3DhreY8t0eJZMjBzBvf3jBEhqWHN3Bt
+# LgUqq9iE1uK9ZVw2aSZtw0vSToeNlhLD/IsjS+nWBjV6p4Mz1ZWjJ+poUfWQTRYm
+# GYEI6E/DQQNPHNTWJ938YEmuei8adEgJptF04cu9Z8jQcmZmp8mL8qP/3t5+V/LV
+# A06Pie09a+qq/quVOB5vqnBolVFnuTGuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0MFowIwYJKoZIhvcN
-# AQkEMRYEFBCg3AFy3PTSbnkwW0NOSmXWskWFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMlowIwYJKoZIhvcN
+# AQkEMRYEFMFq6neQ00JTnW63NJcvxXvmz4whMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQACmjO/PKQtvPlaltTB+tgMywRbv8KLZ/j3ij+OEIZtEmmC
-# 94S1C18JCv0TqZ6kumCYVUJDiT3u2C6k0t1E1QvM1wCG8r7g94o4SoyxyFvZPhek
-# XNkvB85EteR7ki5tUQ9jYc95jNxxZNthl8vmlZl27wl+0v12KCrExeQrWLJrBjhT
-# +NnwW3BUYXL7enYqj17QwmP5SqJU78TRetgObsHuu5hOt71+B9PiC2tmoznQ/y18
-# Ly4eBjAg07orTDSjlAi/FWyn2ZY+Vf1GlW2BPYAV3NP3mkbvMhGg0VI6tDweNpCK
-# iGq3sjCQhU7Obyu0icTOG3N6LtejKbEK4keRNEYY
+# hkiG9w0BAQEFAASCAQCphq86r8eK4Z3gzPAE8R/3pM2lwBc5k7dZpSsOVO+IvU+J
+# q+QXO5CDy3MbhOVrN1PFqKAe0Ochq1gAl/WXhrHqnW2e0olaSBYg8rr7iaUhb7E+
+# msS1Iaym40op1Y6mzx73EL7wU7wQwy2TVXH42E9SJLAmSTMX8/MpZ3VswJos9A+F
+# Dq4DRodkZMqHQ2vAEbGaKYReuBZHKaLqsTvk4P0wQHL6pLYgCdtnaqfyATcJVacL
+# baxrSwd1q+nuMOUf0vxLywNFab/kFXfn5XFwpJuBLgZSu3lGUr72+EXhPSHzl9IV
+# SnJZxWTfEGDTrTXOzC9iq9unB/woukRsefNkW8Wz
 # SIG # End signature block

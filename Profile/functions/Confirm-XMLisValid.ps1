@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Confirm-XMLisValid {
@@ -97,15 +99,14 @@ function global:Confirm-XMLisValid {
 			of that!
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'One or more Files to check')]
-		[System.String[]]$XmlFilePath
+		[String[]]$XmlFilePath
 	)
 
 	PROCESS {
@@ -120,10 +121,10 @@ function global:Confirm-XMLisValid {
 
 					# Perform the XML Validation
 					$ReaderSettings = (New-Object -TypeName System.Xml.XmlReaderSettings)
-					$ReaderSettings.ValidationType = [System.Xml.ValidationType]::Schema
-					$ReaderSettings.ValidationFlags = [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [System.Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
+					$ReaderSettings.ValidationType = [Xml.ValidationType]::Schema
+					$ReaderSettings.ValidationFlags = [Xml.Schema.XmlSchemaValidationFlags]::ProcessInlineSchema -bor [Xml.Schema.XmlSchemaValidationFlags]::ProcessSchemaLocation
 					$ReaderSettings.add_ValidationEventHandler({ $script:ErrorCount++ })
-					$Reader = [System.Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
+					$Reader = [Xml.XmlReader]::Create($XmlFile.FullName, $ReaderSettings)
 
 					# Now we try to figure out if this is a valid XML file
 					try {while ($Reader.Read()) { }} catch {$script:ErrorCount++}
@@ -151,8 +152,8 @@ function global:Confirm-XMLisValid {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlURDUhzH7PYa/ngUrTopIWKJ
-# d9qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0ysHKlnKa1J3PJdKFe0mAPU5
+# s9ugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -295,25 +296,25 @@ function global:Confirm-XMLisValid {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ7FUPKGXk/Py/UTXeWF4MqVb8+0zANBgkqhkiG9w0B
-# AQEFAASCAQAHUp0SN3zjSG747yimTU9XF1ySliltrv3i6LDWv4m7XOedTspfW0aQ
-# b5t0p5Jyx27pTjiWxyXsJSGjbCFChgVFVFY7UB+MtbflRy89uw4uaNjUhuynXT9B
-# RLBvEzpcEKizhYDfX5K7D8hJq5qlZTGTNXEsIUaGKnWHeD3bVz0KEziBtvlOntd1
-# x1veX8g4jKu4zcz7kkdBcCGx+Hq1MtA3Gu6bsG0HedH+FwDyE2uGTXzp8g0eaTtB
-# 9/iZqVABpVuJLVIcRWoBnWQ2CQqmC29Bsd4cKKmkRJNVtqXzAozsoJTYyYHA9fcC
-# vcbAW2UPoz6Q1RH0UlRkQpm4Lht+cq0NoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRG+cm+6Hc2TST1H2dZu2Po5gywczANBgkqhkiG9w0B
+# AQEFAASCAQBf7d4QOlVZC8jDTKN8BVD90zcZjBkZvukYfxr5osHVHMZZheJ/WU+y
+# d0wsxC2Wluu6fw8Efz7JD6dv0RD/wS+hmSyaoSOHy41ip1Kw+taxzjX8Cg96YPxy
+# DBHGhvMhlnsOG9kziUJ3VVakqoOrZ5hAgKn1AJeqyfe3Zy8EYKV6OpyYKU/o3aFb
+# /OCoq4ohp2NiLIgsqYFMa4CVoVPKppKKYZPNFEui2V+IqJt3u1qXhJJBQBlWXxAJ
+# HBxB3gA+RJyRS+VE8U36WhIgmDNqyamx4J8p1ThjAPGAwlLAQGwnHcBmLOXpvBWQ
+# xlTgBSilzPdzaYPYBhjoEdODoVIRkKtkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyNlowIwYJKoZIhvcN
-# AQkEMRYEFJj2dLVjudiGvsc2za9kFEvHcnowMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyMVowIwYJKoZIhvcN
+# AQkEMRYEFJgOavCJD3fI6Q70lVgxV3kfMDLoMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA2KjNWCZawSWW8IVTO5xnppYUguo4UmwktL/orftjiMRj2
-# QMVGt3Ht/wKPL6ZPcZYm1zV+KM2kgJiWGmXQtTRw/c0J/NgP/Qhylm5c1H0XOdMS
-# XHGMRWUECq1GFoOw+5LhzRttqgFdte277kEzR7QvJK1z7/sDnFiR+y84dJQhPHSs
-# QGnQLzdykh4PIcgBpaNO74tvR5VRVVcZI3mY7WVo9EttPCVSps09jeCH2pw9HHvm
-# iJ2jfbFaWoTrUUzzAcDiaxWooMUou/Q42I0JZXMc7v4M3Fwuvl8FvxujNLcz7HJl
-# SckU58l6j/sv93nb9YWFxXULWXdSwjZFnyzNavT8
+# hkiG9w0BAQEFAASCAQAJSU1GD4PA4Gx9shcwQNExmpVeLcLMyx6SSo/Leh8vZXyU
+# +AmCTzpgr+PO0E8V9JSyUE/uvbGf3By4v94r4aharU1EZeKtMbre0nfD7CWMDC3n
+# 35S/nZBd9Cu5lhK/OJi2x7rCUgnP71ClhudJ3hafwJedxdJeBJ2XklrkOiYHr8Je
+# skmcV3PuKkIQf5F1+mTkkZfuThCjz8wYlAj9wWLoqzi3gyFLcwjHgDCHD/K8w3qt
+# lLXsF+b99qCvYDLJvM0WKjMyqj+ItjLcx8lLORkKdJqyWxSyngLtNSjUVEZHQlrF
+# 0D0Gx8cZ/aP70qjD3frBp8UBJQAoKlG1+01fvbzx
 # SIG # End signature block

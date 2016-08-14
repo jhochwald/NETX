@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-IgnoreSslTrust {
@@ -93,7 +95,7 @@ function global:Set-IgnoreSslTrust {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'High',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	#Requires -RunAsAdministrator
@@ -104,17 +106,17 @@ function global:Set-IgnoreSslTrust {
 		if ($IgnoreSslTrust) {
 			# AGAIN:
 			# Think before you enable this! It could be very dangerous!!!
-			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $True }
+			[Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $True }
 
 			# Be Verbose
-			Write-Verbose -Message:'SSL Trust IS ignored - BAD IDEA'
+			Write-Verbose -Message 'SSL Trust IS ignored - BAD IDEA'
 
-			Write-Warning -Message:'SSL Trust IS ignored - BAD IDEA'
+			Write-Warning -Message 'SSL Trust IS ignored - BAD IDEA'
 		} else {
-			[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $False }
+			[Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $False }
 
 			# Be Verbose
-			Write-Verbose -Message:'SSL Trust is NOT ignored - GOOD IDEA'
+			Write-Verbose -Message 'SSL Trust is NOT ignored - GOOD IDEA'
 		}
 	}
 }
@@ -151,14 +153,14 @@ function global:Set-NotIgnoreSslTrust {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Low',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param ()
 
 	PROCESS {
-		[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $False }
+		[Net.ServicePointManager]::ServerCertificateValidationCallback = { Return $False }
 
 		# Be Verbose
-		Write-Verbose -Message:'SSL Trust is NOT ignored - GOOD IDEA'
+		Write-Verbose -Message 'SSL Trust is NOT ignored - GOOD IDEA'
 	}
 }
 
@@ -168,8 +170,8 @@ function global:Set-NotIgnoreSslTrust {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhanKMt/5yQjMxVOBalhEz9QE
-# XWqgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjASAIjBqUo/9G1YFLvz9FYeG
+# mp2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -312,25 +314,25 @@ function global:Set-NotIgnoreSslTrust {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ+yJT4Vyexoe0qmw0oTI5ew/xtkzANBgkqhkiG9w0B
-# AQEFAASCAQAodbTNCZDP+Fo72FeWNQxlHK1sF2+hgS1bHgUc4qi/ThJGUCPxEHzh
-# ViTHny95uNFA7+reoraYI6fuMzJ3Otate8rD/E7PBvBrys2iqyqMdsRUvOYs9zwp
-# 9tMp4hbDOSVsp6Uk33yunCQx4Qo0H8bJEtijTgpvHKYqA3rGXNxMPXoYtD4eF9AP
-# DXUoF6REeKFiuuwCAqVqge0FzETiiwrz9q36U3u/RsrGtByO6jFk2YEqxb9SPNhx
-# 1neb0cGGCn9WCMJaQ4os11Wd70upqUY4MSOvofNi0tee0t/ScL/4jwkg4IxPYju7
-# nU4F9NVHKKvLXvdxOCqu1NSgZh1qmD7MoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTghQtgUfFkrwgAMV/bONVLaapJljANBgkqhkiG9w0B
+# AQEFAASCAQAi2/neh5M/7r2UB9yBy0T/o6iFffgCsz7sKJmwJW8kZ/kYBMoXPbDY
+# FgVEWaG7xBI4FXl3bdX/b/h0yf0F/iU2xvjQBbbv4S0mLKujdvXBTPimPiudjsrX
+# zgFNEf+VocGqoJbsY9gQHZt2BGmGwsBYlNW8wO//vj1lANHTQ+AHxB3YGiZeQj3V
+# rs9unNVlT8knoNWYqocBDYFq2DoaqNHRMU1ijXHQS07J5EaC1xqYJBtDF/g0V5Ry
+# 2FXdCzqqB68ll89qtFYINphDU8d3UX98vzQ75dxrbj1mWORY3Xkm6YtdzSeYLD5o
+# yeT0k0vmYvNElvHW4TOCmX6LHAMIhcquoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1OVowIwYJKoZIhvcN
-# AQkEMRYEFCF+xKRGB1oQd+iYHvd7oIAEsN2dMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0OFowIwYJKoZIhvcN
+# AQkEMRYEFB/ZleDEWgBZo1lYU0fF1evGmi8SMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAQotzw5Jg8ACwCVNqTYIiAyg8TZpRoNJJgVGLunpacVDdy
-# a6V1bcRlumrarS+6jdgjowKM64HB4681WQnI65IG6B4+UjXJH+0G4bWquSggNp+y
-# v4a1hApPMCsEkStENDGZKoD931OFCcYMEKQ0guuvACP/gL3X3d05B5EevwTQ4zzo
-# 73sj/yWPeAT+IzICYZyi98S1XAKObiAa9ogU4Aqy/qOBEXsbNhZQoPTdLvB6Yn/N
-# ErMfyeSEETJudhYufDgX2Bz0VZSAIayWnJ3XQiz1W5IXlldC8VDF3S4N8GTWYj/y
-# Q/nEKHZJMI9hTJvG22d3jIdSAUDoWUOSAD//BMmg
+# hkiG9w0BAQEFAASCAQAlxib5yOCOCXCaG+gRj5rNhBEP6Cuf8T4NwIXICt5mnoRK
+# DrBiYplg18rfPCaIXEeKsM5gSmZ7ysezmwpTcE9Rjf3AppudHn4dq1NdwHZUV23n
+# pLgKH7LCNFRxvOFqYglVmDoeXti/nxWcSb/tptvxwSYE6zyHXydXCcxocg+tTNM+
+# 4c4bwZNKkOehiOsh4vY5cN5VkEhQfxJjnWdtV8RgX42Z34/hBTQyh7PNGrLP8IFp
+# U26w/j9n3KAZEaeyxw5sqwOm1tvVnBOk5wpF7JpI/QP3aqCDAWqpBJwGKjZwd80x
+# dN19pD9qGYRY2VodYIVHqPEv+VmiMQA7+zxpwjQX
 # SIG # End signature block

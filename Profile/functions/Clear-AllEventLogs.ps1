@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Clear-AllEventLogs {
@@ -77,8 +79,8 @@ function global:Clear-AllEventLogs {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'High',
-	SupportsShouldProcess = $True)]
-	[OutputType([System.String])]
+	SupportsShouldProcess)]
+	[OutputType([String])]
 	param ()
 
 	#Requires -RunAsAdministrator
@@ -96,7 +98,7 @@ function global:Clear-AllEventLogs {
 	PROCESS {
 		if ($pscmdlet.ShouldProcess('Target', 'Operation')) {
 			Get-EventLog -List | ForEach-Object -Process {
-				Write-Host -Object "Clearing $($_.Log)"
+				Write-Output -InputObject "Clearing $($_.Log)"
 				Clear-EventLog -LogName $_.Log -Confirm:$False
 			}
 		} else {Write-Output -InputObject 'You denied to clean the EventLog entires...'}
@@ -106,8 +108,8 @@ function global:Clear-AllEventLogs {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYfMWIeaWMPq3M2e8B6oxhgM/
-# +JKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUzv2bq2i19loYCZdC/2HDmKjh
+# 7yWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -250,25 +252,25 @@ function global:Clear-AllEventLogs {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBShlk6jHEwIZxGhWtLYML5E0CkbAzANBgkqhkiG9w0B
-# AQEFAASCAQBCSzhvJTGpHw0xh9NE56PtwSJD669zIN/SbKuojZC2BfHMQsOHBJAu
-# ncmKfuEP+p3NnLbH9d9U3S7gJQc0OUI+GSmwFSYZNMOilFwlKFuLxzQC2NV7yRnV
-# OSfyx8AbBvn13AdKqr7ZsfUSWjqIMv27zR4vo/dvRJthvnn2YacCAIQ0x1c9lHdB
-# Bhs+B6HBTTV6tHtr2h70YVevRzzoKx6zxZv1hqBxRGk+M8XAWHN5Yf88D/7FdBpW
-# /lJio1nXDX73bzu/bU/7LkPvn4v58hHAHqs8Ym/CJtdfC15cMoP4GhfP0ULuDnGa
-# Ac3fM+Hc7760S6edgJV7XEOIKOLrFa/EoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR5j0gxIKUwHObOzpsSyldcNekrKDANBgkqhkiG9w0B
+# AQEFAASCAQBJepraNumavcc6ttu3NhP4MtZe0dvEMF9XPo3KkCWJoWNAg0P0d4lX
+# cT4lAlpxNrmd8PIBFwLvS0roxexvq3NjsIF6MBlvOmTX9kmg0pRX0REgPQSwTPT1
+# gI+l31KVPOMZOLiNSJ0qNRqDKgxoET2/GGhy02h/2X4p9qaqlXvt5QViTgvU5Ec2
+# 7mGJsSc2KVjJ6NFVsoHSQqeyM/ZNL15SZKLqYji54mKTrToB6eEyeJAZHKWJ5Ted
+# FivhQxXmADRu2AFM5AvLs0QtUaAQ75yTlnXRWHPgV9MRYn7FxEvIvVN5RAqYbOGt
+# 5H700Lgxwxz0i3yccI7KQOkR45kgDcI8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyM1owIwYJKoZIhvcN
-# AQkEMRYEFGTHM1snIvVetgzNjYqC6hv/YcpkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExOVowIwYJKoZIhvcN
+# AQkEMRYEFKfgj1cZkCI0rpi788fK1kThtyFkMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCXa+IVHDshGE8Ze/ypwlDQIcW3sP1EZHRCCIeCxEfLXKEJ
-# ZYdL0i5WmOAQeZ/nXN9YlKyaq4k9fQYOo6ZL/7l9uIaTFbJlqj7VkPZxGRG5loFn
-# t6ElCuKLw0zrs7idfJLjbDvptqVLpUZ927brE8TPfBWmiku2kqJafU9SGG5KNqcB
-# uzMN8UILv7Gn5UB2vld7hp0QRK12a/oh8MltOOtbnBSpwifNgGofuQTi8BD6QyyX
-# IxdEvDHHpzNpKYrD8w6dwXUo2VSlBcl23SeapJULhHP5Bc9uK2p3WAXArZh2Xocy
-# AhYYJPVO/1VxyZypl/qD52FcNqyzm/mYv/+c13Xw
+# hkiG9w0BAQEFAASCAQAoKBDU4owLTvO3XyO+Ym6aOooD5yD5gcqk+xKc0YB4vuDd
+# V7HB+RW9oounE3PMWq/0gcY7sGqOL7po8DLfwMjN38eumBmTSv7czvncXLFRd0us
+# 1EnBl2HlI51oZ8DFaFlirbz6ny686bOkAwo5l9pPmsUuDwj5uJV1brxPO7lNx4LP
+# SzqcJQ4rLJQXcLjmM4kGd6f6v/L916WpqFctxU69RZwTWoPzIBZIy3NGtyz267PY
+# 8JY59hVcTsm1VMXbqvriVH8Vpz0nzaqYJijP5u1npfQ0IgNlfhjLsbpBRQ4yFejQ
+# ViYOxN9YyK8ekQEoEgU8Mw2KCStnpvUquWAHH2t1
 # SIG # End signature block

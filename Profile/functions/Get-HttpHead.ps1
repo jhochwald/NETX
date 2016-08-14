@@ -1,19 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-HttpHead {
@@ -85,17 +88,16 @@ function global:Get-HttpHead {
 			Source: https://github.com/davehardy20/PowerShell-Scripts/blob/master/Get-HttpSecHead.ps1
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 				Position = 0,
 		HelpMessage = 'The URL for inspection, e.g. https://www.linkedin.com')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('link')]
-		[System.String]$url
+		[string]$url
 	)
 
 	BEGIN {
@@ -156,8 +158,8 @@ function global:Get-HttpHead {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYbQeiHCJIN+OKaoUe6u/LaFl
-# 6IagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBZj9LklCcmIt4RaBuYDwszXV
+# gcCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -300,25 +302,25 @@ function global:Get-HttpHead {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSqfNfs+nTubQceWNzdaMhVBcsTIDANBgkqhkiG9w0B
-# AQEFAASCAQBf3KuWr1kfU7B8lfvJje8nbDR36wozpC/3nadGG9mBPyu7bmuhazMn
-# YaIv+utta78caAAofv7R15eFAwOZXgXSYzG6piK/7T1sr+VYShsT60CTDeKW0ccs
-# Hi3d5PVl4uuSnTfgL9G+kbhHKQfGa/aiXw7LR8ELVOTpTIl2gHH+SirsSjwRFXbo
-# Vb2WiXrZCJh4gD8HhtfU2fD/uHogm1NAfS+hZ6xkpZYmpnzHk8jx8tN48sC4FmLY
-# Nc4Fv24NouDBw5w/EoA+anXcAhP6j0wRUvREObQIZAAmXERq4rCEtn76GTDW2/0K
-# y7rq1PWBGwB2rX6kL4sZQtA+LEPoFEJ8oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ5N9SPTKEHJYn3N0ds7fSkFx+CtzANBgkqhkiG9w0B
+# AQEFAASCAQBMj4e1DaxKQnF81t2NYiMp5gd66iPuMlm9scePMU4uc0B5Hv8qLyj6
+# iLZXcA5gNhYowO0T4vRwDktHNaLbg/1RB7AzUJo1nWlEyEdP7ugM82IYjP8eluFU
+# 4MAKLnCWumuNd1J+itDorxc3g2zY3IBFckHvYzoKAfcXf7hZUBm79dEq0412T0Tq
+# eVD+5U7KxHFz5eqbz3qRxIYR5aJJrwxPUvSTPk7QaUSRO/OOIZYOcUkJ7MXIUG/k
+# SSt6Y9YOoXeWiu405yLZg+DuTGtBk2UZceIqaq2wujXZZrgBCzFGyKiAP6LMgiMg
+# TJkJaOIeHbxBDa33lRGy8euFMgZbwluOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0MFowIwYJKoZIhvcN
-# AQkEMRYEFGAKSvp9MLHZ7gBU9VcU+3hrvFVBMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMlowIwYJKoZIhvcN
+# AQkEMRYEFOypoq3W6l2SQlCR9sP+kyM5jxJ5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCtclekmZVVc0CjNUwuNSMP0iwGNz0w2Xb8IPygNYdBGVJ8
-# MWPPniGEHSQUmr20K0It5TAKf/+6CWkxCtBgAUS4luXJVOaJ2uOt+/zKhqwUPdXe
-# QZN21Bd28anZsnKgG2qZh14XS+g3xeSBWWfBgz9Dm2YtMD1FU/nbRebJrE0Oq1wt
-# gZZnqkWHvR7k+GNZ0duF0Jv4IItX8akUFQcDK0w3FVr4i983QSnioWQNp/R/G1N/
-# ONRuAJnFFmJ+kXl3K2Kpfa/jMuWZAy6U4DjhGrMsWm+K6tYBBo9RuN5y5kY4eKuB
-# 6pnV/eUVS3Y2KNrCcsPlAu6fAlJ/qPrXv4p5vHdI
+# hkiG9w0BAQEFAASCAQBV23IUihVCTBEzQjVfqPaui2TJL7Pgy7w2YntrAC9b9Icr
+# jzgNVg8vZXAd6b4bkBcRsiI3u8EPbAc30F+3QMp1p+OQ+U07HOUh956yBZDSqaBt
+# xQddKLFIPdDY/qdgkreTRhA86kCEB9tUkXeGTd7CShQ4ikPMFdLdrUEUirp29qy/
+# YwHfD3QsBmLScdC9lFRL1LOIFR/YCWL0GlRshrwgHWtlu3xGWk4gGSu7Y7R0wdfa
+# hbNJ5DnxnyKDo4hyS1z+QXvgsF4vrZSk6p8nW8427GRN+9E3epfRo5Dk7JQnyV9K
+# loAMy/FEeYZWF+dIcAupfvg6SpTKahBuLT7XcQcE
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-DiskInfo {
@@ -71,8 +74,7 @@ function Global:Get-DiskInfo {
 			Internal Helper
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param ()
 
 	PROCESS {
@@ -95,8 +97,8 @@ function Global:Get-DiskInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUlgGsAwo5kKenP4usKjXcuHTC
-# xH2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4XatB1N/oP2pEui15fb221Yu
+# pQ+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -239,25 +241,25 @@ function Global:Get-DiskInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSFN8CaTAeE5lSurcJYyPQFxeS3wjANBgkqhkiG9w0B
-# AQEFAASCAQA5HST3E1Qvm3/l6o1yWIEEwKceomunkriXwu3OFQhyx9mmX3bTEG8z
-# hYFwM1xLOWcGRZjXIkdgxOc5Yr5PDwURVuPpAJpmzSokdAzvfzVLQclzzBUwSfbF
-# TF7pjx5zFZ/WrQMtgvA5mc+SNEL54LChiqEWPhc09WAvnc4InAnyYofxDgxt0C1t
-# zbioEphFDwFV2xkyB1ZrK3SOBX+xEBsmjYbIKukH+4tyD4AJeJS0ZIIR9d7gpnPs
-# vQQL62XtKJdRWgNUUhBS3Dmv/e5m4BUzj5P81jAB9TRgtaZTzXB/zE9vNk3kaZEW
-# x+Ybb4QlzXzcz32SJ7jo5h5FkfQsUspSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRo4cixctn+OTk6aSjXUcgvF/m7djANBgkqhkiG9w0B
+# AQEFAASCAQBT7po5TZveZRXobOU4QTg1Sl2f4I+Q5G+Pk9iHnymHCfZ2GerMErCT
+# Zsn1NZ0Z7EvcNHric2y+wh2VeIUAygETYGtfY86fbrscU8fK/3EMUyv19IM+Slb+
+# KMWTJETVwAigOXYvglx+HkHHhb+G4fFr61/bmhnH7grFZsmXoWaVjjrp5Hf6VFHL
+# +PLS28c71DThVET6u7Op2e0rJn/6bHgsy1ClnZWAtfSiDdLfKUG+BMEZb4Ts680J
+# RK4obyHp1rcFNBEYC/sR8hsI3mxlxiDj0JhxmgbMtIN2YYeVvh41R6hbYHqlgMZS
+# XZBzPC2/KoHGOiL64xUCjdbyAovNza62oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzN1owIwYJKoZIhvcN
-# AQkEMRYEFASdUrjO9zMXlM07SBIh8K35YKB5MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzMFowIwYJKoZIhvcN
+# AQkEMRYEFLY6EScje4INFZIIwE1gfXyrDpkOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBSBp2/jPuh7JCmNtMxvwgkLU7t/5GrpY6t5sIRPGok51FO
-# F8Y7HNCzGi0IqUuDkH7lneVd4sNuhfUoyU+ioJ1NGFp77eqwAiKKa/4GnPaVg5D2
-# p3br8osjH0wZIP9VVNW2i778y4ux5vZoAa31NUcvRoyGaJQdsR4Vpv2d6KaKEQYn
-# 11P9D4smcc3uUsSp5pXkFOtlFN3MuhsxvSF0xrqgwQg79q4lD73SpHc1AWMoZMkZ
-# 9p5vRHN5F1S1M+VvjWT8XGFw9eID5ULq3HwCfVwrUDFn/f3CnHqE/jCamPEnIEas
-# LFLfLQb909CrdN5kJVPXCYt9qUr0r6JAWLv1Knqc
+# hkiG9w0BAQEFAASCAQBaKb87w2fI+UFpOSGGO+SCrMNND7+Nuyjb5nJ4XeRf+Jga
+# 1901uef1MY/E1AM2itANQ6dhU2QUF2ReDEB5ZEg//qRtGc4PWlkgPBsQMoUBSv0H
+# LHAYQ8aH45y4oJBaJGuk2oRXhGDAEWRdOHrpbYjjjoDmfT1IdIxQhvOQMAwLlOiM
+# qA367fkxXmFKC4pAhRg+DRmZhQftXBOTs5WZQeYGA/grNlcogDRi4OFD7XtGGTRS
+# JNErjHSDSsFHYVfIctFlogvmXYn7xMnOzkRBtmtEnaFIhSquoAbvZAkZk7LyhCHk
+# vswkLAifZGHK383pFxUqZBVivxkCV3HZkegeAy9c
 # SIG # End signature block

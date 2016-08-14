@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Send-Prowl {
@@ -122,36 +124,31 @@ function Global:Send-Prowl {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'The Text of the Prowl Message')]
 		[ValidateNotNullOrEmpty()]
 		[ValidateLength(1, 1024)]
-		[System.String]$Event,
-		[Parameter(HelpMessage = 'Description of the Prowl Message')]
+		[string]$Event,
 		[ValidateLength(0, 10000)]
-		[System.String]$Description = '',
-		[Parameter(HelpMessage = 'Name your Application, e.g. BuildBot')]
+		[string]$Description = '',
 		[ValidateLength(1, 256)]
-		[System.String]$ApplicationName = 'PowerShell',
-		[Parameter(HelpMessage = 'Priority of the Prowl Message (0, 1,2), defaul is 0')]
+		[string]$ApplicationName = 'PowerShell',
 		[ValidateRange(1, 2)]
-		[System.Int32]$Priority = 0,
-		[Parameter(HelpMessage = 'URL you would like to attach to the Prowl Message')]
+		[int]$Priority = 0,
 		[ValidateLength(0, 512)]
-		[System.String]$url,
-		[Parameter(Mandatory = $True,
+		[string]$url,
+		[Parameter(Mandatory,
 		HelpMessage = 'Prowl API Key (Required)')]
 		[ValidateScript({ $_.Length -ge 40 })]
-		[System.String]$apiKey
+		[string]$apiKey
 	)
 
 	BEGIN {
 		# URL-encode some strings
-		$null = [Reflection.Assembly]::LoadWithPartialName('System.Web')
+		$null = Add-Type -AssemblyName System.Web
 		$Event = [web.httputility]::urlencode($Event.Trim())
 		$Description = [web.httputility]::urlencode($Description.Trim())
 		$ApplicationName = [web.httputility]::urlencode($ApplicationName.Trim())
@@ -169,7 +166,7 @@ function Global:Send-Prowl {
 		# Try to send message
 		try {
 			# Fire it up!
-			$webReturn = ([System.String] (New-Object -TypeName Net.WebClient).DownloadString($ProwlUrl))
+			$webReturn = ([string] (New-Object -TypeName Net.WebClient).DownloadString($ProwlUrl))
 		} catch {
 			# Be Verbose
 			Write-Verbose -Message "Error sending Prowl Message: $($error[0])"
@@ -197,8 +194,8 @@ function Global:Send-Prowl {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUY4Q/RR1JyTFEqVJUWR+O4Mqt
-# 77KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUU+UlRSRgmlzQzgULi52k2CGz
+# RpegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -341,25 +338,25 @@ function Global:Send-Prowl {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ3sRYa/GJn32ib/4rI3+FCoL0nzTANBgkqhkiG9w0B
-# AQEFAASCAQAsZbTXhthNJxZiVDjJYOPHSKZ4fxWEGwFLwu0ob1bxEg1P9gi2WZLu
-# QmxrO4GwZhBhIEltLc/S+n7WeJx7fgenFCEZxf6/BVJuT8nksOSBYfCZ1ZOO9E8x
-# Kb6T0ws1ny92qL+ep/MjyWV6tk7EA0rcaTSZOM3OPVhsm0b+hBsKf/waVBguxQUu
-# ty63jU8avZTnGSB3t6QMzZlxzaCjtdIs8cu9Iu7zPr8s6/wTuDBPm27Fkk9nNaEG
-# RHzy0mxArmPYPq5Pu1kfNyy/7VywMOLHHPMKAQ9ps803y72uAXVolIQIp9lrO6bC
-# vqRaVQ3S0i+v7YHKwjiqgD9YjA8QJebRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTRHtmpJZkVbT9owdnZHt4/zC06WDANBgkqhkiG9w0B
+# AQEFAASCAQCmvDOvjO+/WfhnGXqoL/m1pZANzlqeSo7vgwoNd+88p/ns/9kc2mFk
+# LcDabNLhKsJGX86SPaQiAgqVLXgsTfhIcjPK7l7XPKgXckf++aABBfyRURA+yWsR
+# d7vJBlN854h6QKCAlNwt9D1ml1MBsE+QxAeFXo0kUW/WkpsmWt/fFQq8MyG3Terq
+# 8CZgoMjJ4z717kDHdRdkoo4R6biYtf8YBfPSQzS+oO6TVIdM0CKHU6o4+S1d4aTi
+# juIeSGSTKOIg2XRNkjYmBknDhtfLBrIIQ5KuuK2lF1hh6Uj8RjN86OUTHyUTLCQl
+# e5eDkMBtUZpADGzElq6j8dDdzHURdaD7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxN1owIwYJKoZIhvcN
-# AQkEMRYEFKOEQ8S8WeHGOXPt9SgS0kMyPqB4MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwM1owIwYJKoZIhvcN
+# AQkEMRYEFGtyJh/5rjl+jpT/Xzb8MN+TZgffMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCpSqvuviofi1dqfmAmbTFLp+wAZBP8LGCLOOeLXRJkAbz8
-# Fk0PK7N5RfB33WTEM/bSJrdZ6K/OkPDmjOSqsCvGh91YAStuDRQBCAGGjwtJxoUQ
-# VwAZcQbxPQ8NANWPar+81JELD2uNTvyW5vah7jJv2fYCe9xJL+WzoQZGSjIivB2n
-# bT/pSh1RfnwtQYmnDjpnNvAl0qxkR+OHx+ArdhNBvaKnA2tzNyLseXJiJL0Qal8R
-# H7s6iMQV8T7HrpAAq/YzckJFZtTT8oTEpik5Bfs62y9AxM75PBGe9YjR0q4i5PKA
-# 5Rf3jmHiqyDDt2iyJjinKec14zYeqZjl1uTID6OK
+# hkiG9w0BAQEFAASCAQAgrlCofqnf+i1qd7Rii8d8sFPaQ50CQj/TVa34jJXoA7ft
+# 0Yiai2jLHpdphBofy/8TBnGhAxEiWP+rBLeNphgHCnlVtDje7Ta3FvWnK3HgeLah
+# mIYre6W3D9/tovhRrDUCvxGqKBKTLUOcB3b8Ud3uaNNpTMZWa0eIBK6+jHHVgWNV
+# 5R0EjUz324iYf4YsJV+hBptCTRfdV9YGTXEr6wtMe1/r78vdzE+6lczndD8r9kzR
+# U1Ht42yaLkfhmknEemhuTF1i8AOXf/UzdCy4io3YEk2OYHl0uFYjvMoC/raeEB4E
+# O2tvOi96Z/S4IKZTUOkPEnqeZDvP8rUdy7nGJHBR
 # SIG # End signature block

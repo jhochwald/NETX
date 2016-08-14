@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Pause {
@@ -97,23 +99,21 @@ function global:Get-Pause {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Text to display')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Message')]
-		[System.String]$PauseMessage = 'Press any key...'
+		[string]$PauseMessage = 'Press any key...'
 	)
 
 	BEGIN {
 		# Do we need to show the default?
 		if (($PauseMessage -eq '') -or ($PauseMessage -eq $null) -or (!$PauseMessage)) {
 			# Text to show - Default text!
-			Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([System.String] -as [type]))
+			Set-Variable -Name 'PauseMessage' -Value $('Press any key...' -as ([string] -as [type]))
 		}
 	}
 
@@ -136,8 +136,8 @@ function global:Get-Pause {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5vs4B5RHL8Yjp6qua09NutG9
-# dhmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUSYzhmRRnH6dJ0KnYH+VQjzTH
+# SiWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +280,25 @@ function global:Get-Pause {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTg1dff/4kqaVcoXmLHPMUQ7eFBLjANBgkqhkiG9w0B
-# AQEFAASCAQB571gEAZKFYeqS6Ocw7Fb7KznA5lpSoEbpBBQjh8TS9dhl6Dk5EY68
-# Va054u4s0r/s4nVAUU6VThglrwR92QgLiPT+duXkyjAkSRnPH3EMExuhNYWucyHr
-# g4eYMrPVSn1R5SqnbMWSBPfXy8w4hie4A4uuozaC7VhwPtEy4oZ65lLw6daQRK/a
-# Cx3TV8W04tRfZhi9mTjaawacMM5pHIYl7RnTcaXqEU34kNglhr2F36ZB8kN0GgjU
-# Eo4MhoPAhjFdPOA0UkVskkRWuO90BUoebMmOc4g7AjkpGiyCfFljIoRa19YqFPcV
-# 4G27diHCM5LqDBbuZQYYamHH8yMqY1G2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSOZWAVvVZCFzhzvcrdEV8FfEvZUjANBgkqhkiG9w0B
+# AQEFAASCAQBrlSczzEdGMHZVh5YWbAbAhlOyWyf8JArdAL8k3aWxXWjOvlXb5iEK
+# njhTKY2eZEAA1xxfOMGcZ1bJeWaDrdRcoBOVtFhw9VYlyaeQN1VsDyE9dEeJyD1c
+# XLqYkCRxUr3/Vo5npbK2AzonUxk+Y9TElVX7qk3Zi2rXwZ5kTCVtMniaYFMsuLzk
+# yB+Hr3egeDKCHQUdc4VMT9Rl9ha668tNLBdz01Ay7x1zAg+yH+WS+5R04Aa42Xzm
+# RUuISamlS5Rv5ml05kdhceVdLXe5Q4kd11pBvj/rmcPIpseIOOi90LUFik4nAXo1
+# GFO2GeAaAlFQzX7a3ohdXQ2lM/kMNc+OoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0N1owIwYJKoZIhvcN
-# AQkEMRYEFF5Tb7VoLHCsucLAe34A259VJPWwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzNlowIwYJKoZIhvcN
+# AQkEMRYEFLP8FRYNZkNSdMpWGOtftfccPAJNMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCZkk0WE6NpOEi1NmcNXnl9e7U28Sq3AxAk1xqKh4rujQUC
-# q265dyjZcYdU9DTC3QG8+0UXzWxlPSNEv9hNmc7HL2pofSts/uhSQG/5+dc9b6JN
-# maK8nHiLEwZEdHvL87LCTVdLZjBYVsOQTF1xuPTAFOVIbqbhnO9V76UgtnSFH+Ow
-# 9IVYvxAp5vf2IBVX2EA4GkK52MCJxUAOY/0ow9aN3XYaysNzjHL38k5EG4ykVOpH
-# zNaUU0LM78Azjm3kz/hLQcYwhBUA5YH9VknFZvAAAiLv7faLgJWJIiqMv5ILKh9E
-# 4gP/syDOxqi02tVmfHVK+xCFrJm/a+BeRraqs39U
+# hkiG9w0BAQEFAASCAQBucoC0ldNosDpC3I2YBjH8ymXmBeGr7U+vwrOLLE4Cwzop
+# gdrDYRgFPyC8AW/GaCG1zDDg7UBph4FfyFYaRh6upJvPhQDRbJWYfebrtZKmjN29
+# VeNTBdHZSKhjYaKyTeNWQGdVRLr3O9mwSPMl68yn5HlXZCuO17kC6AapbaOfhyhm
+# tyLDsMIZvNgcgEd7PenbZDWLdCJAIbq/37zj49Xm+lqG03bAq5oHhFRpo5y+zhCG
+# qRBrHAwtwtVI0gLp6Wf+F8IgBO25aobBuBCtoC02g1D9I8RuspuywVpTG5xTtkHN
+# Y8vR76Z4iitlqYYQNTUYB3DQ2WwR/hrF8w5FPhDb
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-FolderDate {
@@ -88,14 +91,13 @@ function global:Set-FolderDate {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'Medium',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'The Path you would like to update, default is C:\scripts\PowerShell\log')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
-		[System.String[]]$Path = 'C:\scripts\PowerShell\log'
+		[String[]]$Path = 'C:\scripts\PowerShell\log'
 	)
 
 	BEGIN {
@@ -113,12 +115,12 @@ function global:Set-FolderDate {
 
 	PROCESS {
 		# Get latest file date in folder
-		$LatestFile = (Get-ChildItem $Path |
+		$LatestFile = (Get-ChildItem -Path $Path |
 			Sort-Object -Property LastWriteTime -Descending |
 		Select-Object -First 1)
 
 		# Change the date, if needed
-		$Folder = Get-Item $Path
+		$Folder = Get-Item -Path $Path
 
 		if ($LatestFile.LastWriteTime -ne $Folder.LastWriteTime) {
 			# Be Verbose
@@ -136,8 +138,8 @@ function global:Set-FolderDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDnGGffnuh/cLaqYou6zQ5HFO
-# xnSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUu3hZMFZwDQuNjXpMkHS06ty3
+# FkygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -280,25 +282,25 @@ function global:Set-FolderDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR5X+QZbUHsAm75Abk6B7QhnGg4bTANBgkqhkiG9w0B
-# AQEFAASCAQCnTB8aSQ6+BzyGvHHS0aTQcPRJfNe1ga3yEAtsCt73+j41JvO9d9TZ
-# Qv66wu4TZzqOSs1bwCK11+C3OnoH4iVv+yRTI9CO0GtBqlGwjMwHDf580i7/agts
-# VJpA7iCdZ7Ll4AV6EObrvCb47mK2JHbo1aCC4DXYgvOSAGJi4k6EzH8/plw3XD4L
-# yDTvTpJ5qQOVvBx8XA+clirzpaLP53A7sqnQa3a0U36Fb7iIPcYLZ/L7s8hIs6yC
-# drgmXG/QNDxkVW63BN+QiZGwl6riygxoWA2pBEPCOR+iT/YYYTi+O0FsSCZyJJQK
-# nnxWTdDg1xqPw0233Srvl7+VNnWyvTfYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTIE/c7W8NtxrPdkpqX7cZJLH9vozANBgkqhkiG9w0B
+# AQEFAASCAQA6nH8pzyzdUbTPGChePLRWKyHkMffoC3g8eCDZ368cw4TU2+AjX0Ya
+# 9uOc8hbbSGmT13gUC1aCcQw9YtWzrzRkhRBtVDWw/5EAUFlWtJpVTZlqvYwftfF4
+# xCbL5KoOddz8hoRBvOp2AR3TVkGURaxSm0UZuaJ/8XCbFrp2sGRgj2fGXrIaR6BY
+# WIhvvxqKSLjN6fmduZMSGotNlxzyrFKwVOuf4Wu58mWlOonpMNNeWlK5/tTQEcZw
+# p31q2Wngk5Kc0szL3j90fOQz0EL8l+NyXiz7OW/SFc/v6qt0OMqWnu6zoPghOdBG
+# En1HuUuNQafge71NJV2eAXQPYaKw7dtBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxOVowIwYJKoZIhvcN
-# AQkEMRYEFN5ufEWOdyxQC5HY2DsZhmzKos0wMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNVowIwYJKoZIhvcN
+# AQkEMRYEFMClFTrLU/Q62aKomCS2+8sfkgjnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAwKPklMhfopc1xfYc6sFb858u8plroEkL5LtkRCpqw41di
-# E47KvF0WIocl1AQzMurY1jguNVjdllQps8kkACWi1h1YOx41+l8VO+kbK2koqlFn
-# AUpR9+MJJ6CDtqelt/tRvGqPKItXa31SZodEwE1RayqMSX3JBYCSTi1XLbs0Wpq5
-# wUvt/NXXnGj93t4R3/0DW6zZbUCxyl2JY+AuRr5KFv2mkQklDDVGCqcDGKpViW5N
-# TW3Rp3UWmdF7Ft5IH0ccQ5VnoCMYLgeW1V6EnxPyOn3gnE385G1TCZwaotZ9FH21
-# y4uanGs1DrR5fg7an6giWNE3Q5lB8mvSpNagibLv
+# hkiG9w0BAQEFAASCAQA+z7FY2dLFZmc+fsf5oRxJwcqhIKHjLSBN0DS93HNwC7Wb
+# lcFx/9492kLzYJ0/KEuknuhP7wdMc9wgdp+7vtHSWtuIKYwrJj8kXaFD9J3hKvmH
+# /FEP5J6UWo/1ePgBVqZhulx/+z59dZQNVBAAMnqLu/xNF++zxFRbKxN6vfP4loZh
+# BicV2j7trsXs6tpnp4Xsm30m6kTpAXervoQXAkj4j0vr4+eP8kMeRKsJwoPO1bnP
+# 2MOnfZfvntQC2SrQUc6LwgE9Pn79aLb6zgIEsD2WBnPbk3MGMxquA6lzy4CxAEKq
+# e514yTS9r0lB74rqmgmotIA0/uNDbUkicYblSMI/
 # SIG # End signature block

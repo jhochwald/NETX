@@ -1,19 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 <#
@@ -63,11 +66,11 @@
 		Source: http://powershell.com/cs/blogs/tips/archive/2015/10/22/adding-command-not-found-handler.aspx
 #>
 
-$ExecutionContext.InvokeCommand.CommandNotFoundAction =
+$ExecutionContext.InvokeCommand.CommandNotFoundAction = 
 {
 	param (
-		[System.String]$commandName,
-		[System.Management.Automation.CommandLookupEventArgs]$eventArgs
+		[String]$commandName,
+		[Management.Automation.CommandLookupEventArgs]$eventArgs
 	)
 
 	BEGIN {
@@ -85,8 +88,8 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqo1mBfBPbpRFd0Lb2ciBAkjv
-# ALGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnO2C9T3+CmTm8NXuX6yIGAhP
+# VICgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -229,25 +232,25 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBREE0lbzOwEtI9k8UL1USQY1B8FVTANBgkqhkiG9w0B
-# AQEFAASCAQBL3P9PTGXNoBkSL+KWaVLAFAuaD6WlHnSR9iQw7bHtI2hjdgWWvU/a
-# vSC633WhTOwIrb/UwUq+pY/JdYFHfS+UQ7xGELJjlCW+jGbc4k2sc5i0qKvN54T2
-# 9yox6/qugi7PT791t2BUt2bP84O2UMR/PaVVhS+JbxjAN9xlW2n3Zncu8TRr4KJl
-# jITgCrMLCP2wB0qfvaqmajgxOj4rOg3Xo7jBv3bT1esv5VmoMZbDBjYXjWtFNfIU
-# ZMjKCTYFMrjtSutvVOPUGQyCKbL04yC9bOwzBCLUqj9cRJo6C2mlEnas2qQO39Kl
-# wgSI3IfMJL+We4JAZHk4L6wf9j1WxXgRoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS4OtCitvTzQbN3NNFAtQHaGatsUTANBgkqhkiG9w0B
+# AQEFAASCAQAHRds8kphZw5HW2LWm2Qzn2AiP6SCJT5OSYy9Fe9Vr3iBK5acuyjub
+# tYhe3CwqqmU5TLhwbonz/EqDVJv5vGUaKngIsw43seuSgXaera0dDvm6HyFTTiX5
+# kjDsjmzO8JKo1b7kiTgtBFTQbx57ZYt51QkNPEKpxBZdaPf7dXMmElAv5WB9phmy
+# DWhS7kfosX0h/lGXgql0Zo8yiFwq50xm6HKtXDfvR2uF0UlR4FxU7m+fXS7FokEQ
+# hahS4yfI4seX8VSS2L4fIbj5bS044ySRJrCBGtGNVVHXIKpFDYupbw4bR7kJHPTx
+# Pw7Ua1AvQRyepLmADGm46TpVOng2g/DwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyNVowIwYJKoZIhvcN
-# AQkEMRYEFKvl38zThNj/WGLlIcIiFF/PiCZZMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyMFowIwYJKoZIhvcN
+# AQkEMRYEFCwks2scsce1NdONfC7CMvNwsFbtMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJ0gUc2pEGeUYZgs1jqHDefesW5/oeTCN/2Aga6JVUpykM
-# /8mV9rkgBH9vHM4DTW/Zxxvlz7cQPRDm8KwC4AmQilm/p3lJQEwI3LM7ymvFkz9T
-# ZQy9C4JxEoDkuBd/ZU4dbQFnslV/WzQdFh7DwpbJuMijnYRdV64T8A8r3i59v97J
-# RJ6rStXWLHwqW7Wrch3AkLrQHYI70o/6u8XAuWe9YGg7b5hmcc5xxQINeLLPgwyi
-# YJQdPjLXoDJeQkj1lYUWac4HhggdU3LA8STRzac3Mj06WdOrvTkScUvNDNZIi1+a
-# PJlFoe0A2G9/EXwsIWM7IMvl2VcuTP+VpE9nCdWQ
+# hkiG9w0BAQEFAASCAQCmNPT7MJiQWxr/HI70zbZBo+/BdoDlMUFlFIosIKhXtTjH
+# zUrlnJZhQyhVuKq+2+DzVb6ZK/RmUh3H0+dMQh0LhIPPcCAj1M8oKRBv/z9u2Gla
+# VVuM6bBhxrg3A1fKaVmXEvgiFzjEZls3mnZ7MjZoh3Knk3p7ylI/2PByAYvuudNZ
+# eo1q1PehVtt7gMBycQateIR6jyImHpEIhzcIaU5Drmp3hfSe858HmmRK9EomPdNa
+# ZyLyWFPbvF+xhd9FFgF49SH8RMF1nydKtz+tRDsmXLZTNFwsP5sdcbD4tR8Td5jt
+# bpEaQlOuF/Afiyj/4HBqjIumvx8G3FWwk9A9El2o
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-RelativePath {
@@ -81,20 +84,18 @@ function global:Get-RelativePath {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'The folder to build a relative path from')]
-		[System.String]$Folder,
-		[Parameter(Mandatory = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[string]$Folder,
+		[Parameter(Mandatory,
+				ValueFromPipelineByPropertyName,
 				Position = 1,
 		HelpMessage = 'The File (or folder) to build a relative path TO')]
 		[Alias('FullName')]
-		[System.String]$FilePath,
-		[Parameter(HelpMessage = 'If true, the file and folder paths must exist')]
+		[string]$FilePath,
 		[switch]$Resolve
 	)
 
@@ -110,7 +111,7 @@ function global:Get-RelativePath {
 		# Now we compare what we have
 		while ($from -and $to -and ($from -ne $to)) {
 			# Check the Length of both
-			if ($from.Length -gt $to.Length) {$from = (Split-Path $from)} else {$to = (Split-Path $to)}
+			if ($from.Length -gt $to.Length) {$from = (Split-Path -Path $from)} else {$to = (Split-Path -Path $to)}
 		}
 
 		# Setup and fill the Variables
@@ -120,7 +121,7 @@ function global:Get-RelativePath {
 		# compare to figure out what to show
 		while ($from -and $to -and $from -gt $to) {
 			# Setup and fill the Variables
-			$from = (Split-Path $from)
+			$from = (Split-Path -Path $from)
 			$FilePath = (Join-Path -Path '..' -ChildPath $FilePath)
 		}
 	}
@@ -134,8 +135,8 @@ function global:Get-RelativePath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsOGpC5lqGeCmjmJ248WH+GAC
-# rXmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUt8sg9tpaQwQ/5u/RacXvm0sF
+# CdKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -278,25 +279,25 @@ function global:Get-RelativePath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQunmQZSl159gr7xI76qsgSsq9hRjANBgkqhkiG9w0B
-# AQEFAASCAQB1p/qHeI3UBSPJqxUZ61pgbpPWfDmFJlVe7kC2e3H3v7hH10h0Lg1y
-# PxiZlxJHd8QgtQM9bkxCa9zmHAmZJbbZuSx86LqrRu09kI7GJgK6qQ9naNLvNvA4
-# mfHJMslRIQbUA/u9gEZwQEzx3Boit5z988I8fw15ewZj4+JcSQCmz7Y6uAynTvaw
-# WL8okfd/fliQpefqzUu+gZmHjZOkchwto7aXNjz3vuQu+TrWCEG7EZihhNRHLoQZ
-# MMQy1UdjAk0eQpmC4oj7ul8KfuHxHLsxbfzBYMolVPoP+qqgNLbTlk4YtRqM6unZ
-# JNEwtYd52g87/YQEXnGGhbTvvVOb/okSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRoGOfIItWbhYg1KIDwe0SAXs2xdTANBgkqhkiG9w0B
+# AQEFAASCAQCWIcFYPGSz9VPhd7o7pO0+xQXrJYSTvoSJdz3/AgAUYhIDh7XLXB4B
+# LtXj799IPkn/NAnWTH0E4siiVW4TcZZ6dmg7JU8YOdEaRyhidrQUYt+Hd9FKJL7u
+# 4FlVl5XwdDHKt8/z/4VcYJgWXFggY+066I2Dr/vksXQ/HT//+4ghSokPFvW3vozL
+# MnTEukajUEvUp4fIfa6Qo7ilr0PT3n03ceeDUTdpIZhhbB5BZOTaZ1LCRoD78uQh
+# Co14TO4M4JFAtGRQYAW0LdvcopR8OVml+ZVs9Mkn0NVCwihtrZR5O1hAhWfNGczv
+# Ha47OddWQkyzV6WW7Z1qwJZLwwoY0lU2oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0OVowIwYJKoZIhvcN
-# AQkEMRYEFMKZE5QStO/LXr+jPbURQaLmzfZxMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzOVowIwYJKoZIhvcN
+# AQkEMRYEFObmF0H4LEF3MPCAJb7p5Gh9F9wOMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCbnvBQjWREeOV0RI8eNBoqRyaOtT7nKuAU40nSXmkc0Ipq
-# yAV2HEwaCIPhxiwwzZjPtSN/zj5TQRfSzrSj8li2Vsm7XTHpXroGJqvaNPjhVeRy
-# R9zcD5swzH79qUJdraAPKFpmc4tU2BHquILukVBOftf2b/yphk3BPOoVqLKlgxtS
-# iky7iyf0qBE5irXFKnVCXoFtCNBNv9RxfL4uhgnh7EpmDBF8xC2kcdGBB0qPgNLi
-# SzkxKH/uovstBxqm0MW2m1ZkW2Mrv1NenzDUQ0l16nLdHaeMmz3KomVb1u2qEqN5
-# Po5tG8nls/sCsqiF30Y7MOyuAzj3y6vvdOBRwI4C
+# hkiG9w0BAQEFAASCAQAAh0ruAfcD28upIjj7E5L2J7O/m5rH2DtWRIFEeO8ytlu4
+# 91D/YS6d/GKARHd8NwnJvDQKjxxw5qeEHe7u4/Dw6mxPiAhLUXimK4IXmGsfhesp
+# U+Cyjz0zwzxS0sYxriUwOntYc1j8PhPtAYPexzZLKQuP419/J6NFQwjEVEHpwdgY
+# 73d5aKeBdFCq8utA6oHhQl/kHUJvEoKmHFZlHDXSfDmWIzJXvqb1GnHHWmqXMvZw
+# JS+YsHrBdn87dfUfzTNPb3A1JJjozZ9T7SC60bgfcVtV1JUsH+lA+k96IhDEsbLx
+# OCzrRSMXcfRMvQTr1X/tUPdRa2jA56+g25FCcZ8W
 # SIG # End signature block

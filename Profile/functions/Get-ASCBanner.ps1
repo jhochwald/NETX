@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-ASCBanner {
@@ -95,21 +98,18 @@ function global:Get-ASCBanner {
 			Just for fun!
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				ValueFromRemainingArguments = $True,
 				Position = 0,
 		HelpMessage = 'The String')]
-		[System.string[]]$InputString,
-		[Parameter(Position = 1,
-		HelpMessage = 'Is this a String that should be dumped as ASC Art?')]
+		[string[]]$InputString,
+		[Parameter(Position = 1)]
 		[switch]$IsString = ($True),
-		[Parameter(Position = 2,
-		HelpMessage = 'Character for the ASC Banner, * is the default')]
-		[char]$ASCChar = '*'
+		[Parameter(Position = 2)]
+		[string]$ASCChar = '*'
 	)
 
 	BEGIN {
@@ -251,8 +251,8 @@ function global:Get-ASCBanner {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUm8L6zV49fROkgzK0QBKeoYow
-# ki6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpZfOK//sET8F+50trvEDhgOB
+# DBSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -395,25 +395,25 @@ function global:Get-ASCBanner {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSGOwzTUzqITWc8LG6XAG7qxZkcPTANBgkqhkiG9w0B
-# AQEFAASCAQBoI1wNhKpWJ1y5XcF2yoUEfcwvbR/xOk/RXQs1rUuoK2L1W2OpP7V0
-# aCj1E8b2CHqjn4szNvSK4OJhi+XRoqerTQ4Iuw2eu83mro9EbOEK53HwDSc2fobK
-# oGDZjWHJauCqQ3tB79KxtqwQoQG90IxlON770w2TW72dhneiUQkZq9sG96yto3NC
-# QkpNRiftqjxuuQuvDqW9y4gbRbB2wv36ITHa3K8pfLPjOSRqBC3bc6eI/0TQHPtl
-# qAbwSVwVDxVqTnXKkPGWIJjrNNJHioz/hgxSJAwR3RyExR5YF20jEK1RjChKG62m
-# XdC7OPIG8D5PBuGrX/rdd0uFcdM+g8AAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRpsH+cWAZqsNTiFDqw2J6zWVrawDANBgkqhkiG9w0B
+# AQEFAASCAQCFPHYwvaRxW800DHu5S/hYVBDBAWaJZXK1BPwZdyHrVR0KpW8gh3Wm
+# /xd/ffb8Efliz3GL4B8A6f4Cno3Iz8NMb9PiTHt4fCxvhOo0IXeJXiCB9U8eZDSU
+# WTXCGVDGSK8OlgdG5FRsU0jigwzU300k2FGe6l+mEoDcShFm4MEYsU8GWEqFlQcl
+# P7g8+Mn2shIjnUEHfZyw0UpDypML6w/kT5uqRs5vvpM9Y0fKFryONvWQbkzJsuRT
+# BDjS6w/sr3iUi6ncduL1SDWTM26sR5moSr2CnlMcwMB8qXq6HjFAWjgscxEzNAui
+# 844jU0KNCe+/Hiei8XMq0X7r1sEDRYJmoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzNVowIwYJKoZIhvcN
-# AQkEMRYEFMvNKLzwyQeHM7BFycXPN0GLZoU6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyOFowIwYJKoZIhvcN
+# AQkEMRYEFJf4x+YOczrp0BXXWP6YKTZQdySyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAvynCVrBl0wAOH963OsNTjaMbF/+EhdMdLsSEG9qXURTSQ
-# vlXdfkePWWscNprDsFD+ClDiSLvCF47LPzfyjaM4kIuFbw5DYnxdP85glBYQdr7F
-# d1imjZG0JO4ZdDSQjTn63LBC6W2Nniu81Ji7x1HKm+9g5EfwxCdPCeA40RCR3tQC
-# 6LL+TziJEzvsmgu+bOhac9JEiIy63XT9rjutvLFp4qov1IbC6yn3EAcbPy2f9XMd
-# n8vMXwCqbZSjlOKD9HpyzRWlHzzVERjIhg8cBblRfy2TS48bml5ltOfaWVal1fbB
-# jVhuzXcB/xI2Sw0xm2PGIJsMtmKIs4OaI3FE2yvI
+# hkiG9w0BAQEFAASCAQAXIqNztqfqm+ucTDtSiUB4SICXM1nQ4V3iLTZ8uIIpcjFi
+# h7D6KgeampvPm0OVRpFi9ssbprGjV6AIyQv6TaEX+D2ZHOEY6TqjLTq/DJnjaE0p
+# XmR8Uiz4vQJM0/GAbzWNt/SR0130J9OPSwtPWl5S3C0q9zDVfHsvXxHBEMg698lf
+# gSwfEFcbiIonoucvSCRgUaF6QkOCdeVrlSBh+iv8z46KvJqWjx0P9ac0tnxIVNBC
+# F0wltGhgxT/wgPtTVigQSfGEM0I0IuE2ErBHzzt+Ao9mVI7K0PCkFVrDXr4ac78a
+# 3AbvS1vy3KOwvmvRyxatbK8Re1h//8k1PeU+QTMN
 # SIG # End signature block

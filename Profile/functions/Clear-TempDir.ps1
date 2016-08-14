@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Clear-TempDir {
@@ -87,13 +89,12 @@ function global:Clear-TempDir {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[OutputType([System.String])]
+	[OutputType([String])]
 	param
 	(
-		[Parameter(Position = 0,
-		HelpMessage = 'Number of days, older files will be removed!')]
+		[Parameter(Position = 0)]
 		[Alias('RemoveOlderThen')]
-		[System.Int32]$Days = 30,
+		[int]$Days = 30,
 		[switch]$Confirm = $True,
 		[Switch]$Whatif = $False
 	)
@@ -110,16 +111,16 @@ function global:Clear-TempDir {
 	Set-Variable -Name 'cutoff' -Value $((Get-Date) - (New-TimeSpan -Days $Days))
 
 	# Save what we have before we start the Clean up
-	Set-Variable -Name 'before' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
+	Set-Variable -Name 'before' -Value $((Get-ChildItem -Path $env:temp | Measure-Object -Property Length -Sum).Sum)
 
 	# Find all Files within the TEMP Directory and process them
-	Get-ChildItem $env:temp |
+	Get-ChildItem -Path $env:temp |
 	Where-Object -FilterScript { ($_.Length) } |
 	Where-Object -FilterScript { $_.LastWriteTime -lt $cutoff } |
 	Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Confirm $_Confirm
 
 	# How much do we have now?
-	Set-Variable -Name 'after' -Value $((Get-ChildItem $env:temp | Measure-Object -Property Length -Sum).Sum)
+	Set-Variable -Name 'after' -Value $((Get-ChildItem -Path $env:temp | Measure-Object -Property Length -Sum).Sum)
 
 	'Freed {0:0.00} MB disk space' -f (($before - $after)/1MB)
 }
@@ -127,8 +128,8 @@ function global:Clear-TempDir {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpjSzo7qQw8iXNCyMdqxkzEY/
-# jg+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhw0qJsg5kgLkswBi4Zaga1lP
+# CvGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -271,25 +272,25 @@ function global:Clear-TempDir {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSpURVUg78yqOcTbL8GkvkWgT9mrTANBgkqhkiG9w0B
-# AQEFAASCAQByLjO4qN1F8Cex/62BhM089dsXomxbgj8umN55WecZiX/boX20oSz4
-# 2+n6gths2x13Ro0hnA8x0pGDi2kYshlwvkFNK44wQg9LnRrv+ZszchR+gBQwIW+g
-# eyEonWA1JZ9S86g65tYzulS6gX/9RPBvIJ1TITK/tFe1wtzTAfxvQUcoNWvH3GHJ
-# f2mBWK/tIDXS4o8xb8oft3HckxN+Kjtm6Jw+KW6RmqD4yKJrruJJ/ycrg8fHWJRG
-# 9321NvLLlslpGi03Dx7pKr6kBz+d2S8IICg11IYRgiHQd+5E5dY5oE64/DTiXPlG
-# IUHbi8es3zTWllaSko+E8z/hZBuU+vaboYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS7Qj98cyYVyG4Yz9z2KIY4gXDXsTANBgkqhkiG9w0B
+# AQEFAASCAQBTGTLAyJHRbHFRrZGD+GgEC9Ud1gDQfTNixZW349VwSYLoIrMFDWpv
+# HD47KQLXpfh+CERfNNpsOp0Hen4BkbeXHBHllsAXTzjKFBva8jKPsiSiDuc8H4Nb
+# 431JlcPBX5SPrCjhgAHKmTo7Q0pMgMLR3B6PrlHCmeefR3XoZnHYhSWUcYqAdwx2
+# T3qWbYZdr13oPf2TEB8iKJyxK/E3Zsn5Cy3o9uS+r3bSh7Qm/xDD3fSCxPuoalMO
+# fv3njJSxemijiFfH2IEVnxpndpn35zMZz2xS3kjJGwS1eh2mK5vqAJ9kSnAMxPhs
+# CRtuE6TytNqqeB5XN1iR9iFR95Lg1NCooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyNFowIwYJKoZIhvcN
-# AQkEMRYEFOF70r+XdaVFAlL7DR5ETB3KzW+AMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExOVowIwYJKoZIhvcN
+# AQkEMRYEFKy5t7nac7e26M2zRGZJaEsMItutMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAY+drMzl10aj6y153ZpXDxw6HTE4Wh04oEcEQDszekq131
-# rjraLZ9UBRyuyweJKG17qlF79ccCHPmEimuMCFZfWCQ1YAOj4zvN0E8hq5kswfxU
-# 9ds/bUHyJrmueiRJrEV3LHD8xzeNH07RlXF+3n55A5WVJ+HpI0434h+a9ddBgZqW
-# RMIVPbDKNKplZHFHNlPxUfhlTQhObl4bgZOKs4DvvpCgqIeFH+Wa100GCITW62dZ
-# yzKzpDt9VJR79+nAUqW1RvaySH1DTy75p3+0kMgXDXxN7j3C8HHinasccBCipKVZ
-# zqsq7zkUpFXxHT6tf7wVHDL/TByZo9Xeqg3RRTRd
+# hkiG9w0BAQEFAASCAQAdr/8MPmp7eew1FGOpUiaNxVwbuD7rYix90Ih940uCxeIx
+# coR+nLiDcD6R6jT0LPDvA5YN44FKw3695FhuvibJdMmJrn7mjnO5HX3ebIAHAGCi
+# 69LuafXbXudn+cnKdoXkIRTt/RT80SEmbi/JAMUqphZzjtMNJyQd98ZePDNUHhsQ
+# R1+HTuace1lyATX+CLQPJNX0B6szHqmS7+dvC2Y/urpnTnm7aRkNK4Vkx9BVOdpq
+# ztFI4sfdVgXMkPSTxsez3XwqGCd9g59i2YIBnhBhuWaKn2mPssv4Suiac4ST9/LW
+# B/VurTaVHCHU1YBo2nzX/wjq3VUcf/AxXqqhfD2O
 # SIG # End signature block

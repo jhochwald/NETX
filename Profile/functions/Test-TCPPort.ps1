@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Test-TCPPort {
@@ -94,26 +96,24 @@ function Global:Test-TCPPort {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Boolean])]
+	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Please specify an EndPoint (Host or IP Address)')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$target,
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[string]$target,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'Please specify a Port')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Port,
-		[Parameter(ValueFromPipeline = $True,
-				Position = 2,
-		HelpMessage = 'Timeout value (Default is 1.000)')]
+		[string]$Port,
+		[Parameter(ValueFromPipeline,
+		Position = 2)]
 		[ValidateNotNullOrEmpty()]
-		[System.Int32]$TimeOut = 1000
+		[int]$TimeOut = 1000
 	)
 
 	BEGIN {
@@ -126,8 +126,8 @@ function Global:Test-TCPPort {
 
 	PROCESS {
 		Try {
-			$IP = ([System.Net.Dns]::GetHostAddresses($target))
-			$Address = ([System.Net.IPAddress]::Parse($IP))
+			$IP = ([Net.Dns]::GetHostAddresses($target))
+			$Address = ([ipaddress]::Parse($IP))
 			$Socket = (New-Object -TypeName System.Net.Sockets.TCPClient)
 			$Connect = ($Socket.BeginConnect($Address, $Port, $null, $null))
 		} catch {
@@ -165,8 +165,8 @@ function Global:Test-TCPPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUj+/hm7xqADfUqvsl4M4ZCZp
-# FeygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhkCBcWpYVwPuAtlhhSxOtsh6
+# 9VmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -309,25 +309,25 @@ function Global:Test-TCPPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSAq6mSwBowK0LtCuaTdb0IOtU7WjANBgkqhkiG9w0B
-# AQEFAASCAQBvK+9nHg9pGlMBCkCgTTdamhKzI7UsfU2haFYilqutXskr8RViuSwb
-# LHyx3jq+BGOpsn1J/znmWMK85lq8kgbY/oe5epB1tXSTRSgikin4kNyRoXeCd1D2
-# zCmZ5AXaZQsD2/f3hEJgblNo05f6pBTRtUFKQcNk6FBQcG6F9jXCn1JqW/xG5OeW
-# +7eRtlVGJXNQpyWHmJqhFJ57Cliuluh4SKvsa5+NExt8FjybbeVmQWH3lS/Vmsmj
-# WojLnHbLez94GLUvsAw11FyKP7ORWk0dGw1JanRsBq4CKk+LObhXrCyGMt2F4jBC
-# l6yJhk3XaBoZxvAtzTQD2NxPs8qUSClhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRcfqoDRF7B23OAlLTMuFDg44MhTDANBgkqhkiG9w0B
+# AQEFAASCAQAOU6wRJGpax93JCBj3p/aQtyZVEG/iOPYplltFIgmmVFc/0qQIj4SL
+# yZsndVNM79AzZMw/Pu3TE2jzTZfC21fIHD7TtY3T5FCLZn8S7qVDg+Og4Om8IUhP
+# LwqNDVViIHhlRAV+VU6Qj5VuQUkEo0mKmOatpJRUqGVJ5ZvbjARYs46WSItDnsZd
+# 2Dnc8ZJklz/f8ADKtt7pM5njcXmWrnkewgQkhol+P3jrIqZu5sQvJVjcy03usCFR
+# vUPMEgBMxQ/kfOn5dCGZg42SArdolYy+AM12QQHch5hoqR7B4NoeW6PwvtUjNIMa
+# sDEze5XrQfQXr4qHwNCUzr8VxOBQfWueoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNFowIwYJKoZIhvcN
-# AQkEMRYEFK+w7N5YnBx/3Z0Syk7JLvwuR7O6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwOVowIwYJKoZIhvcN
+# AQkEMRYEFJc3B5qTOiazfmdrN7vmHBF/EKM1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBsEZYZP/ZlDn2NIF21VLTiQhwBEyWZ4VR+1TLqlzWaC1Ei
-# sjOumlOxAl/70gYh6qr8uGcPYPoP6L927t8xp7as7VMyf/34D0+6mNcV2+wMIALg
-# K8j8GrJtAeEbxTkdt890L/Pl/InPa7n5rvw+dqQ0m/1ka4wG7+ngA6bt+92xzS1y
-# FwWxinPTMvgV5Am4BTVv4U6kNtB93uQSTNGfR8CKynlAFNjUNEfkTVf/p4urzkx2
-# 8wYlKIArOCxqEiFSxtzMNtGpzj2rItOGjIoIawp907jYKpZAxxGQzSBK3U32bi+m
-# bFc0bhtzOMZDx6nBPPEXcl6u+2FcYi82zMR1F9Dl
+# hkiG9w0BAQEFAASCAQB4zvwIyLXJu1oyHFE8w5zeZtOTyfv99BAknN5kmApq2TFc
+# nv6a2q1KFgL0xaM9TCo5VTEk4Qycvgxh2kqLg9FHLbZpSVO0lDZenx190ofcxWDn
+# BF22Fge+q34Tnl0MDHTYT8zdlIFhnBROBXU/Ia8OjZyven57Kcxf4aZPrfJWsH7M
+# +Q1N8afhOR0SZpdrroXMH7SldjSyVvOu8dsiE7Wx/1iZa+9is4Msj0ydisAIFsF9
+# DxwSmDRdSd8pmUBSMl9Nu9Dx0FD5896/Ike/cCc4yY+Ccg662LuJdPIuWE+mylSs
+# vzwHjkEtnxE9xoC/eCh39YzyDjemEpJIJ4NlI6vn
 # SIG # End signature block

@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Invoke-RemoteScript {
@@ -80,35 +82,62 @@ function Global:Invoke-RemoteScript {
 			Idea: http://www.leeholmes.com/blog/2009/11/20/testing-for-powershell-remoting-test-psremoting/
 	#>
 
-	[CmdletBinding(ConfirmImpact = 'None',
-	SupportsShouldProcess = $False)]
+	[CmdletBinding(ConfirmImpact = 'None')]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 		HelpMessage = 'The remote computer to execute files on.')]
 		[Alias('Computername')]
-		[System.String]$Computer,
-		[Parameter(Mandatory = $True,
+		[string]$Computer,
+		[Parameter(Mandatory,
 		HelpMessage = 'Any folders (on the local computer) that need copied to the remote computer prior to execution')]
 		[Alias('FolderPath')]
-		[System.String]$Folder,
-		[Parameter(Mandatory = $True,
+		[string]$Folder,
+		[Parameter(Mandatory,
 		HelpMessage = 'The Powershell script path (on the local computer) that needs executed on the remote computer')]
 		[Alias('ScriptPath')]
-		[System.String]$Script,
-		[Parameter(HelpMessage = 'The remote drive letter the script will be executed on and the folder will be copied to')]
+		[string]$Script,
 		[Alias('RemoteDrive')]
-		[System.String]$Drive = 'C'
+		[string]$Drive = 'C'
 	)
 
 	BEGIN {
 		# Helper function
 		function Test-PsRemoting {
+			<#
+					.SYNOPSIS
+					Describe purpose of "Test-PsRemoting" in 1-2 sentences.
+
+					.DESCRIPTION
+					Add a more complete description of what the function does.
+
+					.PARAMETER computername
+					Describe parameter -computername.
+
+					.EXAMPLE
+					Test-PsRemoting -computername Value
+					Describe what this call does
+
+					.NOTES
+					Place additional notes here.
+
+					.LINK
+					URLs to related sites
+					The first link is opened by Get-Help -Online Test-PsRemoting
+
+					.INPUTS
+					List of input types that are accepted by this function.
+
+					.OUTPUTS
+					List of output types produced by this function.
+			#>
+
+
 			param (
-				[Parameter(Mandatory = $True)]
-				$computername
+				[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
+				[String]$computername
 			)
 
 			try {
@@ -130,9 +159,9 @@ function Global:Invoke-RemoteScript {
 		# Be Verbose
 		Write-Verbose -Message 'Validating prereqs for remote script execution...'
 
-		if (-not (Test-Path $Folder)) {
+		if (-not (Test-Path -Path $Folder)) {
 			throw 'Folder path does not exist'
-		} elseif (-not (Test-Path $Script)) {
+		} elseif (-not (Test-Path -Path $Script)) {
 			throw 'Script path does not exist'
 		} elseif ((Get-ItemProperty -Path $Script).Extension -ne '.ps1') {
 			throw 'Script specified is not a Powershell script'
@@ -147,12 +176,12 @@ function Global:Invoke-RemoteScript {
 		# Be Verbose
 		Write-Verbose -Message "Copying the folder $Folder to the remote computer $Computer..."
 
-		Copy-Item $Folder -Recurse -Destination "\\$Computer\$Drive`$" -Force
+		Copy-Item -Path $Folder -Recurse -Destination "\\$Computer\$Drive`$" -Force
 
 		# Be Verbose
 		Write-Verbose -Message "Copying the script $ScriptName to the remote computer $Computer..."
 
-		Copy-Item $Script -Destination "\\$Computer\$Drive`$\$RemoteFolderPath" -Force
+		Copy-Item -Path $Script -Destination "\\$Computer\$Drive`$\$RemoteFolderPath" -Force
 
 		# Be Verbose
 		Write-Verbose -Message "Executing $RemoteScriptPath on the remote computer $Computer..."
@@ -164,8 +193,8 @@ function Global:Invoke-RemoteScript {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUJgGJyoB1KHeWNj4Pww00kcRX
-# IkSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7rsxEY3gC4oFzAgqKS2BoQNX
+# BMugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +337,25 @@ function Global:Invoke-RemoteScript {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR/y91NHqZSa6bCpXrynF89uIiTmDANBgkqhkiG9w0B
-# AQEFAASCAQA9Dfi/FjOAUwzbTxrqIXW23j31v/Z/T5wIYO9DOv3iFval8rK3hg3b
-# iaM4FwySmyHMe8Lf+PGGJnyzfBhlt7RUlDFb604NoDW08DZSAf+LTLF5NXrMwFEq
-# JA7l7ZxbkyN7hL9qew+RVkEHGAHIjQ5cssbvxYM6jjCjL36XnRAN8YIpPKvldoTP
-# Q0Lm+8//Ka3yAKEXe6QxjTcaCDbUBiWY1wp5invS0iGCCYhJQR284wwWTrzNEHei
-# iZ9PP7wP0R2nSnlQcTnttagwBlkwX0cDjp0fSEWQZjszEh+jCZyE+5q0AEQIUhyB
-# r8pCulGasbdLsAFUScP0u4A3q7ycD9pBoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQXs5fTqRu8/KB5z2Lz/xlQalyetzANBgkqhkiG9w0B
+# AQEFAASCAQCQJ6MDeLnr5YYyUnIFAM2Gh7FbQ+/V0BtSpXB04+tZxm6CteCjQ8hx
+# Vb7JU/sMVm0hPtkXTS9IuPb7DyDnn1vMHKtqJk1VYwJgSc1kyvvMcbJut9IHaiYw
+# I8CvurUm6glosz+DvP2IebzpYK0S6JFyN5Go3tn3V6mHYeBlubGCfOtE/R7T/Ukw
+# tKYoFuH8WClEp9CyrCcWnXV3PLSCgXWb4euZjPtohQQffQnLEvt1EXBdPdg1fEaw
+# 7tWhimGmb0lnfLrtW/nluU1VYuZU0F0TpeQKcZRhKoz1ATMZyJmcui2fCWCI4H4w
+# Mtz3doR/h+rakTLZ9wwqgPWPS2c5HmUDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwM1owIwYJKoZIhvcN
-# AQkEMRYEFGPvBysSuHvb2IH3Zcp9pfT+46ruMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MVowIwYJKoZIhvcN
+# AQkEMRYEFO0sDULFf5OAgjsysymOvy3PN7WVMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBqoP9oao1EBDa9Vc4zwpHgk04kg9uehj1aykhqrcHW9d2r
-# 2Nar39XxyzwYJs7U1BQbekXPt3PV8i90k1s/YxYqZ/hgP1oT6jTnbzXr+mZw7WlZ
-# lWK8FaLyruIB/TiPYBiDSgUkt5Qzm9JFhoUwzCeRO6mXbdq2mQKu8DOGwpM0rqio
-# urdGfr6Slo/DhhyqJKWbTPnU5LS4y65wADxE6MDtSTH6T21fIeMWBhwuOIdSyjGJ
-# 3nu+7PxgaDp3gDkFxnh2PrstgJZgRNOo5gkIBHH9HVZ1ZmFRZMZj2lQLU++NFf6f
-# y5kGzoOCxgZwOU2Q2cFooceukY/VsaPBYOK/Ndcp
+# hkiG9w0BAQEFAASCAQBpm1XoziUgvn20F41kbDr6O0uhaF906YNeKxnBXDPmPurJ
+# HuTZSSfIIlD8PbqKHVSBPchgOcWUIh+pZi76JtAr9Z16rnWBlgbShlrhn1AteVt1
+# F99FMeuM5H85jGKI7I8TOWcANYFGLPUJXzMYBztuj97M11QlIwCN1Sql7IAY7nH9
+# nVcao9cs/2IN8ZjPPOZwWmgRBb2gBMHevQlBQCGFm7RZVvXuP3gMKqaYXMf1Nfad
+# c/8liwRvGDLkOMNZmSJ7c/koI4d67JHT7V+1fDUzVSx2eNtrft4h1xRR0yDUwAwI
+# IAK9Iz0YtRLDklFtmEfItFiJ2vIFzVX2fZ/NsqEf
 # SIG # End signature block

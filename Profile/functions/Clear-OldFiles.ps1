@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Clear-OldFiles {
@@ -111,13 +113,10 @@ function Global:Clear-OldFiles {
 	SupportsShouldProcess = $False)]
 	param
 	(
-		[Parameter(HelpMessage = 'Files older then this will be deleted, the Default is 7 (For 7 Days)')]
 		[ValidateNotNullOrEmpty()]
 		[System.Int32]$Days = 7,
-		[Parameter(HelpMessage = 'The Path Where-Object the Logs are located, default is C:\scripts\PowerShell\log')]
 		[ValidateNotNullOrEmpty()]
 		[System.String]$Path = 'C:\scripts\PowerShell\log',
-		[Parameter(HelpMessage = 'The File Extension that you would like to remove, the drfault is ALL (*)')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('ext')]
 		[System.String]$Extension = '*'
@@ -126,7 +125,7 @@ function Global:Clear-OldFiles {
 	#Requires -RunAsAdministrator
 
 	PROCESS {
-		Get-ChildItem $Path -Recurse -Include $Extension |
+		Get-ChildItem -Path $Path -Recurse -Include $Extension |
 		Where-Object -FilterScript { $_.CreationTime -lt (Get-Date).AddDays(0 - $Days) } |
 		ForEach-Object -Process {
 			try {
@@ -140,8 +139,8 @@ function Global:Clear-OldFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUx7AQgniIMjmah0e/OLsTmm8q
-# 8nSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUOJKAQErYrsr48hyLlaMy2Xp0
+# sGugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -284,25 +283,25 @@ function Global:Clear-OldFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRwRtcHgX1DdUMxQGxMjaCYydXytTANBgkqhkiG9w0B
-# AQEFAASCAQCgEnilKqe/nT43ISV/BtY7MWaHbwjmkYN/6Q8FwtrUIEwi7qdKR39b
-# 4Xect4AJueFsnjmqv6suwzUMHI1GKHUvO5vF0MvZGM+sKE/cOoGzzqIUSF8O3+eK
-# jR8wq0h2cgmBfR7IebxY6/mgT4iu0cd+vB1OhTeCg+9yAhm5/c2/JioS3aiHor9R
-# mJzS92nPu/2dYCAUR7K0Juy0gxws2CXvJ+SUW5+79wRxeivySkX4ZMM7fo/C8rdY
-# 6hX1RRzgOC8V8MZ+xR8Kw+o/kk1IQKHgdDWlcW166Y0DhCxQNay9fR0obHYh73zu
-# L7iRjyBcpCEQT3HNqodPTuVZtdLa/qjjoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRxt1kRvIpkxI+h7J9bMH27DTCshDANBgkqhkiG9w0B
+# AQEFAASCAQACaHZxZPYwFkIM9E8/iy1N4hBDRPBofqvsNzlGEyTkXKlyKyx7XxPr
+# /ZL5vqaMFRhHxzKxcDzHMPvpFzMHTaiYSvAxg1d4GlPgDc3iQIrQFHM7jgzL1aBq
+# EGeH74g0D9Ja0bKzaT19CEE6EDSPE4cEDhQhJkRkNaMAoceFGYVsmrL8JMEL3BBY
+# 0Iv0efG3tLfavruBtmPetw4olNMrmgh72XWJFikHydRX6r5TacxW7DlrTSPTDDYw
+# ISK415TsqvcEMXMGWaWRHXZd0Sau3nDa4rHSDaUmZLsfgezZYzyYq1afU1xHkVWA
+# DI6S2Nw8r87FtZqjV259vvR2+piniq8HoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyM1owIwYJKoZIhvcN
-# AQkEMRYEFMbWC2o022cC4LfoJ7FzsEHY41zjMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExOVowIwYJKoZIhvcN
+# AQkEMRYEFF7+qwafRWzenqxEBDdiVjaIzBQbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBm3nIM5g+b9IxC9ETaJhqeT00L5BwDGUOscPA0ontlhZ7Q
-# Pk78UJNAGYniiM25oL2JCY+pNh2axDIp90wiybL8mQL9zeW373tJ7olurU0F2m3O
-# 6FO/Lu0qD/1BtK/CjZeiNUpbu7qCRCE2GKpswTFjlArv3QlZ27tZB4En4IbDcmkf
-# Y/CrXdwIzoAhrmN3gUKzhSbOdxN2iwwlQj0bZWtHXsh7xb1YGyJ8BMHprw85l5b8
-# YaoxmQTSSIo1jEgE+D44IuY8tLesGkFiIvUUdARpENI432k0XUGVPwo2Q0dBAFS1
-# FtSgOE9fLzEj5I+kP65T9qC9aBnLT6rJknW3mZnT
+# hkiG9w0BAQEFAASCAQBQRlPC9NJphPXW8uPBhw6I9hC7/lcpccFr9oRsaN25LXhk
+# C56Cg6trKFi32dmVb4HX0Zp9U0dbM2kdBRigGmLdsIdG4QkEP300xQF0wp2z6pFZ
+# xWEHEaT+echIwEDskNSP74Kdkrh+O7zPgDssKAJD47Tx78qaEVLuthybSrp+zqQ+
+# 53hB5z7VqBnAPCdH/mHc8jCd+YBGaBYHpicvwp1tf0DTkQG80xA2vClJ0dZfJJm4
+# 5sdDV2AWjG2w6iHEGqAFam92ITzcahOeLSyMmuMVm1nmWQOe/S4PZyOBk/jAfx5m
+# jnIMXO2O3K3KIi7r+adbqNOE0p6wlkjZZrBtRO0r
 # SIG # End signature block

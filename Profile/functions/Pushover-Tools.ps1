@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Send-Pushover {
@@ -150,35 +152,27 @@ function global:Send-Pushover {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$User,
-		[Parameter(Mandatory = $True,
+		[string]$User,
+		[Parameter(Mandatory,
 				Position = 1,
 		HelpMessage = 'Your message, can be HTML like formated')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$Message,
-		[Parameter(Position = 2,
-		HelpMessage = 'Your Pushover application API token')]
+		[string]$Message,
+		[Parameter(Position = 2)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$token,
-		[Parameter(HelpMessage = 'Your device name to send the message directly to that device, rather than all of the devices')]
+		[string]$token,
 		$device,
-		[Parameter(HelpMessage = 'Your message title, otherwise your app name is used')]
 		$title,
-		[Parameter(HelpMessage = 'A supplementary URL to show with your message')]
 		$url,
-		[Parameter(HelpMessage = 'A title for your supplementary URL, otherwise just the URL is shown')]
 		$url_title,
-		[Parameter(HelpMessage = 'The Push priority (-2 to +2)')]
 		[ValidateSet('-2', '-1', '0', '1', '2')]
 		$priority = '0',
-		[Parameter(HelpMessage = 'The name of one of the sounds supported by device clients to override the user''s default sound choice')]
 		[ValidateSet('pushover', 'bike', 'bugle', 'cashregister', 'classical', 'cosmic', 'falling', 'gamelan', 'incoming', 'intermission', 'magic', 'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat', 'alien', 'climb', 'persistent', 'echo', 'updown', 'none')]
 		$sound = 'pushover'
 	)
@@ -224,7 +218,7 @@ function global:Send-Pushover {
 		if ($url) {
 			# Encode the URL if possible
 			if ((Get-Command ConvertTo-UrlEncoded -ErrorAction SilentlyContinue)) {
-				try {$url = (ConvertTo-UrlEncoded $url)} catch {
+				try {$url = (ConvertTo-UrlEncoded -InputObject $url)} catch {
 					# Argh! Use a unencoded URL
 					$UrlEncoded = ($url)
 				}
@@ -271,7 +265,7 @@ function global:Send-Pushover {
 		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([string] -as [type]))
 
 		# Use the API via RESTful call
 		try {(Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
@@ -342,18 +336,16 @@ function global:Get-PushoverUserDeviceInfo {
 			Support https://github.com/jhochwald/NETX/issues
 
 	#>
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'The user/group key of your user, viewable when logged into our Pushover dashboard')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$User,
-		[Parameter(Position = 2,
-		HelpMessage = 'Your Pushover application API token')]
+		[string]$User,
+		[Parameter(Position = 2)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$token
+		[string]$token
 	)
 	BEGIN {
 		# Cleanup all variables...
@@ -378,7 +370,7 @@ function global:Get-PushoverUserDeviceInfo {
 		Set-Variable -Name 'myBody' -Value $(ConvertTo-Json -InputObject $body -Depth 2 -Compress:$False)
 
 		# Method to use for the RESTful Call
-		Set-Variable -Name 'myMethod' -Value $('POST' -as ([System.String] -as [type]))
+		Set-Variable -Name 'myMethod' -Value $('POST' -as ([string] -as [type]))
 
 		# Use the API via RESTful call
 		try {$PushoverUserDeviceInfo = (Invoke-RestMethod -Uri $uri -Method $myMethod -Body $body -UserAgent "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) NET-Experts WindowsPowerShell Service $CoreVersion" -ErrorAction Stop -WarningAction SilentlyContinue)} catch [System.Exception] {
@@ -410,8 +402,8 @@ function global:Get-PushoverUserDeviceInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUg+smTr9TPc2x6s+Ok8yCy5GU
-# WYWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUGiTDSjylIAZpbR50UNQFMGiH
+# kNygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -554,25 +546,25 @@ function global:Get-PushoverUserDeviceInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBShjohCntncjKg1p9tlh1mQcYJF3zANBgkqhkiG9w0B
-# AQEFAASCAQBTEMU4vVNYjQi40c1LG+nXhs10PIeJsfXNwwotX1BBaRc24qZKhuYQ
-# coavKbVbOAVVXRl/UBIiEuw+TJryN8XZcW5IX2TTFR/769HPcVuTV5ug1MRN47ze
-# QU9AvZOa/eMB/Jup7eBlP4jbDvbtDmZdJcJfJu9lNW5XObxfLe3dIyWJslIAHM9p
-# WgM6H2K+z1Hrno+I3mnbE4BY8E37HmMn+SKfdLo9QCwoDMzPcWcbcmRxXmyIxqfJ
-# b2+VHKzmuNd8nc87pAtl6WdTE1xgYipHYdxlOV1pAgvgd8vaqnet6PLhK/S9nzkG
-# ZOsg2pDMdx5P3Lp8v6yuLJq8ramtVaP5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRohpQHcsTybVxKyjB38Okynl6J+DANBgkqhkiG9w0B
+# AQEFAASCAQA8MYIW2XrKxuQalzXPSh+0KRPomOAwz4dtvQB/62TO87Zh6QrqAvEm
+# pD9K26J6aJwyTwEIQYZmjAcaCmbolpa2a4/Judlj3W+Xo0Cfd6d0ZrZ07RRBykTI
+# y5Pf/+5SVOCRTk9F777JjH9HVsWP9np7jVOQjD7i+aHzJHqHm6cHwOY1mu7Rgnde
+# GUURC1Z82KUWJYaXh9NqHabuVrXkcMyeb+Fpet4GVFEKyuH9EcC4L1rEsakv0EiP
+# WjKEBRH7T+0NILU7J1RkgmZ5L/5K18Y0PeklwNJgZf7H966qfROMaOC+oUUDKDC6
+# nzjTEE0oocCq0M9pbTmYM5tc3DGy0rPqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMlowIwYJKoZIhvcN
-# AQkEMRYEFENidn7nUZmkgVOfyG/zqQC+w4slMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1OVowIwYJKoZIhvcN
+# AQkEMRYEFJGMHx5OEnnhrHH+4/kd/Kgb5CVHMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBFEQBYGwiUwwmqE5xPmZzY00CslNIpiHayhMWwRDfAd47e
-# yDglpO0ErZixCzQEop3PYD3qTFvehXShLPzNHKU8l10LpSham8qYJfF4qmRiEnYb
-# PugyRxInslzXl6FTlb3h4YsqYFnw1qC7N6i0s7NRRVCE7Wt6yKhTMMRnlIKJAS8S
-# Khr27ziabJzUifzRyNZrl89AoVi232/Yjs/Tx3uxhhQdE/aqra+TIlgKtg4ID9Zm
-# 2SbDQ365F5pCBPRhbq4C+HdVY4TmdaCXIRtBYrUhDf9w4j2lQx75gl8sgu5G4Jr5
-# x/GCtVkwXOMDfIsE3+g4KtceoAPU2YETDNED1Onq
+# hkiG9w0BAQEFAASCAQAUY/LFg3w1gii/1vgShSrwGQZy50oU89C8zrUSKo/Dg/Ip
+# 7yY3m2/dCs7S2bL0zH82TeGtMH0jAw1RJjp81ES2W7iZj2VTp/8kz4XT91rqYsQm
+# 4pt9Spr2qMA28RPFlmgAwFrf+q30jSdPdUpmn8SZ34i+NFyjoniirRyfkG4M7PGb
+# kYOy1AOJ/Ou1CFQgzeXC7rUrYmM+yJqy2dZ0Bv8LH90kBPQXm5aKgzU+RXQTOg/G
+# XVvgPl5AEURA7zmISj8v63l0hdmv4no9yikC9qrDXjFYhcdo4JaTF6+FRy10MuTs
+# 6pGDwagCobCZJuct0gecsgmy4PbO4pTEWEWiXnsh
 # SIG # End signature block

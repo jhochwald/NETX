@@ -1,19 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Whois {
@@ -123,27 +126,21 @@ function global:Get-Whois {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'One or more domain names to check. Accepts pipeline.')]
-		[System.String]$Domain,
-		[Parameter(HelpMessage = 'Path Where-Object the resulting HTML or CSV report will be saved. Default is: C:\scripts\PowerShell\export')]
-		[System.String]$Path = 'C:\scripts\PowerShell\export',
-		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Red (HTML reports only). Default is 30 (Days)')]
-		[System.Int32]$RedThresold = 30,
-		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Yellow (HTML reports only). Default is 90 (Days)')]
-		[System.Int32]$YellowThresold = 90,
-		[Parameter(HelpMessage = 'If the number of days left before the domain expires falls below this number the entire row will be highlighted in Grey (HTML reports only). Default is 365 (Days)')]
-		[System.Int32]$GreyThresold = 365,
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Specify what kind of report you want.  Valid types are Json, XML,HTML, CSV, or Object. The default is Object.')]
+		[string]$Domain,
+		[string]$Path = 'C:\scripts\PowerShell\export',
+		[int]$RedThresold = 30,
+		[int]$YellowThresold = 90,
+		[int]$GreyThresold = 365,
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateSet('object', 'json', 'csv', 'html', 'html', 'xml')]
-		[System.String]$OutputType = 'object'
+		[string]$OutputType = 'object'
 	)
 
 	BEGIN {
@@ -152,8 +149,8 @@ function global:Get-Whois {
 
 		# Validate the path
 		if ($Path) {
-			if (Test-Path $Path) {
-				if (-not (Get-Item $Path).PSisContainer) {
+			if (Test-Path -Path $Path) {
+				if (-not (Get-Item -Path $Path).PSisContainer) {
 					# Aw Snap!
 					Write-Error  -Message "You cannot specify a file in the Path parameter, must be a folder: $Path"
 
@@ -170,7 +167,7 @@ function global:Get-Whois {
 		} else {$Path = (Split-Path -Path $MyInvocation.MyCommand.Path)}
 
 		# Create the Web Proxy instance
-		$WC = (New-WebServiceProxy 'http://www.webservicex.net/whois.asmx?WSDL')
+		$WC = (New-WebServiceProxy -Uri 'http://www.webservicex.net/whois.asmx?WSDL')
 
 		# Cleanup
 		$Data = @()
@@ -264,7 +261,7 @@ function global:Get-Whois {
 						Name       = 'Expiration'
 						Expression = { Get-Date -Date $_.Expiration -Format (Get-Culture).DateTimeFormat.ShortDatePattern }
 					}, DaysLeft |
-				Export-Csv $ReportPath -NoTypeInformation)
+				Export-Csv -Path $ReportPath -NoTypeInformation)
 			}
 			'xml'
 			{
@@ -275,7 +272,7 @@ function global:Get-Whois {
 						Name       = 'DaysLeft'
 						Expression = { if ($_.DaysLeft -eq 999899) { 0 } else { $_.DaysLeft } }
 					} |
-				Export-Clixml $ReportPath)
+				Export-Clixml -Path $ReportPath)
 			}
 			'json'
 			{
@@ -296,7 +293,7 @@ function global:Get-Whois {
 			'html'
 			{
 				# OK, HTML is should be!
-				$Header = @"
+				$Header = @'
 <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 <style>
 TABLE {border-width: 1px;border-style: solid;border-color: black;border-collapse: collapse;}
@@ -307,11 +304,11 @@ TD {border-width: 1px;padding: 3px;border-style: solid;border-color: black;}
 <title>
 WhoIS Report
 </title>
-"@
+'@
 
-				$PreContent = @"
+				$PreContent = @'
 <p><h1>WhoIs Report</h1></p>
-"@
+'@
 
 				$PostContent = @"
 <p><br/><h3>Legend</h3>
@@ -349,7 +346,7 @@ WhoIS Report
 				$ReportPath = (Join-Path -Path $Path -ChildPath 'WhoIs.html')
 
 				# Dump the HTML
-				($HTML | Out-File $ReportPath -Encoding ASCII)
+				($HTML | Out-File -FilePath $ReportPath -Encoding ASCII)
 
 				# Immediately display the html if in debug mode
 				if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {& $ReportPath}
@@ -364,8 +361,8 @@ WhoIS Report
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUEzabUEKY95hywmvmxr/ceAid
-# AuGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUXEm5VBCW7oEv43DQyXaWEr/
+# pMCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -508,25 +505,25 @@ WhoIS Report
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTYd9Cf2cDKPrumrXQv3rEK21S95jANBgkqhkiG9w0B
-# AQEFAASCAQBoVI+ejP1znvrz7pCP7uJwXh/4tYP/UdDsoi+su24VMhHNOCI+HNoR
-# 2kzY1C1SIwe/lU9rh+1nWqRkIX9EvIP1MNw1RX52RatzoXdQYTEeMaDbyfpvqmaF
-# xzuPo36U11bJfXcoI4v/3Ln9dTZRSzcE13bfD7BxkKJMqkRbrml/5O2EftleWk63
-# mIRpPoBwJ1CFP+VDvFcWlxD5/pSOarNCg6LFW7sYo3eCVuv7xJeLZWwNDlgsbV+J
-# zW8ZZZwt4Ejpl/EmGyEiH2fJprDtFsSCBNe7TRVKn5XuPeEAM6Ti05FsnLo34yPe
-# kzUrq3PgXovh428jF2z6ss1r+itI80R9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT7nFJgC6GevxDUvRQTpjSRg0HNkzANBgkqhkiG9w0B
+# AQEFAASCAQBDHyPlGh7KVC7ko2b+k/pdecw1M3gcK90X40pRfAG6kk4mpG0K1eIo
+# OqIFgMRwxb/AxXSJBYcNMryBYkJTY0FNuCBz33xyLk6b1MBVbkoFVauuhF/iE4Gh
+# DUabifukmyr4ZstIDl5QKRFE/49ZyN5M+rOm60Y43XcNTn5nrBVwTv3K+kRtKFFw
+# uLymgBUYA8X+PIW8zk90Qpu78ShXiPfeOmXZtIZJmbQNSeDjzU1i3hcNqoJ7YbN6
+# Xnw1/Nxgy4YEUsQgh09SOrj9pJlNjBiYnSiE3JJzsTbh3HQQ0HunJODr9tFKqHe/
+# JxjXEXSRte7wz+mJZc32cJEiLYR2VWXloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1N1owIwYJKoZIhvcN
-# AQkEMRYEFDyc3I65Mf5RQPDGZvXPhWvyVLkUMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NVowIwYJKoZIhvcN
+# AQkEMRYEFGeWIkBPZp7Qx0xz1C5T/WPeMQ8AMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCJeciRzDq4R40qp7XOs/akqUm1QW4JlfTOvxeFQXJvYlQK
-# Ne+v5WAaSu+siUpA7SahyHdE1adnp4YLGcMioIU5+vSho49pTousyWI7h5IGDXH4
-# Df5mTC8f1EawbSvSA4+3n6M8GEG3OUD9B03amDakKcHRQ0e8Hu4K5QmReGCjxo3+
-# 2lUEzGNOFpPzWWmXlhqScpNeL8CNXim6Jo0kLj02QUC0jmOs3CV6Vg06JZBf0XlC
-# 130JiwLYG5egvRH/N7sg+j2WZKc8x7nXXTR1PRBlboqMDffSyIdLNq+Sb3BVDK6S
-# pSiWyj0TAY9uNryrMt/b7KoHrCW/v2dOMoc8eZfU
+# hkiG9w0BAQEFAASCAQAMuFDiZ/Xp+O7B+Gs5AuQ7J6Jg2lHvyRxs3puu10MOfSP9
+# fRFaQC0CR5dpKHfWtBW+/I8DAuq3IJwDZ2f+HneFFIqF6ThGN4hIm8yDqXg6Q4OI
+# birUY6x1dC96IP61wAB/SSk9T8g0niV4zAhqnhStbcjSkK1rfkntFItUNRMrynCE
+# mH5xDrRT0wsVhjGRJWlSQoY1ngH5Gz4QGVPc4P+U36/s4puNZjU//SFzUYh3KY9R
+# +k0X922e/qS99P42YhvynSusu7FDMqFVkWfTAqcU/xVm2/71qV/zX0y1+wXV9Uvk
+# YRXaW1r6hR1jQTAvj2QjtYrOKnB8n/bAI37p283S
 # SIG # End signature block

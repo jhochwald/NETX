@@ -1,20 +1,12 @@
-﻿#requires -Version 3 -Modules CimCmdlets, NETX.Core
+﻿#requires -Version 3.0 -Modules CimCmdlets
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Update-SysInfo {
@@ -81,7 +83,7 @@ function global:Update-SysInfo {
 
 	BEGIN {
 		# Call Companion to Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
@@ -91,21 +93,21 @@ function global:Update-SysInfo {
 		Set-Variable -Name Operating_System -Scope Global -Value $(Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -Property LastBootUpTime, TotalVisibleMemorySize, FreePhysicalMemory, Caption, Version, SystemDrive)
 		Set-Variable -Name Processor -Scope Global -Value $(Get-CimInstance -ClassName Win32_Processor | Select-Object -Property Name, LoadPercentage)
 		Set-Variable -Name Logical_Disk -Scope Global -Value $(Get-CimInstance -ClassName Win32_LogicalDisk |
-			Where-Object -Property DeviceID -EQ -Value $(${Operating_System}.SystemDrive) |
+			Where-Object -Property DeviceID -EQ -Value $($Operating_System.SystemDrive) |
 		Select-Object -Property Size, FreeSpace)
 		Set-Variable -Name Get_Date -Scope Global -Value $(Get-Date)
-		Set-Variable -Name Get_OS_Name -Scope Global -Value $(${Operating_System}.Caption)
-		Set-Variable -Name Get_Kernel_Info -Scope Global -Value $(${Operating_System}.Version)
-		Set-Variable -Name Get_Uptime -Scope Global -Value $("$((${Get_Uptime} = ${Get_Date} - $(${Operating_System}.LastBootUpTime)).Days) days, $(${Get_Uptime}.Hours) hours, $(${Get_Uptime}.Minutes) minutes")
-		Set-Variable -Name Get_Shell_Info -Scope Global -Value $('{0}.{1}' -f ${PSVersionTable}.PSVersion.Major, ${PSVersionTable}.PSVersion.Minor)
-		Set-Variable -Name Get_CPU_Info -Scope Global -Value $(${Processor}.Name -replace '\(C\)', '' -replace '\(R\)', '' -replace '\(TM\)', '' -replace 'CPU', '' -replace '\s+', ' ')
+		Set-Variable -Name Get_OS_Name -Scope Global -Value $($Operating_System.Caption)
+		Set-Variable -Name Get_Kernel_Info -Scope Global -Value $($Operating_System.Version)
+		Set-Variable -Name Get_Uptime -Scope Global -Value $("$(($Get_Uptime = $Get_Date - $($Operating_System.LastBootUpTime)).Days) days, $($Get_Uptime.Hours) hours, $($Get_Uptime.Minutes) minutes")
+		Set-Variable -Name Get_Shell_Info -Scope Global -Value $('{0}.{1}' -f $PSVersionTable.PSVersion.Major, $PSVersionTable.PSVersion.Minor)
+		Set-Variable -Name Get_CPU_Info -Scope Global -Value $($Processor.Name -replace '\(C\)', '' -replace '\(R\)', '' -replace '\(TM\)', '' -replace 'CPU', '' -replace '\s+', ' ')
 		Set-Variable -Name Get_Process_Count -Scope Global -Value $((Get-Process).Count)
-		Set-Variable -Name Get_Current_Load -Scope Global -Value $(${Processor}.LoadPercentage)
-		Set-Variable -Name Get_Memory_Size -Scope Global -Value $('{0}mb/{1}mb Used' -f (([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)) - ([math]::round(${Operating_System}.FreePhysicalMemory/1KB))), ([math]::round(${Operating_System}.TotalVisibleMemorySize/1KB)))
-		Set-Variable -Name Get_Disk_Size -Scope Global -Value $('{0}gb/{1}gb Used' -f (([math]::round(${Logical_Disk}.Size/1GB)) - ([math]::round(${Logical_Disk}.FreeSpace/1GB))), ([math]::round(${Logical_Disk}.Size/1GB)))
+		Set-Variable -Name Get_Current_Load -Scope Global -Value $($Processor.LoadPercentage)
+		Set-Variable -Name Get_Memory_Size -Scope Global -Value $('{0}mb/{1}mb Used' -f (([math]::round($Operating_System.TotalVisibleMemorySize/1KB)) - ([math]::round($Operating_System.FreePhysicalMemory/1KB))), ([math]::round($Operating_System.TotalVisibleMemorySize/1KB)))
+		Set-Variable -Name Get_Disk_Size -Scope Global -Value $('{0}gb/{1}gb Used' -f (([math]::round($Logical_Disk.Size/1GB)) - ([math]::round($Logical_Disk.FreeSpace/1GB))), ([math]::round($Logical_Disk.Size/1GB)))
 
 		# Do we have the NET-Experts Base Module?
-		if ((Get-Command Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
 			Set-Variable -Name MyPoSHver -Scope Global -Value $(Get-NETXCoreVer -s)
 		} else {
 			Set-Variable -Name MyPoSHver -Scope Global -Value $('Unknown')
@@ -119,7 +121,7 @@ function global:Update-SysInfo {
 		}
 
 		# Is this a Virtual or a Real System?
-		if ((Get-Command Get-IsVirtual -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Get-IsVirtual -ErrorAction SilentlyContinue)) {
 			if (Get-IsVirtual) {
 				Set-Variable -Name IsVirtual -Scope Global -Value $('(Virtual)')
 			} else {
@@ -241,12 +243,12 @@ function global:Get-MOTD {
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
 		Write-Host -Object ('    Date/Time: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Date}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Date") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
 		Write-Host -Object ('         User: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${env:UserName} ${AmIAdmin}") -ForegroundColor Gray
+		Write-Host -Object ("${env:UserName} $AmIAdmin") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
@@ -256,52 +258,52 @@ function global:Get-MOTD {
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
 		Write-Host -Object ('           OS: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_OS_Name}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_OS_Name") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
 		Write-Host -Object ('       Kernel: ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ('NT ') -NoNewline -ForegroundColor Gray
-		Write-Host -Object ("${Get_Kernel_Info} - ${CPUtype}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Kernel_Info - $CPUtype") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Red
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Green
 		Write-Host -Object ('       Uptime: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Uptime}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Uptime") -ForegroundColor Gray
 		Write-Host -Object ('') -NoNewline
 		Write-Host -Object ('                                  NETX PoSH: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${MyPoSHver} (${localDomain} - ${environment})") -ForegroundColor Gray
+		Write-Host -Object ("$MyPoSHver ($localDomain - $environment)") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('        Shell: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("Powershell ${Get_Shell_Info} - ${MyPSMode} Mode") -ForegroundColor Gray
+		Write-Host -Object ("Powershell $Get_Shell_Info - $MyPSMode Mode") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('          CPU: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_CPU_Info} ${IsVirtual}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_CPU_Info $IsVirtual") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('    Processes: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Process_Count}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Process_Count") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('         Load: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Current_Load}") -NoNewline -ForegroundColor Gray
+		Write-Host -Object ("$Get_Current_Load") -NoNewline -ForegroundColor Gray
 		Write-Host -Object ('%') -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('       Memory: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Memory_Size}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Memory_Size") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Blue
 		Write-Host -Object (' ███████████') -NoNewline -ForegroundColor Yellow
 		Write-Host -Object ('         Disk: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Disk_Size}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Disk_Size") -ForegroundColor Gray
 		Write-Host -Object ('      ') -NoNewline
 		Write-Host -Object ('')
 		Write-Host -Object ('')
@@ -309,7 +311,7 @@ function global:Get-MOTD {
 
 	END {
 		# Call Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
@@ -346,39 +348,39 @@ function global:Get-SysInfo {
 		# Write to the Console
 		Write-Host -Object ('')
 		Write-Host -Object ('  Date/Time: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Date}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Date") -ForegroundColor Gray
 		Write-Host -Object ('  User:      ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${env:UserName} ${AmIAdmin}") -ForegroundColor Gray
+		Write-Host -Object ("${env:UserName} $AmIAdmin") -ForegroundColor Gray
 		Write-Host -Object ('  Host:      ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ("${env:ComputerName}") -ForegroundColor Gray
 		Write-Host -Object ('  OS:        ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_OS_Name}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_OS_Name") -ForegroundColor Gray
 		Write-Host -Object ('  Kernel:    ') -NoNewline -ForegroundColor DarkGray
 		Write-Host -Object ('NT ') -NoNewline -ForegroundColor Gray
-		Write-Host -Object ("${Get_Kernel_Info} - ${CPUtype}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Kernel_Info - $CPUtype") -ForegroundColor Gray
 		Write-Host -Object ('  Uptime:    ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Uptime}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Uptime") -ForegroundColor Gray
 		Write-Host -Object ('  NETX PoSH: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${MyPoSHver} (${localDomain} - ${environment})") -ForegroundColor Gray
+		Write-Host -Object ("$MyPoSHver ($localDomain - $environment)") -ForegroundColor Gray
 		Write-Host -Object ('  Shell:     ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("Powershell ${Get_Shell_Info} - ${MyPSMode} Mode") -ForegroundColor Gray
+		Write-Host -Object ("Powershell $Get_Shell_Info - $MyPSMode Mode") -ForegroundColor Gray
 		Write-Host -Object ('  CPU:       ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_CPU_Info} ${IsVirtual}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_CPU_Info $IsVirtual") -ForegroundColor Gray
 		Write-Host -Object ('  Processes: ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Process_Count}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Process_Count") -ForegroundColor Gray
 		Write-Host -Object ('  Load:      ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Current_Load}") -NoNewline -ForegroundColor Gray
+		Write-Host -Object ("$Get_Current_Load") -NoNewline -ForegroundColor Gray
 		Write-Host -Object ('%') -ForegroundColor Gray
 		Write-Host -Object ('  Memory:    ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Memory_Size}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Memory_Size") -ForegroundColor Gray
 		Write-Host -Object ('  Disk:      ') -NoNewline -ForegroundColor DarkGray
-		Write-Host -Object ("${Get_Disk_Size}") -ForegroundColor Gray
+		Write-Host -Object ("$Get_Disk_Size") -ForegroundColor Gray
 		Write-Host -Object ('')
 	}
 
 	END {
 		# Call Cleanup
-		if ((Get-Command Clean-SysInfo -ErrorAction SilentlyContinue)) {
+		if ((Get-Command -Name Clean-SysInfo -ErrorAction SilentlyContinue)) {
 			Clean-SysInfo
 		}
 	}
@@ -387,8 +389,8 @@ function global:Get-SysInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNCxxiGQeTjENrYw20dQ+pZTV
-# Q3KgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvZG0uZbyYpdqxflYNdv78tXa
+# D5qgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -531,25 +533,25 @@ function global:Get-SysInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQw9roSsanWFO7/O+02SL/VRuMeSzANBgkqhkiG9w0B
-# AQEFAASCAQCFn0w0UOXoaPYK9k8qIpSQCKfK1Rnw9Wf1z0m+xBO5wOjuZLtV0PQr
-# p3n844p/7/XiCqjE1OzxYEFm17pT/6DdXT6H06gUzKcuMKtJW3wBmN5RLbIGZAcD
-# vhpGCq+EOF4LLWgX7q5gKrr3GRssFGzEvaMY5Wxdv2pY1S/DigV55Uo5lJSyMal6
-# 8gmP3OpxkbjFHpwEYYDYofqfWNKOqcrEKXqTn5qOhRmXMaGn3yZnoc5QaiVF0YvO
-# AO+4mua2hojaAPq+nQUx2c2CxlIkAEMOJivZvyjFPAWiW00SqrAD55ZCXo4nR/Rr
-# w2YeTcXj445cZIgP+CdiEXfndIAm4Uz7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSE7ZoVP3mYtV51/PB8IKAcjKXsGTANBgkqhkiG9w0B
+# AQEFAASCAQArKIXKY6nzQZurxZ5nbBINk+4rCVmVjolK0wIqNY+GM0F848MkGkvX
+# 5Y/nOmtPTfUFyNjUGRUbjV8oEj035cjTgKnurn0ipCdXrVk5HaNWFT2fQB3tGGUZ
+# 67/Te1hRQlWsgW4sb/pHg06DUCHO7nPV3Fj5szJ9uMsrxZryHRC+c1FThhtINHwd
+# cgKAoTZZnMK/1DZvvBP9tISouJU+JvJmsQljU/ZYDSKqPJz/KBUNHWStZsrRdKKj
+# jZeWJS+u9y1DyawhhqqAA47lbSrvZZMHNmyoLwwbXXy9cONTpm19YOM5N6mGs7+2
+# i3GlDNaG8bIAqaCCZZdw1NBLa7pPe1oSoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwN1owIwYJKoZIhvcN
-# AQkEMRYEFPu3bP4zkCKkFV9od0RpdI/dhJ2nMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1NVowIwYJKoZIhvcN
+# AQkEMRYEFPknwQXOpALNjMhMdHlI1doQc1jvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBkl9J64ZejOhED2DLcz6UUx/AJuERjUahVcIL5bajOiW0t
-# NcYTWV3GNaUF10W23iYLOpknr/e9y4HqDl2uDkpXOHUl+rsiPQNSiKmW9h2KFa6r
-# z0S6C/Q/V1i233XJrWA0mOHnD1evXkiOGxm6C8G+PGildDsU4bE4wuu0/8qCS4oi
-# wFKVeFD4n2lUwp0zTrJM4y6GWVqxkZ60PXzRmeCyZ5Yyq8so9jKiqw+CN2H6GhL1
-# AZMqz3guE6iRU7u0RRNpXlaxLW6u2epOrpKntFUDAyJ7nc+S5s2pIoQOqhIXIj6T
-# dLxl2poYvQH6yT+1AyP32edYc5pym9mTyplnZwHR
+# hkiG9w0BAQEFAASCAQBNyZUnLncft4vveLfD7V1/X+ctI7YR9zHX9fNYJ6KzmZSp
+# FnRx2LyvTmzmEdf7Wr/qJYm6mvuE0kUP/JVU4bJh7XAJIqKsn48uq03RsoAU8Jjn
+# Ou4ULUMuBSwRSG8dbDBkoR4p+V38XeLUTPLIpP262OINUupmaTnqxuavvZDy8pGv
+# 98Fy0r2yvrAEpeGps1NkWvCDf/PWrmCoFoGmreS/zZvLK+DONWv2R9QvQNetJi9Y
+# vZqfCEyCYplO54Z/qfoPJXJIzvhxcPJzvrQm3+QcXM1jzzTR3pfHwVn+JjXtqtNB
+# j6y+uQEwh0iWOlK11Z5ddoPrKoOSpvZUV4ozuTx3
 # SIG # End signature block

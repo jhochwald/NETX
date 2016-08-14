@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Set-Encoding {
@@ -103,18 +105,17 @@ function global:Set-Encoding {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True)]
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('PathName')]
-		[System.String]$path,
+		[string]$path,
 		[Alias('Destination')]
-		[System.String]$dest = $path,
-		[Parameter(Mandatory = $True)]
+		[string]$dest = $path,
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
 		[Alias('enc')]
-		[System.String]$encoding
+		[string]$encoding
 	)
 
 	BEGIN {
@@ -127,26 +128,26 @@ function global:Set-Encoding {
 
 	PROCESS {
 		# if the path is a file, else a directory
-		if (Test-Path $path -PathType Leaf) {
+		if (Test-Path -Path $path -PathType Leaf) {
 			# if the provided path equals the destination
 			if ($path -eq $dest) {
 				# get file extension
-				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($path))
+				Set-Variable -Name ext -Value $([IO.Path]::GetExtension($path))
 
 				#create destination
-				Set-Variable -Name dest -Value $($path.Replace([System.IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
+				Set-Variable -Name dest -Value $($path.Replace([IO.Path]::GetFileName($path), ('temp_encoded{0}' -f $ext)))
 
 				# output to file with encoding
-				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
+				Get-Content -Path $path | Out-File -FilePath $dest -Encoding $encoding -Force
 
 				# copy item to original path to overwrite (note move-item loses encoding)
 				Copy-Item -Path $dest -Destination $path -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$False
+				Remove-Item -Path $dest -Force -Confirm:$False
 			} else {
 				# output to file with encoding
-				Get-Content $path | Out-File -FilePath $dest -Encoding $encoding -Force
+				Get-Content -Path $path | Out-File -FilePath $dest -Encoding $encoding -Force
 			}
 
 		} else {
@@ -157,7 +158,7 @@ function global:Set-Encoding {
 				}
 
 				# get file extension
-				Set-Variable -Name ext -Value $([System.IO.Path]::GetExtension($i))
+				Set-Variable -Name ext -Value $([IO.Path]::GetExtension($i))
 
 				# create destination
 				Set-Variable -Name dest -Value $("$path\temp_encoded{0}" -f $ext)
@@ -169,7 +170,7 @@ function global:Set-Encoding {
 				Copy-Item -Path $dest -Destination $i.FullName -Force -PassThru | ForEach-Object -Process { Write-Output -InputObject ('{0} encoded {1}' -f $encoding, $_) }
 
 				# remove the extra file
-				Remove-Item $dest -Force -Confirm:$False
+				Remove-Item -Path $dest -Force -Confirm:$False
 			}
 		}
 	}
@@ -180,8 +181,8 @@ function global:Set-Encoding {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUhnmhnnO7EdNvoUDp7viwAewJ
-# Yx2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXdRQDbDhM7dMcdxBjoO6aD6e
+# f4CgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -324,25 +325,25 @@ function global:Set-Encoding {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTU71lq9nQ1mWBhRWiyRPAfk9UnEzANBgkqhkiG9w0B
-# AQEFAASCAQCd2/B2nBVlE1/oJOwQ/YoRH9S2ERECzyXkssuXNhHL7WdLRcuKJwI/
-# vGcqTWBb9BPOQhqjiGmy7mQelE00uNeumxaOPpubMX1o/6VULVQGc9/y9XkCF42G
-# v9CFcmMaNI/Gaimj1essOS6JlIG89mTMOEZg1v0nEDWJONqdEA+2beV1xDf7zQkA
-# a2+Xe/zFMzUbnPjrkzAx5OV/v2vU0abGLC2bIL2WjNyqm+xGhBQYq5L4S8T/Aaer
-# qB4rOgYIi51mSwac57besJ2iWDBSIPJ+h3DfpGUxUhRo1roeaLOE1+lUUECYm2ZH
-# rcpk8zKBoXKLqWq1SoMGRqndUNf4uccYoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTuO+zHhnXWyb2uW063LA+r+zNhcDANBgkqhkiG9w0B
+# AQEFAASCAQBvcR7nmXjkOzc817qG3/VIZqdzG2qpTsOIU1fFVKpqHheN7qkkAogb
+# c0KUwJfNmrOrnxaJSX9K4E/Xv9ZLP8MfBwiaez3k0v3lkUXl4WepPnU+cBroRBvP
+# NcIXTqhB1D79CieaJ8fRA75dv+Jl6jMaslyDBwG2h0KXaFqPBiLmgC7/506Rk+dx
+# d1s32QBvyJqydlaoKq+qiLrQ9HZGItdwWhnoxo298xVFh+iDGh44PDHzG6BwBLYX
+# q6aqdcPEUaj2tvuZrbP5am/waA88p0ENHvafxJRerJQscEU4fpiyAz1AnAwRvu8V
+# NkE1gHr9vYxSZwQn/zEzMZ0g4wr4ahe6oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxOVowIwYJKoZIhvcN
-# AQkEMRYEFFmEOFADbb4vCDh4Q5GanKpVPH3TMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwNVowIwYJKoZIhvcN
+# AQkEMRYEFE26rU4ChKFzxCp+lDBuMD0DF9TdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAvcW4FLTrXLTApBzXKTVnEorJclUgMAmGZUgbQmsVP7Vvt
-# L7hU62e6Dr04DuMSJ5Lo+12hQuKIaOixgFnX0nDqv1F8tYWVNp6JU6MG/rx15yDq
-# ZtstiIKr7nEdI70U09i+Om0oZoWa8LzSufsQk7FvGIxMqbUjmXNLQdXcfS1Ty0pi
-# LdQ5zzqMymmb6s9V4vli7WnzWnnGx2KVWzXqqkPfBGj8iBfS22St/vdwv03L4sJJ
-# dfbVSPhtCFXzeK4ZZXzUeRmv/nls0lRc+zgQlurXP14xpJyvA4CCOZvrPD/Jzf/s
-# bQgzujHr+5Xo1Nt7SDOEDdRd8N9UVsh19SkTD4+I
+# hkiG9w0BAQEFAASCAQCQGAWMi0xvbgCKYgMBWuc9taTfzjC5ODh9IeH0S0y4W8Vj
+# jFR6MZu5a+BQ+hhJk/8uVbC/Tb3htLgl2NmJVFzg8bJca/E+mtsMkpsRmGZfWE0K
+# QlwAPwuzH0fcAIa8GArK0RFgYNQ7y+CyR1fQfvxqx8Vm1MK4aYtRgxunkvcDOkcH
+# zajJCzrvM6sRlqQ3JGblFg+WjY9USQlmp/mGM+TvOe6iyF/GUouVrocOKmiFxYas
+# FChDxbzRJjm1fA3THTeFGl3Mc0UgWzMGuJy80dr2/ezY93vPDivXPA5xX28dFDh0
+# GXoN3dcJb2FvMTG9k0pyORSw7RIQTiDccFC17nEs
 # SIG # End signature block

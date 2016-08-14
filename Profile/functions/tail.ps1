@@ -1,19 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:tail {
@@ -88,12 +91,10 @@ function global:tail {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(HelpMessage = 'Follow')]
 		[switch]$f,
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'File to open')]
 		[ValidateNotNullOrEmpty()]
 		$file
@@ -102,10 +103,10 @@ function global:tail {
 	PROCESS {
 		if ($f) {
 			# Follow is enabled, dump the last 10 lines and follow the stream
-			Get-Content $file -Tail 10 -Wait
+			Get-Content -Path $file -Tail 10 -Wait
 		} else {
 			# Follow is not enabled, just dump the last 10 lines
-			Get-Content $file -Tail 10
+			Get-Content -Path $file -Tail 10
 		}
 	}
 }
@@ -150,10 +151,9 @@ function global:tail2 {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 		HelpMessage = 'File to open')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('FileName')]
@@ -164,10 +164,10 @@ function global:tail2 {
 		# Is the File given?
 		if (-not ($file)) {
 			# Aw SNAP! That sucks...
-			Write-Error -Message:'Error: File to tail is missing...' -ErrorAction Stop
+			Write-Error -Message 'Error: File to tail is missing...' -ErrorAction Stop
 		} else {
 			# tailing the file for you, Sir! ;-)
-			Get-Content $file -Wait
+			Get-Content -Path $file -Wait
 		}
 	}
 }
@@ -175,8 +175,8 @@ function global:tail2 {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3ObRy53Bgpd+6RAW0uxyYWc9
-# BKegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQsVgpa5G/dk1mtU2AH4PMEUq
+# nNWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -319,25 +319,25 @@ function global:tail2 {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRx8tOI7iLWhHo+7CQuG01fGw9H5DANBgkqhkiG9w0B
-# AQEFAASCAQCQVvvujEAhVNvTt89azp1ylv/0t/hkHkxMiNUyOyZ94j0+9PZcH4q/
-# pKnqCzBCJ4sovfS9e25PGk6Q0zNY/dkn89qlangyXjYJl8jm46KR7WTEOUfltVQf
-# 3cFZSwTuvzLBhml40ghjWYJvWWZD+Rq9iWkEefkMbHKvu6O17d6f7KK/Ph3WvM8s
-# nZHwDZcDMJJLc61xMEFUIEQAMRyDwjvWHB1Na69ajnPeV/hR3CdsE/6kaqHGmj71
-# krfAamA3LVCaXNy4hzs6daQsPyKa99cOlv7hgjLUnL1PcTNH43Uw2t1JEJwsS7rB
-# DN2Xu6nHQIgOquhNZFcdt4tamtcyFPGLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQXYOI5axN3XdVTAbsILOoo/OYsUDANBgkqhkiG9w0B
+# AQEFAASCAQCGncheO1HVvaS1FBBjj1xu/zllydIbZqPKew9IT1SqlB8dWmQrgeRi
+# ecf1AAISBXYMgFDfwf7wPhNewj7XNjQOuU7rrgfBQkNAnovtSbxIXdheGV5x5Kuw
+# YjOqbRh7DcuN4ctBeRQ98dOpjqlXlmyAfYj/thQGjb2lQz4NoJle6zZi0aTRQKn6
+# e8FTh7cLJyGwc4Egk26W59KI/7/BmWs0uwwIzifmdKyAqflZ5CFnVh1C6hhnekbg
+# 1QhnuzlHimsbbNLY5qkXSbpYmgcI5JL+rCHWpR25gdmKUdWWnzZ7s3Ltt4IdeC84
+# 7X1/UOR/x4aRLm11P4m1nOitXXVD2F3foYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyMVowIwYJKoZIhvcN
-# AQkEMRYEFITcwThfJJpGoVQTtDxuwI//i5EJMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwOFowIwYJKoZIhvcN
+# AQkEMRYEFD/5PR3u8Inalr+XT0PpsXKWdJA8MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBjc3b/lfUOxVvj14nZmplvlPcg5AaxJYPnUzCeFAiZs20c
-# Aa9Ym3XdfvXme/kLuTpcZqrH5lUogV+uxxh1h1ECtGdggUoTgaVReLkX2Q0ctonp
-# g/WW75lPVqBDRatjPk8Z98CwN8yh2uaAxlcosYvjD6rXVqTak1PVqdySSbYOXP4f
-# s7YZzCNPqQaG28rnB/9igNkE9E7ribpd/KnXtLbix5Hz2hrR/y6EViV/5v+xU7dC
-# sQIZ4ng6FCg6zJOcxtjMjB2wRbd4I04JpCQyAjYDIKvcLUzT+q8n7/QdJlqB9wZM
-# jAL2zJwmdi1NEjB7E6D783X6LgbmBsKoQCwy4CJC
+# hkiG9w0BAQEFAASCAQAJgUSK2IqeX6hLY/Gs2M5Ees6Hm+k3t4RmcaluVRT6sbjy
+# vyEJU04bqak/gTgpJFJTkjhDfytfCXOvpOhuW3EZ8DkdWJV601fkvo5gPshi4iAz
+# QSqaUxSlbOrDC7aMW6eQbsu96c8dZoqYpr8T3oYS1g6eYQxCGmSRDfsYVOZt8dIY
+# 3tie0jBpOc/0s78jMl4bFNsnaKMVS1MVAEGxQI/XYF8bDsDaj3lGFyU9V6ccajlY
+# MM2Ft3KX7NUj5OSFufqwyDfcDk1sQp24LNFl0o6jtDPbunQNKQuIkCXJ5QH9K9eP
+# YjtNvJxiPzMlv/H3VJ4UDO5NrTzwxQvg/CT1Ciuw
 # SIG # End signature block

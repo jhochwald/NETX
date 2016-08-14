@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Add-AppendPath {
@@ -74,15 +77,13 @@ function Global:Add-AppendPath {
 			.LINK
 			Support https://github.com/jhochwald/NETX/issues
 	#>
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Path to add to the system path')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Folder')]
-		[System.String]$Pathlist = 'C:\scripts\PowerShell\'
+		[string]$Pathlist = 'C:\scripts\PowerShell\'
 	)
 
 	PROCESS {
@@ -130,12 +131,10 @@ function Global:Remove-FromPath {
 			Just a little helper function
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(HelpMessage = 'The PATH to remove')]
 		[ValidateNotNullOrEmpty()]
-		[System.String[]]$Pathlist
+		[String[]]$Pathlist
 	)
 
 	PROCESS {
@@ -151,8 +150,8 @@ function Global:Remove-FromPath {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUghF2jy5gJj4LBKHZyT98x7Av
-# MK+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqhKXUqrhUgGLA+A8EIRm+ReY
+# J/egghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -295,25 +294,25 @@ function Global:Remove-FromPath {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ9clF/7POgIHyVNDl1r05PSj4PgTANBgkqhkiG9w0B
-# AQEFAASCAQApkckSH8EAzgx+Ubh0mmxWgh1Um6xP2O/pOTKkkhB3Jb4tLvqLL9Tp
-# a+OJ07b91Dk2ZP1ne1qJsthEFxozqw2j+JUsjbhtugGFaqU9qENu8l1/914G6FCU
-# esNaq91yUoFVrv3+Cta6z0Q8KAr7qjirxfZeYY4w1GEhtmflgLBijOTTJly55olR
-# uSqZe7SH1r/oMOxA/GuvwX3cvuBDKXYVVNGlKaQMQe9HqT5uqGaaOCihPpDsQhPx
-# a+/qZsAln/99gE1YHOGUXJBSfS/mCfp0xiI2QbFhmlB7PtuTWd1V0+kpusfgXDfE
-# xbTz1t6JXuRJLVgdvcQtOCqDE6ciNnogoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTSNqAxYfOkIrpZ6ZauOJ1bMrjXMTANBgkqhkiG9w0B
+# AQEFAASCAQByIb7cdDkPHCiTQnyQ0bSIQLSviz7MZ+dqhFpOLgoCz7RyTl+ytREW
+# ij8nwdxcxrArwaPZ+wgGPfo8G2quTZCAirS5At16mMevGWKa10chWXxO0YLOq1zU
+# tB8z2HkJ59w9rcPAO0QjpOWR3Se2hCAWzMz6BnOJVtX8Gvq1iEbgTPsfwGy82q05
+# IiWbszd+fq8ujaNt0hiZjZvt2/iLr59BGDiIrhluNYAWkLh/U4eL69tJAwNjw+tT
+# ZvAMBV4p9TGMXIxhSpdzPS3OxMMuKokR1HWXqsSVcTk1uaNe9dTFSN5EnugIxaQ4
+# EdeIHNbNdZjspd5ol13wlhfCMvY9ivoHoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwOVowIwYJKoZIhvcN
-# AQkEMRYEFChPbzCL+2xtDAPp0B/oyTuD+qvtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1N1owIwYJKoZIhvcN
+# AQkEMRYEFOcKCaGlvqZrbU2DLQHjhr17HyaDMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBUR1b5kXLE20+4b1hImeYACg4i7gKOEa0q669FqdsmF8Wv
-# CDPesGwB0PLZEkAoNFXvthLSi2FRbms3OYHgocIujE7cqMpw2soiEbRn69Dd7tDY
-# Kgf5SVgzoyL3r1EbjEemrbkpe4prdNUK3Li5reD81WsZ257tPo+CAikMnJxYjgJN
-# DzaZmPWcT4STWeFb0W6KIbUay7/9fX6f2aMK2E0H4cDbQthO6Jievs7KCTp4oINV
-# ZO2Iim47Bg3eOe7OIbW1+yqPvDJSZg8gAF9dovct2r+U+fM0Tnfg9wNkuDQnTi7h
-# FBFxI3629cGK0Gkj35sYY1h44C3FYlWZVJBndyor
+# hkiG9w0BAQEFAASCAQAW4N/kRGKG1/UoXsFBSBH14Ym2fFufjL1qq4R6CHagfu00
+# 1NDjrM5xOhHkC5npXFKdkihs0MPTPPhpLP7lPvuiboMIkXYFwfMroiZa6TV5FN5K
+# vskvfRpJYTcVSWk59wC6cYgI5UbiUoO0kyhPFIbrkbguUG3w62UPzpBtgvmr8WxC
+# ZkYKzurMmZY1xqi+YHgDUd3cHq98O+dY4kQDYYHgihSrbDwccpa2gUYtBCex6dWZ
+# pCqYB+1tl7nlIILm1bKxGsZthzSXwHBB0mNR+jFXeRcM/09HuT96xfCeiTRSCPCn
+# r9gahCTWz4l9KV9KjAOi6ctUvFnDRv9plh+72t9N
 # SIG # End signature block

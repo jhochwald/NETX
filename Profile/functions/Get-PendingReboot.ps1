@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-PendingReboot {
@@ -136,13 +138,11 @@ function Global:Get-PendingReboot {
 			SCCM 2012/CCM_ClientSDK: http://msdn.microsoft.com/en-us/library/jj902723.aspx
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-				Position = 0,
-		HelpMessage = 'A single Computer or an array of computer names.')]
+		[Parameter(ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
+		Position = 0)]
 		[Alias('CN', 'Computer')]
 		[String[]]$ComputerName = "$env:COMPUTERNAME"
 	)
@@ -164,7 +164,7 @@ function Global:Get-PendingReboot {
 				Set-Variable -Name 'WMI_Reg' -Value $([WMIClass] "\\$Computer\root\default:StdRegProv")
 
 				# If Vista/2008 & Above query the CBS Reg Key
-				if ([Int32]$WMI_OS.BuildNumber -ge 6001) {
+				if ([int]$WMI_OS.BuildNumber -ge 6001) {
 					Set-Variable -Name 'RegSubKeysCBS' -Value $($WMI_Reg.EnumKey($HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\'))
 					Set-Variable -Name "$CBSRebootPend" -Value $($RegSubKeysCBS.sNames -contains 'RebootPending')
 				}
@@ -200,7 +200,7 @@ function Global:Get-PendingReboot {
 				}
 
 
-				Try {Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)} Catch [System.UnauthorizedAccessException] {
+				Try {Set-Variable -Name 'CCMClientSDK' -Value $(Invoke-WmiMethod @CCMSplat)} Catch [UnauthorizedAccessException] {
 					Set-Variable -Name 'CcmStatus' -Value $(Get-Service -Name CcmExec -ComputerName $Computer -ErrorAction SilentlyContinue)
 
 					if ($CcmStatus.Status -ne 'Running') {
@@ -219,13 +219,13 @@ function Global:Get-PendingReboot {
 				## Creating Custom PSObject and Select-Object Splat
 				$SelectSplat = @{
 					Property = (
-						'Computer',
-						'CBServicing',
-						'WindowsUpdate',
-						'CCMClientSDK',
-						'PendComputerRename',
-						'PendFileRename',
-						'PendFileRenVal',
+						'Computer', 
+						'CBServicing', 
+						'WindowsUpdate', 
+						'CCMClientSDK', 
+						'PendComputerRename', 
+						'PendFileRename', 
+						'PendFileRenVal', 
 						'RebootPending'
 					)
 				}
@@ -239,8 +239,8 @@ function Global:Get-PendingReboot {
 					PendFileRename     = $PendFileRename
 					PendFileRenVal     = $RegValuePFRO
 					RebootPending      = ($CompPendRen -or $CBSRebootPend -or $WUAURebootReq -or $SCCM -or $PendFileRename)
-				} | Select-Object @SelectSplat
-			} Catch {Write-Warning "$Computer`: $_"}
+				} | Select-Object -ExpandProperty @SelectSplat
+			} Catch {Write-Warning -Message "$Computer`: $_"}
 		}
 	}
 }
@@ -248,8 +248,8 @@ function Global:Get-PendingReboot {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUG7V6navkfXUf/JrT+ma7ANnZ
-# hvegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUky4nxH1tlL0QcKdC9GFvDwu/
+# 1LagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -392,25 +392,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBROSYXwuF7OhI+8RHAcaWKjOYIp8DANBgkqhkiG9w0B
-# AQEFAASCAQBCS89ZYavjFY/IpgHiMNvaMREPYs6M1U8QE05RjVqv9SN7TPCiSTEV
-# STMeuTAOvSYU0Fqoue3LorXmRWzgau86fFUOfeVqw7AhdjE3HK4xPPwasgZN0UTj
-# bgpiCxga6DqVTGbrWG5MkY6TzMvICkMIRDwuIJ2o5TIcmx8l+fSKVuJHYkME1jKM
-# 36QJdIt37YTb+i8Ont4NQDGcUOrkbYVbYswX6G967drizjLNL6O3S5jGpdHrP02V
-# MkcbZNIFHvFb4p82OBRnqmliOva5a8sfUCXwgoMBq7EDNPrn+036GdEYTfXIbSqn
-# ckQYVN/pa10QN+Ku1ip8CLfzzNAXVpwEoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTVydapzJietXcez6rEiP6P1/1D6zANBgkqhkiG9w0B
+# AQEFAASCAQCY4hXbbP8MO8u+GmllbEh5Vh1JDaC65elMmyiXZGMhn+igWaBfjgVM
+# 0He1dLNKiw1W5oi+xMp4Itjn+E2ZxW54k/yh5L2Wbg1cpScFmPJybzIhnAa6C/z7
+# FY4gWt9YyU3bBTIzfxrQl3BXj4SznTElltN46mtksa/srf9P/M8Fkx7N3F9lsVNW
+# dcJlzosObP+qKx0EYkU6GQcEHdCCPKFDrUzdpYhhFghSklkoeEzc9+G5Av7M2B41
+# zF9HD+rhJIXnYjE+m9EtqT2j4fSZHU5veIS81r8A7wvG+4jYRb8/x/uP6t8eFYNl
+# CQ5Y0RH4bDcAuyRn68Pc6XDM+cbZ9VPyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0N1owIwYJKoZIhvcN
-# AQkEMRYEFI/HSnemMi3eQL9JUtXrf+8htvUGMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzN1owIwYJKoZIhvcN
+# AQkEMRYEFL+QvzYx/VgZIyb84Llsa4NjNzxSMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQByh2eWx2bVq3KDCZ3y2IsxhA6fOGUZIO6KX+UWi4FiuPKh
-# IOUJUeMe82VBAsyJLmkefWDWMH6Uduod1jYVBwKoU03ZoQduggp4E/Fdg+YKLFfM
-# MXF9gwoRt7XNqUHmeC8djIFhFjuHFUhpd0RSauFxOM5qZ5/YR+LGBXWJY1jKPccy
-# c6NNZeIQAM+jTJvPhffpdkidhb0AKgi4Sw+xH6EqQ4iDXzzeieKNYCkE1oXg7ZDF
-# KiUozHbfQjHW3umWvrx/ILH3HfjNbaiWxLsSlcGneaGCSTunu5qHIXqs1gaTuHOv
-# Ox6Try+gJG/77ErSOkXrYQBZrtpVNgp5/CcieX5c
+# hkiG9w0BAQEFAASCAQCt6Wiz93K8qgtYO2R6vddJw5pr1HTFtIQp99PgJ2l2UJcj
+# /vcHLssdT4iaRshExhGqS423uR/Yn0Gf/ySqSKmZ/6QfaBprhQ9unLf2EikDWKLE
+# kgJ/EY6h1QpYraGrpvlw0ZSbxq04ToYQmbsr/xFx5Y7RyGOnSTtNf3G35HG1e0I2
+# aVK5Tg6rRFpqD4en/UO/pYdM+wrcPkye7IWsbGfRpWG+7dnjKHXRlpi6R7L170pO
+# Ye/6r1oEueSASBGf233xjZ+aYipaujWuppemG/Md6WT466WRVT513R/HTTQoHTcM
+# OPH6HsVQtV16288B+FYFOM8AGTqOqlsjCbwPID28
 # SIG # End signature block

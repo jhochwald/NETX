@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:New-BasicAuthHeader {
@@ -84,22 +87,21 @@ function global:New-BasicAuthHeader {
 			Very basic for now!
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'User name to use')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$user,
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[string]$user,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 2,
 		HelpMessage = 'Password to use')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$password
+		[string]$password
 	)
 
 	BEGIN {
@@ -109,7 +111,7 @@ function global:New-BasicAuthHeader {
 
 	PROCESS {
 		if ($pscmdlet.ShouldProcess('BasicAuthHeader', 'Create')) {
-			$BasicAuthHeader = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes(('{0}:{1}' -f $user, $password)))
+			$BasicAuthHeader = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(('{0}:{1}' -f $user, $password)))
 		}
 	}
 
@@ -126,8 +128,8 @@ function global:New-BasicAuthHeader {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUWWD0VgEg0sRzG4nkBJ1bQ++f
-# hxugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjk0+dGy9TujUqbyI9mDGM3L7
+# uVCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -270,25 +272,25 @@ function global:New-BasicAuthHeader {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR5JWYsHWyN3rZXQmUEgs102+LaljANBgkqhkiG9w0B
-# AQEFAASCAQBohdRYeuucZaEHAc0Bs17hTALV5PqLz8knGQV+NgnqOPsbhJHOAV7g
-# dPfQih3Kqy2TeQn3h0oBXb5x2kE/X6nDPZipg1UeORX/mBMxIoT/yYl5fuEnbSE3
-# z4osSEeKk0sRk03w/tlEbSk9I/ayEskUb0EpYP4G+Xm/wTmJhqsTbQGJ7bcHL6B/
-# F0ROHNgAij4YTpKtwZRhaABb2c1Rg4wYZyFu0BDPtrtwt7ChSu9SsFJM5+x0Relf
-# NQUWXhPyihF0G/yTfUSJmkWoAJgqlPfDhmarS6Z9/JMl/NNTJy62JnQEhrymBtV9
-# PhFi8CZaoHIP55sM+tZnQePf1b1Z8Yi4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ8YUuMFsjD5/Qh3SpRU8fXjYrAqzANBgkqhkiG9w0B
+# AQEFAASCAQAcLzcfd78ewfxwkIwNn1R6IJc1/mvqwwx87VmkVyUvD5eEen+Y5ZuE
+# oJtw6sBl17zPZKHT1fL4Hzh8zF6ZC5YnazPosBzkyT+yNE8wq48NCPC2CKoAoUpX
+# PAArWxmg3u+E0OMnq4OT+TIrhJCy08b8F/mEl54qOIiRLieLIPvlyv344w4QRAJl
+# WkRWJ7gx1UpK3JcdGPfH5Wl72YehOZVchlcLyZQtYfkbhiRnjU8GHej7aiYD2xyN
+# GGfW/HCMyJzyUCVPDXltS0dZW6TycNzU6qqlUgpHNtv4G2YElCAz/NbOXFQcWT61
+# dl/AMDoQSDi0f63YJYNGzN0bHiJpVsRaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwOFowIwYJKoZIhvcN
-# AQkEMRYEFLGDvLe+c6tq+1Qmrvf2i0UcQrmwMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1NVowIwYJKoZIhvcN
+# AQkEMRYEFIB/pjUzVPPX5RX2xbQVp79mdMGwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCPYIRj8pEuMSrVJN3iDBlODjTkABPBC7CEvw/Uf9oJRh0j
-# EAPn5YOVlrJIAi8J2pj479fHoSaG3PRM0crtrUv3fx+TvJIMDC6CUtTafHNKpfiy
-# HStJApK3FHD3w1MjVZc9WdJZGNVzn0pjCDhuAep+8yTy6UW1PGw+lNQ+3sjQUWbe
-# gy4Sbq82gi1/XtuPnJhbeO0MQbu+yiKSTuiE/PQJKTnbAnR8bvyCXXsU+x0qGe8G
-# 6H1LNF/1njUtZOYEc5mSuu091hpxrMD14EHCexTpSgo8SfAudc58hfbR+0Cwi82E
-# QoaeuGaWKMMBEyJMopAAQx1G4k0eH4hNBvv8qRe5
+# hkiG9w0BAQEFAASCAQCbh9E6tqcahkTBFChEgqKz/TxiZbzKn8A24QkJ0qSv9Jo5
+# TyML67tAHYeJehe40Tk37vY8saJXhAuMaiTN/sMaMX+FqbXAZ5x9VZAqAHZ/4XFw
+# g3x/EkwDK8lrD2NsvpeV+AU2w9h1wURHpeh8gr73MborJ69SF0hcAHAa1VzanFS2
+# 9g16Nj4488sREABggjrEl9up9WMwifmqB6jQFKVo3fnb9qERIy7JPcbqKoHqH/6x
+# 9xAbKNwT8dBM4V7QWqOXj8Ic/p+5zZfVKzMvDhdtPFEeoFnkobORel6Irp2Zqw+p
+# SAE6ZOVYZQAjha8tD/eofasg72PNRzv3CRSSqzkE
 # SIG # End signature block

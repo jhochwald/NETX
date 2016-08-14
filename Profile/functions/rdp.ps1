@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Invoke-RDPSession {
@@ -102,19 +104,17 @@ function Global:Invoke-RDPSession {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 1,
 		HelpMessage = 'The Host could be a host name or an IP address')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('RDPHost')]
-		[System.String]$Server,
-		[Parameter(Position = 2,
-		HelpMessage = 'The RDP Port to use')]
+		[string]$Server,
+		[Parameter(Position = 2)]
 		[Alias('RDPPort')]
-		[System.Int32]$Port = 3389
+		[int]$Port = 3389
 	)
 
 	BEGIN {
@@ -133,9 +133,6 @@ function Global:Invoke-RDPSession {
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		}
 	}
 
@@ -151,9 +148,6 @@ function Global:Invoke-RDPSession {
 
 				# Still here? Make sure we are done!
 				break
-
-				# Aw Snap! We are still here? Fix that the hard way...
-				exit 1
 			}
 		}
 	}
@@ -164,8 +158,8 @@ function Global:Invoke-RDPSession {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUH6xZhekxjh6Zu8Z48NgnSkDN
-# k3igghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURlce61H11GVCAHcIZ2wUnfsM
+# GbCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +302,25 @@ function Global:Invoke-RDPSession {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBR5qIoes1ZGL368aiZGSc2ojwWRrjANBgkqhkiG9w0B
-# AQEFAASCAQA7GIRaXSe2Az+sGFy04qI/VAtIOkIEhUby6MG6TDtY3Uijtwx5h2+x
-# QEa29EtAeb1nRSsfz3RjjbYkb3/RJ0O/LriB6LjwPP1Ikv0fnM013D3yovEqRF5V
-# 8LdzJ80J3lOPD3plzH76hGlCSji0UY63n22bCi7zPsRwDr0H/BDEtw1RUhWkfCO9
-# 4i79FNWsy0aTCojQHgqu3qDvMfHydvSHZy7HA+Z3ssRhdM7YSpdeBdmjysCWEQUb
-# pASN5/rVpePkCsJv4ZgGPbLuSILkStFcufEWekB0WXEZkpZw29oPjuIcEj+T25wZ
-# F0U6yA3Mpk5tA4bf2pq0zR4/IvFZXDNwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTadslFIeH+MqeHx2qSrKZmEAFKkjANBgkqhkiG9w0B
+# AQEFAASCAQCPLHVnn20KY4Q+leA8yYccs2kTRPqy/w/SzlDIz5BFh4VXlQy3ApR6
+# FOut7rRxgot853pkg5yv5fljLJZsGs+kA/x6xyEZZFSu+xNl6d0fhfXCuV2bLzkh
+# k3eeEN1XIZ4pditzGjIw0ls6YztLmPGc4g54qD4g/CdVe4Xv9w3HyhiytJctmq9D
+# zhPhtWnUHkjlmji4Xynf4KCsYFum6d0fE90YR5p5A0gLwgGncWQXJVF8DyJ8wOu7
+# 84Ix+mgnlMBAfZtC2f+EpfEmyTffPhvXQMzKUL2OR4XopCd+Zo1rQpqDTEUnoz2w
+# 3CxEqc92mHlXZXhLXEkel6e8KawQ//7ToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMlowIwYJKoZIhvcN
-# AQkEMRYEFE+hInez7P2B+jmmgXlAJygbEn7dMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1OVowIwYJKoZIhvcN
+# AQkEMRYEFIpvzOf9uyZjt9gZblJsVAsjsG5oMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBrhOGScMCRn9gCyiI24nOdcnbNpuGm3+eZFNeqcvQ9j31j
-# LEWL6rd50Ljd7t5zNV5TX9HFmLF9m47FUqE0DJlq4uUv4LCCm+gK1YPrwEc2n1Xq
-# 1bQv7OYMcWiPQnmjfHcvSuKECMgfiZNZlTGBZ67mbftb4srACYoCCo9O/S12r5BP
-# 8cR1G3SFZQauHSeuu9FcsEQpMSVfsv+PAAaTPMJUlBPioM6F48NIra5daTxvYlj6
-# rBrMLzRfSVDU1ls1mKNHW5778Ub2MCAM/zghUIZaDfWeG7dCUK2Jy44vLPQllfdP
-# lasaixTJrL328XqO2qyXrzEHtNRa11Wzpq1dMqyc
+# hkiG9w0BAQEFAASCAQCgXc+YEu39FQZgsH9KF5Hzs5bxuZ/UmxcRvSCRc1knXUFN
+# kKiRPLxrGF5X3xFhQeUqaOs2Z//fiTfp1cBn+iXfLUBxWMFTWq/DjPEnGgFrYbll
+# 5hvDVjyC+NCr3HYYKvPLCMLRa6sf4hzbVRoqi5eUTBV7iAXc7GU6+GvIOwq3DUzB
+# IENr3lAZ3hfNkjBmyRmZ9r2fxQOk9tJ0WlyJcfxprXTlAsv5O3EkvkqLpIBCAo1T
+# j2CiUtzsJUskP0SAH31Z+FZNUwSNlT9xb8ZiimTt91GLLOVR5SpA8Eixv9mRLUTf
+# 3vT9pFup6BBi7omGvYKuDYP/QsoqzQAg+DLmUACM
 # SIG # End signature block

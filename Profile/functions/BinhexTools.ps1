@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:ConvertFrom-BinHex {
@@ -81,8 +83,7 @@ function global:ConvertFrom-BinHex {
 			Support: https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([String])]
 	param
 	(
 		[ValidateNotNullOrEmpty()]
@@ -139,8 +140,7 @@ function global:ConvertTo-BinHex {
 			Support: https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([String])]
 	param
 	(
 		[ValidateNotNullOrEmpty()]
@@ -154,7 +154,7 @@ function global:ConvertTo-BinHex {
 
 	PROCESS {
 		# Loop over the String
-		$array | ForEach-Object -Process {[void]$str.Append($_.ToString('x2'))}
+		$array | ForEach-Object -Process {$null = $str.Append($_.ToString('x2'))}
 	}
 
 	END {
@@ -169,8 +169,8 @@ function global:ConvertTo-BinHex {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmZFUd5xI/LDu01mYrX3fQXf0
-# I1agghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/WMzOkUAw71Jdyng8cg30Rr6
+# o5+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -313,25 +313,25 @@ function global:ConvertTo-BinHex {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ4b9kyzWlmPYo2Zx4POZPaJmI7LjANBgkqhkiG9w0B
-# AQEFAASCAQAp5nrF0TjauWYLEKFL91K7C6S6+y39FDGuqm9S1guylMeu4W7b4qwP
-# g5Y4hDTNpHF/vWbnrjFEZ9luBq7Y1Zv/eQosDRPuCP7KtSz/FoWUtyN7h3AEPN7u
-# tmK+W7uYn63JHyRqCoBuWbWLAuldL2GRj5bq/ntEmiid+0afBrqOqcPWBBZbcpMH
-# 0v9vGDrUZdbNf8WatmIA6mN67/YW65O7pkORQsI04Qz2lF0hwLmNzoi7+brl6lBD
-# 9oxPEGcLUU0oE72IZ2kP8ATeaJI9Cf3zfYib0DmDAFdCcEjXOLgdTBV2JWwRCDN8
-# PyH3vzyLeVX8FnyA8R+ErUNBRQV2pnXJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRnPRwvSf6NWJ5mZaN0Ujh1081AJDANBgkqhkiG9w0B
+# AQEFAASCAQBZLST6cEyEarYNUbnlKO1iSro8MqjD+VK1sPw1Fy+eaqhwC0d9BJlV
+# O8Vzbq8pwmY955+jfKbPCdiE4OStTgGtnhF0KGJUdasIIBAr6+syq+NcCV6Amvvu
+# AOGZ6PPv2QHFT5n9njiVkCC6z7yNxzP7z8RTYXOAhiwVjJW0Gmacj/S/ySF9Lbt5
+# PrfieAChvOSSkNfIMymFbrEMVTQLR9Nz47n1Qr5Q9Ulpq3ZYm7wyqn2LnEPQv6gw
+# ycRX5dMpU/kx+u6wCERLdo7njEiQ2rYOac/1BCAb96gcQDnDMaDWVuSuPryPHUZr
+# u/F/oU364yDH13FgGjGYN6Sy+Izu44cMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyMlowIwYJKoZIhvcN
-# AQkEMRYEFEeGd3/CxQ4W4XKnJq2jj4AGmt1aMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExOFowIwYJKoZIhvcN
+# AQkEMRYEFAFW+H/j0CLxZeeE2gsjAZDZk5S1MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAvEUwdkkBSdqaV7v213jdnoIv4105hsjbG/93ffeZcqzT5
-# K7SamPvuDW107Q+mjB18FVeHm4niJAhfj5coq+g2B3GpY/2T6L+0cf6Me/JcwoFu
-# DfDIcEctsQrOsV3w+t5K531k3oDIhmnZvJn9KEgz3OHPLZQwLzxv837is/qdJ1eA
-# D8ir2PlPUD8GaKwWOaEbKjVJg2qb2tBCSTbyOkJ/MbJlo9CTFPsKnMRrK82tdffT
-# XHRNT9stZIKxHiHU3jYkErdgmYemFuWzPy0te+O/l5DEOGoiL05N+/ltd2iiV3SW
-# Pq8l3CgCK57FtM5g5xTeYNI01C5Bqaql4rLXkwif
+# hkiG9w0BAQEFAASCAQAf9iM5c+PYu/ay+9/YjV4UVdepQpz32h12Rt17ezAwp/AT
+# kKC6HNZYJ8FOvXlxXsspeKGWVPeC4MbJL06n9WhjnlKca0Y6/G4stVXpe11ggQe+
+# MkGG/gvyQb4quG2tINdwKHSzMF7BxTGff5x1F6zIQdKfrgS7JvJNOFWwxCQWGQyX
+# gEe0T2VTqpnbNbY64q5P4790e6QmhRdHyQHTJdVWWcNaleQGKXgNLMXteePyAp+y
+# IITPrAg+vAQusJyiMJSh8PLgIwE4J7+DoBS+KeBUq3WjVgvJXGjJabAcOIj3KSv1
+# xgqESvWB18rywfVvRRuH9wshLasLiVHQqnFbNNKq
 # SIG # End signature block

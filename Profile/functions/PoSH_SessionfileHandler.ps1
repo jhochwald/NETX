@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 <#
@@ -90,14 +93,13 @@ function global:Get-sessionfile
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True)]
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Session')]
-		[System.String]$sessionName
+		[string]$sessionName
 	)
 
 	PROCESS {
@@ -154,19 +156,17 @@ function global:export-session
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Name of the Session File')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$sessionName = "session-$(Get-Date -Format yyyyMMddhh)"
+		[string]$sessionName = "session-$(Get-Date -Format yyyyMMddhh)"
 	)
 
 	BEGIN {
 		# Define object
-		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
+		Set-Variable -Name file -Value $(Get-SessionFile -sessionName $sessionName)
 	}
 
 	PROCESS {
@@ -222,30 +222,29 @@ function global:import-session
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True)]
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('Session')]
-		[System.String]$sessionName
+		[string]$sessionName
 	)
 
 	BEGIN {
 		# Define object
-		Set-Variable -Name file -Value $(Get-sessionfile $sessionName)
+		Set-Variable -Name file -Value $(Get-SessionFile -sessionName $sessionName)
 	}
 
 	PROCESS {
 		# What do we have?
 		if (-not [io.file]::Exists("$file-pwd.ps1session"))
 		{
-			Write-Error -Message:"Session file doesn't exist" -ErrorAction Stop
+			Write-Error -Message "Session file doesn't exist" -ErrorAction Stop
 		}
 		else
 		{
-			Set-Location (Get-Content -Path "$file-pwd.ps1session")
+			Set-Location -Path (Get-Content -Path "$file-pwd.ps1session")
 			Import-Csv -Path "$file-hist.ps1session" | Add-History
 		}
 	}
@@ -254,8 +253,8 @@ function global:import-session
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUL9vRmyWW75ZslXm7vfkUD/ns
-# 6eSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNuNwW7azXDC+dvu44nvmEJkc
+# PjGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -398,25 +397,25 @@ function global:import-session
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQSwuwidlfphLQwMVniFkpnsYLICDANBgkqhkiG9w0B
-# AQEFAASCAQBRzr0H7d0NNK1B67I91d8NpkeFUID/OEUUqvHQ7usTTsed4o+gNyCR
-# aakCSoKEi8loxmkHEDdoWwtrtiji7Rqtu0YArgs6Rg0+8mUSCKOxDPHrkR/QtsFG
-# jWGyHjj1TuyB+OuhLATFLxW5hMtMdpWMmQsBXTi+1iKvGEGXfAZwfU5JrgN9Q/G8
-# I4KXRRTla5V/LvcrvR5wknqlsv2wJVpv38xK3KYO3TQm12/2yehJfyKKUgr+tYop
-# lk2wr9FBXox97Fmi7OAdawalQGEAL3xwHRrPdLWWcwxB05wapN0vFvOLENMdVcww
-# 2NOzgNr5KsKnN8tmVtBQgKChykS7yN9ooYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSZR1KoPdr9a6gKv0Bx6oE/2PcAfzANBgkqhkiG9w0B
+# AQEFAASCAQBphwFVVWCCUTpNJXK9H4WizHr71UV+DIoYpBEZDsijXIlSyEoysvTb
+# SFZJLvTvugcO8g80x5bqu6Om77Wxa+VaE3Ht+Ab9DnL8IAr5AwP8W1w/bbDQqah9
+# WzGHHdqutPY+ca+rQFdlQUMhEIx8xzCZhrwq0160fisbV3u35DLaWIdxUhwOyT8R
+# XlfFPCKUG/P4kxMrpprm58Xv5JPbljE/4fK1uvI29Gqq8xZFNIDAs/PPyfRjJVbC
+# bGnLIVvh2p42xb8D81StY3+F8vebJhQ7LfzN0UUOP0b8rTQqAm0U7FbyJMzXFAH7
+# jEQM8whNr99DfmC+oOkdUEOTi/G+XLo5oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxMVowIwYJKoZIhvcN
-# AQkEMRYEFEQoB/2PO/CB1egOC9bfwDAJLdRKMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1OFowIwYJKoZIhvcN
+# AQkEMRYEFK2cJ4q00nxBK0yW7/V3KYlUvnuCMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCVkOpQFUTCh6e/+Js0kTIrzlirjmLAw0nrdHYpjh2WHiS3
-# KEb3zAVP969M3EZNZ/IAtAos2jvUWZYtS906Bi4Yf1h7jMPZht+X94zpAAzAOs9M
-# t0TchpPVDvGaWYp9mdpQxA5GncMCEMw5jCQiLjdxXk+gtOcE1MUyDmGy7gCWwE2X
-# aqIsLsxJN2UVupS81OB/ykge69kdGa4tQqqybVat7d3qOXTw/I+PdIMcpFgzv9rt
-# QhNWkFa2NtJX/XO75lwNIYuMpS44MzdJvKgBFjH2xxfhgxJZhdo9j+7lU2aPpo2i
-# kRLyffuGQd6zRs5G1F1a1MXeTdV/2FO+zdxvODZe
+# hkiG9w0BAQEFAASCAQBo6q0786Syg9sc8HT30likU1e3+anwclLh/bhkJdmwqwQt
+# ZYnJ41xNp4+O15Z36LCEjeJtq9AFv8qtJSqMKqfJTbWre5+XLESr9b/SdkOcBi/T
+# E1kV+EiI+3C9wT9T1WgPchaazpyRpVhiXkeW7Zj2fJzaZcCAuQzW7tFkelKl8HHB
+# 9CiEWuKZlhTQf+Obd4wG40nCplJ7RezpoPJGGVwKSZLSE2FaevGXkaeT08wPY22B
+# aOXOSyOA12ksJ020OOYIJ3kYb2wfLRr684NUBFHQAx0jdZ2aNKoYfARfSaTIZR/4
+# zjUS1yhcta46ns3Hc71czeGkJdXetT586RCWZqZC
 # SIG # End signature block

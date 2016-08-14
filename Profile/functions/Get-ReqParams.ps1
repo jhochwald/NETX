@@ -1,15 +1,9 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
@@ -79,16 +73,15 @@ function Global:Get-ReqParams {
 			Just a filter for Get-Help
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'cmdlet')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('cmd')]
-		[System.String]$command
+		[string]$command
 	)
 
 	PROCESS {
@@ -99,8 +92,8 @@ function Global:Get-ReqParams {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUBt537sRqYhRBavFcocYnDFnC
-# viygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUE0xU26YnzlO7YWmQ7isPYZcW
+# saSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -243,25 +236,25 @@ function Global:Get-ReqParams {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQQPYHl7yr4kHGCnCR5pO/6qDx88DANBgkqhkiG9w0B
-# AQEFAASCAQBS1S6XHr5RSbGJGQv07cThiHS39QQdas6uCXwFBUwVijKOdYnw1eVt
-# 688IFUgBHh3U3m5tnbZs/vVDuo6aAcizy9m0BRqn8I1wgoo/hDYAk41m5xkczShn
-# MZDSXKyAu/74i61s6eaveuczSQ1ImNjHR/74Yz3p4Da3m4H8U1o7wqzzJXnxr/aV
-# 6pQ1FemAWJV5x7qc0eTKz1eEauj3fRKiuvW9OjAqnqC3HxyLJGYyIJO7BnmEvgun
-# Fx+nC9jtXR4e52HEx3S0/n0ys+WGOgWwRps4VND9o5Ax235XprZaakNVP78xBJiD
-# 5rQ8zzDskt6EX8vt5zl7Orwkz9F/c7hToYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBR16Q7cNUKyPxISpqgNe5qjF+ChuDANBgkqhkiG9w0B
+# AQEFAASCAQBoNhhsEU7MNVc2uPGt6fzeSXi40iHel7aJ0xdLaKG6sOrilscI4Udm
+# 1I5Uh8fJi1zPFt0Hu0IvGF4eMzOpS3O/wzNKJcrsRDVxnXKJ+fSI33WAAimyw6pb
+# 4Ysm4aphtbxK92oClyq0YhllK6N9+1B1qlhXOnMpM/po9uO/W/gAK0Et87Tj0F2R
+# Dr0ntVt3enjgkV+GIkwBb8GDj3v11fzDg7tuZ4Wyep57hJ8JDmtXbElu9ysOi0Pw
+# RgatfCa6lyIUlgPHBTl4GoQobO4xX1T43133QkQaIz+4JmVeB0DtwUa8iVPXm7ye
+# 6uI1ZMiUGxhkYgJgI9a9lsY4VevOVCCJoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1MFowIwYJKoZIhvcN
-# AQkEMRYEFM3TbGtJYFRUgXalRmtwAeoH9PLlMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzOVowIwYJKoZIhvcN
+# AQkEMRYEFIWAcnYngo1GxcU2sgIxhSfD3kLvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBgbF6uarAk2Gyz+gXeeoUa1WrmEVjLF1tbS/ZK6QccnGkN
-# 4/HZYgRFl1ywoTvIkdWyQvcOlTHNmsWzsccZf6dUs+RVbILZmu2gKz3L89ab/iC6
-# 54IcfjWBYjQAnWcRMhFaq4Z3HLeu7LlHkRgQofnemH2LWJAQVrRhKhAXZj1f99z/
-# JrdFq0ta/8iWQJL/IflI0CI1fs4HLuXS4t834zFafMuWW01QSeO7Z+4yQSjAzruG
-# VnDI2PzMbmZhS2pezFpzfyJK+NIOY77FSRyNHwTRUAkBW6i+QBEHODT4A0lWMztc
-# bS1qAsIO3bONsbmZpkVRx//OfwpH41OLcOo+LKUA
+# hkiG9w0BAQEFAASCAQB06XvAfCQDutcY2NiQnNDtZlfqr0EOuv0D/jgvoV8o0NvD
+# PspquXSOjAMNR/KpvLeHeP8COTzxB1+FLtYk8bL3SlC0K4sYt/i4xQbe5ZpTNj+y
+# 6If2OPA0nYGvOGRYAEGdGd6RTYHOxepj6NN9iwlxj4jEumj+XhOOhASb/Gbartz3
+# u55flRdUYmOro1cCdkZgkchk2KbqHKOJRM1NzDx2Fw2NY1QOfsIauDK/GpTZkvLu
+# W18/GQMcNFCSAc6BIrcF4QxZ7WB5erk0WvRIQwQnxjsapdYyeIUDoYVtAYGVwLyu
+# OS7L8etGmdUhGKq1BdjSOYzqmbNRCY3aSHz0HVDA
 # SIG # End signature block

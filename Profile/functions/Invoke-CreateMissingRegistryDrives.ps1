@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Invoke-CreateMissingRegistryDrives {
@@ -78,17 +80,17 @@ function global:Invoke-CreateMissingRegistryDrives {
 	#Requires -RunAsAdministrator
 
 	PROCESS {
-		$null = New-PSDrive -Name 'HKU' -PSProvider 'Registry' -Root Registry::HKEY_USERS -EA 0
-		$null = New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root Registry::HKEY_CLASSES_ROOT -EA 0
-		$null = New-PSDrive -Name 'HKCC' -PSProvider 'Registry' -Root Registry::HKEY_CURRENT_CONFIG -EA 0
+		$null = (New-PSDrive -Name 'HKU' -PSProvider 'Registry' -Root Registry::HKEY_USERS -ErrorAction SilentlyContinue)
+		$null = (New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root Registry::HKEY_CLASSES_ROOT -ErrorAction SilentlyContinue)
+		$null = (New-PSDrive -Name 'HKCC' -PSProvider 'Registry' -Root Registry::HKEY_CURRENT_CONFIG -ErrorAction SilentlyContinue)
 	}
 }
 
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMWjHV1OBZb7ywA1PQypRZstc
-# +aSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4qepk//GaV5c6Z4x+vF0kSlz
+# jbWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -231,25 +233,25 @@ function global:Invoke-CreateMissingRegistryDrives {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS79mK23Y0mKhaEGasf7VzySabQZjANBgkqhkiG9w0B
-# AQEFAASCAQBcRRZlaVjbWbJzm8Gi0/EDCo7wM9vfKQDr8n5MEG3VEduKoFc9m3vg
-# R9paCzQMSox0nfP8jyBg4pFn4g95SJGuXo46Jm/pHHk9f5Z67IA8/1QLPNDe50B7
-# WAHopAu39raAjqtoGYZ0T2fmKJsdGkYDz20D8QSvRn6C6n9eV3C98EDvTr2Xrn5g
-# A9bnmvdqwEHBcf+0QVdqsUECjQ0C3SUAf8OGB7JrLJNJFC15V0doYlIC9XoiaFtK
-# 5/Y/wFrVgw7DbneMU/mZ9fdQ/oUIvg6rdadXJTvvqKuq7xN0ulQ5JxpfuZOuXmJI
-# 8vUIfWAinWJ6KkB1W6GyynX0XLnoaCFhoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS6Mbeb3uRIvcPqcquWZVP+FGsp9jANBgkqhkiG9w0B
+# AQEFAASCAQCMYz2E/fD+UEecgar30y79TzVuZvSUxfU8RbAy4yCj7LYny59rAImp
+# h5+3lLcazBryBo0HT1/5lc1EYAzqK/wAhdlfVhQ5LmfSCtqCY/b1bP3Tz//2i6pZ
+# bq8w+C4XX5NTcWehXqj7AQDoxjI+dbP8WYhKYqsfmiVIPKL9XFd5nOVPOiS7wQD1
+# lnFk9izK35dq0CeRuvI+w+ON3G/AmxW9OBz/ABL0dCDWrYOlAw2cG55XdASHKxso
+# RZyditxq934PdgaoT11I6LtdczFzc/m+O+aou982lDX0wO1yMv+QXxiE3KCaLcQX
+# ge6u5iwWZ5LPCREmaxudXSMZ2M+jq9emoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwMVowIwYJKoZIhvcN
-# AQkEMRYEFE96kzaqNm4RiirDCnnvv/qZmk74MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MFowIwYJKoZIhvcN
+# AQkEMRYEFDmpQ5ghxjRY+JJgYX54sTQwAWGwMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBQhAzGSsLanPUb3+N78KVb+dcBHWLhHdrI4awZ8LezsWGX
-# X2/EJYC4q5mOiV0GBSPBwiQWuX15zOFFybbd69yqh+ZBCcWkqc6WxAuvtGQfOFSQ
-# OGgehllK96Ez/XN3si6Xaeinu0qLSD2URbXNVSQ5yRHqtLV4AVDCMDwm7LtdkB3g
-# O776zsh7R6SJFgXXHVawhSd5PSicqCeM5ICONN64u1CWDvzDmd2QD6N55ZDaGtVB
-# 0phustPLWdFPRgIsTXo1D1LYW/kI+n5amKsR6iu0w7oRu0MBizm8PW2zI9Zw1/My
-# DBJTxp2Z9FCnsR9wBGtf+com2LuWe1q5gPVrrYj+
+# hkiG9w0BAQEFAASCAQB7zW9FWcC6glbn8iALR2zdv2NWGjXovujJYti+kIbXgcLp
+# lB4VKA52zfAZ67a9XlxTLw12+FmKVUJetWsMr7KLOIOpz2qjnFmEzsxP8KfrgXMP
+# eOYI4tE5/oE1Qe9jX6zM4Kyr1YdoL50w1KvQw3PVZOmMpCnIdOY36amF8DmgUSqM
+# E1axUMjZvGT0/aMVYe2Ol7duU74nhpOJZbqx8OA3AB+EFLJ5N3Ft1T3kKbg5W/4X
+# RJXc4NYUOQiLcNJ75yRlRbrEr+cfe3MBCNx4IcrNklp9nRltPAjcKRaiMZZXFhGA
+# mzUUtpQiyI+nMEKbij0eIZtTu8rt+IavzIZR8y66
 # SIG # End signature block

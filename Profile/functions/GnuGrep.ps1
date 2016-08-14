@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Old implementation of the above GREP tool
@@ -101,21 +103,20 @@ function global:Invoke-GnuGrep {
 
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = ' Pattern (STRING) - Mandatory')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('PaternString')]
-		[System.String]$pattern,
-		[Parameter(Mandatory = $True,
+		[string]$pattern,
+		[Parameter(Mandatory,
 				Position = 1,
 		HelpMessage = ' File (STRING) - Mandatory')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('FFilter')]
-		[System.String]$filefilter,
+		[string]$filefilter,
 		[Alias('Recursive')]
 		[switch]$r,
 		[Alias('IgnoreCase')]
@@ -129,7 +130,7 @@ function global:Invoke-GnuGrep {
 		Set-Variable -Name path -Value $($pwd)
 
 		# need to add filter for files only, no directories
-		Set-Variable -Name files -Value $(Get-ChildItem $path -Include "$filefilter" -Recurse:$r)
+		Set-Variable -Name files -Value $(Get-ChildItem -Path $path -Include "$filefilter" -Recurse:$r)
 	}
 
 	PROCESS {
@@ -138,11 +139,11 @@ function global:Invoke-GnuGrep {
 			# Do we need to loop?
 			$files | ForEach-Object -Process {
 				# What is it?
-				if ($(Get-Content $_ | Select-String -Pattern $pattern -CaseSensitive:$i).Count > 0) {
-					$_ | Select-Object -Property path
+				if ($(Get-Content -Path $_ | Select-String -Pattern $pattern -CaseSensitive:$i).Count > 0) {
+					$_ | Select-Object -ExpandProperty path
 				}
 			}
-			Select-String $pattern $files -CaseSensitive:$i
+			Select-String -Pattern $pattern -Path $files -CaseSensitive:$i
 		} else {
 			$files | ForEach-Object -Process {
 				$_ | Select-String -Pattern $pattern -CaseSensitive:$i
@@ -156,8 +157,8 @@ function global:Invoke-GnuGrep {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxS+yBHVUtk4HK2kc9w4AKLv2
-# +eWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjjiKT67/j2O2vZDRlQUfMAzi
+# 3e2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -300,25 +301,25 @@ function global:Invoke-GnuGrep {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTFTu0OlCmSMCAi6hW02Vsu9EvHDzANBgkqhkiG9w0B
-# AQEFAASCAQCa/c/dWQGrSN/yuCPLVFgzHbpPDghqn85Iyj7cReci8WxxRdJtyFRV
-# SXaDQDmdoUTYTKylFnc+4CbemBQonvJmx1NvuGArcKwelxfLbS9oN37drlLyfEck
-# NEcAbrV3PxJ9Vvyj7h2Rw/CUeQMEm/TykZ5T7WbXJD5/glL8ZX5+vAXD/6ZYMXRc
-# cZUONG8BJOJoAm2PnUYXzcn9dWJGHqzrbtEBZ3fgtuXBaIkq8CYtHpejcuq0G1ln
-# aWfK8yYxBBSdY7X0Oet0i4IHykuFOXhxe0hzuAPDFwOpjJOsxMA2nnPcmDUCbJro
-# Cp1cZyUwioFgpl0oZzu4asczxEJVlEpOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQNy+T2XWL80cKrfSHrZgprXdE9BjANBgkqhkiG9w0B
+# AQEFAASCAQBkWY44r9lmrz9GEgC+Pk0qgXHzp1C5nwRgs+FkIOyPsVW9PtT9VtVY
+# 05NcpzhGLzRKglsIR21CiUNfOj/SlCt9Xc0XN27rthyN/P0A93240DaX9DHqwh4Z
+# bwhYZZns4CAgTpFJ/aEE6n+VoScRtVpfkmtix2eNvtv1uYG9D/FXtbTcXzxWTlIB
+# a3V0YUTYm9KYurAJkALHaoE8eV9XttuMcql/INgOx/5YN+QQs89i9E4Kd5xl/pKx
+# uGPB0z+TD5Rh9RGKbNxgG6WnBde/tLMZjQt7i09T6hvKB8vezWGNA2UFj44g+Df9
+# C9B+bXzDpjEi4ewxWG7kEZq/W5QXGIqLoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1N1owIwYJKoZIhvcN
-# AQkEMRYEFM1wmTz54zahVICKG7Ez7T1Yrv3JMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NVowIwYJKoZIhvcN
+# AQkEMRYEFMorTkA1KGgtkTq4Uk27xSb4Tgu9MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQApcsz2YR8oJyJH7mBdFtai2h+su0gOitkn9Agg5fOCi7Ob
-# LZIxWhbZ4ygQ/TI49wBgsBl7gaU0JOWk4CU/YwQJ2eT5GJmpTdxrZWPFyanFbIBM
-# QqJ04CayK3SwpXRTa1wphwlNC0CGniz3dki3V6iRpVWh/0Wr1NkafTVWkhu7t4GS
-# FOzyRHr5a237o8njerCltze1FJRDi7zwUeqr9qfAe6pmtxBLdpxvgxxsmX+15SlJ
-# oJRpLyVjOiLjmnMSlNpS36PW4CsBIAmnPyG0QUGFGLIHX4BC+wnTF7kSphD958OX
-# zskUiX0vqsPTjP+n2LADYvigWb3t6Qcr4X+8DXIm
+# hkiG9w0BAQEFAASCAQBjSmnzJ4p+IJEU+in6kC9yscvUZ7iwFFsLGlyvoRYCKIOR
+# dPkrMy6qdllXjg3ikcDXCTu31DdKjEVMfI8uigR2vFcsuR1mnE3A3lcm2Lb9zU0k
+# v8d5JOIMuJLGQZD24ruCTX8IG5I0QC29VnnPdUIlsHEuoeJqiMkbtIMCy+5nXvl+
+# gx6g1T/iQoo6HkyqsH44mcVK/uUahLT/rcxI4NQ/b16TQAh4ukHBwzQjsL6pyW9U
+# B0byjgdaXh/6rdaEpZ8deTiqZOnW3m8z7MlvZz+OQjexppCHl62cfevKDnBVPaLh
+# 1GdiAwcfT90Kju0JN3mHYISlCLUgC2bvoKys9kVg
 # SIG # End signature block

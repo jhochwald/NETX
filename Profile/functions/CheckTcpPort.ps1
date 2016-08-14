@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-TcpPortStatus {
@@ -94,14 +96,11 @@ function global:Get-TcpPortStatus {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	[OutputType([bool])]
 	param
 	(
-		[Parameter(HelpMessage = 'Port to use e.g. 25, default is 587')]
 		[Int32]$Port = 587,
-		[Parameter(HelpMessage = 'SMTP Server to use e.g. outlook.office365.com or 192.168.16.10')]
-		[System.String]$Server = 'outlook.office365.com'
+		[String]$Server = 'outlook.office365.com'
 	)
 
 	#Requires -RunAsAdministrator
@@ -115,7 +114,7 @@ function global:Get-TcpPortStatus {
 		# Set the defaults for some stuff
 		if (-not ($Port)) {
 			# This is the default TCP Port to Check
-			Set-Variable -Name Port -Value $('587' -as ([System.Int32] -as [type]))
+			Set-Variable -Name Port -Value $('587' -as ([Int32] -as [type]))
 		}
 
 		# Server given?
@@ -123,7 +122,7 @@ function global:Get-TcpPortStatus {
 			# Do we know any defaults?
 			if (-not ($PSEmailServer)) {
 				# We have a default SMTP Server, use it!
-				Set-Variable -Name Server -Value $("$PSEmailServer" -as ([System.String] -as [type]))
+				Set-Variable -Name Server -Value $("$PSEmailServer" -as ([String] -as [type]))
 			} else {
 				# Aw Snap! No Server given on the command line, no Server configured as default... BAD!
 				Write-Error -Message 'No SMTP Server given, no default configured' -ErrorAction Stop
@@ -164,8 +163,8 @@ function global:Get-TcpPortStatus {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCcXxsBLZR/oAIShNZTcKZS8z
-# 4UOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFdZvU3hQhgs7fUSBxuAee/7d
+# EhCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -308,25 +307,25 @@ function global:Get-TcpPortStatus {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBReZn6RLJQk3VAobKS1VDR60Q+08zANBgkqhkiG9w0B
-# AQEFAASCAQAR8IKc8wKSWzUpovi9cHq9Pp0PWerZ9IufdzcqzAY57AM8/73uV7m8
-# Ng804iXIG6e8ID7AhQnsLvB4MJEohGZbEp0wc/sOKM6EwzlrNkv6RRwR5zYLWDzJ
-# 5XqnyN4XN4ix0moopWH82wzUAqd9kL+aco+YroiR/dWdnVS4ArBEDOrgpgrCCWEW
-# Ju4AKPNi6McxxN08qsGZrkqn4S3pB3xxSH+kIb5wv0ofP7ryHQC9O7achZCE7uAw
-# 3bTRIN2GmgPJ43IZFfO6ImppSWVjfhVcekg2EeTNK7zTRIzxBAA65Kcai1A3ktxl
-# 480NAK5HZilQ5hQ/jq4JGKsv2L53YEuroYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQFqgLs/wy+FesTmdoBpwRh7Dd/iDANBgkqhkiG9w0B
+# AQEFAASCAQAmZglNhlE73ERhyGY6aehCxgk71YSZCHn+ZiPEMki6voNdtheU3YRx
+# IaYVWGywPPFHqQRfhz465j2o/3ZV9LFHn/FDV2VYj1VNuCCnsb8UDss7kB33/6Hi
+# 2vxaQemgKoxQCIhK8UY6HmHxJUNROkCDNC35yY6gsKOPOXC8ntgZMdAx193r1+3b
+# 1JG7v/1Tv2PpezKysP8i1PTMSO9GFv5Z6+yQwzhkEhgwINBhl04uklJVEL1pleeY
+# Fl7vLJ3OqkhCLO/I+bcHKIjClUcbYRl9yE91dzmMS7M2dbLP5vVqg3URfnrTDgY5
+# S2a5ReXdYHD3XSNJ/ghjYIHr1CJH/yeXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyM1owIwYJKoZIhvcN
-# AQkEMRYEFAGS0KRSu3W38NqJ9j1eaflUTNdFMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTExOFowIwYJKoZIhvcN
+# AQkEMRYEFPbs0cCqYZ/FFvPIM7MKxmFSzp/4MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA563cIaLNEj9TYp+NjgZES+QOodEqTrTYuOcrNyyWKzHqK
-# 17KjIPG3doMbo7dI6+nszToKqwE6sJvLLc2ib5gdgamrJ0cDKOO2WGFaZVENvBVg
-# E4ty8yGUf6NFzQiH6rkxPP76ZQovDrZMAIht6T3frkPYbqFPBiCJYEvxI2mCX0s1
-# oRPyRqFpbkL6tgEnw8CqAQia++HDMUQe9ntHeX7gNIKSEgwVNTVI0hw/n9CxB407
-# x5wgyjl9fmej0FELAFFL3HISiDu0ypH9Z9ORBiyTUAKN4AmuDtwl+HNMaWZ7yKTY
-# daFjUwoJ51EKsroVTPYUIwsonnm6GaF6nka0jMoS
+# hkiG9w0BAQEFAASCAQCdfiWU6GzxQxPE11MpaZcvdEBzqmUgZZs7Pabs7J1sz13u
+# V2xwX9H86xSypCEuSg2XnqCgixqRja/UWAZJITTiXl/sN7fw7kdsCE3l5gVET3zC
+# c7gETScHqKFUQBIrM4evdH6b6j+rRPorwGcFw+xUUguOx5N+tuckizNPuRIbazls
+# sIZBBQ+C6W9LF1fZ8d7+mJ6KIBWev5J9nAJZ+LbPCUdbQLwpiF0iF0x8YbfdWPOd
+# /++MP/wtGwiWhkr1xe80ArgJhVkb+3ugJd+1GJNSjt6FtnLSI0K57qvUJpC/o7PW
+# 9EmAM8teKryTF85pStJpjFG9uh5541Zzoifd5AeT
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-LocalListenPort {
@@ -131,7 +134,7 @@ function Global:Get-LocalListenPort {
 			# Remove the top row from the result and trim off any leading or trailing spaces from each line
 			# Replace all instances of more than 1 space with a pipe symbol.
 			# This allows easier parsing of the fields
-			$Netstat = (NETSTAT.EXE -anb |
+			$Netstat = (& "$env:windir\system32\netstat.exe" -anb |
 			Where-Object -FilterScript { $_ -and ($_ -ne 'Active Connections') }).Trim() |
 			Select-Object -Skip 1 |
 			ForEach-Object -Process { $_ -replace '\s{2,}', '|' }
@@ -221,8 +224,8 @@ function Global:Get-LocalListenPort {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcWsE0koW8pciNi7l1l/vKfex
-# ZQ2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvwRWmZOz6S3Q5aM7f2lBgJ2z
+# X92gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -365,25 +368,25 @@ function Global:Get-LocalListenPort {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQ6+oppqeONGTfLDe0Sp5S84Wz7wzANBgkqhkiG9w0B
-# AQEFAASCAQBAAL02RmPGAttxpRNZ93eWS9Xge8kXGb3zLlOCabnVHdOpqIf2KCUN
-# NZS4B1cFYLtYMQgUkqhJRoc5OGI0/H+sLwPguPw1fhpjErlbn5oUjBMp9Ir8K6CY
-# sCiVDFSi3s91uNbKTYH6GPM1uFN8iScl24iWAe5nfuAMdOlotdHnwYh6zOCqmfOe
-# 7R1D/vw2Fd8SlG1MRKkdNyyv9pGGVetokSLns2dKgaOfUPz+ijQP2K5ugSXR0wdg
-# fOXFjr1Bq8oy0j5cff4UWS1gbxQtmu0oR9jGYwqzC71umisPWUdebYvliRKVPmBo
-# AlusTF6diV45he+7QXRIJoq/YpJz4e27oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQVyemktZe1i9llEBBeZOOVCPBEujANBgkqhkiG9w0B
+# AQEFAASCAQBAnxWacCgCcpCpkS/iP9RpHG/TuBzFRZp69we4fTo4TBWirmfIR1Cp
+# 0SpKlwIkLVYJI/XDnCGjYobT8AswENajIGZ+WNMOCld+/YTQm7IO2zMzqDCuQdbH
+# OTiVHmOThwDeq9JtA4d49GcPTO75YbEstCgii+MgfFzZOYTCQHy2c09q4MpG8ZYk
+# odDMHQ1M331HSsVITNgqWdkkPtpfUt10xDrVGmytouhTDEwKPGjt4V/ikHScvTsM
+# STKXw5k8oJka3cuLy46Fn/tgSK1rcSZ5sUHY+Ebzbtk4ewoSHYDxsyR2YnPJbmLL
+# nmyUfj8KprByhxj5R24itrpaumk27AnzoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0MlowIwYJKoZIhvcN
-# AQkEMRYEFIsLlwO1OI2AlNlSYaPFdMhyT2XiMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzNFowIwYJKoZIhvcN
+# AQkEMRYEFGvpTJw3JzEVBlQv3muIXjTrlM8wMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQApG02apePHUWVDrV/L443uXrIkG4+v+ps2OCQVh7idPrwV
-# yH/CPDNfdtQmaZTsP5YFlT4MLZpaFJr/2vtJRhU3zVVzO0hBUrnSDmQMrV+DPDSL
-# E2SdcGUnveikAmyBdNZmGKm5cSXjESrrk5/gCCR8FrlvJPftrSWaAdSXHk+Atl6V
-# V42OR7SWsZufv9vQMXwFQBGI9gOoYS66NVOYVOjPbWfuFhMHmU7Ttrv/718kfuf1
-# YV9q6zhU4ffxCkytpDqcviukogQ78Eowo2smaVbHiIVKvHOaqPGqB7GqHbJ/Fk3O
-# 9Xux9oKN6lOX4U+kzx3oE9WnYbB9tL98xOy7IX3y
+# hkiG9w0BAQEFAASCAQAt6QUZjBTeQaWytvaI/vgTxs3aOwomLfVdNfuZT3/8hOx2
+# dd4EYTW3G5s2hST5yJ7vj4ElEk2tQDk6mVjv0XHNRkWm+ew+H+03qhdHplYWvTwA
+# 2mh2ncVnUka09gbPT15/3fmvkQH1/Z/YN2EYRsSv6WNT7aoGq/viNIDEbtVtUPYt
+# u601K2DkW0+YXIovkI0s2PNElHezL68qlRs2u3ulGjZ5cbwvHNklrKDwd6ay1HTH
+# CqKPnLIH7YLIz8HJULXN90k+g8ogKuOh7CayDTOXJXaXQBiZFZTtqG2JkP6wi/MZ
+# Q9SOlyx/8Pa/9sYIcfpqS+SuNto0QyeO9xZHUhIM
 # SIG # End signature block

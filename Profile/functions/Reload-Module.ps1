@@ -1,20 +1,13 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
 
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +41,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 # Reload-Module
@@ -78,16 +81,15 @@ function global:Reload-Module {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'Name of the Module to reload')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('ModuleName')]
-		[System.String[]]$Module
+		[String[]]$Module
 	)
 
 	PROCESS {
@@ -112,8 +114,8 @@ function global:Reload-Module {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUUwi2ju2HKzFzfU0HNkm1b1XV
-# LoWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3Jp92LARCG6Cc4SrkjuTZcC1
+# RmigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -256,25 +258,25 @@ function global:Reload-Module {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTddH2q8YpXRJKNCmcxiNbVHgEVEjANBgkqhkiG9w0B
-# AQEFAASCAQA1R7rvJlH5VIWy7Ew85FJeqiw/Q7WVym5p60JrGGZehzqJakcTf3l5
-# Zyh6FKAp05PLTpkj5QPGl543eV2kANux/eEkhHtmv/MFfPJLsh+CQFSylj4ajXlZ
-# uyzPQxlEw3J0wMwtppq7Ogbldi4OQxAZciuLPVOdj++WUiDzNNi0T4tEdpMq3JLj
-# gA167wJJu+WJIjd48tftQF1Dstxwc1rLN3NaQ2T0f69vdW+V1U1ra+Sfwqb8l+Dv
-# fPPtWvKJCrk/6X+dIpZdh2wsIvTe09ig/CBqLHcRorD8jSHg7bJqe5fj9IUTVMmf
-# G3MgkiS2Ru03v/wiiKb2OqX/K4qhfvBVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSQiE6rdNVeiSq38XXRhbNkpMK4nTANBgkqhkiG9w0B
+# AQEFAASCAQCAhmtGoyUxPLU7N8f50pUV2AaNoItUb5fIVmIznJ4CXdCMpXdFvC8N
+# D/4Wb/PX1uXTbeYks7Ci6jiU29VZFLWlql+9/SKKDzsKJhNlnGAM0CYwYESd7bvV
+# Kdc/5thijM1/DQM9tXefdA5gC+utbQgTHBNrwFEc4XieZSHysIAS+HOqUDpGH2Sk
+# 1bMdkvW6ejxfFUeWtVW3nklo2lyqdec0fBGPC4u+720PHi2oK1D8haVqknqyHA5P
+# 331UiTT+FTFgkrRUxYUZ0ARA4pcwQRK5pp551QoSYWCV5WFFYIAo0PmU8cMnzZWh
+# 9RwLxrJpKYhhKYPw6lzxwKMNOJXGsryDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxM1owIwYJKoZIhvcN
-# AQkEMRYEFC4KBEULYZC/18xvUhDdmQBAHLHkMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMFowIwYJKoZIhvcN
+# AQkEMRYEFNHRrQfQuL5ZjV8Ys7i6QTiwZj+TMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAXcTLXfZNCQQFJrQCqxUFcZBGaafaHfm+IBcCefqCxZxWT
-# DIANHTkU0vYowc5/DDIR7CWxo0LTgOlV6SHLFu7PPR6jRmTObWR/Ya+Cl63s2fWj
-# N3FPw8XtliwTSoaKXGlGXa8dqH3K3uWNSvz9E9yc4BtMId2NJbjzpliGhOU6cMUA
-# EmkzkeJflSusxu1fznr8OD3gvJRwu5yjwDHo1VgegRWIoD3A4RxfnecubURr0Z2R
-# /AFEuoHBWGAofnVgNuuSn1mGGu/XPo6gX1gqAxahrBrIGo0UHFdMcOgEQ95V0nwM
-# 2knnauPvUiw+pu1fkF2zBD2rIKonKy2Ub/1NG6zw
+# hkiG9w0BAQEFAASCAQBIk+NfIYYThF6/iizwT8+gGszE8L9XGGPIKcMZcIy6zTma
+# 55DQAb5eVXQHxPq4+9rNIUyRY4v9lHjzkDOibXNt5KGWKsMefxRy6BvN7dbW1I4n
+# 3tM91ZQMFdTfBXK2ZLtziKpdo0sAqFcygdfJf4giIqL+03zgG3p5TohoiaA4E1Jk
+# zroseGq1NYu6BZ85v1CkDQ0P3ikvf662CwfAHiwJEnbt6tKcr0sJWTdw+Vxd9aaz
+# ocYV6ptJass8Kp+jD7bdEaZo0jg6X1RgtudckPOjqnyvjPutZrHcAKtVQ8AFqQvu
+# QgzYuacTW1j4f3EtW9GkKe2ixamo+9XbYV+NyYgz
 # SIG # End signature block

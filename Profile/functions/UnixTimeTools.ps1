@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:ConvertTo-UnixDate {
@@ -89,17 +91,14 @@ function Global:ConvertTo-UnixDate {
 			Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Int32])]
+	[OutputType([int])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Date to convert')]
-		[System.DateTime]$Date = (Get-Date),
-		[Parameter(Position = 1,
-		HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to skip this step.')]
-		[System.Boolean]$UTC = $True
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
+		[datetime]$Date = (Get-Date),
+		[Parameter(Position = 1)]
+		[bool]$UTC = $True
 	)
 
 	BEGIN {
@@ -111,7 +110,7 @@ function Global:ConvertTo-UnixDate {
 
 	PROCESS {
 		$unixEpochStart = (New-Object -TypeName DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc))
-		[System.Int32]($Date - $unixEpochStart).TotalSeconds
+		[int]($Date - $unixEpochStart).TotalSeconds
 	}
 }
 
@@ -200,16 +199,13 @@ function Global:ConvertFrom-UnixDate {
 			Source http://powershell.com/cs/blogs/tips/archive/2012/03/09/converting-unix-time.aspx
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Date to convert, in Unix / Epoch format')]
-		[System.Int32]$Date,
-		[Parameter(Position = 1,
-		HelpMessage = 'Default behavior is to convert Date to universal time. Set this to false to Return local time.')]
-		[System.Boolean]$UTC = $True
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
+		[int]$Date,
+		[Parameter(Position = 1)]
+		[bool]$UTC = $True
 	)
 
 	BEGIN {
@@ -239,8 +235,8 @@ function Global:ConvertFrom-UnixDate {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUNqVBs0bVRnKVitDi4hTnKxhq
-# PWigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUVTKi4swvM7Z+7K011fB07Fsr
+# irWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -383,25 +379,25 @@ function Global:ConvertFrom-UnixDate {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTLpZ1fSayW+Bw/aSxYIVsQNU3SiDANBgkqhkiG9w0B
-# AQEFAASCAQBllxMYS1p7Rvv1p87TCtH3NylFX0/cL4YYPeus/XIXpX38Be1zjUP0
-# q0Oo5eWpVyZGtJMuGdORrYQbYg/9doTWK2q3kKPzoZikuAX9Drf9RtZdeAewilEI
-# pTWb9GAA2mLlQaXkDpHAN+JNDbyJbI6ijnqyOZaYHL1nVWY2zaU8rKrTClGfjpON
-# V26ZiwE8zgfgP8vzJvqMidldBrctTw29cWqunOR1EppVUrly8kptJZkM8p9HWdbP
-# o/ctfclYjDk40Op8ebEWWfA59dnTRNO4vXoJ77ZPZnDj1afR+vmrNK1Dbb7xVBfk
-# +xa0NWwMEfhLVB9nnqYwZccR1X33uff0oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQ29UK+4LO3a2F+mkOCeWqNghVGCTANBgkqhkiG9w0B
+# AQEFAASCAQAC+M+xAQXDiWePIrg2NqRDOqpBvAiMTjYUklhNOml74R5aUaiH86dO
+# Df3CMqmltBrn8Ff+TV361OyaU7lYu9kIpGuM7IUlpbivm/lqIY25xXuMGhEm0L49
+# +0sWojQ/XXdl1vXV529Q+EzMji20+FurHwn00bzhMeCBbyl9apHM6YNsetAYIVYk
+# xJ6mlUoZC7LCzU15Gsov4aZff2AoQoRg0mhW6qkuknEFOaQZG4kFa30/FnQZk7QD
+# C5N3+V8jb10Y4mXH17aDGFMIbiCs1KtFYdj/YL687UVLbSIsN7rXFJrbQxS5tlYi
+# LKSkAV0kOHXsN+dc7gbj0bULp7BPFn9SoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNVowIwYJKoZIhvcN
-# AQkEMRYEFET+BrE+gYaqZfmwLjKMdbW9RleMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxMVowIwYJKoZIhvcN
+# AQkEMRYEFJ7iinyFeYRhlJeJToS8oEuL8QT5MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAHBubES+hufkCiW0M4bkq3q1JM9PakGt3hrT6/bD5afOJF
-# OOIL0t3TZ++4WQpYSfm0gxvaN0OS9jJh4rkFP4OTcaluHeBgzm1jJ3PcE3y3uHeT
-# Yh/PPUSn1agdelyloAlttSOcxETFK/TMTFr1h18PZf6uBBmudDzn/oiALHKsrbxP
-# g8YK5ZKGRlgpODFnvh9gC3FGMngNSb5fpKyZjOmP3Lt69ExkEdfwTSAMNN6PeYjG
-# kLcJYGFKjWFbJtkI8keD0b1EpKGw4i2MR6bwdznRz1bZs9yQFvqlj4k84cngFxUH
-# QrPpjA2eGn6FiFh4TVgA2vgUu5pogQUPEs2lna8M
+# hkiG9w0BAQEFAASCAQBq8v5J/03b2RWkEFeEvEB8TSFNf3oXlPyjePEZ+6wNvk5K
+# EEVSaTLCK6/rm+L+mT0Nj5jnrTKbDTyOtnvAAMdHnm9dHcFPDF12MQVMJc/nhVHo
+# 0yIPuyg/RZubWpW7VqBvc6QMaGxy4eWJDqbdK9MeDw+u59h/JVy7JtT/I4wkfhNn
+# 0B+6PPoqLbHf21Q2hCSA6YsVnsi26zoaRKEm1XKtPl+RtVEb2fhQDuc36swNa4sb
+# 3l8L2im+gKeVvO5XCiaVYZXWEwzLyRJEEjrceRuLzifwwyruaeMb5UpB6RvNWe9Y
+# 243VF80+r5WKvA/SGgxg0gbPn4CNKDI91oSGlK7O
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:ConvertTo-Objects {
@@ -76,12 +79,11 @@ function Global:ConvertTo-Objects {
 			Additional information about the function.
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.Object[]])]
+	[OutputType([Object[]])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Input Objects')]
 		[Object[]]$Input
@@ -101,8 +103,8 @@ function Global:ConvertTo-Objects {
 				$obj = (New-Object -TypeName PSObject)
 
 				# List all the fields that are in the query
-				$obj | Add-Member Noteproperty N $count
-				for ($i = 0; $i -lt $item.FieldCount; $i++) { $obj | Add-Member Noteproperty $item.GetName($i) $item[$i] }
+				$obj | Add-Member -MemberType Noteproperty -Name N -Value $count
+				for ($i = 0; $i -lt $item.FieldCount; $i++) { $obj | Add-Member -MemberType Noteproperty -Name $item.GetName($i) -Value $item[$i] }
 				$arr += $obj
 			}
 		}
@@ -117,8 +119,8 @@ function Global:ConvertTo-Objects {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCjCXQsxgh6LmJBjNJSeV5cRu
-# NA+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9aZho/m7jCqFomi8fRlek0Fx
+# dS2gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -261,25 +263,25 @@ function Global:ConvertTo-Objects {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTR4/YLYSpcacGtjqIvYuK6F0y3fzANBgkqhkiG9w0B
-# AQEFAASCAQAWsbrKnmuW0QbeIc0rhU+saIIZAS7BtQtpCn7fiftm5CvI5PJW9ANQ
-# TAK4q8QT/i9fF8biiAxCV43G3NVbO7yGVoP6doiEf+B0T/PNxqP+OwF0ILGzgn6L
-# aiiBnbDzDHJ0tNLvIGpIO/H1kOVGMzesdw723d6YEb41Tvpa72NDZrLZC9qPVAgQ
-# /t/cLVfMXZwStvvFx6xP31cG4QKi/0rJldC76FHbkZZbNFlROZoXLvCOiExL5eCP
-# pcweFZB1h15tfE6tKfW/+9XRB9qryoeNfRd13SQwOqOQOhpPSrEj7KbLqMO2NP5s
-# OT9Jq1+nouQXyMKCP7ZyK5cQrIN/p5ZkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBScfX9Dnu7UfR25NwDlEU6wJBtXBDANBgkqhkiG9w0B
+# AQEFAASCAQCh3zWAiORUe60fzSfoeNzzql2DaEEZ3SBnKfTv3LPNFM1y/PJqkIxw
+# TVcObBf5so7NRdmRROyLYqIAr2w2cTIE2pNSES9RKz2O5+HmHOk8b1r/ddJ2Xc8W
+# tB6WefGyg54L2uJWxoKQOGceoF3Aja4VvhkFdC3C1JTXZV1/OMwp0iN04iEAoJ9j
+# DoQirNRDuurRNI23P0E+eNAVdnbvkFJWbuGo3lOcyR5F7Vs1r9jcM6IcdAaW9cDD
+# stScuWZHArvxWB4jlJ8pDyfZrfHXDrSLK31cawIi9BnbIzTP8y6t90j/HRE270bl
+# 09EauqhboxUjfZtj6jR6R9YlOAvIIavPoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQyOVowIwYJKoZIhvcN
-# AQkEMRYEFNJ/bwvvTDm9vLAIMfRGxKtpgoKXMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyM1owIwYJKoZIhvcN
+# AQkEMRYEFNh/tMooU/y8DKm+XwroxOAfFmQdMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAveXLWskvtluH4/xCPKSPrllVQs+VrA7RcUKE/BkgWrFbk
-# tJ0R7otnnHGsYqHFhK/9MNMXuY/xLVeTQkl0fRLYm7RZyQSacO8WKUjPiiiXheN9
-# COdxqCSCrJBHpaNt1UsyrBwuyRXr2PqzpSbC9PpiocogJ6JLVEe1DPAnx34vq41B
-# bK34+49zbyVwXErn4pRJLyJAlAyvNaPDypnz9kzA5W4EZEj5jSo0gxmm+U56nqvr
-# 2CPzHnidRFaPP0qmiTda9W5efd/bXc71K2AKsJ5/UrcgtEzRV0x+MX9p/cO/BlZO
-# KmKhbxGNFddbLGwDSzwuH3mYnHHjJI/Pvnw6AWvX
+# hkiG9w0BAQEFAASCAQBDkEjei10d964RRUZ535c+RHqMv7P59TB7SR+eMqcnYD6D
+# eHWIW4X1e3602/Frj/emXkGsBIahOV2ED5o70it7gCQP7RSod7ZlHMGZ+AyGEqL0
+# ATBNJMWBTs60II4ApN/GZXZPc5eaX+jLRxhNlwz0E90srvNakEBoGn0ixxuOmjt8
+# xKMKJBmG0Prud0IACsMaAkW+Y85sox6ZVEN1JatNMK9tamsTAFPbUujTjLp6JXYX
+# A2NMbQHMiFkVYN5ymWnSzqFZuVm3zOHq2gMVogaXDfrd44mjJgVjPze3tFQqKfWc
+# h6Op2GqwzVTa6ELhQhSGD4rxTdiepREaC4/SY1dB
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-MaskedJson {
@@ -73,15 +76,14 @@ function Global:Get-MaskedJson {
 			Additional information about the function.
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Regular Formated JSON String or File')]
-		[System.String]$json
+		[string]$json
 	)
 
 	PROCESS {
@@ -112,15 +114,14 @@ function Global:Get-RegularJson {
 			Additional information about the function.
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'C# formated JSON (The one with mased characters)')]
-		[System.String]$csjson
+		[string]$csjson
 	)
 
 	PROCESS {
@@ -131,8 +132,8 @@ function Global:Get-RegularJson {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUDnz7CkZGcmdZio2cvPJ+EADP
-# /pygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUobYi3JAMbcKWCc1a9MVN+P+m
+# lkmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -275,25 +276,25 @@ function Global:Get-RegularJson {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQd7xCEvcNeImA21Vkx01E6VH4lSDANBgkqhkiG9w0B
-# AQEFAASCAQCi12rJHmzNTM++EKOtKNAxnmUcwjOTVwdUZsBp0oBghDITMHnYxVPd
-# UsyJq7HIN8eJL1wWdEdQHUmN5ZRIkjf815Dt74rGySm+TpmJyzDCDLvhdTpoZRHt
-# UJNokk9tD+rYRRGzC4FV0ggPomI3+pL3aZ29cEcZYRFbbHzK2KLIQhE+zdLm/qhF
-# Q3IkGKDCcC5B2+LNAxlonaf57qNhYJEWK8WoKOxnDANMj3xqXs3G0+hIXkx4s0dS
-# vy8RLBr1NgLiYyItSqt3wD2vs8r8z9SUS4wekpxXSix/TBDTB9q0C4wLkGVKJd4v
-# CE2PeHOHa5z5C3YBk6o2g1eHGYXwW76xoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRXerjBqirgFdhiU0hFCf8Ln1SWUDANBgkqhkiG9w0B
+# AQEFAASCAQCKdsA2uROR0MrM/9qKbRuUcymG/l9loqvNkPMZX/umrNwiKJhclFFQ
+# pBlA79LtmnAttsfvlQFgTenkY6sG0wKzEkKII1rWCbjvz14ucnLaSIDph/bSqEbF
+# Ah+qV4tPCtVmK+7fhiDVknat1NPQtSDjxgWxlF2TcJYQqV7SzyjST5qsfOo/FMMX
+# fyh2drOEkStmJHzwrzpHJevoBB0hVkqu19V+HqB2Jo2qeCGWwq3o8FHrJsZJc29O
+# nkgd5JEgVjPdJidpsgsY/jkwAdqMAWvYzzM5oBab7HhBaTvZ+Kmose//y24KynXR
+# hWYX4KajKYrLrOals088Na4fGbjs9QDuoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNVowIwYJKoZIhvcN
-# AQkEMRYEFJhNFLpQnPdjzwbx5Dt0a+Q7p5OzMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1M1owIwYJKoZIhvcN
+# AQkEMRYEFNWbWbDu3rTi/6yBa+z+TtmdPIOYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBVBRAqV6V4HKpLNe3NHaBZOYmICnASOd32QnAivF05Oa0d
-# IqAK/6CogLyRFPSK7Y6ZHu48Nu/aQN4gH9S9ruVsbZst7H2KaItlXYOiMLebIV79
-# IcfyRHsDgg+OlTAVcQJVjqPboltFTCw7LTcDAPOO5DQBH0zLGPUtZ/dmfiU8f3Lq
-# usDlkJ7K3+94KB4dn5TIrJ4AJDlz3osnvQcDkih1wP4Rv3S0kKFPuIYOAc9f8XFV
-# +tHHuu8wEdw3QgDjW5rfryRIZk6WC20YmkvWvf5p9bBkaF+szL3qzRqYvrsTBewd
-# r/TzKPyvIsFpl91FiHeseLBUsu0riYYQEeys770V
+# hkiG9w0BAQEFAASCAQCDaK4+VzxPUuGq8hRvoWF/CVs57pPsI9mftZRW0jYbANCL
+# Sr0UqE+d0+eBNgXYkgjPFxliaFoyies9DLAENQWBdh2SKIjmt3UvGekeUPAib3ZQ
+# o905jyI5A5fh9+NVvt7l+rt0MjUHqqNtjOJg27j4+pxPRPQdyOYWgJLMvzGTBwaU
+# c0HXMPPdJiLtBbrdOSmw2+fdlbgQ87pg3FhNiJ7TkJpQRllZ4rNqUMzw8RwFcQjy
+# 529qSnS/kY45U0TqtgMGUuY0+tT8j5enWFuW1XX55ug8gzTCERcTz51/cYPQnz2m
+# aeEislddHJtlP5KY/mVMK2X4P0TZeUA9YDJb2w36
 # SIG # End signature block

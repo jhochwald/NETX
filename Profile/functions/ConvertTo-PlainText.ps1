@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:ConvertTo-PlainText {
@@ -70,16 +73,15 @@ function global:ConvertTo-PlainText {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([String])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Secure String to convert')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('SecureString')]
-		[security.securestring]$secure
+		[securestring]$secure
 	)
 
 	BEGIN {
@@ -98,8 +100,8 @@ function global:ConvertTo-PlainText {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUn90EzIHfhx6fqHJSy94/y78A
-# 3g6gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdfEA3/+9IUFLtj+VB7CbNQIa
+# vRagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -242,25 +244,25 @@ function global:ConvertTo-PlainText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTzyFQfkxtKvNZqtCzPisd12um6iDANBgkqhkiG9w0B
-# AQEFAASCAQBmSwyjmymsePP5j4XCyJdQuQSietSGyH6xVGKJwaDoFrb1YvJN1tTn
-# Sv/3fXZOf0mzpkffIub4JxcWctRswileP8xBDPVLuOBUhSSJHxyRyiI0py3JxqWr
-# BRJFnKhWm7qdvA31MaFjbBpuHIpbCK9a36tZQPeQAT/+iEdmGmuz9amxTj/Fqxsl
-# iK1jx69goBJQgzcApBZDult2beeKS3z73lKjGg/dFj8JXihxpYz1nv5WxhV/XezA
-# 3C68pSOeZklY6ATcx+kO3n7R4e5YDn+A8UZ454nB8vyqBx/72aqzwDc3uts1xfFY
-# /OWyFe22SP0iMvLHexZEOYX/2h6u1xoCoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS4ugKd5MlVBnC0B8coustgWP2XUTANBgkqhkiG9w0B
+# AQEFAASCAQBhPKsolOeCn06YDsDf5AYv9Ft6fDS8ssp0Ic0YvEZ9QNqYDFIhjlZs
+# qrjN7ffbw1JJRK4Z0GKiBbaZTUzCAdyQbRpDuZlUzOi4BvzBwZRbQHQSguO9uiLN
+# r0Ofn52NHf/9D1aX13pqZA6/aLr3nbvrzqbKBU0yGUlBG/e0I0Ko4yimDjSrv/qj
+# /u7mk/i8Wmv+hE1vj+pcachmB+JJQlbtavrHPhsGd95oKW5LPdlEpedb9/wHJEAM
+# Nqiy+TKvXZYYTxv8kUmhCgISDJ34AXSiqaqOjGpXUNiyWOr43PV8ft93uHxGou+s
+# ezMMUHzSRjjSlL5VwQYyZIH9WgWA6tXaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMFowIwYJKoZIhvcN
-# AQkEMRYEFJpQMW90jmrkAsxYedjz6N2BN80OMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyM1owIwYJKoZIhvcN
+# AQkEMRYEFAOXBuH8bDPdC63AJn92xG2K45nlMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCIfgPxmoMWn3YmKkdBK2g4s6TWry5nzjaySskP39jcamNa
-# IpARpgoLZBg7gCpWqMc5FONHCuBIXrF6VAA5cmNp9Y6HnVHD42CIHB1pfnzdPQPL
-# yctb8Qsbkxoh+StOMtr7NbuOtcTTWp5SNYhDwETFZ96nWb3ToSUzes32nCTTDLTv
-# xbyZ9fZqFENXn8dh6PclP7Z4+cSqjIikMgMWu6GoP8CAVTgaPwv6y74Mzls1rd8C
-# e8eHtmb0tNH3+VEixAhcJV6z8VZkGUc70poJYO8n84HEyRrEuaVH1q9VGYs+9KrL
-# kPqEucnBeFuzANXURZ+oH07ygMd2WaKfeKMP0B/1
+# hkiG9w0BAQEFAASCAQBHMYLAPkIhtlaLc6BlrCwsx8Fft8lu1devMr80iBNU0sgN
+# IpqaBqPR6+JTXU9sItyxMnBvj47hPtzaJ9+aJS2dU3BdJFWbyskrf6Dw4ilKQ3yX
+# MuBgF3sKVH0G9cQ0PNiavUWw0qJlIRLB00yPPnQ3/fLAEOLe8fE79YrHs4nOGL3A
+# rkItGQ7ulp7IDb3Gn3VnwabyQKtdJqwVUYm7OtMnUZ4H3VY6bTnmgNi7re7XfmxC
+# FSYTAvhEHsTuXGdvZevdxOCs9qlqY1V0TrwuqR5V2plHrkYF6WxrH+M9gQXSRrKO
+# ZKRWeqsDHr41SyvWnxMdxWoQOTsWRGox9edjPZS2
 # SIG # End signature block

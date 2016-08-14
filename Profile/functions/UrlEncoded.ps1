@@ -1,4 +1,4 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 function global:ConvertFrom-UrlEncoded {
 	<#
@@ -86,12 +86,12 @@ function global:ConvertFrom-UrlEncoded {
 
 	[CmdletBinding(ConfirmImpact = 'None',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertFrom-UrlEncoded/',
-	SupportsShouldProcess = $True)]
-	[OutputType([System.String])]
+	SupportsShouldProcess)]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,HelpMessage = 'Add help message for user',
+				ValueFromPipeline,
 		Position = 0)]
 		[ValidateNotNullOrEmpty()]
 		$InputObject
@@ -99,7 +99,7 @@ function global:ConvertFrom-UrlEncoded {
 
 	BEGIN {
 		$datBegin = [datetime]::Now
-		[System.String]$fn = ($MyInvocation.MyCommand.Name)
+		[string]$fn = ($MyInvocation.MyCommand.Name)
 		$OutputParameter = $null
 	}
 
@@ -108,7 +108,7 @@ function global:ConvertFrom-UrlEncoded {
 			$fReturn = $False
 			$OutputParameter = $null
 
-			$OutputParameter = [System.Web.HttpUtility]::UrlDecode($InputObject)
+			$OutputParameter = [Web.HttpUtility]::UrlDecode($InputObject)
 			$OutputParameter
 		}
 		$fReturn = $True
@@ -120,28 +120,57 @@ function global:ConvertFrom-UrlEncoded {
 } # function
 
 function global:ConvertTo-UrlEncoded {
+	<#
+			.SYNOPSIS
+			Describe purpose of "ConvertTo-UrlEncoded" in 1-2 sentences.
+
+			.DESCRIPTION
+			Add a more complete description of what the function does.
+
+			.PARAMETER InputObject
+			Describe parameter -InputObject.
+
+			.EXAMPLE
+			ConvertTo-UrlEncoded -InputObject Value
+			Describe what this call does
+
+			.NOTES
+			Place additional notes here.
+
+			.LINK
+			URLs to related sites
+			The first link is opened by Get-Help -Online ConvertTo-UrlEncoded
+
+			.INPUTS
+			List of input types that are accepted by this function.
+
+			.OUTPUTS
+			List of output types produced by this function.
+	#>
+
+
 	[CmdletBinding(ConfirmImpact = 'None',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/ConvertTo-UrlEncoded/',
-	SupportsShouldProcess = $True)]
-	[OutputType([System.String])]
+	SupportsShouldProcess)]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 		Position = 0)]
-		[System.String]$InputObject
+		[string]$InputObject
 	)
 
 	BEGIN {
 		$datBegin = [datetime]::Now
-		[System.String]$fn = $MyInvocation.MyCommand.Name
+		[string]$fn = $MyInvocation.MyCommand.Name
 	}
 
 	PROCESS {
 		$fReturn = $False
 		$OutputParameter = $null
 
-		$OutputParameter = [System.Web.HttpUtility]::UrlEncode($InputObject)
+		$OutputParameter = [Web.HttpUtility]::UrlEncode($InputObject)
 		Write-Output -InputObject $OutputParameter
 	}
 
@@ -153,8 +182,8 @@ function global:ConvertTo-UrlEncoded {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUuor2SKEQ0AZWesw88Dj1ynob
-# BRKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4vrUKOR2qF2PbYH5BOUYRKh+
+# 6aOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -297,25 +326,25 @@ function global:ConvertTo-UrlEncoded {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSwQGi5YPmK2n5AOlRC7EckD7PUuTANBgkqhkiG9w0B
-# AQEFAASCAQCtkPPmKrsPBFvReEMa3hlpj5mvx58xzYPtScXtAr1XN0ZhE2D77Fo+
-# 1om//lQaLWa8UQTt6PeZFic39yiOnQ1vuXk2W2UvPrct0DeeSEgKTVl1Ntjtj8xL
-# sgpSkxrv498vBFS3decP+nf7ExYNJLvDf68Ec1SscBu8YWpYqbNVm9rsfgjuwgE6
-# obXLf1wiVNUp4TUxrMhJD26kWL4BAzW6FVF1+8Jw9VXveSfTLkI59d591vNikVbj
-# 7plqkocEycwJ951ouuDe33uQzvzaI4h+t/51PQaSRqesCqECZz0gBarGtT7hfKFL
-# mIxMxl32rValdRfkQkr4kPRxKbzt9EN/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQurEM6eIfJr5MjoR1XZaUQapEQjDANBgkqhkiG9w0B
+# AQEFAASCAQAHJkpPij5CI38fiCazt/SgKP1EwPnrPM8/qH+DwOFkCyZ55tzmGD12
+# 6PtnV0is3zeveUic83Cn9IXfjrvtcZg0Y2YtDnYytXFRwNXNNYclTk221tWYZkZf
+# DEiqE8CYdJTfuFc+648Jmkt42kk2N4Z3CRDRLl+VxUStgWcF673haEyke8El5V77
+# vHIqJUMc9i5rWzuyZHYSseNoOwu6pd06b52EIW6UN6I2zwp3l5b1q70CnOkK/F5L
+# JoQHdrmSdIiS1ATq2dbk2V1RswSc6Ev+YCXmetv5UBDMK5e3XLW8aQIARFTdgTIj
+# T2azLkIDyJfUbpjp1OltBySzrUY4ppFGoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNlowIwYJKoZIhvcN
-# AQkEMRYEFNBM6ufKVbLOuarx2Hfjk6qW9fS2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxMVowIwYJKoZIhvcN
+# AQkEMRYEFKsYi47ylOFBmJR5aR39Ym8wb6TyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBcWHwBqTzLQv9aZ5kn1nwgYsrHwu58RyoT1Rj7FbOHAUqt
-# RCIkqTMFJ1piyCaWghuhRdgZijzoqx9CaD21JcpiGIgdreMr+jIi/1XQwOI+B0Ir
-# nWEbB12lGDhTYc1ZdtnUtY/gvpSxAfFwpVl5kw37YuT1DiXpmMvaRDVvaEuZQbzj
-# k+SnJA5gKcKpJE1gTJGF2CpoBNfOAQD1UQCo10e7dMLPwVQf8th5OL48QJX6znfT
-# rK/UoG5Upjgg7bgjy//94mZl4DflCfXu0w2NkIO0Mh15JFnoDbbRxxSL6UboBRWh
-# KQUB2VJxZAxwTKnRzZ5ASixZH9HKctMdikAvP0Oe
+# hkiG9w0BAQEFAASCAQCsAmGo/B+BtbJOIhMXLsTltX5U8NZhqwmx5FD7+vePGO4X
+# gKxQmRwG/fASh9InKO/DbfnSKGB2i23zNXLauI7z/f6UbMPiKWxIaUqC6L39r0PO
+# 8S9RqsLyiCRbwLxgnoxwlVsJToGhIIIk49zI8zo8/JtEfxbSqr9/CdLadIJbqSIr
+# cG9/R6zNvs3yOfXqdgOsvLSQeHwhcrOE/w2fWeqwRKajom/HBHBO6GI0pY79ckK2
+# LwT+v5uocdp0HxBuDksQiV0ZRjvaMU5DZeQuWlpXNCBIaTWKJ1YIIg9bKjHLYsXa
+# 1MVXdvHCIOoUm+5gCA3/rbOx3nNQhdY1fnJehWQs
 # SIG # End signature block

@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-TinyURL {
@@ -80,16 +82,15 @@ function global:Get-TinyURL {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('URL2Tiny')]
-		[System.String]$URL
+		[string]$URL
 	)
 
 	BEGIN {
@@ -150,16 +151,15 @@ function global:Get-IsGdURL {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('URL2GD')]
-		[System.String]$URL
+		[string]$URL
 	)
 
 	BEGIN {
@@ -218,16 +218,15 @@ function global:Get-TrImURL {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Long URL')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('URL2Trim')]
-		[System.String]$URL
+		[string]$URL
 	)
 
 	BEGIN {
@@ -288,16 +287,15 @@ function global:Get-LongURL {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
+		[Parameter(Mandatory,
 				Position = 0,
 		HelpMessage = 'Short URL')]
 		[ValidateNotNullOrEmpty()]
 		[Alias('URL2Exapnd')]
-		[System.String]$URL
+		[string]$URL
 	)
 
 	BEGIN {
@@ -331,8 +329,8 @@ function global:Get-LongURL {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUf6RwqVKfUxyZlQ1oXefLB6E+
-# kE+gghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUjExMn1S+QEkzhmRWUk81YLZG
+# HgKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -475,25 +473,25 @@ function global:Get-LongURL {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRxbLC7iyCEdBJnv1lhUMw7M2YP2TANBgkqhkiG9w0B
-# AQEFAASCAQCNmIW0QM6f5BTfr7/Nm84Zw4+XbiQCuI5N+DuvcgVBtZCNKQgbw8S8
-# cb0wb5xqR5fK5s7ROvFaAQlLECwPNssJ3d0EkoKPezzvmRPvqbAbovmsc3Hwmn62
-# ZVL+gNhqFNNhNL+bDiOL2CZWDGM9q40vmR8S0ikZlsqhx09AlrBKrkAxlGGGZg+W
-# oRrPAB00/WIU0Xh/cGR0LHtvHPfCS8ZiCGJ/2eV8Y80b5GPBQdVQRDidMPa1B/eQ
-# 6ucAd8h4sc/krebDaw2y/6MHm+92EeiYrB9KoUDPUFG8o0Z859mfMjGN0OpWkVh9
-# yi2CA13FV80/tE/VdTJXFuMwxe52AyqnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQKgIBZYgmLaMPOIpmiIodOHv9jpDANBgkqhkiG9w0B
+# AQEFAASCAQAgl7bNTLfE0J2jZzhIV6tTvKnVNT/p/eP1gNgNx9izu7aNkpxhb0h0
+# EzwZS0iQnRFdrEryVg++7pIK5NSOlZ4Ipp9UNllSy8FVPIyDLH4G3gGVNxiWvgxk
+# a3qNNEaOS8XK1tAxa4GY9kQ/I8KBJu9DPi6cBrhU6IeIvyB3/kxU45FlgQjNj1H1
+# 7oi4hao+0hqB3kmK+jVjsEKROeZiiKXt4Z4dvNkypw0kioPY9H2nALF0bUD2O7pO
+# cZB3eUV8ZTwgi9BkzHplbUovzdFsi9U2zGTq9bwY/sinL9RmhHxKSOi9rY0GY92d
+# miZvTnWwZdMv4eVEyedMUWyq+yZ6TynOoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyNlowIwYJKoZIhvcN
-# AQkEMRYEFDrTBRS42v2/bk6nnEcRMT5IL8H6MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIxMlowIwYJKoZIhvcN
+# AQkEMRYEFI+xTaUgfW2p/DgA+Ao32hke9gHvMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBFIYvrOsAko4+8CvHYKwHm71MelouSuwciw7WNI+xL9SVe
-# zL1695VaqJw7tae8phn9SVUX2OiOwBkZce+nDn3l8Oe0QZDFLWxbAYtV7AmEzhfF
-# V99zAPFqUD311MKHXF02heLAQ8+/mFGoy2t1XObcQhrVDzoXMOeAXhD6iPJraz3O
-# XMAPl1J05D39KLtyYqlWlIvIWGOyt5V1HKhr+fwiSMUmnkmk6Tnd3hjO7DEXg3Eb
-# cPn7Za1qXyNKCy3ux2yWYszUUJFd6xboYrFAnPxNScdBzXgH9c804Kj5/17ZAku/
-# TmLvmgsnha2BOlWExwgWsbH+AnctLLR2kyipuSBo
+# hkiG9w0BAQEFAASCAQB8peRGZjsbPDLXjBjZVYY9A8K2MlieBhXPEHZcGR0AdnbP
+# PbNsgWDRASXNGCbOhPgv1d/pQK0dJEz2oEs+RFyclNEsB9caD57mQ9M3mVJjxZop
+# 2ixBKKs830udfjrdJDLZKDIIg6bqO9y3XwchIayXd++oR3VHcCBMc7d5aIJXcU78
+# XQiZFGAr1MwJgyY7ulg7LhOLFji7njr/p1Tvn9oQYAyjZt0jOg/vQvwYdtQqMPe3
+# S9qWKZwdvI5F2XAUCik731N+YcqYTypiQUNhwTAm5t/lEvfVYRlZ3GuyMSvajyIs
+# ookO9PbsewMRergVD/vkajrOPukfu5AmT8qNGK5R
 # SIG # End signature block

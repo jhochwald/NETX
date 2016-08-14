@@ -1,20 +1,12 @@
-﻿#requires -Version 3
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Remove-TempFiles {
@@ -126,18 +128,16 @@ function global:Remove-TempFiles {
 	#>
 
 	[CmdletBinding(ConfirmImpact = 'High',
-	SupportsShouldProcess = $True)]
-	[OutputType([System.Object])]
+	SupportsShouldProcess)]
+	[OutputType([Object])]
 	param
 	(
-		[Parameter(Position = 1,
-		HelpMessage = 'Remove temp files older then X month.')]
-		[System.Int64]$Month = 1,
-		[Parameter(ValueFromPipeline = $True,
-				Position = 2,
-		HelpMessage = 'Remove the System or User Temp Files?')]
+		[Parameter(Position = 1)]
+		[int]$Month = 1,
+		[Parameter(ValueFromPipeline,
+		Position = 2)]
 		[ValidateSet('System', 'User', 'All', IgnoreCase = $True)]
-		[System.String]$Context = 'All'
+		[string]$Context = 'All'
 	)
 
 	#Requires -RunAsAdministrator
@@ -156,9 +156,6 @@ function global:Remove-TempFiles {
 
 			# Still here? Make sure we are done!
 			break
-
-			# Aw Snap! We are still here? Fix that the hard way...
-			exit 1
 		}
 
 		if ($pscmdlet.ShouldProcess("$($Context)", "Remove Temp file older then $($Month)")) {
@@ -166,7 +163,7 @@ function global:Remove-TempFiles {
 					Mind the Pipes. All in a very long command :-)
 			#>
 			# Find all files in both temp folders recursively
-			Get-ChildItem $Target -Recurse -Force -File |
+			Get-ChildItem -Path $Target -Recurse -Force -File |
 			# calculate total size before cleanup
 			ForEach-Object -Process {
 				$sizes['TotalSize'] += $_.Length
@@ -203,8 +200,8 @@ function global:Remove-TempFiles {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeRdHbBRNS+QbN3+Wk6F+sa+b
-# jfCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/oILFAkVRs9gGYc1dR/wg7n6
+# 6YugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -347,25 +344,25 @@ function global:Remove-TempFiles {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSaAaQjupA/16MO1wgCemzP25vvmjANBgkqhkiG9w0B
-# AQEFAASCAQCV/oJN7xiGBxF4SHbw4u7l/c0mascaLoLf+BD+aMSe126xP7ASncq8
-# peQALM5tBYA6Fs0lovH/AlYlPPFnqoEfkrhAPB3GtREHi1kqFptjEnSkhWjv+cM/
-# Vbau1mu6YbZ/oTJkixcYsE+zF3g9Eu7c9ILIHeSAY7CjdRf1782KE98kNDJ2QWrK
-# 2kke489Sbr+UDJKP9xAhN8Urvsk5pNS+8P5S3k+4mGA3WBOWVSnrD2qxLoxcHEzY
-# EJNVe5+0BHcnsjAQ65Arhf+EhGuiJZYZwbVhdD/9SybTZkj4yNgRLh+hiZiqoLkN
-# MokIdrL8sdBrp/dSWTOhIXbZ2FunuY8SoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT0MDoSlrZ+mPunvdCwuGpxKmmClTANBgkqhkiG9w0B
+# AQEFAASCAQAzbIE3Jo7P4kwJRY+n3uX2FL+puSUauyGmMHJjpH+xxEiElhSWR8SR
+# ar9SICjhTlXHucgYohYzVHkhCD9AOAIj898AvwhWJU0LOsF7nb5eFToLdwEplTRH
+# S9ew16zPw301RzyAfQ2YGvsnYnm1QvIfY72GjcjwT9insh72igPPSj7Ckai4soYf
+# iMakp17jmJBVQwp85nHhHR/rplbQpg/Y8SYWvi3nW+tz4vN9whYq8odUWG86tQPW
+# GxqzayBOq0bFzYPtfWhvvPvYHd6PyC8Ln0DUPd6sv/I1M2cJHD4Q71AZX5x5BkKl
+# 3Ia79u/o+EBXvbuyrQMxKSraoqIpiBAxoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxNFowIwYJKoZIhvcN
-# AQkEMRYEFDPoDHxxQehzj9VAXPajefzaqLiQMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMVowIwYJKoZIhvcN
+# AQkEMRYEFCfkIy8/xjDkYok0tfuLxDAzBxqbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQChpjq7IvmdWnKqESe8nd3mHYp51PjwrsOMvVn+yXxYzhNv
-# Vg2Fhz397w8C3+ZtESqx9LfnmM54ioKOalRL7NtH68unuHEfvmIneTUtR3k4KNry
-# pWLwctznCBy3U7acr5zyJAp7pNj9EsAQCK16olrP5ykyo1F6//y4RaOoFV9rlI1r
-# z+XKpKwpb7wW/0suXYT5V6+/CJbLsjImjz5VM2+oV6nU/Oap1dnQpHfgf5ZJcKgz
-# 9rhk8Xg3ARTHj2cBEanl1lV0K2cDFNj96wplt2JbxBqcx946UWhEMIa32a9xSFAo
-# xkXHY+aXOHM7qL+yYeSozjrHAOfHF2BSj1G+JGKS
+# hkiG9w0BAQEFAASCAQCkaGaTuvlTuzYrpnxKLXVg+2hIlQ9kBr46Iisj+PJ3P3mZ
+# rgD95HwqnkW1mPZOnMGBfKpocLYC/cRqtVxoif0cifmB748wtNrbMiW8q1mOOG7p
+# NEzigWddPqipLqhGzjn15Q1raaC8hMcKPx4mvMcS79Lw+IMVRM1/jqiSdckMel3S
+# xgbITKtOLLiO4PeOx0rdKWW1oMjcwGqld3EYfFrjSgLW0xbAjls4KCATwOst/xZ1
+# iaX1tgPIXcUpDBrxzlQTpYMJOv4+Utget5Lo4c5RBQ0U0CgyUwBLNVs00C4lV3/v
+# JoKYRuiMcHa9QTOY44EglqGCCc5d5EB34J/gUBLk
 # SIG # End signature block

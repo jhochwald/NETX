@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 Function Global:Convert-IPToBinary {
@@ -77,13 +79,11 @@ Function Global:Convert-IPToBinary {
 			Works with IPv4 addresses only!
 	#>
 
-	[CmdletBinding()]
 	[OutputType([psobject])]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'The IP address which will be converted to a binary string')]
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
 		[ValidateNotNullOrEmpty()]
 		[ValidatePattern('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')]
 		[Alias('IPAddress')]
@@ -111,9 +111,6 @@ Function Global:Convert-IPToBinary {
 
 				# Still here? Make sure we are done!
 				break
-
-				# Aw Snap! We are still here? Fix that the hard way...
-				exit 1
 			}
 
 			$Result = New-Object -TypeName PSObject -Property @{
@@ -189,16 +186,15 @@ function global:Convert-IPtoDecimal {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	[OutputType([psobject])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'An IP Address you want to check')]
 		[Alias('IP')]
-		[System.String]$IPAddress
+		[string]$IPAddress
 	)
 
 	BEGIN {
@@ -213,11 +209,11 @@ function global:Convert-IPtoDecimal {
 		# Create a new object and transform it to Decimal
 		$Object = New-Object -TypeName psobject -Property (@{
 				'IPAddress' = $($IPAddress)
-				'Decimal' = [Int64](
-					([Int32]::Parse($IP[0]) * [Math]::Pow(2, 24) +
-						([Int32]::Parse($IP[1]) * [Math]::Pow(2, 16) +
-							([Int32]::Parse($IP[2]) * [Math]::Pow(2, 8) +
-								([Int32]::Parse($IP[3])
+				'Decimal' = [long](
+					([int]::Parse($IP[0]) * [Math]::Pow(2, 24) +
+						([int]::Parse($IP[1]) * [Math]::Pow(2, 16) +
+							([int]::Parse($IP[2]) * [Math]::Pow(2, 8) +
+								([int]::Parse($IP[3])
 								)
 							)
 						)
@@ -279,12 +275,11 @@ function global:Check-IPaddress {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
 	[OutputType([bool])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(Mandatory,
+				ValueFromPipelineByPropertyName,
 				Position = 0,
 		HelpMessage = 'An IP Address you want to check')]
 		[ValidateScript({
@@ -292,7 +287,7 @@ function global:Check-IPaddress {
 					$_
 		})]
 		[Alias('IP')]
-		[System.String]$IPAddress
+		[string]$IPAddress
 	)
 
 	PROCESS {
@@ -348,13 +343,11 @@ function global:Get-NtpTime {
 			Source: https://chrisjwarwick.wordpress.com/2012/08/26/getting-ntpsntp-network-time-with-powershell/
 	#>
 
-	[CmdletBinding()]
 	[OutputType([datetime])]
 	param
 	(
-		[Parameter(HelpMessage = 'NTP Server to use. The default is de.pool.ntp.org')]
 		[Alias('NETServer')]
-		[System.String]$Server = 'de.pool.ntp.org'
+		[string]$Server = 'de.pool.ntp.org'
 	)
 
 	PROCESS {
@@ -368,10 +361,10 @@ function global:Get-NtpTime {
 
 		# Configure the connection
 		$Socket.Connect($Server, 123)
-		[Void]$Socket.Send($NtpData)
+		$null = $Socket.Send($NtpData)
 
 		# Returns length â€" should be 48
-		[Void]$Socket.Receive($NtpData)
+		$null = $Socket.Receive($NtpData)
 
 		# Close the connection
 		$Socket.Close()
@@ -412,8 +405,8 @@ function global:Get-NtpTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUQWZ1pHrUY/WAVUHLXjJdYR9c
-# WjegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUg+euBpPBG4Ar/LefI5uC/6Lm
+# F5OgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -556,25 +549,25 @@ function global:Get-NtpTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQFI6nGGJfRU/q/WvhibXHnqv8o8DANBgkqhkiG9w0B
-# AQEFAASCAQAdn1YvIvf6Om3Y1kNq5ADpqg/jP31PKZqoj90SuQrlGaQTQAjIxp68
-# JLxE4iWKJJdEzYKfptGzwRzEWyvLu2mz7roXFkw/g4TSt4rA2phpoHAYQxvghhj2
-# EX2t3v/sx6gT5v8ZSaiMfp89W05TFKBfCgJ1g7loe829Hi+Qpf77et4I0r413vgO
-# q5vXCTat69OTry6CElUcx3sJ4/KHerqcFu5o8+p6+Ey8oHE7Pz5iFP+mN9IVZ7ir
-# /FjUSdu77v8l6G1Q15Dr9EPh5i6pF0id5fMnvU+IW5P1s955f09yzDv/9mme2i8x
-# fcAPzZQrxmosE5zlytj91AY/ym5ZFZNDoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRdrWo7Efz38FEjsxW7EpaRS9O5tTANBgkqhkiG9w0B
+# AQEFAASCAQBpO4d/LQOzQHPcF3hyQZOUuqhLEKlo+AaWfiCOFxo8HPv2gu57NuBI
+# TJ/bKYeaM6kmTr7j/Yg3xCyrRmrAYRoQbVOKr9YZw7MvPZb11nZOLqJQunXeCjij
+# hdCVcVtDICZueDf1z1rkTzC/sgfUq58jWWhJSaUcNzhLjbJYXCsGrhVGZwYGDD/W
+# iaTKFHBYuWtY9k2JmrTu1/Axg+J5/hyrMvFJxKPArSR+riE+oc1IOL7ek6xI3ehS
+# c4shjH/2PHfs8nC+zEiVfJsgum+3i+RJvfffH920EYYuJaiid6o/fmrl+2TWiQ7n
+# 4XSYuBatu4NMuCkd3aHVUnNIO6mxR+rAoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwNFowIwYJKoZIhvcN
-# AQkEMRYEFAQVMy8KD19z5l4WVAaLE0aBJtuMMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MlowIwYJKoZIhvcN
+# AQkEMRYEFG/GUf9URU0CcFTQ4arjkE5EEFMGMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCa32jAGENhGuRvX3t4BHdJSq85UscFmiJJ8WQ5dMRUK4K2
-# EB+ofeblNCkdenbo5N4rtrsL2TL57eXoGWQc1zgcUMZZ0Zo0VW5LUP9qppJEfkuQ
-# xHf+qqZCuoVx9XCV3N533LyJkqX8Mnf5U70FPZsbLsTA303YE9e7+4PZFxlpDviB
-# 4dBDEquyWcotNNiYfTXajeXHK535d+OC1Zd9NAB0K0zEKWUSgWYF+q+FYdvdcsCc
-# rRocSW1SXibLr219SVY3yFTbRjFKqb0psOFC87Gqr/wIe8mRFQ31MSdNNsmKzKng
-# yglwOkOqN69vxFnQptCtLfumUs2SO1hj/Sxh0cmr
+# hkiG9w0BAQEFAASCAQBWa6zjdYUw+XajM+5ERJU5jLYSsYbkllY4i3k/gvvGjRR1
+# 4DHP3BQi4I695IFNCEyUkTW4DRn71HcqmbDFtsmhvwlAEffsZV5eJilLLBuLOeDI
+# dd7StzhG+C0OEAX78LnJOuNxM/lspFc1ijRMj8578HzFzr05GBnLDrfjVk3hOqOs
+# SYARyl2QOJk1dS83UYiML8bazgCo5CLCFRXjqRPyxk7OOjFTR5xIKv/zNMgwa426
+# gmWaYiEHH7dDaWOZeHA6lhDndP56OQcksTSNhP21j/8ieVrZ4tMbC7H1yYSPHZsr
+# rvGFhyYqW8tqPP1pKQPzApIwO1iEaWldy7jrrbVT
 # SIG # End signature block

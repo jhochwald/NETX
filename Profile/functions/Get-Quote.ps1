@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 2.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-Quote {
@@ -85,53 +87,52 @@ function global:Get-Quote {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param ()
 
 	BEGIN {
 		# The quote should include the author separated by " - ".
 		$texts = @(
-			'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover',
-			"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley",
-			'Good is the enemy of great. - Sir Jonathan Ive',
+			'It was a mistake to think that GUIs ever would, could, or even should, eliminate CLIs. - Jeffrey Snover', 
+			"Leader who don't Listen will eventually be surrounded by people who have nothing to say. - @AndyStanley", 
+			'Good is the enemy of great. - Sir Jonathan Ive', 
 			'There are 9 rejected ideas for every idea that works. - Sir Jonathan Ive'
-			"People's interest is in the product, not in its authorship. - Sir Jonathan Ive",
-			"I think it's really important to design things with a kind of personality. - Marc Newson",
-			'Intelligence is the ability to adapt to change. - Stephen Hawking',
-			'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking',
-			'The best ideas start as conversations. - Sir Jonathan Ive',
-			'If something is not good enough, stop doing it. - Sir Jonathan Ive',
-			"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive",
-			'Any product that needs a manual to work is broken. - Elon Musk',
-			'Business has only two functions: marketing and innovation. - Milan Kundera',
-			"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison",
-			'Great companies are built on great products. - Elon Musk',
-			'Test fast, fail fast, adjust fast. - Tom Peters',
-			"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)",
-			'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)',
-			'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)',
+			"People's interest is in the product, not in its authorship. - Sir Jonathan Ive", 
+			"I think it's really important to design things with a kind of personality. - Marc Newson", 
+			'Intelligence is the ability to adapt to change. - Stephen Hawking', 
+			'We are all now connected by the Internet, like neurons in a giant brain. - Stephen Hawking', 
+			'The best ideas start as conversations. - Sir Jonathan Ive', 
+			'If something is not good enough, stop doing it. - Sir Jonathan Ive', 
+			"There's no learning without trying lots of ideas and failing lots of times. - Sir Jonathan Ive", 
+			'Any product that needs a manual to work is broken. - Elon Musk', 
+			'Business has only two functions: marketing and innovation. - Milan Kundera', 
+			"Just because something doesn't do what you planned it to do doesn't mean it's useless. - Thomas A. Edison", 
+			'Great companies are built on great products. - Elon Musk', 
+			'Test fast, fail fast, adjust fast. - Tom Peters', 
+			"Winning isn't everything, it's the only thing. - Vince Lombardi (Former NFL Coach)", 
+			'The only place success comes before work is in the dictionary. - Vince Lombardi (Former NFL Coach)', 
+			'The measure of who we are is what we do with what we have. - Vince Lombardi (Former NFL Coach)', 
 			'The greatest accomplishment is not in never falling, but in rising again after you fall. - Vince Lombardi (Former NFL Coach)'
-			'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)',
-			"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)",
-			'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)',
-			"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs",
-			'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)',
-			'Why join the navy if you can be a pirate? - Steve Jobs',
-			'Innovation distinguishes between a leader and a follower. - Steve Jobs',
-			"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs",
-			'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs',
-			"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs",
-			"Things don't have to change the world to be important. - Steve Jobs",
-			'Your most unhappy customers are your greatest source of learning. - Bill Gates',
-			'Software is a great combination between artistry and engineering. - Bill Gates',
-			"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates",
-			"If you can't make it good, at least make it look good. - Bill Gates",
-			"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)",
-			"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison",
-			"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)",
-			"Don't count the days, make the days count. - Muhammad Ali",
-			'Everything you can imagine is real. - Pablo Picasso',
+			'Perfection is not attainable. But if we chase perfection, we can catch excellence. - Vince Lombardi (Former NFL Coach)', 
+			"Stay focused. Your start does not determine how you're going to finish. - Herm Edwards (Former NFL Coach)", 
+			'Nobody who ever gave his best regretted it. - George S. Halas (Former NFL Coach)', 
+			"Don't let the noise of others' opinions drown out your own inner voice. - Steve Jobs", 
+			'One way to remember who you are is to remember who your heroes are. - Walter Isaacson (Steve Jobs)', 
+			'Why join the navy if you can be a pirate? - Steve Jobs', 
+			'Innovation distinguishes between a leader and a follower. - Steve Jobs', 
+			"Sometimes life hits you in the head with a brick. Don't lose faith. - Steve Jobs", 
+			'Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs', 
+			"We made the buttons on the screen look so good you'll want to lick them. - Steve Jobs", 
+			"Things don't have to change the world to be important. - Steve Jobs", 
+			'Your most unhappy customers are your greatest source of learning. - Bill Gates', 
+			'Software is a great combination between artistry and engineering. - Bill Gates', 
+			"Success is a lousy teacher. It seduces smart people into thinking they can't lose. - Bill Gates", 
+			"If you can't make it good, at least make it look good. - Bill Gates", 
+			"If you're not making mistakes, then you're not making decisions. - Catherine Cook (MeetMe Co-Founder)", 
+			"I have not failed. I've just found 10.000 ways that won't work. - Thomas Edison", 
+			"If you don't build your dream, someone will hire you to help build theirs. - Tony Gaskin (Motivational Speaker)", 
+			"Don't count the days, make the days count. - Muhammad Ali", 
+			'Everything you can imagine is real. - Pablo Picasso', 
 			"In three words I can sum up everything I've learned about life: it goes on. - Robert Frost"
 		)
 
@@ -263,8 +264,8 @@ function global:Get-Quote {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUCG2l0FqcViXu9TMHvl83Jaf8
-# LkWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU1vqoSgjcm2m9l1T9b6K3B61A
+# wAOgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -407,25 +408,25 @@ function global:Get-Quote {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTzhsIzgjGNbtsMVB+3aIfi1XrsvzANBgkqhkiG9w0B
-# AQEFAASCAQAe1ZmZ4ZlpCaVxAASPwK4r902y/F/okVekh0/R3ypftDX1Sd/8B0di
-# QdBT3XjlONp+kBdrllZaJvj9d32RNJyaE0VwrbK1F+rXJrJGJaBt9jnfnRXgCOmV
-# nsv46RAmUPdNFwE+4cohZJG+Mbyg+4I2nAtxcvWjOO7iBxIRnpomB1UXYBNoMTt1
-# At2Dlk1YwarK7S2D9qi3nrKOnPTKN2B6isgKXYi8hlRdjgA4bMVuD2YioBgYgHJQ
-# VBhC5TywJOyQ6uj//BykSdQg5vuUH17elBZR88aXLb+EC1cF6SikuGEpdlyHBXcd
-# S96wAjde83COluwG9Sl+j9jtHk4z68PkoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSdt33R4HfO7QRcjNbh299hjRn/EDANBgkqhkiG9w0B
+# AQEFAASCAQBQRv6iV4cR6fHuQJ/4oSLjP1biGxpZNLr+W8HEX1B30e/pL+w6ZzWp
+# lK2Q2IXXRVvGVuQtr7JSJLTWtq0mQiv1ICAT+IiAf1LQQMhntuwEBlWM+AHv58Ze
+# NzvHvDDPlG9TPIWc6pTDwqu7dIx3v3foNJbB4vkybVzPJ1JJQfi8Nx4keWrQS3yE
+# sN7iBFUZD9l+fs5FPhT4+yXA00fH0yGx/xlo+iXmnxgwiDLxg9Po+zwkX/xZr9Ch
+# s0L5tDn1CRTw6MpDFlvJIBBL7loi2kttBUMO1Jo1gl9IaOhka29/ZJ16qgVPzXzG
+# em/Er28G35eJPZLVfcq1BB7MOA1MjsRioYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0OVowIwYJKoZIhvcN
-# AQkEMRYEFETELzPREqVSzhLZOCODRUHT5fAbMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzOFowIwYJKoZIhvcN
+# AQkEMRYEFIfulct3rZLFtxe4WqQgA5wY3ZzAMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQATnfvprofMTIXWeJDTrLx2d1j6Me8VtzDjO4mtxYoY114S
-# F4tppCx9WwmxCJb6/ZMdUCHjfv60HHOnsSl4elepgXmFGHbCC+a9Y1do3swXnSlo
-# eZs4oj2Sfez/dhbbbjMbe/T8tq4oFk2oyED1Y0kxNvLzh8Us5wrMdvsu0UgEvB4z
-# dNNkRg1TPr4gds5gpZDDBEJ6wLCKytr2F+2PsSxQwrRC/P5t0TBnndIWxjxlqTPq
-# zp/AYrJoaduqy34qBxuuUsVZ2ztbUyeVlW+ObsXK0sxKno3SVIRpI16nN7ADT6Nv
-# FB7ofs8TwyodLApINo38bZYWJPuJhGCqxA1YcJy5
+# hkiG9w0BAQEFAASCAQARFFTYgArrrdo8cdwdRJ7llVF+bwTYBwEbmrYWlxSL2pei
+# v+VD49dfzKsbDckVvxWkN9xN+4iFFvLtIwr3EIFSbib2LOpTzyVF4UmgRzy/roQy
+# CoFPSwndMAFCc2UQortP8zbIzUt+/o61oS6+TIqzDmw4ByhuOGGfW5+2OOPH15Bn
+# UPMB3tK7uiGQ0ijgu0ZnSp1iI6nt3jHXfU+55c2WPULogFDqXG/ke589aXUyUwr4
+# M8t478JMxWzD+G1WeKFRXejitfcLd32U3/Mlv4UAB7x69aTUV0qmThLMs8EKmLOv
+# ARA/aVrnZG0CQLPyji4/wqWYhtfzMF+N5dGuipDc
 # SIG # End signature block

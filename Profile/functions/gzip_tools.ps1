@@ -1,4 +1,4 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 <#
 		This functions are based on the work of Robert Nees
@@ -60,21 +60,18 @@ function Global:Compress-GZip {
 			http://sushihangover.blogspot.com
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 		HelpMessage = 'Input File')]
 		[Alias('PSPath')]
-		[System.String]$FullName,
-		[Parameter(ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-		HelpMessage = 'Name of the GZ Archive')]
+		[string]$FullName,
+		[Parameter(ValueFromPipeline,
+		ValueFromPipelineByPropertyName)]
 		[Alias('NewName')]
-		[System.String]$GZipPath,
-		[Parameter(HelpMessage = 'Enforce it?')]
+		[string]$GZipPath,
 		[switch]$Force
 	)
 
@@ -103,12 +100,12 @@ function Global:Compress-GZip {
 		if (Test-Path -Path $GZipPath -PathType Leaf) {
 			if ($Force.IsPresent) {
 				if ($pscmdlet.ShouldProcess("Overwrite Existing File @ $GZipPath")) {
-					Set-FileTime $GZipPath
+					Set-FileTime -Path $GZipPath
 				}
 			}
 		} else {
 			if ($pscmdlet.ShouldProcess("Create new Compressed File @ $GZipPath")) {
-				Set-FileTime $GZipPath
+				Set-FileTime -Path $GZipPath
 			}
 		}
 
@@ -190,21 +187,18 @@ function Global:Expand-GZip {
 			http://sushihangover.blogspot.com
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
+				ValueFromPipelineByPropertyName,
 		HelpMessage = 'The input file')]
 		[Alias('PSPath')]
-		[System.String]$FullName,
-		[Parameter(ValueFromPipeline = $True,
-				ValueFromPipelineByPropertyName = $True,
-		HelpMessage = 'Name of the GZip Archive')]
+		[string]$FullName,
+		[Parameter(ValueFromPipeline,
+		ValueFromPipelineByPropertyName)]
 		[Alias('NewName')]
-		[System.String]$GZipPath = $null,
-		[Parameter(HelpMessage = 'Enforce it?')]
+		[string]$GZipPath = $null,
 		[switch]$Force
 	)
 
@@ -231,12 +225,12 @@ function Global:Expand-GZip {
 		if (Test-Path -Path $GZipPath -PathType Leaf) {
 			if ($Force.IsPresent) {
 				if ($pscmdlet.ShouldProcess("Overwrite Existing File @ $GZipPath")) {
-					Set-FileTime $GZipPath
+					Set-FileTime -Path $GZipPath
 				}
 			}
 		} else {
 			if ($pscmdlet.ShouldProcess("Create new decompressed File @ $GZipPath")) {
-				Set-FileTime $GZipPath
+				Set-FileTime -Path $GZipPath
 			}
 		}
 		if ($pscmdlet.ShouldProcess("Creating Decompressed File @ $GZipPath")) {
@@ -271,8 +265,8 @@ function Global:Expand-GZip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU6UMOaR1KFZI0mIw0Wc61TiEG
-# DDWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrOz7Tgv7NZ7btzGReY/zOVjS
+# iBKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -415,25 +409,25 @@ function Global:Expand-GZip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT4DrgDBx0uV9WitzYo8hFQ6tnOYTANBgkqhkiG9w0B
-# AQEFAASCAQAcIK9290B2FMoM5Lr2uaMSjZq36V40xoDDKNbaOk7MvgC7NoHCBxgm
-# 5lTF6Xl57KcQUthIhpvd0WxWphUckvl5V4JYZ8PCHQ4ugvzPDSvOfkTc0pR86KUG
-# l040UuEyXl7XUR4OogqozVljuG0itqucGALVzY/t0f7Q911un+5OBUpElnHsILbM
-# y1K3TSve7vAXCdtSeT753FQiGxOL4+POO97PQ+hQ2Eh0Uv+3k+I1p7GWGn/aMMm/
-# NIPsNxnxO7xaN4OF71r3WShIYhdhipG1HoaEbhJ4QcJBvAy536ICj9I9Y6aQaXxN
-# +wwZYScOK8SlK+NdWAG0JISyWRwqT3oMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS36jJei/c6Sp7ppMdf/mmEJ5ZjgTANBgkqhkiG9w0B
+# AQEFAASCAQAQMbnjNzUx7CCKT2hMd9naAbRXxzfDuZGmiW+cy24PLvJkGucidRSj
+# fHTc2CUlSrAIPbid8QOwRkcZHpfLDKQriggK4kt2kWvLzgg3/JVPQiTfd+UJU7FG
+# O9VDu0433LfNu5tr+G3yJtTBJQZhzMWsnC5P5KSbRmMvE5oMshwKBCsRV3D/tiZx
+# i+moxPQGzvmEdACV25I8Qsez0CC+FuncfswdEuAVirIq962+RpEs0y8iUeSiZ8kJ
+# qWSvZ4T1ip1k8PEPZz278CPx5J0EIWCWHt7QPToZKLmLQE8ZI2QVskJJUw9VtEQq
+# MhSn98Jb+tPhUcmzMsKdqWjIruTMeWOnoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ1OFowIwYJKoZIhvcN
-# AQkEMRYEFG9xkHzLB0koqSZd6PxfVSGz0dsaMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE0NlowIwYJKoZIhvcN
+# AQkEMRYEFBUjLR7rS0flkOLJSdVJeXgbbmSIMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBdo75mFguw2VSTIgrPmRwlS0mAWqeMSdGcR/L0nqroLrB1
-# ObJDHUE6uNxrqfBfXKIwOxEdMVoxQn7TKJJD/UI1I0hhsbBv/MCDCPeLCYRt2azR
-# GG2XEUNPbM2q97jO0TXgxk7XMrzuyzhZp+3lrd1A9k6etIw+XL2X1ozANooOaFG7
-# 7+CdXwiPnJ1yAZ8cN2WW7bB8skNZrnZyUzjNnluTW4heLbPwdMriafsOZiBiisbX
-# PeeYCU1VdJS2JWG822kWrdnXstqYaIaRzmSm/Z3NeaW3KaPlWZEC3dZ816ff92bO
-# CCwAv3bD2sKTBR7lfHrx0OlZ3dtGjIV9RpstF+Sj
+# hkiG9w0BAQEFAASCAQAmyJ6DutoMd48mxt6h7HPZ6AS6XIU7Epq6ZMiHQEKZ16GQ
+# iuUScd99zXTlO+eSn9ZL0d9yRPuuaykHl/7MaOtq2rcUzMeZsQsuwihRpKH+b9mK
+# zMqMz5A75Tq/bmzr+a3UJjVWX+Cu0yTpki11CAAIMFrcPRwLPYYStgjHE5RkOizp
+# v+vnUdVR+++lMulPpjzXhx/0Td7XvjWx7cTn0V1bM3OGAbV3dfKhgiMdi0TPD7Fg
+# BFClTOwEWJY1UZyt4A/t4CshKFCaFsccwXh/TyGBMZ2PRq5TmojTXgSDEgM6aQJG
+# n9/eSK7AMy8dR+8XFOF5p0QfFqIo755/qZhwb7Fe
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-Calendar {
@@ -81,30 +84,28 @@ function Global:Get-Calendar {
 			Additional information about the function.
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(HelpMessage = 'The Date the Calendar should start')]
 		[ValidateNotNullOrEmpty()]
 		[datetime]$StartDate = (Get-Date)
 	)
 
 	BEGIN {
-		$startDay = (Get-Date (Get-Date -Date $StartDate -Format 'yyyy-MM-01'))
+		$startDay = (Get-Date -Date (Get-Date -Date $StartDate -Format 'yyyy-MM-01'))
 	}
 
 	PROCESS {
 		Write-Host -Object (Get-Date -Date $StartDate -Format 'MMMM yyyy')
 		Write-Host -Object 'Mo Tu We Th Fr Sa Su'
 
-		For ($i = 1; $i -lt (Get-Date $startDay).dayOfWeek.value__; $i++) {Write-Host -Object '   ' -NoNewline}
+		For ($i = 1; $i -lt (Get-Date -Date $startDay).dayOfWeek.value__; $i++) {Write-Host -Object '   ' -NoNewline}
 
 		$processDate = $startDay
 
 		while ($processDate -lt $startDay.AddMonths(1)) {
 			Write-Host -Object (Get-Date -Date $processDate -Format 'dd ') -NoNewline
 
-			if ((Get-Date $processDate).dayOfWeek.value__ -eq 0) { Write-Host -Object '' }
+			if ((Get-Date -Date $processDate).dayOfWeek.value__ -eq 0) { Write-Host -Object '' }
 			$processDate = $processDate.AddDays(1)
 		}
 
@@ -115,8 +116,8 @@ function Global:Get-Calendar {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUb+PfkHkwUNHc2AwCOl7VJ6u3
-# LPCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI80i6/Vsh3fvK56W7ArIC5cK
+# DbmgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -259,25 +260,25 @@ function Global:Get-Calendar {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQPQXu+JMZuRAPctGNW+T7hO0+UsjANBgkqhkiG9w0B
-# AQEFAASCAQCFfuy7TWLoo1Y42W10trJQ8yY8sFhSP0diWPC/Bg7MPBAGvt2+ksvg
-# q5Cpgl5iEQY+hM4zftiRErbRypBcbfojC1uY4qE8FxGi3Eg7zuTlLUdyFWs9YtAK
-# SP4dbURvjOtmL3F54uRMaM8l5eShbj9XfLeFUJ+R4VL8leBFwnxAUPzDTzP4HGSs
-# 3fv1wFa/Vb506xQGDvyDvc5VqrWl+v8YkcR18QMeVnZ1p9mDSMSmrRU3yOIEBDV6
-# qJjumAzpRGsdUbmT04ZB8ScJLY6vAsaWiYTrxOVkaMiNfcQF10SsQDo/rTo1dqpq
-# 9TdaB8xL/tVpp3XoQ5ozlTs9hAqFUhcfoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTGfG173dKtv/4zeu2PHF6PURbWSDANBgkqhkiG9w0B
+# AQEFAASCAQAN3pHZEi27AhqMCm8qz72W93P2ePO3krthyJQW9Tu3aErzFjZBgDEI
+# QbDFt3q4NLTA2YL49nPq2tAIw87lFreP01aSxG/QDj3txpb4N87yuMaxoMEWG6XJ
+# UfjwH7fmsvMbNxy76uUZFhGYLvn6r1I7HpjsBo8fInADMgrhZmXfJvMt+owO8WjF
+# CKdExzEylsVAZUEjLCQKybHcXTzu0Omf3wPIok/7KfzFl6HnwcFnpEPESiaL5R9Y
+# ecLe7wTiB+omPcxiSouKZcwKJax0Yh4izs4y3mLhq8mscIpX0y2HHp4j51muao7j
+# dibEb3d/iJlNmig9iZpxdXujeAoI6LgUoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzNlowIwYJKoZIhvcN
-# AQkEMRYEFJtcBtgK6slembhcS8n1qfsUoVyRMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyOVowIwYJKoZIhvcN
+# AQkEMRYEFPptlrvGWKj1A9p4gs1KF8bHujRyMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQA82cDAHZ6k13SnCbsatrK9X5IyvaMHynorFJjwTUbhvoLi
-# Ut9RBdoUeTgcZj7QE2L6jfS6CyT2nFodRVOAtIKqYQCdRblpHezlJ6OgLocwMT3g
-# 0S7Mh1m9Q788vbyHe0rWNVQyI6LuXcNA7hkm5HkARcxDNJeFatCTl7aP65ruUV2+
-# lsgDNZc4Lahg8P5Z7XZG4cUZMfzkNzm6PLmXK2thLbQbM4MOfo/HTPvHbY/iFnCw
-# fUI4s1HwT2wjdRHc3vYgpX6+yh9+soWGE0KMYtrtiKebZEtumCKY09NEYZwAIBbt
-# FUqa3zrlsVtWeU4lw7ZbVm9UsoOTTuTNRuxCL9sx
+# hkiG9w0BAQEFAASCAQBPvsEkI5EK1HW06C7f48KpsSiz74cVgKosrpyvwE+Rmc+F
+# jgQOxo7Pilnj4ZTBEpMxoS4PlfH+EuRNQMaq3qcKdf1D1XWKw5f2jCx4A0Oeg5CF
+# WCOKcB5q619lqHo7s6U8E0sHDCd97ZTJj1c0UvYFbXGzdmmrtHEX8VTWDnbwNfW/
+# Q5KRFRjrhfyeJ5eO4SeEN8avuCR2E61B7KKnci/B89HdxR+wA6zXoXMvGA4cqweK
+# g5AyXF/8R6jugXt+ZmPSdym1S8VgyeoB2jYm/22GandXqB4H2Bn/HVqRxFsgAv6e
+# ZMTa8dCzyIi2W+wMD+yvqaWVaSC11i6PrqeoU6xU
 # SIG # End signature block

@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Invoke-baloonTip {
@@ -96,34 +99,30 @@ function global:Invoke-baloonTip {
 			Tested with Windows 7, Windows 8/8.1 and Windows Server 2012/2012R2
 	#>
 
-	[CmdletBinding()]
 	param
 	(
-		[Parameter(ValueFromPipeline = $True,
-				Position = 0,
-		HelpMessage = 'Title of the Baloon Tip')]
-		[System.String]$Title = 'Information',
-		[Parameter(ValueFromPipeline = $True,
-				Position = 1,
-		HelpMessage = 'Message of the Baloon Tip')]
-		[System.String]$Message = 'Message...',
-		[Parameter(ValueFromPipeline = $True,
-				Position = 2,
-		HelpMessage = 'Type for the Ballon')]
+		[Parameter(ValueFromPipeline,
+		Position = 0)]
+		[string]$Title = 'Information',
+		[Parameter(ValueFromPipeline,
+		Position = 1)]
+		[string]$Message = 'Message...',
+		[Parameter(ValueFromPipeline,
+		Position = 2)]
 		[ValidateNotNullOrEmpty()]
 		[ValidateSet('Question', 'Exclamation', 'Information')]
-		[System.String]$Icon = 'Information'
+		[string]$Icon = 'Information'
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
+		Add-Type -AssemblyName System.Windows.Forms
 	}
 
 	PROCESS {
 		$notification = (New-Object -TypeName System.Windows.Forms.NotifyIcon)
 
 		# Define the icon for the system tray
-		$notification.Icon = [System.Drawing.SystemIcons]::$Icon
+		$notification.Icon = [Drawing.SystemIcons]::$Icon
 
 		#Display title of balloon window
 		$notification.BalloonTipTitle = $Title
@@ -151,8 +150,8 @@ function global:Invoke-baloonTip {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+j1NXwDbIZzvoy6QB3qvBR7i
-# 8KigghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUwi9RCuUSyQB4Huklh1q/el5s
+# KQWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -295,25 +294,25 @@ function global:Invoke-baloonTip {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBQR9oDFeDd83/j3dEDMnDBjGQO7qDANBgkqhkiG9w0B
-# AQEFAASCAQCWWG/Xr7MyIHWf/vmuzaZnqnNoFQHhOeJYADyKo0yDxOD6R3Ruut1k
-# tJpA2pGnNn/5+ukIBM/Wf03Ko9TRUtU7HGWPuejvtw1hZZJ9Ca680CGf7I+uhnDk
-# 62Okanu2K6tbXCKO8lfsZM5LqxXycWg05PcWGsrhJRiF+In/8RG87osZx9bEPNPF
-# Rv/Owp/8bH9QqIKWsOnC4mK5KG6MrZUaA4Fld+ZBcYE4VQDby7H2lur523tj8P8j
-# fVKBmT/HX1poztfMV+aa58dE2n96n2ktR7ltMwUMk/bjYADiYyPA45r/9dsdXtDc
-# MOpS/4sAqknY5uQNYx3nmZyZpjOXxxOXoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBQO/tBFbO1PITPF4na3SsbLk7r0+DANBgkqhkiG9w0B
+# AQEFAASCAQBLzXxF82/I0/XzA19fM5uFRw+vMhGniIMiKwe/dRK3A2ryK2A1+wc7
+# I/X0yv/MAfTIQZ/rxjOSYT18zthFIaMmqHW7X6AZg6ic3uxOoCXPU/+offN+nyTT
+# u8sJo3U1gOqEoLeUGuOZb/VZyd13bFSJuGepOKxrF66HGuZMEeFAaL2YZQyWpDIj
+# ngwRKSb19S1cp0WAQCDZNi6Cgw1oLZsd1o9V2bH3dFffrJ9ZetaCH/QOHnO+mktS
+# 7t1WBCQeVkVsNUXBTY4rsk31R8hH/aIQaivEsONOlJa5ZlyEoBGnNTYaQ/CzDgZ5
+# Z5E4xSbPnETdQQPSOlZtQWurrNN6Lq8ZoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUwMVowIwYJKoZIhvcN
-# AQkEMRYEFA9SUMrkAUkR+Q43qX+d1rNR/EnIMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTE1MFowIwYJKoZIhvcN
+# AQkEMRYEFOIOmtS37/Mvm27BxEfcP6QOlX1kMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAb/o3Q/uDWV4hLX6xTBKvuVYB2Zs6TWlzoAMFO9RDjOGTx
-# W+92+U9z+E5EzOXU1TYotU+Pb1TOfJGWnkQfmsJ2v7XfARLqQYbLa/kTDxF++jSw
-# MVaHmrs09G1a+sNIW7Eh9QIAZlS1GTsi0m7oTSD8vnefhcPOxawxt02BVB1EIt4i
-# R0lXp5NKpaw5rMJpLM2D3+01IEKwFn4ffj3ss2JSFRBOztYT36HSPVnTapJLyrmY
-# 3HPZvWd808q++MELuHgL0rHgiM9Ulh8uYGFtNHluSsNkxDdoMby5yoe++PzE13X3
-# fSTo6dOeySaeL4SHi5Kmo/DrPNGLtHjSr6LLFTwB
+# hkiG9w0BAQEFAASCAQB0RDnuQEe1+mJzDqUpOj8hJL79dn8Fgr49sb/cXDiA76HF
+# iYVTB/k7l18QEJh+6vT2j8N/FaoHSeoFhIa4lnfILf0fNjZ9u3y4IIzbwr6WGl+B
+# h1pvyoUY+jlyEkxxz+2/FQNIrZOBqIeqIouktWSLGwp3HK3eQwCvtubzQOVp/ud1
+# IdhAZj7Dq/7Fr2qPGXb2LPnqvrgu0n2RBOyTb0HXeUDeo1fYQlnmGJmwXPJRFXYl
+# 8DvKKUSW+9bA5PUpjzMwVUcY4I/vsrmO6ZWxms005/nMYqrKDCEWzR/BtETn9/dc
+# C7uvTmNlohCJKqklEyI17GtQLjjJbqlnHdeVvyeq
 # SIG # End signature block

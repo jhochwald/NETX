@@ -1,4 +1,4 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
 
 <#
 		Basic Function found here: http://tomtalks.uk/2013/09/list-all-microsoftwindows-updates-with-powershell-sorted-by-kbhotfixid-Get-microsoftupdate/
@@ -66,12 +66,10 @@ function Global:Get-MicrosoftUpdateInfo {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Position = 0,
-		HelpMessage = 'Just dum the Objects?')]
+		[Parameter(Position = 0)]
 		[switch]$raw = $False
 	)
 
@@ -93,7 +91,7 @@ function Global:Get-MicrosoftUpdateInfo {
 			$Regex = 'KB\d*'
 			$KB = ($string |
 				Select-String -Pattern $Regex |
-			Select-Object { $_.Matches })
+			Select-Object -ExpandProperty { $_.Matches })
 
 			$output = (New-Object -TypeName PSobject)
 			$output | Add-Member -MemberType NoteProperty -Name 'HotFixID' -Value $KB.' $_.Matches '.Value
@@ -106,11 +104,10 @@ function Global:Get-MicrosoftUpdateInfo {
 		if ($raw) {Write-Output -InputObject $OutputCollection | Sort-Object -Property HotFixID} else {
 			# Oupput the collection sorted and formatted:
 			$OutputCollection |
-			Sort-Object -Property HotFixID |
-			Format-Table -AutoSize
+			Sort-Object -Property HotFixID
 
 			# Return
-			Write-Host -Object "$($OutputCollection.Count) Updates Found"
+			Write-Output -InputObject "$($OutputCollection.Count) Updates Found"
 		}
 	}
 }
@@ -118,8 +115,8 @@ function Global:Get-MicrosoftUpdateInfo {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUT5Uvjk3a8sU1VjJXAY0MJyqL
-# OjegghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUcrJQOeXYPYb3Zof1KXyR4fXz
+# YpWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -262,25 +259,25 @@ function Global:Get-MicrosoftUpdateInfo {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSpRBDwCc9Md87rfw16/Sh7zKUxVDANBgkqhkiG9w0B
-# AQEFAASCAQBvBb31dBt1UGKL0hIPxR43RwO2ckHhnCi/eVm9wP8S36umdLWQEiQ8
-# EeDv51l/Xg4T9WntY/ciKx9n+CLSMOJPK2eD3S5aNlR2tedkMnXYq3ifBie2QaJD
-# 6m3lZbGCYmjV8DQrSyIA4K//V11TbM+JmjIGUyI0SpXZCPRkJBXeS9wdWOaZ5BS+
-# ar1hx2+f4sb7p3wbhFmB/GWE27E2H5vHL/2ziYy9pKORsdia3lxZ5eip4vbV1heo
-# AZu6cK7+B9XH592n+1EbGpNMjci6gW88p8AqVA/sGPW2+RLGW0OXYI980T6xVEN3
-# z1dvR3cZ2Tk0Ugi0B2Dbcg3sNVuUKvH9oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTeDU9vyT4k/HrLuBVYeTpsuyNMajANBgkqhkiG9w0B
+# AQEFAASCAQCiQi2U+WKFAl1F1H5bVKeXSoINwdfdh50ueaawk1ZCd3SXiWHS9S74
+# 1nnxmsr5sGtu8jT+epmgAiU3CV93+doWUbJ1aGtxUCRWc6FA8REZRYbicpu/AEwf
+# 3+TAb/GAupsD51Wpp6hZA6nagojE66Uv92B7SSqlIo6UK65t/jBpIUVAfeLG9dRS
+# a1uZf9q9soSEvrdnz+Lf9oRxTTwQnzYjh9z0E2S4B6WXBS0qtI+yTMHCR+5zhUEa
+# Mh50liHjACZpTWoM5Ghs35g2jaqMjZ00eGTswMFPJhCzppYGfgRH1Gnh+hfVdwLf
+# xgqviYn8SiN+puKBbeSAdysfFFIeqjJaoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQ0M1owIwYJKoZIhvcN
-# AQkEMRYEFEfzu+PS5BhDuQwc3FpmR6Fkrgj2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEzNFowIwYJKoZIhvcN
+# AQkEMRYEFEc0BwwtrBZFR7kYFHsI3f2tPtNaMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAzrMaXQJUIxMXRo4oUP4No1RMibm8aTXJ0j3vsCD9/mnjX
-# ivv0sQ576Sog/3RNZhEpfwM3KfL75ZjpofC0Gk9zZW4ZSKsfCP+amx8k20w5MV79
-# yoS9O3KKJLJpZqlV5aejnaOMUzUiKCHB4Ty90hLyOGrQH6vReCTok16zMjotDa2Y
-# yr15r2RI0fBYBVmKMxJuLgAvGbK3h/YX01VTiOh5125Cxg3lN90HVhj90xriTa28
-# 0ClIjo7dS8aMcfMMZ9RjIcQPNJtHZ8HcaA9iYAOpLg0T00kJmfdcPVHurJsXybpO
-# XqnZQ1EG8op3Ud/x+U6H7YGWGKj+vWN4zFGNT+2X
+# hkiG9w0BAQEFAASCAQAnGeBKnYJdAd/aOgLlQecaQpSLOCnohS7pI+4PNs8BUlaQ
+# 2szn380Rjo/ugZw8qRpckA5307Ov3yB2FVRkopN+t6o1JmVqrblgPqkr7nUqi5hi
+# MWW45Enm4RJpBLenXsR0F3W0+nEkqmzp+Z+mL2Fzd2uyFx2TcBnnCz/EzhkoAGZz
+# Ipj1Jg+oOIC3cC1NrVi1SrhS1HSyUWeKOGc/B0ZO7pWwBzcpCThKQdVrFbQpB1fZ
+# GKWEQSphzZgChiGZSk7bV1kwtIPJDgV5hAHrhWjRpEmRfKesw3X3J/LxiDzefYfL
+# OMSXz5UA+w0rdENL5F228B5Wwj0fAA6X7ZXu79e1
 # SIG # End signature block

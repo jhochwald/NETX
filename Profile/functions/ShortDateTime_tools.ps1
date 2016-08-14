@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 1.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Get-ShortDate {
@@ -86,12 +89,10 @@ function global:Get-ShortDate {
 			Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Position = 0,
-		HelpMessage = 'Make sure it is compatible to File Dates')]
+		[Parameter(Position = 0)]
 		[Switch]$FilenameCompatibleFormat
 	)
 
@@ -146,12 +147,10 @@ function global:Get-ShortTime {
 			Source https://github.com/RobBiddle/Get-ShortDateTime/blob/master/Get-ShortDateTime.psm1
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Position = 0,
-		HelpMessage = 'Make sure it is compatible to File Timestamp')]
+		[Parameter(Position = 0)]
 		[Switch]$FilenameCompatibleFormat
 	)
 
@@ -173,8 +172,8 @@ function global:Get-ShortTime {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHIFliQpiY9pFtJ6QcL6ghmEB
-# 2bugghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUdBerXDSGkDE6zdT/jDFi98u/
+# +PSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -317,25 +316,25 @@ function global:Get-ShortTime {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTCdEJ0kzQrtRjUhePkwCYLNkqgbDANBgkqhkiG9w0B
-# AQEFAASCAQCaMYMClyq4bpqUdcZSLSJjF6wrw8dIniVWFBf+tCE87vg0domJdUQb
-# 2VD7kQQ5hEixd9o9QQ1F/HCSzovE2Pr33Hqm5tK/w6zxLcBfEkyR4fZC5PbbJQ8W
-# QhvqNeu85cSbBs3d5J115ndCjqT/7ziWIa0CJrEVMx8vvJpKdk4i+vP7XpG5FNCY
-# 7LehPfQp1jl/I/G4SnIHAiKxDukErenw8Q7fNeu3OCgMMciUY1gO1n8DsVkTh5Zy
-# AWF7NZbffPYnX1I8SzI++xUmUsSau3DmMx3sKUDvZdxQGZ2bLv2RX6OMM/qXK6zR
-# 8jS4gQvRgVPQBFA4L955hdw8vQ1zm8hMoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSVFu7mkBiyJxsWFvWB1Oa3DrIlizANBgkqhkiG9w0B
+# AQEFAASCAQBF0dIu6hdCxG2XnUu/XxDJ6OLDc98w9qNvwZOydmnrv7OgYjbQsXON
+# NAYL01Wn2fqBtbbEZ4f6dCIElA3G3/FB5nSZ2G6N7kWd2qT/7EJELcPvmAQXpfsq
+# hFND7cvb1Flzp9OTX/Ir7E3dWmvH/7kMURA/Vytc1A38FR56FfCh6r7nbDh4zPVg
+# 9t+WEO1Fvsqw2n3VLh0Mnycj5M/6wkLeukV8CkTeqN+cNqX41gnfRhFyWG1AYENL
+# sIt9RV7SmoJhM7TRfWlv8qp2DLsY3YQjNuz+8INXyQx0WzulDpJkGLwPgPEa5rNf
+# XCaCVIr11HLZWciTdO9MrJtJU1NM96LIoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUyMVowIwYJKoZIhvcN
-# AQkEMRYEFLQXWGGgIgR8h2pJ2NDjk+misjdEMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwN1owIwYJKoZIhvcN
+# AQkEMRYEFEtXeu8tYwdqGJQrxVkV3cgif4YrMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAj4Hzgd6fOYBY8kEquYpjy5sKO6vpi70oxQ0XPcslEvX1Z
-# ZoJ2BJh+Kta3HiFa6cVW2SokAq3NqNzQtGlkmarONnPWqa4ZUA06AcAS8tGImmmF
-# O2sBadzp4UeKGusNZrlZEU0aYd+57cfiDD8SxM+FUUYorB84T9SgTz2n+Go3ScQp
-# h2x08E3DcrDSkXj3CWwdqmaa4lT0h0DjdbhfaSEHHycS9WyH9aeZ1/QLut1l6179
-# WzIBWxRksB9dqQCez3xDAjPz75A+RoWcWSNwJYb8PDQY2N9y/P22JMAzZWyAFQab
-# bnyq9nQgHTRfiJoC7IDMyFJ8BJuteM42weJtFVWN
+# hkiG9w0BAQEFAASCAQBCELqBgamazEUD7LpHtEvTN0x/LLbIHBVyD7tOacMYd3oq
+# 756FLIdTv1xFTW8LSBdLx5MsHlCPwhs7RmdGSP4rTXsQ7OTg/9zPyK7hczlibw60
+# dTYdZQ1/+axYU61Nd9H0Lg6KAvBKc7GVbxdqfxlNLKjEobcx0Cg6luKAA0JJXMwB
+# pD6ycWq0BSu0V6HbxAg/CpfYIm/miIjuosUByZE94DpepbUfkdMgRyPipXryfGRO
+# sdYcvsukbBfLT90BNNkyBPS3TEe4Kml+4P3vLtlrPuRqOfO8GtFutwd+CS6UYknz
+# 4XaRHHGoDnOw698/rjCwzh8thB90kHNwONXrSb/H
 # SIG # End signature block

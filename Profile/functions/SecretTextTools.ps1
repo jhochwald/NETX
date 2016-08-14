@@ -1,19 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
+
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -47,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function Global:Get-EncryptSecretText {
@@ -92,31 +95,30 @@ function Global:Get-EncryptSecretText {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Path to the certificate that you would like to use')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$CertificatePath,
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[string]$CertificatePath,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 1,
 		HelpMessage = 'Plain text string that you would like to encyt with the certificate')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$PlainText
+		[string]$PlainText
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
+		$null = (Add-Type -AssemblyName System.Security)
 	}
 
 	PROCESS {
 		#Get the certificate
-		Set-Variable -Name 'Certificate' -Value $(Get-Item $CertificatePath)
+		Set-Variable -Name 'Certificate' -Value $(Get-Item -Path $CertificatePath)
 
 		# GetBytes .NET
 		Set-Variable -Name 'ContentInfo' -Value $(New-Object -TypeName Security.Cryptography.Pkcs.ContentInfo -ArgumentList ( , [Text.Encoding]::Unicode.GetBytes($PlainText)))
@@ -173,20 +175,19 @@ function Global:Get-DecryptSecretText {
 			Support https://github.com/jhochwald/NETX/issues
 	#>
 
-	[CmdletBinding()]
-	[OutputType([System.String])]
+	[OutputType([string])]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'The encrypted test string')]
 		[ValidateNotNullOrEmpty()]
-		[System.String]$EncryptedText
+		[string]$EncryptedText
 	)
 
 	BEGIN {
-		[void][System.Reflection.Assembly]::LoadWithPartialName('System.Security') > $null 2>&1 3>&1
+		$null = (Add-Type -AssemblyName System.Security)
 	}
 
 	PROCESS {
@@ -211,8 +212,8 @@ function Global:Get-DecryptSecretText {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtgW0/BBu20scRDIKDdxTUypL
-# sJKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfn2zHnioiliGRq8kVJ946RCI
+# IWCgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -355,25 +356,25 @@ function Global:Get-DecryptSecretText {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSEEK3LIH90tb1g4pvvQOxwfe96TDANBgkqhkiG9w0B
-# AQEFAASCAQA3/qzjVEqY+K48EdCZFFJHAtEtnlStS++aVJeyDNJKTZ9iMazZWQUD
-# oZAcB4xY4mjpPQKNECUErSiEwX54OJUZDks2RXmtfMLi3EXdk2Ezc+pys/0Xkp1c
-# iy5S9SiWbaZhVWSvHNA0znmED6M6AmNbTkLjvR1dh7B7CSUXX4XeGgJTbPYFStur
-# QFgSgo4X3eTMX0MiqTA/EeFpWNRJZwRUtg0wQNxAFTXH7unAIckwuBotGXkmCFTC
-# M0c+NSbFYDP8AroBDdQABsgxs/weNzxYFMIIvbBRmnPwz9l+WAOACc/Fqlrc7nZg
-# A7tm6syHFXW0PU/1dPCPCCykopnLZD6noYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTrPOFIL7zVXCuUdGxmbVvXJCYleTANBgkqhkiG9w0B
+# AQEFAASCAQCRxXguVAygwWo7pl6wAbX+8vbTMthfvRBtSv5Xffv79zgJuRJykuUV
+# ctnaQAacsSomPdcsr2p6X8NV1EuSaWwX96WPbA1Qp8nWePbofKllclqPsD3aDvR6
+# eZvLmOCcKhjS/o7Di5ld5KoV/O0uDAxJY0vyeKzRMSpQFD2T6k2b0C69GLNHdJ/b
+# wVgL7OzgBOGvmSADGFIHo9MylJph6rSN0E94cyjGQxjgCxiYN5OC4tzThtn/Ji6X
+# EUv7pdv3LD+YTP+yPPIg8g3pqIqbWi/IRJWAt9bWCGrRQEgyYCN30mDyzzIbl/Qu
+# +yBKE/Zl/XoQuPxR2yDkNOtG2n2I9fFQoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDUxNlowIwYJKoZIhvcN
-# AQkEMRYEFP6x+zXiWlXhD7ysE1GZvIbysqrfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTIwMlowIwYJKoZIhvcN
+# AQkEMRYEFMcMwLEFE8KKdwEng+2RSW0UjguEMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQAnOwEr5pf0zD29Ou9szATx0FQq0uigKrSK1qOlbEQm6J2M
-# W6kMDXajHW5Ip621C8+tgWHPuQ48X4iSbwqUNilAmKHNhCyrcpO4wT9R+n7L3yRW
-# X87PRFJ/B3v19ZoSNrY9ErglWMzZ7Oxjp0L7ybqvz9iBfPhtEGRCNgNqOL1ZnFE9
-# 2HIMmf2NRKv3XaZe7+gkWDILoM1YykVySAtlJw3r+0Blq3X+rcXxqs9MvfjNLrbQ
-# yhtGK+cN6iadEqm4zdzl6yVT5GN71mmF85svYsDdd1IRrxYcfU+ASCe8qeswqa9O
-# SkbyEYRzPW/Pjtllb5NGVkSG0jBu28uS1grGhiu1
+# hkiG9w0BAQEFAASCAQCPfgKLNF0Nf8LCr5BqCBWnkd5eJMzLcVn2LwLCXUZvWzFi
+# 7u6Mtu9H8Gm2Z9/zUidGhAad/u0RIcQBlqcy0hHkcYdBDJ2n7ckTCogfBNsI7Ibc
+# F+v20jSdMeXVeC4j+aWhusvDFviePrTUxIuxzXcuuxkDt7onuyo8GSnr20FuArZe
+# SLsKMFiBDbF1fqT1wf/ppSY8zBtjVTys6NPa36+muMHt7m6A7IYevzTPjgIWxP0a
+# hqFdLvE4zIps/bKG11LBC1EA72nctDwd+UqkHenlu9u75K9IqGerFlLr0YAu1wVa
+# sq/R7x18kr7jo9MG8+/0gFDaUFIJJRKtjfL0gj0K
 # SIG # End signature block

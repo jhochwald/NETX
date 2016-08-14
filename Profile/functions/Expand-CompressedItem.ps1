@@ -1,20 +1,12 @@
-﻿#requires -Version 2
+﻿#requires -Version 3.0
 
 #region Info
-
 <#
-		#################################################
-		# modified by     : Joerg Hochwald
-		# last modified   : 2016-07-28
-		#################################################
-
 		Support: https://github.com/jhochwald/NETX/issues
 #>
-
 #endregion Info
 
 #region License
-
 <#
 		Copyright (c) 2016, Quality Software Ltd.
 		All rights reserved.
@@ -48,6 +40,16 @@
 		By using the Software, you agree to the License, Terms and Conditions above!
 #>
 
+<#
+		This is a third party Software!
+
+		The developer of this Software is NOT sponsored by or affiliated with
+		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+
+		The Software is not supported by Microsoft Corp (MSFT)!
+
+		More about Quality Software Ltd. http://www.q-soft.co.uk
+#>
 #endregion License
 
 function global:Expand-CompressedItem {
@@ -127,25 +129,25 @@ function global:Expand-CompressedItem {
 
 	[CmdletBinding(ConfirmImpact = 'Low',
 			HelpUri = 'http://dfch.biz/biz/dfch/PS/System/Utilities/Expand-CompressedItem/',
-	SupportsShouldProcess = $True)]
+	SupportsShouldProcess)]
 	param
 	(
-		[Parameter(Mandatory = $True,
-				ValueFromPipeline = $True,
+		[Parameter(Mandatory,
+				ValueFromPipeline,
 				Position = 0,
 		HelpMessage = 'Specifies the archive to expand. You can either pass this parameter as a path and name to the archive or as a FileInfo object. You can also pass an array of archives to the parameter. In addition you can pipe a single archive or an array of archives to this parameter as well.')]
 		[ValidateScript({ Test-Path($_)})]
-		[System.String]$InputObject,
+		[string]$InputObject,
 		[Parameter(Position = 1)]
 		[ValidateScript({ Test-Path($_)})]
-		[System.IO.DirectoryInfo]$Path = $PWD.Path,
+		[IO.DirectoryInfo]$Path = $PWD.Path,
 		[ValidateSet('default', 'ZIP')]
-		[System.String]$Format = 'default'
+		[string]$Format = 'default'
 	)
 
 	BEGIN {
 		# Build a string
-		[System.String]$fn = ($MyInvocation.MyCommand.Name)
+		[string]$fn = ($MyInvocation.MyCommand.Name)
 
 		# Currently only ZIP is supported
 		switch ($Format) {
@@ -208,8 +210,8 @@ function global:Expand-CompressedItem {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUetiW+eJS43jB3hfVPkj26A4N
-# fWWgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXMQ/EFDDk0juoUSLG+eSUH7a
+# 3kGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -352,25 +354,25 @@ function global:Expand-CompressedItem {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBSNlBM4ZurFVuKwkEE5R3/KyEWlgjANBgkqhkiG9w0B
-# AQEFAASCAQAcuCV2ATJvC4MRdskduBYNA1HdT2tZpPjwv0EQikJsZti97yWgfhuc
-# hqoZqbhcvDFODtknIgmHVrTxyza8plVVynK6Qh+qaXUeXHbUWYZQs/cL6o9o/agh
-# 4fUIhOivPyDdQ/yaXDwJmnhu0Ih+AUUy4JV2Rf3b/fdd631u0CqFnkdZJ+TnLxbg
-# ApI9dW7O2iWzxEcu2jdscNr9JCIQofcwy4uI7yv/qWb+YTE5ibI5D41qzrGSbpiw
-# RB/HlTTS0ZW6YOhrBU5QlmhRGdAW7yZlrr5wcxAgFSo384W+KRcjDPRKMdbra217
-# cRzwm/DIM8cMgfwRbmZmjhs6AzMe4EC/oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBSryNaIpsT7DSPMpluy/rhr4d4UlzANBgkqhkiG9w0B
+# AQEFAASCAQCVbFoBcBvqWHoc1M/Jq49N5NEnEHvqy5wbYOtarjjRSesD0PXwLfUX
+# FbLCFDoawnf8xta0qtDSwnCr8HWNZxEpm0t5L72B62fYT1TkJU+pFUQGbL21j290
+# 4fNGZFGxg10axX8XhGx90Ymg0waazzHP5o3znAIEkks8JxFLEBVMl9e5xhxoAdMh
+# s4BPcKJEczG+FhZCPZw8+XoyLQzjuVD227Z8OBkZBaoLEGG3JTKWf4Zqxo+SVNYN
+# 2pAca5ST9s4x0RKvv05y0zMoIPFgstrm2bWIPePnC5L7Jd76NXGIO36lduHRWKvB
+# u4OizduvkXMGdppuS4V/LdZ2JVhhTuBvoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxMzE3MDQzMlowIwYJKoZIhvcN
-# AQkEMRYEFMyqmCCBD+dYhpqtwG8ypcgBzdADMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDAwNTEyNlowIwYJKoZIhvcN
+# AQkEMRYEFNSwl/MJrL97GQq0PI+2kvyhBFdnMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCvHIW+Q78ZmQi31wGrn87WlAwYajZ4tfvL3YZveCYY5LxO
-# 2KnxYHjkgPgbdjWq9w6ALOAB7uYEdu8a0T5IG5+JGkjg1UnWhHieAVs5CEr+amyu
-# 48BWNoIquMCDCgu5B19B7SvUqph/KhPKshYyTFOa0JnA9NS2YzW0Gkt4aIAhWFbT
-# e/FUi1hHZaYoU2gYhUWQsZiim2b3t139sZzqcDu0ZEaJL+q0rWc5hSD0ZGo8CWSS
-# Y4QppVNVTEIJM9wotiIUk2VQGnj5Ds0CxgTWdAjqdlak+dI8G0c6BFYSYB+n2CgD
-# VPjpvEl9hkkCSP34oUrXTUWicsvQafCLx+2zd2Pi
+# hkiG9w0BAQEFAASCAQBKXrIWmRfvmlIrIkEPcREUMtsUUErM9DXE0oM0hxRS0mtm
+# 4wQSwjBMyU9NT2URlhNIJfID+a4fhDw7jIzdoQgSIOJw/gPcFX2pyjud0tB/hfzE
+# Cdl8oUb0YsiwJo2kdTsIn42SYItaqb4nvBTF66ZqK9eSP0ae4S6ve4rih9jo87L5
+# svrIbbt5SbrICOnSc5IlmLFLuSP9g4O/La4SGkkN0pW6dqvlWbbV6Isim1nnYYNZ
+# pS5AxhtDGJc0LhDQsbIHzE5K6k8C/tjpuqxoRqjYPRE8BSyJErVOzqE9D98uxWna
+# YIKMWDz0L53NdqCIkZ5JqbCgjsBJHyBaPlp+nzBp
 # SIG # End signature block
