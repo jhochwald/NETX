@@ -41,10 +41,10 @@
 #>
 
 <#
-		This is a third party Software!
+		This is a third-party Software!
 
 		The developer of this Software is NOT sponsored by or affiliated with
-		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+		Microsoft Corp (MSFT) or any of its subsidiaries in any way
 
 		The Software is not supported by Microsoft Corp (MSFT)!
 
@@ -136,8 +136,8 @@ function global:Send-Packet {
 
 	PROCESS {
 		$packet = New-Object -TypeName System.Net.Sockets.Socket -ArgumentList (
-			[Net.Sockets.AddressFamily]::InterNetwork, 
-			[Net.Sockets.SocketType]::Raw, 
+			[Net.Sockets.AddressFamily]::InterNetwork,
+			[Net.Sockets.SocketType]::Raw,
 			[Net.Sockets.ProtocolType]::$Protocol
 		)
 
@@ -148,8 +148,8 @@ function global:Send-Packet {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMsr8Ogdkc1Y/QSI8KiWIz20g
-# lnKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUsmc47e2sJy7H3BrxqESojTYM
+# sOygghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -292,25 +292,25 @@ function global:Send-Packet {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBT9ue54jSt1KFZNM2T3F5uuF0KBbzANBgkqhkiG9w0B
-# AQEFAASCAQAlCwwFTBSAr34IrHilozHoB28KRVsPLccxnoV/hR5ty/uh1GVwwNh1
-# Bi1ULSjtp0I8qPtis5U95przVjYrO41+L0h43ymLQ+m6yekBktw+lDQfFCBhAmy4
-# wo62INrUdBCuMu/6T4q1WGxELtmWbvVyF0vOeZj21R6cO06pGpEB4WsfY7ih1svc
-# T2KzL/AQ7dHe8wMbF95Km4dybCjHQTQ4/b6lRRwJr41GCoLvfHx3Ybp6Ty5QOIqi
-# 11NAn8SxoVxELEcKUeQdhWGvFdDTOUk4Pz0v7Tssz3e9MV1ufqr9M1CFMJP/HHHK
-# gjVHkUmFVE5LVQ7nxJ1qMjoajZmesHh7oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBTseVAjRYCAR2I/7GS+/VwzBLWYDjANBgkqhkiG9w0B
+# AQEFAASCAQB3h1Dp2/X9lCyYuiJoHUAYsRuh6EKIxCR7iCk2XWBYWZjxQ021L5qF
+# +HMou2CwCYabE98KLt6vuT+qJsfLEbEsNc+wThepcPfnVV5YOf54YDeZaxLuMe09
+# yVEZvqVt3Bk/CVGXhgDzSEQSR2a7xnht/9cATt+iPANuENNA9lNSzJPDBB/ZARF5
+# XY/8WTGf1coJXIVrZ06nWTizj/9HVOXkRqM/OokYg8xVKu8wjhQaKihjziterehv
+# S4LNkAxwRUyCbhpg4umEBMVsl5MU4W2Lp0lhscxnY5pyZfZaL+ivX3lzwD8vylAm
+# r++QuGJm7JezSPEOD38FOsmk1uOWkDb1oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDE3MzMxMFowIwYJKoZIhvcN
-# AQkEMRYEFOE9y0IPWujfgPjhlYTjQIeDEgIfMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNjIzNTc1NFowIwYJKoZIhvcN
+# AQkEMRYEFAB3Sf0j6Y1Lbofu+sBGPKoXehZ+MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCEy/ZYR0Q2baMHIlYQEqjY74yEp3KJ1qTefSsGm1LvY8qN
-# /U7+jKloN4pVPqPAjX9T+EdMmk3EzrrgcwsPglUPS5GknZ/6aZM47tg/YWSfFT2B
-# X5aVOTjLopIPaMN5OmixRK9rKd0ShPRYop7a2Yv0rZLrhq7g/Y6V7fZLaNQPk3xt
-# G0COpMFzpd/9NqO+pUfZGIGWiQvWvwtaU/ehUIM9c0farCW7Km8+d69Y1VNo36WG
-# mIbBMdRnnS0TJBQik/tSQrfgrVp8xvAWOB/lV+x6TRMRqH2IxtSNXxcySh+yk7js
-# IOz+ypnhqnaTkUead4vQAtKZc+dxkEYsdklNllIA
+# hkiG9w0BAQEFAASCAQA305bLFL1Wc5oNFhPfrUfa8MNBecGGuoEW1hWdVMTd/I68
+# RK3a2jBVhgmpobLq8waEIX1SI1X/tQ8gXz2m5G7uJywQA7zk5PCfVG8dA3A70Khu
+# QLoS2DF0STU103vOdoXs6LiNmy/cs4sqH0QCg9OxIxCoqyVa5/82BnwDgeYzmog+
+# cOEQvHVCQf430J2728r7CMtezpqRXKUpAL179hrwmVtkx8Xswg7wuaFpVDzbNWuZ
+# NiScctBrEHDB50upxVTlKEUlYD/l+E+b3JWe6KYl4GKqZi2pql9RgyAU5nBrcvHy
+# BOUf4GJUzlBdb6r9zByNBUwRb5NzQnDNmvVpxSag
 # SIG # End signature block

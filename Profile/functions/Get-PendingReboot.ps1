@@ -41,10 +41,10 @@
 #>
 
 <#
-		This is a third party Software!
+		This is a third-party Software!
 
 		The developer of this Software is NOT sponsored by or affiliated with
-		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+		Microsoft Corp (MSFT) or any of its subsidiaries in any way
 
 		The Software is not supported by Microsoft Corp (MSFT)!
 
@@ -219,13 +219,13 @@ function Global:Get-PendingReboot {
 				## Creating Custom PSObject and Select-Object Splat
 				$SelectSplat = @{
 					Property = (
-						'Computer', 
-						'CBServicing', 
-						'WindowsUpdate', 
-						'CCMClientSDK', 
-						'PendComputerRename', 
-						'PendFileRename', 
-						'PendFileRenVal', 
+						'Computer',
+						'CBServicing',
+						'WindowsUpdate',
+						'CCMClientSDK',
+						'PendComputerRename',
+						'PendFileRename',
+						'PendFileRenVal',
 						'RebootPending'
 					)
 				}
@@ -248,8 +248,8 @@ function Global:Get-PendingReboot {
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUky4nxH1tlL0QcKdC9GFvDwu/
-# 1LagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUTI8izElBkSWUrZp483u/0Hb6
+# eGKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -392,25 +392,25 @@ function Global:Get-PendingReboot {
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBTVydapzJietXcez6rEiP6P1/1D6zANBgkqhkiG9w0B
-# AQEFAASCAQCY4hXbbP8MO8u+GmllbEh5Vh1JDaC65elMmyiXZGMhn+igWaBfjgVM
-# 0He1dLNKiw1W5oi+xMp4Itjn+E2ZxW54k/yh5L2Wbg1cpScFmPJybzIhnAa6C/z7
-# FY4gWt9YyU3bBTIzfxrQl3BXj4SznTElltN46mtksa/srf9P/M8Fkx7N3F9lsVNW
-# dcJlzosObP+qKx0EYkU6GQcEHdCCPKFDrUzdpYhhFghSklkoeEzc9+G5Av7M2B41
-# zF9HD+rhJIXnYjE+m9EtqT2j4fSZHU5veIS81r8A7wvG+4jYRb8/x/uP6t8eFYNl
-# CQ5Y0RH4bDcAuyRn68Pc6XDM+cbZ9VPyoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBRryMPewvDZUb/9htHRtW1sVZB1rjANBgkqhkiG9w0B
+# AQEFAASCAQAQRli2NXWSajFY2TQNhamOwAlaUEQgE5RZXJp/4dU2VdMHUYyHdvqg
+# 4G/x3pTKYYnT6PU4Ds1z7Wn8owHbb2QZQ12X8PAZ2bd16A98Hj0vMhdvVfOBKs6S
+# 1vjA+Flga43+imJ/1NpwJLiULqutaSrdix6ieXwpS5zhcwnSBlDhlrjmwePOARAS
+# ojrf54uip9n0lPHXws3/TqI7Hh4S/9+xlq+bh1Hf9UIFLza8t+TcddYtQudu4DFX
+# I9bFdD/KOaEIvu379awHzNuGEJlzfvRyMXAWSojzTWAc2fKkxvtc5Oi9r5lIjKZw
+# vTbMxTJJjyQLuOk+cKrEQCH/Q2K5TXf4oYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDE3MzI0NVowIwYJKoZIhvcN
-# AQkEMRYEFL+QvzYx/VgZIyb84Llsa4NjNzxSMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNjIzNTcyOFowIwYJKoZIhvcN
+# AQkEMRYEFETz/n4dkDM2ja7E81mJw8ObX6e0MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCOO2vf46Jezf2+DdYGe8g5JWYsDR+BVzNtq0yVTCVjxkz6
-# QFYBz5KJNra5LZCRlrmmcQUlp9l902Bovb2/xhGz+d8IlUmXNwTCBzTBu3BgxwcW
-# WMIpKPUCqwEbXs/iJlw+6U7ANgS5798bmBRbt5E7nurhWy9vsZDSK4ofdpVClSo/
-# tTzagUPQOmKKhGXIJ1nM+ChN/ZX4XhtET0sX4jGVzSde5G3mes2PdEfTSQ5h4rXf
-# vz/JRiGTDmuFtMMPI5UvFemWYfrI6n5NKeTeTbFOfNf66NQKuDuSpkmroHWEOxYY
-# 4lnfkhaoqqxQ3Uh9ucP2YpsuhQHPnhrwlY88tI8P
+# hkiG9w0BAQEFAASCAQAsR+WDvpTV5O8Pani76WbeJ+/bR1fcBTiqJ9EPv0fjY89n
+# 5FGrUXmtrdGFXflUr9ksqnPr+6v00H7uhJNxXY01uaCbBPxi5liVqvLsod6dY/8I
+# rWCXRRiEMHsHY5SQ8/dc3TDnY3Mv2y/PY4pd0mH3JktotsgJuAiO+IlLbQKJOJf0
+# 6mC4m//5j5VI58XSpENWby3qdRueKMr2zkdlmzFBv3Pm9QSZIoXWaKrqzRZbAUy9
+# BLGHzHTTFZG1iwyou2cmAshXZ10ubGaLAkO0afRBscLJbr7jzC/t7P/QEhWuKcmc
+# BamQTMCnN++ilVTYjuj7TCEqpXtsEww1OlCvCAql
 # SIG # End signature block

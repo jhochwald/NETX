@@ -41,10 +41,10 @@
 #>
 
 <#
-		This is a third party Software!
+		This is a third-party Software!
 
 		The developer of this Software is NOT sponsored by or affiliated with
-		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+		Microsoft Corp (MSFT) or any of its subsidiaries in any way
 
 		The Software is not supported by Microsoft Corp (MSFT)!
 
@@ -66,7 +66,7 @@
 		Source: http://powershell.com/cs/blogs/tips/archive/2015/10/22/adding-command-not-found-handler.aspx
 #>
 
-$ExecutionContext.InvokeCommand.CommandNotFoundAction = 
+$ExecutionContext.InvokeCommand.CommandNotFoundAction =
 {
 	param (
 		[String]$commandName,
@@ -88,8 +88,8 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUnO2C9T3+CmTm8NXuX6yIGAhP
-# VICgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9D4mZlm/5VXhzRGzMi4p29qB
+# fPSgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -232,25 +232,25 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction =
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBS4OtCitvTzQbN3NNFAtQHaGatsUTANBgkqhkiG9w0B
-# AQEFAASCAQAHRds8kphZw5HW2LWm2Qzn2AiP6SCJT5OSYy9Fe9Vr3iBK5acuyjub
-# tYhe3CwqqmU5TLhwbonz/EqDVJv5vGUaKngIsw43seuSgXaera0dDvm6HyFTTiX5
-# kjDsjmzO8JKo1b7kiTgtBFTQbx57ZYt51QkNPEKpxBZdaPf7dXMmElAv5WB9phmy
-# DWhS7kfosX0h/lGXgql0Zo8yiFwq50xm6HKtXDfvR2uF0UlR4FxU7m+fXS7FokEQ
-# hahS4yfI4seX8VSS2L4fIbj5bS044ySRJrCBGtGNVVHXIKpFDYupbw4bR7kJHPTx
-# Pw7Ua1AvQRyepLmADGm46TpVOng2g/DwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBT1ZRqEiCrMLY98niVjc8lMnasxtDANBgkqhkiG9w0B
+# AQEFAASCAQCrwoXymrmIPAzbeiiqX8Bbol6ge6Gm3YDSyoMN7R9ReCjIqzAdvVsF
+# 3mc6oQCTGt0DUuC/j7SjN5JCcZNDLViqrFPRrgwa5QAolEwNAHFohPZhygq9NvSY
+# +w+EoGbxIEDg/gBZ8/pMgi/T2vXcF9rly1cmk3qTD04Pq6JbvX2KN64dy/SQfQZL
+# kVBTnpbOkAIqnjWzkniYCNajgi0+O4/c+WuMT1ups5I7fZrTWqShVRlfjTs9ucWL
+# ytAidzEiVMwrsu9Fcefgu/qlVYlPrVFqhxxPkuqnDCOD1hFYcNPbC/JdKUmP9dRd
+# p6nafZtrEwdCW7HRfnjpv1F41oFZI/pqoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDE3MzIyOFowIwYJKoZIhvcN
-# AQkEMRYEFCwks2scsce1NdONfC7CMvNwsFbtMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNjIzNTcxMlowIwYJKoZIhvcN
+# AQkEMRYEFAr9DzKICsHgMQbisUJxtx8rTpz/MIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCe9Xv4tBWXc2FWbs1LFy48Fw9eEJ3ex9cHGBiFursIVinL
-# nJKsJuIoErx0y+xIX760+A8M/AXV7990vTwGM0NmtHkBVQnKXmdC3CsB6KVzcJNc
-# IHeBbIXZ6969DTr33dIKmCLGzBHQK7lFerNYCtnsn9Qyw9U+ZQCGpzIQg/BbGmtG
-# tWozJ9V6vtlO9cUml0XNK9+rDBqv0Q9A7PxxQihLHU90Y2YkhaAgPz0LcKQFpL3f
-# ABXFtyC52WkLzQplGvngkmFr3FYDgRlx57swc3FK/Ox5p7XydcdS5XMSBXT6HhVV
-# jF/xJiTNqN6HPY67/ghFns29doly3IxziV1bcG7d
+# hkiG9w0BAQEFAASCAQBb+NOWN8b0TJFkK3AKAy96Z2MA2Gype8LvgVXtNrWbkZTT
+# pvPQ1qdOedVJ8Oy/Rdww1YOYo8FSHD8Idg879WgVsSjE9ryf1X0vRtkrSaJGoy46
+# 6DYjUGi1dqnX56ay1hMTP+5fy7lKNQRqG9fZkeTECMaYBcuapUEYbqoH9x155xUk
+# ZS1LUPCUwbB1CmtldarjSPjL9fnEalojQP2CRy3q9TtFCejGBaVZXXMUVnMME8LL
+# vE+Hwn9ttPz7ObcOxIUUCrtDsVwSXq1rY+bQWNgxrdAf8NW7ik37pQiOwZEJ4kR4
+# HfL+tKIx2jEvocCfs9hCk7KVP6s/h3Lc7ZPqwl28
 # SIG # End signature block

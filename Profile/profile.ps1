@@ -41,10 +41,10 @@
 #>
 
 <#
-		This is a third party Software!
+		This is a third-party Software!
 
 		The developer of this Software is NOT sponsored by or affiliated with
-		Microsoft Corp (MSFT) or any of it's subsidiaries in any way
+		Microsoft Corp (MSFT) or any of its subsidiaries in any way
 
 		The Software is not supported by Microsoft Corp (MSFT)!
 
@@ -112,13 +112,20 @@ $env:ADPS_LoadDefaultDrive = 1
 # Resetting Console Colors
 [Console]::ResetColor()
 
-# Interactive mode
-Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
+# Get the Mode?
+if ((Get-Command -Name Set-RunEnv -ErrorAction SilentlyContinue)) {
+	# Use our Core Module command
+	Set-RunEnv
+} else {
+	# Enforce Terminal as Mode!
+	Set-Variable -Name RunEnv -Scope Global -Value $('Terminal')
+}
 
 # This is our Base location
 Set-Variable -Name BasePath -Scope Global -Value $('c:\scripts\PowerShell')
 
 $IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource' -ListAvailable)
+
 if ($IsNewModuleAvailable) {
 	if ((Get-Module -Name 'enatec.OpenSource')) {
 		$null = (Remove-Module -Name 'enatec.OpenSource' -Force -Confirm:$False -ErrorAction SilentlyContinue -WarningAction SilentlyContinue)
@@ -322,7 +329,7 @@ Set-Location -Path $BasePath
 function info {
 	PROCESS {
 		''
-		('Today is: ' + $(Get-Date -Format 'G'))
+		('Today is: ' + $((Get-Date -Format 'yyyy-MM-dd') + ' ' + (Get-Date -Format 'HH:mm:ss')))
 		''
 		if ((Get-Command -Name Get-NETXCoreVer -ErrorAction SilentlyContinue)) {
 			#Dump the Version info
@@ -432,6 +439,33 @@ if ($host.Name -eq 'ConsoleHost') {
 	# Look who is using our PowerShell Web Proxy Server...
 	# We do not support this Environment :)
 	Write-Debug -Message 'Default Host!'
+} elseif ($host.Name -eq 'ServerRemoteHost') {
+	Clear-Host
+
+	if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+		# Make the Name ALL Lower case
+		$MyUserInfo = ($env:Username.ToUpper())
+
+		# This is a regular user Account!
+		Write-Host -Object "Entering PowerShell as $MyUserInfo with User permissions on $env:COMPUTERNAME" -ForegroundColor 'White'
+	} else {
+		# Make the Name ALL Lower case
+		$MyUserInfo = ($env:Username.ToUpper())
+
+		# This is an elevated session!
+		Write-Host -Object "Entering PowerShell as $MyUserInfo with Admin permissions on $env:COMPUTERNAME" -ForegroundColor 'Green'
+	}
+
+	# Support for Remote was added a while ago.
+	if (Get-Command -Name Get-MOTD -ErrorAction SilentlyContinue) { Get-MOTD }
+
+	# Use this to display the Disk Info
+	if (Get-Command -Name motd -ErrorAction SilentlyContinue) {
+		# Blank Line
+		Write-Output -InputObject ''
+
+		motd
+	}
 } else {
 	# Not in the Console, not ISE... Where to hell are we right now?
 	Write-Debug -Message 'Unknown!'
@@ -474,8 +508,8 @@ if (Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUheu7sht1ZpsdNqEGDCfeQWN4
-# rNGgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9dZzu67PUC81p+Lm1BmOtDm6
+# QuKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -618,25 +652,25 @@ if (Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBRkQic1jJPoHCwddzdp83ftzr33NDANBgkqhkiG9w0B
-# AQEFAASCAQChbRccuz2SZYQt1nBv3VZJxPv04ovOCz9ld/RQmZsZNftOqSBO5XGt
-# M+Vg76s50yrec5LQbtX3cKEdnhd4w/rEfQSE+qC6bbFe8D7QNJfQTpuL4PJAu0/d
-# jf0nBGLcmW8D6OKVal9uLnA9uGGCCC1BDh5+ggZKfUYoecusZtdKhScjotRNiSAI
-# mV43Jt/JP2jDItbCM+0yTwS+H6Wu0jMgPMi4SpCEj7pTjoTSTxBmd7Qr30xyZ09D
-# 9tyVioJo8L6V3VXvuu1ENdWXM/RSBtzo70gZS7aZY7UgHnmZl1ePOFt/ShXmw0OO
-# paXxXaxMUakcGmHCvx2AQ5dj3OTkRmaVoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBThd57+6AT6ANoq18lXKaR4er2RqDANBgkqhkiG9w0B
+# AQEFAASCAQCgROHwpaimxHg6vQLRmGb33uHrHvYGUFTN4H27T6bP11711fICoKXX
+# gQO2Ng0iSYJjxUXfD0ETcIJDS296mpVeK9T/OB1piDSiI9CmQ8Ps9t/J1Mq6zrk6
+# OAjju9ZqY3E5RxNH9I8ltZVhyZWCc4Y3BL6W7kV1r12g7vKFjqeChRV5WKA+3Rnl
+# mWwvtIKaY4eUd8AkIS4fyXofyK1LOrjrpbye3xBHiPeAKU8RuWLIiHuiVzwVFJqN
+# 7oTyneWAu9L+0f/WamM8qseYVW8uJgk/urebZWl1li+/QGr2bANCVYTW68GGLyaG
+# jkRzwybzem9KIknyHLIDf6DIlRyOosqwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNDE3MzIyNFowIwYJKoZIhvcN
-# AQkEMRYEFNewbBNt83MhP9urtdLTctigR6H2MIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxNjIzNTcwOFowIwYJKoZIhvcN
+# AQkEMRYEFC4q5WRqZ1McibqjRB/ZtBhYxUMYMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQBgSeaFp2L31MbwSHQfmOPHfwjUCBq+RphjjYvUit1CefBk
-# /o1ntd7r+LAXFoh++QBRwCtEmrP4E9q13gWOgFXB2XdA67BM6lIN8SgghLdYT3gH
-# ZXUjhg5UCvtHhz7mprm1gppKMSNt97KiumD6wYxwYN6sxjY1ddcQEXKA8gqkoOn1
-# OZFgMHrtrDEjBLSWNupVAYMQDE8xyFKtKKXOXTAINr40k7xMx+muNss/sgQ2zk7C
-# etBjEiOZqrFUdLLVxEJXHBvRzMc8usN1XNrdx9KUECIybJvJGYqcwaK7EMt2UMwp
-# xX7Yk2JYQ/DCb6X1Bl41yrC17HUY4nbES4HMwevJ
+# hkiG9w0BAQEFAASCAQBZvHro2mkRmKnodHThR30p0G/ci8SV1IIpG9SlgR7PSqqh
+# vFULnMGu3qIW26zw4HOr9MOk50U8PTP3LHyEASsyKWselAY28gFc45YepY2EeRMV
+# xq0ZeZMHPpjosj7kur330fxUK86AZ25Q4qP4V7goe7zEXCcpeT6BZrfSJhoYptkw
+# StzEgTc/+35E7SC5F2VzgnOzyB1oDonSulFxrFqP7sYJ6PEs5jcT5fTq372YDhNQ
+# L28KjkNwprS4yaDMlBxhV9LpkJERrmLWz4B/TzelDVP4R21K8td76Of0lIZhi0gt
+# o+mTU9luVYMqa0mCJbt2in1aFdmUkvCPfpjOdxW3
 # SIG # End signature block
