@@ -74,8 +74,7 @@
 		.LINK
 		Support Site https://github.com/jhochwald/NETX/issues
 #>
-[CmdletBinding(ConfirmImpact = 'None',
-SupportsShouldProcess)]
+
 param ()
 
 function global:Get-IsWin10 {
@@ -122,7 +121,7 @@ if ((Get-Command -Name Set-RunEnv -ErrorAction SilentlyContinue)) {
 }
 
 # This is our Base location
-Set-Variable -Name BasePath -Scope Global -Value $('c:\scripts\PowerShell')
+Set-Variable -Name BasePath -Scope Global -Value $('c:/scripts/PowerShell')
 
 $IsNewModuleAvailable = (Get-Module -Name 'enatec.OpenSource' -ListAvailable)
 
@@ -137,7 +136,7 @@ if ($IsNewModuleAvailable) {
 	function script:LoadScripts {
 		PROCESS {
 			# Load all the NET-Experts PowerShell functions from *.ps1 files
-			Set-Variable -Name ToolsPath -Value $("$BasePath\functions\*.ps1")
+			Set-Variable -Name ToolsPath -Value $(('{0}\functions\*.ps1' -f $BasePath))
 
 			# Exclude (Pester) Test scripts
 			Set-Variable -Name ExcludeName -Value $('.Tests.')
@@ -278,7 +277,7 @@ if ((Get-Command -Name Add-AppendPath -ErrorAction SilentlyContinue)) {
 		Add-AppendPath -Pathlist $BasePath
 	} catch {
 		# Do nothing!
-		Write-Warning -Message "Could not append $BasePath to the Path!"
+		Write-Warning -Message ('Could not append {0} to the Path!' -f $BasePath)
 	}
 }
 
@@ -352,14 +351,14 @@ function motd {
 			# How much Disk Space do we have here?
 			if ($Free -le 5) {
 				# Less then 5 GB available - WARN!
-				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Yellow'
+				Write-Host -Object ('Drive {0} has {1}GB of {2}GB available' -f $HD.DeviceID, ($Free), ($Total)) -ForegroundColor 'Yellow'
 			} elseif ($Free -le 2) {
 				# Less then 2 GB available - WARN a bit more aggressive!!!
-				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available" -ForegroundColor 'Red'
+				Write-Host -Object ('Drive {0} has {1}GB of {2}GB available' -f $HD.DeviceID, ($Free), ($Total)) -ForegroundColor 'Red'
 			} else {
 				# Regular Disk Free Space- GREAT!
 				# With more then 5 GB available
-				Write-Host -Object "Drive $($HD.DeviceID) has $($Free)GB of $($Total)GB available"
+				Write-Host -Object ('Drive {0} has {1}GB of {2}GB available' -f $HD.DeviceID, ($Free), ($Total))
 			}
 		}
 
@@ -409,13 +408,13 @@ if ($host.Name -eq 'ConsoleHost') {
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is a regular user Account!
-		Write-Host -Object "Entering PowerShell as $MyUserInfo with User permissions on $env:COMPUTERNAME" -ForegroundColor 'White'
+		Write-Host -Object ('Entering PowerShell as {0} with User permissions on {1}' -f $MyUserInfo, $env:COMPUTERNAME) -ForegroundColor 'White'
 	} else {
 		# Make the Name ALL Lower case
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is an elevated session!
-		Write-Host -Object "Entering PowerShell as $MyUserInfo with Admin permissions on $env:COMPUTERNAME" -ForegroundColor 'Green'
+		Write-Host -Object ('Entering PowerShell as {0} with Admin permissions on {1}' -f $MyUserInfo, $env:COMPUTERNAME) -ForegroundColor 'Green'
 	}
 
 	# Show infos
@@ -447,13 +446,13 @@ if ($host.Name -eq 'ConsoleHost') {
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is a regular user Account!
-		Write-Host -Object "Entering PowerShell as $MyUserInfo with User permissions on $env:COMPUTERNAME" -ForegroundColor 'White'
+		Write-Host -Object ('Entering PowerShell as {0} with User permissions on {1}' -f $MyUserInfo, $env:COMPUTERNAME) -ForegroundColor 'White'
 	} else {
 		# Make the Name ALL Lower case
 		$MyUserInfo = ($env:Username.ToUpper())
 
 		# This is an elevated session!
-		Write-Host -Object "Entering PowerShell as $MyUserInfo with Admin permissions on $env:COMPUTERNAME" -ForegroundColor 'Green'
+		Write-Host -Object ('Entering PowerShell as {0} with Admin permissions on {1}' -f $MyUserInfo, $env:COMPUTERNAME) -ForegroundColor 'Green'
 	}
 
 	# Support for Remote was added a while ago.
@@ -508,8 +507,8 @@ if (Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # SIG # Begin signature block
 # MIIfOgYJKoZIhvcNAQcCoIIfKzCCHycCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9dZzu67PUC81p+Lm1BmOtDm6
-# QuKgghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUbvBOUwHr0lYetQ18of29xZ3Y
+# mlagghnLMIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
 # VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
 # BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
 # MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
@@ -652,25 +651,25 @@ if (Get-Command -Name Invoke-GC -ErrorAction SilentlyContinue) { (Invoke-GC) }
 # BAMTGkNPTU9ETyBSU0EgQ29kZSBTaWduaW5nIENBAhAW1PdTHZsYJ0/yJnM0UYBc
 # MAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3
 # DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEV
-# MCMGCSqGSIb3DQEJBDEWBBThd57+6AT6ANoq18lXKaR4er2RqDANBgkqhkiG9w0B
-# AQEFAASCAQCgROHwpaimxHg6vQLRmGb33uHrHvYGUFTN4H27T6bP11711fICoKXX
-# gQO2Ng0iSYJjxUXfD0ETcIJDS296mpVeK9T/OB1piDSiI9CmQ8Ps9t/J1Mq6zrk6
-# OAjju9ZqY3E5RxNH9I8ltZVhyZWCc4Y3BL6W7kV1r12g7vKFjqeChRV5WKA+3Rnl
-# mWwvtIKaY4eUd8AkIS4fyXofyK1LOrjrpbye3xBHiPeAKU8RuWLIiHuiVzwVFJqN
-# 7oTyneWAu9L+0f/WamM8qseYVW8uJgk/urebZWl1li+/QGr2bANCVYTW68GGLyaG
-# jkRzwybzem9KIknyHLIDf6DIlRyOosqwoYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
+# MCMGCSqGSIb3DQEJBDEWBBS0GZ2jntJfIeSDLdJedpbJs5Ef7TANBgkqhkiG9w0B
+# AQEFAASCAQBD9DXJTU5xWRg9Za5dx6KP/rwaWmWwR8fcwaHM9GRaFO5IgBIhghVT
+# cBj8otRj6w0JVLDEhiMdB+5TEQnwevbIsNVKt8Z6PPb6XkbQU2Z9Esv85ZGxktdS
+# hZAPEZRr0ceIZAUyjdUHaAxcCFxBJrJzv2C8F4tWhhFTxo0YWqyPYohJhh6vxNZl
+# 0TfOSxyzD1MuxHKDWo5pEC23+2A34J3i+ezP1/z68FssIJb+YjCXpZfqxqFJ3IPj
+# 2zycbOVo0nNUbqn3/iR0xWGbUbCxo+gkjhUP/xgP70uXje8QggT5wWEiFFMmaBdk
+# uTlfNhKckP547Bdiev4UGdFj+PrRuxOloYICojCCAp4GCSqGSIb3DQEJBjGCAo8w
 # ggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
 # c2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh
 # 1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJAzELBgkq
-# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgxODE0NTc1NVowIwYJKoZIhvcN
-# AQkEMRYEFC4q5WRqZ1McibqjRB/ZtBhYxUMYMIGdBgsqhkiG9w0BCRACDDGBjTCB
+# hkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDgyMTE5MzMyNlowIwYJKoZIhvcN
+# AQkEMRYEFJ7f9C/JHOFQGpyo7EQwUH+nhBWbMIGdBgsqhkiG9w0BCRACDDGBjTCB
 # ijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkGA1UEBhMC
 # QkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNp
 # Z24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkq
-# hkiG9w0BAQEFAASCAQCPfjEEJ/BGR8QaXSvQiaPO/ufJqqO/TBWtCV7/r2EENAqS
-# o1S85X3gFK7W6dniN2CMxpx9dHGTykXLPsyjeRDwqY1YHtO3AQs0kCg6Jlhlv3Ch
-# bxR6hq0Ux9Bn79y5QV13iB7KwdsFujAuu2yCZ5HtxsNln7/rWoJDYlA+jtStXbEL
-# 2RqpJe2CTC2NQF49CSfAA7Nv4KjzdZ9zsPFn6jMZQb8FTQlDrr3kJRGaepnWFJ3n
-# WVGunlYccqFFjEAr8FCGAE7GILqkO8KVyt4VTddUisAa/WHlAP5KyFkWNiDqTGIE
-# HQItPjZlNZ+NblCKWP01lQ793uyYyFXt4qztlZ56
+# hkiG9w0BAQEFAASCAQAKtVaH0tOqb5wHinaxeugfttCa/bMjVwyG8TPbbxAfo7vk
+# EPliTdWwdbBa2g6z/VqpWDnYwJTApPFa9hesou+fND2jL/VOAa/LS8nWa1ZAar7X
+# VdMQd43gTrEvDlN3vZmIUsK+jYuPxrLZVTrkuQ15owC3VK6vkq0FtAKAfQlq9cVJ
+# XrZerWCEO93E1JKfjZcYGt5DiwevEJma3PK57+Sdwo4PPNCPr7Ns8D5aNwksQG+I
+# nkOAgEi0g5bTS7NgUwieOwxcpv9xsM2VpbWGrADuhwgF0DD0kO63irrzTMsZJ7xh
+# BtMAL+qsyfR88G9TOojNUFavKebNDyF8AKgAetu8
 # SIG # End signature block
